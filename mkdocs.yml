@@ -1,0 +1,35 @@
+site_name: Anton – Dokumentation
+theme:
+  name: material
+  language: de
+  logo: images/kr_logo.png
+  favicon: images/favicon-anton.png
+  font:
+    text: Open Sans
+    code: Open Mono
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.inlinehilite
+  - pymdownx.inlinehilite
+  - footnotes
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - User:
+    - Datenimport: user/import.md
+  - Developer:
+    - Forms: developer/forms.md
+    - Fields: developer/fields.md
+    - Data Tables: developer/data-tables.md
+    - Search: developer/search.md
+    - Search: developer/word-export.md
+  - Admin:
+    - Requirements: admin/requirements.md
+    - Installation: admin/installation.md
+    - Configuration: admin/configuration.md
+    - Commands: admin/console-commands.md
+    - Testinstallation k & r: admin/testarchive.md
