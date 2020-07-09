@@ -4,4 +4,4 @@
 
 Work in progress...
 
-https://github.com/kraenzle-ritter/anton-documentation
+https://kraenzle-ritter.github.io/anton-documentation/
