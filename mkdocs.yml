@@ -1,11 +1,14 @@
 site_name: Anton – Dokumentation
+repo_url: https://github.com/kraenzle-ritter/anton-documentation
+repo_name: 'anton-documentation'
+site_author: 'Andreas Kraenzle, Gerold Ritter'
 theme:
   name: material
   language: de
   logo: images/kr_logo.png
   favicon: images/favicon-anton.png
   font:
-    text: Open Sans
+    text: Roboto
     code: Open Mono
 extra_css:
   - stylesheets/extra.css
@@ -33,3 +36,9 @@ nav:
     - Configuration: admin/configuration.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/AndreasKraenzle
+    - icon: fontawesome/brands/github
+      link: https://github.com/kraenzle-ritter
