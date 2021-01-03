@@ -1,0 +1,211 @@
+openapi: 3.0.1
+info:
+  # title: Anton API
+  description: 'API Documentation of Anton'
+  #contact:
+  #  email: info@anton.ch
+  # license:
+  #   name: MIT
+  #   url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://kr.anton.test/api
+    description: lokaler Testserver
+  - url: https://kr.anton.ch/api
+    description: Kränzle & Ritter Firmenarchiv (Testarchiv)
+  - url: https://archives.georgfischer.com/api
+    description: Georg Fischer Archiv
+  - url: https://besenval.anton.ch/api
+    description: Musée des Suisses dans le Monde, Archives
+tags:
+  - name: actors
+    description: Everybody who can act (person, organisation etc.).
+  - name: keywords
+    description: Keywords
+  - name: places
+    description: Places
+  - name: valuelists
+    description: Valuelists used in Anton
+paths:
+  /actors:
+    get:
+      tags:
+        - actors
+      summary: Get a list of existing actors
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/providerParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,beacon,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: successful operation
+  /actors/{id}:
+    get:
+      tags:
+       - actors
+      summary: Get an existing actor by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: Actor not found
+  /keywords:
+    get:
+      tags:
+        - keywords
+      summary: Get a list of existing keywords
+      responses:
+        200:
+          description: successful operation
+  /keywords/{id}:
+    get:
+      tags:
+       - keywords
+      summary: Get an existing keyword by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: Keyword not found
+  /places:
+    get:
+      tags:
+        - places
+      summary: Get a list of existing places
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - in: query
+          name: provider
+          description: Only useful if the format is beacon (default is gnd).
+          schema:
+            type: string
+            enum: [gnd,geonames,wikipedia]
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,beacon,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: successful operation
+  /places/{id}:
+    get:
+      tags:
+       - places
+      summary: Get an existing place by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: Place not found
+  /authority-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of authority types (eg. person, organization) which is used as ActorsType.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+  /countries/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of active countries which is used in places.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+  /place-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of Geoname Feature Classes which is used as PlaceType.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+components:
+  parameters:
+    formatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum: [select2,json]
+      description:
+           default is `json`
+    idParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    localeParam:
+      name: locale
+      in: path
+      required: true
+      schema:
+        type: string
+        enum: [de, en, fr]
+    pageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+    perPageParam:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+    providerParam:
+      name: provider
+      description: Only useful if the format is beacon (default is gnd).
+      in: query
+      schema:
+        type: string
+        enum: [gnd,sikart]
+    sortAscParam:
+      name: sortAsc
+      in: query
+      schema:
+        type: boolean
+    sortFieldParam:
+      name: sortField
+      in: query
+      schema:
+        type: string
+        enum: [id,identifier,name,title,date_start,date_end]
+    searchParam:
+      name: search
+      in: query
+      schema:
+        type: string
