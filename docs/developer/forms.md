@@ -1,7 +1,7 @@
 # Forms
 
 !!! Bug "Achtung"
-    Forms does not ork for AntonObjects yet.
+    Forms does not work for AntonObjects yet.
 
 - `$modus`: detail, edit, create, list
 - `$scope`: intern, extern
@@ -27,4 +27,3 @@ api/valuelists/{name}/{locale}?format=select2
 | private_values | private |
 | status_of_description_values | status_of_description |
 | vacat_values | vacat |
-

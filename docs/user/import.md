@@ -200,3 +200,10 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |--show-possible-columns   |show all pssible column names|
 |--show-mapping            |show mapping for this file|
 |--show-separators         |show separators|
+|--from-ead                |import file is a xml-ead file (also use --parent and --dont-validate)|
+|--parent=                  |if import file is an ead you need a parent|
+
+Beispiel
+```bash
+php artisan anton:import customers/kr/ead/test_2-ead.xml --from-ead --dont-validate --create-actors --create-places --create-keywords --parent=1 --env=kr -vv --import --no-backup
+```

@@ -9,3 +9,5 @@
 ## Create an individual List of available Search Fields 
 
 Just create your own `searchfields` array in the `settings`. You can use all lines from the `config/custom.php`.
+
+Grab the full list here: https://kr.anton.ch/admin/searchfields

@@ -23,22 +23,30 @@ markdown_extensions:
 nav:
   - Home: index.md
   - User:
+    - Signaturen: user/identifiers.md
+    - Access-Konzept: user/access.md
     - Datenimport: user/import.md
+    - Einstellungen: user/settings.md
+    - File Uploads: user/uploads.md
   - Developer:
     - Forms: developer/forms.md
     - Fields: developer/fields.md
     - Data Tables: developer/data-tables.md
     - Search: developer/search.md
-    - Search: developer/word-export.md
+    - Word Export: developer/word-export.md
+    - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
     - Configuration: admin/configuration.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
+  - API: api/index.md
 extra:
   social:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/AndreasKraenzle
     - icon: fontawesome/brands/github
       link: https://github.com/kraenzle-ritter
+plugins:
+  - render_swagger
