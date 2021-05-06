@@ -711,26 +711,44 @@
 <div class="codehilite"><pre><span></span><code>php artisan anton:customdir -vv --create --env<span class="o">=</span>besenval
 </code></pre></div>
 
+<p>Nun als <code>root</code> das Verzeichnis schreibbar machen:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">chmod -R 775 customers/besenval</span>
+</code></pre></div>
+
 <h2 id="logo-kopieren">Logo kopieren<a class="headerlink" href="#logo-kopieren" title="Permanent link">&para;</a></h2>
 <p>Falls kein Logo zur Verfügung steht, kann das Antonlogo kopiert werden:</p>
 <div class="codehilite"><pre><span></span><code>php artisan anton:install --logo -vv --env<span class="o">=</span>besenval
 </code></pre></div>
 
 <h2 id="matomo-einbinden">Matomo einbinden<a class="headerlink" href="#matomo-einbinden" title="Permanent link">&para;</a></h2>
-<p>Auf Matomo einloggen <a href="http://matomo.anton.ch/">http://matomo.anton.ch/</a>. Unter "Websites Verwalten" eine neue Website hinzufügen.</p>
+<p>Auf Matomo einloggen <a href="http://matomo.anton.ch/">http://matomo.anton.ch/</a>. Unter "Alle Websites" eine neue Website hinzufügen.</p>
 <p>In den Anton Settings <code>analytics_id</code> mit der Motomo ID ausfüllen.</p>
 <h2 id="configure-supervisor">Configure Supervisor<a class="headerlink" href="#configure-supervisor" title="Permanent link">&para;</a></h2>
 <p>Als <code>root</code> die Konfigurationsdatei <code>etc/supervisor/supervisor.conf</code> öffnen und einen neuen <code>customer</code> einrichten.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">[program:laravel-worker-besenval]</span>
 <span class="na">process_name</span><span class="o">=</span><span class="s">%(program_name)s_%(process_num)02d</span>
-<span class="na">command</span><span class="o">=</span><span class="s">/usr/bin/php7.3 {{ path to anton dir }}artisan queue:work database --tries=3 --timeout=300 --env=besenval</span>
+<span class="na">command</span><span class="o">=</span><span class="s">%(ENV_SPRVS_PHP)s %(ENV_SPRVS_ANTON)s/artisan queue:work database --tries=3 --timeout=120 --env=besenval</span>
 <span class="na">autostart</span><span class="o">=</span><span class="s">true</span>
 <span class="na">autorestart</span><span class="o">=</span><span class="s">true</span>
-<span class="na">start retries</span><span class="o">=</span><span class="s">10</span>
-<span class="na">user</span><span class="o">=</span><span class="s">{{ user who runs anton }}</span>
+<span class="na">startretries</span><span class="o">=</span><span class="s">10</span>
+<span class="na">user</span><span class="o">=</span><span class="s">%(ENV_SPRVS_USER)s</span>
 <span class="na">numprocs</span><span class="o">=</span><span class="s">1</span>
 <span class="na">redirect_stderr</span><span class="o">=</span><span class="s">true</span>
-<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">{{ path to log }} </span>
+<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">%(ENV_SPRVS_LOG)s/worker-besenval.log</span>
+</code></pre></div>
+
+<p>Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">SPRVS_PHP=</span>
+<span class="err">SPRVS_LOG=</span>
+<span class="err">SPRVS_USER=</span>
+<span class="err">SPRVS_ANTON=</span>
+</code></pre></div>
+
+<p>Dann den supervisor als <code>root</code> neu starten:</p>
+<div class="codehilite"><pre><span></span><code>supervisorctl stop
+supervisorctl reread
+supervisorctl update
+supervisorctl restart
 </code></pre></div>
                 
               
