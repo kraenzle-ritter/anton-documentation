@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   #title: Anton API
-  description: 'API Documentation of Anton (date).'
+  description: 'API Documentation of Anton. Do not use this in production yet.'
   # contact:
   # email: info@anton.ch
-  version: 1.0.0
+  version: 0.0.1
 servers:
   - url: http://kr.anton.test/api
     description: lokaler Testserver
@@ -46,6 +46,13 @@ paths:
       summary: Get a list of existing actors
       parameters:
         - $ref: '#/components/parameters/searchParam'
+        - name: authority_type
+          in: query
+          schema:
+            type: string
+            enum: [person,family,corporate_body,organisational_unit,group,software]
+          description:
+            Should be a value from the valuelist authority-types (see below). You can also use the label.
         - $ref: '#/components/parameters/providerParam'
         - $ref: '#/components/parameters/perPageParam'
         - $ref: '#/components/parameters/pageParam'
@@ -263,11 +270,21 @@ paths:
 # -------------
 # valuelists
 # -------------
+  /authority-types:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of labels of authority types (eg. person, organization) which are used as ActorsType in the default languageπ.
+      parameters:
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
   /authority-types/{locale}:
     get:
       tags:
       - valuelists
-      summary: Get a list of authority types (eg. person, organization) which are used as ActorsType.
+      summary: Get a list of labels of authority types (eg. person, organization) which are used as ActorsType in a certain language.
       parameters:
         - $ref: '#/components/parameters/localeParam'
         - $ref: '#/components/parameters/formatParam'

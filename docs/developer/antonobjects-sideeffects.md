@@ -1,8 +1,6 @@
-How do methods of AntonObject affect other Objects
-==================================================
+# How do methods of AntonObject affect other Objects
 
-delete()
---------
+## delete()
 
 - update Dates of all Ancestors (if date extends minmax of parent)
 - no Update of fulltext index
@@ -12,8 +10,7 @@ delete()
 
 children are not affected
 
-create()
---------
+## create()
 
 - update Dates of all Ancestors (if date is set an extends minmax of parent)
 - update of fulltext index for actual object
@@ -23,8 +20,7 @@ create()
 
 no children are not affected
 
-update()
---------
+## update()
 
 - update Dates of all Ancestors (if date extends minmax of parent)
 - update of fulltext index for actual object
@@ -35,8 +31,7 @@ update()
 
 children might be affected
 
-move()
-------
+## move()
 
 - update Dates of old and new Ancestors (if date extends minmax of parent)
 - update of fulltext index for actual object and descendants

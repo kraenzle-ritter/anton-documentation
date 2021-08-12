@@ -33,12 +33,14 @@ nav:
     - Fields: developer/fields.md
     - Data Tables: developer/data-tables.md
     - Search: developer/search.md
-    - Word Export: developer/word-export.md
+
     - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
     - Configuration: admin/configuration.md
+    - Word Export: admin/word-export.md
+    - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
   - API: api/index.md

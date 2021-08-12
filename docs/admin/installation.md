@@ -89,6 +89,12 @@ In `custumers/slug` bzw. `customers/besenval` werden die Kundendaten gespeichert
 php artisan anton:customdir -vv --create --env=besenval
 ```
 
+Nun als `root` das Verzeichnis schreibbar machen:
+
+```
+chmod -R 775 customers/besenval
+```
+
 ## Logo kopieren
 
 Falls kein Logo zur Verfügung steht, kann das Antonlogo kopiert werden:
@@ -99,9 +105,11 @@ php artisan anton:install --logo -vv --env=besenval
 
 ## Matomo einbinden
 
-Auf Matomo einloggen [http://matomo.anton.ch/](http://matomo.anton.ch/). Unter "Websites Verwalten" eine neue Website hinzufügen.
+Auf Matomo einloggen [http://matomo.anton.ch/](http://matomo.anton.ch/). Unter "Alle Websites" eine neue Website hinzufügen.
 
-In den Anton Settings `analytics_id` mit der Motomo ID ausfüllen.
+Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.
+
+In den Anton Settings `analytics_id` mit der Motomo ID ausfüllen und den `analytics_auth_token` aus Matomo kopieren.
 
 ## Configure Supervisor
 
@@ -110,14 +118,29 @@ Als `root` die Konfigurationsdatei `etc/supervisor/supervisor.conf` öffnen und 
 ```
 [program:laravel-worker-besenval]
 process_name=%(program_name)s_%(process_num)02d
-command=/usr/bin/php7.3 {{ path to anton dir }}artisan queue:work database --tries=3 --timeout=300 --env=besenval
+command=%(ENV_SPRVS_PHP)s %(ENV_SPRVS_ANTON)s/artisan queue:work database --tries=3 --timeout=120 --env=besenval
 autostart=true
 autorestart=true
-start retries=10
-user={{ user who runs anton }}
+startretries=10
+user=%(ENV_SPRVS_USER)s
 numprocs=1
 redirect_stderr=true
-stdout_logfile={{ path to log }} 
+stdout_logfile=%(ENV_SPRVS_LOG)s/worker-besenval.log
+```
+Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:
+
+```
+SPRVS_PHP=
+SPRVS_LOG=
+SPRVS_USER=
+SPRVS_ANTON=
 ```
 
+Dann den supervisor als `root` neu starten:
 
+```bash
+supervisorctl stop
+supervisorctl reread
+supervisorctl update
+supervisorctl restart
+```
