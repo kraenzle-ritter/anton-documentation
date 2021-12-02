@@ -1,6 +1,3 @@
-## Einleitung
-
-
 ## Benutzergruppen
 
 Es gibt verschieden Benutzergruppen mit unterschiedlichen Berechtigungen:
@@ -22,11 +19,13 @@ Ist diese Einstellung auf 1 gesetzt handelt es sich um eine grundsätzlich öffe
 ## Feld Zugangsbestimmungen / Sperrfrist
 Ist ein Objekt noch gesperrt, kann zwar der Datensatz aufgerufen werden, nicht aber die Bilder und Dokumente. Die Sperrfristen sind in den Voreinstellungen (`period_of_protection_values`) ersichtlich und können durch k & r angepasst werden. Es gibt drei Stufen: öffentlich, standard und verlängerte Sperrfrist.
 
+## Nur Medien sperren
+Im Editformular können hochgeladene Medien gesperrt werden.
+
 ## Feld Gesperrt
 Wenn das Feld auf 1 gesetzt wurde, sind der Datensatz, sämtliche Kinder und die dazugehörigen Assets nur für UserIntern, Editoren und Admins zugänglich.
 
 Einzelnen Usern (`user`) kann der Zugang zu bestimmten Bereichen der Datenbank ermöglicht werden, indem bei ihnen Ids freigegeben werden. Dies geschieht über die Benutzerinnen/Benutzerverwaltung. Dabei sind die IDs der Datensätze als kommaseparierte Liste einzugeben. Eine ID steht dabei immer für den gesamten Zweig des Erschliessungsbaums.
-
 
 ## Feld Status der Beschreibung
 Das Feld ist für Bestände gedacht. Wenn der Bestand auf "Entwurf" gesetzt wird, ist der Bestand nur für UserIntern, Editoren und Admins zugänglich.

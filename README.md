@@ -6,6 +6,10 @@ Work in progress...
 
 https://kraenzle-ritter.github.io/anton-documentation/
 
-# Deployment of the github page:
-# https://www.mkdocs.org/user-guide/deploying-your-docs/
-# mkdocs gh-deploy
+## Deployment of the github page:
+
+https://www.mkdocs.org/user-guide/deploying-your-docs/
+
+```bash
+mkdocs gh-deploy
+```
