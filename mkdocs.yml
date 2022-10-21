@@ -31,7 +31,7 @@ nav:
     - Einstellungen: user/settings.md
     - File Uploads: user/uploads.md
     - Antonevents: user/antonevents.md
-    - Entäten:
+    - Entitäten:
       - Akteure: user/actors.md
       - Orte: user/places.md
       - Schlagwörter: user/keywords.md

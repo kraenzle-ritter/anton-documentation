@@ -13,7 +13,7 @@ Anton unterstützt standardmässig folgende Verzeichnungsstufen:
 |Dossier|KRA 3/22|Standard-Verzeichnungseinheit. Akte, Amtsbücher o.ä. werden auf Stufe Dossier verzeichnet. Dossiers werden pro Bestand durchnummeriert.|	Dossier, Einzelstück|
 |Einzelstück|KRA 3/22.1|Unterste Verzeichnungsstufe für z.B. Fotografien, einzelne Schriftstücke.
 
-<sup>*</sup> Mit dem Setting `recordgroups_for_identifier_base` kann die Bestandsgruppe als Ausgangspunkt Basissignaturen gemacht werden.
+<sup>*</sup> Mit dem Setting `recordgroups_for_identifier_base` kann die Bestandsgruppe als Ausgangspunkt Basissignaturen gemacht werden. Mit dem Setting `identifier_generator` kann die automatische Signaturbildung vollständig individuell implementiert werden.
 
 Bestandsgruppen, Klassen, Dossiers und Einzelstücke können sich selbst enthalten (z.B. Teil-Dossiers).
 
