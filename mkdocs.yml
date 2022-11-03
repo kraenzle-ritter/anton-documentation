@@ -48,6 +48,7 @@ nav:
     - Configuration: admin/configuration.md
     - Word Export: admin/word-export.md
     - Watermarks: admin/watermarks.md
+    - Mastodon: admin/mastodon.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md

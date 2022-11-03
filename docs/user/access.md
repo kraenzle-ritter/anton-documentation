@@ -5,10 +5,11 @@ Es gibt verschieden Benutzergruppen mit unterschiedlichen Berechtigungen:
 - nicht eingeschriebene User (`guest`)
 - eingeschriebene User (`user`)
 - eingeschriebene UserIntern (`userIntern`)
-- Bearbeiterinnen und Bearbeiter (`editor`)
-- Administratorinnen und Administratoren (`admin`)
+- Ausleihe-Verwalter:in (`loan_admin`)
+- Bearbeiter:in (`editor`)
+- Administrator:in (`admin`)
 
-Admins können Benutzer verwalten und die Rolle eines users ändern.
+Admins können Benutzer:innen verwalten und ihre Rolle ändern.
 
 ## Settings
 
