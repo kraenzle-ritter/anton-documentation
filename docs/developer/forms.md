@@ -1,14 +1,8 @@
 # Forms
 
-!!! Bug "Achtung"
-    Forms does not work for AntonObjects yet.
+## Valuelists for select2
 
-- `$modus`: detail, edit, create, list
-- `$scope`: intern, extern
-
-### Valuelists for select2
-
-#### Api
+### Api
 
 ```
 api/valuelists/{name}/{locale}?format=select2

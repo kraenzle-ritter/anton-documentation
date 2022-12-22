@@ -1,9 +1,9 @@
 # Server Requirements
 
-Anton is a [Laravel](https://laravel.com/) Version 8 Application.
+Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
 
-- [Ubuntu](https://ubuntu.com/)[^OS] 16.04, 18.04 oder 20.04 LTS
-- [PHP](https://www.php.net/) >= 8.0
+- [Ubuntu](https://ubuntu.com/)[^OS] 20.04 oder 22.04 LTS
+- [PHP](https://www.php.net/) >=8.1
 - [MySQL](https://www.mysql.com/de/) >=5.7.8 or Maria DB >= 10.2.7
 - [Apache](https://httpd.apache.org/) 2.4 (mod_rewrite, .htaccess)
 - PHP-Extensions

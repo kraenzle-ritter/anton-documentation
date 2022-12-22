@@ -7,6 +7,8 @@ Anton ist eine eine webbasierte, mehrsprachige und standardorientierte Archivdat
 - Produktwebsite: [https://www.anton.ch](https://www.anton.ch)
 - Testarchiv: [https://kr.anton.ch](https://kr.anton.ch)
 - Hersteller: [https://www.k-r.rch](https://www.k-r.rch)
+- Neuigkeiten: [https://kr.anton.ch/news](https://kr.anton.ch/news)
+- Blog: [https://www.k-r.ch/beitraege/](https://www.k-r.ch/beitraege/)
 
 ## Kontakt
 Kränzle & Ritter<br>

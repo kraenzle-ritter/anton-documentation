@@ -3,6 +3,28 @@
 ## .env File
 
 
+
+## Favicons
+
+Favicons können pro Installation individuell eingebunden werden. Man benötigt mindestens eine quadratische Vorlage von 256x256 Pixel, die weiteren Auflösungen können automatisch erstellt werden (unter Admin -> Upload Logo und Bilder). Ausnahme ist die [SVG Grafik für Safari](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/pinnedTabs/pinnedTabs.html) (`safari-pinned-tab.svg`), die manuell erstellt und hochgeladen werden muss. Aus dem Ordner favicon (im customers Ordner) werden folgende Dateien eingebunden:
+
+- android-icon-192x192.png
+- android-icon-256x256.png
+- apple-icon-114x114.png
+- apple-icon-120x120.png
+- apple-icon-144x144.png
+- apple-icon-152x152.png
+- apple-icon-180x180.png
+- apple-icon-57x57.png
+- apple-icon-60x60.png
+- apple-icon-72x72.png
+- apple-icon-76x76.png
+- favicon-16x16.png
+- favicon-32x32.png
+- favicon-96x96.png
+- manifest.json
+- safari-pinned-tab.svg 
+
 ## Settings
 We go here through the most important `settings` which only can be set by the superuser.
 

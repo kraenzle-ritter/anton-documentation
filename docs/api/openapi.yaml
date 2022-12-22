@@ -43,7 +43,7 @@ paths:
     get:
       tags:
         - actors
-      summary: Get a list of existing actors
+      summary: Get a list of actors
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - name: authority_type
@@ -167,7 +167,7 @@ paths:
     get:
       tags:
         - objects
-      summary: Get a list of existing objects
+      summary: Get a list of AntonObjects
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - $ref: '#/components/parameters/perPageParam'
@@ -184,6 +184,31 @@ paths:
       responses:
         200:
           description: successful operation
+  /objects/{id}:
+    get:
+      tags:
+       - objects
+      summary: Get an AntonObject by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+        - $ref: '#/components/parameters/searchParam'
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: AntonObject not found
+  /objects/show:
+    get:
+      tags:
+       - objects
+      summary: Get the first AntonObject by the search parameters, usually used with an identifier
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: AntonObject not found
 # -------------
 # places
 # -------------
@@ -191,7 +216,7 @@ paths:
     get:
       tags:
         - places
-      summary: Get a list of existing places
+      summary: Get a list of places
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - in: query

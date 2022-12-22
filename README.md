@@ -13,3 +13,7 @@ https://www.mkdocs.org/user-guide/deploying-your-docs/
 ```bash
 mkdocs gh-deploy
 ```
+
+## Images
+
+Images must be referenced with a __relative path__ from the document. 

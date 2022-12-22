@@ -8,14 +8,9 @@ Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren
 
 Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnugen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
 
-!!! note "Wichtig"
-
-    Vor jedem Import wird ein Backup der Datenbank erstellt.
-
-
 ## Spalten
 
-Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss folgende Spalten enthalten:
+Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:
 
     parent
     verzeichnungsstufe

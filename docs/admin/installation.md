@@ -8,30 +8,49 @@ Um einen neuen `customer` einzurichten benötigt man den Zugang über die Komman
 
 ###  config.php in bootstrap/ anlegen
 
-Falls die Umgebung nicht der subdomain entspricht, muss man ein `config.php` File anlegen, das ein Array definiert:
+Falls die Umgebung nicht der subdomain entspricht, muss man ein `config.php` File anlegen, das ein Array `$slugArray` definiert. Dieses ordnet die URL der Anton-Installation einem den `customer` zu: 
 
 ```php
 $slugArray = ['besenval.anton' => 'besenval'];
 ```
 
-Der `key` besteht aus Subdomain und Domain (verbunden durch einen Punkt), der `value` enthält den `customer-slug` bzw. die Erweiterung des `.env` files.
+Der `key` besteht aus hier Subdomain und Domain, der `value` enthält den `customer-slug` bzw. das suffix des `.env` files, das in diesem Fall `.env.besenval` heisst.
 
 
-### Umgebung anpassen
+### Umgebung anpassen (.env)
 
-Die App beziehungsweise subdomain soll "besenval" heissen. Folgende Zeilen im `.env` File müssen angepasst werden:
+Die Umgebungsvariablen werden im `.env.besenval` im root Verzeichnis der Anton-Installation gespeichert. Weitere Variablen sind dann in der Datenbank in den Settings gespeichert.
+
+#### Allgemeine Umgebungsvariablen
+
+Beispiel Besenval: 
 
 ```
 APP_ENV=besenval
-APP_URL=http://besenval.anton.test
+APP_URL=http://besenval.anton.ch
+APP_DEBUG=false
+DEBUGBAR_ENABLED=false
+APP_KEY=AppKey
+APP_LOG_LEVEL=debug
+EMAIL_EXCEPTION_ENABLED=true
+SNEAKER_SILENT=true
+````
+
+#### Datenbank Credentials
+```
 DB_HOST=127.0.0.1
-DB_DATABASE=anton_besenval
+DB_DATABASE=datenbankname
 DB_USERNAME=username
 DB_PASSWORD=passwort
 ```
 
-Die `.env` Datei speichern unter `.env.besenval`.
+### Drivers
 
+```
+CACHE_DRIVER=file
+SESSION_DRIVER=database
+QUEUE_DRIVER=database
+```
 
 !!! note "Wichtig"
     Wichtig: Für die ersten Commands muss der Cache-Driver in `.env.besenval` auf file gestellt sein:
@@ -40,7 +59,33 @@ Die `.env` Datei speichern unter `.env.besenval`.
     CACHE_DRIVER=file
     ```
 
-    Nach der migration kann dieser Wert zu 'database' geändert werden.
+    Nach der Grundinstallation (bzw. der database migration) sollte dieser Wert zu 'database' geändert werden.
+
+#### Email
+
+```
+MAIL_DRIVER
+MAIL_HOST
+MAIL_PORT
+MAIL_USERNAME
+MAIL_PASSWORD
+MAIL_FROM
+MAIL_NAME
+```
+
+
+#### Customers Path
+Ausserdem kann die Variable `CUSTOMER_PATH` gesetzt werden (sie muss einen absoluten Pfad enthalten). Ist der `CUSTOMER_PATH` nicht gesetzt wird im Anton Ordner ein `customers` Ordner angelegt und verwendet.
+
+
+#### Geolokalisierung 
+
+Um Geolokalisierung der Orte mit Geonames und Kartendarstellungen von Google Maps zu ermöglichen, müssen folgende Variablen gesetzt sein:
+
+```
+GOOGLE_API_KEY
+GEONAMES_USERNAME
+```
 
 
 ## Mysql-Datenbank erstellen

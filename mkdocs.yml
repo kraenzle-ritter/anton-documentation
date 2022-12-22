@@ -18,6 +18,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.inlinehilite
   - footnotes
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
 nav:
@@ -36,12 +38,12 @@ nav:
       - Orte: user/places.md
       - Schlagwörter: user/keywords.md
     - Externe Ressourcen: user/resources.md
-  - Developer:
-    - Forms: developer/forms.md
-    - Fields: developer/fields.md
-    - Data Tables: developer/data-tables.md
-    - Search: developer/search.md
-    - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
+  #- Developer:
+  #  - Forms: developer/forms.md
+  #  - Fields: developer/fields.md
+  #  - Data Tables: developer/data-tables.md
+  #  - Search: developer/search.md
+  #  - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
@@ -53,6 +55,14 @@ nav:
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
   - API: api/index.md
+  - FAQ:
+    - Anton as Service: faq/anton_as_service.md
+    - Anton on Premises: faq/anton_on_premises.md
+    - Allgemeine FAQs: faq/allgemein.md
+    - Erschliessung: faq/erschliessung.md
+    - Migration/Import: faq/import.md
+    - Recherche und Benutzung: faq/recherche.md
+    - Export: faq/export.md
 extra:
   social:
     - icon: fontawesome/brands/twitter
