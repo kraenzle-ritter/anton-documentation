@@ -1,5 +1,34 @@
 # Forms
 
+Each controller has the following public attributes:
+
+```php
+public $modelClass = '\Anton\Models\Setting';
+    
+public $endpoint = 'settings';
+
+public $translation_string = 'messages.Settings';
+````
+
+## Create a Form
+
+```php
+$formtype = 'detail_intern';
+$form = Form::get($this->endpoint, $formtype);
+```
+
+## Initialize in Views
+
+Example: 
+
+```php
+@include('fields.form', [
+         'model' => $model,
+         'form' => $form
+])
+```
+
+
 ## Valuelists for select2
 
 ### Api

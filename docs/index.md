@@ -1,6 +1,6 @@
 # Anton – Dokumentation
 
-Anton ist eine eine webbasierte, mehrsprachige und standardorientierte Archivdatenbank. Üblicherweise wird Anton als Service auf einem Server von [k & r](https://www.k-r.ch) genutzt.
+Anton ist eine eine webbasierte, mehrsprachige und standardorientierte Archivdatenbank. Anton kann [als Service](faq/anton_as_service.md) auf einem Server von [k & r](https://www.k-r.ch) genutzt werden oder [on Premeses](faq/anton_on_premises.md) auf einem eigenen Server betrieben werden.
 
 ## Links
 

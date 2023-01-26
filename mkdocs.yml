@@ -25,19 +25,19 @@ markdown_extensions:
 nav:
   - Home: index.md
   - User:
-    - Einleitung: user/index.md
+    #- Einleitung: user/index.md
     - Signaturen: user/identifiers.md
     - Access-Konzept: user/access.md
     - Datenimport: user/import.md
-    - Formulare: user/forms.md
-    - Einstellungen: user/settings.md
-    - File Uploads: user/uploads.md
-    - Antonevents: user/antonevents.md
-    - Entitäten:
-      - Akteure: user/actors.md
-      - Orte: user/places.md
-      - Schlagwörter: user/keywords.md
-    - Externe Ressourcen: user/resources.md
+    # - Formulare: user/forms.md
+    # - Einstellungen: user/settings.md
+    # - File Uploads: user/uploads.md
+    # - Antonevents: user/antonevents.md
+    #- Entitäten:
+    #  - Akteure: user/actors.md
+    #  - Orte: user/places.md
+    #  - Schlagwörter: user/keywords.md
+    # - Externe Ressourcen: user/resources.md
   #- Developer:
   #  - Forms: developer/forms.md
   #  - Fields: developer/fields.md
@@ -58,7 +58,7 @@ nav:
   - FAQ:
     - Anton as Service: faq/anton_as_service.md
     - Anton on Premises: faq/anton_on_premises.md
-    - Allgemeine FAQs: faq/allgemein.md
+    - Allgemeine FAQs: faq/index.md
     - Erschliessung: faq/erschliessung.md
     - Migration/Import: faq/import.md
     - Recherche und Benutzung: faq/recherche.md

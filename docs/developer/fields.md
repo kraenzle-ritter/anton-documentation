@@ -1,10 +1,52 @@
 # Fields
 
+All fields must have a name.
+
+## Attributes
+
+### `@name`
+
+Rules: `string`
+
+Description: There must be an attribute or an accessor in the model which returns the name of the model. 
+
+### `@type` 
+
+Rules: `nullable|string|in:display,...`
+
+Default: Display
+
+Description: Contains a field type like textarea, input ...
+
+
+### `@label`
+
+Rules: `nullable|string` 
+
+Description: Contains a key from `resources/lang/messages.php`. 
+
+`@labelCssClass` 
+
+Rules: `nullable|string` 
+
+Default: `col-md-2`
+
+Description: Contains a CSS class für the label.
+
+`@fieldCssClass`
+
+Rules: `nullable|string` 
+
+Default: `col-md-10`
+
+Description: Contains a CSS class für the field div.
+
+
 ## display
 
-Shows information. Standard field for `detail` forms.
+Shows information. Standard field for `detail` and `detail_intern` forms.
 
-- required: `label`, `name`  
+- required: `name`, `label` 
     
 !!! note
     `name` must correspond to an attribute or accessor of the model
@@ -57,3 +99,5 @@ Separates and titles information areas.
 
 - required: `label`  
 - options: `with_save_button`
+
+## textarea

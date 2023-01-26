@@ -1,4 +1,4 @@
-Anton erstellt automatisch Signaturen. Mit dem Setting `no_automatic_identifiers` kann diese Funktion deaktiviert werden.
+Anton erstellt automatisch Signaturen. Mit dem Setting `no_automatic_identifiers` kann diese Funktion deaktiviert werden. Bei Bedarf kann eine kundenspezifische Signaturgenerierung entwickelt und eingebaut werden. Hier wird die Standardfunktion beschrieben.
 
 ## Verzeichnungsstufen
 

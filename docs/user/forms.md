@@ -1,14 +1,15 @@
-Die Ansicht auf die Daten wird über Formulare gesteuert. Für jeden Datensatz gibt es drei Formulare:
+Die Ansicht auf die Daten wird über Formulare gesteuert. Für Datensätze gibt es in der Regel mehrere Formulare:
 
-- detail, intern
-- detail, extern
-- edit, intern
+- detail, detail_intern
+- edit
+- create
+- list
+- list_intern
+...
 
-Diese Formulare werden zu Formularsätzen zusammengefasst, welche dann einem Datensatz zugeordnet werden. In der Regel muss man sich nicht um diese Zuordnung kümmern, sie geschieht automatisch aufgrund der Verzeichnisstufe. Über das Feld "Formularsatz" kann der zugeordnete Formularsatz aber manuell mit einem Datensatz verknüpft werden.
+Für die Verzeichnungseinheiten wird über die Verzeichnisstufe ein Formular zum Edieren automatisch ausgewählt. Für die Datenansicht gibt es zwei Formulare detail und detail_intern. Es werden den Benutzer:innen nur die Felder angezeigt, die sowohl ein Feld im Formlar haben also auch Daten beinhalten.
 
-Standardmässig werden für das Edieren verschiedene Formulare für jede Verzeichnungsstufe verwendet und für die Detailanzeige ein Defaultformular (intern/extern), das nur die Felder anzeigt, in welchen auch Daten stehen.
-
-Die Ansicht in den Listen/Tabellen ist zurzeit nicht über Formulare festgelegt.
+Die Ansicht der Listen ist zurzeit nur sehr eingeschränkt konfigurierbar, weil dort in der Regel spezielle Module verwendet werden, die verschiedene Informationen in eine Spalte zusammenziehen.
 
 ## Formulare ändern
 Die einzelnen Formulare können in Admin / Formulare definiert werden.
