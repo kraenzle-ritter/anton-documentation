@@ -23,7 +23,7 @@ In Anton gibt es vordefinierte Ereignistypen u.a.:
 - Vortrag  
 
 ## Automatische Errechnung von Laufzeiten
-Das Antonereignis «Erstellung» wird nur auf der jeweils untersten Verzeichnungsebene erfasst. Anton errechnet die Laufzeit für die Verzeichnungseinheiten der höheren Stufen dann autmatisch.
+Das Antonereignis «Erstellung» wird nur auf der jeweils untersten Verzeichnungsebene erfasst. Anton errechnet die Laufzeit für die Verzeichnungseinheiten der höheren Stufen dann automatisch.
 
 ## Umfang (automatisch Errechnung des Umfangs)
 In Anton werden pro Bestand die Laufmeter erfasst. Diese werden dann für Bestandsgruppen und das Archiv kumuliert. Für Dossiers und Einzelstücke ist die Erfassung des Umfangs mit den Feldern Objekttyp und Umfang (Stückzahl) empfohlen. Ein Beschreibungsfeld für den Umfang steht ebenfalls zur Verfügung.

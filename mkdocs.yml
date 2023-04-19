@@ -65,8 +65,8 @@ nav:
     - Export: faq/export.md
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/AndreasKraenzle
+    - icon: fontawesome/brands/mastodon
+      link: https://social.anoxinon.de/@anton
     - icon: fontawesome/brands/github
       link: https://github.com/kraenzle-ritter
 plugins:

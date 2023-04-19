@@ -4,7 +4,7 @@
 
 Work in progress...
 
-https://kraenzle-ritter.github.io/anton-documentation/
+https://anton.documentation.ch
 
 ## Deployment of the github page:
 

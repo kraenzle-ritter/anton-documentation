@@ -34,7 +34,7 @@ APP_KEY=AppKey
 APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
 SNEAKER_SILENT=true
-````
+```
 
 #### Datenbank Credentials
 ```
