@@ -4,7 +4,7 @@
 
 Work in progress...
 
-https://anton.documentation.ch
+https://documentation.anton.ch
 
 ## Deployment of the github page:
 

@@ -24,14 +24,14 @@ php artisan anton:add-medium file.jpg --env="besenval" --id=123
 
 Mit diesem Befehl kann ein Medium (Bild, Dokument) über die Kommandozeile einem Datensatz hinzugefügt werden. Das ist nützlich, wenn ein Bild zu gross für einen Upload mit dem Browser ist.
 
-## anton:antonseed
-
 ## anton:backup
 Erstellt ein Backup der Datenbank. Ohne Angabe eines `--target-dir` wird das Backup im Customers Ordner (`db_backup`) gespeichert. Mit den Optionen `hourly`, `--weekly`, `--mothly`, `--yearly` werden die Dateinamen für rotierende Backups präpariert. Z.B.: `00_backup_besenval-daily-19.sql.gz`. Mit `--file` kann ein neuer Dateiname angegeben werden. 
 
 vgl. anton:restore
 
 ## anton:check-disk-space
+
+Das Kommando ist identisch mit `anton:doctor --disk`.
 
 Überprüft die Speicherplatzbelegung eines `customers`.
 
@@ -45,15 +45,6 @@ Wenn über 80% des Speicherplatzes belegt ist, wird eine Warung ausgegeben.
 
 Wenn mehr Speicherplatz als erlaubt belegt ist, wird ein Fehler zurückgegeben.
 
-## anton:check-media
-
-Überprüft die Integrität (`md5sum`) sämtlicher Medien.
-
-``` bash
-php artisan anton:check-media --env="besenval"
-```
-
-Mit der Option `--files` kann man eine Liste der korrupten Dateien ausgeben.
 
 ## anton:check-terms
 
@@ -92,5 +83,7 @@ Optionen:
 ## anton:import
 
 ## anton:restore
+
+
 
 ## anton:update
