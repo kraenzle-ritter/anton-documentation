@@ -1,6 +1,6 @@
 ## Comand line SIP Import (for Tests)
 
-For the Setup of the SIP Import cf. also [Sip Import](users/sip-import.md)
+For the Setup of the SIP Import cf. also [Sip Import](/users/sip-ingest.md)
 
 ```bash 
 php artisan anton:import --env slug --from-sip --no-validation --create-actors -vv path/to/sip --import
