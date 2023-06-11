@@ -18,6 +18,8 @@ servers:
     description: Kränzle & Ritter Firmenarchiv (Testarchiv)
   - url: https://sik-isea.anton.ch/api
     description: Schweizerisches Kunstarchiv
+  - url: https://galin.anton.ch/api
+    description: Testarchiv Gemeindearchiv Lindau (ZH)
 tags:
   - name: actors
     description: Everybody who can act (person, organisation etc.)
@@ -448,7 +450,42 @@ paths:
       responses:
         200:
           description: OK
-
+  /sips/{sip_id}:
+    get:
+      security:
+        - ApiToken: []
+      tags:
+      - sip
+      summary: show a sip with its file list 
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+  /sips/{sip_id}/confirm:
+    post:
+      security:
+        - ApiToken: []
+      tags:
+      - sip
+      summary: confirm a sip ingest and finalize the entry in anton 
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+  /sips/{sip_id}/revert:
+    post:
+      security:
+        - ApiToken: []
+      tags:
+      - sip
+      summary: revert a sip ingest and restore anton from the current backup
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
 components:
   parameters:
     formatParam:
