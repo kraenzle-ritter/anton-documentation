@@ -459,6 +459,7 @@ paths:
       summary: show a sip with its file list 
       parameters:
         - $ref: '#/components/parameters/idParam'
+
       responses:
         200:
           description: OK
