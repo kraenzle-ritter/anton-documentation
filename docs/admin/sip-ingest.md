@@ -67,7 +67,8 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 
 ## CLI 
 ```bash 
-php artisan anton:import --env {slug} --from-sip --no-validation --create-actors -vv {path/to/sip} --import
+php artisan anton:import --env {slug} --from-sip --no-validation 
+--create-actors -vv {path/to/sip} --import
 ```
 
 ### Revert a SIP Import or Confirm Import with Inge

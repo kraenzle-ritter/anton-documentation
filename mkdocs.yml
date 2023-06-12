@@ -52,7 +52,7 @@ nav:
     - Word Export: admin/word-export.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
-    - SIP Ingest: admin/cli-sip-ingest.md
+    - SIP Ingest: admin/sip-ingest.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
