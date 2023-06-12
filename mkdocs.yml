@@ -29,7 +29,7 @@ nav:
     - Signaturen: user/identifiers.md
     - Access-Konzept: user/access.md
     - Datenimport: user/import.md
-    - SIP Ingest: user/sip-ingest.md
+    #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
     # - Einstellungen: user/settings.md
     # - File Uploads: user/uploads.md
@@ -52,7 +52,7 @@ nav:
     - Word Export: admin/word-export.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
-    - CLI SIP Ingest: admin/cli-sip-ingest.md
+    - SIP Ingest: admin/cli-sip-ingest.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md

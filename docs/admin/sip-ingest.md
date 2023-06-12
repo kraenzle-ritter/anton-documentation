@@ -16,13 +16,9 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
   - `sip_id`: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular `default_intern`  sein)
   - `note.sip_md5sum`, `note.actual_backup` sollte im Formular `default_intern` sein (wird auf Bestandsebene/SIP angezeigt)
 
-
 !!! note "Beispiel zum identifier-prefix"
     Das Elternelement (`<ordnungssystemposition>`) des `<dossier>` entspricht dem `parent` in Anton. Der `parent` in Anton wird anhand des Inhalts des Elements `<nummer>` im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.
 
-
-
- 
 #### Inge und DIMAG
 - Setting `fulltext-from-webpdf`: true 
 - Setting `cloud`: "inge"
@@ -31,7 +27,7 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 
 ### Ablauf des SIP-Ingest
 
-![Ablauf Ingest mit Inge und DIMAG](images/Anton-Inge.png)
+![Ablauf Ingest mit Inge und DIMAG](images/Anton-Inge-Ingest.drawio.png)
 
 #### Anton
 - User: SIP Upload (zip) (`/sip/uploadsip`)
@@ -52,7 +48,7 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
         - Anton ersetzt UUID-Signaturen mit korrekten Signaturen und benennt die Medien entsprechend um
         - Update der Datierungen und des Volltextindexes
 
-#### Ingest with Inge into DIMAG
+#### Ingest mit Inge in DIMAG
 - Anton schickt einen Request an Inge mit dem SIP and einer Liste der Anton-Medien-Ids
 - Inge: Ingest der Dateien in DIMAG
     - Inge erstellt eine loadXML-Datei
@@ -63,3 +59,46 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 - Anton: Finalisiere den SIP-Ingest
     - Bestätige den SIP-Ingest (SIP Eintrag ist «Final») oder stelle den Zustand vor dem Ingest aus dem Backup wieder her 
     - Schicke eine Email an User Inge mit dem Resultat 
+
+### Abfrage eines Master Files
+
+![Ablauf Ingest mit Inge und DIMAG](images/Anton-Inge-Abruf.drawio.png)
+
+
+## CLI 
+```bash 
+php artisan anton:import --env {slug} --from-sip --no-validation --create-actors -vv {path/to/sip} --import
+```
+
+### Revert a SIP Import or Confirm Import with Inge
+
+Before a SIP Import Anton backups the database, so if anything goes wrong you can come back to the status before the Import. 
+
+The backup name is stored in the SIP-Entry and the `Status of description` is set to draft.
+
+This will restore the database from the last/actual backup and sync the media with the database (namely delete media wich are not registered in the database):
+
+```bash
+php artisan anton:sip-import --env {slug} --id {sip_id} -vv --revert
+```
+
+The `sip_id` is the ID of an AntonObject which is a SIP.
+
+This will set the `Status of description` in the SIP-Entry to "final":
+
+```bash
+php artisan anton:sip-import --env {slug} --id {sip_id} -vv --confirm
+```
+
+
+### Debugging
+
+#### Check the SIP Import Data
+
+```bash 
+php artisan sip:check --env {slug}  --path {path_to_sip} --show-sip_entry
+```
+
+```bash 
+php artisan sip:check --env {slug}  --path {path_to_sip} --show-import-array
+```
