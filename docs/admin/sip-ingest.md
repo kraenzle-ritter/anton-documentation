@@ -4,6 +4,8 @@ Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) ge
 
 Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0160/1.2.0)
 
+Mit Inge ist es möglich als Datenrepository DIMAG einzubinden. Dann werden die Originaldateien nicht auf dem Filesystem von Anton, sondern in DIMAG gespeichert. In Anton werden dann nur Dateien, die für die Verwendung im Internet optimiert wurden vorgehalten. Bei Bedarf können interne User die Originaldateien herunterladen. Für die User gibt es also keinen Unterschied.
+
 ### Voraussetzungen
 
 #### Anton
@@ -13,8 +15,8 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 - Mit dem Setting `strict_sip_validation` gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.
 
 - Anton Formular (default_intern): 
-  - `sip_id`: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular `default_intern`  sein)
-  - `note.sip_md5sum`, `note.actual_backup` sollte im Formular `default_intern` sein (wird auf Bestandsebene/SIP angezeigt)
+    - `sip_id`: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular `default_intern`  sein)
+    - `note.sip_md5sum`, `note.actual_backup` sollte im Formular `default_intern` sein (wird auf Bestandsebene/SIP angezeigt)
 
 !!! note "Beispiel zum identifier-prefix"
     Das Elternelement (`<ordnungssystemposition>`) des `<dossier>` entspricht dem `parent` in Anton. Der `parent` in Anton wird anhand des Inhalts des Elements `<nummer>` im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.
