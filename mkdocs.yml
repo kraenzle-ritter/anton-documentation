@@ -10,6 +10,10 @@ theme:
   font:
     text: Roboto
     code: Open Mono
+  features:
+    - search.suggest
+    - search.highlight
+    - search.share
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
@@ -53,6 +57,7 @@ nav:
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
     - SIP Ingest: admin/sip-ingest.md
+    - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
@@ -73,3 +78,8 @@ extra:
       link: https://github.com/kraenzle-ritter
 plugins:
   - render_swagger
+  - search:
+      lang:
+        - de 
+        - en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
