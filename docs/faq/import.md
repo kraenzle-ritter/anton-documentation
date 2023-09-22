@@ -6,13 +6,11 @@ Die Migration von einer Datenbank in eine neue Datenbank ist immer ein relativ g
 
 Welche Migrationsstrategie am besten geignet ist, mus fallweise entschieden werden. Folgende Möglichkeiten haben wir mit Anton erfolgreich durchgeführt:
 
-1) Export der alten Datenbank in Excel-Dateien – Excel-Import in Anton  
+1. Export der alten Datenbank in Excel-Dateien – Excel-Import in Anton  
+2. Export der alten Datenbank in EAD-Dateien – EAD-Import in Anton  
+3. Direkte Übernahme der Daten aus der alten Datenbank 
 
-2) Export der alten Datenbank in EAD-Dateien – EAD-Import in Anton
-
-3) Direkte Übernahme der Daten aus der alten Datenbank 
-
-Für die Methoden 2) und 3) sind Skripte zu programmieren und/oder anzupassen. 
+Für die Methoden 2 und 3 sind Skripte zu programmieren und/oder anzupassen. 
 
 ## Import aus Excel 
 
