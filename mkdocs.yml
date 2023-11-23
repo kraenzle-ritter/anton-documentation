@@ -33,6 +33,7 @@ nav:
     - Signaturen: user/identifiers.md
     - Access-Konzept: user/access.md
     - Datenimport: user/import.md
+    - Medien: user/media.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
     # - Einstellungen: user/settings.md

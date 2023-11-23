@@ -4,7 +4,7 @@ Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) ge
 
 Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0160/1.2.0)
 
-Mit Inge ist es möglich als Datenrepository DIMAG einzubinden. Dann werden die Originaldateien nicht auf dem Filesystem von Anton, sondern in DIMAG gespeichert. In Anton werden dann nur Dateien, die für die Verwendung im Internet optimiert wurden vorgehalten. Bei Bedarf können interne User die Originaldateien herunterladen. Für die User gibt es also keinen Unterschied.
+Mit Inge ist es möglich, DIMAG als Datenrepository einzubinden. Die Originaldateien werden dann nicht auf dem Filesystem von Anton, sondern in DIMAG gespeichert. In Anton werden dann nur Dateien, die für die Verwendung im Internet optimiert wurden vorgehalten. Bei Bedarf können interne User die Originaldateien herunterladen. Für die User gibt es also keinen Unterschied.
 
 ### Voraussetzungen
 

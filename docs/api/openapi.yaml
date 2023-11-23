@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  #title: Anton API
+  title: Anton API
   description: 'API Documentation of Anton. Do not use this in production yet.'
   # contact:
   # email: info@anton.ch
@@ -69,7 +69,7 @@ paths:
                default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /actors/{id}:
     get:
       tags:
@@ -79,7 +79,7 @@ paths:
         - $ref: '#/components/parameters/idParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: Actor not found
 
@@ -111,7 +111,7 @@ paths:
                default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /keywords/{locale}/{id}:
     get:
       tags:
@@ -121,7 +121,7 @@ paths:
         - $ref: '#/components/parameters/idParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: Keyword not found
 
@@ -148,7 +148,7 @@ paths:
              default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /locations/{id}:
     get:
       tags:
@@ -158,7 +158,7 @@ paths:
         - $ref: '#/components/parameters/idParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: Place not found
 
@@ -185,7 +185,7 @@ paths:
                default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /objects/{id}:
     get:
       tags:
@@ -196,7 +196,7 @@ paths:
         - $ref: '#/components/parameters/searchParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: AntonObject not found
   /objects/show:
@@ -208,7 +208,7 @@ paths:
         - $ref: '#/components/parameters/searchParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: AntonObject not found
 # -------------
@@ -240,7 +240,7 @@ paths:
                default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /places/{id}:
     get:
       tags:
@@ -250,7 +250,7 @@ paths:
         - $ref: '#/components/parameters/idParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: Place not found
 # -------------
@@ -261,7 +261,7 @@ paths:
       tags:
         - users
       security:
-        - ApiToken: []
+        - ApiKeyAuth: []
       summary: Get a list of existing users
       parameters:
         - $ref: '#/components/parameters/searchParam'
@@ -278,19 +278,19 @@ paths:
                default is `json`
       responses:
         200:
-          description: successful operation
+          description: OK
   /users/{id}:
     get:
       tags:
        - users
       summary: Get an existing user by its ID
       security:
-       - ApiToken: []
+       - ApiKeyAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
         200:
-          description: successful operation
+          description: OK
         404:
           description: User not found
 
@@ -453,7 +453,7 @@ paths:
   /sips/{sip_id}:
     get:
       security:
-        - ApiToken: []
+        - ApiKeyAuth: []
       tags:
       - sip
       summary: show a sip with its file list 
@@ -466,7 +466,7 @@ paths:
   /sips/{sip_id}/confirm:
     post:
       security:
-        - ApiToken: []
+        - ApiKeyAuth: []
       tags:
       - sip
       summary: confirm a sip ingest and finalize the entry in anton 
@@ -478,7 +478,7 @@ paths:
   /sips/{sip_id}/revert:
     post:
       security:
-        - ApiToken: []
+        - ApiKeyAuth: []
       tags:
       - sip
       summary: revert a sip ingest and restore anton from the current backup
@@ -544,9 +544,9 @@ components:
       in: query
       schema:
         type: string
-    securitySchemes:
-      # This section configures basic authentication with an API key.
-      ApiToken:
-        type: apiKey
-        in: query
-        name: api_token
+  securitySchemes:
+    # This section configures basic authentication with an API key.
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_token
