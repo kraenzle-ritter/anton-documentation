@@ -3,15 +3,15 @@
 Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
 
 - [Ubuntu](https://ubuntu.com/)[^OS] 20.04 oder 22.04 LTS
-- [PHP](https://www.php.net/) >=8.1
-- [MySQL](https://www.mysql.com/de/) >=5.7.8 or Maria DB >= 10.2.7
+- [PHP](https://www.php.net/) >=8.2
+- [MySQL](https://www.mysql.com/de/) >=8.0.35 (or Maria DB >= 10.2.7)
 - [Apache](https://httpd.apache.org/) 2.4 (mod_rewrite, .htaccess)
 - PHP-Extensions
     - OpenSSL PHP Extension
     - PDO PHP Extension
     - Mbstring PHP Extension
     - Tokenizer PHP Extension
-    - XML PHP PExtension
+    - XML PHP Extension
     - Ctype PHP Extension
     - Tokenizer PHP Extension
     - JSON PHP Extension
@@ -26,5 +26,5 @@ Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
 - [supervisor](http://supervisord.org/)
 
 [^OS]: Other Operating Systems of the Linux or Unix-Family should also do the trick.
-<!--[^mysql]: MariaDB is not tested and is not recommended at the moment, because its [JSON Implementation](https://elephantdolphin.blogspot.com/2018/11/a-tale-of-two-json-implementations.html).
+<!--[^mysql]: MariaDB is not tested and is not recommended at the moment, because of its [JSON Implementation](https://elephantdolphin.blogspot.com/2018/11/a-tale-of-two-json-implementations.html).
  The '->>' Operator is actually used in Model AntonEvent.php -->
