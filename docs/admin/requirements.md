@@ -18,6 +18,9 @@ Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
     - BCMath PHP Extension
     - ext-imagick PHP Extension
     - ext-sodium
+    - ext-zip
+    - ext-gd
+    - ext-curl
 - [composer](https://getcomposer.org)
 - [ssh](https://www.openssh.com/) access
 - [git](https://git-scm.com/)
