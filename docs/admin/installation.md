@@ -73,6 +73,10 @@ MAIL_FROM
 MAIL_NAME
 ```
 
+Es ist einfach, den Email Versand zu testen:
+```bash
+php artisan anton:doctor --all --env kr --mail 'kraenzle@k-r.ch'
+```
 
 #### Customers Path
 Ausserdem kann die Variable `CUSTOMER_PATH` gesetzt werden (sie muss einen absoluten Pfad enthalten). Ist der `CUSTOMER_PATH` nicht gesetzt wird im Anton Ordner ein `customers` Ordner angelegt und verwendet.

@@ -8,7 +8,7 @@ Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
 - [Apache](https://httpd.apache.org/) 2.4 (mod_rewrite, .htaccess)
 - PHP-Extensions
     - OpenSSL PHP Extension
-    - PDO PHP Extension
+    - PDO PHP Extension (msql driver)
     - Mbstring PHP Extension
     - Tokenizer PHP Extension
     - XML PHP Extension
