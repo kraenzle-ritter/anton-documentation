@@ -22,14 +22,24 @@ With Inge it is possible to integrate DIMAG as a data repository. The original f
         - SIP Eintrag im Akzessionsarchiv («Entwurf»)
         - Import Dossiers and Dokumente/Dateien 
             - Anton erstellt Web-Versionen und Thumbs
-            - falls der SIP-Ingest mit Inge und DIMAG erfolgt löscht die  Masterdateien
+            - falls der SIP-Ingest mit Inge und DIMAG erfolgt löscht Anton die  Masterdateien
         - Signaturen und Dateinamen basieren zunächst auf UUIDs
-    - Post Import
+    - Post Import (Listener `ImportFinished``)
         - Update der Archiv-Hierarchie (`path`)
-        - Anton ersetzt UUID-Signaturen mit korrekten Signaturen und benennt die Medien entsprechend um
         - Update der Datierungen und des Volltextindexes
 
+Mit dem event `MediumAdded` wird die Importe der einzelnen Medien ausgelöst, die asynchron erledigt werden.
+
 #### Ingest mit Inge in DIMAG
+
+    - Post Import
+      - Update der Archiv-Hierarchie (`path`)
+      -  Anton ersetzt UUID-Signaturen mit korrekten Signaturen und benennt die Medien entsprechend um
+      -  Update der Datierungen und des Volltextindexes
+
+Das event `MediumAdded` wird verzögert ausgelöst (wegen der Sigmaturen). Dieses event löst die Konvertierung der Medien aus (Listener `MediumCreateWebVersion`). Bei Verwendung von Inge wird die Original Datein in den sips Pfad kopiert, wo auch Inge zugreifen kann. Dann wir der Import in Inge ausgelöst (`Anton\Helpers\Inge::class`, `import`). Wenn das Inge einen Erfolg zurückmeldet, werden die Konvertierungen durchgeführt und das Master Medium wir gelöscht.
+
+Inge: 
 - Anton schickt einen Request an Inge mit dem SIP and einer Liste der Anton-Medien-Ids
 - Inge: Ingest der Dateien in DIMAG
     - Inge erstellt eine loadXML-Datei

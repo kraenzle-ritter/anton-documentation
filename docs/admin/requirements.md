@@ -1,6 +1,6 @@
 # Server Requirements
 
-Anton v.0.27.0 is a [Laravel](https://laravel.com/) Version 9 Application.
+Anton v.0.32.0 is a [Laravel](https://laravel.com/) Version 11 Application.
 
 - [Ubuntu](https://ubuntu.com/)[^OS] 20.04 oder 22.04 LTS
 - [PHP](https://www.php.net/) >=8.2
