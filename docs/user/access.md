@@ -18,7 +18,11 @@ In den Voreinstellungen kann angegeben werden, ob das gesamte Archiv öffentlich
 Ist diese Einstellung auf 1 gesetzt handelt es sich um eine grundsätzlich öffentlich zugängliche Anton-Datenbank.
 
 ## Feld Zugangsbestimmungen / Sperrfrist
-Unterliegt ein Objekt noch einer Sperrfrist, kann zwar der Datensatz aufgerufen werden, nicht aber die Bilder und Dokumente. Die Sperrfristen sind in den Voreinstellungen (`period_of_protection_values`) ersichtlich und können durch k & r angepasst werden. Es gibt drei Stufen: öffentlich, standard und verlängerte Sperrfrist. Es ist möglich weitere Werte zu verwenden und zu hinterlegen.
+Unterliegt ein Objekt noch einer Sperrfrist, kann zwar der Datensatz aufgerufen werden, nicht aber die Bilder und Dokumente.
+
+Mit dem Feld «Schutzfrist bis» kann die Sperrfrist manuell eingegeben werden. Dieser Wert hat Priorität und vererbt sich im Archivbaum an alle Verzeichnungseinheiten unterhalb, sofern es dort nicht bereits schärfere Fristen gibt. 
+
+Wird das Feld «Schutzfrist bis» nicht verwendet, greifen die Sperrfristen: Diese sind in den Voreinstellungen (`period_of_protection_values`) ersichtlich und können durch k & r angepasst werden. Es gibt drei Stufen: öffentlich, standard und verlängerte Sperrfrist. Es ist möglich weitere Werte zu verwenden und zu hinterlegen.
 
 ## Nur Medien unbefristet sperren
 Im Editformular können hochgeladene Medien unbefristet gesperrt werden.
@@ -26,7 +30,7 @@ Im Editformular können hochgeladene Medien unbefristet gesperrt werden.
 ## Objekte unbefristet sperren
 Wenn das Feld auf 1 gesetzt wurde, sind der Datensatz, sämtliche Kinder und die dazugehörigen Medien nur für UserIntern, Editoren und Admins zugänglich.
 
-Einzelnen Usern (`user`) kann der Zugang zu bestimmten Bereichen der Datenbank ermöglicht werden, indem bei ihnen Ids freigegeben werden. Dies geschieht über die Benutzerinnen/Benutzerverwaltung. Dabei sind die IDs der Datensätze als kommaseparierte Liste einzugeben. Eine ID steht dabei immer für den gesamten Zweig des Erschliessungsbaums.
+Einzelnen Usern (`user`) kann der Zugang zu bestimmten Bereichen der Datenbank ermöglicht werden, indem bei ihnen IDs freigegeben werden. Dies geschieht über die Benutzerinnen/Benutzerverwaltung. Dabei sind die IDs der Datensätze als kommaseparierte Liste einzugeben. Eine ID steht dabei immer für den gesamten Zweig des Erschliessungsbaums.
 
 ## Feld Status der Beschreibung
 Das Feld ist für Bestände gedacht. Wenn der Bestand auf "Entwurf" gesetzt wird, ist der Bestand nur für UserIntern, Editoren und Admins zugänglich.

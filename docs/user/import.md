@@ -68,7 +68,7 @@ Das Feld muss eine ganze Zahl (integer) enthalten. Die Angabe bezieht sich auf d
 
 ### sprache (languages)
 
-Das Feld kann mehrere Sprachen enthalten. Die Sprachen mmüssen exakt wie in der vorgegebenen Liste geschrieben sein. Mehrere Sprachen werden können mit folgenden Zeichen getrennt (Komma und Strichpunkt sind nicht möglich):
+Das Feld kann mehrere Sprachen enthalten. Die Sprachen müssen entweder dem [ISO-639-2/B Sprachcode](https://de.wikipedia.org/wiki/Liste_der_ISO-639-Sprachcodes) entsprechen ("ger" nicht "deu", "fre" nicht "fra") oder exakt wie in der vorhandenen Liste geschrieben sein. Mehrere Sprachen werden können mit folgenden Zeichen getrennt (Komma und Strichpunkt sind nicht möglich):
 
 ```
     ::

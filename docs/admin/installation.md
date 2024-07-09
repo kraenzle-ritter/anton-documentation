@@ -118,6 +118,7 @@ Alle Rechte für diese user einrichten:
 
 ```sql
 GRANT ALL PRIVILEGES ON database_name.* TO 'anton_besenval'@'localhost';
+GRANT RELOAD, PROCESS ON *.* to 'anton_besenval'@'localhost';
 ```
 
 ## Grundinstallation
