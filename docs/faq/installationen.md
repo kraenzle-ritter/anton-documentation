@@ -1,0 +1,15 @@
+# Öffentliche Anton-Installationen
+
+- [Konzernarchiv der Georg Fischer AG](https://archives.georgfischer.com/) 
+- [Gosteli-Stiftung. Archiv zur Geschichte der schweizerischen Frauenbewegung](https://gosteli.anton.ch)
+- [Klosterarchiv Einsiedeln](https://archiv.kloster-einsiedeln.ch)
+- [Archiv der Familie Besenval](https://besenval.anton.ch/)
+- [Bestandsverzeichnis des Schweizerischen Kunstarchivs](https://sik-isea.anton.ch/)
+- [Karl Barth-Archiv](https://kba.karl-barth.ch/)
+- [Archiv der Riehener Zeitung](https://rz.anton.ch)
+- [Bahnarchiv (Archiv der Schweizerischen Gesellschaft für Eisenbahngeschichte SGEG)](https://bahnarchiv.ch)
+- [Archiv Ortsgeschichte Maur](https://museenmaur.anton.ch/)
+- [Archiv für Schweizer Landschaftsarchitektur](https://archiv.asla.ch/)
+- [Archiv des Instituts für Medizingeschichte der Universität Bern](https://img.anton.ch)
+- [Vitroarchives](https://vitroarchives.anton.ch/)
+- [Archiv Visarte Schweiz](https://visarte.anton.ch/)

@@ -10,7 +10,7 @@ Die/der Kund:in erhält einen Admin-Zugang, mit dem beliebig viele neue User mit
 
 ## Archivportale
 
-Der Datenexport nach EAD ist auf die Anforderungen des [europäischen Archivportals](http://www.apenet.eu) ausgerichtet. Die Teilnahme wird in der Schweiz vom Bundesarchiv koordiniert.
+Der Datenexport nach EAD ist auf die Anforderungen des [europäischen Archivportals](http://www.apex-project.eu) ausgerichtet. Die Teilnahme wird in der Schweiz vom Bundesarchiv koordiniert.
 
 Anton ermöglicht auch die Teilnahme an «[Archives Online](https://archives-online.org)». 
 

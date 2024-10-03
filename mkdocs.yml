@@ -74,6 +74,7 @@ nav:
     - Migration/Import: faq/import.md
     - Recherche und Benutzung: faq/recherche.md
     - Export: faq/export.md
+    - Installationen: faq/installationen.md
 extra:
   social:
     - icon: fontawesome/brands/mastodon

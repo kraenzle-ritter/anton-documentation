@@ -58,7 +58,7 @@ Weitere Resourcen werden automatisch verlinkt, wenn eine Suche mit einer der Ids
 Auch die manuelle Eingabe von Resourcen (externen Links) ist möglich.
 
 ## Einbindung von audiovisuellen Dokument und Medien
-Zu jeder Verzeichnungseinheit lassen sich ein oder mehrere Bilder und andere Medien (PDF, Ton, Video) einbinden. Die Zuordnung geschieht mittels Drag and Drop oder per Excel-Import. Um die Bilder optimal zu erschliessen (z.B. Verschlagwortung) ist die Erfassung jedes Bildes auf Einzelstückebene empfohlen. Dann lässt sich auch die Bildgalerie optimal nutzen (vgl. z.B. [https://archives.georgfischer.com/gallery](https://archives.georgfischer.com/gallery)).
+Zu jeder Verzeichnungseinheit lassen sich ein oder mehrere Bilder und andere Medien (PDF, Ton, Video) einbinden. Die Zuordnung geschieht mittels Drag and Drop oder per Excel-Import. Um die Bilder optimal zu erschliessen (z.B. Verschlagwortung) ist die Erfassung jedes Bildes auf Einzelstückebene empfohlen. Dann lässt sich auch die Bildgalerie optimal nutzen (vgl. z.B. [https://archives.georgfischer.com/gallery](https://archives.georgfischer.com/gallery) oder [https://bahnarchiv.ch](https://bahnarchiv.ch)).
 
 Die meisten Archive nutzen Anton auch als digitales Langzeitarchiv für ihre Medien. Dann ist wichtig, dass die Medien im Vorfeld (Preingest) validiert und in geeignete Formate gebracht wurden. Anton speichert und verwaltet die Archivversion (z.\,B. TIFF) und erstellt Benutzungskopien (z.\,B. JPEG) in verschiedenen Auflösungen für externe Benutzer:innen. Die Archivversionen werden mit einer Prüfsumme gespeichert, so dass später die Integrität der Dateien schnell überprüft werden kann.
 
