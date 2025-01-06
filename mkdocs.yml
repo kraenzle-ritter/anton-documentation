@@ -55,8 +55,10 @@ nav:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
     - Configuration: admin/configuration.md
+    - Logo: admin/logo.md
     - Authentication: admin/authentication.md
-    - Word Export: admin/word-export.md
+    - Word Findbücher: admin/download-word.md
+    - DIP Download: admin/download-dip.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
     - SIP Ingest: admin/sip-ingest.md
