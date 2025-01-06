@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../download-word/">
+      
+      
+        <link rel="next" href="../watermarks/">
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Cli sip ingest - Anton – Dokumentation</title>
+        <title>DIP Download - Anton – Dokumentation</title>
       
     
     
@@ -61,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dip-download" class="md-skip">
+          Zum Inhalt
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -92,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cli sip ingest
+              DIP Download
             
           </span>
         </div>
@@ -379,17 +388,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -403,7 +414,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Admin
@@ -540,10 +551,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../download-dip/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -552,6 +572,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -979,6 +1000,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -996,9 +1019,9 @@
   
 
 
-  <h1>Cli sip ingest</h1>
-
-<p>For the Setup of the SIP Import cf. also <a href="/users/sip-ingest.md">Sip Import</a></p>
+<h1 id="dip-download">DIP Download<a class="headerlink" href="#dip-download" title="Permanent link">&para;</a></h1>
+<p>Die Möglichkeit, DIPs einzelner Dossiers als ZIP herunterzuladen, können in das Formular (default, internal, detail) eingebaut werden: <code>module_word_download</code>. Der Download wird aber nur für die Verzeichnungsstufen angezeigt die im Setting <code>level_of_description_ids_for_dip_download</code> angegeben sind. Für Dossier: <code>[5]</code></p>
+<p>Im DIP wird ein Word Findbuch integriert.</p>
 
 
 

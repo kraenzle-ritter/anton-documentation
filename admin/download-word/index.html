@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../authentication/">
+      
+      
+        <link rel="next" href="../download-dip/">
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Cli sip ingest - Anton – Dokumentation</title>
+        <title>Word Findbücher - Anton – Dokumentation</title>
       
     
     
@@ -61,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#word-findbucher" class="md-skip">
+          Zum Inhalt
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -92,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cli sip ingest
+              Word Findbücher
             
           </span>
         </div>
@@ -379,17 +388,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -403,7 +414,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Admin
@@ -519,10 +530,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../download-word/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Word Findbücher
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -531,6 +562,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-word-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Word Export
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -979,6 +1039,25 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-word-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Word Export
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -996,9 +1075,18 @@
   
 
 
-  <h1>Cli sip ingest</h1>
+<h1 id="word-findbucher">Word Findbücher<a class="headerlink" href="#word-findbucher" title="Permanent link">&para;</a></h1>
+<p>Die Möglichkeit, Findbücher zu einzelnen Beständen herunterzuladen, können in das Formular (default, internal, detail) eingebaut werden: <code>module_word_download</code>. Der Download wird aber nur für die Verzeichnungsstufen angezeigt die im Setting <code>level_of_description_ids_for_word_download</code> angegeben sind. Für Bestände: <code>[3]</code></p>
+<p>Um das Logo einzubinden, ist im <code>customers/{slug}/img</code> Ordner das Logo als <code>word_logo.png</code> abzuspeichern.</p>
+<p>Ausserdem kann in der Einstellungen der Footer (<code>word_footer</code>) sowie der Header <code>word_header</code> angepasst werden.</p>
+<h2 id="custom-word-export">Custom Word Export<a class="headerlink" href="#custom-word-export" title="Permanent link">&para;</a></h2>
+<p>For a Word Export there must be a Class in the <code>Controller\Word</code> directory, which organizes the download, for example <code>ArchivdatenWordEdxport</code>. The class must be named like <code>${template}WordEdxport</code>. So in the example the template is «Archivdaten». </p>
+<p>The export class must have one method which takes as an argument an integer and returns a <code>Symfony\Component\HttpFoundation\Response</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">public function run($id) : Response</span>
+</code></pre></div>
 
-<p>For the Setup of the SIP Import cf. also <a href="/users/sip-ingest.md">Sip Import</a></p>
+<p>When the class is done you have to add the <code>ModuleWordDownload</code> to the default objectform (via the gui). </p>
+<p>Then you can specify the level_of_descriptions, which should offer the download by adding an array of level_of_description_ids to the setting <code>level_of_description_ids_for_word_download</code> and to the setting <code>word_export_template</code> you have to add the template (casesensitive), in the example «Archivdaten». </p>
 
 
 
