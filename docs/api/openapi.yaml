@@ -18,8 +18,7 @@ servers:
     description: Kränzle & Ritter Firmenarchiv (Testarchiv)
   - url: https://sik-isea.anton.ch/api
     description: Schweizerisches Kunstarchiv
-  - url: https://galin.anton.ch/api
-    description: Testarchiv Gemeindearchiv Lindau (ZH)
+
 tags:
   - name: actors
     description: Everybody who can act (person, organisation etc.)
