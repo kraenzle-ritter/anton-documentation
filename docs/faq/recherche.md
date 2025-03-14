@@ -20,7 +20,7 @@ Die Einschränkungen auf einzelne Bestandsgruppen ode Bestände ist möglich.
 
 ## Warenkorb
 
-Es gibt einen einfachen Warenkorb. Die Bestellung erfolgt per Email an das Archiv und wird nicht anderweitig gespeichert.
+Es gibt einen einfachen Warenkorb. Die Bestellung erfolgt per Email an das Archiv.
 
 ## Ausleihen
 
