@@ -447,6 +447,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#antonevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antonevents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Antonevents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#akteure-zb-creation_actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Akteure (z.B. creation_actors)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#places" class="md-nav__link">
+    <span class="md-ellipsis">
+      Places
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#objekttyp-object_type" class="md-nav__link">
     <span class="md-ellipsis">
       objekttyp (object_type)
@@ -1377,6 +1410,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#antonevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antonevents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Antonevents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#akteure-zb-creation_actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Akteure (z.B. creation_actors)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#places" class="md-nav__link">
+    <span class="md-ellipsis">
+      Places
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#objekttyp-object_type" class="md-nav__link">
     <span class="md-ellipsis">
       objekttyp (object_type)
@@ -1534,7 +1600,7 @@
   <h1>Datenimport</h1>
 
 <h2 id="zusammenfassung">Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permanent link">&para;</a></h2>
-<p>Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren. Die Erschliessungsdaten (Excel-File) werden in einem (vorgegeben) Excelsheet erfasst und mit den Dateien auf den Server geladen. Danach werden die Daten validiert und falls die Validierung erfolgreich war, kann der Import/Ingest erfolgen (Erschliessungsdaten und media).</p>
+<p>Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren. Die Erschliessungsdaten (Excel-File) werden in einem (vorgegeben) Excelsheet erfasst und mit den Dateien auf den Server geladen. Danach werden die Daten validiert und falls die Validierung erfolgreich war, kann der Import/Ingest erfolgen (Erschliessungsdaten und media). Vgl. auch die Dokumentation in Anton <code>/import/documentation</code>.</p>
 <h2 id="ablauf">Ablauf<a class="headerlink" href="#ablauf" title="Permanent link">&para;</a></h2>
 <p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnugen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
 <h2 id="spalten">Spalten<a class="headerlink" href="#spalten" title="Permanent link">&para;</a></h2>
@@ -1568,6 +1634,25 @@ Einzelstück
 <p class="admonition-title">Achtung</p>
 <p>Der Import mehrsprachiger Titel ist zurzeit nicht möglich.</p>
 </div>
+<h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
+<p>Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteuren und den Orten. Sie bestehen aus folgenden Feldern: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
+<p>Es gibt zahlreiche Antonevents: <code>creation</code>, <code>acquisition</code>, <code>accumulation</code>, <code>destruction</code>, <code>validation</code>, <code>migration</code>, <code>reproduction</code>, <code>publication</code>, <code>digitisation</code>, <code>ingest</code>, <code>reception</code>, <code>performance</code>, <code>provenance</code>, <code>loaned</code>, <code>preservation</code>, <code>engravation</code>, <code>writing</code>, <code>coloring</code>, <code>edition</code>, <code>production</code>, <code>other</code>, <code>text_author</code>. </p>
+<h4 id="akteure-zb-creation_actors">Akteure (z.B. creation_actors)<a class="headerlink" href="#akteure-zb-creation_actors" title="Permanent link">&para;</a></h4>
+<p>Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteure sollten mit <code>::</code> getrennt werden.</p>
+<p>Beispiel für zwei Akteure: </p>
+<div class="codehilite"><pre><span></span><code>Müller, Martina (1934-1977) :: Rechtsabteilung
+</code></pre></div>
+
+<p>Das Format wird nicht vorab validiert! Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden (gesucht wird nach dem Namen).</p>
+<p>Import-Einstellung <code>create-actors</code>: Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden.</p>
+<p>Wenn ein Akteur bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.</p>
+<p>Wurde ein Akteur mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es den Akteur noch nicht, wird er anhand der Angaben der GND neu angelegt.</p>
+<h4 id="places">Places<a class="headerlink" href="#places" title="Permanent link">&para;</a></h4>
+<p>Das Feld kann einen Ort oder eine places-id (integer) enthalten. Import-Einstellung <code>create-places</code>: Orte werden neu angelegt, wenn sie in Anton nicht gefunden werden. Wenn ein Ort bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.</p>
+<p>Orte können folgende Elemente enthalten:<br />
+- Namen (wird durch "/" abgetrennt)<br />
+- Stadt/Gemeinde<br />
+- Kanton/Bundesland (wird in Klammern hinter der Gemeinde gesetzt)</p>
 <h3 id="objekttyp-object_type">objekttyp (object_type)<a class="headerlink" href="#objekttyp-object_type" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss einen bereits existierenden Objekttyp enthalten:</p>
 <div class="codehilite"><pre><span></span><code>Akte
