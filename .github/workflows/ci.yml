@@ -1,12 +1,9 @@
 name: ci 
 
-
 on:
   push:
     branches:
       - master 
-
-
       - main
 permissions:
   contents: write
@@ -26,10 +23,8 @@ jobs:
 
       - uses: actions/cache@v4
         with:
-          key: mkdocs-material-${{ env.cache_id }}
+          key: mkdocs
           path: .cache
-          restore-keys: |
-            mkdocs-material-
       
       - run: pip install mkdocs-material \ 
              pip install mkdocs-git-revision-date-localized-plugin \
