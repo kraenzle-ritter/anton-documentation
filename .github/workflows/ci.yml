@@ -25,10 +25,11 @@ jobs:
         with:
           key: mkdocs
           path: .cache
-      
-      - run: pip install mkdocs-material \ 
-             pip install mkdocs-git-revision-date-localized-plugin \
-             pip install mkdocs-git-committers-plugin-2 \
-             pip install markdown-captions \
-             pip install mkdocs-render-swagger-plugin
+
+      - uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          path: ~/.cache/pip
+
+      - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-committers-plugin-2 markdown-captions mkdocs-render-swagger-plugin
       - run: mkdocs gh-deploy --force
