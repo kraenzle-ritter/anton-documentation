@@ -1,0 +1,551 @@
+openapi: 3.0.1
+info:
+  title: Anton API
+  description: 'API Documentation of Anton. Do not use this in production yet.'
+  # contact:
+  # email: info@anton.ch
+  version: 0.0.1
+servers:
+  - url: http://kr.anton.test/api
+    description: lokaler Testserver
+  - url: https://archives.georgfischer.com/api
+    description: Georg Fischer Archiv
+  - url: https://besenval.anton.ch/api
+    description: Musée des Suisses dans le Monde, Archives
+  - url: https://gosteli.anton.ch/api
+    description: Archiv zur Geschichte der schweizerischen Frauenbewegung
+  - url: https://kr.anton.ch/api
+    description: Kränzle & Ritter Firmenarchiv (Testarchiv)
+  - url: https://sik-isea.anton.ch/api
+    description: Schweizerisches Kunstarchiv
+
+tags:
+  - name: actors
+    description: Everybody who can act (person, organisation etc.)
+  - name: keywords
+    description: Keywords
+  - name: locations
+    description: Locations (archival storages)
+  - name: objects
+    description: Archival units of description (eg. records)
+  - name: places
+    description: Places
+  - name: users
+    description: Users
+  - name: valuelists
+    description: Valuelists used in Anton
+
+paths:
+
+# -------------
+# actors
+# -------------
+  /actors:
+    get:
+      tags:
+        - actors
+      summary: Get a list of actors
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - name: authority_type
+          in: query
+          schema:
+            type: string
+            enum: [person,family,corporate_body,organisational_unit,group,software]
+          description:
+            Should be a value from the valuelist authority-types (see below). You can also use the label.
+        - $ref: '#/components/parameters/providerParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,beacon,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: OK
+  /actors/{id}:
+    get:
+      tags:
+       - actors
+      summary: Get an existing actor by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: Actor not found
+
+# -------------
+# keywords
+# -------------
+  /keywords/{locale}:
+    get:
+      tags:
+        - keywords
+      summary: Get a list of existing keywords
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - in: query
+          name: sortField
+          schema:
+            type: string
+            enum: [id,label]
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: OK
+  /keywords/{locale}/{id}:
+    get:
+      tags:
+       - keywords
+      summary: Get an existing keyword by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: Keyword not found
+
+# -------------
+# locations
+# -------------
+  /locations:
+    get:
+      tags:
+        - locations
+      summary: Get a list of existing locations of archival storages
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,select2]
+          description:
+             default is `json`
+      responses:
+        200:
+          description: OK
+  /locations/{id}:
+    get:
+      tags:
+       - locations
+      summary: Get an existing location (archival storage) by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: Place not found
+
+# -------------
+# objects
+# -------------
+  /objects:
+    get:
+      tags:
+        - objects
+      summary: Get a list of AntonObjects
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: OK
+  /objects/{id}:
+    get:
+      tags:
+       - objects
+      summary: Get an AntonObject by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+        - $ref: '#/components/parameters/searchParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: AntonObject not found
+  /objects/show:
+    get:
+      tags:
+       - objects
+      summary: Get the first AntonObject by the search parameters, usually used with an identifier
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: AntonObject not found
+# -------------
+# places
+# -------------
+  /places:
+    get:
+      tags:
+        - places
+      summary: Get a list of places
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - in: query
+          name: provider
+          description: Only useful if the format is beacon (default is gnd).
+          schema:
+            type: string
+            enum: [gnd,geonames,wikipedia]
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,beacon,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: OK
+  /places/{id}:
+    get:
+      tags:
+       - places
+      summary: Get an existing place by its ID
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: Place not found
+# -------------
+# users
+# -------------
+  /users:
+    get:
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      summary: Get a list of existing users
+      parameters:
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/perPageParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/sortFieldParam'
+        - $ref: '#/components/parameters/sortAscParam'
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [json,select2]
+          description:
+               default is `json`
+      responses:
+        200:
+          description: OK
+  /users/{id}:
+    get:
+      tags:
+       - users
+      summary: Get an existing user by its ID
+      security:
+       - ApiKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+        404:
+          description: User not found
+
+# -------------
+# valuelists
+# -------------
+  /authority-types:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of labels of authority types (eg. person, organization) which are used as ActorsType in the default languageπ.
+      parameters:
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+  /authority-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of labels of authority types (eg. person, organization) which are used as ActorsType in a certain language.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /countries/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of active countries which are used to describe places.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /details-of-description/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of terms which characterize the granularity of the desription (eg. minimal, full)
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /event-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of event types (eg. creation) which are used to connect objects, actors and places.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /languages/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of active languages which are used to describe archival objects (records).
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /levels-of-description/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of levels of description of archival objects (eg. records).
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /object-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of object types.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /periods-of-protection/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of periods of protection (descriptive string values like "prolonged").
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /place-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of Geoname Feature Classes which is used as PlaceType.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /status-of-description/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of terms which describe the status of the description (eg. draft, final)
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /user-event-types/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of user event types (eg. loan) which are used to connect objects and users.
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+
+  /vacat/{locale}:
+    get:
+      tags:
+      - valuelists
+      summary: Get a list of entries, if an why an object is missing (vacat).
+      parameters:
+        - $ref: '#/components/parameters/localeParam'
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        200:
+          description: OK
+  /sips/{sip_id}:
+    get:
+      security:
+        - ApiKeyAuth: []
+      tags:
+      - sip
+      summary: show a sip with its file list 
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+
+      responses:
+        200:
+          description: OK
+  /sips/{sip_id}/confirm:
+    post:
+      security:
+        - ApiKeyAuth: []
+      tags:
+      - sip
+      summary: confirm a sip ingest and finalize the entry in anton 
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+  /sips/{sip_id}/revert:
+    post:
+      security:
+        - ApiKeyAuth: []
+      tags:
+      - sip
+      summary: revert a sip ingest and restore anton from the current backup
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        200:
+          description: OK
+components:
+  parameters:
+    formatParam:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum: [select2,json]
+      description:
+           default is `json`
+    idParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    localeParam:
+      name: locale
+      in: path
+      required: true
+      schema:
+        type: string
+        enum: [de, en, fr]
+    pageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+    perPageParam:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+    providerParam:
+      name: provider
+      description: Only useful if the format is beacon (default is gnd).
+      in: query
+      schema:
+        type: string
+        enum: [gnd,sikart]
+    sortAscParam:
+      name: sortAsc
+      in: query
+      schema:
+        type: integer
+        enum: [0,1]
+    sortFieldParam:
+      name: sortField
+      in: query
+      schema:
+        type: string
+        enum: [id,identifier,name,title,date_start,date_end]
+    searchParam:
+      name: search
+      in: query
+      schema:
+        type: string
+  securitySchemes:
+    # This section configures basic authentication with an API key.
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_token
