@@ -1,7 +1,8 @@
 site_name: Anton – Dokumentation
 repo_url: https://github.com/kraenzle-ritter/anton-documentation
-repo_name: 'anton-documentation'
-site_author: 'Andreas Kraenzle, Gerold Ritter'
+repo_name: anton-documentation
+site_author: Andreas Kraenzle, Gerold Ritter
+
 theme:
   name: material
   language: de
@@ -14,44 +15,38 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+
 extra_css:
   - stylesheets/extra.css
+
 markdown_extensions:
   - admonition
   - codehilite
-  - pymdownx.inlinehilite
   - pymdownx.inlinehilite
   - footnotes
   - attr_list
   - md_in_html
   - toc:
       permalink: true
+      toc_depth: 3
+      baselevel: 1
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+
 nav:
   - Home: index.md
   - User:
-    #- Einleitung: user/index.md
     - Signaturen: user/identifiers.md
     - Access-Konzept: user/access.md
     - Datenimport: user/import.md
     - Medien: user/media.md
+    - Orte: user/places.md
     - Markdown: user/markdown.md
     - Ausleihe von Objekten: user/loans.md
-    #- SIP Ingest: user/sip-ingest.md
-    # - Formulare: user/forms.md
-    # - Einstellungen: user/settings.md
-    # - File Uploads: user/uploads.md
-    # - Antonevents: user/antonevents.md
-    #- Entitäten:
-    #  - Akteure: user/actors.md
-    #  - Orte: user/places.md
-    #  - Schlagwörter: user/keywords.md
-    # - Externe Ressourcen: user/resources.md
-  #- Developer:
-  #  - Forms: developer/forms.md
-  #  - Fields: developer/fields.md
-  #  - Data Tables: developer/data-tables.md
-  #  - Search: developer/search.md
-  #  - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
+    - SIP Ingest: user/sip.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
@@ -79,16 +74,19 @@ nav:
     - Recherche und Benutzung: faq/recherche.md
     - Export: faq/export.md
     - Installationen: faq/installationen.md
+
 extra:
   social:
     - icon: fontawesome/brands/mastodon
       link: https://social.anoxinon.de/@anton
     - icon: fontawesome/brands/github
       link: https://github.com/kraenzle-ritter
+
 plugins:
+  - mermaid2
   - render_swagger
   - search:
       lang:
-        - de 
+        - de
         - en
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'

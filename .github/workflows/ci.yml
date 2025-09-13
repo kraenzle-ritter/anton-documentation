@@ -1,35 +1,55 @@
-name: ci 
+name: ci
 
 on:
   push:
     branches:
-      - master 
+      - master
       - main
+  pull_request:
+    branches:
+      - master
+      - main
+
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
         with:
-          key: mkdocs
+          key: mkdocs-material-${{ env.cache_id }}
           path: .cache
+          restore-keys: |
+            mkdocs-material-
 
-      - uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          path: ~/.cache/pip
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs-material
+          pip install pymdown-extensions
+          pip install mkdocs-mermaid2-plugin
+          pip install mkdocs-render-swagger-plugin
 
-      - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-committers-plugin-2 markdown-captions mkdocs-render-swagger-plugin
-      - run: mkdocs gh-deploy --force
+      - name: Build documentation
+        run: mkdocs build --verbose
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        run: mkdocs gh-deploy --force
