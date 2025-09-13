@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -375,6 +375,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -404,6 +427,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1165,7 +1211,7 @@
 
 <h1 id="forms">Forms<a class="headerlink" href="#forms" title="Permanent link">&para;</a></h1>
 <p>Each controller has the following public attributes:</p>
-<div class="codehilite"><pre><span></span><code><span class="x">public $modelClass = &#39;\Anton\Models\Setting&#39;;</span>
+<div class="highlight"><pre><span></span><code><span class="x">public $modelClass = &#39;\Anton\Models\Setting&#39;;</span>
 
 <span class="x">public $endpoint = &#39;settings&#39;;</span>
 
@@ -1178,20 +1224,17 @@
 <span class="x">$formtype = &#39;detail_intern&#39;;</span>
 <span class="x">$form = Form::get($this-&gt;endpoint, $formtype);</span>
 </code></pre></div>
-
 <h2 id="initialize-in-views">Initialize in Views<a class="headerlink" href="#initialize-in-views" title="Permanent link">&para;</a></h2>
 <p>Example: </p>
-<div class="codehilite"><pre><span></span><code><span class="x">@include(&#39;fields.form&#39;, [</span>
+<div class="highlight"><pre><span></span><code><span class="x">@include(&#39;fields.form&#39;, [</span>
 <span class="x">         &#39;model&#39; =&gt; $model,</span>
 <span class="x">         &#39;form&#39; =&gt; $form</span>
 <span class="x">])</span>
 </code></pre></div>
-
 <h2 id="valuelists-for-select2">Valuelists for select2<a class="headerlink" href="#valuelists-for-select2" title="Permanent link">&para;</a></h2>
 <h3 id="api">Api<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>api/valuelists/{name}/{locale}?format=select2
+<div class="highlight"><pre><span></span><code>api/valuelists/{name}/{locale}?format=select2
 </code></pre></div>
-
 <table>
 <thead>
 <tr>
@@ -1282,7 +1325,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1322,10 +1366,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

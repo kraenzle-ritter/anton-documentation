@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1218,18 +1264,16 @@
 <p>Unter <a href="https://kr.anton.ch">https://kr.anton.ch</a> gibt es eine Testinstallation. Diese dient als Spielwiese. Die Daten der Testinstallation werden täglich zurückgesetzt.</p>
 <h2 id="wiederherstellen-des-testarchivs">Wiederherstellen des Testarchivs<a class="headerlink" href="#wiederherstellen-des-testarchivs" title="Permanent link">&para;</a></h2>
 <p>Das Testarchiv wird täglich mit <code>anton:reset</code> per cronjob wiederhergestellt.</p>
-<div class="codehilite"><pre><span></span><code><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>path_to_anton<span class="p">;</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>path_to_anton<span class="p">;</span><span class="w"> </span><span class="se">\</span>
 php<span class="w"> </span>artisan<span class="w"> </span>anton:reset<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;kr&quot;</span><span class="w"> </span><span class="se">\</span>
 --dump<span class="o">=</span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_db/reset.sql.gz&quot;</span><span class="w"> </span><span class="se">\</span>
 --assets<span class="o">=</span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_assets&quot;</span><span class="w"> </span><span class="se">\</span>
 --mail<span class="w"> </span>&gt;/dev/null
 </code></pre></div>
-
 <h2 id="anderungen-dauerhaft-speichern">Änderungen dauerhaft speichern<a class="headerlink" href="#anderungen-dauerhaft-speichern" title="Permanent link">&para;</a></h2>
 <p>Um Änderungen dauerhaft zu speichern, ist deshalb ein Backup aus dem Datenbank-Dump <code>{path_to_anton-customers}/kr/reset_db/reset.sql.gz</code> zu machen:</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--file<span class="w"> </span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_db/reset.sql.gz&quot;</span><span class="w"> </span>--env<span class="w"> </span>kr
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--file<span class="w"> </span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_db/reset.sql.gz&quot;</span><span class="w"> </span>--env<span class="w"> </span>kr
 </code></pre></div>
-
 <p>Nun wird bei der nächsten Wiederherstellung das neue Backup verwendet.</p>
 
 
@@ -1267,7 +1311,8 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:reset<span class
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1307,10 +1352,10 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:reset<span class
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

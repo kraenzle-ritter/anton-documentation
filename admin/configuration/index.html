@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1327,13 +1373,12 @@
 <p><code>maximum_storage</code> should contain the disk space in GB. It is used by the command <code>anton:check-disk-space</code>.</p>
 <h2 id="form-objects-list">form-objects-list<a class="headerlink" href="#form-objects-list" title="Permanent link">&para;</a></h2>
 <p>To get an additional column with thumbs in the result lists, copy this into the setting:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">[{</span>
+<div class="highlight"><pre><span></span><code><span class="p">[{</span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Identifier&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sortField&quot;</span><span class="p">:</span><span class="s2">&quot;identifier&quot;</span><span class="p">},{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;any_title&quot;</span><span class="p">,</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Title&quot;</span><span class="p">,</span><span class="nt">&quot;sortField&quot;</span><span class="p">:</span><span class="s2">&quot;title&quot;</span><span class="p">},{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;creationDateLabel&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sortField&quot;</span><span class="p">:</span><span class="s2">&quot;object_creation_min&quot;</span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;lod_extent&quot;</span><span class="p">,</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Level of description&quot;</span><span class="p">,</span><span class="nt">&quot;sortField&quot;</span><span class="p">:</span><span class="s2">&quot;level_of_description_id&quot;</span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;other_information&quot;</span><span class="p">,</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Other information&quot;</span><span class="p">,</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">},{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;first_image&quot;</span><span class="p">,</span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;buttons&quot;</span><span class="p">,</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="nt">&quot;with&quot;</span><span class="p">:[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span><span class="s2">&quot;edit&quot;</span><span class="p">,</span><span class="s2">&quot;move&quot;</span><span class="p">,</span><span class="s2">&quot;delete&quot;</span><span class="p">]}]</span>
 </code></pre></div>
-
 <h2 id="searchfields-and-search_fields_extern">searchfields and search_fields_extern<a class="headerlink" href="#searchfields-and-search_fields_extern" title="Permanent link">&para;</a></h2>
 <p>If you want to configure the searchfields for the advanced search you can fill this setting with a json object. You can find the full json here: </p>
 <p><a href="https://kr.anton.ch/admin/searchfields">https://kr.anton.ch/admin/searchfields</a> </p>
@@ -1373,7 +1418,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1413,10 +1459,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

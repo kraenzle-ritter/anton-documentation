@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -469,30 +469,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Antonevents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#akteure-zb-creation_actors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Akteure (z.B. creation_actors)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#places" class="md-nav__link">
-    <span class="md-ellipsis">
-      Places
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -671,6 +647,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../markdown/" class="md-nav__link">
         
   
@@ -700,6 +699,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1494,30 +1516,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Antonevents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#akteure-zb-creation_actors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Akteure (z.B. creation_actors)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#places" class="md-nav__link">
-    <span class="md-ellipsis">
-      Places
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1719,9 +1717,8 @@ Einzelstück
 <h4 id="akteure-zb-creation_actors">Akteure (z.B. creation_actors)<a class="headerlink" href="#akteure-zb-creation_actors" title="Permanent link">&para;</a></h4>
 <p>Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteure sollten mit <code>::</code> getrennt werden.</p>
 <p>Beispiel für zwei Akteure: </p>
-<div class="codehilite"><pre><span></span><code>Müller, Martina (1934-1977) :: Rechtsabteilung
+<div class="highlight"><pre><span></span><code>Müller, Martina (1934-1977) :: Rechtsabteilung
 </code></pre></div>
-
 <p>Das Format wird nicht vorab validiert! Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden (gesucht wird nach dem Namen).</p>
 <p>Import-Einstellung <code>create-actors</code>: Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden.</p>
 <p>Wenn ein Akteur bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.</p>
@@ -1734,56 +1731,49 @@ Einzelstück
 - Kanton/Bundesland (wird in Klammern hinter der Gemeinde gesetzt)</p>
 <h3 id="objekttyp-object_type">objekttyp (object_type)<a class="headerlink" href="#objekttyp-object_type" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss einen bereits existierenden Objekttyp enthalten:</p>
-<div class="codehilite"><pre><span></span><code>Akte
+<div class="highlight"><pre><span></span><code>Akte
 Bild
 Band
 Film
 ...
 </code></pre></div>
-
 <p>Die Liste der erlaubten Werte ist abhängig von den Objekttypen, die das jeweilige Archiv definiert hat.</p>
 <h3 id="umfang_zahl-object_count">umfang_zahl (object_count)<a class="headerlink" href="#umfang_zahl-object_count" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss eine ganze Zahl (integer) enthalten. Die Angabe bezieht sich auf den Objekttyp.</p>
 <h3 id="sprache-languages">sprache (languages)<a class="headerlink" href="#sprache-languages" title="Permanent link">&para;</a></h3>
 <p>Das Feld kann mehrere Sprachen enthalten. Die Sprachen müssen entweder dem <a href="https://de.wikipedia.org/wiki/Liste_der_ISO-639-Sprachcodes">ISO-639-2/B Sprachcode</a> entsprechen ("ger" nicht "deu", "fre" nicht "fra") oder exakt wie in der vorhandenen Liste geschrieben sein. Mehrere Sprachen werden können mit folgenden Zeichen getrennt (Komma und Strichpunkt sind nicht möglich):</p>
-<div class="codehilite"><pre><span></span><code>    ::
+<div class="highlight"><pre><span></span><code>    ::
 </code></pre></div>
-
 <h3 id="standort-location">standort (location)<a class="headerlink" href="#standort-location" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss einen bereits verwendeten Standort enthalten. Wenn ein neuer Standort verwendet werden soll, erst in Admin-Standorte hinzufügen.</p>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält vacat keinen Wert, wird 0 gesetzt.</p>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf höchstens 500 Zeichen enthalten. Mehrere Dateinamen (assets) können mit folgenden Zeichen getrennt werden:</p>
-<div class="codehilite"><pre><span></span><code>, ; ::
+<div class="highlight"><pre><span></span><code>, ; ::
 </code></pre></div>
-
 <p>Beispiel:</p>
-<div class="codehilite"><pre><span></span><code>erstes_bild.tif::zweites_bild.tif
+<div class="highlight"><pre><span></span><code>erstes_bild.tif::zweites_bild.tif
 </code></pre></div>
-
 <h3 id="schutzfrist-period_of_protection">schutzfrist (period_of_protection)<a class="headerlink" href="#schutzfrist-period_of_protection" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss eine existierende Schutzfrist enthalten:</p>
-<div class="codehilite"><pre><span></span><code>public
+<div class="highlight"><pre><span></span><code>public
 standard
 prolonged
 </code></pre></div>
-
 <h3 id="private">private<a class="headerlink" href="#private" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält private keinen Wert, wird 0 gesetzt.</p>
 <h3 id="status_of_description">status_of_description<a class="headerlink" href="#status_of_description" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf nur Namen der entsprechenden Werteliste enthalten:</p>
-<div class="codehilite"><pre><span></span><code>draft
+<div class="highlight"><pre><span></span><code>draft
 final
 </code></pre></div>
-
 <h3 id="detail_of_description">detail_of_description<a class="headerlink" href="#detail_of_description" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf nur Namen der entsprechenden Werteliste enthalten::</p>
-<div class="codehilite"><pre><span></span><code>minimal
+<div class="highlight"><pre><span></span><code>minimal
 partial
 full
 </code></pre></div>
-
 <h3 id="weitere-felder">Weitere Felder<a class="headerlink" href="#weitere-felder" title="Permanent link">&para;</a></h3>
 <p>Die weiteren Felder sind freie Textfelder::</p>
 <div class="codehilite"><pre><span></span><code>Neuzugänge (note.accruals)
@@ -1895,9 +1885,9 @@ Form und Inhalt (note.scopecontent)
 </tr>
 </tbody>
 </table>
-<p>Beispiel</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>customers/kr/ead/test_2-ead.xml<span class="w"> </span>--from-ead<span class="w"> </span>--dont-validate<span class="w"> </span>--create-actors<span class="w"> </span>--create-places<span class="w"> </span>--create-keywords<span class="w"> </span>--parent<span class="o">=</span><span class="m">1</span><span class="w"> </span>--env<span class="o">=</span>kr<span class="w"> </span>-vv<span class="w"> </span>--import<span class="w"> </span>--no-backup
-</code></pre></div>
+<p>Beispiel
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>customers/kr/ead/test_2-ead.xml<span class="w"> </span>--from-ead<span class="w"> </span>--dont-validate<span class="w"> </span>--create-actors<span class="w"> </span>--create-places<span class="w"> </span>--create-keywords<span class="w"> </span>--parent<span class="o">=</span><span class="m">1</span><span class="w"> </span>--env<span class="o">=</span>kr<span class="w"> </span>-vv<span class="w"> </span>--import<span class="w"> </span>--no-backup
+</code></pre></div></p>
 
 
 
@@ -1934,7 +1924,8 @@ Form und Inhalt (note.scopecontent)
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1974,10 +1965,10 @@ Form und Inhalt (note.scopecontent)
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

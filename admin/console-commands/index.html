@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1434,16 +1480,14 @@
 <h2 id="grundsatzliches">Grundsätzliches<a class="headerlink" href="#grundsatzliches" title="Permanent link">&para;</a></h2>
 <p>Antons Kommandos sind <a href="https://laravel.com/docs/7.x/artisan">Laravel-Kommandos</a> und werden über <code>artisan</code> aufgerufen.</p>
 <p>Die meisten Kommandos erwarten die Angabe einer Umgebung, d.h. eines <code>customers-slug</code>.</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:command<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:command<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
-
 <p>Die Anton-Kommandos verwenden <code>Ottosmops\Consoleoutput\ConsoleOutputTrait</code>. Das bedeutet, dass Ausgaben nach <code>stdout</code> nur ausgegeben werden, wenn das verbosity-level erhöht wird.</p>
 <p>Die Option <code>-v</code> gibt <code>info</code>-messages aus.</p>
 <p>Mit der Option <code>-vv</code> werden auch <code>debug</code>-messages ausgegeben.</p>
 <h2 id="antonadd-medium">anton:add-medium<a class="headerlink" href="#antonadd-medium" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:add-medium<span class="w"> </span>file.jpg<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>--id<span class="o">=</span><span class="m">123</span>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:add-medium<span class="w"> </span>file.jpg<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>--id<span class="o">=</span><span class="m">123</span>
 </code></pre></div>
-
 <p>Mit diesem Befehl kann ein Medium (Bild, Dokument) über die Kommandozeile einem Datensatz hinzugefügt werden. Das ist nützlich, wenn ein Bild zu gross für einen Upload mit dem Browser ist.</p>
 <h2 id="antonbackup">anton:backup<a class="headerlink" href="#antonbackup" title="Permanent link">&para;</a></h2>
 <p>Erstellt ein Backup der Datenbank. Ohne Angabe eines <code>--target-dir</code> wird das Backup im Customers Ordner (<code>db_backup</code>) gespeichert. Mit den Optionen <code>hourly</code>, <code>--weekly</code>, <code>--mothly</code>, <code>--yearly</code> werden die Dateinamen für rotierende Backups präpariert. Z.B.: <code>00_backup_besenval-daily-19.sql.gz</code>. Mit <code>--file</code> kann ein neuer Dateiname angegeben werden. </p>
@@ -1451,9 +1495,8 @@
 <h2 id="antoncheck-disk-space">anton:check-disk-space<a class="headerlink" href="#antoncheck-disk-space" title="Permanent link">&para;</a></h2>
 <p>Das Kommando ist identisch mit <code>anton:doctor --disk</code>.</p>
 <p>Überprüft die Speicherplatzbelegung eines <code>customers</code>.</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:check-disk-space<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>-vv
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:check-disk-space<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>-vv
 </code></pre></div>
-
 <p>Das Kommando vergleicht die aktuelle Speicherplatzbelegung mit der erlaubten Speicherplatzbelegung, die in <code>setting('maximum_storage')</code> in GB gespeichert ist.</p>
 <p>Wenn über 80% des Speicherplatzes belegt ist, wird eine Warung ausgegeben.</p>
 <p>Wenn mehr Speicherplatz als erlaubt belegt ist, wird ein Fehler zurückgegeben.</p>
@@ -1465,21 +1508,19 @@
 <p>vgl. Admin =&gt; Installation</p>
 <h2 id="antondoctor">anton:doctor<a class="headerlink" href="#antondoctor" title="Permanent link">&para;</a></h2>
 <p>Überprüft einige grundlegende Settings und kann evtl. Auskunft geben, ob etwas an der Installation nicht stimmt.</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>--all<span class="w"> </span>-vv
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;besenval&quot;</span><span class="w"> </span>--all<span class="w"> </span>-vv
 </code></pre></div>
-
-<p>Optionen: </p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="o">--</span><span class="n">all</span><span class="w">             </span><span class="n">check</span><span class="w"> </span><span class="n">everything</span>
-<span class="w">    </span><span class="o">--</span><span class="n">binaries</span><span class="w">        </span><span class="n">check</span><span class="w"> </span><span class="n">binaries</span>
-<span class="w">    </span><span class="o">--</span><span class="n">database</span><span class="w">        </span><span class="n">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">positions</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="p">(</span><span class="n">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span>
-<span class="w">    </span><span class="o">--</span><span class="n">disk</span><span class="w">            </span><span class="n">check</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="n">usage</span>
-<span class="w">    </span><span class="o">--</span><span class="n">environment</span><span class="w">     </span><span class="n">check</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="n">variables</span><span class="p">,</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="n">etc</span><span class="o">.</span>
-<span class="w">    </span><span class="o">--</span><span class="n">jobs</span><span class="w">            </span><span class="n">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">supervisor</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">running</span>
-<span class="w">    </span><span class="o">--</span><span class="n">media</span><span class="w">           </span><span class="n">show</span><span class="w"> </span><span class="n">problematic</span><span class="w"> </span><span class="n">media</span>
-<span class="w">    </span><span class="o">--</span><span class="n">statistics</span><span class="w">      </span><span class="n">count</span><span class="w"> </span><span class="n">rows</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">tables</span>
-<span class="w">    </span><span class="o">--</span><span class="n">mail</span><span class="p">[</span><span class="o">=</span><span class="n">MAIL</span><span class="p">]</span><span class="w">     </span><span class="n">email</span><span class="o">-</span><span class="n">adress</span>
-</code></pre></div>
-
+<p>Optionen: 
+<div class="highlight"><pre><span></span><code>    --all             check everything
+    --binaries        check binaries
+    --database        check if positions are not unique (within a parent)
+    --disk            check disk usage
+    --environment     check environment variables, setting etc.
+    --jobs            check if supervisor is running
+    --media           show problematic media
+    --statistics      count rows in tables
+    --mail[=MAIL]     email-adress
+</code></pre></div></p>
 <h2 id="antonexport">anton:export<a class="headerlink" href="#antonexport" title="Permanent link">&para;</a></h2>
 <h2 id="antonimport">anton:import<a class="headerlink" href="#antonimport" title="Permanent link">&para;</a></h2>
 <h2 id="antonrestore">anton:restore<a class="headerlink" href="#antonrestore" title="Permanent link">&para;</a></h2>
@@ -1520,7 +1561,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1560,10 +1602,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

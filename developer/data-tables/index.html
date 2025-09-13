@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -375,6 +375,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -404,6 +427,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1221,7 +1267,7 @@
 <p>Example: places</p>
 <h2 id="form-class">Form Class<a class="headerlink" href="#form-class" title="Permanent link">&para;</a></h2>
 <p>Create a <code>PlacesForm</code> Class in <code>app/Forms/</code>. The array should contain a 'list' entry with the column definitions:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">Anton\Forms</span><span class="p">;</span>
 
@@ -1245,10 +1291,9 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h2 id="datatable-class">Datatable Class<a class="headerlink" href="#datatable-class" title="Permanent link">&para;</a></h2>
 <p>Create a Class <code>DataTable</code> in <code>Livewire/Places</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">Anton\Http\Livewire\Places</span><span class="p">;</span>
 
@@ -1272,10 +1317,9 @@
     <span class="k">public</span> <span class="nv">$view</span> <span class="o">=</span> <span class="s1">&#39;places.data-table&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h2 id="index-view">Index view<a class="headerlink" href="#index-view" title="Permanent link">&para;</a></h2>
 <p>In `resources/views/places/index.blade.php:</p>
-<div class="codehilite"><pre><span></span><code>@extends(&#39;master&#39;)
+<div class="highlight"><pre><span></span><code>@extends(&#39;master&#39;)
 
 @section(&#39;content&#39;)
 
@@ -1290,77 +1334,72 @@
 
 @stop
 </code></pre></div>
-
 <h2 id="livewire-view">Livewire View<a class="headerlink" href="#livewire-view" title="Permanent link">&para;</a></h2>
 <p>In <code>resources/views/livewire/places/data-table</code>: </p>
-<div class="codehilite"><pre><span></span><code>@include(&#39;includes._data-table&#39;)
+<div class="highlight"><pre><span></span><code>@include(&#39;includes._data-table&#39;)
 </code></pre></div>
-
 <h2 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h2>
 <p>Make sure that the controller gets these two public attributes and it uses the <code>Controller.php</code> as parent:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">PlacesController</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="n">BaseController</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">public</span><span class="w"> </span><span class="o">$</span><span class="n">modelClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\Anton\Models\Place&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>class PlacesController extends BaseController
+{
+    public $modelClass = &#39;\Anton\Models\Place&#39;;
 
-<span class="w">    </span><span class="n">public</span><span class="w"> </span><span class="o">$</span><span class="n">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;places&#39;</span><span class="p">;</span>
+    public $endpoint = &#39;places&#39;;
 </code></pre></div>
-
 <h2 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h2>
 <h3 id="dtquery">dtQuery()<a class="headerlink" href="#dtquery" title="Permanent link">&para;</a></h3>
 <p>The Model should have a <code>dtQuery()</code> Method:  </p>
-<div class="codehilite"><pre><span></span><code><span class="nx">public</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="nx">scopeDtQuery</span><span class="p">(</span><span class="err">$</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="nx">params</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="err">$</span><span class="nx">search</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">$</span><span class="nx">params</span><span class="p">[</span><span class="err">&#39;</span><span class="nx">search</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="err">&#39;&#39;</span><span class="p">;</span>
-<span class="w">        </span><span class="err">$</span><span class="nx">locale</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">\</span><span class="nx">App</span><span class="o">::</span><span class="nx">getLocale</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code>public function scopeDtQuery($query, $params)
+    {
+        $search = $params[&#39;search&#39;] ?? &#39;&#39;;
+        $locale = \App::getLocale();
 
-<span class="w">        </span><span class="err">$</span><span class="nx">query</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">$</span><span class="nx">query</span><span class="o">-&gt;</span><span class="nx">selectRaw</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">tt</span><span class="p">.</span><span class="nx">label</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">place_type</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">places</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">places</span><span class="p">.</span><span class="nx">city</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">city</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">places</span><span class="p">.</span><span class="nx">state</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">state</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">ct</span><span class="p">.</span><span class="nx">label</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">country</span><span class="p">,</span>
-<span class="w">                           </span><span class="nx">places</span><span class="p">.</span><span class="nx">description</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="nx">leftJoin</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">terms</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">place_type_id</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">t</span><span class="p">.</span><span class="nx">id</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="nx">leftJoin</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">term_translations</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">tt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">function</span><span class="p">(</span><span class="err">$</span><span class="nx">join</span><span class="p">)</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">locale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="err">$</span><span class="nx">join</span><span class="o">-&gt;</span><span class="nx">on</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">t</span><span class="p">.</span><span class="nx">id</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">tt</span><span class="p">.</span><span class="nx">term_id</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="w">                     </span><span class="o">-&gt;</span><span class="k">where</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">tt</span><span class="p">.</span><span class="nx">locale</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="nx">locale</span><span class="p">);</span>
-<span class="w">                </span><span class="p">})</span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="nx">leftJoin</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">countries</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">c</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">country_code_id</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="o">-&gt;</span><span class="nx">leftJoin</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">country_translations</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nx">ct</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">function</span><span class="p">(</span><span class="err">$</span><span class="nx">join</span><span class="p">)</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">locale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="err">$</span><span class="nx">join</span><span class="o">-&gt;</span><span class="nx">on</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">ct</span><span class="p">.</span><span class="nx">country_id</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="w">                     </span><span class="o">-&gt;</span><span class="k">where</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">ct</span><span class="p">.</span><span class="nx">locale</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="nx">locale</span><span class="p">);</span>
-<span class="w">            </span><span class="p">});</span>
+        $query = $query-&gt;selectRaw(&#39;places.id as id,
+                           tt.label as place_type,
+                           places.name as name,
+                           places.city as city,
+                           places.state as state,
+                           ct.label as country,
+                           places.description&#39;)
+            -&gt;leftJoin(&#39;terms as t&#39;, &#39;places.place_type_id&#39;, &#39;=&#39;, &#39;t.id&#39;)
+            -&gt;leftJoin(&#39;term_translations as tt&#39;, function($join) use ($locale) {
+                $join-&gt;on(&#39;t.id&#39;, &#39;=&#39;, &#39;tt.term_id&#39;)
+                     -&gt;where(&#39;tt.locale&#39;, $locale);
+                })
+            -&gt;leftJoin(&#39;countries as c&#39;, &#39;places.country_code_id&#39;, &#39;=&#39;, &#39;c.id&#39;)
+            -&gt;leftJoin(&#39;country_translations as ct&#39;, function($join) use ($locale) {
+                $join-&gt;on(&#39;c.id&#39;, &#39;=&#39;, &#39;ct.country_id&#39;)
+                     -&gt;where(&#39;ct.locale&#39;, $locale);
+            });
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">$</span><span class="nx">query</span><span class="o">-&gt;</span><span class="k">where</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="o">-&gt;</span><span class="nx">orWhere</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">tt</span><span class="p">.</span><span class="nx">label</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="o">-&gt;</span><span class="nx">orWhere</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">city</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="o">-&gt;</span><span class="nx">orWhere</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">state</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="o">-&gt;</span><span class="nx">orWhere</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">ct</span><span class="p">.</span><span class="nx">label</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="o">-&gt;</span><span class="nx">orWhere</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">places</span><span class="p">.</span><span class="nx">description</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="k">like</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;%&#39;</span><span class="p">.</span><span class="err">$</span><span class="nx">search</span><span class="p">.</span><span class="sc">&#39;%&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="c1">// \Log::debug($query-&gt;toSql());</span>
+        if ($search) {
+            $query-&gt;where(&#39;places.name&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;tt.label&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.city&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.state&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;ct.label&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.description&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;);
+        }
+        // \Log::debug($query-&gt;toSql());
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="err">$</span><span class="nx">query</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+        return $query;
+    }
 </code></pre></div>
-
 <p>The <code>$param['search']</code> is for filtering the table. </p>
 <p>You can simplify the <code>scopeDtQuery</code> method by creating accessors, however, if for example a translation label is needed or a valuelist is used, then a join will reduce the number of queries.</p>
 <h3 id="attributes-and-accessors">Attributes and Accessors<a class="headerlink" href="#attributes-and-accessors" title="Permanent link">&para;</a></h3>
 <p>For each column name of the table there must be an attribute or an accessor with this name. If the accessor uses a term it is best to use a static variable for the valuelist within the accessor to reduce the database queries:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">public</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="nx">getPlaceTypeLabelAttribute</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">static</span><span class="w"> </span><span class="err">$</span><span class="nx">placeTypeLabels</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>public function getPlaceTypeLabelAttribute()
+{
+    static $placeTypeLabels;
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(!</span><span class="nx">isset</span><span class="p">(</span><span class="err">$</span><span class="nx">placeTypeLabels</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">$</span><span class="nx">placeTypeLabels</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">Term</span><span class="o">::</span><span class="nx">getValueList</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">place_type</span><span class="err">&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+    if (!isset($placeTypeLabels)) {
+        $placeTypeLabels = Term::getValueList(&#39;place_type&#39;);
+    }
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">$</span><span class="nx">placeTypeLabels</span><span class="p">[</span><span class="err">$</span><span class="nx">this</span><span class="o">-&gt;</span><span class="nx">place_type_id</span><span class="p">]</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="err">&#39;&#39;</span><span class="p">;</span>
-<span class="p">}</span>
+    return $placeTypeLabels[$this-&gt;place_type_id] ?? &#39;&#39;;
+}
 </code></pre></div>
-
 <h2 id="cotroller-methods">Cotroller Methods<a class="headerlink" href="#cotroller-methods" title="Permanent link">&para;</a></h2>
 <p>In order to get the Links work we have to implement the show, edit and destroy methods in the controller. </p>
 
@@ -1399,7 +1438,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1439,10 +1479,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

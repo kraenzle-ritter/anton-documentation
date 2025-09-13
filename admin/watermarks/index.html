@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -726,30 +772,6 @@
       Typen
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Typen">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#text" class="md-nav__link">
-    <span class="md-ellipsis">
-      Text
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bild" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bild
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1245,30 +1267,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Typen">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#text" class="md-nav__link">
-    <span class="md-ellipsis">
-      Text
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bild" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bild
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -1308,75 +1306,72 @@
 
 <p>Wasserzeichen können zu allen Bildern "on-the-fly" zugefügt werden. Die entsprechende Konfiguration ist im Setting "watermark" abgelegt.</p>
 <h2 id="rollen">Rollen<a class="headerlink" href="#rollen" title="Permanent link">&para;</a></h2>
-<p>Wenn ein Setting "watermark" besteht, werden für nicht angemeldete Benutzer:innen Wasserzeichen immer angezeigt. Zusätzlich können in einem Array noch Rollen definiert werden, für die Wasserzeichen angezeigt werden sollen.  </p>
-<div class="codehilite"><pre><span></span><code>&quot;roles&quot;: [  
+<p>Wenn ein Setting "watermark" besteht, werden für nicht angemeldete Benutzer:innen Wasserzeichen immer angezeigt. Zusätzlich können in einem Array noch Rollen definiert werden, für die Wasserzeichen angezeigt werden sollen.<br />
+<div class="highlight"><pre><span></span><code>&quot;roles&quot;: [  
     &quot;user&quot;, &quot;user_intern&quot;  
 ],  
-</code></pre></div>
-
+</code></pre></div></p>
 <h2 id="wasserzeichen">Wasserzeichen<a class="headerlink" href="#wasserzeichen" title="Permanent link">&para;</a></h2>
 <p>Im Array "watermarks" können mehrere Wasserzeichen definiert werden. Wenn sich zwei Wasserzeichen überlappen, wird das weiter unten definierte über das weiter oben definierte gezeichnet.</p>
 <h3 id="typen">Typen<a class="headerlink" href="#typen" title="Permanent link">&para;</a></h3>
 <p>Wasserzeichen können als <em>Text</em> oder als <em>Bild</em> eingebettet werden.<br />
 Je nach Typ bestehen unterschiedliche Konfigurationsmöglichkeiten.</p>
 <h4 id="text">Text<a class="headerlink" href="#text" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// type of watermark: text|image</span>
-<span class="w">    </span><span class="s">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;de&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;© K&amp;R | &lt;identifier&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// german version, required, default, allowed placeholders: &lt;identifier&gt;, &lt;permalink&gt;</span>
-<span class="w">        </span><span class="s">&quot;en&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;© K&amp;R | &lt;identifier&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// additional languages optional</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s">&quot;fontfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Oswald-Medium.ttf&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// in customer_folder, subfolder &quot;fonts&quot;</span>
-<span class="w">    </span><span class="s">&quot;fontsize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="c1">//optional, default 18</span>
-<span class="w">    </span><span class="s">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#fff&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//optional, default #000</span>
-<span class="w">    </span><span class="s">&quot;angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="c1">//optional, default 0</span>
-<span class="w">    </span><span class="s">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bottom-left&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left</span>
-<span class="w">    </span><span class="s">&quot;hmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="c1">// horizontal margin, optional, default 10</span>
-<span class="w">    </span><span class="s">&quot;vmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="c1">// vertical margin, optional, default 10</span>
-<span class="w">    </span><span class="s">&quot;background-color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rgba(0, 0, 0, 0.5)&quot;</span><span class="w"> </span><span class="c1">// optional, default none, use rgba for opacity setting</span>
-<span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code>{
+    &quot;type&quot;: &quot;text&quot;, // type of watermark: text|image
+    &quot;text&quot;: {
+        &quot;de&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;, // german version, required, default, allowed placeholders: &lt;identifier&gt;, &lt;permalink&gt;
+        &quot;en&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;, // additional languages optional
+    },
+    &quot;fontfile&quot;: &quot;Oswald-Medium.ttf&quot;, // in customer_folder, subfolder &quot;fonts&quot;
+    &quot;fontsize&quot;: 18, //optional, default 18
+    &quot;color&quot;: &quot;#fff&quot;, //optional, default #000
+    &quot;angle&quot;: 0, //optional, default 0
+    &quot;position&quot;: &quot;bottom-left&quot;, // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
+    &quot;hmargin&quot;: 20, // horizontal margin, optional, default 10
+    &quot;vmargin&quot;: 20, // vertical margin, optional, default 10
+    &quot;background-color&quot;: &quot;rgba(0, 0, 0, 0.5)&quot; // optional, default none, use rgba for opacity setting
+    }
 </code></pre></div>
-
 <h4 id="bild">Bild<a class="headerlink" href="#bild" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// type of watermark: text|image</span>
-<span class="w">    </span><span class="s">&quot;imagefile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;logo.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// in customer_folder, subfolder &quot;img&quot;</span>
-<span class="w">    </span><span class="s">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;top-left&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left</span>
-<span class="w">    </span><span class="s">&quot;hmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="c1">// horizontal margin, optional, default 0</span>
-<span class="w">    </span><span class="s">&quot;vmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="c1">// vertical margin, optional, default 0</span>
-<span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code>{
+    &quot;type&quot;: &quot;image&quot;, // type of watermark: text|image
+    &quot;imagefile&quot;: &quot;logo.png&quot;, // in customer_folder, subfolder &quot;img&quot;
+    &quot;position&quot;: &quot;top-left&quot;, // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
+    &quot;hmargin&quot;: 10, // horizontal margin, optional, default 0
+    &quot;vmargin&quot;: 10 // vertical margin, optional, default 0
+    }
 </code></pre></div>
-
 <h2 id="beispielkonfiguration">Beispielkonfiguration<a class="headerlink" href="#beispielkonfiguration" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s">&quot;roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s">&quot;user&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s">&quot;user_intern&quot;</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="s">&quot;watermarks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="s">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;de&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;© K&amp;R | &lt;identifier&gt;&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;fontfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Oswald-Medium.ttf&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;fontsize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#fff&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bottom-left&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;hmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;vmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;background-color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rgba(0, 0, 0, 0.5)&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="s">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;imagefile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;logo.png&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;top-left&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;hmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;vmargin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>{
+  &quot;roles&quot;: [
+    &quot;user&quot;,
+    &quot;user_intern&quot;
+  ],
+  &quot;watermarks&quot;: [
+    {
+      &quot;type&quot;: &quot;text&quot;,
+      &quot;text&quot;: {
+        &quot;de&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;
+      },
+      &quot;fontfile&quot;: &quot;Oswald-Medium.ttf&quot;,
+      &quot;fontsize&quot;: 18,
+      &quot;color&quot;: &quot;#fff&quot;,
+      &quot;angle&quot;: 0,
+      &quot;position&quot;: &quot;bottom-left&quot;,
+      &quot;hmargin&quot;: 10,
+      &quot;vmargin&quot;: 10,
+      &quot;background-color&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+    },
+    {
+      &quot;type&quot;: &quot;image&quot;,
+      &quot;imagefile&quot;: &quot;logo.png&quot;,
+      &quot;position&quot;: &quot;top-left&quot;,
+      &quot;hmargin&quot;: 10,
+      &quot;vmargin&quot;: 10
+    }
+  ]
+}
 </code></pre></div>
 
 
@@ -1414,7 +1409,8 @@ Je nach Typ bestehen unterschiedliche Konfigurationsmöglichkeiten.</p>
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1454,10 +1450,10 @@ Je nach Typ bestehen unterschiedliche Konfigurationsmöglichkeiten.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1234,10 +1280,9 @@
 
 <h1 id="backup-and-restore-from-backup">Backup and Restore from Backup<a class="headerlink" href="#backup-and-restore-from-backup" title="Permanent link">&para;</a></h1>
 <p>To backup the database just use the command</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--env<span class="w"> </span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Options:
+<div class="highlight"><pre><span></span><code>Options:
   --file[=FILE]              Target file
   --target-dir[=TARGET-DIR]  Target directory for the backup
   --hourly                   Hourly Backup (filename: 00_backup_slug-hourly-23)
@@ -1246,24 +1291,20 @@
   --monthly                  Monthly Backup (filename: 00_backup_slug-monthly-04)
   --yearly                   Yearly Backup (filename: 00_backup_slug-yearly-2019)
 </code></pre></div>
-
 <h2 id="restore-from-backup">Restore from Backup<a class="headerlink" href="#restore-from-backup" title="Permanent link">&para;</a></h2>
 <p>Restoring from a backup may become necessary for various reasons. The database can be restored with the command 'anton:restore':</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:restore<span class="w"> </span>--env<span class="w"> </span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:restore<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Options:
+<p><div class="highlight"><pre><span></span><code>Options:
   --list            Lists available anton-sql-dumps.
   --file[=FILE]     Source file.
   --drop            Erase all tables.
 </code></pre></div>
-
-<p>The database dump must be located in the <code>db_backup</code> folder in the customers-dir.</p>
+The database dump must be located in the <code>db_backup</code> folder in the customers-dir.</p>
 <h2 id="delete-obsolete-media">Delete obsolete Media<a class="headerlink" href="#delete-obsolete-media" title="Permanent link">&para;</a></h2>
 <p>To delete any media that may no longer referenced in the database after restoring from the backup:</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:check-media<span class="w"> </span>-vv<span class="w"> </span>--levels<span class="w"> </span><span class="m">3</span><span class="w"> </span>--delete-from-system<span class="w"> </span>--env<span class="w"> </span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:check-media<span class="w"> </span>-vv<span class="w"> </span>--levels<span class="w"> </span><span class="m">3</span><span class="w"> </span>--delete-from-system<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
-
 <h2 id="restore-lost-media">Restore lost Media<a class="headerlink" href="#restore-lost-media" title="Permanent link">&para;</a></h2>
 <p>If media-files are missing, they must be copied back from the external backup.</p>
 
@@ -1302,7 +1343,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1342,10 +1384,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

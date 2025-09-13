@@ -11,14 +11,18 @@
       
       
       
+        <link rel="prev" href="../media/">
+      
+      
+        <link rel="next" href="../markdown/">
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
-        <title>Places - Anton – Dokumentation</title>
+        <title>Orte - Anton – Dokumentation</title>
       
     
     
@@ -97,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Places
+              Orte
             
           </span>
         </div>
@@ -242,18 +246,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -269,7 +275,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             User
@@ -372,6 +378,91 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#orte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orte
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Orte">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geokoordinaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geokoordinaten
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -404,6 +495,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -1116,6 +1230,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Orte">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geokoordinaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geokoordinaten
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1137,9 +1266,42 @@
   
 
 
-  <h1>Places</h1>
+  <h1>Orte</h1>
 
 <h2 id="orte">Orte<a class="headerlink" href="#orte" title="Permanent link">&para;</a></h2>
+<h3 id="geokoordinaten">Geokoordinaten<a class="headerlink" href="#geokoordinaten" title="Permanent link">&para;</a></h3>
+<p>Anton unterstützt die Erfassung und Verwaltung von geografischen Koordinaten für Orte (Punkte). Das System kann verschiedene Koordinatenformate automatisch verarbeiten und in einem einheitlichen Format speichern. Besitzt ein Ort Geokooridnaten, wird in der Detailansicht eine Karte mit der Lokalisierung angezeigt.</p>
+<h4 id="unterstutzte-koordinatenformate">Unterstützte Koordinatenformate<a class="headerlink" href="#unterstutzte-koordinatenformate" title="Permanent link">&para;</a></h4>
+<p><strong>1. WGS84 (Dezimalgrad)</strong> - Standard für GPS und Online-Karten<br />
+Format: <code>Breitengrad Längengrad</code> | Beispiel: <code>47.3769 8.5417</code> (Zürich)</p>
+<p><strong>2. Schweizer Landeskoordinaten LV95</strong> - Aktuelles CH-System<br />
+Format: <code>Rechtswert Hochwert</code> | Beispiel: <code>2683141 1247637</code> oder <code>2'683'141 1'247'637</code></p>
+<p><strong>3. Schweizer Landeskoordinaten LV03</strong> - Früheres CH-System<br />
+Format: <code>Rechtswert Hochwert</code> | Beispiel: <code>683141 247637</code></p>
+<div class="admonition info">
+<p class="admonition-title">Automatische Konvertierung</p>
+<p>Anton erkennt das Format automatisch und konvertiert alle Koordinaten in WGS84.</p>
+</div>
+<h4 id="eingabe-in-anton">Eingabe in Anton<a class="headerlink" href="#eingabe-in-anton" title="Permanent link">&para;</a></h4>
+<h5 id="uber-geonames">Über Geonames<a class="headerlink" href="#uber-geonames" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Ort erstellen oder bearbeiten</li>
+<li>In der rechten Spalte Ort mit Geonames identifizieren</li>
+<li>Kooridnaten werden automatisch übernommen</li>
+</ol>
+<h5 id="uber-das-orte-formular">Über das Orte-Formular<a class="headerlink" href="#uber-das-orte-formular" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Ort erstellen oder bearbeiten</li>
+<li>Im Feld "Koordinaten" die Werte eingeben</li>
+<li>Format wird automatisch erkannt und konvertiert</li>
+</ol>
+<h5 id="unterstutzte-eingabeformate">Unterstützte Eingabeformate<a class="headerlink" href="#unterstutzte-eingabeformate" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Mit oder ohne Vorzeichen</li>
+<li>Mit oder ohne Tausendertrennzeichen (<code>'</code> oder <code></code>)</li>
+<li>Durch Leerzeichen oder Komma getrennt</li>
+<li>Dezimalstellen optional</li>
+</ul>
 
 
 
@@ -1176,7 +1338,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1216,10 +1379,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

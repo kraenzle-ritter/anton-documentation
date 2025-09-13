@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -791,30 +837,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Ablauf des SIP-Ingest">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#anton" class="md-nav__link">
-    <span class="md-ellipsis">
-      Anton
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ingest-mit-inge-in-dimag" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ingest mit Inge in DIMAG
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -856,21 +878,6 @@
       Debugging
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Debugging">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#check-the-sip-import-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the SIP Import Data
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1281,30 +1288,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Ablauf des SIP-Ingest">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#anton" class="md-nav__link">
-    <span class="md-ellipsis">
-      Anton
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ingest-mit-inge-in-dimag" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ingest mit Inge in DIMAG
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1346,21 +1329,6 @@
       Debugging
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Debugging">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#check-the-sip-import-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the SIP Import Data
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1446,28 +1414,24 @@
 <h3 id="abfrage-eines-master-files">Abfrage eines Master Files<a class="headerlink" href="#abfrage-eines-master-files" title="Permanent link">&para;</a></h3>
 <p><img alt="Ablauf Ingest mit Inge und DIMAG" src="../images/Anton-Inge-Abruf.drawio.png" /></p>
 <h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--from-sip<span class="w"> </span>--no-validation<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--from-sip<span class="w"> </span>--no-validation<span class="w"> </span>
 --create-actors<span class="w"> </span>-vv<span class="w"> </span><span class="o">{</span>path/to/sip<span class="o">}</span><span class="w"> </span>--import
 </code></pre></div>
-
 <h3 id="revert-a-sip-import-or-confirm-import-with-inge">Revert a SIP Import or Confirm Import with Inge<a class="headerlink" href="#revert-a-sip-import-or-confirm-import-with-inge" title="Permanent link">&para;</a></h3>
 <p>Before a SIP Import Anton backups the database, so if anything goes wrong you can come back to the status before the Import. </p>
 <p>The backup name is stored in the SIP-Entry and the <code>Status of description</code> is set to draft.</p>
 <p>This will restore the database from the last/actual backup and sync the media with the database (namely delete media wich are not registered in the database):</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
 </code></pre></div>
-
 <p>The <code>sip_id</code> is the ID of an AntonObject which is a SIP.</p>
 <p>This will set the <code>Status of description</code> in the SIP-Entry to "final":</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
 </code></pre></div>
-
 <h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
 <h4 id="check-the-sip-import-data">Check the SIP Import Data<a class="headerlink" href="#check-the-sip-import-data" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-import-array
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-import-array
 </code></pre></div>
 
 
@@ -1505,7 +1469,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1545,10 +1510,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

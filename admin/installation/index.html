@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -379,6 +379,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/places/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Orte
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/markdown/" class="md-nav__link">
         
   
@@ -408,6 +431,29 @@
   
   <span class="md-ellipsis">
     Ausleihe von Objekten
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SIP Ingest
     
   </span>
   
@@ -570,30 +616,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Umgebung anpassen (.env)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allgemeine-umgebungsvariablen" class="md-nav__link">
-    <span class="md-ellipsis">
-      Allgemeine Umgebungsvariablen
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#datenbank-credentials" class="md-nav__link">
-    <span class="md-ellipsis">
-      Datenbank Credentials
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -602,39 +624,6 @@
       Drivers
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Drivers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#email" class="md-nav__link">
-    <span class="md-ellipsis">
-      Email
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customers-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      Customers Path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geolokalisierung" class="md-nav__link">
-    <span class="md-ellipsis">
-      Geolokalisierung
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1338,30 +1327,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Umgebung anpassen (.env)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#allgemeine-umgebungsvariablen" class="md-nav__link">
-    <span class="md-ellipsis">
-      Allgemeine Umgebungsvariablen
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#datenbank-credentials" class="md-nav__link">
-    <span class="md-ellipsis">
-      Datenbank Credentials
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1370,39 +1335,6 @@
       Drivers
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Drivers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#email" class="md-nav__link">
-    <span class="md-ellipsis">
-      Email
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customers-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      Customers Path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geolokalisierung" class="md-nav__link">
-    <span class="md-ellipsis">
-      Geolokalisierung
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1490,15 +1422,14 @@
 <p>Um einen neuen <code>customer</code> einzurichten benötigt man den Zugang über die Kommandozeile.</p>
 <h3 id="configphp-in-bootstrap-anlegen">config.php in bootstrap/ anlegen<a class="headerlink" href="#configphp-in-bootstrap-anlegen" title="Permanent link">&para;</a></h3>
 <p>Falls die Umgebung nicht der subdomain entspricht, muss man ein <code>config.php</code> File anlegen, das ein Array <code>$slugArray</code> definiert. Dieses ordnet die URL der Anton-Installation einem den <code>customer</code> zu: </p>
-<div class="codehilite"><pre><span></span><code><span class="x">$slugArray = [&#39;besenval.anton&#39; =&gt; &#39;besenval&#39;];</span>
+<div class="highlight"><pre><span></span><code><span class="x">$slugArray = [&#39;besenval.anton&#39; =&gt; &#39;besenval&#39;];</span>
 </code></pre></div>
-
 <p>Der <code>key</code> besteht aus hier Subdomain und Domain, der <code>value</code> enthält den <code>customer-slug</code> bzw. das suffix des <code>.env</code> files, das in diesem Fall <code>.env.besenval</code> heisst.</p>
 <h3 id="umgebung-anpassen-env">Umgebung anpassen (.env)<a class="headerlink" href="#umgebung-anpassen-env" title="Permanent link">&para;</a></h3>
 <p>Die Umgebungsvariablen werden im <code>.env.besenval</code> im root Verzeichnis der Anton-Installation gespeichert. Weitere Variablen sind dann in der Datenbank in den Settings gespeichert.</p>
 <h4 id="allgemeine-umgebungsvariablen">Allgemeine Umgebungsvariablen<a class="headerlink" href="#allgemeine-umgebungsvariablen" title="Permanent link">&para;</a></h4>
 <p>Beispiel Besenval: </p>
-<div class="codehilite"><pre><span></span><code>APP_ENV=besenval
+<div class="highlight"><pre><span></span><code>APP_ENV=besenval
 APP_URL=http://besenval.anton.ch
 APP_DEBUG=false
 DEBUGBAR_ENABLED=false
@@ -1507,28 +1438,26 @@ APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
 SNEAKER_SILENT=true
 </code></pre></div>
-
 <h4 id="datenbank-credentials">Datenbank Credentials<a class="headerlink" href="#datenbank-credentials" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>DB_HOST=127.0.0.1
+<div class="highlight"><pre><span></span><code>DB_HOST=127.0.0.1
 DB_DATABASE=datenbankname
 DB_USERNAME=username
 DB_PASSWORD=passwort
 </code></pre></div>
-
 <h3 id="drivers">Drivers<a class="headerlink" href="#drivers" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>CACHE_DRIVER=file
+<div class="highlight"><pre><span></span><code>CACHE_DRIVER=file
 SESSION_DRIVER=database
 QUEUE_DRIVER=database
 </code></pre></div>
-
 <div class="admonition note">
 <p class="admonition-title">Wichtig</p>
 <p>Wichtig: Für die ersten Commands muss der Cache-Driver in <code>.env.besenval</code> auf file gestellt sein:</p>
-<p><code>CACHE_DRIVER=file</code></p>
+<div class="highlight"><pre><span></span><code>CACHE_DRIVER=file
+</code></pre></div>
 <p>Nach der Grundinstallation (bzw. der database migration) sollte dieser Wert zu 'database' geändert werden.</p>
 </div>
 <h4 id="email">Email<a class="headerlink" href="#email" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>MAIL_DRIVER
+<div class="highlight"><pre><span></span><code>MAIL_DRIVER
 MAIL_HOST
 MAIL_PORT
 MAIL_USERNAME
@@ -1536,85 +1465,72 @@ MAIL_PASSWORD
 MAIL_FROM
 MAIL_NAME
 </code></pre></div>
-
-<p>Es ist einfach, den Email Versand zu testen:</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">&#39;kraenzle@k-r.ch&#39;</span>
-</code></pre></div>
-
+<p>Es ist einfach, den Email Versand zu testen:
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">&#39;kraenzle@k-r.ch&#39;</span>
+</code></pre></div></p>
 <h4 id="customers-path">Customers Path<a class="headerlink" href="#customers-path" title="Permanent link">&para;</a></h4>
 <p>Ausserdem kann die Variable <code>CUSTOMER_PATH</code> gesetzt werden (sie muss einen absoluten Pfad enthalten). Ist der <code>CUSTOMER_PATH</code> nicht gesetzt wird im Anton Ordner ein <code>customers</code> Ordner angelegt und verwendet.</p>
 <h4 id="geolokalisierung">Geolokalisierung<a class="headerlink" href="#geolokalisierung" title="Permanent link">&para;</a></h4>
 <p>Um Geolokalisierung der Orte mit Geonames und Kartendarstellungen von Google Maps zu ermöglichen, müssen folgende Variablen gesetzt sein:</p>
-<div class="codehilite"><pre><span></span><code>GOOGLE_API_KEY
+<div class="highlight"><pre><span></span><code>GOOGLE_API_KEY
 GEONAMES_USERNAME
 </code></pre></div>
-
 <h2 id="mysql-datenbank-erstellen">Mysql-Datenbank erstellen<a class="headerlink" href="#mysql-datenbank-erstellen" title="Permanent link">&para;</a></h2>
 <p>Als root anmelden:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">p</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">p</span>
 </code></pre></div>
-
 <p>Eine leere mysql-db anton_"slug" erstellen.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">anton_besenval</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">anton_besenval</span><span class="p">;</span>
 </code></pre></div>
-
 <p>Einen eigenen DB-User erstellen:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;user_password&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;user_password&#39;</span><span class="p">;</span>
 </code></pre></div>
-
 <p>Ersetze <code>user_password</code> durch das Passwort.</p>
 <p>Alle Rechte für diese user einrichten:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 </code></pre></div>
-
 <h2 id="grundinstallation">Grundinstallation<a class="headerlink" href="#grundinstallation" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
-
 <p>Es laufen nun die nötigen <code>migrations</code> und die Datenbank wird mit den Grunddaten versorgt.</p>
 <p>Nun kann im <code>.env.besenval</code> der Cache auf 'database' gesetzt werden.</p>
 <h2 id="datenverzeichnis-erstellen">Datenverzeichnis erstellen<a class="headerlink" href="#datenverzeichnis-erstellen" title="Permanent link">&para;</a></h2>
 <p>In <code>custumers/slug</code> bzw. <code>customers/besenval</code> werden die Kundendaten gespeichert. Das Verzeichnis inklusive der nötigen Unterverzeichnisse kann einfach mit <code>anton:customdir</code> erstellt werden:</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:customdir<span class="w"> </span>-vv<span class="w"> </span>--create<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:customdir<span class="w"> </span>-vv<span class="w"> </span>--create<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
-
 <p>Nun als <code>root</code> das Verzeichnis schreibbar machen:</p>
-<div class="codehilite"><pre><span></span><code>chmod -R 775 customers/besenval
+<div class="highlight"><pre><span></span><code>chmod -R 775 customers/besenval
 </code></pre></div>
-
 <h2 id="logo-kopieren">Logo kopieren<a class="headerlink" href="#logo-kopieren" title="Permanent link">&para;</a></h2>
 <p>Falls kein Logo zur Verfügung steht, kann das Antonlogo kopiert werden:</p>
-<div class="codehilite"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>--logo<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>--logo<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
-
 <h2 id="matomo-einbinden">Matomo einbinden<a class="headerlink" href="#matomo-einbinden" title="Permanent link">&para;</a></h2>
 <p>Auf Matomo einloggen <a href="http://matomo.anton.ch/">http://matomo.anton.ch/</a>. Unter "Alle Websites" eine neue Website hinzufügen.</p>
 <p>Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.</p>
 <p>In den Anton Settings <code>analytics_id</code> mit der Motomo ID ausfüllen und den <code>analytics_auth_token</code> aus Matomo kopieren.</p>
 <h2 id="configure-supervisor">Configure Supervisor<a class="headerlink" href="#configure-supervisor" title="Permanent link">&para;</a></h2>
 <p>Als <code>root</code> die Konfigurationsdatei <code>etc/supervisor/supervisor.conf</code> öffnen und einen neuen <code>customer</code> einrichten.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[program:laravel-worker-besenval]</span>
-<span class="na">process_name</span><span class="o">=</span><span class="s">%(program_name)s_%(process_num)02d</span>
-<span class="na">command</span><span class="o">=</span><span class="s">%(ENV_SPRVS_PHP)s %(ENV_SPRVS_ANTON)s/artisan queue:work database --tries=3 --timeout=120 --env=besenval</span>
-<span class="na">autostart</span><span class="o">=</span><span class="s">true</span>
-<span class="na">autorestart</span><span class="o">=</span><span class="s">true</span>
-<span class="na">startretries</span><span class="o">=</span><span class="s">10</span>
-<span class="na">user</span><span class="o">=</span><span class="s">%(ENV_SPRVS_USER)s</span>
-<span class="na">numprocs</span><span class="o">=</span><span class="s">1</span>
-<span class="na">redirect_stderr</span><span class="o">=</span><span class="s">true</span>
-<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">%(ENV_SPRVS_LOG)s/worker-besenval.log</span>
+<p><div class="highlight"><pre><span></span><code>[program:laravel-worker-besenval]
+process_name=%(program_name)s_%(process_num)02d
+command=%(ENV_SPRVS_PHP)s %(ENV_SPRVS_ANTON)s/artisan queue:work database --tries=3 --timeout=120 --env=besenval
+autostart=true
+autorestart=true
+startretries=10
+user=%(ENV_SPRVS_USER)s
+numprocs=1
+redirect_stderr=true
+stdout_logfile=%(ENV_SPRVS_LOG)s/worker-besenval.log
 </code></pre></div>
-
-<p>Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:</p>
-<div class="codehilite"><pre><span></span><code>SPRVS_PHP=
+Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:</p>
+<div class="highlight"><pre><span></span><code>SPRVS_PHP=
 SPRVS_LOG=
 SPRVS_USER=
 SPRVS_ANTON=
 </code></pre></div>
-
 <p>Dann den supervisor als <code>root</code> neu starten:</p>
-<div class="codehilite"><pre><span></span><code>supervisorctl<span class="w"> </span>stop
+<div class="highlight"><pre><span></span><code>supervisorctl<span class="w"> </span>stop
 supervisorctl<span class="w"> </span>reread
 supervisorctl<span class="w"> </span>update
 supervisorctl<span class="w"> </span>restart
@@ -1655,7 +1571,8 @@ supervisorctl<span class="w"> </span>restart
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -1695,10 +1612,10 @@ supervisorctl<span class="w"> </span>restart
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
