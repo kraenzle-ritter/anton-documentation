@@ -24,6 +24,14 @@ Mit dem Feld «Schutzfrist bis» kann die Sperrfrist manuell eingegeben werden. 
 
 Wird das Feld «Schutzfrist bis» nicht verwendet, greifen die Sperrfristen: Diese sind in den Voreinstellungen (`period_of_protection_values`) ersichtlich und können durch k & r angepasst werden. Es gibt drei Stufen: öffentlich, standard und verlängerte Sperrfrist. Es ist möglich weitere Werte zu verwenden und zu hinterlegen.
 
+Die Schutzfristen sollten wie folgt funktionieren:
+
+1. Freigabejahr: Dieses Feld hat Priorität und wird nach unten vererbt.  
+2. Wenn eine Schutzfrist im Freigabejahr steht (original oder vererbt) wird diese verwendet.  
+3. Wenn kein Freigabejahr angegeben ist gelten die Schutzfristen wie gehabt. Diese werden nicht vererbt!  
+
+Für die Anzeige wird alles miteinander verrechnet. 
+
 ## Nur Medien unbefristet sperren
 Im Editformular können hochgeladene Medien unbefristet gesperrt werden.
 
