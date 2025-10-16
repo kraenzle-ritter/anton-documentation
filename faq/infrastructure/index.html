@@ -6,11 +6,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Andreas Kraenzle, Gerold Ritter" name="author"/>
-<link href="../import/" rel="prev"/>
-<link href="../markdown/" rel="next"/>
 <link href="../../images/favicon-anton.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.22" name="generator"/>
-<title>SIP Ingest - Anton – Dokumentation</title>
+<title>Anton Server Infrastruktur Diagramm - Anton – Dokumentation</title>
 <link href="../../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7COpen+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#sip-import-in-anton">
+<a class="md-skip" href="#anton-server-infrastruktur-diagramm">
           Zum Inhalt
         </a>
 </div>
@@ -47,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              SIP Ingest
+              Anton Server Infrastruktur Diagramm
             
           </span>
 </div>
@@ -132,8 +130,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
 <span class="md-ellipsis">
     User
@@ -141,14 +139,14 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             User
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../antonevents/">
+<a class="md-nav__link" href="../../user/antonevents/">
 <span class="md-ellipsis">
     Antonevents
     
@@ -156,7 +154,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../identifiers/">
+<a class="md-nav__link" href="../../user/identifiers/">
 <span class="md-ellipsis">
     Signaturen
     
@@ -164,7 +162,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../access/">
+<a class="md-nav__link" href="../../user/access/">
 <span class="md-ellipsis">
     Access-Konzept
     
@@ -172,7 +170,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../media/">
+<a class="md-nav__link" href="../../user/media/">
 <span class="md-ellipsis">
     Medien
     
@@ -180,7 +178,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../places/">
+<a class="md-nav__link" href="../../user/places/">
 <span class="md-ellipsis">
     Orte
     
@@ -188,7 +186,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../loans/">
+<a class="md-nav__link" href="../../user/loans/">
 <span class="md-ellipsis">
     Ausleihe von Objekten
     
@@ -196,103 +194,23 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../import/">
+<a class="md-nav__link" href="../../user/import/">
 <span class="md-ellipsis">
     Datenimport
     
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    SIP Ingest
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../user/sip/">
 <span class="md-ellipsis">
     SIP Ingest
     
   </span>
 </a>
-<nav aria-label="Inhaltsverzeichnis" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ubersicht">
-<span class="md-ellipsis">
-      Übersicht
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upload">
-<span class="md-ellipsis">
-      Upload
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#validierung">
-<span class="md-ellipsis">
-      Validierung
-    </span>
-</a>
-<nav aria-label="Validierung" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#automatische-dateiprufung">
-<span class="md-ellipsis">
-      Automatische Dateiprüfung
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ingest">
-<span class="md-ellipsis">
-      Ingest
-    </span>
-</a>
-<nav aria-label="Ingest" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sip-import-workflow">
-<span class="md-ellipsis">
-      SIP-Import Workflow
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#import-modi">
-<span class="md-ellipsis">
-      Import-Modi
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dauer">
-<span class="md-ellipsis">
-      Dauer
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../markdown/">
+<a class="md-nav__link" href="../../user/markdown/">
 <span class="md-ellipsis">
     Markdown
     
@@ -472,7 +390,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/anton_as_service/">
+<a class="md-nav__link" href="../anton_as_service/">
 <span class="md-ellipsis">
     Anton as Service
     
@@ -480,7 +398,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/anton_on_premises/">
+<a class="md-nav__link" href="../anton_on_premises/">
 <span class="md-ellipsis">
     Anton on Premises
     
@@ -488,7 +406,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     Allgemeine FAQs
     
@@ -496,7 +414,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/erschliessung/">
+<a class="md-nav__link" href="../erschliessung/">
 <span class="md-ellipsis">
     Erschliessung
     
@@ -504,7 +422,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/import/">
+<a class="md-nav__link" href="../import/">
 <span class="md-ellipsis">
     Migration/Import
     
@@ -512,7 +430,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/recherche/">
+<a class="md-nav__link" href="../recherche/">
 <span class="md-ellipsis">
     Recherche und Benutzung
     
@@ -520,7 +438,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/export/">
+<a class="md-nav__link" href="../export/">
 <span class="md-ellipsis">
     Export
     
@@ -528,7 +446,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../faq/installationen/">
+<a class="md-nav__link" href="../installationen/">
 <span class="md-ellipsis">
     Installationen
     
@@ -553,66 +471,9 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ubersicht">
+<a class="md-nav__link" href="#sicherheitsmerkmale">
 <span class="md-ellipsis">
-      Übersicht
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#upload">
-<span class="md-ellipsis">
-      Upload
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#validierung">
-<span class="md-ellipsis">
-      Validierung
-    </span>
-</a>
-<nav aria-label="Validierung" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#automatische-dateiprufung">
-<span class="md-ellipsis">
-      Automatische Dateiprüfung
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ingest">
-<span class="md-ellipsis">
-      Ingest
-    </span>
-</a>
-<nav aria-label="Ingest" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#sip-import-workflow">
-<span class="md-ellipsis">
-      SIP-Import Workflow
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#import-modi">
-<span class="md-ellipsis">
-      Import-Modi
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dauer">
-<span class="md-ellipsis">
-      Dauer
+      Sicherheitsmerkmale
     </span>
 </a>
 </li>
@@ -623,127 +484,63 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="sip-import-in-anton">SIP-Import in Anton<a class="headerlink" href="#sip-import-in-anton" title="Permanent link">¶</a></h1>
-<h2 id="ubersicht">Übersicht<a class="headerlink" href="#ubersicht" title="Permanent link">¶</a></h2>
-<p>Der SIP-Import ermöglicht es, Archivpakete (SIPs - Submission Information Packages) automatisch in Anton zu importieren. Dabei werden alle Dokumente, Metadaten und die Ordnerstruktur übernommen und sicher in der INGE-Cloud gespeichert.</p>
-<p>Der Import-Prozess ist in drei Hauptphasen unterteilt, die den Tabs in der Anton-Oberfläche entsprechen:</p>
-<ol>
-<li><strong>Upload</strong> - SIP-Datei hochladen</li>
-<li><strong>Validierung</strong> - Datei prüfen und validieren  </li>
-<li><strong>Ingest</strong> - Import durchführen und Dokumente verarbeiten</li>
-</ol>
-<h2 id="upload">Upload<a class="headerlink" href="#upload" title="Permanent link">¶</a></h2>
-<ul>
-<li>Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte dem Administrator melden.</li>
-</ul>
-<h2 id="validierung">Validierung<a class="headerlink" href="#validierung" title="Permanent link">¶</a></h2>
-<h3 id="automatische-dateiprufung">Automatische Dateiprüfung<a class="headerlink" href="#automatische-dateiprufung" title="Permanent link">¶</a></h3>
-<h4 id="was-das-system-pruft">Was das System prüft<a class="headerlink" href="#was-das-system-pruft" title="Permanent link">¶</a></h4>
-<ul>
-<li>Vollständigkeit der ZIP-Datei  </li>
-<li>Vorhandensein der metadata.xml nach eCH-0160 Standard  </li>
-<li>Integrität aller Dokumentdateien (MD5-Checksummen)  </li>
-<li>Korrekte Ordnerstruktur und Hierarchie (insbesondere, ob die Root-Dossiers des SIPs in die bestehende Archivstruktur eingehängt werden können)  </li>
-<li>Eindeutigkeit (bereits importierte SIPs werden erkannt)</li>
-</ul>
-<h4 id="was-sie-sehen">Was Sie sehen<a class="headerlink" href="#was-sie-sehen" title="Permanent link">¶</a></h4>
-<ul>
-<li>Detaillierter Validierungsbericht  </li>
-<li>Grüne Häkchen für erfolgreiche Prüfungen  </li>
-<li>Rote Fehlermeldungen mit konkreten Hinweisen  </li>
-<li>Status «Validierung bestanden» oder «Validierung fehlgeschlagen»</li>
-</ul>
-<h4 id="mogliche-probleme">Mögliche Probleme<a class="headerlink" href="#mogliche-probleme" title="Permanent link">¶</a></h4>
-<ul>
-<li>Parent für Root-Dossiers können nicht gefunden werden</li>
-<li>Beschädigte oder unvollständige ZIP-Datei  </li>
-<li>Fehlende oder ungültige metadata.xml  </li>
-<li>Defekte Dokumentdateien  </li>
-<li>Bereits importierte SIP-Datei</li>
-</ul>
-<h2 id="ingest">Ingest<a class="headerlink" href="#ingest" title="Permanent link">¶</a></h2>
-<h3 id="sip-import-workflow">SIP-Import Workflow<a class="headerlink" href="#sip-import-workflow" title="Permanent link">¶</a></h3>
-<pre class="mermaid"><code>flowchart TD
-    A[Systemprüfung INGE] --&gt; B{INGE-Cloud verfügbar?}
-    B --&gt;|Nein| C[Import abbrechen]
-    B --&gt;|Ja| D[DB-Backup erstellen]
+<h1 id="anton-server-infrastruktur-diagramm">Anton Server Infrastruktur Diagramm<a class="headerlink" href="#anton-server-infrastruktur-diagramm" title="Permanent link">¶</a></h1>
+<pre class="mermaid"><code>---
+config:
+  theme: redux
+  layout: elk
+---
+flowchart TB
+    subgraph prod[" "]
+        U["ANTON-SERVER"]
+        UB[Verschlüsseltes lokales Backup]
+    end
 
-    D --&gt; E[Ordnerstruktur analysieren]
-    E --&gt; F{Import-Modus?}
+    A[Backup-Server 1]
+    L[Backup-Server 2]
+    G[Monitoring]
+    E[Email Fehlermeldungen]
+    %% Backup-Verbindungen
+    U --&gt; UB
+    UB --&gt;|PULL| A
+    UB --&gt;|PULL| L
 
-    F --&gt;|Standard SIP| G[XML-Metadaten verarbeiten]
-    F --&gt;|Directory Import| H[Dateisystem scannen]
+    %% Überwachung
+    G -.-&gt; U
+    G -.-&gt; A
+    G -.-&gt; L
+    G --&gt; E
 
-    G --&gt; I[Antonimport aus XML erstellen]
-    H --&gt; J[Antonimport aus Ordnern erstellen]
+    %% Styling
+    classDef production fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    classDef backup fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef monitoring fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef notification fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef main fill:#e1f5fe,stroke:#01579b,stroke-width:4px,font-size:16px,font-weight:bold
 
-    I --&gt; K[Phase 1: Datenbankimport]
-    J --&gt; K
-
-    K --&gt; L[Phase 2: Asynchrone Verarbeitung ]
-    L --&gt; M[Pfade aktualisieren]
-    M --&gt; N[Signaturen setzen]
-    N --&gt; O[Vorschaubilder erstellen]
-    O --&gt; P[Phase 3: Upload zu INGE-Cloud]
-
-    P --&gt; Q{Alle Dateien hochgeladen?}
-    Q --&gt;|Nein| R[Weitere Verarbeitung]
-    Q --&gt;|Ja| S[Volltext indexieren]
-
-    R --&gt; Q
-    S --&gt; T[Import bestätigen]
-    T --&gt; U[E-Mail-Benachrichtigung]
-    U --&gt; V[Import abgeschlossen]
-
-    style A fill:#e3f2fd
-    style V fill:#e8f5e8
-    style C fill:#ffebee
+    class UB production
+    class A,L backup
+    class G monitoring
+    class E notification
+    class U main
 </code></pre>
-<div class="admonition bug">
-<p class="admonition-title">Wenn der Import fehl schlägt</p>
+<h2 id="sicherheitsmerkmale">Sicherheitsmerkmale<a class="headerlink" href="#sicherheitsmerkmale" title="Permanent link">¶</a></h2>
 <ul>
-<li>Im Akzessionsarchiv den SIP Datensatz aufrufen  </li>
-<li>Datenbank aus Backup wiederherstellen (Dateien werden mit Inge/Dimag synchronisiert)  </li>
+<li><strong>Lokale Datenspeicherung</strong>: Alle Daten werden in der Schweiz gespeichert</li>
+<li><strong>Mehrstufige Backups</strong>: <ul>
+<li>Stündliche Metadaten-Backups (Geschäftszeiten)</li>
+<li>Tägliche Vollbackups (Metadaten + Digitalisate)</li>
 </ul>
-</div>
-<h3 id="import-modi">Import-Modi<a class="headerlink" href="#import-modi" title="Permanent link">¶</a></h3>
-<h4 id="standard-sip-import">Standard SIP-Import<a class="headerlink" href="#standard-sip-import" title="Permanent link">¶</a></h4>
-<p>Die Einstellung <code>import-dossier-from-directory</code> muss leer sein oder auf 0 oder false gesetzt werden.</p>
-<h4 id="funktionsweise">Funktionsweise<a class="headerlink" href="#funktionsweise" title="Permanent link">¶</a></h4>
-<ul>
-<li>Ordnerstruktur wird aus den XML-Metadaten erstellt (Dossier/Dokumentstruktur)</li>
-<li>Jedes Dossier, jede Mappe und jedes Dokument ist in der metadata.xml definiert</li>
-<li>Hierarchie basiert auf der XML-Struktur der <code>&lt;ablieferung&gt;</code> (parent-child Beziehungen)</li>
+</li>
+<li><strong>Geografische Verteilung</strong>: Backup-Server an verschiedenen Standorten in der Schweiz</li>
+<li><strong>Verschlüsselung</strong>: Alle Backups verschlüsselt gespeichert und übertragen</li>
+<li><strong>Pull-basierte Backups</strong>: Backup-Server holen Daten ab (kein Push)<ul>
+<li>Schutz vor Kompromittierung des Produktionsservers</li>
 </ul>
-<h4 id="vorteile">Vorteile<a class="headerlink" href="#vorteile" title="Permanent link">¶</a></h4>
-<ul>
-<li>Vollständige Metadaten aus dem Ablieferungssystem</li>
-<li>Exakte Übernahme der logischen Struktur des SIP</li>
-<li>Informationen zu Entstehungskontext und Provenienz aus XML</li>
+</li>
+<li><strong>Kontinuierliche Überwachung</strong>: Separater Überwachungsserver </li>
+<li><strong>Proaktive Benachrichtigung</strong>: Email-Alerts bei Problemen</li>
 </ul>
-<h4 id="directory-import">Directory Import<a class="headerlink" href="#directory-import" title="Permanent link">¶</a></h4>
-<p>Im <code>metadata.xml</code> werden zwei Strukturen präsentiert:  </p>
-<p>1) Die Ablagestruktur der Dateien im Dateisystem (Ordner/Dateien) im Ordner <code>content</code> entspricht dem <code>&lt;inhaltsverzeichnis&gt;</code> im <code>metadata.xml</code><br/>
-2) Das Element <code>ablieferung</code> enthält die Verortung in der Gesamthierarchie (Elemente <code>&lt;ordnungssystem&gt;</code>, <code>&lt;ordnungssystemposition&gt;</code>) sowie die logische Struktur des eigentlichen Inhalts der Ablieferung in Dossiers (<code>dossier&gt;</code>) und Dokumente (<code>&lt;dokument&gt;</code>) (wobei die Dokumente, einen Verweis auf Dateien enthalten können).</p>
-<p>Die beiden Strkturen können sich entsprechen, müssen aber nicht. In der Praxis gibt es Dossiers, deren Ablagestruktur erheblich von der logischen Struktur abweicht. Deshalb kann es sinnvoll sein, die Ablagestruktur und nicht die eigentlich vorgesehene SIP Struktur zu übernehmen.</p>
-<p>Die Einstellung <code>import-dossier-from-directory</code> muss  auf 1 oder true gesetzt werden.</p>
-<div class="admonition note">
-<p class="admonition-title">Wichtig</p>
-<p>Der Directory Import funktioniert nur mit einem Dossier pro SIP.</p>
-</div>
-<h4 id="funktionsweise_1">Funktionsweise<a class="headerlink" href="#funktionsweise_1" title="Permanent link">¶</a></h4>
-<p>Die Hierarchie wird aus dem Dateisystem der SIP-Datei erstellt (Ordner: <code>content</code>, das entspricht der Ordner-Datei-Struktur im metadata.xml, die logische Struktur der Dossiers und Dokumente wird ignoriert. Auch die Metadaten können nicht importiert werden.)</p>
-<ul>
-<li>Der Root-Ordner im content Ordner wird mit dem Dossier des SIPs gleichgesetzt.</li>
-<li>Datei-Metadaten werden aus den Dateieigenschaften generiert (soweit möglich).</li>
-<li>XML-Metadaten werden nur für das Root-Dossier verwendet.</li>
-</ul>
-<h2 id="dauer">Dauer<a class="headerlink" href="#dauer" title="Permanent link">¶</a></h2>
-<p>Beispiel: Der Import von 100 Datensätze mit 100 Dateien dauert ca. 10 Minuten. </p>
-<p>Während Phase 1 reagiert die Seite nicht und der Browser darf nicht geschlossen werden. Diese Phase dauert im Beispiel ca. 2 Minuten.</p>
-<p>Phase 2 läuft asynchron, aber im Browser ist immer noch nicht zu erkennen (nochmal 2 Minuten).</p>
-<p>Anschliessend lässt sich verfolgen, wie das System Phase 3 abarbeitet. </p>
-<p><em>Letzte Aktualisierung: 2025-08-05</em></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
