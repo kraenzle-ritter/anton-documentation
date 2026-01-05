@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../../admin/testarchive/">
+      
+      
+        <link rel="next" href="../">
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>How do methods of AntonObject affect other Objects - Anton – Dokumentation</title>
+        <title>Authentication - Anton – Dokumentation</title>
       
     
     
@@ -62,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-do-methods-of-antonobject-affect-other-objects" class="md-skip">
+        <a href="#api-authentifizierung" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -97,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How do methods of AntonObject affect other Objects
+              Authentication
             
           </span>
         </div>
@@ -930,18 +934,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -957,7 +963,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             API
@@ -968,10 +974,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../api/authentication/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Authentication
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -982,6 +1010,146 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ubersicht" class="md-nav__link">
+    <span class="md-ellipsis">
+      Übersicht
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-token-erstellen" class="md-nav__link">
+    <span class="md-ellipsis">
+      API-Token erstellen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API-Token erstellen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-fur-benutzer-generieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token für Benutzer generieren
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-anzeigen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token anzeigen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-anfrage-mit-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      API-Anfrage mit Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API-Anfrage mit Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bearer-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bearer-Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameter-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query-Parameter (Alternative)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiele" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiele
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-mit-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiel mit JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-mit-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiel mit Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sicherheitshinweise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sicherheitshinweise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offentliche-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Öffentliche API
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -994,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1319,36 +1487,120 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#delete" class="md-nav__link">
+  <a href="#ubersicht" class="md-nav__link">
     <span class="md-ellipsis">
-      delete()
+      Übersicht
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
+  <a href="#api-token-erstellen" class="md-nav__link">
     <span class="md-ellipsis">
-      create()
+      API-Token erstellen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API-Token erstellen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-fur-benutzer-generieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token für Benutzer generieren
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-anzeigen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token anzeigen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-anfrage-mit-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      API-Anfrage mit Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API-Anfrage mit Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bearer-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bearer-Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameter-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query-Parameter (Alternative)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiele" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiele
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-mit-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiel mit JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-mit-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beispiel mit Python
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sicherheitshinweise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sicherheitshinweise
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
+  <a href="#offentliche-api" class="md-nav__link">
     <span class="md-ellipsis">
-      update()
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#move" class="md-nav__link">
-    <span class="md-ellipsis">
-      move()
+      Öffentliche API
     </span>
   </a>
   
@@ -1373,43 +1625,107 @@
   
 
 
-<h1 id="how-do-methods-of-antonobject-affect-other-objects">How do methods of AntonObject affect other Objects<a class="headerlink" href="#how-do-methods-of-antonobject-affect-other-objects" title="Permanent link">&para;</a></h1>
-<h2 id="delete">delete()<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h2>
-<ul>
-<li>update Dates of all Ancestors (if date extends minmax of parent)</li>
-<li>no Update of fulltext index</li>
-<li>no Update of private Attribute</li>
-<li>not Update of real_depth</li>
-<li>not Update of path</li>
-</ul>
-<p>children are not affected</p>
-<h2 id="create">create()<a class="headerlink" href="#create" title="Permanent link">&para;</a></h2>
-<ul>
-<li>update Dates of all Ancestors (if date is set an extends minmax of parent)</li>
-<li>update of fulltext index for actual object</li>
-<li>no update of private Attribute</li>
-<li>set real_depth of Object</li>
-<li>set path of Object</li>
-</ul>
-<p>no children are not affected</p>
-<h2 id="update">update()<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
-<ul>
-<li>update Dates of all Ancestors (if date extends minmax of parent)</li>
-<li>update of fulltext index for actual object</li>
-<li>update of fulltext for descendants (if title has changed)</li>
-<li>update of private Attribute for descendants (if private has changed)</li>
-<li>no update of real_depth</li>
-<li>no update of path</li>
-</ul>
-<p>children might be affected</p>
-<h2 id="move">move()<a class="headerlink" href="#move" title="Permanent link">&para;</a></h2>
-<ul>
-<li>update Dates of old and new Ancestors (if date extends minmax of parent)</li>
-<li>update of fulltext index for actual object and descendants</li>
-<li>no update of private Attribute (can be inconsistant)</li>
-<li>update of real_depth of actual object and descendants</li>
-<li>update of path of actual object and descendants</li>
-</ul>
+<h1 id="api-authentifizierung">API-Authentifizierung<a class="headerlink" href="#api-authentifizierung" title="Permanent link">&para;</a></h1>
+<h2 id="ubersicht">Übersicht<a class="headerlink" href="#ubersicht" title="Permanent link">&para;</a></h2>
+<p>Anton verwendet <strong>API-Tokens</strong> für die Authentifizierung von externen Anfragen. Dies ermöglicht es anderen Systemen, sicher auf die Anton-API zuzugreifen.</p>
+<h2 id="api-token-erstellen">API-Token erstellen<a class="headerlink" href="#api-token-erstellen" title="Permanent link">&para;</a></h2>
+<h3 id="token-fur-benutzer-generieren">Token für Benutzer generieren<a class="headerlink" href="#token-fur-benutzer-generieren" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Als Admin einloggen</li>
+<li><strong>Benutzerverwaltung</strong> öffnen</li>
+<li>Benutzer auswählen → <strong>Anzeigen</strong></li>
+<li>Button <strong>"Set api token"</strong> klicken</li>
+<li>Der Token wird automatisch generiert (60 Zeichen)</li>
+</ol>
+<h3 id="token-anzeigen">Token anzeigen<a class="headerlink" href="#token-anzeigen" title="Permanent link">&para;</a></h3>
+<p>Der generierte Token ist im Feld <code>api_token</code> in der Benutzerdetailansicht sichtbar.</p>
+<h2 id="api-anfrage-mit-token">API-Anfrage mit Token<a class="headerlink" href="#api-anfrage-mit-token" title="Permanent link">&para;</a></h2>
+<h3 id="bearer-token">Bearer-Token<a class="headerlink" href="#bearer-token" title="Permanent link">&para;</a></h3>
+<p>Der Token wird als <strong>Bearer-Token</strong> im <code>Authorization</code>-Header übergeben:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
+</code></pre></div>
+<h3 id="query-parameter-alternative">Query-Parameter (Alternative)<a class="headerlink" href="#query-parameter-alternative" title="Permanent link">&para;</a></h3>
+<p>Alternativ kann der Token als <strong>Query-Parameter</strong> <code>api_token</code> übergeben werden:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Hinweis:</strong> Bearer-Token ist die bevorzugte Methode, da der Token nicht in Server-Logs erscheint.</p>
+</blockquote>
+<h3 id="beispiele">Beispiele<a class="headerlink" href="#beispiele" title="Permanent link">&para;</a></h3>
+<p><strong>Objekte abrufen (Bearer):</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+</code></pre></div></p>
+<p><strong>Einzelnen Akteur abrufen:</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/actors/123&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+</code></pre></div></p>
+<p><strong>Suche mit zusätzlichen Parametern:</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/actors?search=Müller&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+</code></pre></div></p>
+<h3 id="beispiel-mit-javascript">Beispiel mit JavaScript<a class="headerlink" href="#beispiel-mit-javascript" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">apiToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IHR_API_TOKEN&#39;</span><span class="p">;</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://ihre-anton-instanz.ch/api/objects&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">apiToken</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Accept&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="beispiel-mit-python">Beispiel mit Python<a class="headerlink" href="#beispiel-mit-python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">api_token</span> <span class="o">=</span> <span class="s1">&#39;IHR_API_TOKEN&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://ihre-anton-instanz.ch/api/objects&#39;</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">api_token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="sicherheitshinweise">Sicherheitshinweise<a class="headerlink" href="#sicherheitshinweise" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Empfehlung</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bearer-Token verwenden</strong></td>
+<td>Bearer-Token im Header ist sicherer als Query-Parameter</td>
+</tr>
+<tr>
+<td><strong>Token geheim halten</strong></td>
+<td>Tokens niemals in öffentlichem Code oder Repositories speichern</td>
+</tr>
+<tr>
+<td><strong>HTTPS verwenden</strong></td>
+<td>API-Anfragen immer über verschlüsselte Verbindungen senden</td>
+</tr>
+<tr>
+<td><strong>Token regelmässig erneuern</strong></td>
+<td>Bei Verdacht auf Kompromittierung neuen Token generieren</td>
+</tr>
+<tr>
+<td><strong>Minimale Rechte</strong></td>
+<td>API-Benutzer nur mit notwendigen Berechtigungen ausstatten</td>
+</tr>
+</tbody>
+</table>
+<h2 id="offentliche-api">Öffentliche API<a class="headerlink" href="#offentliche-api" title="Permanent link">&para;</a></h2>
+<p>Falls das Setting <code>public_api</code> aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden. Die geschützten Endpunkte erfordern weiterhin Authentifizierung.</p>
 
 
 
