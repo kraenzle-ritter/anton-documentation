@@ -50,4 +50,4 @@ Ein zentraler Ereignistyp ist die Erstellung. Das Erstelldatum ist Grundlage fü
 
 !!! note "TIPP: Verwendung des Erstelldatum"
     Jede Verzeichnungseinheit ohne Kinder sollte mit einem Erstelldatum erschlossen werden.  
-    Um Widersprüche zu vermeiden nur Verzeichnungseinheiten ohne Kinder mit einem Erstelldatum erschlossen werden.
+    Um Widersprüche zu vermeiden, sollten nur Verzeichnungseinheiten ohne Kinder mit einem Erstelldatum erschlossen werden.

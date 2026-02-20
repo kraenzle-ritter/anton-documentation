@@ -12,7 +12,7 @@ Anton verfügt zurzeit nicht über eine Baumdarstellung des gesamten Archivs. Gl
 
 ## Recherche nach einzelnen Datenelementen und Volltextsuche
 
-Die Recherche nach einzelnen Datenelementen ist möglich. Ebenfalls gibt es eine Volltextsuche, die auch eingebundene PDFs durchsucht, soweit diese eingebetteten Text enthalten (z.B. per OCR).
+Die Recherche nach einzelnen Datenelementen ist möglich. Ebenfalls gibt es eine Volltextsuche, die auch eingebundene Office-Dokumente und PDFs durchsucht, soweit diese eingebetteten Text enthalten (z.B. per OCR).
 
 ## Einschränkung Recherche auf einzelne Bestandesgruppen oder Bestände 
 

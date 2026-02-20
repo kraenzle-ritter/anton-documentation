@@ -44,8 +44,13 @@ nav:
     - Medien: user/media.md
     - Orte: user/places.md
     - Ausleihe von Objekten: user/loans.md
-    - Datenimport: user/import.md
-    - SIP Ingest: user/sip.md
+    - Import:
+      - Datenimport: user/import.md
+      - SIP Ingest: user/sip.md
+      - QR-Code Upload: user/qr-upload.md
+    - Authentifizierung: 
+      - Zwei-Faktor-Authentifizierung: user/2FA.md
+      - Passkey Authentifizierung: user/passkey.md
     - Markdown: user/markdown.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
@@ -63,6 +68,7 @@ nav:
   #  - Data Tables: developer/data-tables.md
   #  - Search: developer/search.md
   #  - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
+  #  - Upload via Mobile: user/mobile-upload.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
@@ -80,11 +86,15 @@ nav:
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
     - Testinstallation k & r: admin/testarchive.md
-  - API: api/index.md
+  - API: 
+    - Authentication: api/authentication.md
+    - Endpoints: api/index.md
   - FAQ:
     - Anton as Service: faq/anton_as_service.md
     - Anton on Premises: faq/anton_on_premises.md
     - Allgemeine FAQs: faq/index.md
+    - Open Source: faq/open_source.md
+    - Langzeitarchivierung: faq/longterm_archives.md
     - Erschliessung: faq/erschliessung.md
     - Migration/Import: faq/import.md
     - Recherche und Benutzung: faq/recherche.md

@@ -1,13 +1,38 @@
 # Bildgalerie
 
-Sämtliche Bilder werden über die Route `/gallery` in einer Bildgalerie angezeigt. 
+Die Galerie ist ein Anton-Modul, das einen besonderen Zugang zu ausgewählten Medien (Bilder, PDFs, Audio, Video) ermöglicht.
 
-Auswahl Bestände: Es können bestimmte Bestände festgelegt werden, die für die Galerie verwendet werden sollen (Einstellungen `gallery_fonds` und `gallery_fonds_extern`; beide Felder enthalten ein array der IDs der Bestände).
+## Inhalt und Titel
 
-Auswahlfeld Bestände: Ob in der Galerie nach Beständen gefiltert werden kann wird mit der Einstellung `gallery_show_fonds_select` festgelegt.
+- `gallery_title` (Home): Benutzerdefinierter Titel für die Galerie
 
-Auswahlfeld Schlagworte: Ob in der Galerie nach Beständen gefiltert werden kann wird mit der Einstellung `gallery_show_keywords_select` festgelegt.
+## Bestände
 
-Wie viele Bilder auf einer Seite der Galerie angezeigt werden sollen, wird mit `list_limit_gallery` festgelegt. Da die Anordnung der Bilder erst nach vollständigem Laden der Bilder erfolgt, ist auszutesten, welche Anzahl für die Userexpirience noch OK ist.
+- `gallery_fonds`: Array von Bestands-IDs für interne Benutzer
+- `gallery_fonds_extern`: Array von Bestands-IDs für externe Benutzer
+- `gallery_show_fonds_select`: Zeigt/verbirgt das Bestands-Dropdown
 
-Klickt man auf ein Bild gibt es zwei Optionen: Mit dem Link-Symbol kommt man in die Archivdatenbank, also zum Eintrag der Verzeichnungseinheit, die dieses Bild enthält. Mit dem Lupensymbol öffnet sich ein Modal, in dem mit [Open Seadragon](https://openseadragon.github.io/) eine grössere Version der Bilder angezeigt wird. Für die Vorschau werden thumbs mit 230px Breite verwendet, für die vergrösserten Bilder können entweder die Webversionen (aktuell 1200px Breite) verwendet werden oder die Originale (dafür muss in der Einstellung `gallery_full_images` «master» eingetragen werden). Mit den verschiedenen Einstellungen kann die Galerie etwas angepasst werden.
+## Filter
+
+- `gallery_show_keywords_select`: Zeigt/verbirgt das Stichwort-Dropdown
+- `gallery_show_media_type_filter`: Zeigt/verbirgt das Medientyp-Dropdown
+- `gallery_media_types`: Array der verfügbaren Medientypen, z.B. `{"image/": "Bilder", "application/pdf": "Dokumente"}`. Diese Einschränkung gilt auch wenn das Dropdown ausgeblendet ist.
+
+## Darstellung
+
+- `list_limit_gallery`: Anzahl Medien pro Seite (Standard: 25)
+- `gallery_image_width`: Bildbreite in Pixel (Standard: 215)
+- `gallery_full_images`: Welche Bildversion verlinkt wird: `web` oder `master`
+
+## Funktionen
+
+Die Galerie bietet:
+
+- Volltextsuche (durchsucht Objekttitel und PDF-Inhalte)
+- Facettierte Filter für Bestände, Stichwörter und Medientypen
+- Modale Ansichten für Bilder, PDFs, Audio und Video
+- Masonry-Layout für optimale Bildanordnung
+
+## Link
+
+Der Link zur Galerie: `/gallery`

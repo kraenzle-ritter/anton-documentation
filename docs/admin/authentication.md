@@ -1,6 +1,7 @@
 # Authentication
 
 ## Two-Factor Authentication
+
 ### Activate
 
 The two-factor authentication can be enabled with an entry in the `.env` file:
@@ -21,4 +22,12 @@ It is also possible via the `.env` file to allow user registration:
 
 ```
 REGISTRATION=1
+```
+
+## Passkeys
+
+To enable passkeys, simply set the Setting `passkeys_enabled` to true. When using subdomains set WEBAUTHN_ID in the .env file. E.g.:
+
+```
+WEBAUTHN_ID=kba.anton.ch
 ```

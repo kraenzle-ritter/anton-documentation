@@ -4,7 +4,7 @@
 
 Die Migration von einer Datenbank in eine neue Datenbank ist immer ein relativ grosser Aufwand. Die Daten müssen gemappt werden, teilweise vor- und/oder nachbereitet und allenfalls korrigiert werden. Gleichzeitig macht eine Migration Schwachstellen in den Daten sichtbar und die Daten werden homogenisiert. Insofern bietet eine Datenbankmigration die Chance, die Qualität der Daten zu verbessern. 
 
-Welche Migrationsstrategie am besten geignet ist, mus fallweise entschieden werden. Folgende Möglichkeiten haben wir mit Anton erfolgreich durchgeführt:
+Welche Migrationsstrategie am besten geignet ist, muss fallweise entschieden werden. Folgende Möglichkeiten haben wir mit Anton erfolgreich durchgeführt:
 
 1. Export der alten Datenbank in Excel-Dateien – Excel-Import in Anton  
 2. Export der alten Datenbank in EAD-Dateien – EAD-Import in Anton  
@@ -17,3 +17,11 @@ Für die Methoden 2 und 3 sind Skripte zu programmieren und/oder anzupassen.
 Anton verfügt über einen elaborierten, gut dokumentierten Excel-Import. Grössere Erschliessungsarbeiten auf derselben Verzeichnungsstufe werden ebenfalls häufig in Excel durchgeführt. Anschliessend wird das Excel-File validiert und die Daten in Anton importiert. 
 
 Mit dem Excel-Import können auch digitale Objekte (Fotos, Dokumente etc.) importiert werden.
+
+## Import aus SIP (eCH-0160)
+
+Anton unterstützt den Import von SIP-Paketen im eCH-0160-Format. Damit können Archivbestände, die in anderen Systemen verwaltet werden, in Anton übernommen werden. Vgl. auch [SIP-Import in Anton](/user/sip.md).
+
+## Dateiablagen
+
+Es gibt einen Import für Dateiablagen. In Anton wird die Hierarchie der Ablage rekonstruiert. Die einzelnen Dateien werden zu Einzelstücken. Dieser Import ist zurzeit noch nicht über den Browser verfügbar.

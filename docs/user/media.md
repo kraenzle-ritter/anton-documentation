@@ -1,6 +1,6 @@
 # Medien 
 
-Bei Import von Medien erstellt Anton normalerweise eine Benutzungskopie. Diese ist für die Verwendung im Web optimiert. Wenn sie nicht aus anderen Gründen gesperrt sind, haben Externe User nur Zugriff auf diese Webversion.
+Bei Import von Medien erstellt Anton normalerweise eine Benutzungskopie. Diese ist für die Verwendung im Web optimiert. Wenn sie nicht aus anderen Gründen gesperrt sind, haben externe User nur Zugriff auf diese Webversion.
 
 ## Medienformate
 
@@ -14,7 +14,7 @@ Für die folgenden Formate werden in Anton Benutzungskopien angefertigt. Der Imp
 - PNG  
 - JPEG
 
-### Dokumente
+### Dokumente  
 - PDF/A
 - PDF
 
@@ -29,7 +29,7 @@ Für die folgenden Formate werden in Anton Benutzungskopien angefertigt. Der Imp
 
 
 ## Originalmedien bereitstellen
-Um für Kundinnen die originalen Medien bereitzustellen, kann man in einer Verzeichnungseinheit auf den Medien-Reiter aufrufen:
+Um für Kundinnen die originalen Medien bereitzustellen, kann man in einer Verzeichnungseinheit den Medien-Reiter aufrufen:
 
 ![Medienreiter](images/transfer-ordner-1.png)
  
