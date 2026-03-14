@@ -44,6 +44,7 @@ nav:
     - Medien: user/media.md
     - Orte: user/places.md
     - Ausleihe von Objekten: user/loans.md
+    - Sprachkonfiguration: user/languages.md
     - Import:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md
@@ -100,6 +101,8 @@ nav:
     - Recherche und Benutzung: faq/recherche.md
     - Export: faq/export.md
     - Installationen: faq/installationen.md
+  - Releases:
+    - v0.45.0: releases/v0.45.0.md
 extra:
   social:
     - icon: fontawesome/brands/mastodon
