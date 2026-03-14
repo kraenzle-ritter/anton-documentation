@@ -53,6 +53,7 @@ nav:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
     - Markdown: user/markdown.md
+    - Gewichtete Suche: user/weighted-search.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
     # - Einstellungen: user/settings.md
@@ -86,6 +87,7 @@ nav:
     - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
+    - Gewichtete Suche: admin/weighted-search.md
     - Testinstallation k & r: admin/testarchive.md
   - API: 
     - Authentication: api/authentication.md
