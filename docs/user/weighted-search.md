@@ -42,14 +42,18 @@ Zusätzlich werden verschiedene Felder unterschiedlich gewichtet. Der Name eines
 
 ### Als Standardeinstellung in den Benutzereinstellungen
 
-Du kannst die gewichtete Suche als Standardeinstellung aktivieren:
+Du kannst die gewichtete Suche als persönliche Standardeinstellung festlegen:
 
 1. Klicke auf dein Profil (oben rechts)
 2. Wähle **Profil / Account**
 3. Gehe zu **Einstellungen**
-4. Aktiviere **"Gewichtete Suche aktivieren"**
+4. Bei **"Gewichtete Suche"** wähle eine der Optionen:
+   - **Standard**: Nutzt die globale Einstellung des Archivs
+   - **An**: Gewichtete Suche ist immer aktiviert
+   - **Aus**: Gewichtete Suche ist immer deaktiviert
 
-Wenn diese Option aktiviert ist, wird die Checkbox "Nach Relevanz sortieren" in den Listenansichten automatisch vorausgewählt.
+!!! tip "Tipp"
+    Mit der Option "Standard" übernimmst du automatisch die Einstellung, die für dein Archiv konfiguriert wurde. So profitierst du von zukünftigen Anpassungen durch die Administration.
 
 ## Tipps
 

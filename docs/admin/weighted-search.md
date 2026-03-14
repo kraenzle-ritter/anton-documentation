@@ -15,7 +15,11 @@ Setting::setValue('search_weighted_enabled', false); // Deaktivieren (Standard)
 ```
 
 !!! info "Benutzereinstellungen"
-    Jeder Benutzer kann die gewichtete Suche auch in seinen persönlichen Einstellungen aktivieren. Die Benutzereinstellung hat Vorrang vor der globalen Einstellung.
+    Jeder Benutzer kann die gewichtete Suche in seinen persönlichen Einstellungen konfigurieren:
+    
+    - **Standard**: Folgt der globalen Einstellung
+    - **An**: Immer aktiviert (überschreibt globale Einstellung)
+    - **Aus**: Immer deaktiviert (überschreibt globale Einstellung)
 
 ### API-Parameter
 
@@ -108,8 +112,10 @@ Die Relevanz wird wie folgt berechnet:
 Die Aktivierung der gewichteten Suche folgt dieser Priorität:
 
 1. **API-Parameter** (`?weighted=true/false`) – höchste Priorität
-2. **Benutzereinstellung** (`weighted_search_enabled` in User Settings)
-3. **Globale Einstellung** (`search_weighted_enabled` in Settings)
+2. **Benutzereinstellung** – nur wenn explizit "An" oder "Aus" gewählt (nicht "Standard")
+3. **Globale Einstellung** (`search_weighted_enabled` in Settings) – Fallback
+
+Wenn ein Benutzer "Standard" wählt, wird die globale Einstellung verwendet.
 
 ## Update durchführen
 
