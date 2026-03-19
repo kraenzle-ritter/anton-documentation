@@ -667,6 +667,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/weighted-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gewichtete Suche
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1047,6 +1070,29 @@
   
   <span class="md-ellipsis">
     Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/weighted-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gewichtete Suche
     
   </span>
   
@@ -1453,6 +1499,74 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Releases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Releases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/v0.45.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    v0.45.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1488,6 +1602,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#probleme-mit-tektonik" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probleme mit Tektonik
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probleme mit Tektonik">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reparatur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reparatur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1510,6 +1657,23 @@
 <h1 id="klosterarchiv-einsiedeln">Klosterarchiv Einsiedeln<a class="headerlink" href="#klosterarchiv-einsiedeln" title="Permanent link">&para;</a></h1>
 <h2 id="pfad-fur-anton-backups">Pfad für Anton Backups<a class="headerlink" href="#pfad-fur-anton-backups" title="Permanent link">&para;</a></h2>
 <p><code>/usr/local/prj/backup/anton</code> </p>
+<h2 id="probleme-mit-tektonik">Probleme mit Tektonik<a class="headerlink" href="#probleme-mit-tektonik" title="Permanent link">&para;</a></h2>
+<h3 id="analyse">Analyse<a class="headerlink" href="#analyse" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>php artisan anton:doctor --closure --env=kae
+php artisan anton:repair-closure-table --check --env=kae
+</code></pre></div>
+<h3 id="reparatur">Reparatur<a class="headerlink" href="#reparatur" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>php artisan anton:doctor --closure --repair --env=kae
+php artisan anton:repair-closure-table --force --backup --env=kae
+</code></pre></div>
+<p>Die Reparatur-Reihenfolge ist sowohl im Browser als auch CLI identisch:</p>
+<ul>
+<li>Orphaned Entries entfernen</li>
+<li>Missing Self-Links hinzufügen</li>
+<li>Missing Parent Paths reparieren</li>
+<li>Affected Descendants fixen</li>
+<li>Depth-Werte aktualisieren</li>
+</ul>
 
 
 
