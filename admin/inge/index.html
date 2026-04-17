@@ -1291,6 +1291,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#checking-and-repairing-media-sync-anton-inge-dimag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-audit-masterfiles-und-sip-verzeichnis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Audit (Masterfiles und SIP-Verzeichnis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#debugging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2077,6 +2099,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#checking-and-repairing-media-sync-anton-inge-dimag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-audit-masterfiles-und-sip-verzeichnis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Audit (Masterfiles und SIP-Verzeichnis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#debugging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2183,6 +2227,68 @@
 <p>This will set the <code>Status of description</code> in the SIP-Entry to "final":</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
 </code></pre></div>
+<h3 id="checking-and-repairing-media-sync-anton-inge-dimag">Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)<a class="headerlink" href="#checking-and-repairing-media-sync-anton-inge-dimag" title="Permanent link">&para;</a></h3>
+<p><code>media:check</code> prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Gesamtüberblick (Counts + Verifikation + Orphan-Check)</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+
+<span class="c1"># Nur einen bestimmten SIP prüfen (nach unterbrochenem Ingest)</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--sip<span class="o">={</span>sip_id<span class="o">}</span><span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+
+<span class="c1"># cloud_status in der DB reparieren (wenn Inge status=20, aber DB falsch)</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">5</span><span class="w"> </span>--fix-cloud-status<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+
+<span class="c1"># Waisen aus Inge/Dimag löschen die nicht mehr in Anton sind</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">6</span><span class="w"> </span>--delete-from-inge<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+</code></pre></div>
+<p><strong>Levels:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Prüft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Count-Vergleich: DB, Filesystem, Inge, Dimag. Bei Abweichung zeigt eine Diff-Tabelle die konkreten Media-IDs pro System.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DB → Filesystem (übersprungen bei cloud=inge)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Filesystem → DB. Mit <code>--delete-from-system</code> werden verwaiste Verzeichnisse gelöscht.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Integritätsprüfung (Checksummen, übersprungen bei cloud=inge)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>DB → Inge: Prüft ob alle Medien in Inge mit status=20 vorhanden sind. <code>--fix-cloud-status</code> repariert die DB, <code>--delete-local-masters</code> löscht lokale Masterdateien nach Verifikation.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Inge/Dimag → DB: Findet Waisen in Inge oder Dimag die nicht in Anton sind. <code>--delete-from-inge</code> löscht sie. Erkennt auch Medien die nur in Inge stecken (nie bis Dimag gelangt).</td>
+</tr>
+</tbody>
+</table>
+<p>Am Ende wird eine Summary-Tabelle mit allen Counts und dem Status jedes Levels ausgegeben.</p>
+<h3 id="storage-audit-masterfiles-und-sip-verzeichnis">Storage Audit (Masterfiles und SIP-Verzeichnis)<a class="headerlink" href="#storage-audit-masterfiles-und-sip-verzeichnis" title="Permanent link">&para;</a></h3>
+<p><code>storage:audit</code> prüft ob lokale Masterdateien und entpackte SIP-Verzeichnisse bereinigt wurden.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Überblick: Wieviele Masterfiles liegen noch lokal? Wieviele SIPs sind entpackt?</span>
+php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+
+<span class="c1"># Entpackte SIP-Verzeichnisse löschen (ZIP-Archive bleiben erhalten)</span>
+php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span class="w"> </span>--clean-sips<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+
+<span class="c1"># Verifizierte lokale Masterfiles löschen (nur bei cloud=inge, cloud_status=1)</span>
+php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span class="w"> </span>--clean-masters<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+</code></pre></div>
+<p>Bei Inge-Installationen sollten lokale Masterfiles 0 sein. Falls nicht, weist <code>storage:audit</code> darauf hin und <code>--clean-masters</code> bereinigt verifizierte Dateien.</p>
 <h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
 <h4 id="check-the-sip-import-data">Check the SIP Import Data<a class="headerlink" href="#check-the-sip-import-data" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry

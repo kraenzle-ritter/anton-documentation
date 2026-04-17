@@ -1423,6 +1423,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mediacheck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        media:check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storageaudit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        storage:audit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#antonexport" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2201,6 +2223,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mediacheck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        media:check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storageaudit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        storage:audit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#antonexport" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2308,6 +2352,28 @@
     --media           show problematic media
     --statistics      count rows in tables
     --mail[=MAIL]     email-adress
+</code></pre></div></p>
+<h2 id="mediacheck">media:check<a class="headerlink" href="#mediacheck" title="Permanent link">&para;</a></h2>
+<p>Prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag. Sechs Prüfebenen (1–6), einzeln oder kombiniert aufrufbar.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>-vv
+</code></pre></div>
+<p>Optionen:
+<div class="highlight"><pre><span></span><code>    --levels=          Prüfebenen (1-6), kommasepariert
+    --sip=             Nur Medien eines bestimmten SIP prüfen (AntonObject-ID)
+    --fix-cloud-status Repariert cloud_status in DB (Level 5)
+    --delete-local-masters  Löscht lokale Masterdateien nach Cloud-Verifikation (Level 5)
+    --delete-from-system    Löscht Filesystem-Einträge ohne DB-Pendant (Level 3)
+    --delete-from-inge      Löscht Waisen aus Inge/Dimag (Level 6)
+    --year=            Startjahr für Dimag-Abfrage (Default: Jahr des ältesten Inge-Mediums)
+</code></pre></div></p>
+<p>Gibt am Ende eine Summary-Tabelle mit Counts und Status pro Level aus. Details siehe <a href="../inge/">Inge und Dimag</a>.</p>
+<h2 id="storageaudit">storage:audit<a class="headerlink" href="#storageaudit" title="Permanent link">&para;</a></h2>
+<p>Prüft lokale Masterdateien und SIP-Verzeichnisse. Bei Inge-Installationen sollten keine lokalen Masterfiles vorhanden sein.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>-vv
+</code></pre></div>
+<p>Optionen:
+<div class="highlight"><pre><span></span><code>    --clean-sips       Entpackte SIP-Verzeichnisse löschen (ZIP-Archive bleiben)
+    --clean-masters    Verifizierte lokale Masterfiles löschen (nur bei cloud=inge)
 </code></pre></div></p>
 <h2 id="antonexport">anton:export<a class="headerlink" href="#antonexport" title="Permanent link">&para;</a></h2>
 <h2 id="antonimport">anton:import<a class="headerlink" href="#antonimport" title="Permanent link">&para;</a></h2>
