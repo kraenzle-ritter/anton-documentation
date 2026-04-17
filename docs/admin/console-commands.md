@@ -78,6 +78,41 @@ Optionen:
     --mail[=MAIL]     email-adress
 ```
 
+## media:check
+
+Prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag. Sechs Prüfebenen (1–6), einzeln oder kombiniert aufrufbar.
+
+```bash
+php artisan media:check --levels=1,5,6 --env=besenval -vv
+```
+
+Optionen:
+```
+    --levels=          Prüfebenen (1-6), kommasepariert
+    --sip=             Nur Medien eines bestimmten SIP prüfen (AntonObject-ID)
+    --fix-cloud-status Repariert cloud_status in DB (Level 5)
+    --delete-local-masters  Löscht lokale Masterdateien nach Cloud-Verifikation (Level 5)
+    --delete-from-system    Löscht Filesystem-Einträge ohne DB-Pendant (Level 3)
+    --delete-from-inge      Löscht Waisen aus Inge/Dimag (Level 6)
+    --year=            Startjahr für Dimag-Abfrage (Default: Jahr des ältesten Inge-Mediums)
+```
+
+Gibt am Ende eine Summary-Tabelle mit Counts und Status pro Level aus. Details siehe [Inge und Dimag](inge.md).
+
+## storage:audit
+
+Prüft lokale Masterdateien und SIP-Verzeichnisse. Bei Inge-Installationen sollten keine lokalen Masterfiles vorhanden sein.
+
+```bash
+php artisan storage:audit --env=besenval -vv
+```
+
+Optionen:
+```
+    --clean-sips       Entpackte SIP-Verzeichnisse löschen (ZIP-Archive bleiben)
+    --clean-masters    Verifizierte lokale Masterfiles löschen (nur bei cloud=inge)
+```
+
 ## anton:export
 
 ## anton:import
