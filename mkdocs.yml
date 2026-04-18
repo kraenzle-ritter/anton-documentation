@@ -64,9 +64,10 @@ nav:
     #  - Orte: user/places.md
     #  - Schlagwörter: user/keywords.md
     # - Externe Ressourcen: user/resources.md
-  #- Developer:
-  #  - Forms: developer/forms.md
-  #  - Fields: developer/fields.md
+  - Developer:
+    - Events/Jobs: developer/events-jobs.md
+    - Forms & Formsets: developer/forms.md
+    - Antonfields: developer/antonfields.md
   #  - Data Tables: developer/data-tables.md
   #  - Search: developer/search.md
   #  - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
@@ -84,6 +85,7 @@ nav:
     - Mastodon: admin/mastodon.md
     - SIP Ingest: admin/sip-ingest.md
     - Inge and Dimag: admin/inge.md
+    - Nachrichten: admin/notifications.md
     - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md

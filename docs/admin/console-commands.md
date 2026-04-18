@@ -113,6 +113,47 @@ Optionen:
     --clean-masters    Verifizierte lokale Masterfiles löschen (nur bei cloud=inge)
 ```
 
+## notification:send
+
+Erstellt eine System-Nachricht in einer oder allen Installationen. Siehe [Nachrichten](notifications.md) für Details.
+
+```bash
+# Einzelne Installation
+php artisan notification:send --title="Wartung" --body="Details." --env=besenval
+
+# Alle Installationen
+php artisan notification:send --title="Update v0.54" --all
+
+# Mehrsprachig
+php artisan notification:send --title='{"de":"Update","fr":"Mise à jour"}' --all
+
+# Adressaten einschränken
+php artisan notification:send --title="Intern" --audience=editors --env=besenval
+```
+
+Optionen:
+```
+    --title=          Titel (Pflicht). String oder JSON
+    --body=           Text (optional). String oder JSON
+    --file=           Text aus Datei lesen
+    --audience=       Adressaten: all, editors, admins (Default: all)
+    --env=            Ziel-Installation
+    --all             An alle Installationen senden
+```
+
+## sip:reconcile
+
+Prüft den Sync-Status aller SIPs über Anton-DB, Inge und Dimag. Zeigt eine Summary-Tabelle pro SIP.
+
+```bash
+php artisan sip:reconcile --env=besenval -vv
+```
+
+Optionen:
+```
+    --sip=            Nur ein bestimmtes SIP prüfen (AntonObject-ID)
+```
+
 ## anton:export
 
 ## anton:import
