@@ -19,7 +19,9 @@ php artisan anton:reset --env="kr" \
 Um Änderungen dauerhaft zu speichern, ist deshalb ein Backup aus dem Datenbank-Dump `{path_to_anton-customers}/kr/reset_db/reset.sql.gz` zu machen:
 
 ```bash
-php artisan anton:backup --file "{path_to_anton-customers}/kr/reset_db/reset.sql.gz" --env kr
+php artisan anton:backup --file "{path_to_anton-customers}/kr/reset_db/reset.sql" --env kr
 ```
+
+`anton:backup` hängt selbst `.gz` an, daher hier `--file …/reset.sql` (nicht `.sql.gz`) — sonst entsteht `reset.sql.gz.gz`.
 
 Nun wird bei der nächsten Wiederherstellung das neue Backup verwendet.
