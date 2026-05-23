@@ -78,14 +78,24 @@ nav:
     - Configuration: admin/configuration.md
     - Logo: admin/logo.md
     - Authentication: admin/authentication.md
-    - Galerie: admin/gallery.md
-    - Word Findbücher: admin/download-word.md
-    - DIP Download: admin/download-dip.md
+    - Mediengalerie: admin/gallery.md
+    - Download-Formate:
+      - DIP Download: admin/download-dip.md
+      - Word-Findbuch: admin/download-word.md
+      - OCFL Download: admin/download-ocfl.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
-    - SIP Ingest: admin/sip-ingest.md
-    - Inge and Dimag: admin/inge.md
+    - SIP Ingest:
+      - SIP Ingest (eCH-0160): admin/sip-ingest.md
+      - agate SIP Import: admin/agate-sip.md
+    - Inge and Dimag:
+      - Inge / Dimag: admin/inge.md
+      - DIMAG Upload-Status: admin/dimag-uploads.md
     - Nachrichten: admin/notifications.md
+    - Feedback an die Entwicklung: admin/feedback.md
+    - KI-Erschliessung: admin/ai-cataloging.md
+    - Preservation Planning: admin/preservation-planning.md
+    - Bulk Medienliste: admin/bulk-media-list.md
     - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md

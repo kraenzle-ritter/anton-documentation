@@ -30,10 +30,52 @@ Navigiere zur gewünschten Verzeichnungseinheit (z.B. ein Dossier oder ein Einze
 
 Im Modal können Bildverarbeitungsoptionen aktiviert werden:
 
-| Option | Beschreibung |
-|--------|-------------|
-| **HEIC → JPEG** | iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren |
-| **Bilder → PDF** | Mehrere hochgeladene Bilder zu einem PDF kombinieren |
-| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar) |
+| Option | Beschreibung | Werkzeug auf dem Server |
+|--------|-------------|---|
+| **HEIC → JPEG** | iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren | `heif-convert` (libheif) |
+| **Bilder → PDF** | Mehrere hochgeladene Bilder verlustfrei zu einem PDF kombinieren | `img2pdf` |
+| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar) | `ocrmypdf` + Tesseract (deu+eng) |
 
 Diese Einstellungen werden gespeichert und gelten für alle Uploads.
+
+### Pipeline-Details (für Admins)
+
+Die Pipeline läuft in dieser Reihenfolge ab:
+
+```
+1. BEFORE IMPORT (synchron)
+   HEIC → heif-convert → JPG
+   JPGs → img2pdf      → PDF
+   PDF  → ocrmypdf     → PDF mit OCR-Textebene (Master)
+
+2. IMPORT
+   addAntonMedium() → Event MediumAdded
+
+3. AFTER IMPORT (async, Queue)
+   MediumIdentifyAndConvert
+   ├─ PRONOM-Identifikation
+   ├─ Cloud-Sync (falls konfiguriert)
+   ├─ Thumbnail-Generierung
+   └─ RefreshFulltext
+      └─ pdftotext → media_texts (Volltext-Index)
+```
+
+Die Pipeline wird über das Setting `image-upload-processing` (Array) zentral
+gesteuert. Mögliche Werte: `heic2jpg`, `images2pdf`, `ocr`.
+
+Beispiel: alle drei Schritte aktiviert:
+
+```php
+Setting::setValue('image-upload-processing', ['heic2jpg', 'images2pdf', 'ocr']);
+```
+
+Voraussetzungen auf dem Server:
+
+- `heif-convert` (Paket `libheif`/`libheif-tools`)
+- `img2pdf` (Python-Tool)
+- `ocrmypdf` mit `tesseract-ocr-deu` und `tesseract-ocr-eng`
+- `pdftotext` (Paket `poppler-utils`) — wird auch für die Volltext-
+  Extraktion gebraucht
+
+Anton fällt **nicht** still aus, wenn ein Tool fehlt — die betreffende
+Pipeline-Stufe wird übersprungen und im Log dokumentiert.

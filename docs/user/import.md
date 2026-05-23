@@ -1,7 +1,48 @@
 ## Zusammenfassung
 Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren. Die Erschliessungsdaten (Excel-File) werden in einem (vorgegeben) Excelsheet erfasst und mit den Dateien auf den Server geladen. Danach werden die Daten validiert und falls die Validierung erfolgreich war, kann der Import/Ingest erfolgen (Erschliessungsdaten und media). Vgl. auch die Dokumentation in Anton `/import/documentation`.
 
-## Ablauf
+## Import-Hub `/import`
+
+Seit **v0.62.0** sind alle Import-Pfade unter einer Adresse zusammengefasst: `/import` (im Menü unter **Import / Export → Import**). Die Seite hat vier Tabs:
+
+| Tab | Inhalt |
+|---|---|
+| **Eingangskorb** (Standard) | Wartende agate-SIPs, die noch einen Parent-Bestand brauchen. Wenn etwas wartet, erscheint im Admin-Menü eine Zähler-Badge daneben. |
+| **SIP** | Direkter SIP-Upload (BagIt-Pakete) mit Validation + Ingest. Siehe [SIP Ingest](../admin/sip-ingest.md) und [agate SIP](../admin/agate-sip.md). |
+| **Excel** | Excel-Importe (das Hauptthema dieser Seite, siehe unten). |
+| **Verzeichnis** | Import einer Verzeichnis-Struktur (ZIP/GZ) als Akzessionsarchiv-Eingang. |
+
+Die alten URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) leiten transparent auf den passenden Tab um — Lesezeichen und externe Links bleiben gültig.
+
+### Detail-Ansicht im Eingangskorb
+
+Pro wartendem SIP im Eingangskorb gibt es einen **Details**-Link. Dahinter steht eine Inspektions-Seite, die nur die `metadata.json` aus dem BagIt liest (kein Auspacken der Medien) und zeigt:
+
+- BagIt-Validität (Manifest, Checksummen)
+- Anzahl Datensätze im SIP
+- NARA-Objekttyp-Kategorien — mit Hinweis, falls der Tenant für eine Kategorie keinen passenden Typ kennt
+- Titel des obersten Datensatzes
+
+So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Vokabular passt, und das SIP gegebenenfalls verwerfen, bevor etwas in der Datenbank landet.
+
+### Live-Fortschritt
+
+Alle Imports laufen seit v0.62.0 **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zur entstandenen **Akzessions-Signatur** im Archiv.
+
+Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.
+
+### Akzessions-Signatur für jeden Import
+
+Jeder Import (egal über welchen Pfad) erzeugt einen Sidecar-Datensatz im Akzessionsarchiv (AKZ) mit der Nummer `AKZ {Jahr}/{N}`. Der Eintrag hält fest:
+
+- Ursprünglicher Dateiname
+- MD5-Prüfsumme
+- Import-Zeitpunkt
+- Import-Pfad (Excel / SIP / Verzeichnis / agate)
+
+Fehlgeschlagene Importe hinterlassen **keine Lücke** in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.
+
+## Ablauf (Excel-Import)
 Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnugen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
 
 ## Spalten

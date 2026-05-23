@@ -14,6 +14,10 @@ Der Import-Prozess ist in drei Hauptphasen unterteilt, die den Tabs in der Anton
 2. **Validierung** - Datei prüfen und validieren  
 3. **Ingest** - Import durchführen und Dokumente verarbeiten
 
+!!! note "Seit v0.62.0: gemeinsamer Import-Hub"
+    Alle Import-Pfade (SIP, Excel, Verzeichnis, agate) sind unter `/import` zusammengefasst — die SIP-Tabs sind jetzt im Import-Hub als **„SIP"**-Tab integriert. Alte Lesezeichen funktionieren weiterhin (transparente Weiterleitung).
+    Siehe [import.md](import.md).
+
 ## Upload
 
 - Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte dem Administrator melden.
