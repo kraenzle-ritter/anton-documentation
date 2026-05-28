@@ -1,7 +1,7 @@
 # KI-Erschliessung
 
 Anton kann seit **v0.63.0** auf Knopfdruck Vorschläge für Titel,
-Notizen, Datierung, Akteure, Orte und Schlagworte generieren — basierend
+Textfelder, Datierung, Akteure, Orte und Schlagworte generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.
 
@@ -40,7 +40,7 @@ Nach Klick:
    Vorschlag
 3. Anton zeigt pro Feld eine **Hinweis-Chip** mit dem KI-Vorschlag
 4. Pro Vorschlag drei Aktionen: **Übernehmen**, **Anhängen** (nur bei
-   Notizen), **Ignorieren**
+   Textfeldern), **Ignorieren**
 
 Speichern erfolgt regulär über den Anton-Speichern-Button. Keine
 versteckten DB-Schreibvorgänge — die KI macht nur Vorschläge, der
@@ -52,7 +52,7 @@ Mensch entscheidet.
 - **PDFs** — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
   (seit v0.65.0 für bessere Qualität bei getippten Dokumenten)
 - **Audio** — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
-  Das Transkript kann optional als Notiz in den Volltext-Index landen.
+  Das Transkript kann optional als Textfeld in den Volltext-Index landen.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
 - **Bestehender Titel** des Datensatzes als Kontext
 

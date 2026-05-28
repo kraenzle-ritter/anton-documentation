@@ -1,6 +1,6 @@
 # Volltextsuche
 
-Die Volltextsuche durchsucht alle relevanten Felder der Archivdatensätze gleichzeitig: Titel, Signaturen, Notizen, verknüpfte Akteur:innen, Orte und Schlagwörter — und auch den per OCR erkannten Text aus PDFs und Bildern.
+Die Volltextsuche durchsucht alle relevanten Felder der Archivdatensätze gleichzeitig: Titel, Signaturen, Textfelder, verknüpfte Akteur:innen, Orte und Schlagwörter — und auch den per OCR erkannten Text aus PDFs und Bildern.
 
 ## Was wird durchsucht
 
@@ -13,14 +13,14 @@ Pro Archivobjekt werden für die Suche zusammengefasst:
 - **Verknüpfte Schlagwörter** in allen vorhandenen Sprachvarianten
 - **Verknüpfte Orte**
 - **Verknüpfte Akteur:innen** (nur öffentlich sichtbare)
-- **Notizen**, die im externen Formular sichtbar sind
+- **Textfelder**, die im externen Formular sichtbar sind
 - **OCR-Text** aus Medien (PDFs, Bilder)
 
 !!! note "Erweiterte Sicht für interne Bearbeitende"
     Für angemeldete interne Bearbeiter:innen werden zusätzlich durchsucht:
 
     - private Akteur:innen
-    - alle Notizen (auch nur intern sichtbare)
+    - alle Textfelder (auch nur intern sichtbare)
     - als privat markierte Objekte
 
 ## Suchverhalten
