@@ -777,6 +777,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Volltextsuche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2747,9 +2775,9 @@
 </div>
 <h3 id="api-parameter">API-Parameter<a class="headerlink" href="#api-parameter" title="Permanent link">&para;</a></h3>
 <p>Bei API-Anfragen kann die gewichtete Suche per Parameter gesteuert werden:</p>
-<div class="highlight"><pre><span></span><code>GET /api/actors?search=Müller&amp;weighted=1
-GET /api/places?search=Zürich&amp;weighted=1
-GET /api/keywords?search=Archiv&amp;weighted=1
+<div class="highlight"><pre><span></span><code>GET /api/actors?search=Müller&amp;weighted=true
+GET /api/places?search=Zürich&amp;weighted=true
+GET /api/keywords?search=Archiv&amp;weighted=true
 </code></pre></div>
 <p>Der API-Parameter hat die höchste Priorität und überschreibt sowohl Benutzer- als auch globale Einstellungen.</p>
 <h2 id="feldgewichtungen">Feldgewichtungen<a class="headerlink" href="#feldgewichtungen" title="Permanent link">&para;</a></h2>

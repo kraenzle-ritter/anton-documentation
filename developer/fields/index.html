@@ -773,6 +773,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Volltextsuche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2426,7 +2454,7 @@
   <a href="#name" class="md-nav__link">
     <span class="md-ellipsis">
       
-        name
+        @name
       
     </span>
   </a>
@@ -2437,7 +2465,7 @@
   <a href="#type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        type
+        @type
       
     </span>
   </a>
@@ -2448,40 +2476,7 @@
   <a href="#label" class="md-nav__link">
     <span class="md-ellipsis">
       
-        label
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#valuelist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        valuelist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sortfield" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        sortField
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#help" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        help
+        @label
       
     </span>
   </a>
@@ -2494,10 +2489,87 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#module-types" class="md-nav__link">
+  <a href="#display" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module types
+        display
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module_actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module_actors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module_event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module_event
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module_keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module_keywords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module_permalink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module_permalink
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module_places" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        module_places
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        section
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#textarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        textarea
       
     </span>
   </a>
@@ -2525,115 +2597,83 @@
 
 
 <h1 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">&para;</a></h1>
-<p>All fields must have a <code>name</code> (or <code>field</code> for edit/create forms).</p>
+<p>All fields must have a name.</p>
 <h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
-<h3 id="name"><code>name</code><a class="headerlink" href="#name" title="Permanent link">&para;</a></h3>
+<h3 id="name"><code>@name</code><a class="headerlink" href="#name" title="Permanent link">&para;</a></h3>
 <p>Rules: <code>string</code></p>
-<p>The model attribute name or accessor that returns the value to display/edit.</p>
-<h3 id="type"><code>type</code><a class="headerlink" href="#type" title="Permanent link">&para;</a></h3>
-<p>Rules: <code>nullable|string</code></p>
-<p>Default: <code>display</code></p>
-<p>Determines how the field is rendered. See <a href="../forms/#field-types">Forms — Field Types</a> for the full list including <code>text</code>, <code>textarea</code>, <code>select</code>, <code>select2</code>, <code>radio</code>, <code>checkbox</code>, <code>number</code>, <code>email</code>, <code>display</code>, <code>section</code>, <code>note</code>, <code>antonevent</code>, <code>module</code>, <code>buttons</code>, and more.</p>
-<p><strong>Auto-switch to display:</strong> In <code>detail</code> and <code>list</code> forms, input types (<code>text</code>, <code>textarea</code>, <code>select</code>, <code>select2</code>, <code>radio</code>) automatically render as <code>display</code>. One field definition covers both edit and detail views.</p>
-<h3 id="label"><code>label</code><a class="headerlink" href="#label" title="Permanent link">&para;</a></h3>
-<p>Rules: <code>nullable|string</code></p>
+<p>Description: There must be an attribute or an accessor in the model which returns the name of the model. </p>
+<h3 id="type"><code>@type</code><a class="headerlink" href="#type" title="Permanent link">&para;</a></h3>
+<p>Rules: <code>nullable|string|in:display,...</code></p>
+<p>Default: Display</p>
+<p>Description: Contains a field type like textarea, input ...</p>
+<h3 id="label"><code>@label</code><a class="headerlink" href="#label" title="Permanent link">&para;</a></h3>
+<p>Rules: <code>nullable|string</code> </p>
+<p>Description: Contains a key from <code>resources/lang/messages.php</code>. </p>
+<p><code>@labelCssClass</code> </p>
+<p>Rules: <code>nullable|string</code> </p>
+<p>Default: <code>col-md-2</code></p>
+<p>Description: Contains a CSS class für the label.</p>
+<p><code>@fieldCssClass</code></p>
+<p>Rules: <code>nullable|string</code> </p>
+<p>Default: <code>col-md-10</code></p>
+<p>Description: Contains a CSS class für the field div.</p>
+<h2 id="display">display<a class="headerlink" href="#display" title="Permanent link">&para;</a></h2>
+<p>Shows information. Standard field for <code>detail</code> and <code>detail_intern</code> forms.</p>
 <ul>
-<li><strong>DB-path forms:</strong> Resolved from <code>antonfields.label</code> (translatable JSON) or overridden via <code>pivot.label</code>. Always returned as a plain string in the current locale — no <code>trans()</code> needed.</li>
-<li><strong>PHP-path forms:</strong> A translation key string (e.g. <code>'Name'</code>). Templates apply <code>trans('messages.{label}')</code> with fallback to the raw string.</li>
+<li>required: <code>name</code>, <code>label</code> </li>
 </ul>
-<h3 id="valuelist"><code>valuelist</code><a class="headerlink" href="#valuelist" title="Permanent link">&para;</a></h3>
-<p>Rules: <code>nullable|string</code></p>
-<p>Key for select/radio options (e.g. <code>authority_type</code>, <code>countries</code>, <code>place_type</code>).</p>
-<h3 id="sortfield"><code>sortField</code><a class="headerlink" href="#sortfield" title="Permanent link">&para;</a></h3>
-<p>Rules: <code>nullable|string</code></p>
-<p>DB column to ORDER BY when sorting this column in list forms. Stored in <code>pivot.config</code> for DB forms.</p>
-<h3 id="help"><code>help</code><a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
-<p>Rules: <code>nullable|string|json</code></p>
-<p>Help text displayed below the field. DB forms use translatable JSON; PHP forms use plain strings.</p>
-<h2 id="module-types">Module types<a class="headerlink" href="#module-types" title="Permanent link">&para;</a></h2>
-<p>Modules are complex components rendered via <code>type: 'module'</code>. The component is resolved from the field's <code>name</code>:</p>
-<table>
-<thead>
-<tr>
-<th>Field name</th>
-<th>Component</th>
-<th>Used on</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>actors</code></td>
-<td><code>modules.actors.table</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>places</code></td>
-<td><code>modules.places.table</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>keywords</code></td>
-<td><code>modules.keyword</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>media</code> / <code>images</code></td>
-<td><code>modules.images</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>language</code></td>
-<td><code>modules.language</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>relations</code></td>
-<td><code>modules.relations</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>access</code></td>
-<td><code>modules.access</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>updates</code></td>
-<td><code>modules.updates</code></td>
-<td>All entities</td>
-</tr>
-<tr>
-<td><code>permalink</code></td>
-<td><code>modules.permalink</code></td>
-<td>All entities</td>
-</tr>
-<tr>
-<td><code>anton_date_interval</code></td>
-<td><code>modules.anton-date-interval</code></td>
-<td>Actor</td>
-</tr>
-<tr>
-<td><code>extent</code></td>
-<td><code>modules.extent</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>vacat</code></td>
-<td><code>modules.vacat</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td><code>modules.title</code></td>
-<td>AntonObject</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td><code>modules.label</code></td>
-<td>Actor, Place, Keyword</td>
-</tr>
-</tbody>
-</table>
-<p>See <a href="../forms/">Forms</a> for the complete documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>name</code> must correspond to an attribute or accessor of the model</p>
+</div>
+<h2 id="module_actors">module_actors<a class="headerlink" href="#module_actors" title="Permanent link">&para;</a></h2>
+<p>Displays actors as descriptors.</p>
+<ul>
+<li>uses: <code>$model-&gt;actors-&gt;links()</code></li>
+<li>required: <code>label</code></li>
+</ul>
+<h2 id="module_event">module_event<a class="headerlink" href="#module_event" title="Permanent link">&para;</a></h2>
+<p>Displays an antonevents of the same type. </p>
+<ul>
+<li>uses: <ul>
+<li><code>$model-&gt;hasChrildren()</code></li>
+<li><code>$model-&gt;creationDateLabel</code></li>
+<li><code>model-&gt;antonevents</code></li>
+</ul>
+</li>
+<li>required: <ul>
+<li>(string) <code>eventtype</code> ("creation"), </li>
+<li><code>label</code></li>
+<li><code>modus</code></li>
+</ul>
+</li>
+<li>restricted to: <code>antonobjects</code> (other entities dont have children)</li>
+</ul>
+<h2 id="module_keywords">module_keywords<a class="headerlink" href="#module_keywords" title="Permanent link">&para;</a></h2>
+<p>Displays keywords as descriptors.</p>
+<ul>
+<li>uses: <code>$model-&gt;keywords-&gt;links()</code></li>
+<li>required: <code>label</code></li>
+</ul>
+<h2 id="module_permalink">module_permalink<a class="headerlink" href="#module_permalink" title="Permanent link">&para;</a></h2>
+<p>Shows a permanent link with endpoint and id (eg. "/actors/3")</p>
+<ul>
+<li>uses: <code>$endpoint</code>, <code>$model-&gt;id</code></li>
+<li>required: <code>label</code></li>
+</ul>
+<h2 id="module_places">module_places<a class="headerlink" href="#module_places" title="Permanent link">&para;</a></h2>
+<p>Displays places as descriptors.</p>
+<ul>
+<li>uses: <code>$model-&gt;places-&gt;links()</code></li>
+<li>required: <code>label</code></li>
+</ul>
+<h2 id="section">section<a class="headerlink" href="#section" title="Permanent link">&para;</a></h2>
+<p>Separates and titles information areas.</p>
+<ul>
+<li>required: <code>label</code>  </li>
+<li>options: <code>with_save_button</code></li>
+</ul>
+<h2 id="textarea">textarea<a class="headerlink" href="#textarea" title="Permanent link">&para;</a></h2>
 
 
 

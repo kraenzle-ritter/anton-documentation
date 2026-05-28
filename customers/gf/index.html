@@ -773,6 +773,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Volltextsuche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2432,17 +2460,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#akteure-entsperren-2026-04-27" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Akteure entsperren (2026-04-27)
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2491,58 +2508,6 @@
 <span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">resourceable_id</span>
 <span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span>
 </code></pre></div>
-<h2 id="akteure-entsperren-2026-04-27">Akteure entsperren (2026-04-27)<a class="headerlink" href="#akteure-entsperren-2026-04-27" title="Permanent link">&para;</a></h2>
-<p>Aktuell gesperrte Akteure entsperren, wenn<br />
-- verstorben (Datum bis nicht leer)
-- Geburtsdatum über 100 Jahre (Datum von &lt; 1926)
-- Akteur mit externen Links verknüpft</p>
-<p>Vorschau
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
-<span class="w">      </span><span class="n">JSON_UNQUOTE</span><span class="p">(</span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.de&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">label_de</span><span class="p">,</span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="p">,</span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="p">,</span>
-<span class="w">      </span><span class="k">CASE</span>
-<span class="w">          </span><span class="k">WHEN</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;verstorben&#39;</span>
-<span class="w">          </span><span class="k">WHEN</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="w"> </span><span class="k">AND</span>
-<span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;1926-01-01&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;vor 1926 geboren&#39;</span>
-<span class="w">          </span><span class="k">WHEN</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="n">r</span>
-<span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;App\\Models\\Actor&#39;</span>
-<span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span>
-<span class="w">          </span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;externe Links&#39;</span>
-<span class="w">      </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">reason</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">actors</span><span class="w"> </span><span class="n">a</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">private</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span>
-<span class="w">          </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w">   </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w">   </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="p">)</span>
-<span class="w">       </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span>
-<span class="w">  </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;1926-01-01&#39;</span><span class="p">)</span>
-<span class="w">       </span><span class="k">OR</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="n">r</span>
-<span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;App\\Models\\Actor&#39;</span>
-<span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">label_de</span><span class="p">;</span>
-</code></pre></div></p>
-<p>Entsperrung
-<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">actors</span><span class="w"> </span><span class="n">a</span>
-<span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">private</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">updated_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NOW</span><span class="p">(),</span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">updated_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;anton&#39;</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">private</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span>
-<span class="w">          </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w">   </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_end</span><span class="w">   </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="p">)</span>
-<span class="w">       </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;0000-00-00&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">date_start</span>
-<span class="w">  </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;1926-01-01&#39;</span><span class="p">)</span>
-<span class="w">       </span><span class="k">OR</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resources</span><span class="w"> </span><span class="n">r</span>
-<span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;App\\Models\\Actor&#39;</span>
-<span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">    </span><span class="p">);</span>
-</code></pre></div></p>
 
 
 

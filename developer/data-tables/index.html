@@ -773,6 +773,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Volltextsuche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2411,10 +2439,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#form-definition" class="md-nav__link">
+  <a href="#form-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Form definition
+        Form Class
       
     </span>
   </a>
@@ -2425,7 +2453,7 @@
   <a href="#datatable-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DataTable class
+        Datatable Class
       
     </span>
   </a>
@@ -2447,29 +2475,7 @@
   <a href="#livewire-view" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Livewire view
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#model-dtquery-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Model: dtQuery scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#select-fields-in-list-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Select fields in list columns
+        Livewire View
       
     </span>
   </a>
@@ -2481,6 +2487,56 @@
     <span class="md-ellipsis">
       
         Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dtquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dtQuery()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-and-accessors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attributes and Accessors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cotroller-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cotroller Methods
       
     </span>
   </a>
@@ -2508,118 +2564,144 @@
 
 
 <h1 id="data-tables-livewire">Data Tables (Livewire)<a class="headerlink" href="#data-tables-livewire" title="Permanent link">&para;</a></h1>
-<p>Data tables are rendered as Livewire components. Each entity (Places, Actors, Keywords, etc.) has its own DataTable class that extends <code>DataTableWithRequest</code>.</p>
-<h2 id="form-definition">Form definition<a class="headerlink" href="#form-definition" title="Permanent link">&para;</a></h2>
-<p>Column definitions come from the <code>list</code> form type. The form system resolves definitions in priority order: <strong>DB form → Settings → PHP fallback</strong>.</p>
-<p>For example, <code>PlacesForms</code> defines the list columns:</p>
+<p>Example: places</p>
+<h2 id="form-class">Form Class<a class="headerlink" href="#form-class" title="Permanent link">&para;</a></h2>
+<p>Create a <code>PlacesForm</code> Class in <code>app/Forms/</code>. The array should contain a 'list' entry with the column definitions:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">Anton\Forms</span><span class="p">;</span>
 
+<span class="k">use</span> <span class="nx">Anton\Forms\AbstractForms</span><span class="p">;</span>
+
 <span class="k">class</span> <span class="nc">PlacesForms</span> <span class="k">extends</span> <span class="nx">AbstractForms</span>
 <span class="p">{</span>
-    <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">modelShortName</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="nx">string</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getDefinitions</span><span class="p">()</span> <span class="o">:</span> <span class="k">array</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="s1">&#39;Place&#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getDefinitions</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$type</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$model</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
-    <span class="p">{</span>
-        <span class="nv">$forms</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="k">return</span> <span class="p">[</span>
             <span class="s1">&#39;list&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;type_id&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="s1">&#39;valuelist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;place_type&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;type_id&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;module&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;City&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;city&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;state&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;country_code_id&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;select2&#39;</span><span class="p">,</span> <span class="s1">&#39;valuelist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;countries&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Country&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ct.label&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;buttons&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;id&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;place_type-label&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="nx">trans</span><span class="p">(</span><span class="s1">&#39;messages.Type&#39;</span><span class="p">),</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;place_type_id&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="nx">trans</span><span class="p">(</span><span class="s1">&#39;messages.Name&#39;</span><span class="p">),</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="nx">trans</span><span class="p">(</span><span class="s1">&#39;messages.City&#39;</span><span class="p">),</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;city&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="nx">trans</span><span class="p">(</span><span class="s1">&#39;messages.State&#39;</span><span class="p">),</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;state&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;country-label&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="nx">trans</span><span class="p">(</span><span class="s1">&#39;messages.country&#39;</span><span class="p">),</span> <span class="s1">&#39;sortField&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;country_code_id&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;buttons&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;detail&#39;</span><span class="p">,</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]]</span>
             <span class="p">],</span>
-            <span class="c1">// ... detail, detail_intern, edit, create ...</span>
         <span class="p">];</span>
-
-        <span class="k">return</span> <span class="nv">$forms</span><span class="p">[</span><span class="nv">$type</span><span class="p">]</span> <span class="o">??</span> <span class="p">[];</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Since <code>modelShortName()</code> returns <code>'Place'</code>, the DB form is checked first. If a <code>forms</code> record exists for <code>model=Place</code>, <code>type=list</code>, <code>scope=external</code> with attached antonfields, that takes priority over the PHP definition.</p>
-<h2 id="datatable-class">DataTable class<a class="headerlink" href="#datatable-class" title="Permanent link">&para;</a></h2>
+<h2 id="datatable-class">Datatable Class<a class="headerlink" href="#datatable-class" title="Permanent link">&para;</a></h2>
+<p>Create a Class <code>DataTable</code> in <code>Livewire/Places</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">Anton\Http\Livewire\Places</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">Livewire\WithPagination</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Anton\Http\Livewire\DataTableWithRequest</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">Livewire\Attributes\Locked</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * Places DataTable</span>
+<span class="sd"> **/</span>
 
 <span class="k">class</span> <span class="nc">DataTable</span> <span class="k">extends</span> <span class="nx">DataTableWithRequest</span>
 <span class="p">{</span>
     <span class="k">use</span> <span class="nx">WithPagination</span><span class="p">;</span>
 
-    <span class="p">#[</span><span class="nd">Locked</span><span class="p">]</span>
-    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$endpoint</span> <span class="o">=</span> <span class="s1">&#39;/places&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$endpoint</span> <span class="o">=</span> <span class="s1">&#39;/places&#39;</span><span class="p">;</span>
 
-    <span class="p">#[</span><span class="nd">Locked</span><span class="p">]</span>
-    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$formtype</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$formtype</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">;</span>  <span class="c1">// key in array of forms in PlacesForms.php</span>
 
-    <span class="p">#[</span><span class="nd">Locked</span><span class="p">]</span>
-    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$model</span> <span class="o">=</span> <span class="s1">&#39;Anton\Models\Place&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$model</span> <span class="o">=</span> <span class="s1">&#39;Anton\Models\Place&#39;</span><span class="p">;</span>
 
-    <span class="p">#[</span><span class="nd">Locked</span><span class="p">]</span>
-    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$view</span> <span class="o">=</span> <span class="s1">&#39;places.data-table&#39;</span><span class="p">;</span>
-
-    <span class="p">#[</span><span class="nd">Locked</span><span class="p">]</span>
-    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$supportsWeightedSearch</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$view</span> <span class="o">=</span> <span class="s1">&#39;places.data-table&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Key properties:</p>
-<ul>
-<li><code>$endpoint</code> — URL prefix for links</li>
-<li><code>$formtype</code> — key in the form definitions array (usually <code>list</code>)</li>
-<li><code>$model</code> — fully qualified model class</li>
-<li><code>$view</code> — Livewire view path</li>
-<li><code>$supportsWeightedSearch</code> — enables weighted fulltext search</li>
-</ul>
 <h2 id="index-view">Index view<a class="headerlink" href="#index-view" title="Permanent link">&para;</a></h2>
+<p>In `resources/views/places/index.blade.php:</p>
 <div class="highlight"><pre><span></span><code>@extends(&#39;master&#39;)
 
 @section(&#39;content&#39;)
-    &lt;h2&gt;{{ trans(&#39;messages.Places&#39;) }}&lt;/h2&gt;
-    @livewire(&#39;places.data-table&#39;)
+
+@if($user-&gt;isUserIntern())
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{!! link_to_route(&#39;admin&#39;, trans(&#39;messages.Admin&#39;) ) !!} <span class="ni">&amp;gt;</span> <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+@endif
+
+ <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{!! Lang::choice(&#39;messages.Existing&#39;, 2) !!} {!! trans(&#39;messages.Places&#39;) !!}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+
+ @livewire(&#39;places.data-table&#39;)
+
+
 @stop
 </code></pre></div>
-<h2 id="livewire-view">Livewire view<a class="headerlink" href="#livewire-view" title="Permanent link">&para;</a></h2>
+<h2 id="livewire-view">Livewire View<a class="headerlink" href="#livewire-view" title="Permanent link">&para;</a></h2>
+<p>In <code>resources/views/livewire/places/data-table</code>: </p>
 <div class="highlight"><pre><span></span><code>@include(&#39;includes._data-table&#39;)
 </code></pre></div>
-<h2 id="model-dtquery-scope">Model: <code>dtQuery</code> scope<a class="headerlink" href="#model-dtquery-scope" title="Permanent link">&para;</a></h2>
-<p>The model needs a <code>scopeDtQuery()</code> method for search filtering and joins:</p>
-<div class="highlight"><pre><span></span><code><span class="x">public function scopeDtQuery($query, $params)</span>
-<span class="x">{</span>
-<span class="x">    $search = $params[&#39;search&#39;] ?? &#39;&#39;;</span>
-<span class="x">    $locale = App::getLocale();</span>
-
-<span class="x">    $query = $query-&gt;selectRaw(&#39;places.id as id, ...&#39;)</span>
-<span class="x">        -&gt;leftJoin(&#39;terms as t&#39;, &#39;places.place_type_id&#39;, &#39;=&#39;, &#39;t.id&#39;)</span>
-<span class="x">        // ... joins for translated labels ...</span>
-
-<span class="x">    if ($search) {</span>
-<span class="x">        $query-&gt;where(&#39;places.name&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)</span>
-<span class="x">              -&gt;orWhere(...);</span>
-<span class="x">    }</span>
-
-<span class="x">    return $query;</span>
-<span class="x">}</span>
-</code></pre></div>
-<h2 id="select-fields-in-list-columns">Select fields in list columns<a class="headerlink" href="#select-fields-in-list-columns" title="Permanent link">&para;</a></h2>
-<p>Select and select2 fields in list forms automatically resolve their <code>valuelist</code> to display translated labels instead of raw IDs. This is handled by <code>DataTableWithRequest</code> — no accessor needed for valuelist columns.</p>
 <h2 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h2>
-<p>The controller needs <code>$modelClass</code> and <code>$endpoint</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">class PlacesController extends BaseController</span>
-<span class="x">{</span>
-<span class="x">    public $modelClass = &#39;\Anton\Models\Place&#39;;</span>
-<span class="x">    public $endpoint = &#39;places&#39;;</span>
-<span class="x">}</span>
+<p>Make sure that the controller gets these two public attributes and it uses the <code>Controller.php</code> as parent:</p>
+<div class="highlight"><pre><span></span><code>class PlacesController extends BaseController
+{
+    public $modelClass = &#39;\Anton\Models\Place&#39;;
+
+    public $endpoint = &#39;places&#39;;
 </code></pre></div>
+<h2 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h2>
+<h3 id="dtquery">dtQuery()<a class="headerlink" href="#dtquery" title="Permanent link">&para;</a></h3>
+<p>The Model should have a <code>dtQuery()</code> Method:  </p>
+<div class="highlight"><pre><span></span><code>public function scopeDtQuery($query, $params)
+    {
+        $search = $params[&#39;search&#39;] ?? &#39;&#39;;
+        $locale = \App::getLocale();
+
+        $query = $query-&gt;selectRaw(&#39;places.id as id,
+                           tt.label as place_type,
+                           places.name as name,
+                           places.city as city,
+                           places.state as state,
+                           ct.label as country,
+                           places.description&#39;)
+            -&gt;leftJoin(&#39;terms as t&#39;, &#39;places.place_type_id&#39;, &#39;=&#39;, &#39;t.id&#39;)
+            -&gt;leftJoin(&#39;term_translations as tt&#39;, function($join) use ($locale) {
+                $join-&gt;on(&#39;t.id&#39;, &#39;=&#39;, &#39;tt.term_id&#39;)
+                     -&gt;where(&#39;tt.locale&#39;, $locale);
+                })
+            -&gt;leftJoin(&#39;countries as c&#39;, &#39;places.country_code_id&#39;, &#39;=&#39;, &#39;c.id&#39;)
+            -&gt;leftJoin(&#39;country_translations as ct&#39;, function($join) use ($locale) {
+                $join-&gt;on(&#39;c.id&#39;, &#39;=&#39;, &#39;ct.country_id&#39;)
+                     -&gt;where(&#39;ct.locale&#39;, $locale);
+            });
+
+        if ($search) {
+            $query-&gt;where(&#39;places.name&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;tt.label&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.city&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.state&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;ct.label&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;)
+                  -&gt;orWhere(&#39;places.description&#39;, &#39;like&#39;, &#39;%&#39;.$search.&#39;%&#39;);
+        }
+        // \Log::debug($query-&gt;toSql());
+
+        return $query;
+    }
+</code></pre></div>
+<p>The <code>$param['search']</code> is for filtering the table. </p>
+<p>You can simplify the <code>scopeDtQuery</code> method by creating accessors, however, if for example a translation label is needed or a valuelist is used, then a join will reduce the number of queries.</p>
+<h3 id="attributes-and-accessors">Attributes and Accessors<a class="headerlink" href="#attributes-and-accessors" title="Permanent link">&para;</a></h3>
+<p>For each column name of the table there must be an attribute or an accessor with this name. If the accessor uses a term it is best to use a static variable for the valuelist within the accessor to reduce the database queries:</p>
+<div class="highlight"><pre><span></span><code>public function getPlaceTypeLabelAttribute()
+{
+    static $placeTypeLabels;
+
+    if (!isset($placeTypeLabels)) {
+        $placeTypeLabels = Term::getValueList(&#39;place_type&#39;);
+    }
+
+    return $placeTypeLabels[$this-&gt;place_type_id] ?? &#39;&#39;;
+}
+</code></pre></div>
+<h2 id="cotroller-methods">Cotroller Methods<a class="headerlink" href="#cotroller-methods" title="Permanent link">&para;</a></h2>
+<p>In order to get the Links work we have to implement the show, edit and destroy methods in the controller. </p>
 
 
 
