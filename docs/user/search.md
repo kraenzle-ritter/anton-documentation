@@ -52,6 +52,9 @@ Wildcards (`*`) sind nicht nötig — die Suche findet automatisch alle Wörter,
 
 Bei einer Phrase wird **nicht** automatisch nach Wortanfängen gesucht — die Phrase muss exakt vorkommen.
 
+!!! warning "Sehr kurze Wörter werden auch in Phrasen ignoriert"
+    Wörter unter 3 Zeichen und einige englische Stopwörter (`the`, `for`, `and`) fallen auch innerhalb von Anführungszeichen aus dem Vergleich. Eine Phrase wie `"AG Reinach"` matcht damit faktisch nur „Reinach".
+
 ### Begriffe mit Bindestrich
 
 Begriffe mit Bindestrich (z. B. `Arp-Hagenbach`) werden automatisch wie eine Phrase behandelt: gesucht wird nach beiden Teilen direkt nebeneinander.
