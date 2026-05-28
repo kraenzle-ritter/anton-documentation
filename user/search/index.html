@@ -2783,6 +2783,10 @@
 </tbody>
 </table>
 <p>Bei einer Phrase wird <strong>nicht</strong> automatisch nach Wortanfängen gesucht — die Phrase muss exakt vorkommen.</p>
+<div class="admonition warning">
+<p class="admonition-title">Sehr kurze Wörter werden auch in Phrasen ignoriert</p>
+<p>Wörter unter 3 Zeichen und einige englische Stopwörter (<code>the</code>, <code>for</code>, <code>and</code>) fallen auch innerhalb von Anführungszeichen aus dem Vergleich. Eine Phrase wie <code>"AG Reinach"</code> matcht damit faktisch nur „Reinach".</p>
+</div>
 <h3 id="begriffe-mit-bindestrich">Begriffe mit Bindestrich<a class="headerlink" href="#begriffe-mit-bindestrich" title="Permanent link">&para;</a></h3>
 <p>Begriffe mit Bindestrich (z. B. <code>Arp-Hagenbach</code>) werden automatisch wie eine Phrase behandelt: gesucht wird nach beiden Teilen direkt nebeneinander.</p>
 <h2 id="was-nicht-funktioniert">Was nicht funktioniert<a class="headerlink" href="#was-nicht-funktioniert" title="Permanent link">&para;</a></h2>
