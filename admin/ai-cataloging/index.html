@@ -2711,7 +2711,7 @@
 
 <h1 id="ki-erschliessung">KI-Erschliessung<a class="headerlink" href="#ki-erschliessung" title="Permanent link">&para;</a></h1>
 <p>Anton kann seit <strong>v0.63.0</strong> auf Knopfdruck Vorschläge für Titel,
-Notizen, Datierung, Akteure, Orte und Schlagworte generieren — basierend
+Textfelder, Datierung, Akteure, Orte und Schlagworte generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.</p>
 <p>Standardmässig ist die Funktion <strong>ausgeschaltet</strong>. Sie wird pro Archiv
@@ -2744,7 +2744,7 @@ dem Upload-Bereich, sichtbar sobald eine Datei angehängt ist).</p>
    Vorschlag</li>
 <li>Anton zeigt pro Feld eine <strong>Hinweis-Chip</strong> mit dem KI-Vorschlag</li>
 <li>Pro Vorschlag drei Aktionen: <strong>Übernehmen</strong>, <strong>Anhängen</strong> (nur bei
-   Notizen), <strong>Ignorieren</strong></li>
+   Textfeldern), <strong>Ignorieren</strong></li>
 </ol>
 <p>Speichern erfolgt regulär über den Anton-Speichern-Button. Keine
 versteckten DB-Schreibvorgänge — die KI macht nur Vorschläge, der
@@ -2755,7 +2755,7 @@ Mensch entscheidet.</p>
 <li><strong>PDFs</strong> — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
   (seit v0.65.0 für bessere Qualität bei getippten Dokumenten)</li>
 <li><strong>Audio</strong> — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
-  Das Transkript kann optional als Notiz in den Volltext-Index landen.</li>
+  Das Transkript kann optional als Textfeld in den Volltext-Index landen.</li>
 <li><strong>Video</strong> — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit</li>
 <li><strong>Bestehender Titel</strong> des Datensatzes als Kontext</li>
 </ul>
