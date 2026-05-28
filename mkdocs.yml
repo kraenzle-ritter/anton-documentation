@@ -53,6 +53,7 @@ nav:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
     - Markdown: user/markdown.md
+    - Volltextsuche: user/search.md
     - Gewichtete Suche: user/weighted-search.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
