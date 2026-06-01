@@ -30,16 +30,20 @@ curl -X GET "https://ihre-anton-instanz.ch/api/objects" \
   -H "Accept: application/json"
 ```
 
-### Query-Parameter (Alternative)
+### Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
 
-Alternativ kann der Token als **Query-Parameter** `api_token` übergeben werden:
+!!! warning "Veraltet seit v0.70.x"
+    Der Query-Parameter `?api_token=` wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt seit v0.70.x jeden Aufruf mit `?api_token=` als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.
+
+Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter `api_token` akzeptiert:
 
 ```bash
+# DEPRECATED — bitte auf Bearer-Header umstellen
 curl -X GET "https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN" \
   -H "Accept: application/json"
 ```
 
-> **Hinweis:** Bearer-Token ist die bevorzugte Methode, da der Token nicht in Server-Logs erscheint.
+Warum weg? Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern — der Bearer-Header hat keines dieser Probleme.
 
 ### Beispiele
 
