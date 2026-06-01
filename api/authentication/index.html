@@ -2079,10 +2079,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#query-parameter-alternative" class="md-nav__link">
+  <a href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query-Parameter (Alternative)
+        Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
       
     </span>
   </a>
@@ -2709,10 +2709,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#query-parameter-alternative" class="md-nav__link">
+  <a href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query-Parameter (Alternative)
+        Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
       
     </span>
   </a>
@@ -2820,14 +2820,17 @@
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
 </code></pre></div>
-<h3 id="query-parameter-alternative">Query-Parameter (Alternative)<a class="headerlink" href="#query-parameter-alternative" title="Permanent link">&para;</a></h3>
-<p>Alternativ kann der Token als <strong>Query-Parameter</strong> <code>api_token</code> übergeben werden:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<h3 id="query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt">Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)<a class="headerlink" href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Veraltet seit v0.70.x</p>
+<p>Der Query-Parameter <code>?api_token=</code> wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt seit v0.70.x jeden Aufruf mit <code>?api_token=</code> als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.</p>
+</div>
+<p>Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — bitte auf Bearer-Header umstellen</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
 </code></pre></div>
-<blockquote>
-<p><strong>Hinweis:</strong> Bearer-Token ist die bevorzugte Methode, da der Token nicht in Server-Logs erscheint.</p>
-</blockquote>
+<p>Warum weg? Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern — der Bearer-Header hat keines dieser Probleme.</p>
 <h3 id="beispiele">Beispiele<a class="headerlink" href="#beispiele" title="Permanent link">&para;</a></h3>
 <p><strong>Objekte abrufen (Bearer):</strong>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects&quot;</span><span class="w"> </span><span class="se">\</span>
