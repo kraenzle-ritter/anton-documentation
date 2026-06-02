@@ -156,6 +156,58 @@ Optionen:
 
 ## anton:export
 
+## anton:export-rdf
+
+```bash
+php artisan anton:export-rdf --env=kr --root=42 --profile=a-plus --format=turtle > fonds.ttl
+```
+
+Exportiert einen Bestand (oder den ganzen Tenant, wenn `--root=` fehlt)
+als RDF. Drei Profile:
+
+- `--profile=a-plus` (Default) — CIDOC CRM + RiC-O, Standard `--format=turtle`,
+  zusätzlich `jsonld`, `rdfxml`, `ntriples` möglich.
+- `--profile=ric` (Alias `rico`) — pures RiC-O 1.1, Standard `--format=jsonld`,
+  alle vier Formate möglich. Siehe [RDF-Export](download-rdf.md).
+- `--profile=memobase` — Memobase-JSON-LD-Form (siehe
+  [RDF-Export](download-rdf.md)), Standard `--format=jsonld`, zusätzlich
+  `turtle` für Debug.
+
+Output geht auf stdout; übliche Shell-Redirection in eine Datei.
+
+## media:extract-av-metadata
+
+```bash
+# Alle AV-/Bild-Media eines Tenants befüllen
+php artisan media:extract-av-metadata --env=gf
+
+# Nur ausgewählte IDs
+php artisan media:extract-av-metadata --env=gf --ids=42,43,44
+
+# Trockenlauf (zeigt nur was sich ändern würde)
+php artisan media:extract-av-metadata --env=gf --dry-run -v
+
+# Re-Extraktion auch über bereits gefüllte Werte
+php artisan media:extract-av-metadata --env=gf --force
+```
+
+Füllt die `av_*`-Spalten in der `media`-Tabelle via `ffprobe`
+(`av_duration_seconds`, `av_codec`, `av_bitrate`, `av_resolution`,
+`av_sample_rate`, `av_aspect_ratio`).
+
+- Wirkt nur auf MIME-Types `video/*`, `audio/*`, `image/*`. Alles andere
+  wird übersprungen.
+- Bei Bildern wird nur `av_resolution` (Breite × Höhe) befüllt — kein
+  Codec, keine Dauer.
+- Default-Filter überspringt Rows die schon mindestens einen `av_*`-Wert
+  haben. `--force` setzt das ausser Kraft.
+- Bei neuen Uploads läuft die Extraktion automatisch im
+  `MediumIdentifyAndConvert`-Listener (kein manueller Aufruf nötig). Dieser
+  Befehl ist primär für den **Backfill bestehender Medien**.
+
+Die Werte landen anschliessend im Memobase-RDF-Export als EBUcore-Properties
+und im Media-Tab der Objekt-Detail-Ansicht als kleine Info-Zeile.
+
 ## anton:import
 
 ## anton:restore

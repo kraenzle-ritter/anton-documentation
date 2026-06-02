@@ -84,6 +84,7 @@ nav:
       - DIP Download: admin/download-dip.md
       - Word-Findbuch: admin/download-word.md
       - OCFL Download: admin/download-ocfl.md
+      - RDF-Export (CIDOC CRM / Memobase): admin/download-rdf.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
     - SIP Ingest:

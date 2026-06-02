@@ -27,6 +27,19 @@ Für die folgenden Formate werden in Anton Benutzungskopien angefertigt. Der Imp
 - MPEG  
 - MP3  
 
+## Technische Metadaten (AV)
+
+Anton liest beim Upload via `ffprobe` automatisch technische Eigenschaften
+aus und zeigt sie im Media-Tab der Detailseite an: Dauer, Auflösung,
+Codec, Bitrate, Sample-Rate, Aspect-Ratio — soweit für die jeweilige
+Datei sinnvoll. Bei Fotos wird nur die Bildgrösse angezeigt, bei Audio
+keine Auflösung etc.
+
+Die Werte werden auch im RDF-Export (Memobase-Profil) als EBUcore-Properties
+mit ausgeliefert, siehe [RDF-Export](../admin/download-rdf.md). Für ältere
+Bestandsmedien lassen sich die Felder per Backfill nachholen — siehe
+[`media:extract-av-metadata`](../admin/console-commands.md#media-extract-av-metadata).
+
 
 ## Originalmedien bereitstellen
 Um für Kundinnen die originalen Medien bereitzustellen, kann man in einer Verzeichnungseinheit den Medien-Reiter aufrufen:
