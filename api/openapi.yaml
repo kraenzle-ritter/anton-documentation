@@ -189,13 +189,57 @@ paths:
     get:
       tags:
        - objects
-      summary: Get an AntonObject by its ID
+      summary: Get an AntonObject by its ID — JSON, TEI XML or RDF (three profiles, four serialisations)
+      description: >
+        Default returns the AntonObject as JSON (Eloquent API Resource).
+        With `format=tei` the response is a TEI Header XML.
+        With `format=cidoc-crm` (alias `rdf`/`cidoc`) the response is an RDF
+        export of the object subtree in the A+ profile (CIDOC CRM 7.1.x lead +
+        RiC-O 1.1 selective). With `format=ric` (alias `rico`) the response is
+        pure RiC-O 1.1. With `format=memobase` the response is the Memobase
+        JSON-LD profile (RiC-O with Memobase-specific @context for memobase.ch
+        ingest). For all three RDF profiles the `serialization` parameter
+        chooses the wire format: A+ and RiC-O accept all four
+        (`turtle`/`jsonld`/`rdfxml`/`ntriples`); Memobase accepts only
+        `jsonld` (default) and `turtle` (debug). See the
+        [RDF-Export-Dokumentation](../admin/download-rdf.md) for details.
       parameters:
         - $ref: '#/components/parameters/idParam'
         - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/objectFormatParam'
+        - $ref: '#/components/parameters/serializationParam'
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Default — AntonObject as Eloquent API Resource
+            application/xml:
+              schema:
+                type: string
+                description: TEI Header XML (when `format=tei`)
+            text/turtle:
+              schema:
+                type: string
+                description: RDF/Turtle (when `format=cidoc-crm` or `format=ric` with `serialization=turtle`)
+            application/ld+json:
+              schema:
+                type: object
+                description: JSON-LD (when `format` is one of the RDF profiles with `serialization=jsonld`)
+            application/rdf+xml:
+              schema:
+                type: string
+                description: RDF/XML (when `format=cidoc-crm` or `format=ric` with `serialization=rdfxml`)
+            application/n-triples:
+              schema:
+                type: string
+                description: N-Triples (when `format=cidoc-crm` or `format=ric` with `serialization=ntriples`)
+        400:
+          description: Bad request — e.g. unsupported `serialization` for the requested profile
+        403:
+          description: Forbidden — the object is not publicly accessible (`private=1`)
         404:
           description: AntonObject not found
   /objects/show:
@@ -486,6 +530,123 @@ paths:
       responses:
         200:
           description: OK
+  /ai-cataloging/profile:
+    get:
+      security:
+        - BearerAuth: []
+      tags:
+      - ai-cataloging
+      summary: resolve the effective AI-cataloging profile for a context
+      description: >
+        Control-plane endpoint (issue #219) consumed by external producers
+        such as agate. Walks Anton's scope chain (global → tenant →
+        objectform → subtree) and returns the flattened EffectiveProfile as
+        a flat JSON object (no `data` envelope) that mirrors the
+        `kraenzle-ritter/ai-cataloging` EffectiveProfile DTO 1:1, so the
+        consumer can deserialise it straight back into that class.
+        Tenant resolution is implicit from the hit domain + token — no tenant
+        parameter. Consumers are advised to cache the response for ~5 minutes.
+      parameters:
+        - name: slug
+          in: query
+          required: false
+          description: explicit profile slug override (UI picker); falls through to the scope walk if absent or unmatched
+          schema:
+            type: string
+        - name: objectform_id
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: subtree_root_id
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Effective profile resolved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EffectiveProfile'
+        401:
+          description: missing or invalid token
+        404:
+          description: no active profile resolved for the context
+  /ai-cataloging/usage:
+    post:
+      security:
+        - BearerAuth: []
+      tags:
+      - ai-cataloging
+      summary: log one externally-produced AI call
+      description: >
+        Writes a single row to `ai_usage_log`. `cost_chf` is the
+        provider-billed cost (NOT margin-adjusted — Anton applies the tenant
+        margin server-side to compute the billable cost). `success` maps to
+        the internal status (`true` → `ok`, `false` → `provider_error`). An
+        unknown `profile_slug` still logs the row with null profile FKs and
+        the slug preserved for drill-down. Consumers typically call this
+        asynchronously (the operator does not wait for it).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsageReport'
+      responses:
+        201:
+          description: row created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        401:
+          description: missing or invalid token
+        422:
+          description: validation error
+  /ai-cataloging/budget/status:
+    get:
+      security:
+        - BearerAuth: []
+      tags:
+      - ai-cataloging
+      summary: pre-call budget verdict for a month
+      description: >
+        Returns month-to-date spend, the cap, and a verdict. `status` is one
+        of `ok`, `soft_warn` (≥ 80 %), `hard_block` (≥ 100 %, or no budget
+        configured for the month — fail-closed). Consumers should refuse the
+        AI call when `status == hard_block`. Advised cache: ~30 seconds.
+      parameters:
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 2026
+        - name: month
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 12
+            example: 5
+      responses:
+        200:
+          description: budget status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BudgetStatus'
+        401:
+          description: missing or invalid token
+        422:
+          description: invalid year or month
 components:
   parameters:
     formatParam:
@@ -496,6 +657,47 @@ components:
         enum: [select2,json]
       description:
            default is `json`
+    objectFormatParam:
+      name: format
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - json
+          - tei
+          - cidoc-crm
+          - cidoc
+          - rdf
+          - ric
+          - rico
+          - memobase
+          - select2
+          - flat
+      description: >
+        Output format for `/objects/{id}`.
+        Default `json` (Eloquent API Resource).
+        `tei` returns a TEI Header XML.
+        `cidoc-crm` / `cidoc` / `rdf` (aliases) return the A+ RDF profile (CIDOC CRM lead + RiC-O 1.1 selective).
+        `ric` / `rico` (aliases) return pure RiC-O 1.1.
+        `memobase` returns the Memobase JSON-LD profile.
+        `select2` / `flat` are AJAX-helper shapes used internally.
+    serializationParam:
+      name: serialization
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - turtle
+          - jsonld
+          - rdfxml
+          - ntriples
+      description: >
+        Wire-format for the RDF profiles. Default per profile:
+        A+ (`cidoc-crm`) defaults to `turtle`; RiC-O (`ric`) and Memobase default to `jsonld`.
+        Memobase accepts only `jsonld` and `turtle`; A+ and RiC-O accept all four.
+        Ignored for non-RDF formats (`json`, `tei`).
     idParam:
       name: id
       in: path
@@ -543,9 +745,114 @@ components:
       in: query
       schema:
         type: string
+  schemas:
+    EffectiveProfile:
+      type: object
+      description: Flattened AI-cataloging profile (mirrors the package DTO).
+      properties:
+        slug:
+          type: string
+          example: foto-grunderschliessung
+        version:
+          type: integer
+          example: 3
+        providers:
+          type: array
+          items:
+            type: string
+          example: [infomaniak, anthropic]
+        model:
+          type: string
+          example: google/gemma-4-31B-it
+        promptTemplate:
+          type: string
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              required:
+                type: boolean
+              aiCanSuggest:
+                type: boolean
+              hints:
+                type: object
+                nullable: true
+        contextConfig:
+          type: object
+        languageHint:
+          type: string
+          nullable: true
+          example: de
+        videoStrategy:
+          type: string
+          enum: [direct, frames]
+        videoCapSeconds:
+          type: integer
+        frameIntervalSeconds:
+          type: integer
+        sceneDetectionEnabled:
+          type: boolean
+        auditEnabled:
+          type: boolean
+        auditThreshold:
+          type: integer
+    UsageReport:
+      type: object
+      required: [provider, model, tokens_in, tokens_out, cost_chf, success]
+      properties:
+        provider:
+          type: string
+          example: infomaniak
+        model:
+          type: string
+          example: google/gemma-4-31B-it
+        tokens_in:
+          type: integer
+          minimum: 0
+        tokens_out:
+          type: integer
+          minimum: 0
+        cost_chf:
+          type: number
+          description: provider-billed cost (Anton applies the tenant margin)
+          example: 0.0009
+        success:
+          type: boolean
+        latency_ms:
+          type: integer
+          nullable: true
+          example: 2870
+        profile_slug:
+          type: string
+          nullable: true
+        entry_uuid:
+          type: string
+          nullable: true
+          maxLength: 36
+        source:
+          type: string
+          maxLength: 32
+          default: agate
+    BudgetStatus:
+      type: object
+      properties:
+        spent_chf:
+          type: number
+          example: 12.45
+        limit_chf:
+          type: number
+          example: 20.00
+        status:
+          type: string
+          enum: [ok, soft_warn, hard_block]
   securitySchemes:
     # This section configures basic authentication with an API key.
     ApiKeyAuth:
       type: apiKey
       in: query
       name: api_token
+    # Bearer token (users.api_token) — preferred for AI-cataloging endpoints.
+    BearerAuth:
+      type: http
+      scheme: bearer
