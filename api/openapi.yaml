@@ -1,13 +1,7 @@
 openapi: 3.0.1
 info:
   title: Anton API
-  description: >
-    API documentation of Anton. Read endpoints for authority data
-    (actors, places, keywords) and the valuelists are public; endpoints
-    marked with a lock require an API token. The token is passed as the
-    `api_token` query parameter (`ApiKeyAuth`); the AI-cataloging
-    endpoints use a Bearer token (`BearerAuth`). Do not use this in
-    production yet.
+  description: 'API Documentation of Anton. Do not use this in production yet.'
   # contact:
   # email: info@anton.ch
   version: 0.0.1
@@ -38,16 +32,8 @@ tags:
     description: Places
   - name: users
     description: Users
-  - name: media
-    description: Media files (streamed binary)
   - name: valuelists
     description: Valuelists used in Anton
-  - name: sip
-    description: SIP ingest (eCH-0160) — machine-to-machine
-  - name: ai-cataloging
-    description: AI-cataloging control plane (consumed by external producers, e.g. agate)
-  - name: system
-    description: System / counts / authenticated user
 
 paths:
 
@@ -83,30 +69,11 @@ paths:
       responses:
         200:
           description: OK
-    post:
-      tags:
-        - actors
-      summary: Create an actor
-      security:
-        - ApiKeyAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ActorInput'
-      responses:
-        200:
-          description: Created — returns the actor as an API resource
-        422:
-          description: Validation error
   /actors/{id}:
     get:
       tags:
        - actors
       summary: Get an existing actor by its ID
-      security:
-        - ApiKeyAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -114,27 +81,6 @@ paths:
           description: OK
         404:
           description: Actor not found
-    put:
-      tags:
-        - actors
-      summary: Update an existing actor
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ActorInput'
-      responses:
-        200:
-          description: OK — returns the updated actor
-        404:
-          description: Actor not found
-        422:
-          description: Validation error
 
 # -------------
 # keywords
@@ -186,8 +132,6 @@ paths:
       tags:
         - locations
       summary: Get a list of existing locations of archival storages
-      security:
-        - ApiKeyAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - $ref: '#/components/parameters/perPageParam'
@@ -209,8 +153,6 @@ paths:
       tags:
        - locations
       summary: Get an existing location (archival storage) by its ID
-      security:
-        - ApiKeyAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -226,67 +168,9 @@ paths:
     get:
       tags:
         - objects
-      summary: Get a list of AntonObjects (with field filters)
-      description: >
-        Returns a paginated list of AntonObjects. Beyond the simple `search`
-        (full-text over all indexed fields), the list supports **structured
-        field filters** passed as three parallel arrays — `fields[]`,
-        `operators[]`, `values[]` — where the i-th filter is
-        `fields[i] operators[i] values[i]`. Multiple filters are AND-combined.
-
-
-        Operators: `=`, `<>` (not equal), `contains` (full-text / LIKE),
-        `not_in`; date and numeric fields additionally accept the comparison
-        operators `>`, `<`, `>=`, `<=`.
-
-
-        Common fields: `fulltext`, `object.identifier`, `object.title`,
-        `level_of_description`, `fonds`, `keywords`, `actors`, `places`,
-        `languages`, `city`, `state`, `country`, `creation_min`,
-        `creation_max`, `created_at`, `updated_at`, `private`, `digitized`,
-        `release_year`, `media.*`, `note.<field>`, `event*`. The available
-        descriptor (`note.*`) fields are tenant-specific (driven by the
-        ObjectForms).
-
-
-        Example —
-        `/objects?fields[]=object.title&operators[]=contains&values[]=Brief&fields[]=creation_min&operators[]=>=&values[]=1900`
-      security:
-        - ApiKeyAuth: []
+      summary: Get a list of AntonObjects
       parameters:
         - $ref: '#/components/parameters/searchParam'
-        - in: query
-          name: fields
-          description: Filter field names — parallel to `operators[]` and `values[]`.
-          style: form
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - in: query
-          name: operators
-          description: One comparison operator per filter (`=`, `<>`, `contains`, `not_in`, `>`, `<`, `>=`, `<=`).
-          style: form
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - in: query
-          name: values
-          description: One value per filter.
-          style: form
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - in: query
-          name: identifier
-          description: Shortcut — match the object with this exact identifier.
-          schema:
-            type: string
         - $ref: '#/components/parameters/perPageParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/sortFieldParam'
@@ -295,9 +179,9 @@ paths:
           name: format
           schema:
             type: string
-            enum: [json,select2,flat]
+            enum: [json,select2]
           description:
-               default is `json` (`flat` is a denormalised shape for Excel export)
+               default is `json`
       responses:
         200:
           description: OK
@@ -306,8 +190,6 @@ paths:
       tags:
        - objects
       summary: Get an AntonObject by its ID — JSON, TEI XML or RDF (three profiles, four serialisations)
-      security:
-        - ApiKeyAuth: []
       description: >
         Default returns the AntonObject as JSON (Eloquent API Resource).
         With `format=tei` the response is a TEI Header XML.
@@ -365,8 +247,6 @@ paths:
       tags:
        - objects
       summary: Get the first AntonObject by the search parameters, usually used with an identifier
-      security:
-        - ApiKeyAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
       responses:
@@ -404,23 +284,6 @@ paths:
       responses:
         200:
           description: OK
-    post:
-      tags:
-        - places
-      summary: Create a place
-      security:
-        - ApiKeyAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlaceInput'
-      responses:
-        200:
-          description: Created — returns the place as an API resource
-        422:
-          description: Validation error
   /places/{id}:
     get:
       tags:
@@ -433,27 +296,6 @@ paths:
           description: OK
         404:
           description: Place not found
-    post:
-      tags:
-        - places
-      summary: Update an existing place
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlaceInput'
-      responses:
-        200:
-          description: OK — returns the updated place
-        404:
-          description: Place not found
-        422:
-          description: Validation error
 # -------------
 # users
 # -------------
@@ -805,250 +647,6 @@ paths:
           description: missing or invalid token
         422:
           description: invalid year or month
-
-# -------------
-# objects (extra)
-# -------------
-  /objects/versions:
-    get:
-      tags:
-        - objects
-      summary: Map of object id → version string (for change detection)
-      security:
-        - ApiKeyAuth: []
-      responses:
-        200:
-          description: OK
-  /objects/first:
-    get:
-      tags:
-        - objects
-      summary: Get the first AntonObject matching the search (typically by identifier)
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - $ref: '#/components/parameters/searchParam'
-      responses:
-        200:
-          description: OK
-        404:
-          description: AntonObject not found
-  /objects/{object_id}/media/first:
-    get:
-      tags:
-        - media
-      summary: Stream the first media file of an object
-      description: Returns the binary media file (Content-Type per mime type), with cloud/Inge fallback when the local file is missing.
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - name: object_id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        200:
-          description: OK — binary media file
-        404:
-          description: No media found
-
-# -------------
-# places (extra)
-# -------------
-  /places/{id}/antonevents:
-    get:
-      tags:
-        - places
-      summary: Events (antonevents) linked to a place
-      description: Default JSON; `format=kml` returns a KML document with placemarks (address, coordinates, timestamp).
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-        - in: query
-          name: format
-          schema:
-            type: string
-            enum: [json, kml]
-      responses:
-        200:
-          description: OK
-
-# -------------
-# media
-# -------------
-  /media/{id}:
-    get:
-      tags:
-        - media
-      summary: Stream a media file by its ID
-      description: Returns the binary media file with the appropriate Content-Type (cloud/Inge fallback when the local file is missing).
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      responses:
-        200:
-          description: OK — binary media file
-        404:
-          description: Media not found
-
-# -------------
-# system / counts / auth
-# -------------
-  /auth_user:
-    get:
-      tags:
-        - users
-      summary: The authenticated user (resolved from the API token)
-      security:
-        - ApiKeyAuth: []
-      responses:
-        200:
-          description: OK
-  /timeline:
-    get:
-      tags:
-        - system
-      summary: Object counts grouped by creation date
-      description: Returns a map of creation date → object count, optionally restricted to one object type.
-      parameters:
-        - in: query
-          name: object_type
-          description: Object-type label (e.g. "Brief") to restrict the timeline.
-          schema:
-            type: string
-      responses:
-        200:
-          description: OK
-  /counts:
-    get:
-      tags:
-        - system
-      summary: Entity counts for the tenant
-      description: Cached counts of objects (intern/extern), actors, places, keywords, images and documents.
-      responses:
-        200:
-          description: OK
-  /ai/schema:
-    get:
-      tags:
-        - system
-      summary: AI archival-description JSON schema
-      description: The JSON schema describing the fields an AI cataloging producer may fill.
-      security:
-        - ApiKeyAuth: []
-      responses:
-        200:
-          description: OK
-
-# -------------
-# valuelists (extra)
-# -------------
-  /antonfields/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get the list of Antonfields (form fields) in a language.
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /keyword-types/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get a list of keyword types in a language.
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /cities/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get the list of cities used to describe places (returns name => name pairs).
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /states/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get the list of states/cantons used to describe places.
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /objectform-types/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get a list of objectform types in a language.
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /user-roles/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get the list of user roles (returns name => name pairs).
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-  /yes-no/{locale}:
-    get:
-      tags:
-        - valuelists
-      summary: Get a yes/no valuelist in a language.
-      parameters:
-        - $ref: '#/components/parameters/localeParam'
-        - $ref: '#/components/parameters/formatParam'
-      responses:
-        200:
-          description: OK
-
-# -------------
-# sip (extra)
-# -------------
-  /sips/import:
-    post:
-      tags:
-        - sip
-      summary: Import an eCH-0160 SIP (machine-to-machine, e.g. agate)
-      description: Starts a SIP import. The id used by /sips/{sip_id}/status is an importevents id (distinct from the antonobjects id used by /sips/{sip_id}/confirm and /revert).
-      security:
-        - ApiKeyAuth: []
-      responses:
-        200:
-          description: OK
-  /sips/{sip_id}/status:
-    get:
-      tags:
-        - sip
-      summary: Status of a SIP import job
-      security:
-        - ApiKeyAuth: []
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      responses:
-        200:
-          description: OK
-
 components:
   parameters:
     formatParam:
@@ -1148,106 +746,6 @@ components:
       schema:
         type: string
   schemas:
-    ActorInput:
-      type: object
-      description: >
-        Payload for creating/updating an actor. `label` is the translatable
-        display name keyed by locale. `note_<locale>_<id>` keys carry note
-        objects (`{ "text": "..." }`); on update an empty text deletes the note.
-      required: [label]
-      properties:
-        private:
-          type: boolean
-          nullable: true
-        type_id:
-          type: integer
-          description: Authority type — a term id (see /authority-types)
-        name:
-          type: string
-          maxLength: 255
-        label:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          example: { de: "Müller, Hans", fr: "Müller, Hans" }
-        alternative_names:
-          type: array
-          items:
-            type: string
-          nullable: true
-        variants:
-          type: array
-          items:
-            type: string
-          nullable: true
-        abbreviations:
-          type: array
-          items:
-            type: string
-          nullable: true
-        anton_date_start:
-          type: string
-          nullable: true
-        anton_date_end:
-          type: string
-          nullable: true
-        comment:
-          type: string
-          nullable: true
-    PlaceInput:
-      type: object
-      description: >
-        Payload for creating/updating a place. Either `name` or `label`
-        (translatable, keyed by locale) is required. `location` is
-        `"<lat> <lon>"` (decimal) or Swiss coordinates.
-      properties:
-        type_id:
-          type: integer
-          nullable: true
-          description: Place type — a term id (see /place-types)
-        name:
-          type: string
-          maxLength: 255
-        label:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-        city:
-          type: string
-          nullable: true
-        state:
-          type: string
-          nullable: true
-        address:
-          type: string
-          nullable: true
-        country_code_id:
-          type: string
-          nullable: true
-        location:
-          type: string
-          nullable: true
-          example: "47.3769 8.5417"
-        alternative_names:
-          type: array
-          items:
-            type: string
-          nullable: true
-        variants:
-          type: array
-          items:
-            type: string
-          nullable: true
-        abbreviations:
-          type: array
-          items:
-            type: string
-          nullable: true
-        comment:
-          type: string
-          nullable: true
     EffectiveProfile:
       type: object
       description: Flattened AI-cataloging profile (mirrors the package DTO).
