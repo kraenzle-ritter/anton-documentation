@@ -51,3 +51,14 @@ Ein zentraler Ereignistyp ist die Erstellung. Das Erstelldatum ist Grundlage fü
 !!! note "TIPP: Verwendung des Erstelldatum"
     Jede Verzeichnungseinheit ohne Kinder sollte mit einem Erstelldatum erschlossen werden.  
     Um Widersprüche zu vermeiden, sollten nur Verzeichnungseinheiten ohne Kinder mit einem Erstelldatum erschlossen werden.
+
+!!! note "Rückfall auf das Provenienz-Datum"
+    Hat eine Verzeichnungseinheit (z. B. ein Bestand oder Nachlass) in ihrem
+    gesamten Teilbaum **kein** Erstelldatum, trägt aber ein eigenes
+    **Provenienz**-Ereignis mit Datum, so wird dieses Provenienz-Datum als
+    Laufzeit verwendet (in der Detailansicht und in den Findmitteln).
+
+    Dieser Rückfall füllt nur Lücken: Sobald irgendwo im Teilbaum ein
+    Erstelldatum vorhanden ist – am Objekt selbst oder bei einem Nachkommen –,
+    hat dieses Vorrang. Das eigene Provenienz-Datum wird dabei **nicht** nach
+    oben verrechnet.
