@@ -2044,13 +2044,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Kommando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optionen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optionen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#geplanter-betrieb" class="md-nav__link">
+  <a href="#konfiguration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Geplanter Betrieb
+        Konfiguration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Konfiguration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#welche-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Welche Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalisierung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalisierung
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cronjob-einrichten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cronjob einrichten
       
     </span>
   </a>
@@ -2690,13 +2757,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Kommando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optionen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optionen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#geplanter-betrieb" class="md-nav__link">
+  <a href="#konfiguration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Geplanter Betrieb
+        Konfiguration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Konfiguration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#welche-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Welche Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalisierung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalisierung
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cronjob-einrichten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cronjob einrichten
       
     </span>
   </a>
@@ -2731,20 +2865,107 @@ nutzerseitige Sicht auf das Thema beschreibt <a href="../../user/authorities/">N
 <h2 id="kommando">Kommando<a class="headerlink" href="#kommando" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>resources:sync<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
 </code></pre></div>
-<p>Der Lauf geht alle Entitäten durch, die bereits eine Ressource eines
-Providers besitzen, fragt den jeweiligen Provider erneut ab und ergänzt neu
-verfügbare Links. Zusätzlich bereinigt er doppelte Einträge und
-vereinheitlicht die Provider-Bezeichnungen.</p>
-<p><code>{slug}</code> ist der Environment-Slug der jeweiligen Installation (wie bei den
-übrigen <code>--env</code>-Kommandos).</p>
-<h2 id="geplanter-betrieb">Geplanter Betrieb<a class="headerlink" href="#geplanter-betrieb" title="Permanent link">&para;</a></h2>
-<p>In den produktiven Installationen läuft der Abgleich <strong>automatisiert und
-wiederkehrend</strong> als geplanter Job (Scheduler). Die Frequenz ist pro
-Installation konfigurierbar und wird bei Bedarf angepasst; ein manueller
-Eingriff pro neuem Link ist nicht nötig. Neue Verknüpfungen erscheinen
-spätestens beim nächsten geplanten Lauf.</p>
-<p>Der manuelle Aufruf oben ist vor allem für Erstbefüllung, Tests oder einen
-sofortigen Abgleich ausserhalb des Zeitplans gedacht.</p>
+<p>Ein Lauf führt der Reihe nach drei Schritte aus:</p>
+<ol>
+<li><strong>Provider-Namen normalisieren</strong> – veraltete Provider-Bezeichnungen werden
+   auf die kanonische Form gebracht (siehe <a href="#normalisierung">Normalisierung</a>).</li>
+<li><strong>Duplikate prüfen</strong> – Ressourcen mit identischer URL werden gemeldet (und
+   auf Wunsch entfernt, siehe <code>--delete-duplicates</code>).</li>
+<li><strong>Entitäten abgleichen</strong> – alle Akteur:innen, Orte und Schlagwörter, die
+   bereits eine Ressource eines der Sync-Provider besitzen, werden erneut beim
+   jeweiligen Provider abgefragt und um neu verfügbare Links ergänzt.</li>
+</ol>
+<p>Am Ende wird eine Zusammenfassung ausgegeben (verarbeitete/aktualisierte
+Entitäten, neue Ressourcen, Fehler, bereinigte Duplikate).</p>
+<h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Wirkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--env={slug}</code></td>
+<td>Ziel-Installation (Environment-Slug), wie bei allen <code>--env</code>-Kommandos.</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>Nichts schreiben, nur simulieren und berichten.</td>
+</tr>
+<tr>
+<td><code>--limit={n}</code></td>
+<td>Nur die ersten <em>n</em> Entitäten je Modell verarbeiten (zum Testen).</td>
+</tr>
+<tr>
+<td><code>--delete-duplicates</code></td>
+<td>Gefundene URL-Duplikate tatsächlich löschen (ohne Flag nur melden).</td>
+</tr>
+<tr>
+<td><code>--mail={adresse}</code></td>
+<td>Zusammenfassung per E-Mail senden (mehrere Adressen kommasepariert).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="konfiguration">Konfiguration<a class="headerlink" href="#konfiguration" title="Permanent link">&para;</a></h2>
+<h3 id="welche-provider">Welche Provider<a class="headerlink" href="#welche-provider" title="Permanent link">&para;</a></h3>
+<p>Beim <strong>interaktiven Verknüpfen</strong> im Bearbeitungsformular steht die volle Liste
+der in <code>config/resources.php</code> (Schlüssel <code>providers</code>) definierten Provider zur
+Verfügung – u. a. GND, Wikidata, Metagrid, GeoNames, ortsnamen.ch, Idiotikon,
+diverse Wikipedia-Sprachen sowie zahlreiche Nachschlagewerke und Partnerarchive.
+Jede Provider-Definition legt <code>api-type</code>, <code>base_url</code>, die <code>target_url</code> des
+gespeicherten Links und – wo zutreffend – die <code>wikidata_property</code> fest;
+Anton-basierte Partnerarchive (z. B. Georg Fischer, Gosteli, KBA) benötigen
+zusätzlich einen <code>api_token</code> aus der <code>.env</code>.</p>
+<p>Der <strong>periodische Abgleich</strong> <code>resources:sync</code> fragt jedoch nur die drei
+Provider erneut ab, für die eine Live-Nachführung sinnvoll ist – in dieser
+Reihenfolge:</p>
+<ol>
+<li><code>metagrid</code></li>
+<li><code>gnd</code></li>
+<li><code>wikidata</code></li>
+</ol>
+<p>Abgeglichen werden die Modelle <strong>Actor</strong>, <strong>Place</strong> und <strong>Keyword</strong>. Eine
+Entität wird nur berührt, wenn sie bereits mindestens eine Ressource eines
+dieser Provider besitzt – der Abgleich ergänzt vorhandene Verknüpfungen, er
+legt keine völlig neuen an.</p>
+<div class="admonition note">
+<p class="admonition-title">Neue Provider aufnehmen</p>
+<p>Zusätzliche Provider (oder geänderte Basis-URLs/Tokens) sind eine
+Code-/Konfigurationssache im <code>config/resources.php</code> und werden mit einem
+Deploy ausgerollt, nicht über <code>/settings</code>. Ob ein Provider auch in den
+periodischen Abgleich aufgenommen wird, ist im Kommando selbst festgelegt.</p>
+</div>
+<h3 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
+<p>Der Abgleich übergibt beim Nachführen den Wert des Settings
+<code>resources_filter</code> an den Provider (leer, falls nicht gesetzt). Damit lassen
+sich Treffer installationsweit einschränken.</p>
+<h3 id="normalisierung">Normalisierung<a class="headerlink" href="#normalisierung" title="Permanent link">&para;</a></h3>
+<p>Der <code>rename</code>-Abschnitt in <code>config/resources.php</code> bildet veraltete oder
+uneinheitliche Provider-Slugs auf die kanonische Form ab (z. B. <code>loc</code> →
+<code>lcnaf</code>, <code>wikipedia</code> → <code>wikipedia-de</code>, <code>sudoc</code> → <code>idref</code>). Jeder Sync-Lauf
+wendet diese Zuordnung zuerst an, damit der Bestand konsistent bleibt.</p>
+<h2 id="cronjob-einrichten">Cronjob einrichten<a class="headerlink" href="#cronjob-einrichten" title="Permanent link">&para;</a></h2>
+<p>Auf den produktiven Servern ist der Laravel-Scheduler (<code>schedule:run</code>)
+<strong>nicht</strong> installiert. Der Abgleich wird stattdessen <strong>pro Installation als
+eigener Crontab-Eintrag</strong> eingerichtet – auf den k&amp;r-Servern über
+<strong>anton-ansible</strong> provisioniert, nicht in <code>app/Console/Kernel.php</code>.</p>
+<p>Ein Eintrag ruft das Kommando direkt mit dem Environment-Slug auf, z. B. für
+einen nächtlichen Lauf:</p>
+<div class="highlight"><pre><span></span><code># Normdaten-Abgleich für die Installation &quot;besenval&quot;, täglich 02:30
+30 2 * * *  cd /var/www/anton &amp;&amp; php artisan resources:sync --env=besenval --delete-duplicates --mail=admin@example.org &gt;&gt; storage/logs/resources-sync.log 2&gt;&amp;1
+</code></pre></div>
+<ul>
+<li><strong>Pro Environment ein eigener Eintrag</strong> – der Slug bestimmt die
+  Zielinstallation.</li>
+<li>Die <strong>Frequenz</strong> ist pro Installation frei wählbar (üblich: nächtlich); wegen
+  der Rate-Limits gegenüber den externen APIs läuft ein grosser Bestand nicht
+  im Sekundenbereich durch.</li>
+<li><code>--delete-duplicates</code> und <code>--mail=</code> sind optional, im geplanten Betrieb aber
+  üblich, um den Bestand sauber zu halten und über das Ergebnis informiert zu
+  werden.</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Metagrid-Partnerschaft</p>
 <p>Damit die <strong>eigenen</strong> Akteur:innen bei Metagrid erscheinen, muss die
