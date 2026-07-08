@@ -56,7 +56,7 @@ nav:
     - Volltextsuche: user/search.md
     - Schnelle Suche: user/search-v2.md
     - Gewichtete Suche: user/weighted-search.md
-    - Externe Ressourcen (Metagrid): user/resources.md
+    - Normdaten: user/resources.md
     - DIP herunterladen: user/download-dip.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
