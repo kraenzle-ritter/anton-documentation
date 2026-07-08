@@ -2095,6 +2095,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin/authorities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normdaten-Abgleich
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin/weighted-search/" class="md-nav__link">
         
   
@@ -2819,19 +2847,16 @@ unabhängig von der Verfügbarkeit der externen Dienste – bedeutet aber, dass
 neu hinzugekommene externe Links erst nach einem <strong>Abgleich</strong> erscheinen.</p>
 </div>
 <h2 id="abgleich-synchronisation">Abgleich (Synchronisation)<a class="headerlink" href="#abgleich-synchronisation" title="Permanent link">&para;</a></h2>
-<p>Der Abgleich erfolgt über das Kommando <code>resources:sync</code>. Es geht alle
-Entitäten durch, die bereits eine Ressource eines Providers besitzen, fragt den
-jeweiligen Provider erneut ab und ergänzt neu verfügbare Links. Zusätzlich
-bereinigt der Lauf doppelte Einträge und vereinheitlicht Provider-Bezeichnungen.</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>resources:sync<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
-</code></pre></div>
+<p>Neu hinzugekommene externe Links erscheinen in Anton erst nach einem
+<strong>Abgleich</strong> mit den Providern. Dieser Abgleich läuft in den produktiven
+Installationen <strong>automatisiert und wiederkehrend</strong> als geplanter Job; die
+Frequenz ist pro Installation konfigurierbar. Ein manueller Eingriff pro neuem
+Link ist nicht nötig – neue Verknüpfungen tauchen von selbst auf, spätestens
+beim nächsten geplanten Lauf.</p>
 <div class="admonition info">
-<p class="admonition-title">Automatischer Abgleich</p>
-<p>In den produktiven Installationen läuft dieser Abgleich <strong>automatisiert und
-wiederkehrend</strong> als geplanter Job. Die Frequenz ist pro Installation
-konfigurierbar und wird bei Bedarf angepasst; ein manueller Eingriff pro
-neuem Link ist nicht nötig. Neue Verknüpfungen tauchen also von selbst auf –
-spätestens beim nächsten geplanten Lauf.</p>
+<p class="admonition-title">Für Administration</p>
+<p>Das zugrundeliegende Kommando <code>resources:sync</code> und der geplante Betrieb
+sind unter <a href="../../admin/authorities/">Normdaten-Abgleich</a> beschrieben.</p>
 </div>
 <h2 id="zwei-richtungen">Zwei Richtungen<a class="headerlink" href="#zwei-richtungen" title="Permanent link">&para;</a></h2>
 <p>Für das Zusammenspiel mit einem Verknüpfungsdienst wie Metagrid lohnt es sich,
@@ -2872,8 +2897,8 @@ an den Verknüpfungsdienst bzw. den Partner.</p>
 <p>Kommen beim Verknüpfungsdienst neue Partnerinstitutionen hinzu, entstehen
 zusätzliche Verlinkungsmöglichkeiten für bestehende Akteur:innen. Diese neuen
 Links erscheinen in Anton <strong>nach dem nächsten Abgleich</strong> – also durch den oben
-beschriebenen, geplanten <code>resources:sync</code>-Lauf. Es ist kein manuelles Vorgehen
-pro Link erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
+beschriebenen, geplanten Lauf. Es ist kein manuelles Vorgehen pro Link
+erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
 Verknüpfungen automatisch nach.</p>
 <h2 id="zusammengefasst">Zusammengefasst<a class="headerlink" href="#zusammengefasst" title="Permanent link">&para;</a></h2>
 <ul>
