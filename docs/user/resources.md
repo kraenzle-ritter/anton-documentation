@@ -1,4 +1,4 @@
-# Externe Ressourcen (Metagrid, GND, Wikidata …)
+# Normdaten (GND, Wikidata, Metagrid …)
 
 Akteur:innen, Orte und Schlagwörter können mit Einträgen in externen
 Normdatenbanken und Nachschlagewerken verknüpft werden – etwa mit der
