@@ -105,6 +105,7 @@ nav:
     - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md
     - Commands: admin/console-commands.md
+    - Normdaten-Abgleich: admin/authorities.md
     - Gewichtete Suche: admin/weighted-search.md
     - Testinstallation k & r: admin/testarchive.md
   - API: 

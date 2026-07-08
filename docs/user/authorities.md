@@ -26,21 +26,16 @@ Ressource gespeichert werden. Anton legt daraufhin einen Link in einer eigenen
 
 ## Abgleich (Synchronisation)
 
-Der Abgleich erfolgt über das Kommando `resources:sync`. Es geht alle
-Entitäten durch, die bereits eine Ressource eines Providers besitzen, fragt den
-jeweiligen Provider erneut ab und ergänzt neu verfügbare Links. Zusätzlich
-bereinigt der Lauf doppelte Einträge und vereinheitlicht Provider-Bezeichnungen.
+Neu hinzugekommene externe Links erscheinen in Anton erst nach einem
+**Abgleich** mit den Providern. Dieser Abgleich läuft in den produktiven
+Installationen **automatisiert und wiederkehrend** als geplanter Job; die
+Frequenz ist pro Installation konfigurierbar. Ein manueller Eingriff pro neuem
+Link ist nicht nötig – neue Verknüpfungen tauchen von selbst auf, spätestens
+beim nächsten geplanten Lauf.
 
-```bash
-php artisan resources:sync --env={slug}
-```
-
-!!! info "Automatischer Abgleich"
-    In den produktiven Installationen läuft dieser Abgleich **automatisiert und
-    wiederkehrend** als geplanter Job. Die Frequenz ist pro Installation
-    konfigurierbar und wird bei Bedarf angepasst; ein manueller Eingriff pro
-    neuem Link ist nicht nötig. Neue Verknüpfungen tauchen also von selbst auf –
-    spätestens beim nächsten geplanten Lauf.
+!!! info "Für Administration"
+    Das zugrundeliegende Kommando `resources:sync` und der geplante Betrieb
+    sind unter [Normdaten-Abgleich](../admin/authorities.md) beschrieben.
 
 ## Zwei Richtungen
 
@@ -84,8 +79,8 @@ Antons Beitrag zu dieser Richtung ist zweierlei:
 Kommen beim Verknüpfungsdienst neue Partnerinstitutionen hinzu, entstehen
 zusätzliche Verlinkungsmöglichkeiten für bestehende Akteur:innen. Diese neuen
 Links erscheinen in Anton **nach dem nächsten Abgleich** – also durch den oben
-beschriebenen, geplanten `resources:sync`-Lauf. Es ist kein manuelles Vorgehen
-pro Link erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
+beschriebenen, geplanten Lauf. Es ist kein manuelles Vorgehen pro Link
+erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
 Verknüpfungen automatisch nach.
 
 ## Zusammengefasst
