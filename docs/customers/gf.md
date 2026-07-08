@@ -32,3 +32,61 @@ LEFT JOIN (
 	GROUP BY resourceable_id
 ) r ON r.resourceable_id = a.id
 ```
+
+## Akteure entsperren (2026-04-27)
+
+Aktuell gesperrte Akteure entsperren, wenn  
+- verstorben (Datum bis nicht leer)
+- Geburtsdatum über 100 Jahre (Datum von < 1926)
+- Akteur mit externen Links verknüpft
+
+Vorschau
+```sql
+SELECT
+      a.id,
+      JSON_UNQUOTE(JSON_EXTRACT(a.label, '$.de')) AS label_de,
+      a.date_start,
+      a.date_end,
+      CASE
+          WHEN a.date_end IS NOT NULL AND a.date_end <> '0000-00-00' THEN 'verstorben'
+          WHEN a.date_start IS NOT NULL AND a.date_start <> '0000-00-00' AND
+  a.date_start < '1926-01-01' THEN 'vor 1926 geboren'
+          WHEN EXISTS (
+              SELECT 1 FROM resources r
+              WHERE r.resourceable_type = 'App\\Models\\Actor'
+                AND r.resourceable_id   = a.id
+          ) THEN 'externe Links'
+      END AS reason
+  FROM actors a
+  WHERE a.private = 1
+    AND (
+          (a.date_end   IS NOT NULL AND a.date_end   <> '0000-00-00')
+       OR (a.date_start IS NOT NULL AND a.date_start <> '0000-00-00' AND a.date_start
+  < '1926-01-01')
+       OR EXISTS (
+              SELECT 1 FROM resources r
+              WHERE r.resourceable_type = 'App\\Models\\Actor'
+                AND r.resourceable_id   = a.id
+          )
+    )
+  ORDER BY label_de;
+```
+
+Entsperrung
+```sql
+UPDATE actors a
+  SET a.private    = 0,
+      a.updated_at = NOW(),
+      a.updated_by = 'anton'
+  WHERE a.private = 1
+    AND (
+          (a.date_end   IS NOT NULL AND a.date_end   <> '0000-00-00')
+       OR (a.date_start IS NOT NULL AND a.date_start <> '0000-00-00' AND a.date_start
+  < '1926-01-01')
+       OR EXISTS (
+              SELECT 1 FROM resources r
+              WHERE r.resourceable_type = 'App\\Models\\Actor'
+                AND r.resourceable_id   = a.id
+          )
+    );
+```
