@@ -1,103 +1,69 @@
 # Fields
 
-All fields must have a name.
+All fields must have a `name` (or `field` for edit/create forms).
 
 ## Attributes
 
-### `@name`
+### `name`
 
 Rules: `string`
 
-Description: There must be an attribute or an accessor in the model which returns the name of the model. 
+The model attribute name or accessor that returns the value to display/edit.
 
-### `@type` 
+### `type`
 
-Rules: `nullable|string|in:display,...`
+Rules: `nullable|string`
 
-Default: Display
+Default: `display`
 
-Description: Contains a field type like textarea, input ...
+Determines how the field is rendered. See [Forms — Field Types](forms.md#field-types) for the full list including `text`, `textarea`, `select`, `select2`, `radio`, `checkbox`, `number`, `email`, `display`, `section`, `note`, `antonevent`, `module`, `buttons`, and more.
 
+**Auto-switch to display:** In `detail` and `list` forms, input types (`text`, `textarea`, `select`, `select2`, `radio`) automatically render as `display`. One field definition covers both edit and detail views.
 
-### `@label`
+### `label`
 
-Rules: `nullable|string` 
+Rules: `nullable|string`
 
-Description: Contains a key from `resources/lang/messages.php`. 
+- **DB-path forms:** Resolved from `antonfields.label` (translatable JSON) or overridden via `pivot.label`. Always returned as a plain string in the current locale — no `trans()` needed.
+- **PHP-path forms:** A translation key string (e.g. `'Name'`). Templates apply `trans('messages.{label}')` with fallback to the raw string.
 
-`@labelCssClass` 
+### `valuelist`
 
-Rules: `nullable|string` 
+Rules: `nullable|string`
 
-Default: `col-md-2`
+Key for select/radio options (e.g. `authority_type`, `countries`, `place_type`).
 
-Description: Contains a CSS class für the label.
+### `sortField`
 
-`@fieldCssClass`
+Rules: `nullable|string`
 
-Rules: `nullable|string` 
+DB column to ORDER BY when sorting this column in list forms. Stored in `pivot.config` for DB forms.
 
-Default: `col-md-10`
+### `help`
 
-Description: Contains a CSS class für the field div.
+Rules: `nullable|string|json`
 
+Help text displayed below the field. DB forms use translatable JSON; PHP forms use plain strings.
 
-## display
+## Module types
 
-Shows information. Standard field for `detail` and `detail_intern` forms.
+Modules are complex components rendered via `type: 'module'`. The component is resolved from the field's `name`:
 
-- required: `name`, `label` 
-    
-!!! note
-    `name` must correspond to an attribute or accessor of the model
+| Field name | Component | Used on |
+|-----------|-----------|---------|
+| `actors` | `modules.actors.table` | AntonObject |
+| `places` | `modules.places.table` | AntonObject |
+| `keywords` | `modules.keyword` | AntonObject |
+| `media` / `images` | `modules.images` | AntonObject |
+| `language` | `modules.language` | AntonObject |
+| `relations` | `modules.relations` | AntonObject |
+| `access` | `modules.access` | AntonObject |
+| `updates` | `modules.updates` | All entities |
+| `permalink` | `modules.permalink` | All entities |
+| `anton_date_interval` | `modules.anton-date-interval` | Actor |
+| `extent` | `modules.extent` | AntonObject |
+| `vacat` | `modules.vacat` | AntonObject |
+| `title` | `modules.title` | AntonObject |
+| `label` | `modules.label` | Actor, Place, Keyword |
 
-## module_actors
-
-Displays actors as descriptors.
-
-- uses: `$model->actors->links()`
-- required: `label`
-
-## module_event
-
-Displays an antonevents of the same type. 
-
-- uses: 
-    - `$model->hasChrildren()`
-    - `$model->creationDateLabel`
-    - `model->antonevents`
-- required: 
-    - (string) `eventtype` ("creation"), 
-    - `label`
-    - `modus`
-- restricted to: `antonobjects` (other entities dont have children)
-
-## module_keywords
-
-Displays keywords as descriptors.
-
-- uses: `$model->keywords->links()`
-- required: `label`
-
-## module_permalink
-
-Shows a permanent link with endpoint and id (eg. "/actors/3")
- 
-- uses: `$endpoint`, `$model->id`
-- required: `label`
-
-## module_places
-
-Displays places as descriptors.
-
-- uses: `$model->places->links()`
-- required: `label`
-
-## section
-
-Separates and titles information areas.
-
-- required: `label`  
-- options: `with_save_button`
-
-## textarea
+See [Forms](forms.md) for the complete documentation.
