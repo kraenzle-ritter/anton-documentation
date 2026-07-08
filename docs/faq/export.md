@@ -26,6 +26,23 @@ Anton ist die **einzige Schweizer Archivdatenbank**, die alle drei in der Archiv
 
 Alle Profile werden aus derselben Datenbasis erzeugt und sind in **vier Serialisierungen** verfügbar: RDF/Turtle, JSON-LD, RDF/XML, N-Triples. Zugang über UI, REST-API und CLI. Mehr Details: [RDF-Export-Dokumentation](../admin/download-rdf.md).
 
+## Statische Publikation & Round-Trip
+
+Ein ganzer (Teil-)Bestand samt Medien lässt sich in *eine* ZIP-Datei
+packen — ohne dass zur Anzeige oder Wiederherstellung eine laufende
+Anton-Instanz nötig ist:
+
+- **A+ Static Bundle** — CIDOC/RiC-O-Graph + Medien, datenschutz-gefiltert
+  und offline-hostbar (z. B. GitHub Pages). Für die *Publikation*.
+- **Nativer Round-Trip** — das Anton-eigene Format + Master-Medien,
+  **verlustfrei und wieder importierbar** (`anton:export-native` /
+  `anton:import-native`). Für *Backup / Umzug* zwischen Anton-Instanzen.
+
+So können kleine Archive Anton als Editor nutzen und ihren Bestand quasi
+kostenlos statisch im Netz zeigen. Ein konkreter Vergleich der beiden
+Formate (anton-format ↔ CIDOC) und die Vision eines statischen Viewers:
+[Statische Publikation & Round-Trip](../admin/statische-publikation.md).
+
 ## OCFL Download
 
 Mehrere Schweizer Langzeitarchive (UB Basel, DLZA) erwarten OCFL (Oxford Common File Layout) für die Übergabe von Beständen. Anton liefert OCFL v1.1 als ZIP-Paket pro Objekt oder pro Bestand, inkl. EAD-Metadaten und Anton-Import-Format für Round-Trips. Mehr: [OCFL-Download-Dokumentation](../admin/download-ocfl.md).
