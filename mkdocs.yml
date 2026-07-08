@@ -56,7 +56,7 @@ nav:
     - Volltextsuche: user/search.md
     - Schnelle Suche: user/search-v2.md
     - Gewichtete Suche: user/weighted-search.md
-    - Normdaten: user/resources.md
+    - Normdaten: user/authorities.md
     - DIP herunterladen: user/download-dip.md
     #- SIP Ingest: user/sip-ingest.md
     # - Formulare: user/forms.md
@@ -67,7 +67,7 @@ nav:
     #  - Akteure: user/actors.md
     #  - Orte: user/places.md
     #  - Schlagwörter: user/keywords.md
-    # - Externe Ressourcen: user/resources.md
+    # - Externe Ressourcen: user/authorities.md
   - Developer:
     - Events/Jobs: developer/events-jobs.md
     - Forms & Formsets: developer/forms.md
