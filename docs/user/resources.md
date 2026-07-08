@@ -62,6 +62,15 @@ Antons Beitrag zu dieser Richtung ist zweierlei:
   [Anton-API](../api/index.md), so dass Partner sie periodisch abgreifen können
   (seitenweise, gefiltert nach Entitätstyp).
 
+!!! warning "Voraussetzung: Partnerschaft bei Metagrid"
+    Diese Richtung – die eigenen Akteur:innen für den Verknüpfungsdienst
+    sichtbar zu machen – funktioniert **nur**, wenn sich die Institution zuvor
+    als **Partner bei Metagrid angemeldet** hat. Ohne diese Partnerschaft
+    werden die in Anton erfassten Personen von Metagrid nicht aufgenommen und
+    entstehen dort auch keine Rücklinks. Die Anmeldung erfolgt direkt bei
+    [Metagrid](https://metagrid.ch/) und ist unabhängig vom technischen
+    Abgleich in Anton.
+
 !!! tip "Praxis"
     Ein Eintrag, der publiziert wurde, *bevor* es die zugehörige Akteurin in
     Anton gab, enthält zunächst keinen Rücklink auf Anton – der Zieldatensatz
@@ -86,3 +95,5 @@ Verknüpfungen automatisch nach.
   übernimmt neu verfügbare Links selbständig.
 - Wie schnell **andere** Institutionen eine neue Anton-Akteurin aufnehmen,
   bestimmen diese Institutionen bzw. der Verknüpfungsdienst – nicht Anton.
+- Damit die eigenen Akteur:innen überhaupt bei Metagrid erscheinen, muss die
+  Institution als **Partner bei Metagrid angemeldet** sein.
