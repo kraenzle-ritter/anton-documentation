@@ -26,9 +26,9 @@ Setting::setValue('search_weighted_enabled', false); // Deaktivieren (Standard)
 Bei API-Anfragen kann die gewichtete Suche per Parameter gesteuert werden:
 
 ```
-GET /api/actors?search=Müller&weighted=true
-GET /api/places?search=Zürich&weighted=true
-GET /api/keywords?search=Archiv&weighted=true
+GET /api/actors?search=Müller&weighted=1
+GET /api/places?search=Zürich&weighted=1
+GET /api/keywords?search=Archiv&weighted=1
 ```
 
 Der API-Parameter hat die höchste Priorität und überschreibt sowohl Benutzer- als auch globale Einstellungen.
