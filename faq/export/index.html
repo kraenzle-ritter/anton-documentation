@@ -1457,6 +1457,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/statische-publikation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statische Publikation & Round-Trip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2563,6 +2591,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#statische-publikation-round-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statische Publikation &amp; Round-Trip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ocfl-download" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2792,6 +2831,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#statische-publikation-round-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statische Publikation &amp; Round-Trip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ocfl-download" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2850,6 +2900,21 @@
 <li><strong>Memobase-Profil</strong> (RiC-O mit Memobase-spezifischem JSON-LD-Context) — direkt einspielbar in <a href="https://memobase.ch">Memobase</a>, das Schweizer Portal für audiovisuelles Erbe der Memoriav, gemäss Memoriav-Konvention §9</li>
 </ul>
 <p>Alle Profile werden aus derselben Datenbasis erzeugt und sind in <strong>vier Serialisierungen</strong> verfügbar: RDF/Turtle, JSON-LD, RDF/XML, N-Triples. Zugang über UI, REST-API und CLI. Mehr Details: <a href="../../admin/download-rdf/">RDF-Export-Dokumentation</a>.</p>
+<h2 id="statische-publikation-round-trip">Statische Publikation &amp; Round-Trip<a class="headerlink" href="#statische-publikation-round-trip" title="Permanent link">&para;</a></h2>
+<p>Ein ganzer (Teil-)Bestand samt Medien lässt sich in <em>eine</em> ZIP-Datei
+packen — ohne dass zur Anzeige oder Wiederherstellung eine laufende
+Anton-Instanz nötig ist:</p>
+<ul>
+<li><strong>A+ Static Bundle</strong> — CIDOC/RiC-O-Graph + Medien, datenschutz-gefiltert
+  und offline-hostbar (z. B. GitHub Pages). Für die <em>Publikation</em>.</li>
+<li><strong>Nativer Round-Trip</strong> — das Anton-eigene Format + Master-Medien,
+  <strong>verlustfrei und wieder importierbar</strong> (<code>anton:export-native</code> /
+  <code>anton:import-native</code>). Für <em>Backup / Umzug</em> zwischen Anton-Instanzen.</li>
+</ul>
+<p>So können kleine Archive Anton als Editor nutzen und ihren Bestand quasi
+kostenlos statisch im Netz zeigen. Ein konkreter Vergleich der beiden
+Formate (anton-format ↔ CIDOC) und die Vision eines statischen Viewers:
+<a href="../../admin/statische-publikation/">Statische Publikation &amp; Round-Trip</a>.</p>
 <h2 id="ocfl-download">OCFL Download<a class="headerlink" href="#ocfl-download" title="Permanent link">&para;</a></h2>
 <p>Mehrere Schweizer Langzeitarchive (UB Basel, DLZA) erwarten OCFL (Oxford Common File Layout) für die Übergabe von Beständen. Anton liefert OCFL v1.1 als ZIP-Paket pro Objekt oder pro Bestand, inkl. EAD-Metadaten und Anton-Import-Format für Round-Trips. Mehr: <a href="../../admin/download-ocfl/">OCFL-Download-Dokumentation</a>.</p>
 <h2 id="dip-download">DIP Download<a class="headerlink" href="#dip-download" title="Permanent link">&para;</a></h2>
