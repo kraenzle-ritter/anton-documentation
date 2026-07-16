@@ -1,4 +1,9 @@
-## Antonevents
+# Ereignisse
+
+Ein Ereignis verknüpft [Akteure](actors.md) und [Orte](places.md) mit einer
+Verzeichnungseinheit — und zwar **mit einer Rolle und einem Datum**. Das
+unterscheidet es von der Verschlagwortung: «Stecher» oder «Ablieferung» ist
+eine Aussage darüber, was jemand getan hat, nicht bloss, dass er vorkommt.
 
 ```mermaid
 flowchart TD
@@ -27,24 +32,51 @@ flowchart TD
     class AC,PL entity
 ```
 
-Mit dem Antonevent werden die Entitäten Actor und Place mit den Verzeichnungseinheiten verknüpft. Antonevents enthalten folgende Felder:
+Ein Ereignis besteht aus Ereignistyp, Datum von und bis (je mit «ca.»),
+Akteur, Ort und einem Kommentar.
 
-- Ereignistyp
-- Datum von  
-- Datum von ca.  
-- Datum bis  
-- Datum bis ca.  
-- Akteur*in  
-- Ort  
-- Beschreibung/Kommentar  
+## Ereignistypen
 
-!!! note "Minimales Antonevent"
-    Ein Antonvevent enthält mindestens entweder einen Actor oder ein Datum.
+Der Ereignistyp **ist** die Rolle. Im Standard stehen zur Verfügung:
+
+| Typ | Typ |
+|---|---|
+| Entstehungszeitraum | Provenienz |
+| Ablieferung | Konservierung |
+| Kopien/Reproduktionen | Stecher |
+| Digitalisiert | Schreiber |
+| Empfang | Kolorist |
+| Vortrag/Aufführung | Verleger |
+| Autor (Text) | Produzent |
+| Ingest | Andere Rolle |
+
+Welche davon in der Maske erscheinen, hängt vom [Formularsatz](forms.md) ab —
+ein Fotoarchiv braucht andere Rollen als eine Grafiksammlung. Die
+Beschriftungen sind pro Archiv anpassbar.
+
+## Erfassen
+
+Jeder Ereignistyp bildet in der Maske eine eigene Zeile. Pro Typ sind
+**mehrere Ereignisse** möglich — die blaue Taste **+** rechts fügt ein weiteres
+hinzu, das rote **✕** entfernt eines.
+
+Für das Datum stehen je ein Von- und ein Bis-Feld mit Tag, Monat und Jahr
+bereit, jeweils mit einer Checkbox **ca.** für ungefähre Angaben. Einzelne
+Bestandteile dürfen leer bleiben. Die Taste **bis=von** übernimmt das Startdatum
+als Enddatum — praktisch für Zeitpunkte.
+
+Akteur und Ort werden über Auswahllisten mit Suche gesetzt. Das **+** daneben
+legt einen neuen Akteur oder Ort an, ohne die Maske zu verlassen.
 
 !!! note "Datum"
-    Es sollte immmer Von- und Bis-Datum ausgefüllt werden. Für die Angabe eines Zeitpunkt sind Von- und Bis-Datum identisch.
+    Es sollten immer Von- und Bis-Datum ausgefüllt werden. Für einen Zeitpunkt
+    sind beide identisch.
 
-### Ereignistyp: Creation (Laufzeit/Erstellung)
+Alle Angaben ausser dem Typ sind freiwillig — ein Ereignis darf also auch ohne
+Akteur oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
+beides sagt nichts aus.
+
+## Ereignistyp Entstehungszeitraum
 
 Ein zentraler Ereignistyp ist die Erstellung. Das Erstelldatum ist Grundlage für die Errechnung der [Sperrfristen](access.md). Ausserdem wird das Erstelldatum automatisch in der Archivtektonik **nach oben verrechnet**, so dass übergeordnete Verzeichnungseinheiten automatisch das Minimum und Maximum aller Erstelldaten der Nachkommen anzeigen.
 
