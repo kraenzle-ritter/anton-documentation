@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#verzeichnungsstufen" class="md-skip">
+        <a href="#signaturen" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -472,6 +472,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -513,6 +515,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -557,6 +561,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signaturen-von-hand-andern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signaturen von Hand ändern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altsignatur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Altsignatur
+      
+    </span>
+  </a>
   
 </li>
       
@@ -3158,6 +3184,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -3204,6 +3232,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#signaturen-von-hand-andern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signaturen von Hand ändern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altsignatur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Altsignatur
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3224,11 +3274,40 @@
   
 
 
-  <h1>Signaturen</h1>
-
-<p>Anton erstellt automatisch Signaturen. Mit dem Setting <code>no_automatic_identifiers</code> kann diese Funktion deaktiviert werden. Bei Bedarf kann eine kundenspezifische Signaturgenerierung entwickelt und eingebaut werden. Hier wird die Standardfunktion beschrieben.</p>
+<h1 id="signaturen">Signaturen<a class="headerlink" href="#signaturen" title="Permanent link">&para;</a></h1>
+<p>Anton erstellt Signaturen automatisch. Hier wird das Standardschema
+beschrieben; die Signaturbildung ist pro Archiv über das Setting
+<code>identifier_generator</code> umstellbar:</p>
+<table>
+<thead>
+<tr>
+<th>Wert</th>
+<th>Verhalten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>standard</code></td>
+<td>Das unten beschriebene Schema</td>
+</tr>
+<tr>
+<td><code>recordgroup_as_base</code></td>
+<td>Wie Standard, aber die Bestandsgruppe statt des Archivs als Basis</td>
+</tr>
+<tr>
+<td><code>id_identifier</code></td>
+<td>Fortlaufende Nummer</td>
+</tr>
+<tr>
+<td><code>manual_identifiers</code></td>
+<td>Keine automatische Vergabe — die Signatur wird von Hand eingegeben</td>
+</tr>
+</tbody>
+</table>
+<p>Darüber hinaus lässt sich eine archivspezifische Signaturbildung
+programmieren. Die Einstellung wird beim Aufsetzen gewählt und ist im
+Admin-Bereich nicht änderbar.</p>
 <h2 id="verzeichnungsstufen">Verzeichnungsstufen<a class="headerlink" href="#verzeichnungsstufen" title="Permanent link">&para;</a></h2>
-<p>Anton unterstützt standardmässig folgende Verzeichnungsstufen:</p>
 <table>
 <thead>
 <tr>
@@ -3242,12 +3321,12 @@
 <tr>
 <td style="text-align: left;">Archiv</td>
 <td style="text-align: left;">KRA</td>
-<td style="text-align: left;">Umfasssende Einheit einer Institution. Hat keine übergeordnete Verzeichnubgseinheit.</td>
+<td style="text-align: left;">Umfassende Einheit einer Institution. Hat keine übergeordnete Verzeichnungseinheit.</td>
 <td style="text-align: left;">Bestandsgruppe, Bestand</td>
 </tr>
 <tr>
 <td style="text-align: left;">Bestandsgruppe</td>
-<td style="text-align: left;">nicht signaturrelevant<sup>*</sup></td>
+<td style="text-align: left;">nicht signaturrelevant</td>
 <td style="text-align: left;">Es können Bestände logisch geordnet werden.</td>
 <td style="text-align: left;">Bestandsgruppe, Bestand</td>
 </tr>
@@ -3255,13 +3334,13 @@
 <td style="text-align: left;">Bestand</td>
 <td style="text-align: left;">KRA 3</td>
 <td style="text-align: left;">Einheit einer Provenienz oder Ablieferung. Bestände werden pro Archiv durchnummeriert.</td>
-<td style="text-align: left;">Klasse, Dossier, Einzelstück</td>
+<td style="text-align: left;">Serie, Klasse, Dossier, Einzelstück</td>
 </tr>
 <tr>
 <td style="text-align: left;">Klasse</td>
 <td style="text-align: left;">nicht signaturrelevant</td>
 <td style="text-align: left;">Es können Dossiers logisch geordnet werden.</td>
-<td style="text-align: left;">Klasse, Serie, Dossier, Einzelstück</td>
+<td style="text-align: left;">Serie, Klasse, Dossier, Einzelstück</td>
 </tr>
 <tr>
 <td style="text-align: left;">Serie</td>
@@ -3279,12 +3358,16 @@
 <td style="text-align: left;">Einzelstück</td>
 <td style="text-align: left;">KRA 3/22.1</td>
 <td style="text-align: left;">Unterste Verzeichnungsstufe für z.B. Fotografien, einzelne Schriftstücke.</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Einzelstück</td>
 </tr>
 </tbody>
 </table>
-<p><sup>*</sup> Mit dem Setting <code>recordgroups_for_identifier_base</code> kann die Bestandsgruppe als Ausgangspunkt Basissignaturen gemacht werden. Mit dem Setting <code>identifier_generator</code> kann die automatische Signaturbildung vollständig individuell implementiert werden.</p>
-<p>Bestandsgruppen, Klassen, Serien, Dossiers und Einzelstücke können sich selbst enthalten (z.B. Teil-Dossiers).</p>
+<p>Bestandsgruppen, Klassen, Serien, Dossiers und Einzelstücke können sich selbst
+enthalten (z.B. Teil-Dossiers). Ein Bestand innerhalb eines Bestands ist
+dagegen nicht zulässig.</p>
+<p>Für <strong>Archiv, Bestandsgruppe und Klasse</strong> vergibt Anton keine Signatur — diese
+Stufen sind nicht signaturrelevant und werden, falls gewünscht, von Hand
+beschriftet.</p>
 <h2 id="signaturschema">Signaturschema<a class="headerlink" href="#signaturschema" title="Permanent link">&para;</a></h2>
 <p>Die Signatur setzt sich zusammen aus dem Archivkürzel, der Bestandsnummer und den Dossier- und Einzelstücknummern.</p>
 <div class="highlight"><pre><span></span><code>Archivkürzel Bestandsnummer/Dossiernummer.Einzelstücknummer
@@ -3296,6 +3379,22 @@
 <p>Test, 1/1       (Archiv Test; Bestand  1; Serie, Dossier oder Einzelstück 1)</p>
 <p>HDR, 25/4.7.5   (Archiv HDR;  Bestand 25; Serie oder Dossier 4; Serie oder (Teil-)dossier 7; Teildossier oder Einzelstück 5)</p>
 </blockquote>
+<h2 id="signaturen-von-hand-andern">Signaturen von Hand ändern<a class="headerlink" href="#signaturen-von-hand-andern" title="Permanent link">&para;</a></h2>
+<p>Die automatisch vergebene Signatur lässt sich überschreiben — das Feld
+<strong>Signatur</strong> ist ein gewöhnliches Eingabefeld.</p>
+<div class="admonition warning">
+<p class="admonition-title">Signaturen sind nicht eindeutig</p>
+<p>Anton erzwingt keine eindeutigen Signaturen. Wird eine bereits vergebene
+Signatur eingetragen, erscheint beim Speichern ein Hinweis mit Verweis auf
+die betroffenen Datensätze — gespeichert wird trotzdem. Der Hinweis ist
+bewusst nicht blockierend, weil Dubletten in der Praxis vorkommen.</p>
+</div>
+<p>Beim <a href="../hierarchy/">Verschieben</a> eines Datensatzes bleibt die Signatur
+unverändert. Sie ist danach gegebenenfalls von Hand anzupassen.</p>
+<h2 id="altsignatur">Altsignatur<a class="headerlink" href="#altsignatur" title="Permanent link">&para;</a></h2>
+<p>Für abgelöste Signaturen und Aktenzeichen steht das eigene Feld
+<strong>Altsignatur</strong> zur Verfügung. Es wird von der <a href="../search/">Volltextsuche</a>
+mitdurchsucht.</p>
 
 
 

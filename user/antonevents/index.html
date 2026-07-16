@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#antonevents">
+<a class="md-skip" href="#ereignisse">
           Zum Inhalt
         </a>
 </div>
@@ -272,26 +272,31 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#antonevents">
+<a class="md-nav__link" href="#ereignistypen">
 <span class="md-ellipsis">
       
-        Antonevents
-      
-    </span>
-</a>
-<nav aria-label="Antonevents" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ereignistyp-creation-laufzeiterstellung">
-<span class="md-ellipsis">
-      
-        Ereignistyp: Creation (Laufzeit/Erstellung)
+        Ereignistypen
       
     </span>
 </a>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#erfassen">
+<span class="md-ellipsis">
+      
+        Erfassen
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ereignistyp-entstehungszeitraum">
+<span class="md-ellipsis">
+      
+        Ereignistyp Entstehungszeitraum
+      
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -1437,26 +1442,31 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#antonevents">
+<a class="md-nav__link" href="#ereignistypen">
 <span class="md-ellipsis">
       
-        Antonevents
-      
-    </span>
-</a>
-<nav aria-label="Antonevents" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ereignistyp-creation-laufzeiterstellung">
-<span class="md-ellipsis">
-      
-        Ereignistyp: Creation (Laufzeit/Erstellung)
+        Ereignistypen
       
     </span>
 </a>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#erfassen">
+<span class="md-ellipsis">
+      
+        Erfassen
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ereignistyp-entstehungszeitraum">
+<span class="md-ellipsis">
+      
+        Ereignistyp Entstehungszeitraum
+      
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -1465,8 +1475,11 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Ereignisse</h1>
-<h2 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">¶</a></h2>
+<h1 id="ereignisse">Ereignisse<a class="headerlink" href="#ereignisse" title="Permanent link">¶</a></h1>
+<p>Ein Ereignis verknüpft <a href="../actors/">Akteure</a> und <a href="../places/">Orte</a> mit einer
+Verzeichnungseinheit — und zwar <strong>mit einer Rolle und einem Datum</strong>. Das
+unterscheidet es von der Verschlagwortung: «Stecher» oder «Ablieferung» ist
+eine Aussage darüber, was jemand getan hat, nicht bloss, dass er vorkommt.</p>
 <pre class="mermaid"><code>flowchart TD
     VE[Verzeichnungseinheit]
     AE[Antonevent]
@@ -1492,26 +1505,74 @@
     class ET,DT core
     class AC,PL entity
 </code></pre>
-<p>Mit dem Antonevent werden die Entitäten Actor und Place mit den Verzeichnungseinheiten verknüpft. Antonevents enthalten folgende Felder:</p>
-<ul>
-<li>Ereignistyp</li>
-<li>Datum von  </li>
-<li>Datum von ca.  </li>
-<li>Datum bis  </li>
-<li>Datum bis ca.  </li>
-<li>Akteur*in  </li>
-<li>Ort  </li>
-<li>Beschreibung/Kommentar  </li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Minimales Antonevent</p>
-<p>Ein Antonvevent enthält mindestens entweder einen Actor oder ein Datum.</p>
-</div>
+<p>Ein Ereignis besteht aus Ereignistyp, Datum von und bis (je mit «ca.»),
+Akteur, Ort und einem Kommentar.</p>
+<h2 id="ereignistypen">Ereignistypen<a class="headerlink" href="#ereignistypen" title="Permanent link">¶</a></h2>
+<p>Der Ereignistyp <strong>ist</strong> die Rolle. Im Standard stehen zur Verfügung:</p>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Typ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entstehungszeitraum</td>
+<td>Provenienz</td>
+</tr>
+<tr>
+<td>Ablieferung</td>
+<td>Konservierung</td>
+</tr>
+<tr>
+<td>Kopien/Reproduktionen</td>
+<td>Stecher</td>
+</tr>
+<tr>
+<td>Digitalisiert</td>
+<td>Schreiber</td>
+</tr>
+<tr>
+<td>Empfang</td>
+<td>Kolorist</td>
+</tr>
+<tr>
+<td>Vortrag/Aufführung</td>
+<td>Verleger</td>
+</tr>
+<tr>
+<td>Autor (Text)</td>
+<td>Produzent</td>
+</tr>
+<tr>
+<td>Ingest</td>
+<td>Andere Rolle</td>
+</tr>
+</tbody>
+</table>
+<p>Welche davon in der Maske erscheinen, hängt vom <a href="../forms/">Formularsatz</a> ab —
+ein Fotoarchiv braucht andere Rollen als eine Grafiksammlung. Die
+Beschriftungen sind pro Archiv anpassbar.</p>
+<h2 id="erfassen">Erfassen<a class="headerlink" href="#erfassen" title="Permanent link">¶</a></h2>
+<p>Jeder Ereignistyp bildet in der Maske eine eigene Zeile. Pro Typ sind
+<strong>mehrere Ereignisse</strong> möglich — die blaue Taste <strong>+</strong> rechts fügt ein weiteres
+hinzu, das rote <strong>✕</strong> entfernt eines.</p>
+<p>Für das Datum stehen je ein Von- und ein Bis-Feld mit Tag, Monat und Jahr
+bereit, jeweils mit einer Checkbox <strong>ca.</strong> für ungefähre Angaben. Einzelne
+Bestandteile dürfen leer bleiben. Die Taste <strong>bis=von</strong> übernimmt das Startdatum
+als Enddatum — praktisch für Zeitpunkte.</p>
+<p>Akteur und Ort werden über Auswahllisten mit Suche gesetzt. Das <strong>+</strong> daneben
+legt einen neuen Akteur oder Ort an, ohne die Maske zu verlassen.</p>
 <div class="admonition note">
 <p class="admonition-title">Datum</p>
-<p>Es sollte immmer Von- und Bis-Datum ausgefüllt werden. Für die Angabe eines Zeitpunkt sind Von- und Bis-Datum identisch.</p>
+<p>Es sollten immer Von- und Bis-Datum ausgefüllt werden. Für einen Zeitpunkt
+sind beide identisch.</p>
 </div>
-<h3 id="ereignistyp-creation-laufzeiterstellung">Ereignistyp: Creation (Laufzeit/Erstellung)<a class="headerlink" href="#ereignistyp-creation-laufzeiterstellung" title="Permanent link">¶</a></h3>
+<p>Alle Angaben ausser dem Typ sind freiwillig — ein Ereignis darf also auch ohne
+Akteur oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
+beides sagt nichts aus.</p>
+<h2 id="ereignistyp-entstehungszeitraum">Ereignistyp Entstehungszeitraum<a class="headerlink" href="#ereignistyp-entstehungszeitraum" title="Permanent link">¶</a></h2>
 <p>Ein zentraler Ereignistyp ist die Erstellung. Das Erstelldatum ist Grundlage für die Errechnung der <a href="../access/">Sperrfristen</a>. Ausserdem wird das Erstelldatum automatisch in der Archivtektonik <strong>nach oben verrechnet</strong>, so dass übergeordnete Verzeichnungseinheiten automatisch das Minimum und Maximum aller Erstelldaten der Nachkommen anzeigen.</p>
 <div class="admonition note">
 <p class="admonition-title">TIPP: Verwendung des Erstelldatum</p>
