@@ -37,37 +37,34 @@ markdown_extensions:
 nav:
   - Home: index.md
   - User:
-    #- Einleitung: user/index.md
-    - Antonevents: user/antonevents.md
-    - Signaturen: user/identifiers.md
-    - Access-Konzept: user/access.md
-    - Medien: user/media.md
-    - Orte: user/places.md
-    - Ausleihe von Objekten: user/loans.md
-    - Sprachkonfiguration: user/languages.md
-    - Import:
+    - Einstieg: user/index.md
+    - Erschliessen:
+      - Verzeichnungseinheiten: user/objects.md
+      - Tektonik und Verschieben: user/hierarchy.md
+      - Formulare und Felder: user/forms.md
+      - Signaturen: user/identifiers.md
+      - Ereignisse: user/antonevents.md
+      - Textfelder und Markdown: user/markdown.md
+    - Normdaten:
+      - Akteure: user/actors.md
+      - Orte: user/places.md
+      - Schlagwörter: user/keywords.md
+      - Normdatenabgleich: user/authorities.md
+    - Medien:
+      - Medien: user/media.md
+      - QR-Code Upload: user/qr-upload.md
+    - Zugang und Schutzfristen: user/access.md
+    - Recherche: user/search.md
+    - Import und Export:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md
-      - QR-Code Upload: user/qr-upload.md
-    - Authentifizierung: 
+      - DIP herunterladen: user/download-dip.md
+    - Verwaltung:
+      - Ausleihe von Objekten: user/loans.md
+      - Sprachkonfiguration: user/languages.md
+    - Anmeldung:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
-    - Markdown: user/markdown.md
-    - Volltextsuche: user/search.md
-    - Schnelle Suche: user/search-v2.md
-    - Gewichtete Suche: user/weighted-search.md
-    - Normdaten: user/authorities.md
-    - DIP herunterladen: user/download-dip.md
-    #- SIP Ingest: user/sip-ingest.md
-    # - Formulare: user/forms.md
-    # - Einstellungen: user/settings.md
-    # - File Uploads: user/uploads.md
-    
-    #- Entitäten:
-    #  - Akteure: user/actors.md
-    #  - Orte: user/places.md
-    #  - Schlagwörter: user/keywords.md
-    # - Externe Ressourcen: user/authorities.md
   - Developer:
     - Events/Jobs: developer/events-jobs.md
     - Forms & Formsets: developer/forms.md
