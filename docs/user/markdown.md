@@ -49,15 +49,25 @@ Der Text, der verlinkt werden soll, wird in eckige Klammern gesetzt. Das Ziel de
 
 ### Verweise innerhalb von Anton 
 
-Die Verweise innerhalb von Anton funktionieren wie die Links. Als Ziel werden die jeweilig relativen URLs.
+Die Verweise innerhalb von Anton funktionieren wie die Links. Als Ziel wird die jeweilige relative URL angegeben:
 
 ```markdown
-[Anton](/actors/2) 
+[Anton](/actors/2)
 ```
 
-Wird zu [Anton](/actors/2)
+Der Verweis führt dann auf den Akteur mit der ID 2. Ganz ähnlich lassen sich
+Verzeichnungseinheiten verlinken; das Ziel ist dann `/objects/123`.
 
-Ganz ähnlich können Signaturen verlinkt werden. Das Ziel wird dann mit der persistenten URL angegeben `/objects/123`.
+### Signaturen werden automatisch verlinkt
+
+Signaturen müssen in der Regel gar nicht von Hand verlinkt werden: Wird in einem
+Textfeld eine Signatur erwähnt, erkennt Anton sie in der **Detailansicht** und
+macht daraus einen Verweis auf die Suche. In der Bearbeitungsansicht bleibt der
+Text unangetastet, damit er bearbeitbar bleibt.
+
+!!! note "Nicht in jedem Archiv"
+    Die Erkennung stützt sich auf ein Suchmuster, das pro Archiv hinterlegt ist.
+    Ist keines konfiguriert, bleiben Signaturen im Text unverlinkt.
 
 ### Hervorhebungen
 
