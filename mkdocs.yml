@@ -49,33 +49,38 @@ nav:
       - Akteure: user/actors.md
       - Orte: user/places.md
       - Schlagwörter: user/keywords.md
+      - Standorte: user/locations.md
       - Normdatenabgleich: user/authorities.md
     - Medien:
       - Medien: user/media.md
+      - Mediengalerie: user/gallery.md
       - QR-Code Upload: user/qr-upload.md
+      - Filminhalt erschliessen: user/movie-tracks.md
     - Zugang und Schutzfristen: user/access.md
     - Recherche:
       - Volltextsuche: user/search.md
       - Schnelle Suche: user/search-v2.md
       - Gewichtete Suche: user/weighted-search.md
+      - Korrespondenzen: user/correspondences.md
+      - Warenkorb: user/cart.md
     - Import und Export:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md
       - DIP herunterladen: user/download-dip.md
     - Verwaltung:
       - Ausleihe von Objekten: user/loans.md
+      - Auswahl und Sammelaktionen: user/selection.md
+      - Statistiken: user/statistics.md
+      - KI-Erschliessung: user/ai-cataloging.md
       - Sprachkonfiguration: user/languages.md
     - Anmeldung:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
   - Developer:
-    - Events/Jobs: developer/events-jobs.md
     - Forms & Formsets: developer/forms.md
     - Antonfields: developer/antonfields.md
-  #  - Data Tables: developer/data-tables.md
-  #  - Search: developer/search.md
-  #  - AntonObjects Sideeffects of Methods: developer/antonobjects-sideeffects.md
-  #  - Upload via Mobile: user/mobile-upload.md
+    - Events/Jobs: developer/events-jobs.md
+    - Upload via Mobile: developer/mobile-upload.md
   - Admin:
     - Requirements: admin/requirements.md
     - Installation: admin/installation.md
