@@ -637,6 +637,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#signaturen-werden-automatisch-verlinkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signaturen werden automatisch verlinkt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hervorhebungen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3254,6 +3265,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#signaturen-werden-automatisch-verlinkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signaturen werden automatisch verlinkt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hervorhebungen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3315,11 +3337,21 @@ Ergibt: </p>
 <div class="highlight"><pre><span></span><code>[<span class="nt">Dieser Text wird verlinkt</span>](<span class="na">https://ziel_des_links.ch</span>)
 </code></pre></div>
 <h3 id="verweise-innerhalb-von-anton">Verweise innerhalb von Anton<a class="headerlink" href="#verweise-innerhalb-von-anton" title="Permanent link">&para;</a></h3>
-<p>Die Verweise innerhalb von Anton funktionieren wie die Links. Als Ziel werden die jeweilig relativen URLs.</p>
-<div class="highlight"><pre><span></span><code>[<span class="nt">Anton</span>](<span class="na">/actors/2</span>) 
+<p>Die Verweise innerhalb von Anton funktionieren wie die Links. Als Ziel wird die jeweilige relative URL angegeben:</p>
+<div class="highlight"><pre><span></span><code>[<span class="nt">Anton</span>](<span class="na">/actors/2</span>)
 </code></pre></div>
-<p>Wird zu <a href="/actors/2">Anton</a></p>
-<p>Ganz ähnlich können Signaturen verlinkt werden. Das Ziel wird dann mit der persistenten URL angegeben <code>/objects/123</code>.</p>
+<p>Der Verweis führt dann auf den Akteur mit der ID 2. Ganz ähnlich lassen sich
+Verzeichnungseinheiten verlinken; das Ziel ist dann <code>/objects/123</code>.</p>
+<h3 id="signaturen-werden-automatisch-verlinkt">Signaturen werden automatisch verlinkt<a class="headerlink" href="#signaturen-werden-automatisch-verlinkt" title="Permanent link">&para;</a></h3>
+<p>Signaturen müssen in der Regel gar nicht von Hand verlinkt werden: Wird in einem
+Textfeld eine Signatur erwähnt, erkennt Anton sie in der <strong>Detailansicht</strong> und
+macht daraus einen Verweis auf die Suche. In der Bearbeitungsansicht bleibt der
+Text unangetastet, damit er bearbeitbar bleibt.</p>
+<div class="admonition note">
+<p class="admonition-title">Nicht in jedem Archiv</p>
+<p>Die Erkennung stützt sich auf ein Suchmuster, das pro Archiv hinterlegt ist.
+Ist keines konfiguriert, bleiben Signaturen im Text unverlinkt.</p>
+</div>
 <h3 id="hervorhebungen">Hervorhebungen<a class="headerlink" href="#hervorhebungen" title="Permanent link">&para;</a></h3>
 <p>Für Hervorhebungen können <code>*kursiv*</code> (<em>kursiv</em>) oder <code>**</code> (<strong>fett</strong>) oder <code>***</code> (<strong><em>fett und kursiv</em></strong>) verwendet werden. </p>
 
