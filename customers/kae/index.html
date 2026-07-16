@@ -2699,7 +2699,7 @@
   <a href="#fehler-history" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fehler History ()
+        Fehler History
       
     </span>
   </a>
@@ -2748,13 +2748,13 @@ php artisan anton:repair-closure-table --force --backup --env=kae
 </ul>
 <h2 id="zustand-19-marz-2026">Zustand 19. März 2026<a class="headerlink" href="#zustand-19-marz-2026" title="Permanent link">&para;</a></h2>
 <p><img alt="alt text" src="../images/kae_doctor.png" /></p>
-<h2 id="fehler-history">Fehler History ()<a class="headerlink" href="#fehler-history" title="Permanent link">&para;</a></h2>
-<p>Die Reparatur hat auch das objects.history Feld falsch upgedated.</p>
-<p>Lieber Herr Ritter, lieber Herr Kränzle,
-gerade eben habe ich bei diesem Datensatz Klosterarchiv Einsiedeln (29315) festgestellt, dass bei der Verzeichniskontrolle steht, er sei am 19. März 2026 durch das Benutzerkonto von P. Gregor geändert worden. Hängt das wieder mit einer Änderung an der Datenbank zusammen, wie wir es kürzlich schon mal hatten, oder wurde das Benutzerkonto von P. Gregor tatsächlich nach seinem Tod verwendet?
-Mit freundlichen Grüssen
-P. Meinrad</p>
-<p>Wir nehmen das updated_at Datum aus der history:</p>
+<h2 id="fehler-history">Fehler History<a class="headerlink" href="#fehler-history" title="Permanent link">&para;</a></h2>
+<p>Die Reparatur hat auch das Feld <code>objects.history</code> falsch upgedated: Betroffene
+Datensätze wiesen in der Verzeichniskontrolle den Reparaturlauf vom
+19. März 2026 (18:00–18:59) als Änderung aus, mit dem Benutzerkonto des
+letzten Bearbeiters — statt der tatsächlich letzten inhaltlichen Änderung.
+Vom Archiv als vermeintliche Fremdbearbeitung gemeldet.</p>
+<p>Korrektur: Wir nehmen das <code>updated_at</code> Datum aus der history:</p>
 <div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">objects</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">updated_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STR_TO_DATE</span><span class="p">(</span>
 <span class="w">    </span><span class="k">TRIM</span><span class="p">(</span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="k">TRIM</span><span class="p">(</span><span class="k">LEADING</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">history</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)),</span>

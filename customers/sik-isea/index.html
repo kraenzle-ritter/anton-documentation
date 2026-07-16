@@ -2667,12 +2667,13 @@
 
 <h1 id="schweizerisches-kunstarchiv-sik-isea">Schweizerisches Kunstarchiv SIK-ISEA<a class="headerlink" href="#schweizerisches-kunstarchiv-sik-isea" title="Permanent link">&para;</a></h1>
 <h2 id="2026-03-06-notes-scope-and-content-fur-dok-erzeugen">2026-03-06 Notes (scope and content für dok erzeugen)<a class="headerlink" href="#2026-03-06-notes-scope-and-content-fur-dok-erzeugen" title="Permanent link">&para;</a></h2>
-<p>Lieber Andreas</p>
-<p>Wir haben für alle Bestände mit der Signatur DOK einen Text für unser Rechercheportal verfasst, den wir auch gerne in ANTON unter Form und Inhalt hätten. Wäre es möglich, dieses Feld bei den bestehenden DOK-Signaturen zu ergänzen und bei künftigen Importen automatisch auszufüllen? Wieviel Zeit bräuchtest Du für die Anpassung?</p>
-<p>Der Text lautet:
-Die Dokumentationsdossiers enthalten in der Regel eine Sammlung von Einladungskarten, Zeitungsartikeln, biografischen und bibliografischen Informationen zu den Kunstschaffenden. Der Umfang eines Dossiers kann stark variieren – vom Einzeldokument bis zu umfangreichen Konvoluten.
-Herzlicher Gruss
-Michael</p>
+<p>Wunsch des Archivs: Alle Bestände mit der Signatur DOK sollen unter «Form und
+Inhalt» denselben Text erhalten wie im Rechercheportal — bei den bestehenden
+DOK-Signaturen ergänzt und bei künftigen Importen automatisch ausgefüllt.</p>
+<p>Der Text lautet:</p>
+<blockquote>
+<p>Die Dokumentationsdossiers enthalten in der Regel eine Sammlung von Einladungskarten, Zeitungsartikeln, biografischen und bibliografischen Informationen zu den Kunstschaffenden. Der Umfang eines Dossiers kann stark variieren – vom Einzeldokument bis zu umfangreichen Konvoluten.</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="p">(</span><span class="n">object_id</span><span class="p">,</span><span class="w"> </span><span class="n">note_type_id</span><span class="p">,</span><span class="w"> </span><span class="nb">text</span><span class="p">)</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="ss">&quot;Die Dokumentationsdossiers enthalten in der Regel eine Sammlung von Einladungskarten, Zeitungsartikeln, biografischen und bibliografischen Informationen zu den Kunstschaffenden. Der Umfang eines Dossiers kann stark variieren – vom Einzeldokument bis zu umfangreichen Konvoluten.&quot;</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">objects</span><span class="w"> </span><span class="n">o</span>
