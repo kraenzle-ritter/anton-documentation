@@ -1,9 +1,46 @@
-## Schlagwörter
+# Schlagwörter
 
-Anton bietet die Möglichkeit Verzeichnungseinheiten zu verschlagworten. 
+Schlagwörter erschliessen Verzeichnungseinheiten inhaltlich — für Sachen,
+Ereignisse, Techniken, Werke. Personen und Organisationen gehören dagegen zu
+den [Akteuren](actors.md), geografische Angaben zu den [Orten](places.md).
 
-- Felder: Typ, Label, Beschreibung, Quellen, Kommentar 
-- Schlagworte können mit externen Resourcen verlinkt werden 
+Zu finden sind sie über **Admin → Schlagwörter**; verknüpft werden sie im
+Objektformular im Feld «Schlagworte (Sachen)».
 
+!!! note "Keine Hierarchie"
+    Schlagwörter stehen nebeneinander. Anton führt keinen Thesaurus: Es gibt
+    keine Ober- und Unterbegriffe und keine Verweisungen zwischen
+    Schlagwörtern. Der **Typ** gruppiert sie lediglich.
 
+## Typen
 
+Die Typen sind pro Archiv frei bestimmbar. Im Standard sind es Ereignis,
+Objekt, Masseinheit/Währung, Sammlung/Kunstwerk, Verfahren/Prozess/Technik,
+Buch/Manuskript/Publikation und anderes/diverses.
+
+## Erfassen
+
+Das Formular enthält Typ, Label, andere Namensformen, Varianten, Abkürzungen,
+Beschreibung, Quellen und Kommentar.
+
+Ob das Label **mehrsprachig** erfasst werden kann, hängt an der Einstellung
+`translate_keywords`. Ist sie ausgeschaltet, gibt es nur ein Eingabefeld in der
+Hauptsprache des Archivs.
+
+Anton erkennt bestehende Schlagwörter am normalisierten Label und verwendet sie
+wieder, statt Dubletten anzulegen.
+
+## Normdaten
+
+Schlagwörter lassen sich wie Akteure und Orte mit [Normdaten](authorities.md)
+verknüpfen — etwa mit Wikidata oder der GND.
+
+!!! warning "Nicht in jedem Archiv verfügbar"
+    Die Normdaten-Spalte erscheint beim Schlagwort nur, wenn für das Archiv
+    Provider konfiguriert sind. Fehlt die Einstellung, gibt es beim Schlagwort
+    keine Verknüpfungsmöglichkeit — bei Akteuren und Orten dagegen schon.
+
+## Wo ein Schlagwort verwendet wird
+
+Die Detailseite zeigt unter «erscheint in» alle Verzeichnungseinheiten, die das
+Schlagwort führen.

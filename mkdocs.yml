@@ -54,7 +54,10 @@ nav:
       - Medien: user/media.md
       - QR-Code Upload: user/qr-upload.md
     - Zugang und Schutzfristen: user/access.md
-    - Recherche: user/search.md
+    - Recherche:
+      - Volltextsuche: user/search.md
+      - Schnelle Suche: user/search-v2.md
+      - Gewichtete Suche: user/weighted-search.md
     - Import und Export:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md

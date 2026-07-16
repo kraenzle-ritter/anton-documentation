@@ -20,7 +20,7 @@ Mit dem Excel-Import können auch digitale Objekte (Fotos, Dokumente etc.) impor
 
 ## Import aus SIP (eCH-0160)
 
-Anton unterstützt den Import von SIP-Paketen im eCH-0160-Format. Damit können Archivbestände, die in anderen Systemen verwaltet werden, in Anton übernommen werden. Vgl. auch [SIP-Import in Anton](/user/sip.md).
+Anton unterstützt den Import von SIP-Paketen im eCH-0160-Format. Damit können Archivbestände, die in anderen Systemen verwaltet werden, in Anton übernommen werden. Vgl. auch [SIP-Import in Anton](../user/sip.md).
 
 ## Dateiablagen
 

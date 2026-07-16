@@ -238,7 +238,7 @@ Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Imp
 
     php artisan anton:import --env=besenval --file="test.xlsx" --import
 
-Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `custumers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ornder `customers/besenval/assets_to_import/` befinden.
+Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `customers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ornder `customers/besenval/assets_to_import/` befinden.
 
 Ohne die Option `--import` wird das file nur validiert.
 

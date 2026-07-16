@@ -133,7 +133,7 @@ Nun kann im `.env.besenval` der Cache auf 'database' gesetzt werden.
 
 ## Datenverzeichnis erstellen
 
-In `custumers/slug` bzw. `customers/besenval` werden die Kundendaten gespeichert. Das Verzeichnis inklusive der nötigen Unterverzeichnisse kann einfach mit `anton:customdir` erstellt werden:
+In `customers/slug` bzw. `customers/besenval` werden die Kundendaten gespeichert. Das Verzeichnis inklusive der nötigen Unterverzeichnisse kann einfach mit `anton:customdir` erstellt werden:
 
 ```bash
 php artisan anton:customdir -vv --create --env=besenval

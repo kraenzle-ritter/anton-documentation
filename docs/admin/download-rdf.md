@@ -231,7 +231,7 @@ Sie werden automatisch befüllt:
   ffprobe-Fehler nur Warn-Log.
 - **Bei Bestandsdaten**: einmaliger Backfill-Lauf via
   `php artisan media:extract-av-metadata --env=<slug>` (siehe
-  [Console Commands](console-commands.md#media-extract-av-metadata)).
+  [Console Commands](console-commands.md#mediaextract-av-metadata)).
 
 Bei Bildern (`image/*`) wird nur `av_resolution` aus Breite × Höhe
 befüllt — kein Codec, keine Dauer. Das reicht damit der Memobase-Export

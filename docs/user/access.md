@@ -1,44 +1,64 @@
-## Benutzergruppen
+# Zugang und Schutzfristen
 
-Es gibt verschieden Benutzergruppen mit unterschiedlichen Berechtigungen:
+Anton regelt den Zugang auf drei Ebenen: über die Rolle der Person, über die
+Einstellung, ob das Archiv überhaupt öffentlich ist, und über Schutzfristen am
+einzelnen Datensatz.
 
-- nicht eingeschriebene User (`guest`)
-- eingeschriebene User (`user`)
-- eingeschriebene UserIntern (`userIntern`)
-- Ausleihe-Verwalter:in (`loan_admin`)
-- Bearbeiter:in (`editor`)
-- Administrator:in (`admin`)
+## Ist das Archiv öffentlich?
 
-Admins können Benutzer:innen verwalten und ihre Rolle ändern.
+Die Einstellung **public_access** entscheidet, ob Aussenstehende den Katalog
+sehen. Ist sie ausgeschaltet, steht die Datenbank nur angemeldeten Personen
+offen. Ist sie eingeschaltet, ist der Katalog öffentlich — was einzelne
+Datensätze zeigen, regeln dann die Schutzfristen.
 
-## Settings
+Welche Rolle was darf, steht im [Einstieg](index.md#rollen).
 
-In den Voreinstellungen kann angegeben werden, ob das gesamte Archiv öffentlich oder nicht öffentlich zugänglich sein soll (public_access). Ist diese Einstellung auf 0 gesetzt, so ist die Datenbank nur für eingeschriebene User, Editoren und Admins zugänglich.
+## Schutzfristen
 
-Ist diese Einstellung auf 1 gesetzt handelt es sich um eine grundsätzlich öffentlich zugängliche Anton-Datenbank.
+Unterliegt eine Verzeichnungseinheit noch einer Schutzfrist, bleibt der
+Datensatz sichtbar, die Bilder und Dokumente jedoch nicht.
 
-## Feld Zugangsbestimmungen / Sperrfrist
-Unterliegt ein Objekt noch einer Sperrfrist, kann zwar der Datensatz aufgerufen werden, nicht aber die Bilder und Dokumente.
+Anton rechnet für jeden Datensatz **ein** Freigabejahr aus. Massgeblich ist:
 
-Mit dem Feld «Schutzfrist bis» kann die Sperrfrist manuell eingegeben werden. Dieser Wert hat Priorität und vererbt sich im Archivbaum an alle Verzeichnungseinheiten unterhalb, sofern es dort nicht bereits schärfere Fristen gibt. 
+1. **Das Feld «Schutzfrist bis»** (Freigabejahr). Dieser Wert hat Vorrang und
+   **vererbt sich im Baum nach unten** an alle untergeordneten Einheiten.
+2. **Sonst die Schutzfrist des gewählten Typs**, gerechnet ab dem
+   Entstehungsdatum. Typ-Schutzfristen gelten **nur für den Datensatz selbst**
+   und vererben sich nicht.
 
-Wird das Feld «Schutzfrist bis» nicht verwendet, greifen die Sperrfristen: Diese sind in den Voreinstellungen (`period_of_protection_values`) ersichtlich und können durch k & r angepasst werden. Es gibt drei Stufen: öffentlich, standard und verlängerte Sperrfrist. Es ist möglich weitere Werte zu verwenden und zu hinterlegen.
+Das Feld **Zugangsbestimmungen / Sperrfrist** wählt den Typ. Im Standard sind
+drei hinterlegt:
 
-Die Schutzfristen sollten wie folgt funktionieren:
+| Typ | Frist |
+|---|---|
+| öffentlich | keine — sofort frei |
+| Standard Schutzfrist | 30 Jahre |
+| verlängerte Schutzfrist | 70 Jahre |
 
-1. Freigabejahr: Dieses Feld hat Priorität und wird nach unten vererbt.  
-2. Wenn eine Schutzfrist im Freigabejahr steht (original oder vererbt) wird diese verwendet.  
-3. Wenn kein Freigabejahr angegeben ist gelten die Schutzfristen wie gehabt. Diese werden nicht vererbt!  
+Die Fristen sind pro Archiv konfigurierbar: Typen lassen sich umbenennen,
+ergänzen und in der Dauer ändern; ebenso ist «nie freigeben» möglich. Die
+Pflege ist Superuser vorbehalten — für Anpassungen ist k & r zuständig.
 
-Für die Anzeige wird alles miteinander verrechnet. 
+!!! note "Das angezeigte Freigabejahr"
+    Angezeigt wird das erste Jahr, in dem die Einheit **frei** ist — bei
+    Entstehung 1990 und 30 Jahren Frist also 2021, nicht 2020.
 
-## Nur Medien unbefristet sperren
-Im Editformular können hochgeladene Medien unbefristet gesperrt werden.
+## Unbefristet sperren
 
-## Objekte unbefristet sperren
-Wenn das Feld auf 1 gesetzt wurde, sind der Datensatz, sämtliche Kinder und die dazugehörigen Medien nur für UserIntern, Editoren und Admins zugänglich.
+**Einzelne Medien** lassen sich in der Bearbeitungsmaske unbefristet sperren.
 
-Einzelnen Usern (`user`) kann der Zugang zu bestimmten Bereichen der Datenbank ermöglicht werden, indem bei ihnen IDs freigegeben werden. Dies geschieht über die Benutzerinnen/Benutzerverwaltung. Dabei sind die IDs der Datensätze als kommaseparierte Liste einzugeben. Eine ID steht dabei immer für den gesamten Zweig des Erschliessungsbaums.
+**Ganze Datensätze** sperrt das Feld **Gesperrt**. Es wirkt auf den Datensatz,
+alle untergeordneten Einheiten und deren Medien; sichtbar bleiben sie nur für
+interne Benutzer, Bearbeitende und die Administration.
 
-## Feld Status der Beschreibung
-Das Feld ist für Bestände gedacht. Wenn der Bestand auf "Entwurf" gesetzt wird, ist der Bestand nur für UserIntern, Editoren und Admins zugänglich.
+## Einzelne Bereiche freigeben
+
+Einer Person mit der Rolle Benutzer:in lässt sich der Zugang zu bestimmten
+Zweigen öffnen. In der Benutzerverwaltung werden dazu die IDs der Datensätze als
+kommagetrennte Liste eingetragen. Eine ID steht immer für den **ganzen Zweig**
+darunter.
+
+## Status der Beschreibung
+
+Das Feld ist für Bestände gedacht. Steht ein Bestand auf **Entwurf**, ist er nur
+für interne Benutzer, Bearbeitende und die Administration zugänglich.

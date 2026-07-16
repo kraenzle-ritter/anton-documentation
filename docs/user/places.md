@@ -1,39 +1,75 @@
-## Orte
+# Orte
 
+Orte sind eigenständige Datensätze für geografische Angaben — Städte, Gewässer,
+Gebäude, Regionen. Wie [Akteure](actors.md) werden sie einmal erfasst und dann
+von beliebig vielen Verzeichnungseinheiten verwendet. Zu finden sind sie über
+**Admin → Orte**.
 
-### Geokoordinaten
+Ein Ort hängt auf zwei Arten an einer Verzeichnungseinheit: als **Schlagwort**
+(der Ort kommt inhaltlich vor) oder über ein [Ereignis](antonevents.md) (dort
+wurde etwas hergestellt, empfangen, aufgeführt). Der Unterschied ist derselbe
+wie bei den Akteuren.
 
-Anton unterstützt die Erfassung und Verwaltung von geografischen Koordinaten für Orte (Punkte). Das System kann verschiedene Koordinatenformate automatisch verarbeiten und in einem einheitlichen Format speichern. Besitzt ein Ort Geokooridnaten, wird in der Detailansicht eine Karte mit der Lokalisierung angezeigt.
+## Typen
 
+Die Typen folgen den Feature-Klassen von GeoNames: Staat/Land/Region, Gewässer,
+Parks und Flächen, Stadt/Dorf, Strasse/Eisenbahnlinie, Gebäude/Hof, Berg/Hügel,
+Unterwasser sowie Wald/Feld. Pro Archiv lassen sich weitere ergänzen.
 
-#### Unterstützte Koordinatenformate
+## Erfassen
 
-**1. WGS84 (Dezimalgrad)** - Standard für GPS und Online-Karten  
-Format: `Breitengrad Längengrad` | Beispiel: `47.3769 8.5417` (Zürich)
+Das Formular enthält Typ, Name, andere Namensformen, Varianten, Abkürzungen,
+Stadt/Gemeinde, Bundesland/Kanton, Land, Adresse, Beschreibung, Quellen,
+Kommentar und die Koordinaten.
 
-**2. Schweizer Landeskoordinaten LV95** - Aktuelles CH-System  
-Format: `Rechtswert Hochwert` | Beispiel: `2683141 1247637` oder `2'683'141 1'247'637`
+Orte lassen sich auch direkt aus dem Objektformular über das **+** neben der
+Auswahlliste anlegen.
 
-**3. Schweizer Landeskoordinaten LV03** - Früheres CH-System  
-Format: `Rechtswert Hochwert` | Beispiel: `683141 247637`
+## Geokoordinaten
 
-!!! info "Automatische Konvertierung"
-    Anton erkennt das Format automatisch und konvertiert alle Koordinaten in WGS84.
+Besitzt ein Ort Koordinaten, zeigt die Detailansicht eine Karte. In der
+Ortsliste lässt sich zudem über **Karte anzeigen** eine Übersichtskarte
+einblenden; sie ist mit der Liste gekoppelt — wer die Karte verschiebt oder
+zoomt, filtert die Liste auf den sichtbaren Ausschnitt.
 
-#### Eingabe in Anton
+### Über Normdaten — der einfachste Weg
 
-##### Über Geonames
-1. Ort erstellen oder bearbeiten
-2. In der rechten Spalte Ort mit Geonames identifizieren
-3. Kooridnaten werden automatisch übernommen
+Wird ein Ort in der Bearbeitungsansicht mit **GeoNames** oder **ortsnamen.ch**
+[verknüpft](authorities.md), übernimmt Anton die Koordinaten automatisch.
 
-##### Über das Orte-Formular
-1. Ort erstellen oder bearbeiten
-2. Im Feld "Koordinaten" die Werte eingeben
-3. Format wird automatisch erkannt und konvertiert
+### Von Hand
 
-##### Unterstützte Eingabeformate
-- Mit oder ohne Vorzeichen
-- Mit oder ohne Tausendertrennzeichen (`'` oder ` `)
-- Durch Leerzeichen oder Komma getrennt
-- Dezimalstellen optional
+Im Feld **Koordinaten (lat lng)** eines **bereits gespeicherten** Ortes lassen
+sich die Werte direkt eintragen.
+
+!!! warning "Beim Anlegen noch nicht"
+    Koordinaten, die im Formular für einen **neuen** Ort eingegeben werden,
+    werden nicht gespeichert. Der Ort ist zuerst anzulegen und die Koordinaten
+    anschliessend über **Bearbeiten** nachzutragen — oder gleich über GeoNames
+    zu beziehen.
+
+Anton erkennt das Format automatisch und rechnet in WGS84 um:
+
+| Format | Beispiel |
+|---|---|
+| WGS84 (Dezimalgrad) | `47.3769 8.5417` |
+| Schweizer Landeskoordinaten LV95 | `2683141 1247637` oder `2'683'141 1'247'637` |
+| Schweizer Landeskoordinaten LV03 | `683141 247637` |
+
+Vorzeichen, Tausendertrennzeichen (`'` oder Leerzeichen), Trennung durch
+Leerzeichen oder Komma und Dezimalstellen sind jeweils optional.
+
+Sind Koordinaten vorhanden, erscheint in der Bearbeitungsansicht zusätzlich eine
+Taste zum Löschen.
+
+## Dubletten zusammenführen
+
+Zwei Datensätze für denselben Ort lassen sich zusammenführen. Dabei wandern
+Ereignisse, Normdaten-Links und die Verknüpfungen zu Verzeichnungseinheiten auf
+den Zieldatensatz, der alte wird gelöscht.
+
+!!! danger "Vorbehalten und verlustbehaftet"
+    Das Zusammenführen ist Superuser vorbehalten — für Anfragen ist k & r
+    zuständig. Beschreibung, Quellen, Kommentar, Namensformen und die
+    Koordinaten des aufgelösten Ortes werden **nicht** übernommen. Sie sind
+    vorher zu sichern, falls sie erhalten bleiben sollen.

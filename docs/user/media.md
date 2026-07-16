@@ -38,7 +38,7 @@ keine Auflösung etc.
 Die Werte werden auch im RDF-Export (Memobase-Profil) als EBUcore-Properties
 mit ausgeliefert, siehe [RDF-Export](../admin/download-rdf.md). Für ältere
 Bestandsmedien lassen sich die Felder per Backfill nachholen — siehe
-[`media:extract-av-metadata`](../admin/console-commands.md#media-extract-av-metadata).
+[`media:extract-av-metadata`](../admin/console-commands.md#mediaextract-av-metadata).
 
 
 ## Originalmedien bereitstellen
