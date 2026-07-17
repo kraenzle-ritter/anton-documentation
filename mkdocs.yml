@@ -54,6 +54,7 @@ nav:
     - Medien:
       - Medien: user/media.md
       - Mediengalerie: user/gallery.md
+      - Dokumente: user/documents.md
       - QR-Code Upload: user/qr-upload.md
       - Filminhalt erschliessen: user/movie-tracks.md
     - Zugang und Schutzfristen: user/access.md
@@ -88,6 +89,7 @@ nav:
     - Logo: admin/logo.md
     - Authentication: admin/authentication.md
     - Mediengalerie: admin/gallery.md
+    - Dokumente: admin/documents.md
     - Schnelle Suche (Typesense): admin/typesense.md
     - Download-Formate:
       - DIP Download: admin/download-dip.md
