@@ -208,6 +208,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
     (`gf:`, `gosteli:`, `ballyana:`).
 
 <!-- BEGIN generated command reference -->
+
 ### anton: (50)
 
 | Befehl | Beschreibung |
