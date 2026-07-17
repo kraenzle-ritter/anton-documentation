@@ -1,7 +1,7 @@
 # KI-Erschliessung
 
 Anton kann seit **v0.63.0** auf Knopfdruck Vorschläge für Titel,
-Textfelder, Datierung, Akteure, Orte und Schlagworte generieren — basierend
+Textfelder, Datierung, Akteure, Orte und Schlagwörter generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.
 
@@ -56,7 +56,7 @@ Mensch entscheidet.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
 - **Bestehender Titel** des Datensatzes als Kontext
 
-## Akteure, Orte, Schlagworte: zwei Pattern
+## Akteure, Orte, Schlagwörter: zwei Pattern
 
 Die KI unterscheidet zwischen Schöpfer- und Inhalts-Bezügen:
 

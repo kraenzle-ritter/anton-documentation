@@ -9,7 +9,7 @@ verwendet werden. Zu finden sind sie über **Admin → Akteurinnen/Akteure**.
 Das ist der Punkt, an dem am häufigsten das Falsche gewählt wird. Ein Akteur
 kann auf zwei Arten an einer Verzeichnungseinheit hängen:
 
-- **Als Schlagwort** — im Feld «Schlagworte (Akteure)». Das sagt: Diese Person
+- **Als Schlagwort** — im Feld «Schlagwörter (Akteure)». Das sagt: Diese Person
   *kommt inhaltlich vor*. Ohne Rolle, ohne Datum.
 - **Über ein [Ereignis](antonevents.md)** — mit Rolle, Ort, Datum und
   Kommentar. Das sagt: Diese Person *hat etwas getan* — sie hat das Dokument

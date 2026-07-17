@@ -29,7 +29,7 @@ Das Antonereignis «Erstellung» wird nur auf der jeweils untersten Verzeichnung
 In Anton werden pro Bestand die Laufmeter erfasst. Diese werden dann für Bestandsgruppen und das Archiv kumuliert. Für Dossiers und Einzelstücke ist die Erfassung des Umfangs mit den Feldern Objekttyp und Umfang (Stückzahl) empfohlen. Ein Beschreibungsfeld für den Umfang steht ebenfalls zur Verfügung.
 
 ## Deskriptoren
-Neben den Antonereignissen, die die Interaktion eines Akteurs mit der Verzeichnungseinheit beschreiben, können die Akteure, Orte und Schlagworte auch als Deskriptoren direkt für die Inhaltsbeschreibung verwendet werden. Diese Art der Erschliessung ist besonders für audiovisuelle Sammlungen attraktiv.
+Neben den Antonereignissen, die die Interaktion eines Akteurs mit der Verzeichnungseinheit beschreiben, können die Akteure, Orte und Schlagwörter auch als Deskriptoren direkt für die Inhaltsbeschreibung verwendet werden. Diese Art der Erschliessung ist besonders für audiovisuelle Sammlungen attraktiv.
 
 ## Textformatierung und Links in den Textfeldern
 Anton versteht in den Textfeldern Markdown ([https://de.wikipedia.org/wiki/Markdown](https://de.wikipedia.org/wiki/Markdown)), eine einfache Auszeichnungssprache. D.h. für die Anzeige im Browser werden beispielsweise Überschriften und Listen formatiert. So können auch einfach Links auf externe Websites oder auf verwandte Verzeichnungseinheiten oder andere Seiten in Anton eingefügt werden.

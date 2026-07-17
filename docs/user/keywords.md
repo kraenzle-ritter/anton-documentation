@@ -5,8 +5,7 @@ Ereignisse, Techniken, Werke. Personen und Organisationen gehören dagegen zu
 den [Akteuren](actors.md), geografische Angaben zu den [Orten](places.md).
 
 Zu finden sind sie über **Admin → Schlagwörter**; verknüpft werden sie im
-Objektformular im Feld **Schlagworte (Sachen)** — in manchen Archiven steht dort
-«Schlagwort**er** (Sachen)».
+Objektformular im Feld **Schlagwörter (Sachen)**.
 
 !!! note "Keine Hierarchie"
     Schlagwörter stehen nebeneinander. Anton führt keinen Thesaurus: Es gibt
