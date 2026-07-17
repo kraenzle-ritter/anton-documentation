@@ -1,109 +1,79 @@
-# AntonObject: Events, Jobs & Listeners
+# Nebenläufigkeit: Events, Listener, Jobs
 
-## 1. Event → Listener → Job Kette
+Eine Verzeichnungseinheit trägt Felder, die aus anderen Daten **folgen**: ihren
+Pfad in der Tektonik, ihre Tiefe, das Freigabejahr, den Volltextindex, die über
+den Teilbaum aggregierte Datierung. Diese Werte sind **materialisiert** — sie
+stehen in Spalten, statt bei jeder Abfrage neu gerechnet zu werden.
 
-| Event | Listener | Queue? | Dispatched Jobs |
-|-------|----------|--------|-----------------|
-| `ObjectMoved` | `ObjectSetPath` | **async** (`ShouldQueue`) | `UpdatePaths` |
-| `ObjectChanged` | `ObjectUpdateParents` | **sync** | `UpdateDates` + `RefreshFulltext` |
-| `MediumAdded` | `MediumIdentifyAndConvert` | **async** (`ShouldQueue`) | Format-Identifikation, Cloud-Copy, Conversions, `RefreshFulltext` |
-| `ImportFinished` | `ImportFinished` | **sync** | Kette: `UpdatePaths` → `ProcessMediaFiles` → `ProcessMediaIdentificationBatch` → `UpdateDates` → `RefreshFulltext` |
-| `LoanedObject` | `ObjectUpdatesLoansOnDescendants` | **async** (`ShouldQueue`) | `UpdateLoans` |
+Materialisierung erkauft schnelle Abfragen mit dem Zwang, die Werte konsistent
+zu halten. Genau das leistet die Ereignis- und Job-Schicht. Wer sie versteht,
+versteht, warum eine scheinbar einfache Änderung an einem Objekt eine Kette von
+Hintergrundaufträgen auslöst.
 
-## 2. Operationen auf AntonObject → Was passiert?
+## Das Muster
 
-| Operation | Model-Hook | Events (wenn `$suppressDomainEvents = false`) | Zusätzliche Aktionen |
-|-----------|-----------|-----------------------------------------------|---------------------|
-| **create** (Einzelobjekt) | `saving` → `created` | `ObjectMoved` → `UpdatePaths` | `fonds_id` setzen |
-| | | `ObjectChanged` → `UpdateDates` + `RefreshFulltext` | Cache flush, `updateHasChildren` auf Parent |
-| **create_bulk** | `saving` → `created` (pro Objekt) | **unterdrückt** (`$suppressDomainEvents = true`) | Nach Schleife 1× manuell: `UpdatePaths`, `UpdateDates`, `RefreshFulltext` |
-| **update** | `updating` → `updated` | `ObjectChanged` → `UpdateDates` + `RefreshFulltext` | `version++`, `real_depth`, `uuid` |
-| **update** (mit dirty `private`) | `updating` | — | `UpdateDescendantsPrivate` → alle Nachkommen + Fulltext |
-| **update** (mit dirty `release_year`) | `updating` | — | `UpdateDescendantsReleaseDate` → alle Nachkommen |
-| **update** (mit dirty `status_of_description_id` auf Fonds) | `updating` | — | `UpdateDescendantsStatusOfDescription` → alle Nachkommen |
-| **move** (behind/infrontof/into) | `saving` → `saved` (intern) | **unterdrückt** während Move; danach 1× `ObjectMoved` → `UpdatePaths` | `reorderChildren`, `updateHasChildren`, ggf. Move-Protokoll (wenn `setting('record_move_events')`) |
-| **delete** (moveToTrash) | `deleting` → `deleted` | — | Notes löschen, Kinder rekursiv in Papierkorb, Cache flush |
-| **addAntonMedium** | — | `MediumAdded` → Format-ID, Conversions, `RefreshFulltext` | Nur wenn `$fire_medium_added_event = true` |
+Anton koppelt Domänenoperationen und Nachpflege lose über Laravel-Events:
 
-## 3. Jobs im Detail
+```
+Operation am AntonObject  →  Domain-Event  →  Listener  →  Job (Queue)
+```
 
-| Job | Timeout | Retries | Was macht er? |
-|-----|---------|---------|---------------|
-| `UpdatePaths` | 3600s | — | Aktualisiert das `path[]`-Attribut für Objekte und ihre Nachkommen |
-| `UpdateDates` | 7200s | 3× (60s Backoff) | Aggregiert Entstehungsdaten (`artisan anton:update-dates`) |
-| `RefreshFulltext` | 14400s | 3× (60s Backoff) | Extrahiert PDF-Text, aktualisiert MySQL-Fulltext-Index (`artisan anton:update-fulltext`). ≤ 50 IDs: in-process `Artisan::call()`. > 50 IDs oder ganze DB: externer PHP-Prozess (Memory-Isolation). |
-| `UpdateDescendantsPrivate` | — | — | Setzt `private` auf allen Nachkommen + Fulltext-Update in 1000er-Chunks |
-| `UpdateDescendantsStatusOfDescription` | — | — | Setzt `status_of_description_id` auf allen Nachkommen |
-| `UpdateDescendantsReleaseDate` | — | — | Aktualisiert `release_year` / `release_year_calculated` auf Nachkommen |
-| `UpdateLoans` | — | — | Aktualisiert Ausleih-Status auf Nachkommen |
+Der Kern liegt in den Model-Hooks von `AntonObject` (`booted()`) und in
+`EventServiceProvider`. Die Nachpflege läuft über die Queue, weil sie ganze
+Teilbäume berühren kann — bei einer Closure Table ist das potenziell teuer.
 
-## 4. `$suppressDomainEvents`
+## Warum asynchron und idempotent
 
-`AntonObject::$suppressDomainEvents` ist ein statisches Flag, das die `ObjectMoved`- und `ObjectChanged`-Events unterdrückt, während Infrastruktur-Events (ClosureTable `insertNode`, `reorderSiblings`) weiterhin feuern. Wird verwendet in:
+Zwei Entwurfsentscheidungen erklären fast alles:
 
-- **`create_bulk()`** — Events unterdrücken während der Schleife, danach 1× `UpdatePaths`, `UpdateDates`, `RefreshFulltext` für alle IDs
-- **`move()`** — Events unterdrücken während der Move-Operation, danach 1× `ObjectMoved`
+**Teilbaum-Arbeit gehört in die Queue.** Ein Verschieben schreibt Pfade und
+Tiefen aller Nachkommen um; eine Titeländerung kann den Volltext des ganzen
+Teilbaums betreffen. Solche Arbeit synchron im Request zu erledigen, würde ihn
+sprengen — deshalb Jobs mit grosszügigen Timeouts und Retries.
 
-## 5. Performance-Hinweis: Sync-Queue
+**Die Jobs sind wiederholbar.** Jeder rechnet den Zielzustand aus den
+Quelldaten neu, statt Deltas fortzuschreiben. Das macht sie idempotent: Ein
+zweiter Lauf schadet nicht, ein verlorener Lauf lässt sich nachholen. Genau
+darauf beruht die Reparaturfähigkeit — `anton:doctor` und
+`RepairAllDerivedAttributes` können jederzeit den konsistenten Zustand
+wiederherstellen.
 
-Mit `QUEUE_DRIVER=sync` laufen **alle** Jobs synchron. Das bedeutet:
+## Domain-Events werden bei Massenoperationen unterdrückt
 
-- **Ein einzelnes `create`** feuert `ObjectMoved` + `ObjectChanged` → löst synchron `UpdatePaths` + `UpdateDates` + `RefreshFulltext` aus — **3 schwere Prozesse pro Objekt**
-- **`create_bulk`** unterdrückt das und macht es **1× am Ende** für alle IDs
-- **`move`** unterdrückt Events während der Operation, feuert `ObjectMoved` **1× am Ende** (kein `ObjectChanged`, daher kein `UpdateDates`/`RefreshFulltext` beim Move)
+Ein wichtiges Detail: Beim Anlegen vieler Datensätze (`create_bulk`) und während
+eines Verschiebens setzt der Code `$suppressDomainEvents = true` und stösst die
+Nachpflege **einmal am Ende** an, statt pro Objekt. Sonst würde eine
+Bulk-Operation Hunderte redundanter Jobs erzeugen. Wer eine neue Massenoperation
+schreibt, muss dieses Muster kennen und selbst dafür sorgen, dass Pfade, Daten
+und Volltext danach einmal aktualisiert werden.
 
-## 6. Relevante Dateien
+## Die abgeleiteten Felder
 
-| Datei | Beschreibung |
-|-------|-------------|
-| `app/Models/AntonObject.php` | Model-Events (`booted()`), `move()`, `$suppressDomainEvents` |
-| `app/Events/ObjectMoved.php` | Event-Klasse für Verschiebungen |
-| `app/Events/ObjectChanged.php` | Event-Klasse für Änderungen (inkl. Create) |
-| `app/Events/MediumAdded.php` | Event-Klasse für neue Medien |
-| `app/Events/ImportFinished.php` | Event-Klasse für abgeschlossene Importe |
-| `app/Listeners/ObjectSetPath.php` | Listener: `ObjectMoved` → `UpdatePaths` |
-| `app/Listeners/ObjectUpdateParents.php` | Listener: `ObjectChanged` → `UpdateDates` + `RefreshFulltext` |
-| `app/Listeners/MediumIdentifyAndConvert.php` | Listener: `MediumAdded` → Identifikation, Conversions |
-| `app/Listeners/ImportFinished.php` | Listener: `ImportFinished` → Job-Kette |
-| `app/Jobs/UpdatePaths.php` | Job: Pfade aktualisieren |
-| `app/Jobs/UpdateDates.php` | Job: Daten aggregieren |
-| `app/Jobs/RefreshFulltext.php` | Job: Fulltext-Index aktualisieren |
-| `app/Providers/EventServiceProvider.php` | Event-Listener-Mapping |
-| `app/Http/Controllers/ObjectsController.php` | `create_bulk()` mit Event-Unterdrückung |
+| Feld | Wird neu berechnet bei | Job |
+|---|---|---|
+| `path`, `real_depth` | Anlegen, Verschieben | `UpdatePaths` |
+| aggregierte Datierung | Datumsänderung im Teilbaum | `UpdateDates` |
+| `full_text`, `full_text_intern` | Titel-/Inhaltsänderung, neuen Medien | `RefreshFulltext` |
+| `release_year_calculated` | Schutzfrist-/Datumsänderung | über die Nachkommen-Pflege |
+| `private`, `status_of_description_id` | Änderung auf einem Vorfahren | Vererbung an alle Nachkommen |
 
-## 7. Derived Attributes Pipeline (Doctor)
+`RefreshFulltext` illustriert eine allgemeine Vorsichtsregel der Schicht: Bei
+wenigen IDs läuft es in-process, bei vielen oder der ganzen Datenbank in einem
+**eigenen PHP-Prozess** — zur Speicher-Isolation, damit ein grosser Rebuild den
+Worker nicht sprengt.
 
-Die Pipeline im Doctor-Dashboard repariert abgeleitete Felder in strikter Abhängigkeitsreihenfolge. Jeder Step hängt von den vorherigen ab.
+## Voraussetzung: der Supervisor läuft
 
-### Reparatur-Reihenfolge
+Die ganze Schicht setzt voraus, dass die Queue abgearbeitet wird. Steht der
+Supervisor nicht, stauen sich die Jobs ohne Fehlermeldung, und die abgeleiteten
+Felder veralten still. Der Reiter **Supervisor** im
+[Anton Doctor](../admin/doctor.md) zeigt den Zustand — die erste Station bei
+«Änderungen kommen nicht an».
 
-| Step | Feld(er) | Artisan Command | Beschreibung |
-|------|----------|-----------------|--------------|
-| 1 | `object_closure` | `anton:repair-closure-table` | ClosureTable: Parent-Child-Beziehungen |
-| 2 | `path`, `fonds_id` | `anton:update-path` | Pfad-Arrays und Fonds-Zuordnung |
-| 3 | `real_depth` | `anton:update-path --real-depth` | Tatsächliche Tiefe im Baum |
-| 4 | `has_children` | `anton:update-has_children` | Flag: Objekt hat Kinder |
-| 5 | `release_year_calculated` | `anton:update-release-year` | Kaskadiert release_year top-down |
-| 6 | `object_creation_min/max` | `anton:update-all-dates` | Aggregiert Entstehungsdaten bottom-up |
-| 7 | `full_text`, `full_text_intern` | `anton:update-fulltext` | MySQL-Fulltext-Index |
+## Kein Scheduler auf den Servern
 
-### Jobs
-
-| Job | Beschreibung |
-|-----|--------------|
-| `RepairAllDerivedAttributes` | Führt alle 7 Steps in der richtigen Reihenfolge aus. Wird über Doctor "Repair All" oder direkt dispatched. |
-
-### PipelineStepLog
-
-`Anton\Helpers\PipelineStepLog` protokolliert pro Step wann zuletzt ausgeführt (`last_run`) und wann zuletzt fehlerfrei (`last_ok`). Gespeichert als JSON in `storage/app/logs/pipeline_steps.json`.
-
-### Dateien
-
-| Datei | Beschreibung |
-|-------|--------------|
-| `app/Jobs/RepairAllDerivedAttributes.php` | Job: alle 7 Reparatur-Schritte in Reihenfolge |
-| `app/Helpers/PipelineStepLog.php` | JSON-Log für Pipeline-Step-History |
-| `app/Console/Commands/AntonUpdateReleaseYear.php` | Command: release_year kaskadieren |
-| `app/Http/Controllers/Help/AntonDoctorController.php` | Doctor-Controller mit Pipeline-Checks und Repairs |
-| `resources/views/doctor/tabs/pipeline.blade.php` | Pipeline-View mit Status, Details, Log-Daten |
-| `resources/views/doctor/tabs/manual.blade.php` | Manuelle Reparaturen (Nested Fonds, Positions) |
+Der Laravel-Scheduler (`schedule:run`) läuft auf den Produktionsservern nicht
+(vgl. den Kommentar in `app/Console/Kernel.php`). Wiederkehrende Aufgaben —
+Integritätsprüfungen, Disk-Messung, Normdaten-Abgleich — werden deshalb pro
+Installation als Cronjob eingerichtet, nicht über den Scheduler. Wer eine
+periodische Aufgabe braucht, plant sie als Cron ein.

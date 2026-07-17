@@ -77,12 +77,12 @@ nav:
     - Anmeldung:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
-  # Developer-Bereich vorerst ausgeblendet; die Seiten bleiben im Repo.
-  # - Developer:
-  #   - Forms & Formsets: developer/forms.md
-  #   - Antonfields: developer/antonfields.md
-  #   - Events/Jobs: developer/events-jobs.md
-  #   - Upload via Mobile: developer/mobile-upload.md
+  - Developer:
+    - Architektur-Überblick: developer/index.md
+    - Domänenmodell: developer/domain-model.md
+    - Das Formularsystem: developer/forms.md
+    - Nebenläufigkeit: developer/events-jobs.md
+    - Erweiterungspunkte: developer/extension-points.md
   - Admin:
     - Einrichtung:
       - Serveranforderungen: admin/requirements.md
