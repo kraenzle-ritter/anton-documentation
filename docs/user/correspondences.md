@@ -28,7 +28,8 @@ Die Verzeichnungsstufe spielt keine Rolle.
 !!! note "Mindestzahl an Briefen"
     Ein Akteurspaar erscheint erst ab einer Mindestzahl von Briefen — im
     Standard fünf. Vereinzelte Briefe bleiben also aussen vor. Die Schwelle ist
-    pro Archiv einstellbar; für Anpassungen ist k & r zuständig.
+    pro Archiv einstellbar, aber im Admin-Bereich nicht änderbar; bei Anton as a
+    Service ist dafür k & r zuständig.
 
 ## Für wen sich das lohnt
 

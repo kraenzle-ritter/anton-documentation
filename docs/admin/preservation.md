@@ -53,8 +53,13 @@ Anton bringt die Werkzeuge mit, führt sie aber nicht von sich aus aus:
 !!! important "Einzurichten, nicht eingebaut"
     Anton führt **keine** wiederkehrende Integritätsprüfung von selbst aus — es
     gibt keinen eingebauten Zeitplan. Die Prüfung wird pro Installation als
-    Cronjob eingerichtet. Zurzeit ist das für die grossen Archive eingerichtet;
-    für weitere Installationen ist k & r zuständig.
+    Cronjob eingerichtet.
+
+    **Bei Anton as a Service** ist das zurzeit für die grossen Archive
+    eingerichtet; für weitere Installationen auf unseren Servern ist k & r
+    zuständig. **On Premises** richtet der Betreiber den Auftrag selbst ein — die
+    Befehle stehen dafür bereit, ein automatischer Lauf entsteht daraus aber
+    nicht von allein.
 
 Davon zu unterscheiden ist [`anton:doctor`](console-commands.md): Es prüft die
 **Konsistenz der Datenbank** — Hierarchie, Signaturen, abgeleitete Felder — und
@@ -93,11 +98,11 @@ Damit keine falschen Erwartungen entstehen:
   hin, handelt aber nicht**.
 - **Kein PREMIS, kein METS.**
 - **Keine Speicherredundanz.** Die redundante Speicherung leistet die
-  Betriebsinfrastruktur, nicht die Anwendung: Beim Betrieb durch k & r liegen
-  die Daten in [drei Kopien an drei Standorten](../faq/longterm_archives.md)
-  (gesamthaft sechsfache Redundanz). Anton selbst kennt davon nichts — es sieht
-  einen lokalen Speicher und optional einen Cloud-Speicher und kann die
-  Redundanz weder anzeigen noch überwachen.
+  Betriebsinfrastruktur, nicht die Anwendung. Anton selbst sieht einen lokalen
+  Speicher und optional einen Cloud-Speicher und kann die Redundanz weder
+  anzeigen noch überwachen. Bei **Anton as a Service** liegen die Daten in
+  [drei Kopien an drei Standorten](../faq/longterm_archives.md) (gesamthaft
+  sechsfache Redundanz); **on Premises** verantwortet das der Betreiber selbst.
 
 ## Mit angebundenem Langzeitarchiv
 

@@ -5,10 +5,10 @@ gemeinsam bearbeiten. Zurzeit gibt es dafür **eine** Aktion: das
 [Verschieben](hierarchy.md).
 
 !!! note "Nur in einzelnen Archiven"
-    Sammelaktionen müssen freigeschaltet sein und setzen die Rolle
-    **Administration** voraus. Sie sind kein Standard — für Anfragen ist k & r
-    zuständig. Wer sie nicht braucht, kann sie im eigenen Profil zusätzlich
-    abschalten.
+    Sammelaktionen müssen freigeschaltet sein und setzen die Rolle `admin`
+    voraus. Sie sind kein Standard; die Einstellung ist im Admin-Bereich nicht
+    änderbar, bei Anton as a Service ist dafür k & r zuständig. Wer sie nicht
+    braucht, kann sie im eigenen Profil zusätzlich abschalten.
 
 ## Zuerst die Aktion, dann die Auswahl
 

@@ -37,7 +37,8 @@ drei hinterlegt:
 
 Die Fristen sind pro Archiv konfigurierbar: Typen lassen sich umbenennen,
 ergänzen und in der Dauer ändern; ebenso ist «nie freigeben» möglich. Die
-Pflege ist Superuser vorbehalten — für Anpassungen ist k & r zuständig.
+Pflege ist Superusern vorbehalten; bei Anton as a Service ist dafür k & r
+zuständig.
 
 !!! note "Das angezeigte Freigabejahr"
     Angezeigt wird das erste Jahr, in dem die Einheit **frei** ist — bei

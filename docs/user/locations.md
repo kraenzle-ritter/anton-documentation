@@ -53,4 +53,5 @@ In einzelnen Archiven geht die Abkürzung des Standorts in die
 !!! note "Archivspezifisch"
     Diese Funktion setzt eine eigens dafür programmierte Signaturbildung voraus.
     Das Standardschema verwendet den Standort nicht — das Auswahlfeld bliebe
-    dort wirkungslos. Ob das eigene Archiv es nutzt, weiss k & r.
+    dort wirkungslos. Ob die eigene Installation eine solche Signaturbildung
+    mitbringt, weiss bei Anton as a Service k & r.

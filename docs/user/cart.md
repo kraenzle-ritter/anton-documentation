@@ -6,8 +6,9 @@ schicken. Er ist eine Bestellhilfe, keine Ausleihverwaltung; die
 [Ausleihe](loans.md) wird getrennt geführt.
 
 !!! note "Nicht in jedem Archiv"
-    Der Bestellkorb muss für das Archiv freigeschaltet sein. Die Einstellung
-    ist beim Aufsetzen zu wählen — für Anfragen ist k & r zuständig.
+    Der Bestellkorb muss für das Archiv freigeschaltet sein. Die Einstellung ist
+    im Admin-Bereich nicht änderbar, sondern wird beim Aufsetzen der Installation
+    gesetzt; bei Anton as a Service ist dafür k & r zuständig.
 
 ## Ablauf
 
@@ -41,10 +42,11 @@ Bestellungen, keinen Status, keine Detailansicht. Ausgewertet wird lediglich die
 Anzahl, unter [Statistiken](statistics.md) → «Ausleihen und Bestellungen».
 
 !!! danger "Empfängeradresse prüfen"
-    Ist für das Archiv keine Empfängeradresse hinterlegt, gehen Bestellungen an
-    eine Vorgabeadresse bei k & r — nicht ans Archiv. Bei der Inbetriebnahme des
-    Bestellkorbs ist deshalb zu prüfen, dass die Adresse gesetzt ist, und mit
-    einer Testbestellung zu kontrollieren, dass sie ankommt.
+    Ist für das Archiv keine Empfängeradresse hinterlegt, greift eine fest
+    eingebaute Vorgabeadresse bei k & r — die Bestellung geht dann nicht ans
+    Archiv. Bei der Inbetriebnahme des Bestellkorbs ist deshalb zu prüfen, dass
+    die Adresse gesetzt ist, und mit einer Testbestellung zu kontrollieren, dass
+    sie ankommt.
 
 ## Der Korb hält nicht ewig
 

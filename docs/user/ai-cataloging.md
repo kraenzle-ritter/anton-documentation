@@ -6,9 +6,10 @@ Ereignisse, Schlagwörter, Akteure, Orte und Sprachen vor.
 
 !!! note "Erst freizuschalten"
     Die KI-Erschliessung ist zurzeit nicht standardmässig in Betrieb. Sie setzt
-    zweierlei voraus: eine Freigabe auf dem Server, die nur k & r setzen kann,
+    zweierlei voraus: eine Freigabe in der Serverkonfiguration, die im
+    Admin-Bereich nicht erreichbar ist — bei Anton as a Service setzt sie k & r —
     und den Schalter im Archiv selbst. Zusätzlich muss ein Kostenrahmen
-    hinterlegt sein — fehlt er, brechen alle Anfragen ab.
+    hinterlegt sein; fehlt er, brechen alle Anfragen ab.
 
 ## Vorschläge erzeugen
 

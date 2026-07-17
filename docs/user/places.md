@@ -69,7 +69,7 @@ Ereignisse, Normdaten-Links und die Verknüpfungen zu Verzeichnungseinheiten auf
 den Zieldatensatz, der alte wird gelöscht.
 
 !!! danger "Vorbehalten und verlustbehaftet"
-    Das Zusammenführen ist Superuser vorbehalten — für Anfragen ist k & r
-    zuständig. Beschreibung, Quellen, Kommentar, Namensformen und die
+    Das Zusammenführen ist Superusern vorbehalten; bei Anton as a Service ist
+    dafür k & r zuständig. Beschreibung, Quellen, Kommentar, Namensformen und die
     Koordinaten des aufgelösten Ortes werden **nicht** übernommen. Sie sind
     vorher zu sichern, falls sie erhalten bleiben sollen.
