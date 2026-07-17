@@ -47,6 +47,9 @@ jobs:
           pip install mkdocs-mermaid2-plugin
           pip install mkdocs-render-swagger-plugin
 
+      - name: Check command reference
+        run: python3 scripts/gen-command-reference.py --check
+
       - name: Build documentation
         run: mkdocs build --verbose
 

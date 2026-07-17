@@ -38,12 +38,20 @@ BEGIN = "<!-- BEGIN generated command reference -->"
 END = "<!-- END generated command reference -->"
 
 
-def artisan_list() -> list[dict]:
-    out = subprocess.run(
-        ["ddev", "exec", "php", "artisan", "list", "--format=json"],
-        cwd=ANTON, capture_output=True, text=True, check=True,
-    ).stdout
-    return json.loads(out)["commands"]
+def artisan_list() -> list[dict] | None:
+    """Befehlsliste aus dem Nachbar-Repo. None, wenn Anton nicht erreichbar
+    ist (z.B. in der GitHub-CI ohne DDEV) — dann fällt --check auf eine
+    reine Strukturprüfung zurück."""
+    if not ANTON.is_dir():
+        return None
+    try:
+        out = subprocess.run(
+            ["ddev", "exec", "php", "artisan", "list", "--format=json"],
+            cwd=ANTON, capture_output=True, text=True, check=True, timeout=120,
+        ).stdout
+        return json.loads(out)["commands"]
+    except (FileNotFoundError, subprocess.SubprocessError, json.JSONDecodeError):
+        return None
 
 
 def build_block(commands: list[dict]) -> str:
@@ -73,6 +81,22 @@ def build_block(commands: list[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def structure_ok(text: str) -> bool:
+    """Prüft ohne Anton, dass der generierte Block vorhanden, nicht leer und
+    tabellenförmig ist. Fängt versehentliches Zerstören des Blocks ab."""
+    m = re.search(re.escape(BEGIN) + r"(.*?)" + re.escape(END), text, flags=re.S)
+    if not m:
+        print(f"Marker {BEGIN} / {END} fehlen.", file=sys.stderr)
+        return False
+    body = m.group(1)
+    rows = [ln for ln in body.splitlines() if ln.startswith("| `")]
+    if len(rows) < 10:
+        print(f"Generierter Block wirkt beschädigt: nur {len(rows)} Befehlszeilen.",
+              file=sys.stderr)
+        return False
+    return True
+
+
 def main() -> int:
     check = "--check" in sys.argv
     text = PAGE.read_text()
@@ -80,7 +104,19 @@ def main() -> int:
         print(f"Marker {BEGIN} / {END} fehlen in {PAGE}", file=sys.stderr)
         return 2
 
-    block = build_block(artisan_list())
+    commands = artisan_list()
+
+    if commands is None:
+        # Anton nicht erreichbar (CI): nur Strukturprüfung.
+        if check:
+            ok = structure_ok(text)
+            print("Struktur ok (Anton nicht erreichbar — volle Drift-Prüfung "
+                  "braucht DDEV)." if ok else "Struktur fehlerhaft.")
+            return 0 if ok else 1
+        print("Anton nicht erreichbar (DDEV?) — nichts zu tun.", file=sys.stderr)
+        return 2
+
+    block = build_block(commands)
     new = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), block.rstrip("\n"),
                  text, flags=re.S)
 
