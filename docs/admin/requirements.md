@@ -29,21 +29,25 @@ Anton ist eine [Laravel](https://laravel.com/)-12-Anwendung.
 ## PHP-Extensions
 
 - OpenSSL
-- PDO (MySQL-Treiber)
+- PDO mit MySQL-Treiber (`pdo_mysql`)
+- Imagick
 - Mbstring
 - Tokenizer
-- XML
+- XML und DOM
 - Ctype
 - JSON
-- BCMath
-- Imagick
-- Sodium
 - Zip
 - GD
 - cURL
 - Fileinfo
 - Exif
 - Intl
+
+!!! important "Imagick ist die Extension, nicht nur das Programm"
+    Anton verarbeitet Bilder über die **PHP-Extension** Imagick, nicht über den
+    Aufruf von ImageMagick auf der Kommandozeile. Fehlt `php-imagick`, läuft die
+    Installation durch und die Bildkonversionen scheitern erst später im
+    Hintergrund — ohne sichtbare Fehlermeldung.
 
 ## Programme
 
