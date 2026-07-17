@@ -14,7 +14,7 @@
         <link rel="prev" href="../statische-publikation/">
       
       
-        <link rel="next" href="../preservation-planning/">
+        <link rel="next" href="../export-matrix/">
       
       
         
@@ -2316,6 +2316,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../export-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export-Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../preservation-planning/" class="md-nav__link">
         
   
@@ -3685,6 +3713,8 @@ anderem die UUIDs, die Rohwerte und die Schutzfristen; private Inhalte sind
 herausgefiltert. Für eine Sicherung braucht es den nativen Export <strong>und</strong>
 den SQL-Dump.</p>
 </div>
+<p>Welche Daten jedes Format im Einzelnen mitnimmt und welche nur im SQL-Dump
+stehen, zeigt die <a href="../export-matrix/">Export-Matrix</a>.</p>
 <p>Für die <a href="../statische-publikation/">statische Publikation</a> eines Bestandes als
 eigenständige Website gibt es ein eigenes Bundle.</p>
 <h2 id="was-anton-nicht-tut">Was Anton nicht tut<a class="headerlink" href="#was-anton-nicht-tut" title="Permanent link">&para;</a></h2>
@@ -3695,9 +3725,12 @@ eigenständige Website gibt es ein eigenes Bundle.</p>
   Video-Normalisierung. Das Preservation Planning <strong>weist auf Handlungsbedarf
   hin, handelt aber nicht</strong>.</li>
 <li><strong>Kein PREMIS, kein METS.</strong></li>
-<li><strong>Keine Speicherredundanz.</strong> Anton kennt einen lokalen Speicher und optional
-  einen Cloud-Speicher. Die Frage, wie viele Kopien an wie vielen Standorten
-  liegen, beantwortet die Betriebsinfrastruktur, nicht die Anwendung.</li>
+<li><strong>Keine Speicherredundanz.</strong> Die redundante Speicherung leistet die
+  Betriebsinfrastruktur, nicht die Anwendung: Beim Betrieb durch k &amp; r liegen
+  die Daten in <a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a>
+  (gesamthaft sechsfache Redundanz). Anton selbst kennt davon nichts — es sieht
+  einen lokalen Speicher und optional einen Cloud-Speicher und kann die
+  Redundanz weder anzeigen noch überwachen.</li>
 </ul>
 <h2 id="mit-angebundenem-langzeitarchiv">Mit angebundenem Langzeitarchiv<a class="headerlink" href="#mit-angebundenem-langzeitarchiv" title="Permanent link">&para;</a></h2>
 <p>Bei Installationen mit <a href="../inge/">DIMAG-Anbindung</a> übergibt Anton jede
