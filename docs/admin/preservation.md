@@ -77,6 +77,9 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
     herausgefiltert. Für eine Sicherung braucht es den nativen Export **und**
     den SQL-Dump.
 
+Welche Daten jedes Format im Einzelnen mitnimmt und welche nur im SQL-Dump
+stehen, zeigt die [Export-Matrix](export-matrix.md).
+
 Für die [statische Publikation](statische-publikation.md) eines Bestandes als
 eigenständige Website gibt es ein eigenes Bundle.
 
@@ -89,9 +92,12 @@ Damit keine falschen Erwartungen entstehen:
   Video-Normalisierung. Das Preservation Planning **weist auf Handlungsbedarf
   hin, handelt aber nicht**.
 - **Kein PREMIS, kein METS.**
-- **Keine Speicherredundanz.** Anton kennt einen lokalen Speicher und optional
-  einen Cloud-Speicher. Die Frage, wie viele Kopien an wie vielen Standorten
-  liegen, beantwortet die Betriebsinfrastruktur, nicht die Anwendung.
+- **Keine Speicherredundanz.** Die redundante Speicherung leistet die
+  Betriebsinfrastruktur, nicht die Anwendung: Beim Betrieb durch k & r liegen
+  die Daten in [drei Kopien an drei Standorten](../faq/longterm_archives.md)
+  (gesamthaft sechsfache Redundanz). Anton selbst kennt davon nichts — es sieht
+  einen lokalen Speicher und optional einen Cloud-Speicher und kann die
+  Redundanz weder anzeigen noch überwachen.
 
 ## Mit angebundenem Langzeitarchiv
 

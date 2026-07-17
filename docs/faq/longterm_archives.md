@@ -1,6 +1,6 @@
 # Anton als digitales Langzeitarchiv 
 
-Die digitale Langzeitarchivierung ist eine sehr komplexe und vielschichtige Aufgabe, bei der Anton as a Service oder on Premises eingesetzt werden kann. Für die sogenannte _Bitstream Preservation_, also die eigentliche Datenspeicherung und -sicherung, erfüllt Anton alle Anforderungen: Die digitalen Daten werden auf einer geeigneten Infrastruktur gespeichert, die drei Kopien an drei Standorten vorhält.
+Die digitale Langzeitarchivierung ist eine sehr komplexe und vielschichtige Aufgabe, bei der Anton as a Service oder on Premises eingesetzt werden kann. Für die sogenannte _Bitstream Preservation_, also die eigentliche Datenspeicherung und -sicherung, erfüllt Anton alle Anforderungen: Die digitalen Daten werden auf einer geeigneten Infrastruktur gespeichert, die drei Kopien an drei Standorten vorhält – gesamthaft eine sechsfache Redundanz.
 
 Anton hält für jede Datei eine Prüfsumme vor, sodass sich die Integrität der Daten überprüfen lässt – also feststellen, ob Daten verändert oder beschädigt wurden. Diese Prüfung lässt sich pro Installation als wiederkehrender Auftrag einrichten; für die grossen Archive ist sie eingerichtet. Bei Installationen mit angebundenem Langzeitarchiv (DIMAG) verantwortet dieses die Bitstream-Sicherung. Mehr dazu unter [Langzeitarchivierung: Überblick](../admin/preservation.md).
 
