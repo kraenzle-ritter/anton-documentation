@@ -98,6 +98,9 @@ nav:
       - OCFL Download: admin/download-ocfl.md
       - RDF-Export (CIDOC CRM / Memobase): admin/download-rdf.md
       - Statische Publikation & Round-Trip: admin/statische-publikation.md
+    - Langzeitarchivierung:
+      - Überblick: admin/preservation.md
+      - Preservation Planning: admin/preservation-planning.md
     - Watermarks: admin/watermarks.md
     - Mastodon: admin/mastodon.md
     - SIP Ingest:
@@ -109,7 +112,6 @@ nav:
     - Nachrichten: admin/notifications.md
     - Feedback an die Entwicklung: admin/feedback.md
     - KI-Erschliessung: admin/ai-cataloging.md
-    - Preservation Planning: admin/preservation-planning.md
     - Bulk Medienliste: admin/bulk-media-list.md
     - Shrink for Public: admin/shrink.md
     - Restore from Backup: admin/restore.md

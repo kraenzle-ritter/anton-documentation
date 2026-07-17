@@ -1,6 +1,10 @@
 # Anton als digitales Langzeitarchiv 
 
-Die digitale Langzeitarchivierung ist eine sehr komplexe und vielschichtige Aufgabe, bei der Anton as a Service oder on Premises eingesetzt werden kann. Für die sogenannte _Bitstream Preservation_, also die eigentliche Datenspeicherung und -sicherung, erfüllt Anton alle Anforderungen: Die digitalen Daten werden auf einer geeigneten Infrastruktur gespeichert, die drei Kopien an drei Stadorten vorhält. Die Integrität der Daten wird regelmässig überprüft, d.h. es wird überwacht, ob die Daten verändert oder beschädigt sind. Der Zugang zu den Daten erfolgt ausschliesslich über Anton, der nur autorisierte Zugriffe ermöglicht. Bei rechtlich geschützten Daten sind allenfalls zusätzliche Kriterien wie etwa der mögliche/erlaubte Serverstandort abzuklären. Die Daten sind aufgrund der Metadaten in Anton jederzeit einfach und schnell auffindbar und verfügbar. 
+Die digitale Langzeitarchivierung ist eine sehr komplexe und vielschichtige Aufgabe, bei der Anton as a Service oder on Premises eingesetzt werden kann. Für die sogenannte _Bitstream Preservation_, also die eigentliche Datenspeicherung und -sicherung, erfüllt Anton alle Anforderungen: Die digitalen Daten werden auf einer geeigneten Infrastruktur gespeichert, die drei Kopien an drei Standorten vorhält.
+
+Anton hält für jede Datei eine Prüfsumme vor, sodass sich die Integrität der Daten überprüfen lässt – also feststellen, ob Daten verändert oder beschädigt wurden. Diese Prüfung lässt sich pro Installation als wiederkehrender Auftrag einrichten; für die grossen Archive ist sie eingerichtet. Bei Installationen mit angebundenem Langzeitarchiv (DIMAG) verantwortet dieses die Bitstream-Sicherung. Mehr dazu unter [Langzeitarchivierung: Überblick](../admin/preservation.md).
+
+Der Zugang zu den Daten erfolgt ausschliesslich über Anton, der nur autorisierte Zugriffe ermöglicht. Bei rechtlich geschützten Daten sind allenfalls zusätzliche Kriterien wie etwa der mögliche/erlaubte Serverstandort abzuklären. Die Daten sind aufgrund der Metadaten in Anton jederzeit einfach und schnell auffindbar und verfügbar. 
 
 Bei der Vorbereitung der _Übernahme_ (Bewertung, Ingest, Preingest etc.) und dem _Preservation Planning_ unterstützen wir unsere Kunden gerne.
 

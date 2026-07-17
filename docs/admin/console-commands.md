@@ -99,6 +99,45 @@ Optionen:
 
 Gibt am Ende eine Summary-Tabelle mit Counts und Status pro Level aus. Details siehe [Inge und Dimag](inge.md).
 
+## media:identify
+
+Bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das automatisch; dieser Befehl dient dem Nachtragen bei Altbeständen.
+
+```bash
+php artisan media:identify --env=besenval -vv
+```
+
+Optionen:
+```
+    --ids=          Kommaseparierte Liste von Media-IDs
+    --limit=        Anzahl Medien pro Lauf (Default: 100)
+    --batch-size=   Anzahl Medien pro Batch-Job (Default: 10)
+    --collection=   Nur Medien einer bestimmten Collection
+    --force         Auch Medien verarbeiten, die bereits Daten haben
+    --use-batching  Laravel-Job-Batching für mehr Parallelität
+```
+
+Ohne `--force` werden nur Medien ohne `pronom_id`, `nara_id` oder `nara_risk` verarbeitet. Setzt voraus, dass Siegfried oder Fido auf dem Server installiert ist — sonst bleibt die PRONOM-ID leer und es erfolgt keine Risikobewertung. Auswertung siehe [Preservation Planning](preservation-planning.md).
+
+## media:snapshot
+
+Schreibt einen Prüfsummen-Schnappschuss aller Mediendateien und hält Änderungen zwischen zwei Läufen fest. Grundlage für eine wiederkehrende Integritätsprüfung.
+
+```bash
+php artisan media:snapshot --verify --git --env=besenval
+```
+
+Optionen:
+```
+    --verify  Prüft Existenz und MD5 der Dateien gegen die Datenbank
+    --git     Committet in ein lokales Git-Repository, wenn sich etwas geändert hat
+```
+
+Die Schnappschüsse und Logs liegen im `media_snapshot`-Verzeichnis der Installation. Mit `--git` entsteht eine nachvollziehbare Historie: Jeder Lauf, der Abweichungen findet, hinterlässt einen Commit.
+
+!!! note "Nicht eingebaut, sondern einzurichten"
+    Anton führt den Befehl nicht von sich aus aus — er wird pro Installation als Cronjob eingerichtet. Siehe [Langzeitarchivierung: Überblick](preservation.md#integritat-prufen).
+
 ## storage:audit
 
 Prüft lokale Masterdateien und SIP-Verzeichnisse. Bei Inge-Installationen sollten keine lokalen Masterfiles vorhanden sein.
