@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#server-requirements" class="md-skip">
+        <a href="#serveranforderungen" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -1726,6 +1726,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serveranforderungen
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1742,6 +1760,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grundlage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grundlage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#php-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHP-Extensions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3676,6 +3757,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#grundlage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grundlage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#php-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHP-Extensions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3694,46 +3827,173 @@
   
 
 
-<h1 id="server-requirements">Server Requirements<a class="headerlink" href="#server-requirements" title="Permanent link">&para;</a></h1>
-<p>Anton v.0.32.0 is a <a href="https://laravel.com/">Laravel</a> Version 11 Application.</p>
+<h1 id="serveranforderungen">Serveranforderungen<a class="headerlink" href="#serveranforderungen" title="Permanent link">&para;</a></h1>
+<p>Anton ist eine <a href="https://laravel.com/">Laravel</a>-12-Anwendung.</p>
+<h2 id="grundlage">Grundlage<a class="headerlink" href="#grundlage" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Baustein</th>
+<th>Anforderung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.php.net/">PHP</a></td>
+<td><strong>8.3</strong> oder neuer</td>
+</tr>
+<tr>
+<td><a href="https://www.mysql.com/de/">MySQL</a></td>
+<td>8.0.35 oder neuer</td>
+</tr>
+<tr>
+<td><a href="https://httpd.apache.org/">Apache</a></td>
+<td>2.4 mit <code>mod_rewrite</code> und <code>.htaccess</code>, betrieben mit PHP-FPM</td>
+</tr>
+<tr>
+<td>Betriebssystem</td>
+<td><a href="https://ubuntu.com/">Ubuntu</a> LTS<sup id="fnref:OS"><a class="footnote-ref" href="#fn:OS">1</a></sup></td>
+</tr>
+<tr>
+<td><a href="http://supervisord.org/">Supervisor</a></td>
+<td>für die Hintergrundverarbeitung — <strong>nicht optional</strong></td>
+</tr>
+<tr>
+<td><a href="https://getcomposer.org">Composer</a>, <a href="https://git-scm.com/">Git</a>, <a href="https://www.openssh.com/">SSH</a></td>
+<td>für Installation und Aktualisierung</td>
+</tr>
+<tr>
+<td>E-Mail-Versand</td>
+<td>z.B. sendmail</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">MariaDB</p>
+<p>MySQL ist die Vorgabe. <strong>MariaDB 10.11+</strong> lässt sich für Selbsthosting
+alternativ konfigurieren. Die beiden behandeln die Achsenreihenfolge von
+Geokoordinaten unterschiedlich; Anton erkennt die Datenbank beim Start und
+stellt sich darauf ein.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Ohne Supervisor steht Anton still</p>
+<p>Uploads, Konversionen, Import und Export laufen als Hintergrundaufträge.
+Ist der Supervisor nicht in Betrieb, staut sich alles in der Warteschlange,
+ohne dass eine Fehlermeldung erscheint. Der Reiter <strong>Supervisor</strong> im
+<a href="../doctor/">Anton Doctor</a> zeigt den Zustand.</p>
+</div>
+<h2 id="php-extensions">PHP-Extensions<a class="headerlink" href="#php-extensions" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://ubuntu.com/">Ubuntu</a><sup id="fnref:OS"><a class="footnote-ref" href="#fn:OS">1</a></sup> 20.04 oder 22.04 LTS</li>
-<li><a href="https://www.php.net/">PHP</a> &gt;=8.2</li>
-<li><a href="https://www.mysql.com/de/">MySQL</a> &gt;=8.0.35 (or Maria DB &gt;= 10.2.7)</li>
-<li><a href="https://httpd.apache.org/">Apache</a> 2.4 (mod_rewrite, .htaccess)</li>
-<li>PHP-Extensions<ul>
-<li>OpenSSL PHP Extension</li>
-<li>PDO PHP Extension (msql driver)</li>
-<li>Mbstring PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>XML PHP Extension</li>
-<li>Ctype PHP Extension</li>
-<li>Tokenizer PHP Extension</li>
-<li>JSON PHP Extension</li>
-<li>BCMath PHP Extension</li>
-<li>ext-imagick PHP Extension</li>
-<li>ext-sodium</li>
-<li>ext-zip</li>
-<li>ext-gd</li>
-<li>ext-curl</li>
+<li>OpenSSL</li>
+<li>PDO (MySQL-Treiber)</li>
+<li>Mbstring</li>
+<li>Tokenizer</li>
+<li>XML</li>
+<li>Ctype</li>
+<li>JSON</li>
+<li>BCMath</li>
+<li>Imagick</li>
+<li>Sodium</li>
+<li>Zip</li>
+<li>GD</li>
+<li>cURL</li>
+<li>Fileinfo</li>
+<li>Exif</li>
+<li>Intl</li>
 </ul>
-</li>
-<li><a href="https://getcomposer.org">composer</a></li>
-<li><a href="https://www.openssh.com/">ssh</a> access</li>
-<li><a href="https://git-scm.com/">git</a></li>
-<li>email (e.g. sendmail)</li>
-<li><a href="https://www.ffmpeg.org/">ffmpeg</a>, <a href="https://www.ghostscript.com/">gs</a>, <a href="https://poppler.freedesktop.org/">poppler-utils</a>, <a href="https://imagemagick.org/">imagemagick</a></li>
-<li><a href="http://supervisord.org/">supervisor</a></li>
-</ul>
-<!--
-[^mysql]: MariaDB is not tested and is not recommended at the moment, because of its [JSON Implementation](https://elephantdolphin.blogspot.com/2018/11/a-tale-of-two-json-implementations.html).
--->
-
+<h2 id="programme">Programme<a class="headerlink" href="#programme" title="Permanent link">&para;</a></h2>
+<p>Anton ruft externe Programme auf. Fehlt eines, schlagen die zugehörigen
+Verarbeitungsschritte fehl — meist still. Der Reiter <strong>Binaries</strong> im
+<a href="../doctor/">Anton Doctor</a> prüft, ob alle vorhanden sind.</p>
+<table>
+<thead>
+<tr>
+<th>Programm</th>
+<th>Wofür</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://imagemagick.org/">ImageMagick</a> (<code>convert</code>, <code>identify</code>)</td>
+<td>Bildkonversionen und Vorschaubilder</td>
+</tr>
+<tr>
+<td><a href="https://www.ghostscript.com/">Ghostscript</a> (<code>gs</code>)</td>
+<td>PDF-Zugriffskopien</td>
+</tr>
+<tr>
+<td><a href="https://poppler.freedesktop.org/">poppler-utils</a> (<code>pdftotext</code>, <code>pdftoppm</code>)</td>
+<td>PDF-Volltext und Seitenvorschau</td>
+</tr>
+<tr>
+<td><a href="https://www.ffmpeg.org/">ffmpeg</a></td>
+<td>Video- und Audiokonversionen, technische Metadaten</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a></td>
+<td>Texterkennung (OCR)</td>
+</tr>
+<tr>
+<td><a href="https://ocrmypdf.readthedocs.io/">OCRmyPDF</a></td>
+<td>OCR-Textebene in PDFs</td>
+</tr>
+<tr>
+<td><a href="https://qpdf.sourceforge.io/">qpdf</a></td>
+<td>PDF-Verarbeitung</td>
+</tr>
+<tr>
+<td><a href="https://gitlab.mister-muffin.de/josch/img2pdf">img2pdf</a></td>
+<td>Bilder zu PDF zusammenfassen</td>
+</tr>
+<tr>
+<td><code>mysql</code>, <code>mysqldump</code></td>
+<td>Sicherungen und Wiederherstellung</td>
+</tr>
+<tr>
+<td><code>unzip</code></td>
+<td>SIP-Pakete und Importe entpacken</td>
+</tr>
+<tr>
+<td><code>awk</code>, <code>du</code>, <code>git</code></td>
+<td>Betriebs- und Diagnosewerkzeuge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h2>
+<p>Diese Software ist nicht Voraussetzung für den Betrieb. Ohne sie fehlt jeweils
+eine bestimmte Funktion — Anton läuft weiter.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th>Ohne sie fehlt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.itforarchivists.com/siegfried">Siegfried</a> (<code>sf</code>)</td>
+<td>Die Formaterkennung über PRONOM — und damit die Risikobewertung im <a href="../preservation-planning/">Preservation Planning</a>. Ohne Siegfried bleibt die PRONOM-ID leer.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openpreserve/fido">Fido</a></td>
+<td>Alternative zur Formaterkennung; Anton nutzt, was vorhanden ist</td>
+</tr>
+<tr>
+<td><a href="https://typesense.org/">Typesense</a></td>
+<td>Die <a href="../typesense/">schnelle Suche</a> und die Galerie V2. Die klassische Volltextsuche und Galerie funktionieren ohne.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Siegfried kommt aus einem eigenen Paket-Repository</p>
+<p>Siegfried ist nicht in den Ubuntu-Quellen. Es wird über das Repository von
+itforarchivists.com installiert.</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:OS">
-<p>Other Operating Systems of the Linux or Unix-Family should also do the trick.&#160;<a class="footnote-backref" href="#fnref:OS" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Andere Linux- oder Unix-Systeme sollten ebenso funktionieren. Massgeblich ist, dass PHP 8.3 und die oben genannten Programme zur Verfügung stehen.&#160;<a class="footnote-backref" href="#fnref:OS" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
