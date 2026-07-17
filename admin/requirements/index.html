@@ -3885,15 +3885,13 @@ ohne dass eine Fehlermeldung erscheint. Der Reiter <strong>Supervisor</strong> i
 <h2 id="php-extensions">PHP-Extensions<a class="headerlink" href="#php-extensions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>OpenSSL</li>
-<li>PDO (MySQL-Treiber)</li>
+<li>PDO mit MySQL-Treiber (<code>pdo_mysql</code>)</li>
+<li>Imagick</li>
 <li>Mbstring</li>
 <li>Tokenizer</li>
-<li>XML</li>
+<li>XML und DOM</li>
 <li>Ctype</li>
 <li>JSON</li>
-<li>BCMath</li>
-<li>Imagick</li>
-<li>Sodium</li>
 <li>Zip</li>
 <li>GD</li>
 <li>cURL</li>
@@ -3901,6 +3899,13 @@ ohne dass eine Fehlermeldung erscheint. Der Reiter <strong>Supervisor</strong> i
 <li>Exif</li>
 <li>Intl</li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Imagick ist die Extension, nicht nur das Programm</p>
+<p>Anton verarbeitet Bilder über die <strong>PHP-Extension</strong> Imagick, nicht über den
+Aufruf von ImageMagick auf der Kommandozeile. Fehlt <code>php-imagick</code>, läuft die
+Installation durch und die Bildkonversionen scheitern erst später im
+Hintergrund — ohne sichtbare Fehlermeldung.</p>
+</div>
 <h2 id="programme">Programme<a class="headerlink" href="#programme" title="Permanent link">&para;</a></h2>
 <p>Anton ruft externe Programme auf. Fehlt eines, schlagen die zugehörigen
 Verarbeitungsschritte fehl — meist still. Der Reiter <strong>Binaries</strong> im
