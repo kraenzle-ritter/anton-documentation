@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Pre-push-Hook: hält die generierte Console-Command-Referenz konsistent.
+#
+# Lokal (DDEV erreichbar) prüft der Generator die echte Drift — hat Anton
+# Befehle geändert und die Referenz ist veraltet, bricht der Push ab. Ohne
+# DDEV fällt er auf eine Strukturprüfung zurück und blockiert nicht.
+#
+# Aktivieren (einmalig pro Klon):
+#     git config core.hooksPath .githooks
+#
+# Umgehen im Notfall:  git push --no-verify
+
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+script="$repo_root/scripts/gen-command-reference.py"
+
+[ -f "$script" ] || exit 0   # Skript fehlt (z.B. alter Branch) — nicht blockieren
+
+if ! python3 "$script" --check; then
+    echo
+    echo "✗ Command-Referenz ist veraltet."
+    echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands.md"
+    echo "  Umgehen:  git push --no-verify"
+    exit 1
+fi
