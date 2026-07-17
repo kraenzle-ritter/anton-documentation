@@ -1,2 +1,6 @@
 site
 .qodo
+
+# Python
+__pycache__/
+*.pyc
