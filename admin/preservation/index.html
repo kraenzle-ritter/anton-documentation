@@ -3672,8 +3672,12 @@ zeigt, wie vollständig die Erkennung ist.</p>
 <p class="admonition-title">Einzurichten, nicht eingebaut</p>
 <p>Anton führt <strong>keine</strong> wiederkehrende Integritätsprüfung von selbst aus — es
 gibt keinen eingebauten Zeitplan. Die Prüfung wird pro Installation als
-Cronjob eingerichtet. Zurzeit ist das für die grossen Archive eingerichtet;
-für weitere Installationen ist k &amp; r zuständig.</p>
+Cronjob eingerichtet.</p>
+<p><strong>Bei Anton as a Service</strong> ist das zurzeit für die grossen Archive
+eingerichtet; für weitere Installationen auf unseren Servern ist k &amp; r
+zuständig. <strong>On Premises</strong> richtet der Betreiber den Auftrag selbst ein — die
+Befehle stehen dafür bereit, ein automatischer Lauf entsteht daraus aber
+nicht von allein.</p>
 </div>
 <p>Davon zu unterscheiden ist <a href="../console-commands/"><code>anton:doctor</code></a>: Es prüft die
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
@@ -3726,11 +3730,11 @@ eigenständige Website gibt es ein eigenes Bundle.</p>
   hin, handelt aber nicht</strong>.</li>
 <li><strong>Kein PREMIS, kein METS.</strong></li>
 <li><strong>Keine Speicherredundanz.</strong> Die redundante Speicherung leistet die
-  Betriebsinfrastruktur, nicht die Anwendung: Beim Betrieb durch k &amp; r liegen
-  die Daten in <a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a>
-  (gesamthaft sechsfache Redundanz). Anton selbst kennt davon nichts — es sieht
-  einen lokalen Speicher und optional einen Cloud-Speicher und kann die
-  Redundanz weder anzeigen noch überwachen.</li>
+  Betriebsinfrastruktur, nicht die Anwendung. Anton selbst sieht einen lokalen
+  Speicher und optional einen Cloud-Speicher und kann die Redundanz weder
+  anzeigen noch überwachen. Bei <strong>Anton as a Service</strong> liegen die Daten in
+  <a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a> (gesamthaft
+  sechsfache Redundanz); <strong>on Premises</strong> verantwortet das der Betreiber selbst.</li>
 </ul>
 <h2 id="mit-angebundenem-langzeitarchiv">Mit angebundenem Langzeitarchiv<a class="headerlink" href="#mit-angebundenem-langzeitarchiv" title="Permanent link">&para;</a></h2>
 <p>Bei Installationen mit <a href="../inge/">DIMAG-Anbindung</a> übergibt Anton jede
