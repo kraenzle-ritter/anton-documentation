@@ -6,7 +6,7 @@ Raum, Regal. Standorte sind eigene Datensätze und werden über
 
 !!! note "Nie öffentlich"
     Standorte sind die einzigen Normdaten, die Aussenstehenden nie angezeigt
-    werden. Sie sind ausschliesslich für interne Benutzer, Bearbeitende und die
+    werden. Sie sind ausschliesslich für interne Benutzer:innen, Bearbeitende und die
     Administration sichtbar — wo etwas liegt, geht die Öffentlichkeit nichts an.
 
 ## Erfassen

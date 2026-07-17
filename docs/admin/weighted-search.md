@@ -50,7 +50,7 @@ Die Relevanz-Berechnung basiert auf konfigurierbaren Feldgewichtungen. Höhere W
 | type_label | 3 | Typ-Bezeichnung |
 | description | 2 | Beschreibung |
 | sources | 1 | Quellenangaben |
-| comment | 1 | Kommentar (nur für interne Benutzer) |
+| comment | 1 | Kommentar (nur für interne Benutzer:innen) |
 
 #### Orte (`search_weight_places`)
 

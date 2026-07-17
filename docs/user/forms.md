@@ -13,8 +13,8 @@ Ein **Formularsatz** bündelt fünf Formulare für dieselbe Sache:
 | Formular | Wofür |
 |---|---|
 | Intern — Bearbeiten | Die Erschliessungsmaske |
-| Intern — Detail | Die Detailansicht für angemeldete Benutzer |
-| Intern — Liste | Die Trefferliste für angemeldete Benutzer |
+| Intern — Detail | Die Detailansicht für angemeldete Benutzer:innen |
+| Intern — Liste | Die Trefferliste für angemeldete Benutzer:innen |
 | Extern — Detail | Die Detailansicht für die Öffentlichkeit |
 | Extern — Liste | Die Trefferliste für die Öffentlichkeit |
 

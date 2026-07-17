@@ -1,3 +1,5 @@
+# Wasserzeichen
+
 Wasserzeichen können zu allen Bildern "on-the-fly" zugefügt werden. Die entsprechende Konfiguration ist im Setting "watermark" abgelegt.
 
 ## Rollen

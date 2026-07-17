@@ -75,6 +75,6 @@ CLI-Export nutzt immer `CreateDip` und legt die ZIPs im Zielverzeichnis
 ab, statt sie wie der Web-Download nach der Auslieferung zu löschen.
 
 !!! note "Sichtbarkeit"
-    Der DIP-Download ist nur für eingeloggte interne Nutzer erreichbar.
+    Der DIP-Download ist nur für eingeloggte interne Nutzer:innen erreichbar.
     Wie die übrige interne Ansicht enthält ein DIP **auch als privat
-    markierte Datensätze** — interne Nutzer sollen diese sehen.
+    markierte Datensätze** — interne Nutzer:innen sollen diese sehen.

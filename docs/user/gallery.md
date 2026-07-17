@@ -30,7 +30,7 @@ Ein Bild erscheint nur, wenn **alle** Bedingungen erfüllt sind:
   ihr Status ist nicht «Entwurf», und die [Schutzfrist](access.md) ist
   abgelaufen.
 
-Angemeldete interne Benutzer sehen also mehr als die Öffentlichkeit — die
+Intern angemeldete Benutzer:innen sehen also mehr als die Öffentlichkeit — die
 Markierung «nicht in der Galerie zeigen» überstimmt aber jede Rolle.
 
 Zusätzlich lässt sich pro Archiv einschränken, welche Bestände die Galerie

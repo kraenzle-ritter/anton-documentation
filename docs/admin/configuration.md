@@ -1,53 +1,70 @@
-# Configuration
+# Einstellungen
 
-## .env File
+Anton wird über Einstellungen konfiguriert — rund 180 Stück, jede ein
+Schlüssel-Wert-Paar. Gepflegt werden sie über die Admin-Seite unter
+**Einstellungen**.
 
+## Aufbau
 
+Jede Einstellung hat neben Schlüssel und Wert:
 
-## Favicons
+| Angabe | Bedeutung |
+|---|---|
+| **Typ** | `boolean`, `string`, `integer` oder `array` (JSON) — bestimmt, wie der Wert eingegeben wird |
+| **Bereich** | Die thematische Zuordnung: `theme`, `export`, `search`, `gallery`, `import`, `inge` und weitere |
+| **Editierbar** | Ob sich der Wert über die Oberfläche ändern lässt |
+| **Beschreibung** | Wozu die Einstellung dient |
 
-Favicons können pro Installation individuell eingebunden werden. Man benötigt mindestens eine quadratische Vorlage von 256x256 Pixel, die weiteren Auflösungen können automatisch erstellt werden (unter Admin -> Upload Logo und Bilder). Ausnahme ist die [SVG Grafik für Safari](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/pinnedTabs/pinnedTabs.html) (`safari-pinned-tab.svg`), die manuell erstellt und hochgeladen werden muss. Aus dem Ordner favicon (im customers Ordner) werden folgende Dateien eingebunden:
+Die Beschreibung in der Oberfläche ist die verlässlichste Auskunft über die
+**eigene** Installation — sie steht an der Einstellung selbst.
 
-- android-icon-192x192.png
-- android-icon-256x256.png
-- apple-icon-114x114.png
-- apple-icon-120x120.png
-- apple-icon-144x144.png
-- apple-icon-152x152.png
-- apple-icon-180x180.png
-- apple-icon-57x57.png
-- apple-icon-60x60.png
-- apple-icon-72x72.png
-- apple-icon-76x76.png
-- favicon-16x16.png
-- favicon-32x32.png
-- favicon-96x96.png
-- manifest.json
-- safari-pinned-tab.svg 
+## Wer was ändern darf
 
-## Settings
-We go here through the most important `settings` which only can be set by the superuser.
+| Einstellung | Ändern durch |
+|---|---|
+| editierbar | Rolle `admin` |
+| nicht editierbar | nur Superuser |
 
-### abo and maximum_storage 
+Nicht editierbare Einstellungen sind solche, die beim Aufsetzen festgelegt
+werden und den Betrieb grundlegend prägen — etwa die Signaturbildung, die
+Anbindung an ein Langzeitarchiv oder der Bestellkorb. Sie erscheinen in der
+Liste, das Bearbeitungsformular bleibt aber verschlossen. Bei Anton as a Service
+ist für Änderungen daran k & r zuständig.
 
-abo should contain "basic", "standard" or "pro".
+## Leer heisst Vorgabe
 
-`maximum_storage` should contain the disk space in GB. It is used by the command `anton:check-disk-space`.
+Ist eine Einstellung leer, greift die eingebaute Vorgabe — das ist nicht
+dasselbe wie «ausgeschaltet». Bei Einstellungen vom Typ `array` ersetzt ein
+eigener Wert die Vorgabe zudem **vollständig**; er ergänzt sie nicht.
 
-## form-objects-list
+## Abo und Speicherplatz
 
-To get an additional column with thumbs in the result lists, copy this into the setting:
+| Einstellung | Wert |
+|---|---|
+| `abo` | `basic`, `standard` oder `pro` |
+| `maximum_storage` | Vereinbarter Speicherplatz in GB |
 
-```json
-[{
-    "name":"identifier", "label":"Identifier", "sortField":"identifier"},{"name":"any_title","label":"Title","sortField":"title"},{"name":"creationDateLabel", "label":"Date", "sortField":"object_creation_min"},
-    {"name":"lod_extent","label":"Level of description","sortField":"level_of_description_id"},
-    {"name":"other_information","label":"Other information","sort":false},{"name":"first_image","label":"Image","sort":false},
-    {"name":"buttons","sort":false,"with":["content","detail","edit","move","delete"]}]
-```
+`maximum_storage` wird von `anton:check-disk-space` ausgewertet und erscheint in
+den Statistiken unter «Überblick».
 
-## searchfields and search_fields_extern
+## Wo die einzelnen Themen stehen
 
-If you want to configure the searchfields for the advanced search you can fill this setting with a json object. You can find the full json here: 
+Die meisten Einstellungen gehören zu einem Thema und sind dort beschrieben:
 
-[https://kr.anton.ch/admin/searchfields](https://kr.anton.ch/admin/searchfields ) 
+- [Formulare und Formularsätze](forms.md) — auch das Listen-Layout
+  (`form-objects-list`)
+- [Wertelisten](valuelists.md) und [Schutzfristen](protection-periods.md)
+- [Suchfelder](searchfields.md), [Schnelle Suche](typesense.md),
+  [Gewichtete Suche](weighted-search.md)
+- [Mediengalerie](gallery.md), [Wasserzeichen](watermarks.md),
+  [Dokumente](documents.md)
+- [Startseite und Navigation](home.md), [Logo und Favicons](logo.md)
+- [Normdaten-Abgleich](authorities.md), [Inge und DIMAG](inge.md),
+  [KI-Erschliessung](ai-cataloging.md)
+
+## Die .env-Datei
+
+Ein Teil der Konfiguration liegt nicht in den Einstellungen, sondern in der
+Umgebungsdatei der Installation — Datenbankzugang, Mailversand, Serverpfade und
+Schalter wie die Freigabe der KI-Erschliessung. Sie ist über die Oberfläche
+nicht erreichbar und wird bei der [Installation](installation.md) gesetzt.

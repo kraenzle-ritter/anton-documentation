@@ -84,42 +84,53 @@ nav:
   #   - Events/Jobs: developer/events-jobs.md
   #   - Upload via Mobile: developer/mobile-upload.md
   - Admin:
-    - Requirements: admin/requirements.md
-    - Installation: admin/installation.md
-    - Configuration: admin/configuration.md
-    - Logo: admin/logo.md
-    - Authentication: admin/authentication.md
-    - Mediengalerie: admin/gallery.md
-    - Dokumente: admin/documents.md
-    - Schnelle Suche (Typesense): admin/typesense.md
-    - Download-Formate:
-      - DIP Download: admin/download-dip.md
+    - Einrichtung:
+      - Serveranforderungen: admin/requirements.md
+      - Installation: admin/installation.md
+      - Einstellungen: admin/configuration.md
+      - Logo und Favicons: admin/logo.md
+      - Anmeldung: admin/authentication.md
+    - Archiv konfigurieren:
+      - Formulare und Formularsätze: admin/forms.md
+      - Wertelisten: admin/valuelists.md
+      - Schutzfristen: admin/protection-periods.md
+      - Suchfelder: admin/searchfields.md
+      - Startseite und Navigation: admin/home.md
+      - Archivbeschreibung (ISDIAH): admin/isdiah.md
+    - Benutzerverwaltung: admin/users.md
+    - Medien:
+      - Mediengalerie: admin/gallery.md
+      - Dokumente: admin/documents.md
+      - Wasserzeichen: admin/watermarks.md
+      - Medienliste und Sammelaktionen: admin/bulk-media-list.md
+    - Suche:
+      - Schnelle Suche (Typesense): admin/typesense.md
+      - Gewichtete Suche: admin/weighted-search.md
+    - Import:
+      - SIP Ingest (eCH-0160): admin/sip-ingest.md
+      - agate SIP-Import: admin/agate-sip.md
+      - Normdaten-Abgleich: admin/authorities.md
+    - Export und Publikation:
+      - DIP herunterladen: admin/download-dip.md
       - Word-Findbuch: admin/download-word.md
-      - OCFL Download: admin/download-ocfl.md
+      - OCFL herunterladen: admin/download-ocfl.md
       - RDF-Export (CIDOC CRM / Memobase): admin/download-rdf.md
-      - Statische Publikation & Round-Trip: admin/statische-publikation.md
+      - Statische Publikation und Round-Trip: admin/statische-publikation.md
+      - Mastodon: admin/mastodon.md
     - Langzeitarchivierung:
       - Überblick: admin/preservation.md
       - Export-Matrix: admin/export-matrix.md
       - Preservation Planning: admin/preservation-planning.md
-    - Watermarks: admin/watermarks.md
-    - Mastodon: admin/mastodon.md
-    - SIP Ingest:
-      - SIP Ingest (eCH-0160): admin/sip-ingest.md
-      - agate SIP Import: admin/agate-sip.md
-    - Inge and Dimag:
-      - Inge / Dimag: admin/inge.md
-      - DIMAG Upload-Status: admin/dimag-uploads.md
-    - Nachrichten: admin/notifications.md
-    - Feedback an die Entwicklung: admin/feedback.md
+      - Inge und DIMAG: admin/inge.md
+      - DIMAG-Upload-Status: admin/dimag-uploads.md
+    - Betrieb:
+      - Anton Doctor: admin/doctor.md
+      - Sicherung und Wiederherstellung: admin/restore.md
+      - Console Commands: admin/console-commands.md
+      - Nachrichten: admin/notifications.md
+      - Feedback an die Entwicklung: admin/feedback.md
+      - Verkleinern für öffentliche Installation: admin/shrink.md
     - KI-Erschliessung: admin/ai-cataloging.md
-    - Bulk Medienliste: admin/bulk-media-list.md
-    - Shrink for Public: admin/shrink.md
-    - Restore from Backup: admin/restore.md
-    - Commands: admin/console-commands.md
-    - Normdaten-Abgleich: admin/authorities.md
-    - Gewichtete Suche: admin/weighted-search.md
-    - Testinstallation k & r: admin/testarchive.md
   - API: 
     - Authentication: api/authentication.md
     - Endpoints: api/index.md

@@ -57,7 +57,7 @@ Anton bringt die Werkzeuge mit, führt sie aber nicht von sich aus aus:
 
     **Bei Anton as a Service** ist das zurzeit für die grossen Archive
     eingerichtet; für weitere Installationen auf unseren Servern ist k & r
-    zuständig. **On Premises** richtet der Betreiber den Auftrag selbst ein — die
+    zuständig. **On Premises** richtet die betreibende Institution den Auftrag selbst ein — die
     Befehle stehen dafür bereit, ein automatischer Lauf entsteht daraus aber
     nicht von allein.
 
@@ -102,7 +102,7 @@ Damit keine falschen Erwartungen entstehen:
   Speicher und optional einen Cloud-Speicher und kann die Redundanz weder
   anzeigen noch überwachen. Bei **Anton as a Service** liegen die Daten in
   [drei Kopien an drei Standorten](../faq/longterm_archives.md) (gesamthaft
-  sechsfache Redundanz); **on Premises** verantwortet das der Betreiber selbst.
+  sechsfache Redundanz); **on Premises** verantwortet das die betreibende Institution selbst.
 
 ## Mit angebundenem Langzeitarchiv
 

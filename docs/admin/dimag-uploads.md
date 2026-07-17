@@ -112,16 +112,19 @@ Datei `original_location='inge'` hat aber noch keine Events.
 Ergänzend zum Per-File-Status gibt es seit v0.65.0/v0.66.0 unter
 **SIP Import → Status** einen Admin-Tab `/sip/status` (nur bei
 `cloud === 'inge'`), der die aktuelle Inge-URL und das Token-Setup
-anzeigt und einen „Run infrastructure check now"-Button bietet. Der
-gleiche Check läuft täglich um 07:00 automatisch via
-`inge:check-infrastructure` (siehe
-[SIP Ingest CLI](cli-sip-ingest.md)).
+anzeigt und einen „Run infrastructure check now"-Button bietet. Derselbe
+Check steht als Befehl `inge:check-infrastructure` bereit.
+
+!!! warning "Läuft nicht von selbst"
+    Der Befehl ist im Laravel-Scheduler auf täglich 07:00 registriert — der
+    Scheduler (`schedule:run`) wird auf den Servern jedoch **nicht** ausgeführt.
+    Wiederkehrende Läufe sind deshalb pro Installation als Cronjob
+    einzurichten; siehe [Anton Doctor](doctor.md#kein-automatismus).
 
 ## Verwandte Themen
 
 - [Inge / DIMAG-Anbindung](inge.md) — Grund-Konfiguration der
   DIMAG-Cloud
-- [SIP Ingest CLI](cli-sip-ingest.md) — Cron-Job
-  `inge:check-infrastructure`
+- [SIP Ingest (eCH-0160)](sip-ingest.md) — Übernahme von SIP-Paketen
 - [Notifications](notifications.md) — wenn dimag-Events zusätzlich als
   in-App-Notification angezeigt werden sollen

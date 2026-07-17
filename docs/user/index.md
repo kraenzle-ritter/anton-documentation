@@ -16,7 +16,7 @@ Regel finden sich dort:
 
 - der **Einstieg in die Tektonik**. Wie er heisst, legt jedes Archiv selbst
   fest — «Katalog», «Archivplan» oder der Name des Archivs.
-- **Admin** — trotz des Namens die Sammelseite für alle angemeldeten Benutzer.
+- **Admin** — trotz des Namens die Sammelseite für alle angemeldeten Benutzer:innen.
   Die Seite selbst ist mit **Administration** überschrieben und führt in Karten
   zu **Entitäten** (Akteure, Orte, Schlagwörter, Standorte),
   **Benutzerinnen/Benutzer**, **Info**, **Import / Export** und

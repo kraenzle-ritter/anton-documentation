@@ -17,7 +17,7 @@ Pro Archivobjekt werden für die Suche zusammengefasst:
 - **OCR-Text** aus Medien (PDFs, Bilder)
 
 !!! note "Erweiterte Sicht für interne Bearbeitende"
-    Für angemeldete Benutzer ab der Rolle `user_intern` werden zusätzlich durchsucht:
+    Für angemeldete Benutzer:innen ab der Rolle `user_intern` werden zusätzlich durchsucht:
 
     - private Akteur:innen
     - alle Textfelder (auch nur intern sichtbare)

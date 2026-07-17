@@ -50,7 +50,7 @@ zuständig.
 
 **Ganze Datensätze** sperrt das Feld **Gesperrt**. Es wirkt auf den Datensatz,
 alle untergeordneten Einheiten und deren Medien; sichtbar bleiben sie nur für
-interne Benutzer, Bearbeitende und die Administration.
+interne Benutzer:innen, Bearbeitende und die Administration.
 
 ## Einzelne Bereiche freigeben
 
@@ -62,4 +62,4 @@ darunter.
 ## Status der Beschreibung
 
 Das Feld ist für Bestände gedacht. Steht ein Bestand auf **Entwurf**, ist er nur
-für interne Benutzer, Bearbeitende und die Administration zugänglich.
+für interne Benutzer:innen, Bearbeitende und die Administration zugänglich.
