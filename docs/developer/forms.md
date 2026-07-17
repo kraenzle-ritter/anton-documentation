@@ -12,7 +12,7 @@ Three building blocks work together:
 |---------|----------|-------------|-------------------|
 | **Antonfield** | `antonfields` | `Antonfield` | A single field definition (name, type, label) |
 | **Form** | `forms` | `Objectform` | A list of ordered fields for one view of one entity |
-| **Formset** | `objectformtypes` | `Objectformtype` | Assigns forms to an level of description (e.g. Fonds, Dossier) |
+| **Formset** | `formsets` | `Objectformtype` | Assigns forms to an level of description (e.g. Fonds, Dossier) |
 
 ```
 Formset "fonds" (AntonObject)
@@ -124,7 +124,7 @@ Example for a list column that cannot be sorted:
 {"sort": false}
 ```
 
-### `objectformtypes` — Formsets
+### `formsets` — Formsets (Modellklasse `Objectformtype`; DB-Tabelle wurde von `objectformtypes` umbenannt)
 
 Assigns a set of forms to a named entity configuration (level of descriptions):
 
@@ -281,7 +281,7 @@ Labels come directly from the DB. Customer-specific label changes can be made by
 
 - `/formsets` — manage formsets and their form assignments
 - `/antonfields` — browse and edit field labels and help texts
-- `/objectformtypes/{id}/edit` — add/remove fields, change field order and pivot settings
+- `/formsets/{id}/edit` — add/remove fields, change field order and pivot settings
 
 ### Via seeders (recommended for deployments)
 

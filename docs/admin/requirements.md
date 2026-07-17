@@ -9,7 +9,7 @@ Anton ist eine [Laravel](https://laravel.com/)-12-Anwendung.
 | [PHP](https://www.php.net/) | **8.3** oder neuer |
 | [MySQL](https://www.mysql.com/de/) | 8.0.35 oder neuer |
 | [Apache](https://httpd.apache.org/) | 2.4 mit `mod_rewrite` und `.htaccess`, betrieben mit PHP-FPM |
-| Betriebssystem | [Ubuntu](https://ubuntu.com/) LTS[^OS] |
+| Betriebssystem | [Ubuntu](https://ubuntu.com/) LTS[^OS] — bei Anton as a Service 24.04 |
 | [Supervisor](http://supervisord.org/) | für die Hintergrundverarbeitung — **nicht optional** |
 | [Composer](https://getcomposer.org), [Git](https://git-scm.com/), [SSH](https://www.openssh.com/) | für Installation und Aktualisierung |
 | E-Mail-Versand | z.B. sendmail |
