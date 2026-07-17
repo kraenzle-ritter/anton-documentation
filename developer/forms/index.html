@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../domain-model/">
+      
+      
+        <link rel="next" href="../events-jobs/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Forms — Antonfields, Forms & Formsets - Anton – Dokumentation</title>
+        <title>Das Formularsystem - Anton – Dokumentation</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#forms-antonfields-forms-formsets" class="md-skip">
+        <a href="#das-formularsystem" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -99,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Forms — Antonfields, Forms &amp; Formsets
+              Das Formularsystem
             
           </span>
         </div>
@@ -1612,6 +1616,315 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architektur-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenmodell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Das Formularsystem
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Das Formularsystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drei-ebenen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drei Ebenen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warum-drei-ebenen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum drei Ebenen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auflosung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auflösung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#die-v2-rendering-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die V2-Rendering-Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#felddefinitionen-und-id-bereiche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Felddefinitionen und ID-Bereiche
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#woran-ein-archiv-seine-formulare-andert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Woran ein Archiv seine Formulare ändert
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nebenläufigkeit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Erweiterungspunkte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -1623,10 +1936,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1644,8 +1957,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1670,10 +1983,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
             
   
   
@@ -1691,8 +2004,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1865,10 +2178,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
             
   
   
@@ -1886,8 +2199,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2116,10 +2429,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
             
   
   
@@ -2137,8 +2450,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2283,10 +2596,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -2304,8 +2617,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2394,10 +2707,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
             
   
   
@@ -2415,8 +2728,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2533,10 +2846,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
             
   
   
@@ -2554,8 +2867,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2756,10 +3069,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
             
   
   
@@ -2777,8 +3090,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2951,10 +3264,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
             
   
   
@@ -2972,8 +3285,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3209,10 +3522,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -3230,8 +3543,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3319,10 +3632,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -3340,8 +3653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3665,10 +3978,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#drei-ebenen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Drei Ebenen
       
     </span>
   </a>
@@ -3676,121 +3989,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#database-structure" class="md-nav__link">
+  <a href="#warum-drei-ebenen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Database Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Database Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#antonfields-field-definitions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        antonfields — Field definitions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#forms-form-definitions-db-table-name-forms-was-objectforms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        forms — Form definitions (DB table name: forms, was objectforms)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#antonfields_forms-pivot-fields-forms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        antonfields_forms — Pivot (fields ↔ forms)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#formsets-formsets-modellklasse-objectformtype-db-tabelle-wurde-von-objectformtypes-umbenannt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        formsets — Formsets (Modellklasse Objectformtype; DB-Tabelle wurde von objectformtypes umbenannt)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#field-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Field Types
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Field Types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple-field-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simple field types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#module-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-field-type" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search field type
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#form-resolution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Form resolution
+        Warum drei Ebenen
       
     </span>
   </a>
@@ -3798,188 +4000,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#label-resolution" class="md-nav__link">
+  <a href="#auflosung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Label resolution
+        Auflösung
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Label resolution">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#resolution-order-db-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resolution order (DB path)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customer-customisation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Customer customisation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-modify-forms" class="md-nav__link">
+  <a href="#die-v2-rendering-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How to modify forms
+        Die V2-Rendering-Engine
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="How to modify forms">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#via-the-admin-ui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Via the admin UI
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#via-seeders-recommended-for-deployments" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Via seeders (recommended for deployments)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-a-new-custom-field" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding a new custom field
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#overriding-the-type-for-one-form" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overriding the type for one form
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#overriding-the-label-for-one-form" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overriding the label for one form
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuring-a-list-column" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring a list column
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#php-form-definitions-admin-entities" class="md-nav__link">
+  <a href="#felddefinitionen-und-id-bereiche" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PHP form definitions (admin entities)
+        Felddefinitionen und ID-Bereiche
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="PHP form definitions (admin entities)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#field-definition-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Field definition structure
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rendering-pipeline" class="md-nav__link">
+  <a href="#woran-ein-archiv-seine-formulare-andert" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rendering pipeline
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Rendering pipeline">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#x-formsrender-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        &lt;x-forms.render&gt; parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maintenance-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintenance commands
+        Woran ein Archiv seine Formulare ändert
       
     </span>
   </a>
@@ -4006,841 +4063,108 @@
   
 
 
-<h1 id="forms-antonfields-forms-formsets">Forms — Antonfields, Forms &amp; Formsets<a class="headerlink" href="#forms-antonfields-forms-formsets" title="Permanent link">&para;</a></h1>
-<p>Anton uses a three-layer system to define which fields appear in which view. This page documents the database structure, field types, components, and how to modify forms.</p>
-<hr />
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Three building blocks work together:</p>
+<h1 id="das-formularsystem">Das Formularsystem<a class="headerlink" href="#das-formularsystem" title="Permanent link">&para;</a></h1>
+<p>Die Kernidee: <strong>Welche Felder eine Verzeichnungseinheit hat, steht in Daten,
+nicht in Code.</strong> Ein Archiv gestaltet seine Erschliessungsmasken selbst — und
+zwei Installationen können mit derselben Codebasis völlig verschieden aussehen.
+Das erklärt einen grossen Teil des Aufwands im Umfeld der Formulare.</p>
+<p>Aus Sicht der Administration ist dasselbe unter
+<a href="../../admin/forms/">Formulare und Formularsätze</a> beschrieben; diese Seite geht
+auf das Warum und die Erweiterungsnaht.</p>
+<h2 id="drei-ebenen">Drei Ebenen<a class="headerlink" href="#drei-ebenen" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Concept</th>
-<th>DB table</th>
-<th>Model class</th>
-<th>What it represents</th>
+<th>Ebene</th>
+<th>Modell</th>
+<th>Tabelle</th>
+<th>Was sie ist</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Antonfield</strong></td>
-<td><code>antonfields</code></td>
 <td><code>Antonfield</code></td>
-<td>A single field definition (name, type, label)</td>
+<td><code>antonfields</code></td>
+<td>Eine Felddefinition: Name, Typ, Grundbeschriftung</td>
 </tr>
 <tr>
-<td><strong>Form</strong></td>
-<td><code>forms</code></td>
+<td><strong>Formular</strong></td>
 <td><code>Objectform</code></td>
-<td>A list of ordered fields for one view of one entity</td>
+<td><code>forms</code></td>
+<td>Eine geordnete Feldauswahl für <strong>eine</strong> Ansicht</td>
 </tr>
 <tr>
-<td><strong>Formset</strong></td>
-<td><code>formsets</code></td>
+<td><strong>Formularsatz</strong></td>
 <td><code>Objectformtype</code></td>
-<td>Assigns forms to an level of description (e.g. Fonds, Dossier)</td>
+<td><code>formsets</code></td>
+<td>Bündelt die fünf Ansichten desselben Datensatztyps</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code>Formset &quot;fonds&quot; (AntonObject)
-  ├── form_external_detail_id → Form &quot;AntonObject/detail/external&quot;
-  ├── form_internal_detail_id → Form &quot;AntonObject/detail/internal&quot;
-  ├── form_internal_edit_id   → Form &quot;AntonObject/edit/internal&quot;
-  └── form_external_list_id   → Form &quot;AntonObject/list/external&quot;
-         └── antonfields_forms (pivot)
-               ├── Antonfield &quot;name&quot;    position=1
-               ├── Antonfield &quot;type_id&quot; position=2
-               └── ...
-</code></pre></div>
-<hr />
-<h2 id="database-structure">Database Structure<a class="headerlink" href="#database-structure" title="Permanent link">&para;</a></h2>
-<h3 id="antonfields-field-definitions"><code>antonfields</code> — Field definitions<a class="headerlink" href="#antonfields-field-definitions" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Column</td>
-<td>Type</td>
-<td>Description</td>
-</tr>
-<tr>
-<td>--------</td>
-<td>------</td>
-<td>-------------</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td>int</td>
-<td>Primary key (see ID ranges below)</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>varchar</td>
-<td>Field identifier (unique together with <code>type</code>)</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>varchar</td>
-<td>Field type (see <a href="#field-types">Field Types</a> below)</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>json</td>
-<td>Translatable label in all 4 locales: <code>{"de": "Name", "en": "Name", "fr": "Nom", "it": "Nome"}</code></td>
-</tr>
-<tr>
-<td><code>help</code></td>
-<td>json</td>
-<td>Optional help text per locale</td>
-</tr>
-<tr>
-<td><code>default_config</code></td>
-<td>json</td>
-<td>Default search configuration (operators, url, endpoint, multiple). Used as fallback when pivot.config has no operators.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>ID ranges:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Range</th>
-<th>Purpose</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1–109</td>
-<td>ISAD(G) standard + note fields</td>
-<td><code>object.identifier</code> (3), <code>note.scopecontent</code> (18)</td>
-</tr>
-<tr>
-<td>110–199</td>
-<td>Reserved</td>
-<td></td>
-</tr>
-<tr>
-<td>200–229</td>
-<td>Search fields</td>
-<td><code>fulltext</code> (200), <code>creation_actor</code> (208)</td>
-</tr>
-<tr>
-<td>250–269</td>
-<td>Module fields (canonical)</td>
-<td><code>actors</code> (250), <code>places</code> (251), <code>keywords</code> (252)</td>
-</tr>
-<tr>
-<td>300–355</td>
-<td>Entity form + list fields</td>
-<td><code>label</code> (300), <code>type_id</code> (301), <code>identifier</code> (350)</td>
-</tr>
-<tr>
-<td>1000–1015</td>
-<td>Antonevent fields</td>
-<td><code>creation</code> (1000), <code>provenance</code> (1001)</td>
-</tr>
-<tr>
-<td>≥ 5000</td>
-<td>Customer-specific fields</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>UNIQUE constraint on <code>(name, type)</code>. Labels are resolved in the <strong>current application locale</strong> by <code>AbstractForms::get()</code> and returned as plain strings.</p>
-<h3 id="forms-form-definitions-db-table-name-forms-was-objectforms"><code>forms</code> — Form definitions (DB table name: <code>forms</code>, was <code>objectforms</code>)<a class="headerlink" href="#forms-form-definitions-db-table-name-forms-was-objectforms" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>int</td>
-<td>Primary key</td>
-</tr>
-<tr>
-<td><code>model</code></td>
-<td>varchar</td>
-<td>Short model name: <code>Actor</code>, <code>Place</code>, <code>Keyword</code>, <code>Location</code>, <code>AntonObject</code></td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>varchar</td>
-<td>View type: <code>detail</code>, <code>edit</code>, <code>list</code></td>
-</tr>
-<tr>
-<td><code>scope</code></td>
-<td>varchar</td>
-<td><code>external</code> (public) or <code>internal</code> (admin)</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>varchar</td>
-<td>Human-readable name (e.g. <code>default</code>)</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>json</td>
-<td>Translatable form label</td>
-</tr>
-<tr>
-<td><code>help</code></td>
-<td>json</td>
-<td>Optional help text</td>
-</tr>
-</tbody>
-</table>
-<h3 id="antonfields_forms-pivot-fields-forms"><code>antonfields_forms</code> — Pivot (fields ↔ forms)<a class="headerlink" href="#antonfields_forms-pivot-fields-forms" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>antonfield_id</code></td>
-<td>int</td>
-<td>FK → <code>antonfields.id</code></td>
-</tr>
-<tr>
-<td><code>form_id</code></td>
-<td>int</td>
-<td>FK → <code>forms.id</code></td>
-</tr>
-<tr>
-<td><code>position</code></td>
-<td>int</td>
-<td>Sort order within the form</td>
-</tr>
-<tr>
-<td><code>valuelist</code></td>
-<td>varchar</td>
-<td>Override the field's value list (e.g. <code>authority_type</code>)</td>
-</tr>
-<tr>
-<td><code>default_value</code></td>
-<td>varchar</td>
-<td>Override default value</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>varchar</td>
-<td>Override the antonfield's render type for this form (e.g. force <code>display</code>)</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>json</td>
-<td><strong>Label override</strong> for this form: <code>{"de": "Sonderbezeichnung", "en": "Special name"}</code></td>
-</tr>
-<tr>
-<td><code>config</code></td>
-<td>json</td>
-<td>Per-form metadata and render options (see <a href="#pivot-config-reference">config reference</a>)</td>
-</tr>
-<tr>
-<td><code>help</code></td>
-<td>json</td>
-<td>Override help text per locale for this form</td>
-</tr>
-</tbody>
-</table>
-<h4 id="label-in-the-pivot"><code>label</code> in the pivot<a class="headerlink" href="#label-in-the-pivot" title="Permanent link">&para;</a></h4>
-<p><code>pivot.label</code> is a locale-JSON map that overrides <code>antonfields.label</code> for this specific form only. Use it when the same antonfield should appear with a different label in one particular form without changing the global label.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;de&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Abkürzungen (intern)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;en&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Abbreviations (internal)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;fr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;it&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">}</span>
-</code></pre></div>
-<p>If <code>pivot.label</code> is null, <code>AbstractForms::get()</code> falls back to <code>antonfields.label</code> in the current locale (with <code>de</code> as secondary fallback, then the field name).</p>
-<h4 id="pivotconfig-reference"><code>pivot.config</code> reference<a class="headerlink" href="#pivotconfig-reference" title="Permanent link">&para;</a></h4>
-<p>The <code>config</code> column is a JSON object that can contain any combination of the following keys:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Used in</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sortField</code></td>
-<td>string</td>
-<td><code>list</code> forms</td>
-<td>DB column to ORDER BY when sorting this column (e.g. <code>"type_id"</code>, <code>"ct.label"</code>)</td>
-</tr>
-<tr>
-<td><code>sort</code></td>
-<td>bool</td>
-<td><code>list</code> forms</td>
-<td><code>false</code> disables the sort arrow for this column</td>
-</tr>
-<tr>
-<td><code>with</code></td>
-<td>array</td>
-<td><code>list</code> forms, <code>buttons</code> fields</td>
-<td>Action buttons to render: <code>["detail", "edit", "delete"]</code></td>
-</tr>
-<tr>
-<td><code>use_field</code></td>
-<td>bool</td>
-<td>all forms</td>
-<td>Internal: use <code>field</code> key instead of <code>name</code> for component rendering</td>
-</tr>
-<tr>
-<td><code>class</code></td>
-<td>string</td>
-<td><code>edit</code> forms</td>
-<td>Additional CSS class on the input element (e.g. <code>"form-control-sm"</code>)</td>
-</tr>
-<tr>
-<td><code>position</code></td>
-<td>string</td>
-<td><code>buttons</code></td>
-<td>Button placement: <code>"right"</code> (default) or <code>"left"</code></td>
-</tr>
-</tbody>
-</table>
-<p>Example for a sortable list column:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;sortField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;type_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
-</code></pre></div>
-<p>Example for a buttons column:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;with&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;delete&quot;</span><span class="p">]}</span>
-</code></pre></div>
-<p>Example for a list column that cannot be sorted:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
-</code></pre></div>
-<h3 id="formsets-formsets-modellklasse-objectformtype-db-tabelle-wurde-von-objectformtypes-umbenannt"><code>formsets</code> — Formsets (Modellklasse <code>Objectformtype</code>; DB-Tabelle wurde von <code>objectformtypes</code> umbenannt)<a class="headerlink" href="#formsets-formsets-modellklasse-objectformtype-db-tabelle-wurde-von-objectformtypes-umbenannt" title="Permanent link">&para;</a></h3>
-<p>Assigns a set of forms to a named entity configuration (level of descriptions):</p>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>model</code></td>
-<td><code>AntonObject</code>, <code>Actor</code>, <code>Place</code>, <code>Keyword</code>, <code>Location</code></td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>Identifier, e.g. <code>fonds</code>, <code>series</code>, <code>default</code></td>
-</tr>
-<tr>
-<td><code>form_external_list_id</code></td>
-<td>→ <code>forms.id</code></td>
-</tr>
-<tr>
-<td><code>form_external_detail_id</code></td>
-<td>→ <code>forms.id</code></td>
-</tr>
-<tr>
-<td><code>form_internal_list_id</code></td>
-<td>→ <code>forms.id</code></td>
-</tr>
-<tr>
-<td><code>form_internal_detail_id</code></td>
-<td>→ <code>forms.id</code></td>
-</tr>
-<tr>
-<td><code>form_internal_edit_id</code></td>
-<td>→ <code>forms.id</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="field-types">Field Types<a class="headerlink" href="#field-types" title="Permanent link">&para;</a></h2>
-<p>The <code>type</code> column on <code>antonfields</code> (overridable per form via <code>antonfields_forms.type</code>) determines how a field is rendered.</p>
-<h3 id="simple-field-types">Simple field types<a class="headerlink" href="#simple-field-types" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Blade component</th>
-<th>Edit mode</th>
-<th>Detail/List mode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>text</code></td>
-<td><code>forms.fields.text</code></td>
-<td><code>&lt;input type="text"&gt;</code></td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>textarea</code></td>
-<td><code>forms.fields.textarea</code></td>
-<td><code>&lt;textarea&gt;</code></td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>select</code></td>
-<td><code>forms.fields.select</code></td>
-<td>Dropdown (Choices.js)</td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>select2</code></td>
-<td><code>forms.fields.select2</code></td>
-<td>Select with AJAX search</td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>radio</code></td>
-<td><code>forms.fields.radio</code></td>
-<td>Radio buttons</td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>checkbox</code></td>
-<td><code>forms.fields.checkbox</code></td>
-<td>Checkbox</td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>number</code></td>
-<td><code>forms.fields.text</code></td>
-<td><code>&lt;input type="number"&gt;</code></td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td><code>forms.fields.text</code></td>
-<td><code>&lt;input type="email"&gt;</code></td>
-<td>auto → <code>display</code></td>
-</tr>
-<tr>
-<td><code>display</code></td>
-<td><code>forms.fields.display</code></td>
-<td>Read-only (no input)</td>
-<td>Read-only</td>
-</tr>
-<tr>
-<td><code>section</code></td>
-<td><code>forms.fields.section</code></td>
-<td>Visual grouping header</td>
-<td>Visual grouping header</td>
-</tr>
-<tr>
-<td><code>password</code></td>
-<td><code>forms.fields.modules.password</code></td>
-<td>Password input</td>
-<td>—</td>
-</tr>
-<tr>
-<td><code>buttons</code></td>
-<td><em>(in list template)</em></td>
-<td>—</td>
-<td>Action buttons (detail/edit/delete)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Auto-switch to display:</strong> In <code>detail</code> and <code>list</code> forms, <code>text</code>, <code>textarea</code>, <code>select</code>, <code>select2</code>, and <code>radio</code> automatically render as <code>display</code>. This means one antonfield covers both edit and detail views — no duplicate needed.</p>
-<h3 id="module-types">Module types<a class="headerlink" href="#module-types" title="Permanent link">&para;</a></h3>
-<p>Modules are complex components with their own PHP class in <code>app/View/Components/Forms/Fields/Modules/</code>.</p>
-<h4 id="note"><code>note</code><a class="headerlink" href="#note" title="Permanent link">&para;</a></h4>
-<p>Renders a translatable, poly-morphic notes field. The field is linked via <code>note_type_id = antonfield.id</code>.</p>
+<p>Ein Feld erscheint nicht «im Formular», sondern wird über die Pivot-Tabelle
+<code>antonfields_forms</code> <strong>verknüpft</strong> — und die Verknüpfung trägt die pro-Formular-
+Feinheiten: Position, Beschriftung, Werteliste, Vorgabewert, notfalls den Typ.</p>
+<div class="admonition note">
+<p class="admonition-title">Historische Tabellennamen</p>
+<p>Die Modellklasse heisst <code>Objectformtype</code>, die Tabelle wurde aber zu
+<code>formsets</code> umbenannt; <code>forms</code> hiess früher <code>objectforms</code>. Wer nach dem alten
+Namen sucht, findet die falsche Fährte.</p>
+</div>
+<h2 id="warum-drei-ebenen">Warum drei Ebenen<a class="headerlink" href="#warum-drei-ebenen" title="Permanent link">&para;</a></h2>
+<p>Die Trennung löst drei Anforderungen auf einmal:</p>
 <ul>
-<li><strong>Used on:</strong> Actor, Place, Keyword, Location, AntonObject</li>
-<li><strong>Forms:</strong> <code>detail</code>, <code>detail_intern</code>, <code>edit</code>, <code>create</code></li>
-<li><strong>Common names:</strong> <code>description</code>, <code>sources</code>, <code>custod_hist</code>, <code>scope_content</code>, <code>appraisal</code></li>
+<li><strong>Wiederverwendung</strong> — dieselbe Felddefinition erscheint in vielen Formularen;
+  eine Änderung am Feld wirkt überall.</li>
+<li><strong>Kontext</strong> — dasselbe Feld darf je Ansicht anders heissen und an anderer
+  Stelle stehen. Das ist der Grund für die Pivot-Overrides.</li>
+<li><strong>Sichtbarkeit</strong> — die fünf Slots eines Formularsatzes (intern
+  Liste/Detail/Bearbeiten, extern Liste/Detail) steuern, was Aussenstehende
+  sehen. Ein Feld erscheint nur, wenn es im jeweiligen Formular steht. Ein
+  externes Bearbeiten-Formular gibt es nicht.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="x">[&#39;name&#39; =&gt; &#39;description&#39;, &#39;type&#39; =&gt; &#39;note&#39;]</span>
-</code></pre></div>
-<h4 id="antonevent"><code>antonevent</code><a class="headerlink" href="#antonevent" title="Permanent link">&para;</a></h4>
-<p>Renders Anton events of one subtype (creation, provenance, acquisition, …). Each event has an actor, a place, and a date.</p>
+<div class="admonition warning">
+<p class="admonition-title">Sichtbarkeit ist keine Zugangskontrolle</p>
+<p>Ein Feld aus dem externen Formular zu lassen, verbirgt es in der Anzeige —
+es schützt nichts. Zugang regeln Schutzfristen und das <code>private</code>-Kennzeichen.</p>
+</div>
+<h2 id="auflosung">Auflösung<a class="headerlink" href="#auflosung" title="Permanent link">&para;</a></h2>
+<p>Welcher Formularsatz für einen Datensatz greift, entscheidet sich in dieser
+Reihenfolge: das Feld <code>formset_id</code> am Datensatz, sonst der Satz mit dem Namen der
+Verzeichnungsstufe (<code>fonds</code>, <code>file</code> …), sonst der Standard.</p>
+<p>Feldwerte werden dreistufig aufgelöst — Override im Formular, sonst Vorgabe der
+Felddefinition, sonst ein fest eingebauter Rückfall. Das gilt für Beschriftung,
+Werteliste, Vorgabewert und Typ gleichermassen.</p>
+<h2 id="die-v2-rendering-engine">Die V2-Rendering-Engine<a class="headerlink" href="#die-v2-rendering-engine" title="Permanent link">&para;</a></h2>
+<p>Ein Feld wird nicht direkt als Blade-Template gerendert, sondern durchläuft
+<code>AntonForms\V2\AntonFormsElement</code>, das aus Typ und Ansicht einen <em>display mode</em>
+bestimmt (<code>discoverDisplayMode()</code>) und daraus die Komponente auflöst. Zwei
+Konsequenzen sind wichtig:</p>
 <ul>
-<li><strong>Used on:</strong> AntonObject only</li>
-<li><strong>Forms:</strong> <code>detail</code>, <code>edit</code></li>
-<li><strong>Resolved by:</strong> <code>event_type_id = antonfield.id</code> (IDs 1000–1015 from <code>Eventtype</code> enum)</li>
-<li><strong>Common names:</strong> <code>creation</code>, <code>provenance</code>, <code>acquisition</code>, <code>reproduction</code>, <code>coloring</code>, <code>digitisation</code>, <code>edition</code>, <code>engravation</code>, <code>ingest</code>, <code>other</code>, <code>performance</code>, <code>preservation</code>, <code>production</code>, <code>reception</code>, <code>text_author</code>, <code>writing</code></li>
+<li><strong>Ein Feld deckt Bearbeiten und Detail ab.</strong> Einfache Eingabetypen (<code>text</code>,
+  <code>select</code>, <code>radio</code> …) schalten in Detail- und Listenansicht automatisch auf
+  <code>display</code>. Man braucht keine doppelte Definition.</li>
+<li><strong>Module lösen sich über den Namen auf.</strong> Komplexe Felder haben den Typ
+  <code>module</code>; die Komponente ergibt sich aus dem Feldnamen
+  (<code>module_actors</code> → das Actors-Modul). So kommen Titel, Ereignisse,
+  Deskriptoren, Medien, Standort und weitere in die Maske.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="x">[&#39;name&#39; =&gt; &#39;creation&#39;, &#39;type&#39; =&gt; &#39;antonevent&#39;]</span>
-</code></pre></div>
-<h4 id="userevent"><code>userevent</code><a class="headerlink" href="#userevent" title="Permanent link">&para;</a></h4>
-<p>Renders user events (loan, moved, maintenance). The field is linked via <code>event_type_id</code>.</p>
-<ul>
-<li><strong>Used on:</strong> AntonObject</li>
-<li><strong>Forms:</strong> <code>detail_intern</code>, <code>edit</code></li>
-<li><strong>Common names:</strong> <code>loan</code>, <code>moved</code>, <code>maintenance</code></li>
-</ul>
-<h4 id="module-generic"><code>module</code> (generic)<a class="headerlink" href="#module-generic" title="Permanent link">&para;</a></h4>
-<p>The component is resolved from the field's <code>name</code>: <code>forms.fields.modules.{name}</code>.</p>
-<ul>
-<li><strong>Used on:</strong> depends on the specific module (see table below)</li>
-<li><strong>Forms:</strong> <code>detail</code>, <code>detail_intern</code>, <code>edit</code></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Field name</th>
-<th>Component</th>
-<th>Used on</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>actors</code></td>
-<td><code>modules.actors.table</code></td>
-<td>AntonObject</td>
-<td>Actor descriptors</td>
-</tr>
-<tr>
-<td><code>places</code></td>
-<td><code>modules.places.table</code></td>
-<td>AntonObject</td>
-<td>Place descriptors</td>
-</tr>
-<tr>
-<td><code>keywords</code></td>
-<td><code>modules.keyword</code></td>
-<td>AntonObject</td>
-<td>Keyword descriptors</td>
-</tr>
-<tr>
-<td><code>media</code> / <code>images</code></td>
-<td><code>modules.images</code></td>
-<td>AntonObject</td>
-<td>Media attachments</td>
-</tr>
-<tr>
-<td><code>language</code></td>
-<td><code>modules.language</code></td>
-<td>AntonObject</td>
-<td>Language assignments</td>
-</tr>
-<tr>
-<td><code>relations</code></td>
-<td><code>modules.relations</code></td>
-<td>AntonObject</td>
-<td>Related objects</td>
-</tr>
-<tr>
-<td><code>access</code></td>
-<td><code>modules.access</code></td>
-<td>AntonObject</td>
-<td>Access restrictions / protection periods</td>
-</tr>
-<tr>
-<td><code>updates</code></td>
-<td><code>modules.updates</code></td>
-<td>Actor, Place, Keyword, Location, AntonObject</td>
-<td>Created/updated metadata</td>
-</tr>
-<tr>
-<td><code>permalink</code></td>
-<td><code>modules.permalink</code></td>
-<td>Actor, Place, Keyword, Location, AntonObject</td>
-<td>Permanent link display</td>
-</tr>
-<tr>
-<td><code>anton_date_interval</code></td>
-<td><code>modules.anton-date-interval</code></td>
-<td>Actor</td>
-<td>Date range editor</td>
-</tr>
-<tr>
-<td><code>extent</code></td>
-<td><code>modules.extent</code></td>
-<td>AntonObject</td>
-<td>Extent of material</td>
-</tr>
-<tr>
-<td><code>vacat</code></td>
-<td><code>modules.vacat</code></td>
-<td>AntonObject</td>
-<td>Vacat flag</td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td><code>modules.title</code></td>
-<td>AntonObject</td>
-<td>Translatable title field</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><code><span class="x">[&#39;name&#39; =&gt; &#39;updates&#39;, &#39;type&#39; =&gt; &#39;module&#39;]</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;permalink&#39;, &#39;type&#39; =&gt; &#39;module&#39;, &#39;label&#39; =&gt; &#39;Permalink&#39;]</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;actors&#39;, &#39;type&#39; =&gt; &#39;module&#39;]</span>
-</code></pre></div>
-<h3 id="search-field-type">Search field type<a class="headerlink" href="#search-field-type" title="Permanent link">&para;</a></h3>
-<p>Antonfields with type <code>search</code> represent logical search fields that don't map directly to a DB column (e.g. <code>fulltext</code>, <code>creation_actor</code>, <code>city</code>). They are used in <code>AntonObject/search/external</code> and <code>AntonObject/search/internal</code> forms.</p>
-<p>The <code>pivot.config</code> stores search metadata:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;operators&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchoperators_text&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;operators&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchoperators_in_not_in&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/actors?format=select2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/actors&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;multiple&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
-</code></pre></div>
-<p>The <code>antonfields.default_config</code> column stores the standard search configuration. When a search field is added to a form, <code>pivot.config</code> overrides <code>default_config</code>.</p>
-<hr />
-<h2 id="form-resolution">Form resolution<a class="headerlink" href="#form-resolution" title="Permanent link">&para;</a></h2>
-<p><code>AbstractForms::get($type)</code> resolves form definitions as follows:</p>
-<ul>
-<li><strong>DB-managed entities</strong> (Actor, Place, Keyword, Location, AntonObject list/search): The DB is the <strong>single source of truth</strong>. If no <code>forms</code> record exists for <code>model</code> + <code>type</code> + <code>scope</code>, a <code>FormNotFoundException</code> is thrown.</li>
-<li><strong>Admin entities</strong> (User, Settings, Cart, etc.): No <code>modelShortName()</code> → PHP <code>getDefinitions()</code> is used directly.</li>
-<li><strong>AntonObject detail/edit</strong>: Uses the Formset path (<code>Objectformtype</code> assigns forms per level of description).</li>
-<li><strong>AntonObject list/search</strong>: Uses DB lookup like entity forms.</li>
-</ul>
-<p>There is no settings fallback — all form definitions live in the <code>forms</code> + <code>antonfields_forms</code> tables.</p>
-<hr />
-<h2 id="label-resolution">Label resolution<a class="headerlink" href="#label-resolution" title="Permanent link">&para;</a></h2>
-<p><code>AbstractForms::get()</code> always returns <code>col-&gt;label</code> as a <strong>plain string in the current application locale</strong>. Templates output it directly — no further <code>trans()</code> call is needed for DB-path forms.</p>
-<h3 id="resolution-order-db-path">Resolution order (DB path)<a class="headerlink" href="#resolution-order-db-path" title="Permanent link">&para;</a></h3>
-<ol>
-<li><code>pivot.label[currentLocale]</code> — per-form locale override</li>
-<li><code>pivot.label['de']</code> — German fallback within pivot override</li>
-<li><code>antonfields.label[currentLocale]</code> — global field label in current locale</li>
-<li><code>antonfields.label['de']</code> — German fallback</li>
-<li><code>antonfield.name</code> — last resort</li>
-</ol>
-<h3 id="customer-customisation">Customer customisation<a class="headerlink" href="#customer-customisation" title="Permanent link">&para;</a></h3>
-<p>Labels come directly from the DB. Customer-specific label changes can be made by editing <code>antonfields.label</code> or attaching a <code>pivot.label</code> override — no code deployment required.</p>
-<hr />
-<h2 id="how-to-modify-forms">How to modify forms<a class="headerlink" href="#how-to-modify-forms" title="Permanent link">&para;</a></h2>
-<h3 id="via-the-admin-ui">Via the admin UI<a class="headerlink" href="#via-the-admin-ui" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>/formsets</code> — manage formsets and their form assignments</li>
-<li><code>/antonfields</code> — browse and edit field labels and help texts</li>
-<li><code>/formsets/{id}/edit</code> — add/remove fields, change field order and pivot settings</li>
-</ul>
-<h3 id="via-seeders-recommended-for-deployments">Via seeders (recommended for deployments)<a class="headerlink" href="#via-seeders-recommended-for-deployments" title="Permanent link">&para;</a></h3>
-<p>Each entity has a seeder in <code>database/seeders/</code>:</p>
-<ul>
-<li><code>InitActorForms.php</code> (IDs 100–103)</li>
-<li><code>InitPlaceForms.php</code> (IDs 110–113)</li>
-<li><code>InitKeywordForms.php</code> (IDs 120–123)</li>
-<li><code>InitLocationForms.php</code> (IDs 130–133)</li>
-<li><code>InitObjectListForms.php</code> (IDs 3–4)</li>
-<li><code>InitSearchForms.php</code> (IDs 14–15)</li>
-<li><code>InitEntityFormsets.php</code></li>
-<li><code>SeedEntityFormLabels.php</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>db:seed<span class="w"> </span>--class<span class="o">=</span>InitActorForms<span class="w"> </span>--env<span class="o">=</span>kr
-</code></pre></div>
-<p>Init seeders only create forms that don't have fields yet — they never overwrite existing customer customisations.</p>
-<h3 id="adding-a-new-custom-field">Adding a new custom field<a class="headerlink" href="#adding-a-new-custom-field" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="x">use Anton\Models\Antonfield;</span>
-<span class="x">use Anton\Models\Objectform;</span>
-
-<span class="x">// 1. Create the antonfield</span>
-<span class="x">$af = Antonfield::firstOrCreate(</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;my_field&#39;, &#39;type&#39; =&gt; &#39;text&#39;],</span>
-<span class="x">    [&#39;label&#39; =&gt; [&#39;de&#39; =&gt; &#39;Mein Feld&#39;, &#39;en&#39; =&gt; &#39;My Field&#39;, &#39;fr&#39; =&gt; &#39;Mon champ&#39;, &#39;it&#39; =&gt; &#39;Il mio campo&#39;]]</span>
-<span class="x">);</span>
-
-<span class="x">// 2. Attach to a form</span>
-<span class="x">$form = Objectform::where(&#39;model&#39;, &#39;Actor&#39;)</span>
-<span class="x">    -&gt;where(&#39;type&#39;, &#39;edit&#39;)</span>
-<span class="x">    -&gt;where(&#39;scope&#39;, &#39;internal&#39;)</span>
-<span class="x">    -&gt;first();</span>
-
-<span class="x">$form-&gt;antonfields()-&gt;attach($af-&gt;id, [</span>
-<span class="x">    &#39;position&#39; =&gt; 20,</span>
-<span class="x">]);</span>
-</code></pre></div>
-<h3 id="overriding-the-type-for-one-form">Overriding the type for one form<a class="headerlink" href="#overriding-the-type-for-one-form" title="Permanent link">&para;</a></h3>
-<p>Use <code>pivot.type</code> to change how a field renders in a specific form without changing its global type:</p>
-<div class="highlight"><pre><span></span><code><span class="x">// Show textarea as read-only in detail form</span>
-<span class="x">$form-&gt;antonfields()-&gt;attach($af-&gt;id, [</span>
-<span class="x">    &#39;position&#39; =&gt; 5,</span>
-<span class="x">    &#39;type&#39;     =&gt; &#39;display&#39;,</span>
-<span class="x">]);</span>
-</code></pre></div>
-<h3 id="overriding-the-label-for-one-form">Overriding the label for one form<a class="headerlink" href="#overriding-the-label-for-one-form" title="Permanent link">&para;</a></h3>
-<p>Use <code>pivot.label</code> to give a field a different label in one specific form:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$form-&gt;antonfields()-&gt;attach($af-&gt;id, [</span>
-<span class="x">    &#39;position&#39; =&gt; 3,</span>
-<span class="x">    &#39;label&#39;    =&gt; json_encode([&#39;de&#39; =&gt; &#39;Interner Titel&#39;, &#39;en&#39; =&gt; &#39;Internal title&#39;]),</span>
-<span class="x">]);</span>
-</code></pre></div>
-<h3 id="configuring-a-list-column">Configuring a list column<a class="headerlink" href="#configuring-a-list-column" title="Permanent link">&para;</a></h3>
-<p>Use <code>pivot.config</code> for sort metadata and button configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="x">// Sortable column with custom DB sort column</span>
-<span class="x">$form-&gt;antonfields()-&gt;attach($af-&gt;id, [</span>
-<span class="x">    &#39;position&#39; =&gt; 2,</span>
-<span class="x">    &#39;config&#39;   =&gt; json_encode([&#39;sortField&#39; =&gt; &#39;type_id&#39;]),</span>
-<span class="x">]);</span>
-
-<span class="x">// Buttons column</span>
-<span class="x">$form-&gt;antonfields()-&gt;attach($af-&gt;id, [</span>
-<span class="x">    &#39;position&#39; =&gt; 99,</span>
-<span class="x">    &#39;config&#39;   =&gt; json_encode([&#39;sort&#39; =&gt; false, &#39;with&#39; =&gt; [&#39;detail&#39;, &#39;edit&#39;, &#39;delete&#39;]]),</span>
-<span class="x">]);</span>
-</code></pre></div>
-<hr />
-<h2 id="php-form-definitions-admin-entities">PHP form definitions (admin entities)<a class="headerlink" href="#php-form-definitions-admin-entities" title="Permanent link">&para;</a></h2>
-<p>For admin entities (<code>User</code>, <code>Setting</code>, <code>Media</code>, <code>Cart</code>, etc.) that don't have DB-managed forms, PHP classes in <code>app/Forms/</code> define the field lists. For DB-managed entities (Actor, Place, Keyword, Location, AntonObject), the PHP classes serve only as data source for the Init seeders — they are never used at runtime.</p>
-<div class="highlight"><pre><span></span><code>app/Forms/
-  AbstractForms.php          ← Base class with get() priority logic
-  ActorsForms.php
-  PlacesForms.php
-  KeywordsForms.php
-  LocationsForms.php
-  ObjectsForms.php           ← AntonObject: loads from DB (Objectformtype)
-  UsersForms.php
-  ObjectformsForms.php
-  ObjectformtypesForms.php
-</code></pre></div>
-<h3 id="field-definition-structure">Field definition structure<a class="headerlink" href="#field-definition-structure" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="x">// Simple text field</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;city&#39;, &#39;type&#39; =&gt; &#39;text&#39;, &#39;label&#39; =&gt; &#39;City&#39;]</span>
-
-<span class="x">// Select with value list</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;type_id&#39;, &#39;type&#39; =&gt; &#39;select&#39;, &#39;valuelist&#39; =&gt; &#39;authority_type&#39;, &#39;label&#39; =&gt; &#39;Type&#39;]</span>
-
-<span class="x">// Note module</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;description&#39;, &#39;type&#39; =&gt; &#39;note&#39;]</span>
-
-<span class="x">// Generic module (component resolved from name)</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;actors&#39;, &#39;type&#39; =&gt; &#39;module&#39;]</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;updates&#39;, &#39;type&#39; =&gt; &#39;module&#39;]</span>
-
-<span class="x">// List column with sort</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;name&#39;, &#39;label&#39; =&gt; &#39;Name&#39;, &#39;sortField&#39; =&gt; &#39;name&#39;]</span>
-
-<span class="x">// Buttons column (no label)</span>
-<span class="x">[&#39;name&#39; =&gt; &#39;buttons&#39;, &#39;type&#39; =&gt; &#39;buttons&#39;, &#39;sort&#39; =&gt; false, &#39;with&#39; =&gt; [&#39;detail&#39;, &#39;edit&#39;, &#39;delete&#39;]]</span>
-</code></pre></div>
-<p>All available definition keys:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>name</code></td>
-<td>Model attribute name</td>
-</tr>
-<tr>
-<td><code>field</code></td>
-<td>Full field path alternative (e.g. <code>note.description</code>)</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td>Field type</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>Display label — translation key string for PHP-path forms (e.g. <code>'Name'</code>); locale-resolved string for DB-path forms</td>
-</tr>
-<tr>
-<td><code>valuelist</code></td>
-<td>Key for select/radio options</td>
-</tr>
-<tr>
-<td><code>default_value</code></td>
-<td>Default value</td>
-</tr>
-<tr>
-<td><code>sortField</code></td>
-<td>DB column for sorting (list forms; stored in <code>pivot.config</code>)</td>
-</tr>
-<tr>
-<td><code>sort</code></td>
-<td><code>false</code> disables sorting (stored in <code>pivot.config</code>)</td>
-</tr>
-<tr>
-<td><code>with</code></td>
-<td>Button list for <code>buttons</code> columns (stored in <code>pivot.config</code>)</td>
-</tr>
-<tr>
-<td><code>help</code></td>
-<td>Help text (stored in <code>pivot.help</code>)</td>
-</tr>
-<tr>
-<td><code>placeholder</code></td>
-<td>Input placeholder text</td>
-</tr>
-<tr>
-<td><code>class</code></td>
-<td>Additional CSS classes on the input (stored in <code>pivot.config</code>)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="rendering-pipeline">Rendering pipeline<a class="headerlink" href="#rendering-pipeline" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>Controller
-  └── passes $model to View
-       └── &lt;x-forms.render :model=&quot;$model&quot; type=&quot;detail|edit|create&quot; /&gt;
-            └── AbstractForms::get($type)     ← DB → Settings → PHP
-                 └── array of stdClass columns
-            └── AntonFormsElement[] created per column
-            └── components.forms.templates.table
-                 └── foreach $form_definition as $element
-                      └── &lt;x-dynamic-component :component=&quot;$element-&gt;resolved_component_name&quot; /&gt;
-</code></pre></div>
-<h3 id="x-formsrender-parameters"><code>&lt;x-forms.render&gt;</code> parameters<a class="headerlink" href="#x-formsrender-parameters" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>model</code></td>
-<td><code>null</code></td>
-<td>Eloquent model passed to field components</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td><code>'edit'</code></td>
-<td>Form type: <code>detail</code>, <code>edit</code>, <code>create</code>, <code>detail_intern</code></td>
-</tr>
-<tr>
-<td><code>definition</code></td>
-<td><code>null</code></td>
-<td>Explicit field array (overrides automatic lookup)</td>
-</tr>
-<tr>
-<td><code>url</code></td>
-<td><code>null</code></td>
-<td><code>action</code> attribute of the <code>&lt;form&gt;</code> tag</td>
-</tr>
-<tr>
-<td><code>method</code></td>
-<td><code>'get'</code></td>
-<td>HTTP method: <code>get</code>, <code>post</code>, <code>put</code>, <code>patch</code>, <code>delete</code></td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td>auto</td>
-<td>HTML id of the form (<code>frm-{table}-{type}</code>)</td>
-</tr>
-<tr>
-<td><code>template</code></td>
-<td><code>'table'</code></td>
-<td>Render template (currently only <code>table</code>)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="maintenance-commands">Maintenance commands<a class="headerlink" href="#maintenance-commands" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Check a customer database for legacy fields (id &gt;= 5000)</span>
-php<span class="w"> </span>artisan<span class="w"> </span>anton:check-customer-fields<span class="w"> </span>--env<span class="o">=</span>be
-
-<span class="c1"># Remove orphaned legacy fields (no name, no pivot references)</span>
-php<span class="w"> </span>artisan<span class="w"> </span>anton:check-customer-fields<span class="w"> </span>--env<span class="o">=</span>be<span class="w"> </span>--delete-orphaned
-</code></pre></div>
-<p>Exit code is <code>1</code> if any in-use fields (id ≥ 5000) are found, <code>0</code> otherwise.</p>
+<p>Welche Feldtypen und Module es tatsächlich gibt, ist <strong>datengetrieben</strong> und
+steht in der Anwendung unter <strong>Hilfe → Anton Fields</strong> — pro Installation immer
+aktuell. Eine feste Liste an dieser Stelle würde nur veralten.</p>
+<h2 id="felddefinitionen-und-id-bereiche">Felddefinitionen und ID-Bereiche<a class="headerlink" href="#felddefinitionen-und-id-bereiche" title="Permanent link">&para;</a></h2>
+<p>Antonfields mit <strong>ID &lt; 5000</strong> sind Kernfelder: Name und Typ sind fest, weil Code
+und die Enums <code>Eventtype</code>/<code>Notetype</code> darauf verweisen. Die <strong>Beschriftung</strong> ist
+frei und wird bei <code>anton:update</code> bewusst nicht überschrieben — so überleben
+mandantenspezifische Anpassungen jede Aktualisierung.</p>
+<p>Felder mit <strong>ID ≥ 5000</strong> stammen aus alten kundenspezifischen Konfigurationen
+und sollten nach <code>anton:update</code> nicht mehr existieren; <code>anton:check-customer-fields</code>
+prüft das.</p>
+<h2 id="woran-ein-archiv-seine-formulare-andert">Woran ein Archiv seine Formulare ändert<a class="headerlink" href="#woran-ein-archiv-seine-formulare-andert" title="Permanent link">&para;</a></h2>
+<p>Über die Oberfläche unter <strong>Admin → Formulare</strong> / <strong>Formtypen</strong>, oder — für
+Deployments reproduzierbar — über Seeder. Seeder überschreiben bestehende
+Formulare bewusst nicht (<code>if ($form-&gt;antonfields()-&gt;count() &gt; 0) return;</code>), damit
+sie ausgelieferte Konfigurationen nicht zerstören.</p>
 
 
 

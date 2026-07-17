@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../forms/">
+      
+      
+        <link rel="next" href="../extension-points/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>AntonObject: Events, Jobs & Listeners - Anton – Dokumentation</title>
+        <title>Nebenläufigkeit - Anton – Dokumentation</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#antonobject-events-jobs-listeners" class="md-skip">
+        <a href="#nebenlaufigkeit-events-listener-jobs" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -99,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AntonObject: Events, Jobs &amp; Listeners
+              Nebenläufigkeit
             
           </span>
         </div>
@@ -1612,6 +1616,315 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architektur-Überblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domain-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenmodell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Das Formularsystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nebenläufigkeit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nebenläufigkeit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#das-muster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Das Muster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warum-asynchron-und-idempotent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum asynchron und idempotent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-events-werden-bei-massenoperationen-unterdruckt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain-Events werden bei Massenoperationen unterdrückt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#die-abgeleiteten-felder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die abgeleiteten Felder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#voraussetzung-der-supervisor-lauft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voraussetzung: der Supervisor läuft
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kein-scheduler-auf-den-servern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kein Scheduler auf den Servern
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Erweiterungspunkte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -1623,10 +1936,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1644,8 +1957,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1670,10 +1983,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
             
   
   
@@ -1691,8 +2004,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1865,10 +2178,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
             
   
   
@@ -1886,8 +2199,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2116,10 +2429,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
             
   
   
@@ -2137,8 +2450,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2283,10 +2596,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -2304,8 +2617,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2394,10 +2707,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
             
   
   
@@ -2415,8 +2728,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2533,10 +2846,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
             
   
   
@@ -2554,8 +2867,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2756,10 +3069,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
         
           
-          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
             
   
   
@@ -2777,8 +3090,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2951,10 +3264,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
             
   
   
@@ -2972,8 +3285,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3209,10 +3522,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -3230,8 +3543,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3319,10 +3632,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -3340,8 +3653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3665,10 +3978,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-event-listener-job-kette" class="md-nav__link">
+  <a href="#das-muster" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Event → Listener → Job Kette
+        Das Muster
       
     </span>
   </a>
@@ -3676,10 +3989,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-operationen-auf-antonobject-was-passiert" class="md-nav__link">
+  <a href="#warum-asynchron-und-idempotent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Operationen auf AntonObject → Was passiert?
+        Warum asynchron und idempotent
       
     </span>
   </a>
@@ -3687,10 +4000,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-jobs-im-detail" class="md-nav__link">
+  <a href="#domain-events-werden-bei-massenoperationen-unterdruckt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Jobs im Detail
+        Domain-Events werden bei Massenoperationen unterdrückt
       
     </span>
   </a>
@@ -3698,10 +4011,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-suppressdomainevents" class="md-nav__link">
+  <a href="#die-abgeleiteten-felder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. $suppressDomainEvents
+        Die abgeleiteten Felder
       
     </span>
   </a>
@@ -3709,10 +4022,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-performance-hinweis-sync-queue" class="md-nav__link">
+  <a href="#voraussetzung-der-supervisor-lauft" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Performance-Hinweis: Sync-Queue
+        Voraussetzung: der Supervisor läuft
       
     </span>
   </a>
@@ -3720,74 +4033,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-relevante-dateien" class="md-nav__link">
+  <a href="#kein-scheduler-auf-den-servern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Relevante Dateien
+        Kein Scheduler auf den Servern
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-derived-attributes-pipeline-doctor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Derived Attributes Pipeline (Doctor)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Derived Attributes Pipeline (Doctor)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reparatur-reihenfolge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reparatur-Reihenfolge
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Jobs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pipelinesteplog" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PipelineStepLog
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dateien" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dateien
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3811,367 +4063,94 @@
   
 
 
-<h1 id="antonobject-events-jobs-listeners">AntonObject: Events, Jobs &amp; Listeners<a class="headerlink" href="#antonobject-events-jobs-listeners" title="Permanent link">&para;</a></h1>
-<h2 id="1-event-listener-job-kette">1. Event → Listener → Job Kette<a class="headerlink" href="#1-event-listener-job-kette" title="Permanent link">&para;</a></h2>
+<h1 id="nebenlaufigkeit-events-listener-jobs">Nebenläufigkeit: Events, Listener, Jobs<a class="headerlink" href="#nebenlaufigkeit-events-listener-jobs" title="Permanent link">&para;</a></h1>
+<p>Eine Verzeichnungseinheit trägt Felder, die aus anderen Daten <strong>folgen</strong>: ihren
+Pfad in der Tektonik, ihre Tiefe, das Freigabejahr, den Volltextindex, die über
+den Teilbaum aggregierte Datierung. Diese Werte sind <strong>materialisiert</strong> — sie
+stehen in Spalten, statt bei jeder Abfrage neu gerechnet zu werden.</p>
+<p>Materialisierung erkauft schnelle Abfragen mit dem Zwang, die Werte konsistent
+zu halten. Genau das leistet die Ereignis- und Job-Schicht. Wer sie versteht,
+versteht, warum eine scheinbar einfache Änderung an einem Objekt eine Kette von
+Hintergrundaufträgen auslöst.</p>
+<h2 id="das-muster">Das Muster<a class="headerlink" href="#das-muster" title="Permanent link">&para;</a></h2>
+<p>Anton koppelt Domänenoperationen und Nachpflege lose über Laravel-Events:</p>
+<div class="highlight"><pre><span></span><code>Operation am AntonObject  →  Domain-Event  →  Listener  →  Job (Queue)
+</code></pre></div>
+<p>Der Kern liegt in den Model-Hooks von <code>AntonObject</code> (<code>booted()</code>) und in
+<code>EventServiceProvider</code>. Die Nachpflege läuft über die Queue, weil sie ganze
+Teilbäume berühren kann — bei einer Closure Table ist das potenziell teuer.</p>
+<h2 id="warum-asynchron-und-idempotent">Warum asynchron und idempotent<a class="headerlink" href="#warum-asynchron-und-idempotent" title="Permanent link">&para;</a></h2>
+<p>Zwei Entwurfsentscheidungen erklären fast alles:</p>
+<p><strong>Teilbaum-Arbeit gehört in die Queue.</strong> Ein Verschieben schreibt Pfade und
+Tiefen aller Nachkommen um; eine Titeländerung kann den Volltext des ganzen
+Teilbaums betreffen. Solche Arbeit synchron im Request zu erledigen, würde ihn
+sprengen — deshalb Jobs mit grosszügigen Timeouts und Retries.</p>
+<p><strong>Die Jobs sind wiederholbar.</strong> Jeder rechnet den Zielzustand aus den
+Quelldaten neu, statt Deltas fortzuschreiben. Das macht sie idempotent: Ein
+zweiter Lauf schadet nicht, ein verlorener Lauf lässt sich nachholen. Genau
+darauf beruht die Reparaturfähigkeit — <code>anton:doctor</code> und
+<code>RepairAllDerivedAttributes</code> können jederzeit den konsistenten Zustand
+wiederherstellen.</p>
+<h2 id="domain-events-werden-bei-massenoperationen-unterdruckt">Domain-Events werden bei Massenoperationen unterdrückt<a class="headerlink" href="#domain-events-werden-bei-massenoperationen-unterdruckt" title="Permanent link">&para;</a></h2>
+<p>Ein wichtiges Detail: Beim Anlegen vieler Datensätze (<code>create_bulk</code>) und während
+eines Verschiebens setzt der Code <code>$suppressDomainEvents = true</code> und stösst die
+Nachpflege <strong>einmal am Ende</strong> an, statt pro Objekt. Sonst würde eine
+Bulk-Operation Hunderte redundanter Jobs erzeugen. Wer eine neue Massenoperation
+schreibt, muss dieses Muster kennen und selbst dafür sorgen, dass Pfade, Daten
+und Volltext danach einmal aktualisiert werden.</p>
+<h2 id="die-abgeleiteten-felder">Die abgeleiteten Felder<a class="headerlink" href="#die-abgeleiteten-felder" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Event</th>
-<th>Listener</th>
-<th>Queue?</th>
-<th>Dispatched Jobs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ObjectMoved</code></td>
-<td><code>ObjectSetPath</code></td>
-<td><strong>async</strong> (<code>ShouldQueue</code>)</td>
-<td><code>UpdatePaths</code></td>
-</tr>
-<tr>
-<td><code>ObjectChanged</code></td>
-<td><code>ObjectUpdateParents</code></td>
-<td><strong>sync</strong></td>
-<td><code>UpdateDates</code> + <code>RefreshFulltext</code></td>
-</tr>
-<tr>
-<td><code>MediumAdded</code></td>
-<td><code>MediumIdentifyAndConvert</code></td>
-<td><strong>async</strong> (<code>ShouldQueue</code>)</td>
-<td>Format-Identifikation, Cloud-Copy, Conversions, <code>RefreshFulltext</code></td>
-</tr>
-<tr>
-<td><code>ImportFinished</code></td>
-<td><code>ImportFinished</code></td>
-<td><strong>sync</strong></td>
-<td>Kette: <code>UpdatePaths</code> → <code>ProcessMediaFiles</code> → <code>ProcessMediaIdentificationBatch</code> → <code>UpdateDates</code> → <code>RefreshFulltext</code></td>
-</tr>
-<tr>
-<td><code>LoanedObject</code></td>
-<td><code>ObjectUpdatesLoansOnDescendants</code></td>
-<td><strong>async</strong> (<code>ShouldQueue</code>)</td>
-<td><code>UpdateLoans</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-operationen-auf-antonobject-was-passiert">2. Operationen auf AntonObject → Was passiert?<a class="headerlink" href="#2-operationen-auf-antonobject-was-passiert" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Model-Hook</th>
-<th>Events (wenn <code>$suppressDomainEvents = false</code>)</th>
-<th>Zusätzliche Aktionen</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>create</strong> (Einzelobjekt)</td>
-<td><code>saving</code> → <code>created</code></td>
-<td><code>ObjectMoved</code> → <code>UpdatePaths</code></td>
-<td><code>fonds_id</code> setzen</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><code>ObjectChanged</code> → <code>UpdateDates</code> + <code>RefreshFulltext</code></td>
-<td>Cache flush, <code>updateHasChildren</code> auf Parent</td>
-</tr>
-<tr>
-<td><strong>create_bulk</strong></td>
-<td><code>saving</code> → <code>created</code> (pro Objekt)</td>
-<td><strong>unterdrückt</strong> (<code>$suppressDomainEvents = true</code>)</td>
-<td>Nach Schleife 1× manuell: <code>UpdatePaths</code>, <code>UpdateDates</code>, <code>RefreshFulltext</code></td>
-</tr>
-<tr>
-<td><strong>update</strong></td>
-<td><code>updating</code> → <code>updated</code></td>
-<td><code>ObjectChanged</code> → <code>UpdateDates</code> + <code>RefreshFulltext</code></td>
-<td><code>version++</code>, <code>real_depth</code>, <code>uuid</code></td>
-</tr>
-<tr>
-<td><strong>update</strong> (mit dirty <code>private</code>)</td>
-<td><code>updating</code></td>
-<td>—</td>
-<td><code>UpdateDescendantsPrivate</code> → alle Nachkommen + Fulltext</td>
-</tr>
-<tr>
-<td><strong>update</strong> (mit dirty <code>release_year</code>)</td>
-<td><code>updating</code></td>
-<td>—</td>
-<td><code>UpdateDescendantsReleaseDate</code> → alle Nachkommen</td>
-</tr>
-<tr>
-<td><strong>update</strong> (mit dirty <code>status_of_description_id</code> auf Fonds)</td>
-<td><code>updating</code></td>
-<td>—</td>
-<td><code>UpdateDescendantsStatusOfDescription</code> → alle Nachkommen</td>
-</tr>
-<tr>
-<td><strong>move</strong> (behind/infrontof/into)</td>
-<td><code>saving</code> → <code>saved</code> (intern)</td>
-<td><strong>unterdrückt</strong> während Move; danach 1× <code>ObjectMoved</code> → <code>UpdatePaths</code></td>
-<td><code>reorderChildren</code>, <code>updateHasChildren</code>, ggf. Move-Protokoll (wenn <code>setting('record_move_events')</code>)</td>
-</tr>
-<tr>
-<td><strong>delete</strong> (moveToTrash)</td>
-<td><code>deleting</code> → <code>deleted</code></td>
-<td>—</td>
-<td>Notes löschen, Kinder rekursiv in Papierkorb, Cache flush</td>
-</tr>
-<tr>
-<td><strong>addAntonMedium</strong></td>
-<td>—</td>
-<td><code>MediumAdded</code> → Format-ID, Conversions, <code>RefreshFulltext</code></td>
-<td>Nur wenn <code>$fire_medium_added_event = true</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-jobs-im-detail">3. Jobs im Detail<a class="headerlink" href="#3-jobs-im-detail" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
+<th>Feld</th>
+<th>Wird neu berechnet bei</th>
 <th>Job</th>
-<th>Timeout</th>
-<th>Retries</th>
-<th>Was macht er?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><code>path</code>, <code>real_depth</code></td>
+<td>Anlegen, Verschieben</td>
 <td><code>UpdatePaths</code></td>
-<td>3600s</td>
-<td>—</td>
-<td>Aktualisiert das <code>path[]</code>-Attribut für Objekte und ihre Nachkommen</td>
 </tr>
 <tr>
+<td>aggregierte Datierung</td>
+<td>Datumsänderung im Teilbaum</td>
 <td><code>UpdateDates</code></td>
-<td>7200s</td>
-<td>3× (60s Backoff)</td>
-<td>Aggregiert Entstehungsdaten (<code>artisan anton:update-dates</code>)</td>
 </tr>
 <tr>
-<td><code>RefreshFulltext</code></td>
-<td>14400s</td>
-<td>3× (60s Backoff)</td>
-<td>Extrahiert PDF-Text, aktualisiert MySQL-Fulltext-Index (<code>artisan anton:update-fulltext</code>). ≤ 50 IDs: in-process <code>Artisan::call()</code>. &gt; 50 IDs oder ganze DB: externer PHP-Prozess (Memory-Isolation).</td>
-</tr>
-<tr>
-<td><code>UpdateDescendantsPrivate</code></td>
-<td>—</td>
-<td>—</td>
-<td>Setzt <code>private</code> auf allen Nachkommen + Fulltext-Update in 1000er-Chunks</td>
-</tr>
-<tr>
-<td><code>UpdateDescendantsStatusOfDescription</code></td>
-<td>—</td>
-<td>—</td>
-<td>Setzt <code>status_of_description_id</code> auf allen Nachkommen</td>
-</tr>
-<tr>
-<td><code>UpdateDescendantsReleaseDate</code></td>
-<td>—</td>
-<td>—</td>
-<td>Aktualisiert <code>release_year</code> / <code>release_year_calculated</code> auf Nachkommen</td>
-</tr>
-<tr>
-<td><code>UpdateLoans</code></td>
-<td>—</td>
-<td>—</td>
-<td>Aktualisiert Ausleih-Status auf Nachkommen</td>
-</tr>
-</tbody>
-</table>
-<h2 id="4-suppressdomainevents">4. <code>$suppressDomainEvents</code><a class="headerlink" href="#4-suppressdomainevents" title="Permanent link">&para;</a></h2>
-<p><code>AntonObject::$suppressDomainEvents</code> ist ein statisches Flag, das die <code>ObjectMoved</code>- und <code>ObjectChanged</code>-Events unterdrückt, während Infrastruktur-Events (ClosureTable <code>insertNode</code>, <code>reorderSiblings</code>) weiterhin feuern. Wird verwendet in:</p>
-<ul>
-<li><strong><code>create_bulk()</code></strong> — Events unterdrücken während der Schleife, danach 1× <code>UpdatePaths</code>, <code>UpdateDates</code>, <code>RefreshFulltext</code> für alle IDs</li>
-<li><strong><code>move()</code></strong> — Events unterdrücken während der Move-Operation, danach 1× <code>ObjectMoved</code></li>
-</ul>
-<h2 id="5-performance-hinweis-sync-queue">5. Performance-Hinweis: Sync-Queue<a class="headerlink" href="#5-performance-hinweis-sync-queue" title="Permanent link">&para;</a></h2>
-<p>Mit <code>QUEUE_DRIVER=sync</code> laufen <strong>alle</strong> Jobs synchron. Das bedeutet:</p>
-<ul>
-<li><strong>Ein einzelnes <code>create</code></strong> feuert <code>ObjectMoved</code> + <code>ObjectChanged</code> → löst synchron <code>UpdatePaths</code> + <code>UpdateDates</code> + <code>RefreshFulltext</code> aus — <strong>3 schwere Prozesse pro Objekt</strong></li>
-<li><strong><code>create_bulk</code></strong> unterdrückt das und macht es <strong>1× am Ende</strong> für alle IDs</li>
-<li><strong><code>move</code></strong> unterdrückt Events während der Operation, feuert <code>ObjectMoved</code> <strong>1× am Ende</strong> (kein <code>ObjectChanged</code>, daher kein <code>UpdateDates</code>/<code>RefreshFulltext</code> beim Move)</li>
-</ul>
-<h2 id="6-relevante-dateien">6. Relevante Dateien<a class="headerlink" href="#6-relevante-dateien" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>app/Models/AntonObject.php</code></td>
-<td>Model-Events (<code>booted()</code>), <code>move()</code>, <code>$suppressDomainEvents</code></td>
-</tr>
-<tr>
-<td><code>app/Events/ObjectMoved.php</code></td>
-<td>Event-Klasse für Verschiebungen</td>
-</tr>
-<tr>
-<td><code>app/Events/ObjectChanged.php</code></td>
-<td>Event-Klasse für Änderungen (inkl. Create)</td>
-</tr>
-<tr>
-<td><code>app/Events/MediumAdded.php</code></td>
-<td>Event-Klasse für neue Medien</td>
-</tr>
-<tr>
-<td><code>app/Events/ImportFinished.php</code></td>
-<td>Event-Klasse für abgeschlossene Importe</td>
-</tr>
-<tr>
-<td><code>app/Listeners/ObjectSetPath.php</code></td>
-<td>Listener: <code>ObjectMoved</code> → <code>UpdatePaths</code></td>
-</tr>
-<tr>
-<td><code>app/Listeners/ObjectUpdateParents.php</code></td>
-<td>Listener: <code>ObjectChanged</code> → <code>UpdateDates</code> + <code>RefreshFulltext</code></td>
-</tr>
-<tr>
-<td><code>app/Listeners/MediumIdentifyAndConvert.php</code></td>
-<td>Listener: <code>MediumAdded</code> → Identifikation, Conversions</td>
-</tr>
-<tr>
-<td><code>app/Listeners/ImportFinished.php</code></td>
-<td>Listener: <code>ImportFinished</code> → Job-Kette</td>
-</tr>
-<tr>
-<td><code>app/Jobs/UpdatePaths.php</code></td>
-<td>Job: Pfade aktualisieren</td>
-</tr>
-<tr>
-<td><code>app/Jobs/UpdateDates.php</code></td>
-<td>Job: Daten aggregieren</td>
-</tr>
-<tr>
-<td><code>app/Jobs/RefreshFulltext.php</code></td>
-<td>Job: Fulltext-Index aktualisieren</td>
-</tr>
-<tr>
-<td><code>app/Providers/EventServiceProvider.php</code></td>
-<td>Event-Listener-Mapping</td>
-</tr>
-<tr>
-<td><code>app/Http/Controllers/ObjectsController.php</code></td>
-<td><code>create_bulk()</code> mit Event-Unterdrückung</td>
-</tr>
-</tbody>
-</table>
-<h2 id="7-derived-attributes-pipeline-doctor">7. Derived Attributes Pipeline (Doctor)<a class="headerlink" href="#7-derived-attributes-pipeline-doctor" title="Permanent link">&para;</a></h2>
-<p>Die Pipeline im Doctor-Dashboard repariert abgeleitete Felder in strikter Abhängigkeitsreihenfolge. Jeder Step hängt von den vorherigen ab.</p>
-<h3 id="reparatur-reihenfolge">Reparatur-Reihenfolge<a class="headerlink" href="#reparatur-reihenfolge" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Step</th>
-<th>Feld(er)</th>
-<th>Artisan Command</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><code>object_closure</code></td>
-<td><code>anton:repair-closure-table</code></td>
-<td>ClosureTable: Parent-Child-Beziehungen</td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>path</code>, <code>fonds_id</code></td>
-<td><code>anton:update-path</code></td>
-<td>Pfad-Arrays und Fonds-Zuordnung</td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>real_depth</code></td>
-<td><code>anton:update-path --real-depth</code></td>
-<td>Tatsächliche Tiefe im Baum</td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>has_children</code></td>
-<td><code>anton:update-has_children</code></td>
-<td>Flag: Objekt hat Kinder</td>
-</tr>
-<tr>
-<td>5</td>
-<td><code>release_year_calculated</code></td>
-<td><code>anton:update-release-year</code></td>
-<td>Kaskadiert release_year top-down</td>
-</tr>
-<tr>
-<td>6</td>
-<td><code>object_creation_min/max</code></td>
-<td><code>anton:update-all-dates</code></td>
-<td>Aggregiert Entstehungsdaten bottom-up</td>
-</tr>
-<tr>
-<td>7</td>
 <td><code>full_text</code>, <code>full_text_intern</code></td>
-<td><code>anton:update-fulltext</code></td>
-<td>MySQL-Fulltext-Index</td>
+<td>Titel-/Inhaltsänderung, neuen Medien</td>
+<td><code>RefreshFulltext</code></td>
+</tr>
+<tr>
+<td><code>release_year_calculated</code></td>
+<td>Schutzfrist-/Datumsänderung</td>
+<td>über die Nachkommen-Pflege</td>
+</tr>
+<tr>
+<td><code>private</code>, <code>status_of_description_id</code></td>
+<td>Änderung auf einem Vorfahren</td>
+<td>Vererbung an alle Nachkommen</td>
 </tr>
 </tbody>
 </table>
-<h3 id="jobs">Jobs<a class="headerlink" href="#jobs" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Job</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>RepairAllDerivedAttributes</code></td>
-<td>Führt alle 7 Steps in der richtigen Reihenfolge aus. Wird über Doctor "Repair All" oder direkt dispatched.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="pipelinesteplog">PipelineStepLog<a class="headerlink" href="#pipelinesteplog" title="Permanent link">&para;</a></h3>
-<p><code>Anton\Helpers\PipelineStepLog</code> protokolliert pro Step wann zuletzt ausgeführt (<code>last_run</code>) und wann zuletzt fehlerfrei (<code>last_ok</code>). Gespeichert als JSON in <code>storage/app/logs/pipeline_steps.json</code>.</p>
-<h3 id="dateien">Dateien<a class="headerlink" href="#dateien" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Beschreibung</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>app/Jobs/RepairAllDerivedAttributes.php</code></td>
-<td>Job: alle 7 Reparatur-Schritte in Reihenfolge</td>
-</tr>
-<tr>
-<td><code>app/Helpers/PipelineStepLog.php</code></td>
-<td>JSON-Log für Pipeline-Step-History</td>
-</tr>
-<tr>
-<td><code>app/Console/Commands/AntonUpdateReleaseYear.php</code></td>
-<td>Command: release_year kaskadieren</td>
-</tr>
-<tr>
-<td><code>app/Http/Controllers/Help/AntonDoctorController.php</code></td>
-<td>Doctor-Controller mit Pipeline-Checks und Repairs</td>
-</tr>
-<tr>
-<td><code>resources/views/doctor/tabs/pipeline.blade.php</code></td>
-<td>Pipeline-View mit Status, Details, Log-Daten</td>
-</tr>
-<tr>
-<td><code>resources/views/doctor/tabs/manual.blade.php</code></td>
-<td>Manuelle Reparaturen (Nested Fonds, Positions)</td>
-</tr>
-</tbody>
-</table>
+<p><code>RefreshFulltext</code> illustriert eine allgemeine Vorsichtsregel der Schicht: Bei
+wenigen IDs läuft es in-process, bei vielen oder der ganzen Datenbank in einem
+<strong>eigenen PHP-Prozess</strong> — zur Speicher-Isolation, damit ein grosser Rebuild den
+Worker nicht sprengt.</p>
+<h2 id="voraussetzung-der-supervisor-lauft">Voraussetzung: der Supervisor läuft<a class="headerlink" href="#voraussetzung-der-supervisor-lauft" title="Permanent link">&para;</a></h2>
+<p>Die ganze Schicht setzt voraus, dass die Queue abgearbeitet wird. Steht der
+Supervisor nicht, stauen sich die Jobs ohne Fehlermeldung, und die abgeleiteten
+Felder veralten still. Der Reiter <strong>Supervisor</strong> im
+<a href="../../admin/doctor/">Anton Doctor</a> zeigt den Zustand — die erste Station bei
+«Änderungen kommen nicht an».</p>
+<h2 id="kein-scheduler-auf-den-servern">Kein Scheduler auf den Servern<a class="headerlink" href="#kein-scheduler-auf-den-servern" title="Permanent link">&para;</a></h2>
+<p>Der Laravel-Scheduler (<code>schedule:run</code>) läuft auf den Produktionsservern nicht
+(vgl. den Kommentar in <code>app/Console/Kernel.php</code>). Wiederkehrende Aufgaben —
+Integritätsprüfungen, Disk-Messung, Normdaten-Abgleich — werden deshalb pro
+Installation als Cronjob eingerichtet, nicht über den Scheduler. Wer eine
+periodische Aufgabe braucht, plant sie als Cron ein.</p>
 
 
 
