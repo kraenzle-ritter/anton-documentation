@@ -5,7 +5,7 @@ Anton ist eine eine webbasierte, mehrsprachige und standardorientierte Archivdat
 ## Links
 
 - Produktwebsite: [https://www.anton.ch](https://www.anton.ch)
-- Testarchiv: [https://kr.anton.ch](https://kr.anton.ch)
+- Testarchiv: [https://kr.anton.ch](https://kr.anton.ch) — eine Spielwiese zum Ausprobieren; die Daten werden täglich zurückgesetzt.
 - Hersteller: [https://www.k-r.ch](https://www.k-r.ch)
 - Neuigkeiten: [https://kr.anton.ch/news](https://kr.anton.ch/news)
 - Blog: [https://www.k-r.ch/beitraege/](https://www.k-r.ch/beitraege/)

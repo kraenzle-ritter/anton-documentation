@@ -145,8 +145,6 @@ nav:
     - Recherche und Benutzung: faq/recherche.md
     - Export: faq/export.md
     - Installationen: faq/installationen.md
-  - Releases:
-    - v0.45.0: releases/v0.45.0.md
 extra:
   social:
     - icon: fontawesome/brands/mastodon

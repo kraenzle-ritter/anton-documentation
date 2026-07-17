@@ -1,4 +1,4 @@
-# Testinstallation: Kränzle & Ritter Firmenarchiv
+# Testinstallation kr (Kränzle & Ritter Firmenarchiv)
 
 Unter [https://kr.anton.ch](https://kr.anton.ch) gibt es eine Testinstallation. Diese dient als Spielwiese. Die Daten der Testinstallation werden täglich zurückgesetzt.
 
