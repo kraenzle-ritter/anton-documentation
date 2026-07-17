@@ -4,8 +4,8 @@ Die Statistiken werten den Bestand und die Nutzung aus. Sie sind über die
 Admin-Seite erreichbar.
 
 !!! note "Nur für die Administration"
-    Die Statistiken setzen die Rolle **Administration** voraus. Für
-    Bearbeiter:innen sind sie nicht zugänglich.
+    Die Statistiken setzen die Rolle `admin` voraus. Mit der Rolle `editor` sind
+    sie nicht zugänglich.
 
 ## Die Reiter
 

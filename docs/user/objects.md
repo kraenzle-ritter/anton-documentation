@@ -63,8 +63,9 @@ eine neue Signatur. Medien werden nicht mitkopiert.
 
 ## Löschen
 
-Die Taste **Löschen** öffnet das Fenster «Datensatz löschen». Zur Bestätigung ist
-das eigene Passwort einzugeben.
+Die Taste **Löschen** öffnet das Fenster «Datensatz löschen» mit der Rückfrage
+«Diesen Datensatz wirklich löschen?». Zur Bestätigung ist das **eigene Passwort**
+einzugeben.
 
 !!! danger "Löschen ist endgültig"
     Anton führt keinen Papierkorb. Gelöscht werden der Datensatz, alle

@@ -12,8 +12,8 @@ schicken. Er ist eine Bestellhilfe, keine Ausleihverwaltung; die
 
 ## Ablauf
 
-1. Auf der Detailansicht einer Verzeichnungseinheit die Taste **Zum
-   Bestellkorb hinzufügen** anklicken.
+1. Auf der Detailansicht einer Verzeichnungseinheit das **Einkaufswagen-Symbol**
+   anklicken. Es steht rechts über dem Datensatz und trägt keine Beschriftung.
 2. Der Eintrag **Bestellkorb** erscheint in der Navigation — und zwar erst
    jetzt: Solange der Korb leer ist, gibt es ihn im Menü nicht.
 3. Unter **Bestellkorb** stehen die gesammelten Einheiten. Einzelne lassen sich

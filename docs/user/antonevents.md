@@ -51,8 +51,15 @@ Der Ereignistyp **ist** die Rolle. Im Standard stehen zur Verfügung:
 | Ingest | Andere Rolle |
 
 Welche davon in der Maske erscheinen, hängt vom [Formularsatz](forms.md) ab —
-ein Fotoarchiv braucht andere Rollen als eine Grafiksammlung. Die
-Beschriftungen sind pro Archiv anpassbar.
+ein Fotoarchiv braucht andere Rollen als eine Grafiksammlung. Manche Archive
+führen zusätzlich «Leihgabe».
+
+!!! note "Der Entstehungszeitraum heisst nicht überall so"
+    Die Beschriftungen sind pro Archiv anpassbar, und beim wichtigsten Typ wird
+    davon Gebrauch gemacht: Was hier **Entstehungszeitraum** heisst, steht in
+    manchen Archiven als **Laufzeit** in der Maske. Gemeint ist dasselbe — das
+    Ereignis, aus dem Anton die Datierung und die
+    [Schutzfristen](access.md) errechnet.
 
 ## Erfassen
 

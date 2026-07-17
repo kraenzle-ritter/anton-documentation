@@ -20,7 +20,7 @@ Feldern, je mit **Übernehmen**, **Anhängen** und **Ignorieren**.
 
 Nichts wird dabei automatisch in die Datenbank geschrieben — die Vorschläge
 landen im Formular, gespeichert wird erst mit der normalen Speichern-Taste. Das
-Erzeugen setzt die Rolle **Bearbeiter:in** voraus.
+Erzeugen setzt die Rolle `editor` voraus.
 
 ## Was Anton von sich aus übernimmt — und was nicht
 

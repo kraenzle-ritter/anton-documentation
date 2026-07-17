@@ -29,7 +29,7 @@ und über den **Anfasser** links lassen sich die Einträge per Maus umsortieren.
     unmittelbar gespeichert. Das Löschen eines Eintrags erfolgt ohne Rückfrage
     und lässt sich nicht rückgängig machen.
 
-Das Erfassen setzt die Rolle **Bearbeiter:in** voraus.
+Das Erfassen setzt die Rolle `editor` voraus.
 
 ## In der Detailansicht
 

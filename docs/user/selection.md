@@ -14,11 +14,13 @@ gemeinsam bearbeiten. Zurzeit gibt es dafür **eine** Aktion: das
 
 Die Reihenfolge ist umgekehrt zum Gewohnten und die häufigste Stolperstelle:
 
-1. **Zuerst** die Aktion im Auswahlfeld wählen. Vorher lässt sich nichts
-   ankreuzen — die Kästchen bleiben wirkungslos.
-2. **Dann** die Einheiten ankreuzen. Über **Auswahl anzeigen** ist die aktuelle
-   Liste jederzeit einsehbar.
-3. Die Aktion ausführen.
+1. **Zuerst** die Aktion im Auswahlfeld **Aktionen** wählen — zur Verfügung
+   steht **Verschieben**. Vorher lässt sich nichts ankreuzen; die Kästchen
+   bleiben wirkungslos.
+2. **Dann** die Einheiten ankreuzen. Über das Symbol mit der Klemmbrett-Liste
+   über der Trefferliste — es zeigt die Anzahl der gewählten Einheiten — lässt
+   sich die aktuelle Auswahl jederzeit einsehen.
+3. Die Aktion ausführen. Mit **Leeren** wird die Auswahl verworfen.
 
 !!! warning "Aktion wechseln leert die Auswahl"
     Wird das Auswahlfeld nachträglich geändert, wird die bisherige Auswahl

@@ -5,7 +5,8 @@ Ereignisse, Techniken, Werke. Personen und Organisationen gehören dagegen zu
 den [Akteuren](actors.md), geografische Angaben zu den [Orten](places.md).
 
 Zu finden sind sie über **Admin → Schlagwörter**; verknüpft werden sie im
-Objektformular im Feld «Schlagworte (Sachen)».
+Objektformular im Feld **Schlagworte (Sachen)** — in manchen Archiven steht dort
+«Schlagwort**er** (Sachen)».
 
 !!! note "Keine Hierarchie"
     Schlagwörter stehen nebeneinander. Anton führt keinen Thesaurus: Es gibt
@@ -14,9 +15,13 @@ Objektformular im Feld «Schlagworte (Sachen)».
 
 ## Typen
 
-Die Typen sind pro Archiv frei bestimmbar. Im Standard sind es Ereignis,
-Objekt, Masseinheit/Währung, Sammlung/Kunstwerk, Verfahren/Prozess/Technik,
-Buch/Manuskript/Publikation und anderes/diverses.
+Die Typen sind pro Archiv frei bestimmbar und weichen zwischen den Archiven
+stark ab. Verbreitet sind Ereignis, Objekt, Masseinheit/Währung,
+Sammlung/Kunstwerk, Verfahren/Prozess/Technik, Buch/Manuskript/Publikation und
+anderes/diverses; Archive mit besonderen Beständen führen deutlich mehr — etwa
+für Rohstoffe und Geologie, Bauwerke, Flora und Fauna oder Militärtechnik.
+Massgeblich ist die Werteliste des eigenen Archivs, einsehbar unter
+**Hilfe → Wertelisten**.
 
 ## Erfassen
 
