@@ -3503,22 +3503,28 @@ Für Installation und Konfiguration siehe den Admin-Bereich.</p>
 <p>Oben steht die Navigation. Ihr Inhalt ist pro Archiv konfigurierbar; in der
 Regel finden sich dort:</p>
 <ul>
-<li>der <strong>Katalog</strong> — der Einstieg in die Tektonik</li>
-<li><strong>Admin</strong> — trotz des Namens die Sammelseite für alle angemeldeten Benutzer,
-  mit den Einstiegspunkten zu Akteuren, Orten, Schlagwörtern, Standorten,
-  Import, Export, Statistik und den Einstellungen</li>
+<li>der <strong>Einstieg in die Tektonik</strong>. Wie er heisst, legt jedes Archiv selbst
+  fest — «Katalog», «Archivplan» oder der Name des Archivs.</li>
+<li><strong>Admin</strong> — trotz des Namens die Sammelseite für alle angemeldeten Benutzer.
+  Die Seite selbst ist mit <strong>Administration</strong> überschrieben und führt in Karten
+  zu <strong>Entitäten</strong> (Akteure, Orte, Schlagwörter, Standorte),
+  <strong>Benutzerinnen/Benutzer</strong>, <strong>Info</strong>, <strong>Import / Export</strong> und
+  <strong>Einstellungen</strong>. Welche Karten erscheinen, hängt von der Rolle ab.</li>
 <li><strong>Hilfe</strong> — die Hilfe in der Anwendung; sie zeigt die Felder, Wertelisten und
   Erschliessungsregeln <strong>dieses</strong> Archivs</li>
 <li>die <strong>Suche</strong> rechts oben</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Beschriftungen weichen ab</p>
-<p>Jedes Archiv kann die Beschriftungen anpassen. Wo hier «Katalog» steht, kann
-in der eigenen Installation «Archivplan» stehen, statt «Akteure» auch
-«Akteurinnen/Akteure». Gemeint ist jeweils dasselbe.</p>
+<p>Fast jede Beschriftung ist pro Archiv einstellbar — Menüeinträge ebenso wie
+Feldnamen. Diese Dokumentation verwendet die Bezeichnungen des
+Standardformulars; im eigenen Archiv können sie abweichen. Wo die
+Unterschiede besonders leicht verwirren, sind sie an Ort und Stelle
+vermerkt.</p>
 </div>
 <h2 id="rollen">Rollen<a class="headerlink" href="#rollen" title="Permanent link">&para;</a></h2>
-<p>Was jemand sieht und darf, hängt an der Rolle:</p>
+<p>Was jemand sieht und darf, hängt an der Rolle. Anton führt sie unübersetzt, in
+der Benutzerverwaltung stehen sie genau so:</p>
 <table>
 <thead>
 <tr>
@@ -3532,30 +3538,41 @@ in der eigenen Installation «Archivplan» stehen, statt «Akteure» auch
 <td>Den öffentlichen Katalog durchsuchen — sofern das Archiv ihn freigibt</td>
 </tr>
 <tr>
-<td>Benutzer:in</td>
+<td><code>user</code></td>
 <td>Dasselbe, angemeldet; eigenes Profil, Benachrichtigungen</td>
 </tr>
 <tr>
-<td>Interne:r Benutzer:in</td>
-<td>Zusätzlich Standorte, Ausleihen, Originalmedien herunterladen</td>
+<td><code>user_intern</code></td>
+<td>Zusätzlich gesperrte Inhalte sehen, Standorte, Ausleihen, Originalmedien herunterladen</td>
 </tr>
 <tr>
-<td>Ausleihverwaltung</td>
+<td><code>loan_admin</code></td>
 <td>Zusätzlich die Ausleihen verwalten</td>
 </tr>
 <tr>
-<td>Bearbeiter:in</td>
+<td><code>editor</code></td>
 <td>Erschliessen: Datensätze anlegen, ändern, verschieben, löschen; Import; Medien</td>
 </tr>
 <tr>
-<td>Administration</td>
+<td><code>admin</code></td>
 <td>Einstellungen, Formulare, Benutzerkonten, Export, Statistik</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>Nichts — der Zugang ist gesperrt</td>
 </tr>
 </tbody>
 </table>
-<p>Wer erschliesst, braucht mindestens die Rolle <strong>Bearbeiter:in</strong>. Die Tasten zum
-Anlegen, Verschieben und Löschen erscheinen nur mit dieser Berechtigung — fehlen
-sie, liegt es an der Rolle.</p>
+<p>Jede Rolle schliesst die darüberliegenden Rechte der vorherigen mit ein.</p>
+<p>Wer erschliesst, braucht mindestens <code>editor</code>. Die Tasten zum Anlegen,
+Verschieben und Löschen erscheinen nur mit dieser Berechtigung — fehlen sie,
+liegt es an der Rolle.</p>
+<div class="admonition note">
+<p class="admonition-title">Superuser</p>
+<p>Über <code>admin</code> hinaus gibt es Superuser für Eingriffe wie Feldtypen,
+Wertelisten und Schutzfristen. Das ist keine Rolle in der
+Benutzerverwaltung, sondern eine gesondert hinterlegte Liste von Konten.</p>
+</div>
 <h2 id="anmelden">Anmelden<a class="headerlink" href="#anmelden" title="Permanent link">&para;</a></h2>
 <p>Die Anmeldung erfolgt mit Benutzername und Passwort. Je nach Archiv stehen
 zusätzlich <a href="2FA/">Zwei-Faktor-Authentifizierung</a> und
