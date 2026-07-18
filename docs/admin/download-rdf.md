@@ -201,8 +201,8 @@ Schlanker und Memobase-spezifisch:
   `ebucore:samplingRate`, `ebucore:aspectRatio`.
 
 Der JSON-LD-Context ist als Snapshot eingefroren — Memobase könnte ihn
-serverseitig ändern, wir merken das durch ein deliberatives Audit, nicht
-zur Export-Laufzeit.
+serverseitig ändern; wir bemerken das durch ein gezieltes Audit, nicht
+automatisch zur Export-Laufzeit.
 
 ## Per-Tenant-Settings für Memobase
 
