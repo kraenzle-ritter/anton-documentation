@@ -307,7 +307,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `sip:check` | Some function for debugging the SIP-Ingest / import array. It checks the package (zip) and sho… |
 | `sip:check-import` | Check the Import of a SIP after the import was done. Revert a SipImport if it failed somewhere… |
 | `sip:import-agate` | Run an agate-driven SIP import for an existing Importevent (issue #190). |
-| `sip:load-xml` | Transform a metadata.xml to LoadXml which can be feeded to Dimag |
+| `sip:load-xml` | Transform a metadata.xml to LoadXml which can be fed to Dimag |
 | `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-SIP media counts and flags disc… |
 
 ### storage: (3)
