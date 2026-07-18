@@ -14,11 +14,11 @@ Es gibt nichts anzuklicken und nichts anzulegen. Anton leitet die
 Briefwechsel **automatisch aus den [Ereignissen](antonevents.md) ab**:
 
 > Trägt eine Verzeichnungseinheit ein Ereignis **Entstehungszeitraum** mit
-> Akteur A und ein Ereignis **Empfang** mit Akteur B, so gilt sie als Brief von
+> Akteur:in A und ein Ereignis **Empfang** mit Akteur:in B, so gilt sie als Brief von
 > A an B.
 
-Der Absender wird also als Akteur des Entstehungs-Ereignisses erfasst, der
-Empfänger als Akteur des Empfangs-Ereignisses. Sobald genügend solche Paare
+Die absendende Person wird also als Akteur:in des Entstehungs-Ereignisses erfasst, die
+empfangende Person als Akteur:in des Empfangs-Ereignisses. Sobald genügend solche Paare
 vorliegen, erscheint der Briefwechsel in der Liste. Umgekehrt gilt: Wer die
 Ansicht nutzen will, muss beim Erschliessen konsequent beide Ereignisse setzen —
 ein Brief, dem das Empfangs-Ereignis fehlt, taucht nirgends auf.

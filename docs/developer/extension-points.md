@@ -2,7 +2,7 @@
 
 Archive haben Sonderwünsche — eine eigene Signaturlogik, ein besonderes
 Word-Findbuch, eine Formatnormalisierung. Anton beantwortet das mit **einem
-durchgehenden Muster**, statt den Kern pro Kunde zu forken:
+durchgehenden Muster**, statt den Kern pro Kund:in zu forken:
 
 > Mandantenspezifisches Verhalten wird eingehängt, indem eine **Klasse über eine
 > Einstellung benannt** wird — oder als kundenspezifische Subklasse existiert.

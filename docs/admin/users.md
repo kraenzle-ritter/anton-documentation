@@ -1,6 +1,6 @@
 # Benutzerverwaltung
 
-Benutzerkonten werden über die Admin-Seite unter **Benutzerinnen/Benutzer**
+Benutzerkonten werden über die Admin-Seite unter **Benutzer:innen**
 verwaltet. Anlegen, Ändern und Löschen setzt die Rolle `admin` voraus.
 
 ## Rollen

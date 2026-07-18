@@ -22,7 +22,7 @@ Anton bildet vier Standards ab, die sich ergänzen:
 | Standard | Beschreibt |
 |---|---|
 | ISAD(G) | die [Verzeichnungseinheiten](../user/objects.md) |
-| ISAAR(CPF) | die [Akteure](../user/actors.md) |
+| ISAAR(CPF) | die [Akteur:innen](../user/actors.md) |
 | ISDIAH | die Institution |
 | RiC-O, CIDOC CRM | die [Ausgabe als Linked Data](download-rdf.md) |
 

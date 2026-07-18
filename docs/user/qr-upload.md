@@ -5,8 +5,8 @@ Mit dem QR-Code Upload können Dateien direkt vom Smartphone zu einem Archivobje
 ## Anwendungsfälle
 
 - **Vor Ort im Archiv**: Schnell Fotos von Dokumenten oder Objekten machen und direkt dem richtigen Objekt zuordnen  
-- **Teamarbeit**: QR-Code teilen, damit Kollegen Dateien zu einem Objekt hochladen können  
-- **Externe Mitarbeiter**: Temporärer Upload-Zugang ohne Anton-Account 
+- **Teamarbeit**: QR-Code teilen, damit Kolleg:innen Dateien zu einem Objekt hochladen können  
+- **Externe Mitarbeitende**: Temporärer Upload-Zugang ohne Anton-Account 
 
 ## QR-Code Upload einrichten
 

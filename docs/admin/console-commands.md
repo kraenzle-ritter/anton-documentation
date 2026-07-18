@@ -152,7 +152,7 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:update-fulltext` | Volltextindex neu aufbauen (nötig z.B. nach Sprachänderungen) |
 | `anton:update-dates` / `anton:update-all-dates` | Aggregierte Datierung neu berechnen |
 | `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
-| `anton:merge <type> <target_id>` | Akteure, Orte oder Schlagwörter zusammenführen |
+| `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
 
 ## Diagnose
 

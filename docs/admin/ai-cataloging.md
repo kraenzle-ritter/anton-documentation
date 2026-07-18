@@ -1,7 +1,7 @@
 # KI-Erschliessung
 
 Anton kann seit **v0.63.0** auf Knopfdruck Vorschläge für Titel,
-Textfelder, Datierung, Akteure, Orte und Schlagwörter generieren — basierend
+Textfelder, Datierung, Akteur:innen, Orte und Schlagwörter generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.
 
@@ -56,16 +56,16 @@ Mensch entscheidet.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
 - **Bestehender Titel** des Datensatzes als Kontext
 
-## Akteure, Orte, Schlagwörter: zwei Pattern
+## Akteur:innen, Orte, Schlagwörter: zwei Pattern
 
 Die KI unterscheidet zwischen Schöpfer- und Inhalts-Bezügen:
 
 | Pattern | Beispiel | Speicherort in Anton |
 |---|---|---|
-| **Schöpfer / Aufnahmeort** | Fotograf einer Aufnahme, Drehort | Neues `AntonEvent` |
+| **Schöpfer:in / Aufnahmeort** | Fotograf:in einer Aufnahme, Drehort | Neues `AntonEvent` |
 | **Im Material genannt / abgebildet** | Personen auf einem Foto, im Text erwähnte Orte | Inhalts-Descriptor (Schlagwort-/Personen-/Orts-Liste) |
 
-Pro Vorschlag sieht der Operator, ob ein Eintrag schon existiert
+Pro Vorschlag ist ersichtlich, ob ein Eintrag schon existiert
 (dann wird verknüpft) oder neu angelegt werden müsste (Klick öffnet
 das vorausgefüllte Anlegen-Formular). Schlagwörter ohne weitere Details
 können mit einem Klick direkt angelegt und verknüpft werden.

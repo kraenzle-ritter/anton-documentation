@@ -54,4 +54,4 @@ Mit Klick auf «Link in die Zwischenablage kopieren» den Link kopieren.
 
 ![Kopiere Master in den Transferordner](images/transfer-ordner-3.png)
 
-Den Link der/m Kunden/Kundin per Email zukommen lassen. Der Link ist eine Woche gültig, danach wird die kopierte Datei automatisch gelöscht.
+Den Link der Kund:in per Email zukommen lassen. Der Link ist eine Woche gültig, danach wird die kopierte Datei automatisch gelöscht.

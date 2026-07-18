@@ -40,7 +40,7 @@ erscheint nur, wenn es im jeweiligen Formular steht.**
     richtige Mittel.
 
 Formularsätze gibt es nicht nur für Verzeichnungseinheiten, sondern auch für
-Akteure, Orte, Schlagwörter und Standorte.
+Akteur:innen, Orte, Schlagwörter und Standorte.
 
 ## Welcher Formularsatz greift?
 

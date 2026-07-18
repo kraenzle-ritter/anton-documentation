@@ -47,7 +47,7 @@ Zusätzlich pro Anton-Installation **(env, nicht per-Tenant)**:
 - `FEEDBACK_GITHUB_PAT` — Personal Access Token mit
   `issues: write`-Scope auf dem Ziel-Repo. Bot-Account empfohlen,
   damit Issues nachvollziehbar von einem klar identifizierbaren
-  Absender kommen.
+  Absender-Account kommen.
 
 ## Screenshot-Konfiguration
 

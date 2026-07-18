@@ -20,7 +20,7 @@ Der Import-Prozess ist in drei Hauptphasen unterteilt, die den Tabs in der Anton
 
 ## Upload
 
-- Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte dem Administrator melden.
+- Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte der Administration melden.
 
 ## Validierung
 

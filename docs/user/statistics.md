@@ -9,7 +9,7 @@ Admin-Seite erreichbar.
 
 ## Die Reiter
 
-**Überblick** zählt, was das Archiv enthält: Datensätze, Bestände, Akteure,
+**Überblick** zählt, was das Archiv enthält: Datensätze, Bestände, Akteur:innen,
 Orte, Schlagwörter, Medien und Benutzerkonten. Dazu kommen der belegte
 Speicherplatz und das vereinbarte Kontingent — der Reiter beantwortet also auch
 die Frage, wie voll das Archiv ist.
@@ -31,7 +31,7 @@ suchen.
 **Bestände** listet je Bestand Signatur, Titel, Anzahl Einträge, Umfang in
 Laufmetern und Anzahl Medien.
 
-**Akteure**, **Orte** und **Schlagwörter** haben je einen eigenen Reiter mit
+**Akteur:innen**, **Orte** und **Schlagwörter** haben je einen eigenen Reiter mit
 gleichem Aufbau: die Gesamtzahl, wie viele davon mit
 [Normdaten](authorities.md) verknüpft sind, und die Verteilung auf die Provider
 — GND, Wikidata und so fort. Diese drei Reiter zeigen also, wie weit der

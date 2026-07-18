@@ -18,7 +18,7 @@ andere sind Publikations- und Austauschsichten.**
 | EAD 2002 | apeEAD (`ead.xsd` + `apeEAD.xsd`) | Objekt-Baum ab Bestand | Admin → Export |
 | EAD3 | `ead3.rng` | Objekt-Baum (reduziert) | Admin → Export |
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
-| TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteure / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
+| TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Objekt-Baum, alle Entitäten | Admin → Export, `anton:export-rdf` |
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
@@ -44,8 +44,8 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ● |
 | Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ |
 | Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ● |
-| Akteure (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
-| Akteure (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ● |
+| Akteur:innen (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
+| Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ● |
 | Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ● |
 | Schlagwörter | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
@@ -73,7 +73,7 @@ sämtliche ISAD(G)-Textfelder. **RDF A+** typisiert dasselbe doppelt (CIDOC CRM
 **Normdaten** haben genau einen strukturierten, eigenständigen Export: die
 **TEI-Normdatenlisten** mit allen Namensformen, Lebensdaten, Koordinaten,
 Beschreibung, Quellen und externen Links. Zwei Einschränkungen: Nur **freie**,
-nicht an Objekte gebundene Normdatensätze werden ausgegeben, und Akteure oder
+nicht an Objekte gebundene Normdatensätze werden ausgegeben, und Akteur:innen oder
 Orte ohne Typ werden übersprungen. Sonst erscheinen Normdaten nur eingebettet in
 Objektexporten.
 
@@ -94,13 +94,13 @@ Diese Daten überleben **keinen** Formatexport:
 ## Format-Einschränkungen im Einzelnen
 
 **EAD3** ist deutlich dünner als EAD2002: keine Textfelder, keine Orte, keine
-Akteur-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,
-Datierung, Urheber und Schlagwörter.
+Akteur:innen-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,
+Datierung, Urheber:innen und Schlagwörter.
 
 **EAD Holding Guide** liefert eine flache Bestandsübersicht ohne Textfelder pro
 Knoten.
 
-**Memobase-RDF** ist bewusst verlustbehaftet: keine Akteure, Orte, Schlagwörter
+**Memobase-RDF** ist bewusst verlustbehaftet: keine Akteur:innen, Orte, Schlagwörter
 oder Ereignisse — nur Institution, Objekte, Instantiations und rund acht
 Textfeldtypen.
 
@@ -126,7 +126,7 @@ Termselect-Werte, Formularsatz und die Wiederanbindung der Medien. Vor jedem
 Schreibvorgang wird das ganze Paket validiert; schlägt es fehl, wird
 zurückgerollt.
 
-Auch Akteure, Orte und Schlagwörter tragen seit v0.79 eine portable UUID — ein
+Auch Akteur:innen, Orte und Schlagwörter tragen seit v0.79 eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
 
 Nicht enthalten und damit weiterhin SQL-Dump: Benutzerkonten, Einstellungen,
@@ -134,7 +134,7 @@ Formulardefinitionen und die KI-Daten.
 
 ## Datenschutz-Filter
 
-RDF, TEI und EAD filtern private Objekte, Akteure und Medien sowie private
+RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
 Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.
 
@@ -147,6 +147,6 @@ Kommentar) heraus.
 
 **Beschreibungsmetadaten** sind über offene Standards exzellent abgedeckt und
 paketierbar. **Normdaten** haben genau einen eigenständigen Export (TEI).
-**Ereignisgraph, Benutzer, Konfiguration, KI-Daten und Datei-Provenienz** haben
+**Ereignisgraph, Benutzer:innen, Konfiguration, KI-Daten und Datei-Provenienz** haben
 keinen standardbasierten Export und lassen sich nur über den vollständigen
 SQL-Dump sichern.

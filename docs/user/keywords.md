@@ -2,7 +2,7 @@
 
 Schlagwörter erschliessen Verzeichnungseinheiten inhaltlich — für Sachen,
 Ereignisse, Techniken, Werke. Personen und Organisationen gehören dagegen zu
-den [Akteuren](actors.md), geografische Angaben zu den [Orten](places.md).
+den [Akteur:innen](actors.md), geografische Angaben zu den [Orten](places.md).
 
 Zu finden sind sie über **Admin → Schlagwörter**; verknüpft werden sie im
 Objektformular im Feld **Schlagwörter (Sachen)**.
@@ -36,13 +36,13 @@ wieder, statt Dubletten anzulegen.
 
 ## Normdaten
 
-Schlagwörter lassen sich wie Akteure und Orte mit [Normdaten](authorities.md)
+Schlagwörter lassen sich wie Akteur:innen und Orte mit [Normdaten](authorities.md)
 verknüpfen — etwa mit Wikidata oder der GND.
 
 !!! warning "Nicht in jedem Archiv verfügbar"
     Die Normdaten-Spalte erscheint beim Schlagwort nur, wenn für das Archiv
     Provider konfiguriert sind. Fehlt die Einstellung, gibt es beim Schlagwort
-    keine Verknüpfungsmöglichkeit — bei Akteuren und Orten dagegen schon.
+    keine Verknüpfungsmöglichkeit — bei Akteur:innen und Orten dagegen schon.
 
 ## Wo ein Schlagwort verwendet wird
 

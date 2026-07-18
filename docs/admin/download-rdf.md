@@ -213,7 +213,7 @@ zur Export-Laufzeit.
 | `repository_email` | empfohlen | Kontakt-Email (`wdt:P968`) |
 | `repository_url` | empfohlen | Offizielle Website (`wdt:P856`) |
 | `memobase_slug` | optional | Memobase-Slug im IRI (Default: Tenant-Slug) |
-| `memobase_sponsoring_memoriav` | für Memoriav-Kunden | `1` aktiviert den Sponsor-Hinweis auf jedem Record |
+| `memobase_sponsoring_memoriav` | für Memoriav-Kund:innen | `1` aktiviert den Sponsor-Hinweis auf jedem Record |
 
 Alle Settings werden über `/settings` oder per Tinker (`setting('key', 'value')`) gepflegt.
 

@@ -30,13 +30,13 @@ Weitere kompatible Apps: Authy, Google Authenticator, Microsoft Authenticator, 1
 
 Admins können die 2FA zurücksetzen:
 
-1. Im Bereich Admin auf **Benutzerinnen und Benutzer** gehen
+1. Im Bereich Admin auf **Benutzer:innen** gehen
 2. Benutzer:in in der Liste finden
 3. **Reset 2FA** Button klicken (in der Tabellenzeile)
 
 Alternativ auch in der Benutzer:in-Bearbeitungsseite:
 
-1. Im Bereich Admin auf **Benutzerinnen und Benutzer** gehen
+1. Im Bereich Admin auf **Benutzer:innen** gehen
 2. Benutzer:in auswählen → **Bearbeiten**
 3. **Reset 2FA** Button klicken
 

@@ -55,7 +55,7 @@ Die Verweise innerhalb von Anton funktionieren wie die Links. Als Ziel wird die 
 [Anton](/actors/2)
 ```
 
-Der Verweis führt dann auf den Akteur mit der ID 2. Ganz ähnlich lassen sich
+Der Verweis führt dann auf die Akteur:in mit der ID 2. Ganz ähnlich lassen sich
 Verzeichnungseinheiten verlinken; das Ziel ist dann `/objects/123`.
 
 ### Signaturen werden automatisch verlinkt

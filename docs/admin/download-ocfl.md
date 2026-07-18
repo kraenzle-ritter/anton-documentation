@@ -39,7 +39,7 @@ zwei Settings:
 | `level_of_description_ids_for_ocfl_subtree_download` | leer | `[3]` (nur Fonds) |
 
 Die Standard-Defaults sind **bewusst leer** — OCFL ist nur für Archive
-sinnvoll, deren Empfänger das Format erwartet. Aktivieren über
+sinnvoll, bei denen die empfangende Stelle das Format erwartet. Aktivieren über
 `/settings` oder via Tinker.
 
 ## Adressfeld in der OCFL-Inventory
@@ -74,7 +74,7 @@ Exit-Codes: `0` valid, `1` invalid, `2` Usage-Fehler, `3` Runtime-Fehler.
 
 ## Wann OCFL, wann DIP?
 
-| Empfänger | Format |
+| Empfangende Stelle | Format |
 |---|---|
 | Klassisches Endarchiv erwartet BagIt-Container | **DIP** |
 | Langzeitarchiv mit OCFL-Anforderung (UB Basel §7, DLZA) | **OCFL** |

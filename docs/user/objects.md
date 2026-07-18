@@ -57,7 +57,7 @@ Abschnitt. Nach dem Speichern wechselt Anton in die Detailansicht.
 
 Auf der Detailansicht — nicht in der Bearbeitungsmaske — steht die Taste
 **Kopieren**. Im Fenster «Datensatz kopieren» wird die Anzahl Kopien angegeben.
-Kopiert werden Titel, Textfelder, Ereignisse, Akteure, Orte und Schlagwörter;
+Kopiert werden Titel, Textfelder, Ereignisse, Akteur:innen, Orte und Schlagwörter;
 die Kopie wird als Geschwister direkt hinter dem Original eingehängt und erhält
 eine neue Signatur. Medien werden nicht mitkopiert.
 

@@ -3,7 +3,7 @@
 Anton ist eine webbasierte Archivdatenbank. Sie richtet sich nach ISAD(G) und
 bildet Bestände als Baum ab — vom Archiv über Bestände und Serien bis zum
 einzelnen Dokument. Zu jeder [Verzeichnungseinheit](objects.md) lassen sich
-Medien, [Akteure](actors.md), [Orte](places.md) und
+Medien, [Akteur:innen](actors.md), [Orte](places.md) und
 [Schlagwörter](keywords.md) erfassen.
 
 Diese Dokumentation beschreibt die Arbeit mit Anton aus Sicht der Erschliessung.
@@ -18,8 +18,8 @@ Regel finden sich dort:
   fest — «Katalog», «Archivplan» oder der Name des Archivs.
 - **Admin** — trotz des Namens die Sammelseite für alle angemeldeten Benutzer:innen.
   Die Seite selbst ist mit **Administration** überschrieben und führt in Karten
-  zu **Entitäten** (Akteure, Orte, Schlagwörter, Standorte),
-  **Benutzerinnen/Benutzer**, **Info**, **Import / Export** und
+  zu **Entitäten** (Akteur:innen, Orte, Schlagwörter, Standorte),
+  **Benutzer:innen**, **Info**, **Import / Export** und
   **Einstellungen**. Welche Karten erscheinen, hängt von der Rolle ab.
 - **Hilfe** — die Hilfe in der Anwendung; sie zeigt die Felder, Wertelisten und
   Erschliessungsregeln **dieses** Archivs

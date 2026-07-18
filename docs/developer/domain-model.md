@@ -13,7 +13,7 @@ Verknüpfungen. Alles andere gruppiert sich um sie.
 erfasst und von vielen Verzeichnungseinheiten verwendet werden. Sie sind
 untereinander gleichrangig; es gibt keine Hierarchie und keinen Thesaurus.
 
-**AntonEvent** — die Verknüpfung zwischen einem Akteur (oder Ort) und einer
+**AntonEvent** — die Verknüpfung zwischen einer Akteur:in (oder einem Ort) und einer
 Verzeichnungseinheit, **mit Rolle und Datum**. Das ist die wichtigste
 Unterscheidung im ganzen Modell (siehe unten).
 
@@ -47,18 +47,18 @@ Stufenübergänge stehen in `config/constants.php`.
 
 ## Die eine Unterscheidung, die man verstehen muss
 
-Ein Akteur kann auf **zwei grundverschiedene Arten** an einer
+Akteur:innen können auf **zwei grundverschiedene Arten** an einer
 Verzeichnungseinheit hängen — und die beiden werden ständig verwechselt, in der
 Bedienung wie im Code:
 
 | Als **Deskriptor** | Als **Ereignisbeteiligter** |
 |---|---|
-| Verschlagwortung: der Akteur *kommt vor* | der Akteur *hat etwas getan* |
+| Verschlagwortung: Akteur:innen *kommen vor* | Akteur:innen *haben etwas getan* |
 | `actors_descriptors` (belongsToMany) | `AntonEvent.actor_id` |
 | keine Rolle, kein Datum | Rolle = Ereignistyp, plus Ort und Datum |
-| «Schlagwörter (Akteure)» im Formular | «Entstehungszeitraum», «Stecher» … |
+| «Schlagwörter (Akteur:innen)» im Formular | «Entstehungszeitraum», «Stecher:in» … |
 
-Dieselbe Trennung gilt für Orte. Wer den Urheber erfasst, will das Ereignis; wer
+Dieselbe Trennung gilt für Orte. Wer die Urheber:in erfasst, will das Ereignis; wer
 festhält, dass jemand erwähnt wird, den Deskriptor.
 
 ## Invarianten
@@ -79,7 +79,7 @@ Dinge, auf die man sich verlassen kann — und die man nicht verletzen sollte:
 ## Standards
 
 Anton bildet vier archivische Standards ab: **ISAD(G)** die
-Verzeichnungseinheiten, **ISAAR(CPF)** die Akteure, **ISDIAH** die Institution,
+Verzeichnungseinheiten, **ISAAR(CPF)** die Akteur:innen, **ISDIAH** die Institution,
 und **RiC-O / CIDOC CRM** die Ausgabe als Linked Data. Die drei erstgenannten
 sind kein Mapping im Code, sondern Referenztexte in der In-App-Hilfe unter
 «Standards».

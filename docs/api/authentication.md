@@ -6,11 +6,11 @@ Anton verwendet **API-Tokens** für die Authentifizierung von externen Anfragen.
 
 ## API-Token erstellen
 
-### Token für Benutzer generieren
+### Token für Benutzer:innen generieren
 
 1. Als Admin einloggen
 2. **Benutzerverwaltung** öffnen
-3. Benutzer auswählen → **Anzeigen**
+3. Benutzer:in auswählen → **Anzeigen**
 4. Button **"Set api token"** klicken
 5. Der Token wird automatisch generiert (60 Zeichen)
 
@@ -53,7 +53,7 @@ curl "https://ihre-anton-instanz.ch/api/objects" \
   -H "Authorization: Bearer IHR_API_TOKEN"
 ```
 
-**Einzelnen Akteur abrufen:**
+**Einzelne Akteur:in abrufen:**
 ```bash
 curl "https://ihre-anton-instanz.ch/api/actors/123" \
   -H "Authorization: Bearer IHR_API_TOKEN"
@@ -105,7 +105,7 @@ data = response.json()
 | **Token geheim halten** | Tokens niemals in öffentlichem Code oder Repositories speichern |
 | **HTTPS verwenden** | API-Anfragen immer über verschlüsselte Verbindungen senden |
 | **Token regelmässig erneuern** | Bei Verdacht auf Kompromittierung neuen Token generieren |
-| **Minimale Rechte** | API-Benutzer nur mit notwendigen Berechtigungen ausstatten |
+| **Minimale Rechte** | API-Benutzer:innen nur mit notwendigen Berechtigungen ausstatten |
 
 ## Öffentliche API
 

@@ -8,8 +8,8 @@ laufen parallel zur klassischen Suche bzw. Galerie.
 
 !!! info "Pro-Feature"
     Die Typesense-Suche ist ein **Pro-Feature** und derzeit den
-    Pro-Kunden vorbehalten. Sie setzt einen eigenen Typesense-Server pro
-    Kunde voraus.
+    Pro-Kund:innen vorbehalten. Sie setzt einen eigenen Typesense-Server pro
+    Kund:in voraus.
 
 !!! note "Optional und mit Fallback"
     Ohne Typesense (Standard) läuft Anton mit der unveränderten
@@ -33,7 +33,7 @@ Kachel-Optik.
 
 ## Voraussetzungen
 
-- Ein **Typesense-Server** für den Kunden (eigener Container oder
+- Ein **Typesense-Server** für die Kund:in (eigener Container oder
   Typesense Cloud).
 - Die Verbindungsdaten in der Umgebungsdatei des Archivs (`.env`):
 

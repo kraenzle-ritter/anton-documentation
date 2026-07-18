@@ -87,15 +87,15 @@ Das Feld kann freien Text enthalten.
     Der Import mehrsprachiger Titel ist zurzeit nicht möglich.
 
 ### Antonevents
-Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteuren und den Orten. Sie bestehen aus folgenden Feldern: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
 
 Es gibt zahlreiche Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
 
-#### Akteure (z.B. creation_actors)
+#### Akteur:innen (z.B. creation_actors)
 
-Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteure sollten mit `::` getrennt werden.
+Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteur:innen sollten mit `::` getrennt werden.
 
-Beispiel für zwei Akteure: 
+Beispiel für zwei Akteur:innen: 
 
 ```
 Müller, Martina (1934-1977) :: Rechtsabteilung
@@ -105,9 +105,9 @@ Das Format wird nicht vorab validiert! Akteur:innen werden neu angelegt, wenn si
 
 Import-Einstellung `create-actors`: Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden.
 
-Wenn ein Akteur bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.
+Wenn eine Akteur:in bereits in Anton erfasst ist, kann sie auch über ihre ID (integer) referenziert werden.
 
-Wurde ein Akteur mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es den Akteur noch nicht, wird er anhand der Angaben der GND neu angelegt.
+Wurde eine Akteur:in mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunkt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es die Akteur:in noch nicht, wird sie anhand der Angaben der GND neu angelegt.
 
 #### Places
 Das Feld kann einen Ort oder eine places-id (integer) enthalten. Import-Einstellung `create-places`: Orte werden neu angelegt, wenn sie in Anton nicht gefunden werden. Wenn ein Ort bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.

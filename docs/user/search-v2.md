@@ -6,7 +6,7 @@ filtern und sind als gemischte, nach Relevanz sortierte Liste aus
 Objekten **und** PDF-Volltext aufbereitet.
 
 !!! info "Pro-Feature"
-    Die schnelle Suche steht Pro-Kunden zur Verfügung und läuft parallel
+    Die schnelle Suche steht Pro-Kund:innen zur Verfügung und läuft parallel
     zur klassischen [Volltextsuche](search.md). Was durchsucht wird und wie
     sich die Suche grundsätzlich verhält (Wortanfänge, UND-Verknüpfung,
     interne Sicht), ist dort beschrieben und gilt hier ebenso.

@@ -10,7 +10,7 @@ and (file_name like 'gfa_17_%'
 and `dont_show_in_gallery` is null
 ```
 
-## Akteure inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)
+## Akteur:innen inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)
 
 ```sql
 select a.*, ae.cnt as events, ao.cnt as keywords, r.cnt as links 
@@ -33,12 +33,12 @@ LEFT JOIN (
 ) r ON r.resourceable_id = a.id
 ```
 
-## Akteure entsperren (2026-04-27)
+## Akteur:innen entsperren (2026-04-27)
 
-Aktuell gesperrte Akteure entsperren, wenn  
+Aktuell gesperrte Akteur:innen entsperren, wenn  
 - verstorben (Datum bis nicht leer)
 - Geburtsdatum über 100 Jahre (Datum von < 1926)
-- Akteur mit externen Links verknüpft
+- Akteur:in mit externen Links verknüpft
 
 Vorschau
 ```sql

@@ -6,7 +6,7 @@ Der Datenexport nach EAD (Encoding Archival Description) ist auf die Anforderung
 
 ## TEI
 
-Die Deskriptoren (Akteure, Orte, Sachschlagworte) können als TEI (Text Encoding Inititive) exportiert werden. Anton kann als Register-Datenbank für TEI Editionen ausserdem per REST-API angebunden werden. Aus den Einträgen zu den Objekten kann ein TEI Header erzeugt werden. Dies kann mit einer kundenspezifischen Klasse implementiert werden, so dass der TEI Header den Anforderungen entspricht.
+Die Deskriptoren (Akteur:innen, Orte, Sachschlagworte) können als TEI (Text Encoding Initiative) exportiert werden. Anton kann als Register-Datenbank für TEI Editionen ausserdem per REST-API angebunden werden. Aus den Einträgen zu den Objekten kann ein TEI Header erzeugt werden. Dies kann mit einer kundenspezifischen Klasse implementiert werden, so dass der TEI Header den Anforderungen entspricht.
 
 ## SQL-Dump
 

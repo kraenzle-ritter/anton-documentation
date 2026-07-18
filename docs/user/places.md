@@ -1,14 +1,14 @@
 # Orte
 
 Orte sind eigenständige Datensätze für geografische Angaben — Städte, Gewässer,
-Gebäude, Regionen. Wie [Akteure](actors.md) werden sie einmal erfasst und dann
+Gebäude, Regionen. Wie [Akteur:innen](actors.md) werden sie einmal erfasst und dann
 von beliebig vielen Verzeichnungseinheiten verwendet. Zu finden sind sie über
 **Admin → Orte**.
 
 Ein Ort hängt auf zwei Arten an einer Verzeichnungseinheit: als **Schlagwort**
 (der Ort kommt inhaltlich vor) oder über ein [Ereignis](antonevents.md) (dort
 wurde etwas hergestellt, empfangen, aufgeführt). Der Unterschied ist derselbe
-wie bei den Akteuren.
+wie bei den Akteur:innen.
 
 ## Typen
 

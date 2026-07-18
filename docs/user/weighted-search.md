@@ -22,11 +22,11 @@ Das System bewertet Treffer nach verschiedenen Kriterien:
 
 **Beispiel**: Bei der Suche nach "Müller" wird:
 
-1. Ein Akteur namens "Müller" (exakt) ganz oben angezeigt
+1. Eine Akteur:in namens "Müller" (exakt) ganz oben angezeigt
 2. Gefolgt von "Müller-Weber" (beginnt mit)
 3. Dann "Anna Müller" (enthält)
 
-Zusätzlich werden verschiedene Felder unterschiedlich gewichtet. Der Name eines Akteurs zählt beispielsweise mehr als ein Treffer in der Beschreibung.
+Zusätzlich werden verschiedene Felder unterschiedlich gewichtet. Der Name einer Akteur:in zählt beispielsweise mehr als ein Treffer in der Beschreibung.
 
 ## Aktivierung
 

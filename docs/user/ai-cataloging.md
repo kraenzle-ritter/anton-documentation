@@ -2,7 +2,7 @@
 
 Anton kann Vorschläge für die Erschliessung von einem Sprachmodell erzeugen
 lassen: Es liest die angehängten Medien und schlägt Titel, Textfelder,
-Ereignisse, Schlagwörter, Akteure, Orte und Sprachen vor.
+Ereignisse, Schlagwörter, Akteur:innen, Orte und Sprachen vor.
 
 !!! note "Erst freizuschalten"
     Die KI-Erschliessung ist zurzeit nicht standardmässig in Betrieb. Sie setzt
@@ -28,13 +28,13 @@ Die Voreinstellungen sind bewusst ungleich:
 
 | Vorschlag | Voreinstellung |
 |---|---|
-| Akteur, Ort, Schlagwort — **bereits vorhanden** | wird verknüpft |
-| Akteur, Ort, Schlagwort — **neu anzulegen** | wird verworfen |
+| Akteur:in, Ort, Schlagwort — **bereits vorhanden** | wird verknüpft |
+| Akteur:in, Ort, Schlagwort — **neu anzulegen** | wird verworfen |
 | **Titel und Textfelder** | werden verworfen |
 
 Das heisst: **Die KI ändert den Titel nie von selbst.** Wer einen Vorschlag
 will, muss ihn ausdrücklich übernehmen. Und neue Normdatensätze entstehen nicht
-nebenbei — die Hürde für neue Akteure und Schlagwörter bleibt bewusst hoch.
+nebenbei — die Hürde für neue Akteur:innen und Schlagwörter bleibt bewusst hoch.
 
 Vorgeschlagene Ereignisse legt Anton als **Entstehungszeitraum** an. Ist es ein
 anderer Ereignistyp, ist er nach dem Übernehmen von Hand zu korrigieren.

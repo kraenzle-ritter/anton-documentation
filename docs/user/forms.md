@@ -23,7 +23,7 @@ als das Archiv selbst: Ein Feld erscheint nur, wenn es im jeweiligen Formular
 steht. Ein Bearbeiten-Formular für die Öffentlichkeit gibt es nicht.
 
 Formularsätze existieren nicht nur für Verzeichnungseinheiten, sondern auch für
-[Akteure](actors.md), [Orte](places.md), [Schlagwörter](keywords.md) und
+[Akteur:innen](actors.md), [Orte](places.md), [Schlagwörter](keywords.md) und
 Standorte.
 
 ## Welcher Formularsatz gilt?

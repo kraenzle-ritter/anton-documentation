@@ -1,9 +1,9 @@
 # Ereignisse
 
-Ein Ereignis verknüpft [Akteure](actors.md) und [Orte](places.md) mit einer
+Ein Ereignis verknüpft [Akteur:innen](actors.md) und [Orte](places.md) mit einer
 Verzeichnungseinheit — und zwar **mit einer Rolle und einem Datum**. Das
-unterscheidet es von der Verschlagwortung: «Stecher» oder «Ablieferung» ist
-eine Aussage darüber, was jemand getan hat, nicht bloss, dass er vorkommt.
+unterscheidet es von der Verschlagwortung: «Stecher:in» oder «Ablieferung» ist
+eine Aussage darüber, was jemand getan hat, nicht bloss, dass diese Person vorkommt.
 
 ```mermaid
 flowchart TD
@@ -33,7 +33,7 @@ flowchart TD
 ```
 
 Ein Ereignis besteht aus Ereignistyp, Datum von und bis (je mit «ca.»),
-Akteur, Ort und einem Kommentar.
+Akteur:in, Ort und einem Kommentar.
 
 ## Ereignistypen
 
@@ -43,11 +43,11 @@ Der Ereignistyp **ist** die Rolle. Im Standard stehen zur Verfügung:
 |---|---|
 | Entstehungszeitraum | Provenienz |
 | Ablieferung | Konservierung |
-| Kopien/Reproduktionen | Stecher |
-| Digitalisiert | Schreiber |
-| Empfang | Kolorist |
-| Vortrag/Aufführung | Verleger |
-| Autor (Text) | Produzent |
+| Kopien/Reproduktionen | Stecher:in |
+| Digitalisiert | Schreiber:in |
+| Empfang | Kolorist:in |
+| Vortrag/Aufführung | Verleger:in |
+| Autor:in (Text) | Produzent:in |
 | Ingest | Andere Rolle |
 
 Welche davon in der Maske erscheinen, hängt vom [Formularsatz](forms.md) ab —
@@ -72,15 +72,15 @@ bereit, jeweils mit einer Checkbox **ca.** für ungefähre Angaben. Einzelne
 Bestandteile dürfen leer bleiben. Die Taste **bis=von** übernimmt das Startdatum
 als Enddatum — praktisch für Zeitpunkte.
 
-Akteur und Ort werden über Auswahllisten mit Suche gesetzt. Das **+** daneben
-legt einen neuen Akteur oder Ort an, ohne die Maske zu verlassen.
+Akteur:in und Ort werden über Auswahllisten mit Suche gesetzt. Das **+** daneben
+legt eine neue Akteur:in oder einen neuen Ort an, ohne die Maske zu verlassen.
 
 !!! note "Datum"
     Es sollten immer Von- und Bis-Datum ausgefüllt werden. Für einen Zeitpunkt
     sind beide identisch.
 
 Alle Angaben ausser dem Typ sind freiwillig — ein Ereignis darf also auch ohne
-Akteur oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
+Akteur:in oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
 beides sagt nichts aus.
 
 ## Ereignistyp Entstehungszeitraum
