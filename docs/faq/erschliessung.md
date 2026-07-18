@@ -35,7 +35,7 @@ Neben den Antonereignissen, die die Interaktion einer Akteur:in mit der Verzeich
 Anton versteht in den Textfeldern Markdown ([https://de.wikipedia.org/wiki/Markdown](https://de.wikipedia.org/wiki/Markdown)), eine einfache Auszeichnungssprache. D.h. für die Anzeige im Browser werden beispielsweise Überschriften und Listen formatiert. So können auch einfach Links auf externe Websites oder auf verwandte Verzeichnungseinheiten oder andere Seiten in Anton eingefügt werden.
 
 ![Markdown Texteingabe](images/markdown_input.png)
-Markdown Texteingabe. Überschriften werden mit gekenzeichnet ##; bei Aufzählungen beginnen die Zeilen einfach mit - oder *.
+Markdown Texteingabe. Überschriften werden mit ## gekennzeichnet; bei Aufzählungen beginnen die Zeilen einfach mit - oder *.
 
 ![Text in der HTML-Ansicht](images/markdown_rendered.png)
 Text in der HTML-Ansicht. Überschriften werden ausgezeichnet dargestellt. Ebenso wird die Aufzählung formatiert.

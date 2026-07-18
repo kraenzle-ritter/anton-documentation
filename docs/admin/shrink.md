@@ -33,4 +33,4 @@ php artisan anton:shrink-to-public --path-to-media {path} --env {sync}
 
 Since we are running this command in the sync environment, we need to pass the path to the media directory of the production environment.
 
-There is also an option `--days`. If set the command only copies media from production to sync if in the database the media has been updated during this period. If the syncronisation onve has been done that is an option to accelerate the cronjob.
+There is also an option `--days`. If set the command only copies media from production to sync if in the database the media has been updated during this period. If the synchronisation once has been done that is an option to accelerate the cronjob.

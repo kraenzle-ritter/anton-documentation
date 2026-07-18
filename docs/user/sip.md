@@ -119,7 +119,7 @@ Im `metadata.xml` werden zwei Strukturen präsentiert:
 1) Die Ablagestruktur der Dateien im Dateisystem (Ordner/Dateien) im Ordner `content` entspricht dem `<inhaltsverzeichnis>` im `metadata.xml`  
 2) Das Element `ablieferung` enthält die Verortung in der Gesamthierarchie (Elemente `<ordnungssystem>`, `<ordnungssystemposition>`) sowie die logische Struktur des eigentlichen Inhalts der Ablieferung in Dossiers (`dossier>`) und Dokumente (`<dokument>`) (wobei die Dokumente, einen Verweis auf Dateien enthalten können).
 
-Die beiden Strkturen können sich entsprechen, müssen aber nicht. In der Praxis gibt es Dossiers, deren Ablagestruktur erheblich von der logischen Struktur abweicht. Deshalb kann es sinnvoll sein, die Ablagestruktur und nicht die eigentlich vorgesehene SIP Struktur zu übernehmen.
+Die beiden Strukturen können sich entsprechen, müssen aber nicht. In der Praxis gibt es Dossiers, deren Ablagestruktur erheblich von der logischen Struktur abweicht. Deshalb kann es sinnvoll sein, die Ablagestruktur und nicht die eigentlich vorgesehene SIP Struktur zu übernehmen.
 
 Die Einstellung `import-dossier-from-directory` muss  auf 1 oder true gesetzt werden.
 

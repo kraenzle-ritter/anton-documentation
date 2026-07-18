@@ -4,7 +4,7 @@
 
 Die Migration von einer Datenbank in eine neue Datenbank ist immer ein relativ grosser Aufwand. Die Daten müssen gemappt werden, teilweise vor- und/oder nachbereitet und allenfalls korrigiert werden. Gleichzeitig macht eine Migration Schwachstellen in den Daten sichtbar und die Daten werden homogenisiert. Insofern bietet eine Datenbankmigration die Chance, die Qualität der Daten zu verbessern. 
 
-Welche Migrationsstrategie am besten geignet ist, muss fallweise entschieden werden. Folgende Möglichkeiten haben wir mit Anton erfolgreich durchgeführt:
+Welche Migrationsstrategie am besten geeignet ist, muss fallweise entschieden werden. Folgende Möglichkeiten haben wir mit Anton erfolgreich durchgeführt:
 
 1. Export der alten Datenbank in Excel-Dateien – Excel-Import in Anton  
 2. Export der alten Datenbank in EAD-Dateien – EAD-Import in Anton  

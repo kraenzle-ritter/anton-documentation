@@ -1,6 +1,6 @@
 # Installation
 
-Für jeden `customer` gibt es eine Kennung, `customer-slug`. Im folgenden wird als Beipiel "besenval" als customer-slug verwendet.
+Für jeden `customer` gibt es eine Kennung, `customer-slug`. Im folgenden wird als Beispiel "besenval" als customer-slug verwendet.
 
 ## Einen neuen customer einrichten
 
@@ -159,7 +159,7 @@ Auf Matomo einloggen [http://matomo.anton.ch/](http://matomo.anton.ch/). Unter "
 
 Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.
 
-In den Anton Settings `analytics_id` mit der Motomo ID ausfüllen und den `analytics_auth_token` aus Matomo kopieren.
+In den Anton Settings `analytics_id` mit der Matomo ID ausfüllen und den `analytics_auth_token` aus Matomo kopieren.
 
 ## Configure Supervisor
 
@@ -177,7 +177,7 @@ numprocs=1
 redirect_stderr=true
 stdout_logfile=%(ENV_SPRVS_LOG)s/worker-besenval.log
 ```
-Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:
+Im selben Verzeichnis dann ein File environment anlegen und die Variablen befüllen:
 
 ```
 SPRVS_PHP=

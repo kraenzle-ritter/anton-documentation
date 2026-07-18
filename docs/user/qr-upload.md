@@ -10,7 +10,7 @@ Mit dem QR-Code Upload können Dateien direkt vom Smartphone zu einem Archivobje
 
 ## QR-Code Upload einrichten
 
-Die Einstellung `upload-qr-lods` enthält die Verzeichnungsstufen bei denen der QR-Upload Button eingeblendet wird, also z.B. Dossiers und Einzestücke `[5,6]`. Um den QR-Uplaod zu deaktivieren, wird ein leeres Array gespeichert `[]` bzw. der Inhalt des Feldes gelöscht.
+Die Einstellung `upload-qr-lods` enthält die Verzeichnungsstufen bei denen der QR-Upload Button eingeblendet wird, also z.B. Dossiers und Einzelstücke `[5,6]`. Um den QR-Upload zu deaktivieren, wird ein leeres Array gespeichert `[]` bzw. der Inhalt des Feldes gelöscht.
 
 ## Upload aktivieren
 

@@ -18,5 +18,5 @@ Bei den einzelnen Usern (`/users/{user_id}`) werden die Ausleihen in einer Tabel
 Ausleihen können von `editor`, `admin` und `loan_admin` verwaltet werden.
 
 <!-- 
-Zurzeit noch nicht möglich: Leihfristen setzen; dafür müsste wohl das Datemodell für die Ausleihen geändert werden.
+Zurzeit noch nicht möglich: Leihfristen setzen; dafür müsste wohl das Datenmodell für die Ausleihen geändert werden.
 -->

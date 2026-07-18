@@ -31,7 +31,7 @@ Die Reparatur-Reihenfolge ist sowohl im Browser als auch CLI identisch:
 
 ## Fehler History
 
-Die Reparatur hat auch das Feld `objects.history` falsch upgedated: Betroffene
+Die Reparatur hat auch das Feld `objects.history` falsch upgedatet: Betroffene
 Datensätze wiesen in der Verzeichniskontrolle den Reparaturlauf vom
 19. März 2026 (18:00–18:59) als Änderung aus, mit dem Benutzerkonto des
 letzten Bearbeiters — statt der tatsächlich letzten inhaltlichen Änderung.

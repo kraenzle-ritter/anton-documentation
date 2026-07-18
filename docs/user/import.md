@@ -43,7 +43,7 @@ Jeder Import (egal über welchen Pfad) erzeugt einen Sidecar-Datensatz im Akzess
 Fehlgeschlagene Importe hinterlassen **keine Lücke** in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.
 
 ## Ablauf (Excel-Import)
-Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnugen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
+Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
 
 ## Spalten
 Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:
@@ -238,7 +238,7 @@ Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Imp
 
     php artisan anton:import --env=besenval --file="test.xlsx" --import
 
-Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `customers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ornder `customers/besenval/assets_to_import/` befinden.
+Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `customers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner `customers/besenval/assets_to_import/` befinden.
 
 Ohne die Option `--import` wird das file nur validiert.
 
@@ -256,10 +256,10 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |--create-actors           |create new actors if they dont exist|
 |--create-keywords         |create new keywords if they dont exist|
 |--create-places           |create new places if they dont exist|
-|--show-rules              |showe rules for this file|
-|--show-columns            |showe the original columns of this file|
+|--show-rules              |show rules for this file|
+|--show-columns            |show the original columns of this file|
 |--show-column-mapping     |show columns with mapping|
-|--show-possible-columns   |show all pssible column names|
+|--show-possible-columns   |show all possible column names|
 |--show-mapping            |show mapping for this file|
 |--show-separators         |show separators|
 |--from-ead                |import file is a xml-ead file (also use --parent and --dont-validate)|

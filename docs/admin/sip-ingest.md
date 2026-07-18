@@ -10,7 +10,7 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 !!! note "agate-SIP-Import (seit v0.61.0)"
     BagIt-SIPs, die von agate (Anton-Vorbereitungs-Tool) per HTTP geschickt werden, laufen über einen eigenen Pfad mit NARA-Kategorie-Mapping und Eingangskorb. Details: [agate-sip.md](agate-sip.md).
 
-### Requrirements
+### Requirements
 
 #### Anton
 - Accession archive (Akzessionsarchiv): A (locked) archive whose ID is entered in the `accessions_archives_id` setting.
@@ -25,7 +25,7 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
     The parent element (`<ordnungssystemposition>`) of the `<dossier>` corresponds to the `parent` in Anton. The `parent` in Anton is determined based on the content of the `<number>` element in the SIP. For example, if this number is "0.6.6", but the archive signature is "A.1.4.0.6.6", the prefix must be filled in accordingly with "A.1.4.".
 
 <!--
-### Requrirements
+### Requirements
 
 #### Anton
 - Akzessionsarchiv: Ein (gesperrtes) Archiv, dessen ID in das Setting `accessions_archives_id` eingetragen wird.
