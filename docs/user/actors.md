@@ -6,8 +6,7 @@ verwendet werden. Zu finden sind sie über **Admin → Akteur:innen**.
 
 ## Zwei Wege zur Verzeichnungseinheit
 
-Das ist der Punkt, an dem am häufigsten das Falsche gewählt wird. Akteur:innen
-können auf zwei Arten an einer Verzeichnungseinheit hängen:
+Akteur:innen können auf zwei Arten an einer Verzeichnungseinheit hängen:
 
 - **Als Schlagwort** — im Feld «Schlagwörter (Akteur:innen)». Das sagt: Diese Person
   *kommt inhaltlich vor*. Ohne Rolle, ohne Datum.

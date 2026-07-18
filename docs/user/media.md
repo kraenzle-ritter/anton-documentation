@@ -6,7 +6,7 @@ Bei Import von Medien erstellt Anton normalerweise eine Benutzungskopie. Diese i
 
 Grundsätzlich empfiehlt es sich, als Eingangsformate möglichst wenig verschiedene Formate zu verwenden. Das macht die Handhabung und langfristige Pflege überschaubarer und einfacher. Ausserdem gibt es Dateiformate, die für die Archivierung besser geeignet sind als andere. Darüber informieren zahlreiche staatliche Archive und auf digitale Langzeitarchivierung spezialisierte Stellen.  
 
-Für die folgenden Formate werden in Anton Benutzungskopien angefertigt. Der Import anderer Formate ist möglich, sollte aber wenn möglich getestet werden. Manche Formate werden nicht konvertiert (z.B. DOCX, XLSX, TXT, ZIP).
+Für die folgenden Formate werden in Anton Benutzungskopien angefertigt; eine Erweiterung ist bei Bedarf jederzeit einfach implementierbar. Der Import anderer Formate ist möglich, sollte aber wenn möglich getestet werden. Manche Formate werden nicht konvertiert (z.B. DOCX, XLSX, TXT, ZIP).
 
 ### Foto  
 - TIFF  
