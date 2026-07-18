@@ -4188,7 +4188,7 @@
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Benutzereinstellungen</p>
-<p>Jeder Benutzer kann die gewichtete Suche in seinen persönlichen Einstellungen konfigurieren:</p>
+<p>Alle Benutzer:innen können die gewichtete Suche in ihren persönlichen Einstellungen konfigurieren:</p>
 <ul>
 <li><strong>Standard</strong>: Folgt der globalen Einstellung</li>
 <li><strong>An</strong>: Immer aktiviert (überschreibt globale Einstellung)</li>
@@ -4396,7 +4396,7 @@ GET /api/keywords?search=Archiv&amp;weighted=1
 <li><strong>Benutzereinstellung</strong> – nur wenn explizit "An" oder "Aus" gewählt (nicht "Standard")</li>
 <li><strong>Globale Einstellung</strong> (<code>search_weighted_enabled</code> in Settings) – Fallback</li>
 </ol>
-<p>Wenn ein Benutzer "Standard" wählt, wird die globale Einstellung verwendet.</p>
+<p>Wird "Standard" gewählt, wird die globale Einstellung verwendet.</p>
 <h2 id="update-durchfuhren">Update durchführen<a class="headerlink" href="#update-durchfuhren" title="Permanent link">&para;</a></h2>
 <p>Nach einem Update muss der Seeder ausgeführt werden, um die Standard-Gewichtungen zu initialisieren:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>db:seed<span class="w"> </span>--class<span class="o">=</span>Update<span class="w"> </span>--env<span class="o">=</span>&lt;environment&gt;

@@ -1820,10 +1820,10 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="ereignisse">Ereignisse<a class="headerlink" href="#ereignisse" title="Permanent link">¶</a></h1>
-<p>Ein Ereignis verknüpft <a href="../actors/">Akteure</a> und <a href="../places/">Orte</a> mit einer
+<p>Ein Ereignis verknüpft <a href="../actors/">Akteur:innen</a> und <a href="../places/">Orte</a> mit einer
 Verzeichnungseinheit — und zwar <strong>mit einer Rolle und einem Datum</strong>. Das
-unterscheidet es von der Verschlagwortung: «Stecher» oder «Ablieferung» ist
-eine Aussage darüber, was jemand getan hat, nicht bloss, dass er vorkommt.</p>
+unterscheidet es von der Verschlagwortung: «Stecher:in» oder «Ablieferung» ist
+eine Aussage darüber, was jemand getan hat, nicht bloss, dass diese Person vorkommt.</p>
 <pre class="mermaid"><code>flowchart TD
     VE[Verzeichnungseinheit]
     AE[Antonevent]
@@ -1850,7 +1850,7 @@ eine Aussage darüber, was jemand getan hat, nicht bloss, dass er vorkommt.</p>
     class AC,PL entity
 </code></pre>
 <p>Ein Ereignis besteht aus Ereignistyp, Datum von und bis (je mit «ca.»),
-Akteur, Ort und einem Kommentar.</p>
+Akteur:in, Ort und einem Kommentar.</p>
 <h2 id="ereignistypen">Ereignistypen<a class="headerlink" href="#ereignistypen" title="Permanent link">¶</a></h2>
 <p>Der Ereignistyp <strong>ist</strong> die Rolle. Im Standard stehen zur Verfügung:</p>
 <table>
@@ -1871,23 +1871,23 @@ Akteur, Ort und einem Kommentar.</p>
 </tr>
 <tr>
 <td>Kopien/Reproduktionen</td>
-<td>Stecher</td>
+<td>Stecher:in</td>
 </tr>
 <tr>
 <td>Digitalisiert</td>
-<td>Schreiber</td>
+<td>Schreiber:in</td>
 </tr>
 <tr>
 <td>Empfang</td>
-<td>Kolorist</td>
+<td>Kolorist:in</td>
 </tr>
 <tr>
 <td>Vortrag/Aufführung</td>
-<td>Verleger</td>
+<td>Verleger:in</td>
 </tr>
 <tr>
-<td>Autor (Text)</td>
-<td>Produzent</td>
+<td>Autor:in (Text)</td>
+<td>Produzent:in</td>
 </tr>
 <tr>
 <td>Ingest</td>
@@ -1914,15 +1914,15 @@ hinzu, das rote <strong>✕</strong> entfernt eines.</p>
 bereit, jeweils mit einer Checkbox <strong>ca.</strong> für ungefähre Angaben. Einzelne
 Bestandteile dürfen leer bleiben. Die Taste <strong>bis=von</strong> übernimmt das Startdatum
 als Enddatum — praktisch für Zeitpunkte.</p>
-<p>Akteur und Ort werden über Auswahllisten mit Suche gesetzt. Das <strong>+</strong> daneben
-legt einen neuen Akteur oder Ort an, ohne die Maske zu verlassen.</p>
+<p>Akteur:in und Ort werden über Auswahllisten mit Suche gesetzt. Das <strong>+</strong> daneben
+legt eine neue Akteur:in oder einen neuen Ort an, ohne die Maske zu verlassen.</p>
 <div class="admonition note">
 <p class="admonition-title">Datum</p>
 <p>Es sollten immer Von- und Bis-Datum ausgefüllt werden. Für einen Zeitpunkt
 sind beide identisch.</p>
 </div>
 <p>Alle Angaben ausser dem Typ sind freiwillig — ein Ereignis darf also auch ohne
-Akteur oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
+Akteur:in oder ohne Datum bestehen. Sinnvoll ist das selten: Ein Ereignis ohne
 beides sagt nichts aus.</p>
 <h2 id="ereignistyp-entstehungszeitraum">Ereignistyp Entstehungszeitraum<a class="headerlink" href="#ereignistyp-entstehungszeitraum" title="Permanent link">¶</a></h2>
 <p>Ein zentraler Ereignistyp ist die Erstellung. Das Erstelldatum ist Grundlage für die Errechnung der <a href="../access/">Sperrfristen</a>. Ausserdem wird das Erstelldatum automatisch in der Archivtektonik <strong>nach oben verrechnet</strong>, so dass übergeordnete Verzeichnungseinheiten automatisch das Minimum und Maximum aller Erstelldaten der Nachkommen anzeigen.</p>

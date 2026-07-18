@@ -3870,10 +3870,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#akteure-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11" class="md-nav__link">
+  <a href="#akteurinnen-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Akteure inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)
+        Akteur:innen inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)
       
     </span>
   </a>
@@ -3881,10 +3881,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#akteure-entsperren-2026-04-27" class="md-nav__link">
+  <a href="#akteurinnen-entsperren-2026-04-27" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Akteure entsperren (2026-04-27)
+        Akteur:innen entsperren (2026-04-27)
       
     </span>
   </a>
@@ -3919,7 +3919,7 @@
 <span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">file_name</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;gfa_17_%&#39;</span>
 <span class="k">and</span><span class="w"> </span><span class="o">`</span><span class="n">dont_show_in_gallery</span><span class="o">`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span>
 </code></pre></div>
-<h2 id="akteure-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11">Akteure inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)<a class="headerlink" href="#akteure-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11" title="Permanent link">&para;</a></h2>
+<h2 id="akteurinnen-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11">Akteur:innen inkl. Vorkommen in Antonevents, Keywords und Resourcen: Exportieren für Kontrollen (2026-02-11)<a class="headerlink" href="#akteurinnen-inkl-vorkommen-in-antonevents-keywords-und-resourcen-exportieren-fur-kontrollen-2026-02-11" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">ae</span><span class="p">.</span><span class="n">cnt</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">events</span><span class="p">,</span><span class="w"> </span><span class="n">ao</span><span class="p">.</span><span class="n">cnt</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">keywords</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">cnt</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">links</span><span class="w"> </span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">actors</span><span class="w"> </span><span class="n">a</span>
 <span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span>
@@ -3939,11 +3939,11 @@
 <span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">resourceable_id</span>
 <span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">resourceable_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span>
 </code></pre></div>
-<h2 id="akteure-entsperren-2026-04-27">Akteure entsperren (2026-04-27)<a class="headerlink" href="#akteure-entsperren-2026-04-27" title="Permanent link">&para;</a></h2>
-<p>Aktuell gesperrte Akteure entsperren, wenn<br />
+<h2 id="akteurinnen-entsperren-2026-04-27">Akteur:innen entsperren (2026-04-27)<a class="headerlink" href="#akteurinnen-entsperren-2026-04-27" title="Permanent link">&para;</a></h2>
+<p>Aktuell gesperrte Akteur:innen entsperren, wenn<br />
 - verstorben (Datum bis nicht leer)
 - Geburtsdatum über 100 Jahre (Datum von &lt; 1926)
-- Akteur mit externen Links verknüpft</p>
+- Akteur:in mit externen Links verknüpft</p>
 <p>Vorschau
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>

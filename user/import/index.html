@@ -4667,17 +4667,17 @@ Einzelstück
 <p>Der Import mehrsprachiger Titel ist zurzeit nicht möglich.</p>
 </div>
 <h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
-<p>Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteuren und den Orten. Sie bestehen aus folgenden Feldern: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
+<p>Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
 <p>Es gibt zahlreiche Antonevents: <code>creation</code>, <code>acquisition</code>, <code>accumulation</code>, <code>destruction</code>, <code>validation</code>, <code>migration</code>, <code>reproduction</code>, <code>publication</code>, <code>digitisation</code>, <code>ingest</code>, <code>reception</code>, <code>performance</code>, <code>provenance</code>, <code>loaned</code>, <code>preservation</code>, <code>engravation</code>, <code>writing</code>, <code>coloring</code>, <code>edition</code>, <code>production</code>, <code>other</code>, <code>text_author</code>. </p>
-<h4 id="akteure-zb-creation_actors">Akteure (z.B. creation_actors)<a class="headerlink" href="#akteure-zb-creation_actors" title="Permanent link">&para;</a></h4>
-<p>Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteure sollten mit <code>::</code> getrennt werden.</p>
-<p>Beispiel für zwei Akteure: </p>
+<h4 id="akteurinnen-zb-creation_actors">Akteur:innen (z.B. creation_actors)<a class="headerlink" href="#akteurinnen-zb-creation_actors" title="Permanent link">&para;</a></h4>
+<p>Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteur:innen sollten mit <code>::</code> getrennt werden.</p>
+<p>Beispiel für zwei Akteur:innen: </p>
 <div class="highlight"><pre><span></span><code>Müller, Martina (1934-1977) :: Rechtsabteilung
 </code></pre></div>
 <p>Das Format wird nicht vorab validiert! Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden (gesucht wird nach dem Namen).</p>
 <p>Import-Einstellung <code>create-actors</code>: Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden.</p>
-<p>Wenn ein Akteur bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.</p>
-<p>Wurde ein Akteur mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es den Akteur noch nicht, wird er anhand der Angaben der GND neu angelegt.</p>
+<p>Wenn eine Akteur:in bereits in Anton erfasst ist, kann sie auch über ihre ID (integer) referenziert werden.</p>
+<p>Wurde eine Akteur:in mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunkt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es die Akteur:in noch nicht, wird sie anhand der Angaben der GND neu angelegt.</p>
 <h4 id="places">Places<a class="headerlink" href="#places" title="Permanent link">&para;</a></h4>
 <p>Das Feld kann einen Ort oder eine places-id (integer) enthalten. Import-Einstellung <code>create-places</code>: Orte werden neu angelegt, wenn sie in Anton nicht gefunden werden. Wenn ein Ort bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.</p>
 <p>Orte können folgende Elemente enthalten:<br />

@@ -4051,7 +4051,7 @@ Verknüpfungen. Alles andere gruppiert sich um sie.</p>
 <p><strong>Actor, Place, Keyword</strong> — die Normdaten. Eigenständige Datensätze, die einmal
 erfasst und von vielen Verzeichnungseinheiten verwendet werden. Sie sind
 untereinander gleichrangig; es gibt keine Hierarchie und keinen Thesaurus.</p>
-<p><strong>AntonEvent</strong> — die Verknüpfung zwischen einem Akteur (oder Ort) und einer
+<p><strong>AntonEvent</strong> — die Verknüpfung zwischen einer Akteur:in (oder einem Ort) und einer
 Verzeichnungseinheit, <strong>mit Rolle und Datum</strong>. Das ist die wichtigste
 Unterscheidung im ganzen Modell (siehe unten).</p>
 <p><strong>Note</strong> — ein polymorphes Textfeld. Hängt an AntonObject, aber auch an Actor,
@@ -4078,7 +4078,7 @@ Vorfahren-Nachkommen-Paar eine Zeile hält, samt Tiefe.</p>
 <p>Ein Bestand innerhalb eines Bestands ist nicht zulässig — die erlaubten
 Stufenübergänge stehen in <code>config/constants.php</code>.</p>
 <h2 id="die-eine-unterscheidung-die-man-verstehen-muss">Die eine Unterscheidung, die man verstehen muss<a class="headerlink" href="#die-eine-unterscheidung-die-man-verstehen-muss" title="Permanent link">&para;</a></h2>
-<p>Ein Akteur kann auf <strong>zwei grundverschiedene Arten</strong> an einer
+<p>Akteur:innen können auf <strong>zwei grundverschiedene Arten</strong> an einer
 Verzeichnungseinheit hängen — und die beiden werden ständig verwechselt, in der
 Bedienung wie im Code:</p>
 <table>
@@ -4090,8 +4090,8 @@ Bedienung wie im Code:</p>
 </thead>
 <tbody>
 <tr>
-<td>Verschlagwortung: der Akteur <em>kommt vor</em></td>
-<td>der Akteur <em>hat etwas getan</em></td>
+<td>Verschlagwortung: Akteur:innen <em>kommen vor</em></td>
+<td>Akteur:innen <em>haben etwas getan</em></td>
 </tr>
 <tr>
 <td><code>actors_descriptors</code> (belongsToMany)</td>
@@ -4102,12 +4102,12 @@ Bedienung wie im Code:</p>
 <td>Rolle = Ereignistyp, plus Ort und Datum</td>
 </tr>
 <tr>
-<td>«Schlagwörter (Akteure)» im Formular</td>
-<td>«Entstehungszeitraum», «Stecher» …</td>
+<td>«Schlagwörter (Akteur:innen)» im Formular</td>
+<td>«Entstehungszeitraum», «Stecher:in» …</td>
 </tr>
 </tbody>
 </table>
-<p>Dieselbe Trennung gilt für Orte. Wer den Urheber erfasst, will das Ereignis; wer
+<p>Dieselbe Trennung gilt für Orte. Wer die Urheber:in erfasst, will das Ereignis; wer
 festhält, dass jemand erwähnt wird, den Deskriptor.</p>
 <h2 id="invarianten">Invarianten<a class="headerlink" href="#invarianten" title="Permanent link">&para;</a></h2>
 <p>Dinge, auf die man sich verlassen kann — und die man nicht verletzen sollte:</p>
@@ -4125,7 +4125,7 @@ festhält, dass jemand erwähnt wird, den Deskriptor.</p>
 </ul>
 <h2 id="standards">Standards<a class="headerlink" href="#standards" title="Permanent link">&para;</a></h2>
 <p>Anton bildet vier archivische Standards ab: <strong>ISAD(G)</strong> die
-Verzeichnungseinheiten, <strong>ISAAR(CPF)</strong> die Akteure, <strong>ISDIAH</strong> die Institution,
+Verzeichnungseinheiten, <strong>ISAAR(CPF)</strong> die Akteur:innen, <strong>ISDIAH</strong> die Institution,
 und <strong>RiC-O / CIDOC CRM</strong> die Ausgabe als Linked Data. Die drei erstgenannten
 sind kein Mapping im Code, sondern Referenztexte in der In-App-Hilfe unter
 «Standards».</p>
