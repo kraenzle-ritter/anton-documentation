@@ -4634,7 +4634,7 @@
 </ul>
 <p>Fehlgeschlagene Importe hinterlassen <strong>keine Lücke</strong> in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.</p>
 <h2 id="ablauf-excel-import">Ablauf (Excel-Import)<a class="headerlink" href="#ablauf-excel-import" title="Permanent link">&para;</a></h2>
-<p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnugen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
+<p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
 <h2 id="spalten">Spalten<a class="headerlink" href="#spalten" title="Permanent link">&para;</a></h2>
 <p>Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:</p>
 <div class="codehilite"><pre><span></span><code>parent
@@ -4762,7 +4762,7 @@ Form und Inhalt (note.scopecontent)
 <div class="codehilite"><pre><span></span><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">anton</span><span class="p">:</span><span class="kn">import</span><span class="w"> </span><span class="o">--</span><span class="n">env</span><span class="o">=</span><span class="n">besenval</span> <span class="o">--</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span> <span class="o">--</span><span class="kn">import</span>
 </code></pre></div>
 
-<p>Dabei wird davon ausgegangen, dass <code>test.xlsx</code> im Ordner <code>customers/besenval/metadata_to_import/</code> liegt. Mit zu importierende Dateien (Medien) müssen sich im Ornder <code>customers/besenval/assets_to_import/</code> befinden.</p>
+<p>Dabei wird davon ausgegangen, dass <code>test.xlsx</code> im Ordner <code>customers/besenval/metadata_to_import/</code> liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner <code>customers/besenval/assets_to_import/</code> befinden.</p>
 <p>Ohne die Option <code>--import</code> wird das file nur validiert.</p>
 <h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">&para;</a></h3>
 <p>Der Befehl <code>anton:import</code> bietet einige Optionen, die für spezifische Situationen nützlich sein können.</p>
@@ -4808,11 +4808,11 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--show-rules</td>
-<td style="text-align: left;">showe rules for this file</td>
+<td style="text-align: left;">show rules for this file</td>
 </tr>
 <tr>
 <td style="text-align: left;">--show-columns</td>
-<td style="text-align: left;">showe the original columns of this file</td>
+<td style="text-align: left;">show the original columns of this file</td>
 </tr>
 <tr>
 <td style="text-align: left;">--show-column-mapping</td>
@@ -4820,7 +4820,7 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--show-possible-columns</td>
-<td style="text-align: left;">show all pssible column names</td>
+<td style="text-align: left;">show all possible column names</td>
 </tr>
 <tr>
 <td style="text-align: left;">--show-mapping</td>

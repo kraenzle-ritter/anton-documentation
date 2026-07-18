@@ -4166,7 +4166,7 @@
 
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
-<p>Für jeden <code>customer</code> gibt es eine Kennung, <code>customer-slug</code>. Im folgenden wird als Beipiel "besenval" als customer-slug verwendet.</p>
+<p>Für jeden <code>customer</code> gibt es eine Kennung, <code>customer-slug</code>. Im folgenden wird als Beispiel "besenval" als customer-slug verwendet.</p>
 <h2 id="einen-neuen-customer-einrichten">Einen neuen customer einrichten<a class="headerlink" href="#einen-neuen-customer-einrichten" title="Permanent link">&para;</a></h2>
 <p>Um einen neuen <code>customer</code> einzurichten benötigt man den Zugang über die Kommandozeile.</p>
 <h3 id="configphp-in-bootstrap-anlegen">config.php in bootstrap/ anlegen<a class="headerlink" href="#configphp-in-bootstrap-anlegen" title="Permanent link">&para;</a></h3>
@@ -4258,7 +4258,7 @@ GEONAMES_USERNAME
 <h2 id="matomo-einbinden">Matomo einbinden<a class="headerlink" href="#matomo-einbinden" title="Permanent link">&para;</a></h2>
 <p>Auf Matomo einloggen <a href="http://matomo.anton.ch/">http://matomo.anton.ch/</a>. Unter "Alle Websites" eine neue Website hinzufügen.</p>
 <p>Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.</p>
-<p>In den Anton Settings <code>analytics_id</code> mit der Motomo ID ausfüllen und den <code>analytics_auth_token</code> aus Matomo kopieren.</p>
+<p>In den Anton Settings <code>analytics_id</code> mit der Matomo ID ausfüllen und den <code>analytics_auth_token</code> aus Matomo kopieren.</p>
 <h2 id="configure-supervisor">Configure Supervisor<a class="headerlink" href="#configure-supervisor" title="Permanent link">&para;</a></h2>
 <p>Als <code>root</code> die Konfigurationsdatei <code>etc/supervisor/supervisor.conf</code> öffnen und einen neuen <code>customer</code> einrichten.</p>
 <p><div class="highlight"><pre><span></span><code>[program:laravel-worker-besenval]
@@ -4272,7 +4272,7 @@ numprocs=1
 redirect_stderr=true
 stdout_logfile=%(ENV_SPRVS_LOG)s/worker-besenval.log
 </code></pre></div>
-Im selben Verzwichnis dann ein File environment anlegen und die Variablen befüllen:</p>
+Im selben Verzeichnis dann ein File environment anlegen und die Variablen befüllen:</p>
 <div class="highlight"><pre><span></span><code>SPRVS_PHP=
 SPRVS_LOG=
 SPRVS_USER=
