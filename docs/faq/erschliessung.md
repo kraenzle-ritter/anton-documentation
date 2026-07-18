@@ -41,7 +41,7 @@ Markdown Texteingabe. Überschriften werden mit gekenzeichnet ##; bei Aufzählun
 Text in der HTML-Ansicht. Überschriften werden ausgezeichnet dargestellt. Ebenso wird die Aufzählung formatiert.
 
 ## Linked Data und Normdaten
-Die Deskriptoren Akteure, Orte und Schagworte können leicht mit externen Datenbanken bzw. Normdatenbanken verlinkt werden. Standardmässig sind verschiedene Ressourcen verfügbar:
+Die Deskriptoren Akteur:innen, Orte und Schlagworte können leicht mit externen Datenbanken bzw. Normdatenbanken verlinkt werden. Standardmässig sind verschiedene Ressourcen verfügbar:
 
 - Wikipedia  
 - Wikidata  
@@ -65,7 +65,7 @@ Die meisten Archive nutzen Anton auch als digitales Langzeitarchiv für ihre Med
 ## Verschiedene Erfassungs- und Anzeigeformulare
 Standardmässig ist jeder Verzeichnungseinheit der Formularsatz ihrer Verzeichnungsstufe zugeordnet. So werden typischerweise für Bestände eher Felder aus dem Informationsbereich «Kontext» angezeigt, während auf Stufe Einzelstück eher Felder angezeigt werden, die die physische Beschaffenheit betreffen. Es ist auch möglich spezifische Formularsätze zu erstellen und diese manuell einer Verzeichnungseinheit zuzuordnen. Die einzelnen Formulare sind schnell und einfach anpassbar.
 
-Ein Formularsatz besteht aus 3 Formularen: Erfassung (Edit), Ansicht intern (Detail intern) und Ansicht extern (Detail extern). Die Formular definieren, welche Datenfelder in welchem Kontext zu sehen sind. So enthält typischerweise das Formular «Detail intern» das Feld «Archivinterne Bemerkungen». Wenn nun das Feld nicht im Formular «Detail extern» enthalten ist, sind die «Archivinternen Bemerkungen» nur für intere Benutzer:innen, Editor:innen und Anmins sichtbar.
+Ein Formularsatz besteht aus 3 Formularen: Erfassung (Edit), Ansicht intern (Detail intern) und Ansicht extern (Detail extern). Die Formulare definieren, welche Datenfelder in welchem Kontext zu sehen sind. So enthält typischerweise das Formular «Detail intern» das Feld «Archivinterne Bemerkungen». Wenn nun das Feld nicht im Formular «Detail extern» enthalten ist, sind die «Archivinternen Bemerkungen» nur für interne Benutzer:innen, Editor:innen und Admins sichtbar.
 
 ## Akzessionen
 Anton verfügt nicht über ein spezielles Akzessionsmodul. Alternativ können neu eingegangene Bestände in Anton für die Öffentlichkeit gesperrt/unsichtbar angelegt werden (etwa in einem unsichtbaren Teilarchiv); die Akzessionsgeschichte eines Bestands kann einerseits im Feld Akzessionen/Neuzugänge (ISAD(G) 3.3.3) beschrieben werden. Andererseits können die einzelnen Ablieferungen mit dem Formular-Modul Ablieferung dokumentiert werden (pro Ablieferung wird ein Eintrag mit Datum, abliefernder Stelle und Kommentar angelegt und im Bestandseintrag angezeigt).
