@@ -53,6 +53,16 @@ reiner Text.
 Grau hinterlegte **Abschnitte** gliedern die Maske. Sie sind selbst keine
 Felder; ein Abschnitt ohne sichtbare Felder wird ganz weggelassen.
 
+## Hilfetexte zu Feldern
+
+Zu einem Feld kann ein Hilfetext hinterlegt sein — die archiveigene
+Erschliessungsregel für dieses Feld. Ist er hinterlegt, erscheint er in der
+Bearbeitungsmaske als kleiner Hinweis direkt unter dem Eingabefeld.
+
+Diese Inline-Anzeige lässt sich pro Person im eigenen Profil ein- und
+ausschalten; im Standard ist sie **aus**. Unabhängig davon sind alle Hilfetexte
+gesammelt auf der Hilfeseite **Anton Fields** in der Anwendung einsehbar.
+
 ## Ändern
 
 Formularsätze und Formulare werden unter **Admin → Formulare** bzw.

@@ -16,3 +16,10 @@ Die Einstellungen werden bei der Installation gesetzt.
 ## Theme
 ### custom_css
 ### theme
+
+## Persönliche Einstellungen
+
+Neben den instanzweiten Einstellungen hat jede Person im eigenen Profil einige
+persönliche Voreinstellungen. Dazu gehört das Anzeigen der
+[Feld-Hilfetexte](forms.md#hilfetexte-zu-feldern) direkt in der
+Bearbeitungsmaske (im Standard aus).

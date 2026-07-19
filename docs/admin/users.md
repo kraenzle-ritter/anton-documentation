@@ -12,9 +12,9 @@ so:
 |---|---|
 | `blocked` | Nichts; der Zugang ist gesperrt |
 | `user` | Den Katalog sehen wie die Öffentlichkeit, dazu Profil und Benachrichtigungen |
-| `user_intern` | Zusätzlich gesperrte Inhalte, Standorte, Ausleihen, Originalmedien |
+| `user_intern` | Zusätzlich gesperrte Inhalte, Standorte (nur ansehen), Ausleihen, Originalmedien |
 | `loan_admin` | Zusätzlich Ausleihen verwalten |
-| `editor` | Erschliessen: anlegen, ändern, verschieben, löschen; Import; Medien |
+| `editor` | Erschliessen: anlegen, ändern, verschieben, löschen (inkl. Standorte); Import; Medien |
 | `admin` | Einstellungen, Formulare, Benutzerkonten, Export, Statistik |
 
 Jede Rolle schliesst die Rechte der darunterliegenden ein.

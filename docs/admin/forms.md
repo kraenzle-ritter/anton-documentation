@@ -39,6 +39,13 @@ erscheint nur, wenn es im jeweiligen Formular steht.**
     [Schutzfristen](protection-periods.md) und das Kennzeichen «Gesperrt» das
     richtige Mittel.
 
+!!! note "Standort standardmässig nicht öffentlich"
+    Neuinstallationen liefern das Feld **Standort** aus den externen Formularen
+    (Extern — Detail/Liste) entfernt aus, damit der physische Aufbewahrungsort
+    nicht im öffentlichen Katalog erscheint. Bestehende Installationen bleiben
+    unverändert; dort lässt sich das Feld hier aus den externen Formularen
+    nehmen.
+
 Formularsätze gibt es nicht nur für Verzeichnungseinheiten, sondern auch für
 Akteur:innen, Orte, Schlagwörter und Standorte.
 
@@ -93,3 +100,17 @@ und ist damit die verlässlichste Auskunft über das **eigene** Archiv.
 Die Listenansichten sind nur eingeschränkt konfigurierbar, weil dort Module
 mehrere Angaben in eine Spalte ziehen. Für eine zusätzliche Vorschaubild-Spalte
 gibt es die Einstellung `form-objects-list`.
+
+## Konfigurierbare eingebettete Tabellen
+
+Die Detailseiten von Akteur:innen, Orten, Schlagwörtern und Standorten zeigen
+eine eingebettete Objektliste — die Verzeichnungseinheiten, die den Datensatz
+als Deskriptor verwenden. Diese Liste folgt im Standard einer fest eingebauten
+Vorgabe.
+
+Unter **Admin → Formulare** lässt sie sich pro Archiv anpassen: Der Abschnitt
+**Konfigurierbare eingebettete Tabellen** bietet eine Aktion **Konfigurieren**,
+die die eingebaute Vorgabe in ein editierbares Formular überführt und an den
+normalen Spalten-Editor übergibt. Ab da lassen sich Spalten und Beschriftungen
+wie bei jedem anderen Formular ändern. Blosses Ansehen ändert nichts — erst
+**Konfigurieren** legt das editierbare Formular an.

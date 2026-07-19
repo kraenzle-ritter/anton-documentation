@@ -66,10 +66,13 @@ Taste zum Löschen.
 
 Zwei Datensätze für denselben Ort lassen sich zusammenführen. Dabei wandern
 Ereignisse, Normdaten-Links und die Verknüpfungen zu Verzeichnungseinheiten auf
-den Zieldatensatz, der alte wird gelöscht.
+den Zieldatensatz. Ebenso übernommen werden die Textfelder (Beschreibung,
+Quellen, Kommentar) und die Namensformen des aufgelösten Ortes; dessen
+Koordinaten wandern nur mit, wenn der Zieldatensatz selbst noch keine hat —
+vorhandene werden nie überschrieben. Der alte Datensatz wird anschliessend
+gelöscht.
 
-!!! danger "Vorbehalten und verlustbehaftet"
+!!! note "Superusern vorbehalten"
     Das Zusammenführen ist Superusern vorbehalten; bei Anton as a Service ist
-    dafür k & r zuständig. Beschreibung, Quellen, Kommentar, Namensformen und die
-    Koordinaten des aufgelösten Ortes werden **nicht** übernommen. Sie sind
-    vorher zu sichern, falls sie erhalten bleiben sollen.
+    dafür k & r zuständig. Ein Ort lässt sich nicht mit sich selbst
+    zusammenführen.

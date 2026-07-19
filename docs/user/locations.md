@@ -4,10 +4,17 @@ Ein Standort ist der physische Aufbewahrungsort des Originals — Magazin, Depot
 Raum, Regal. Standorte sind eigene Datensätze und werden über
 **Admin → Standorte** gepflegt.
 
-!!! note "Nie öffentlich"
-    Standorte sind die einzigen Normdaten, die Aussenstehenden nie angezeigt
-    werden. Sie sind ausschliesslich für interne Benutzer:innen, Bearbeitende und die
-    Administration sichtbar — wo etwas liegt, geht die Öffentlichkeit nichts an.
+!!! note "Nicht für die Öffentlichkeit"
+    Der Standort-Datensatz selbst ist ausschliesslich für interne
+    Benutzer:innen, Bearbeitende und die Administration sichtbar, nie für
+    Aussenstehende — wo etwas liegt, geht die Öffentlichkeit nichts an.
+
+    Das **Feld** «Standort» einer Verzeichnungseinheit ist davon getrennt:
+    Neuinstallationen liefern es aus den öffentlichen (externen) Formularen
+    entfernt aus, sodass «Standort: …» im öffentlichen Katalog nicht erscheint.
+    Bestehende Installationen bleiben unverändert — dort ist das Feld bei Bedarf
+    selbst über die [Formulare](../admin/forms.md) aus den externen Formularen
+    zu nehmen.
 
 ## Erfassen
 
@@ -21,6 +28,11 @@ Der Standort ist bewusst schlank gehalten und kennt nur vier Felder:
 | Beschreibung | Freitext |
 
 Keine Typen, keine Koordinaten, keine [Normdaten](authorities.md).
+
+!!! note "Berechtigung"
+    Standorte anlegen, ändern und löschen setzt die Rolle `editor` voraus.
+    Ansehen können sie interne Benutzer:innen (`user_intern`) — anders als
+    Akteur:innen, Orte und Schlagwörter sind Standorte gar nicht öffentlich.
 
 ## Zuweisen
 
@@ -38,6 +50,11 @@ Dossier, Serie und Einzelstück, nicht aber Archiv und Bestand.
       Verknüpfung. Danach lässt sich auswerten.
     - **Standort (Detail)** — ein Textfeld für ergänzende Angaben, ohne
       Verknüpfung.
+
+## Was an einem Standort liegt
+
+Die Detailseite eines Standorts listet — wie bei Akteur:innen und Orten — alle
+Verzeichnungseinheiten auf, die ihm zugewiesen sind.
 
 ## Löschen
 

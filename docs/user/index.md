@@ -41,9 +41,9 @@ der Benutzerverwaltung stehen sie genau so:
 |---|---|
 | (nicht angemeldet) | Den öffentlichen Katalog durchsuchen — sofern das Archiv ihn freigibt |
 | `user` | Dasselbe, angemeldet; eigenes Profil, Benachrichtigungen |
-| `user_intern` | Zusätzlich gesperrte Inhalte sehen, Standorte, Ausleihen, Originalmedien herunterladen |
+| `user_intern` | Zusätzlich gesperrte Inhalte und Standorte sehen, Ausleihen und Originalmedien herunterladen |
 | `loan_admin` | Zusätzlich die Ausleihen verwalten |
-| `editor` | Erschliessen: Datensätze anlegen, ändern, verschieben, löschen; Import; Medien |
+| `editor` | Erschliessen: Datensätze anlegen, ändern, verschieben, löschen (inkl. Standorte); Import; Medien |
 | `admin` | Einstellungen, Formulare, Benutzerkonten, Export, Statistik |
 | `blocked` | Nichts — der Zugang ist gesperrt |
 

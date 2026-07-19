@@ -83,6 +83,24 @@ Felder mit **ID ≥ 5000** stammen aus alten kundenspezifischen Konfigurationen
 und sollten nach `anton:update` nicht mehr existieren; `anton:check-customer-fields`
 prüft das.
 
+## DB-Override mit PHP-Rückfall
+
+Nicht jedes Formular liegt in der Datenbank. `AbstractForms::get()` liefert bei
+fehlender oder leerer `Objectform`-Zeile den versionierten PHP-Default zurück,
+sofern die Subklasse über `phpFallback()` einen deklariert — sonst wird
+weiterhin `FormNotFoundException` geworfen. So bleiben die eingebauten Vorgaben
+die Quelle der Wahrheit, bis ein Archiv sie bewusst überschreibt; bestehende
+DB-Formulare verhalten sich unverändert.
+
+Die eingebettete «als Deskriptor verwendet»-Objektliste (geteilt von Akteur-,
+Ort-, Schlagwort- und Standort-Detailseiten) rendert auf diese Weise aus dem
+PHP-Default, ohne dass ein Seeder nötig ist. Über **Admin → Formulare**
+materialisiert die Aktion «Konfigurieren» diesen Default in eine editierbare
+`Objectform`-Zeile (idempotent, reservierter ID-Bereich ≥ 5000) und übergibt an
+den normalen Spalten-Editor — siehe
+[Konfigurierbare eingebettete Tabellen](../admin/forms.md#konfigurierbare-eingebettete-tabellen)
+im Admin-Teil.
+
 ## Woran ein Archiv seine Formulare ändert
 
 Über die Oberfläche unter **Admin → Formulare** / **Formtypen**, oder — für

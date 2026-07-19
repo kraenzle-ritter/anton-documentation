@@ -34,6 +34,12 @@ Hauptsprache des Archivs.
 Anton erkennt bestehende Schlagwörter am normalisierten Label und verwendet sie
 wieder, statt Dubletten anzulegen.
 
+Schlagwörter lassen sich auch **direkt aus dem Objektformular** anlegen: Neben
+der Auswahlliste im Feld **Schlagwörter** steht ein **+**, das ein Fenster mit
+demselben Anlege-Formular öffnet. Nach dem Erstellen ist das neue Schlagwort
+ausgewählt — die Verzeichnungseinheit selbst muss danach noch gespeichert
+werden.
+
 ## Normdaten
 
 Schlagwörter lassen sich wie Akteur:innen und Orte mit [Normdaten](authorities.md)
