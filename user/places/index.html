@@ -4144,13 +4144,16 @@ Taste zum Löschen.</p>
 <h2 id="dubletten-zusammenfuhren">Dubletten zusammenführen<a class="headerlink" href="#dubletten-zusammenfuhren" title="Permanent link">&para;</a></h2>
 <p>Zwei Datensätze für denselben Ort lassen sich zusammenführen. Dabei wandern
 Ereignisse, Normdaten-Links und die Verknüpfungen zu Verzeichnungseinheiten auf
-den Zieldatensatz, der alte wird gelöscht.</p>
-<div class="admonition danger">
-<p class="admonition-title">Vorbehalten und verlustbehaftet</p>
+den Zieldatensatz. Ebenso übernommen werden die Textfelder (Beschreibung,
+Quellen, Kommentar) und die Namensformen des aufgelösten Ortes; dessen
+Koordinaten wandern nur mit, wenn der Zieldatensatz selbst noch keine hat —
+vorhandene werden nie überschrieben. Der alte Datensatz wird anschliessend
+gelöscht.</p>
+<div class="admonition note">
+<p class="admonition-title">Superusern vorbehalten</p>
 <p>Das Zusammenführen ist Superusern vorbehalten; bei Anton as a Service ist
-dafür k &amp; r zuständig. Beschreibung, Quellen, Kommentar, Namensformen und die
-Koordinaten des aufgelösten Ortes werden <strong>nicht</strong> übernommen. Sie sind
-vorher zu sichern, falls sie erhalten bleiben sollen.</p>
+dafür k &amp; r zuständig. Ein Ort lässt sich nicht mit sich selbst
+zusammenführen.</p>
 </div>
 
 

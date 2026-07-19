@@ -771,6 +771,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#was-an-einem-standort-liegt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was an einem Standort liegt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#loschen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3980,6 +3991,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#was-an-einem-standort-liegt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was an einem Standort liegt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#loschen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4026,10 +4048,16 @@
 Raum, Regal. Standorte sind eigene Datensätze und werden über
 <strong>Admin → Standorte</strong> gepflegt.</p>
 <div class="admonition note">
-<p class="admonition-title">Nie öffentlich</p>
-<p>Standorte sind die einzigen Normdaten, die Aussenstehenden nie angezeigt
-werden. Sie sind ausschliesslich für interne Benutzer:innen, Bearbeitende und die
-Administration sichtbar — wo etwas liegt, geht die Öffentlichkeit nichts an.</p>
+<p class="admonition-title">Nicht für die Öffentlichkeit</p>
+<p>Der Standort-Datensatz selbst ist ausschliesslich für interne
+Benutzer:innen, Bearbeitende und die Administration sichtbar, nie für
+Aussenstehende — wo etwas liegt, geht die Öffentlichkeit nichts an.</p>
+<p>Das <strong>Feld</strong> «Standort» einer Verzeichnungseinheit ist davon getrennt:
+Neuinstallationen liefern es aus den öffentlichen (externen) Formularen
+entfernt aus, sodass «Standort: …» im öffentlichen Katalog nicht erscheint.
+Bestehende Installationen bleiben unverändert — dort ist das Feld bei Bedarf
+selbst über die <a href="../../admin/forms/">Formulare</a> aus den externen Formularen
+zu nehmen.</p>
 </div>
 <h2 id="erfassen">Erfassen<a class="headerlink" href="#erfassen" title="Permanent link">&para;</a></h2>
 <p>Der Standort ist bewusst schlank gehalten und kennt nur vier Felder:</p>
@@ -4060,6 +4088,12 @@ Administration sichtbar — wo etwas liegt, geht die Öffentlichkeit nichts an.<
 </tbody>
 </table>
 <p>Keine Typen, keine Koordinaten, keine <a href="../authorities/">Normdaten</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Berechtigung</p>
+<p>Standorte anlegen, ändern und löschen setzt die Rolle <code>editor</code> voraus.
+Ansehen können sie interne Benutzer:innen (<code>user_intern</code>) — anders als
+Akteur:innen, Orte und Schlagwörter sind Standorte gar nicht öffentlich.</p>
+</div>
 <h2 id="zuweisen">Zuweisen<a class="headerlink" href="#zuweisen" title="Permanent link">&para;</a></h2>
 <p>Eine Verzeichnungseinheit wird dem Standort im Feld <strong>Standort</strong> zugewiesen. Es
 steht im Abschnitt «Sachverwandte Unterlagen» und ist eine Auswahlliste.</p>
@@ -4076,6 +4110,9 @@ Dossier, Serie und Einzelstück, nicht aber Archiv und Bestand.</p>
   Verknüpfung.</li>
 </ul>
 </div>
+<h2 id="was-an-einem-standort-liegt">Was an einem Standort liegt<a class="headerlink" href="#was-an-einem-standort-liegt" title="Permanent link">&para;</a></h2>
+<p>Die Detailseite eines Standorts listet — wie bei Akteur:innen und Orten — alle
+Verzeichnungseinheiten auf, die ihm zugewiesen sind.</p>
 <h2 id="loschen">Löschen<a class="headerlink" href="#loschen" title="Permanent link">&para;</a></h2>
 <p>Hängen noch Verzeichnungseinheiten an einem Standort, verweigert Anton das
 Löschen und meldet dies. Die Zuweisungen sind zuerst zu lösen.</p>

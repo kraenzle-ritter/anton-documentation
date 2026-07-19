@@ -1839,6 +1839,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#db-override-mit-php-ruckfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB-Override mit PHP-Rückfall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#woran-ein-archiv-seine-formulare-andert" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4033,6 +4044,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#db-override-mit-php-ruckfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB-Override mit PHP-Rückfall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#woran-ein-archiv-seine-formulare-andert" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4160,6 +4182,21 @@ mandantenspezifische Anpassungen jede Aktualisierung.</p>
 <p>Felder mit <strong>ID ≥ 5000</strong> stammen aus alten kundenspezifischen Konfigurationen
 und sollten nach <code>anton:update</code> nicht mehr existieren; <code>anton:check-customer-fields</code>
 prüft das.</p>
+<h2 id="db-override-mit-php-ruckfall">DB-Override mit PHP-Rückfall<a class="headerlink" href="#db-override-mit-php-ruckfall" title="Permanent link">&para;</a></h2>
+<p>Nicht jedes Formular liegt in der Datenbank. <code>AbstractForms::get()</code> liefert bei
+fehlender oder leerer <code>Objectform</code>-Zeile den versionierten PHP-Default zurück,
+sofern die Subklasse über <code>phpFallback()</code> einen deklariert — sonst wird
+weiterhin <code>FormNotFoundException</code> geworfen. So bleiben die eingebauten Vorgaben
+die Quelle der Wahrheit, bis ein Archiv sie bewusst überschreibt; bestehende
+DB-Formulare verhalten sich unverändert.</p>
+<p>Die eingebettete «als Deskriptor verwendet»-Objektliste (geteilt von Akteur-,
+Ort-, Schlagwort- und Standort-Detailseiten) rendert auf diese Weise aus dem
+PHP-Default, ohne dass ein Seeder nötig ist. Über <strong>Admin → Formulare</strong>
+materialisiert die Aktion «Konfigurieren» diesen Default in eine editierbare
+<code>Objectform</code>-Zeile (idempotent, reservierter ID-Bereich ≥ 5000) und übergibt an
+den normalen Spalten-Editor — siehe
+<a href="../../admin/forms/#konfigurierbare-eingebettete-tabellen">Konfigurierbare eingebettete Tabellen</a>
+im Admin-Teil.</p>
 <h2 id="woran-ein-archiv-seine-formulare-andert">Woran ein Archiv seine Formulare ändert<a class="headerlink" href="#woran-ein-archiv-seine-formulare-andert" title="Permanent link">&para;</a></h2>
 <p>Über die Oberfläche unter <strong>Admin → Formulare</strong> / <strong>Formtypen</strong>, oder — für
 Deployments reproduzierbar — über Seeder. Seeder überschreiben bestehende
