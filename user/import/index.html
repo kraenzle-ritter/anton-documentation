@@ -1561,6 +1561,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bestehende-datensatze-aktualisieren-update-uber-den-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bestehende Datensätze aktualisieren (Update über den Browser)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#import-uber-die-kommandozeile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4521,6 +4532,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bestehende-datensatze-aktualisieren-update-uber-den-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bestehende Datensätze aktualisieren (Update über den Browser)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#import-uber-die-kommandozeile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4755,6 +4777,24 @@ Verzeichnungsgrundsätze (note.rules_note)
 Form und Inhalt (note.scopecontent)
 </code></pre></div>
 
+<h2 id="bestehende-datensatze-aktualisieren-update-uber-den-browser">Bestehende Datensätze aktualisieren (Update über den Browser)<a class="headerlink" href="#bestehende-datensatze-aktualisieren-update-uber-den-browser" title="Permanent link">&para;</a></h2>
+<p>Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Auf der <strong>Tabellen-Inspektion</strong> (Excel-Tab → Datei prüfen) erscheint dazu neben <em>Importieren</em> ein zweiter Button <strong>«Als Update einspielen»</strong>. Er wird nur angezeigt, wenn die Datei eine <code>id</code>-Spalte enthält.</p>
+<p>Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei <strong>keine neuen Datensätze angelegt</strong>. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:</p>
+<ol>
+<li><strong>Jede Zeile braucht eine numerische <code>id</code>.</strong> Über diese <code>id</code> wird der zu aktualisierende Datensatz gefunden. Die <code>id</code> einer Verzeichnungseinheit ist aus dem <code>permalink</code> ersichtlich.</li>
+<li><strong>Keine <code>parent</code>- (oder <code>parent_id</code>-) Spalte.</strong> Ein Update darf Datensätze nicht verschieben. Um die Hierarchie zu ändern, die Datensätze regulär in Anton umhängen.</li>
+<li><strong>Keine Ereignis-Spalten (Antonevents).</strong> Spalten wie <code>creation_actors</code>, <code>creation_date_start</code> usw. sind im Update nicht erlaubt, damit keine doppelten Ereignisse entstehen. Akteur:innen-/Orts-Verknüpfungen in Anton pflegen.</li>
+</ol>
+<p>Was ein Update schreibt:</p>
+<ul>
+<li><strong>Nur befüllte Felder werden überschrieben.</strong> Leere Zellen lassen den bestehenden Wert unangetastet — es ist also möglich, gezielt nur einzelne Spalten (z.B. nur <code>titel</code> oder nur <code>schutzfrist</code>) zu aktualisieren.</li>
+<li><strong>Keywords, Textfelder und Medien</strong> werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.</li>
+</ul>
+<p>Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.</p>
+<div class="admonition note">
+<p class="admonition-title">Nur über die interne <code>id</code></p>
+<p>Das Update im Browser findet die Datensätze immer über die interne <code>id</code>, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
+</div>
 <h2 id="import-uber-die-kommandozeile">Import über die Kommandozeile<a class="headerlink" href="#import-uber-die-kommandozeile" title="Permanent link">&para;</a></h2>
 <h3 id="einfacher-import">Einfacher Import<a class="headerlink" href="#einfacher-import" title="Permanent link">&para;</a></h3>
 <p>Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:</p>
@@ -4784,7 +4824,11 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--update</td>
-<td style="text-align: left;">only update antonobjects (identifier is required)</td>
+<td style="text-align: left;">bestehende Datensätze aktualisieren statt neu anlegen; Match standardmässig über die <code>id</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">--default-excel-column=</td>
+<td style="text-align: left;"><code>id</code> (Standard) oder <code>identifier</code> — bestimmt beim <code>--update</code>, worüber die Datensätze gefunden werden</td>
 </tr>
 <tr>
 <td style="text-align: left;">--dont-validate</td>
