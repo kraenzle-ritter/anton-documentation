@@ -227,7 +227,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:db-info` | Print the active database driver, version, and resolved geo-axis order. |
 | `anton:doctor` | Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2… |
 | `anton:export` | Export metadata to a XML-File (EAD or EAD3) |
-| `anton:export-antonfields` | Export per-formset field labels and form order as antonfields.json for static catalogues (issu… |
+| `anton:export-antonfields` | Export per-formset field labels, form order and controlled-vocabulary labels as antonfields.js… |
 | `anton:export-dip` | Export metadata to a XML-File (EAD or EAD3) |
 | `anton:export-native` | Export an Anton subtree as a lossless native round-trip package (anton-import-format + media). |
 | `anton:export-rdf` | Export Anton tenant data as RDF (CIDOC CRM + RiC-O A+ profile, Memobase, or a self-contained A… |
