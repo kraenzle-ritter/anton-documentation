@@ -227,6 +227,26 @@ Die weiteren Felder sind freie Textfelder::
     Verzeichnungsgrundsätze (note.rules_note)
     Form und Inhalt (note.scopecontent)
 
+## Bestehende Datensätze aktualisieren (Update über den Browser)
+
+Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Auf der **Tabellen-Inspektion** (Excel-Tab → Datei prüfen) erscheint dazu neben *Importieren* ein zweiter Button **«Als Update einspielen»**. Er wird nur angezeigt, wenn die Datei eine `id`-Spalte enthält.
+
+Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei **keine neuen Datensätze angelegt**. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:
+
+1. **Jede Zeile braucht eine numerische `id`.** Über diese `id` wird der zu aktualisierende Datensatz gefunden. Die `id` einer Verzeichnungseinheit ist aus dem `permalink` ersichtlich.
+2. **Keine `parent`- (oder `parent_id`-) Spalte.** Ein Update darf Datensätze nicht verschieben. Um die Hierarchie zu ändern, die Datensätze regulär in Anton umhängen.
+3. **Keine Ereignis-Spalten (Antonevents).** Spalten wie `creation_actors`, `creation_date_start` usw. sind im Update nicht erlaubt, damit keine doppelten Ereignisse entstehen. Akteur:innen-/Orts-Verknüpfungen in Anton pflegen.
+
+Was ein Update schreibt:
+
+- **Nur befüllte Felder werden überschrieben.** Leere Zellen lassen den bestehenden Wert unangetastet — es ist also möglich, gezielt nur einzelne Spalten (z.B. nur `titel` oder nur `schutzfrist`) zu aktualisieren.
+- **Keywords, Textfelder und Medien** werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.
+
+Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.
+
+!!! note "Nur über die interne `id`"
+    Das Update im Browser findet die Datensätze immer über die interne `id`, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
+
 ## Import über die Kommandozeile
 
 
@@ -250,7 +270,8 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |:---   | :----------|
 |--no-backup | dont backup the database before import |
 |--import                  |really start import|
-|--update                  |only update antonobjects (identifier is required)|
+|--update                  |bestehende Datensätze aktualisieren statt neu anlegen; Match standardmässig über die `id`|
+|--default-excel-column=   |`id` (Standard) oder `identifier` — bestimmt beim `--update`, worüber die Datensätze gefunden werden|
 |--dont-validate           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|
