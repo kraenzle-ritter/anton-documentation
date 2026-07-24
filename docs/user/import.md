@@ -229,7 +229,9 @@ Die weiteren Felder sind freie Textfelder::
 
 ## Bestehende Datensätze aktualisieren (Update über den Browser)
 
-Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Auf der **Tabellen-Inspektion** (Excel-Tab → Datei prüfen) erscheint dazu neben *Importieren* ein zweiter Button **«Als Update einspielen»**. Er wird nur angezeigt, wenn die Datei eine `id`-Spalte enthält.
+Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (neben *Metadaten*, *Medien* und *Dokumentation*). Dort die Tabelle hochladen — sie landet in derselben Liste wie beim normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
+
+Weil der *Update*-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur `id` + zu ändernde Spalten, ohne `parent`) keine Umwege: die beim Neuanlegen nötige `parent`-Spalte wird hier nicht verlangt. Der reguläre *Metadaten*-Reiter bleibt unverändert fürs Neuanlegen.
 
 Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei **keine neuen Datensätze angelegt**. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:
 
