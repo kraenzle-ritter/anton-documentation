@@ -229,7 +229,7 @@ Die weiteren Felder sind freie Textfelder::
 
 ## Bestehende Datensätze aktualisieren (Update über den Browser)
 
-Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (neben *Metadaten*, *Medien* und *Dokumentation*). Dort die Tabelle hochladen — sie landet in derselben Liste wie beim normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
+Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
 
 Weil der *Update*-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur `id` + zu ändernde Spalten, ohne `parent`) keine Umwege: die beim Neuanlegen nötige `parent`-Spalte wird hier nicht verlangt. Der reguläre *Metadaten*-Reiter bleibt unverändert fürs Neuanlegen.
 
