@@ -4778,6 +4778,10 @@ Form und Inhalt (note.scopecontent)
 </code></pre></div>
 
 <h2 id="bestehende-datensatze-aktualisieren-update-uber-den-browser">Bestehende Datensätze aktualisieren (Update über den Browser)<a class="headerlink" href="#bestehende-datensatze-aktualisieren-update-uber-den-browser" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Experimentelles Feature</p>
+<p>Das Datenupdate ist als <strong>experimentell</strong> gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Vor einem Update eine <strong>Sicherung der Datenbank</strong> anlegen und das Ergebnis anschliessend stichprobenweise prüfen.</p>
+</div>
 <p>Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter <strong>Tabellen-Import</strong> seit <strong>v0.81.2</strong> einen eigenen Reiter <strong>«Update»</strong> (nach <em>Metadaten</em> und <em>Medien</em>). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit <strong>«Details»</strong> öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button <strong>«Als Update einspielen»</strong>.</p>
 <p>Weil der <em>Update</em>-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur <code>id</code> + zu ändernde Spalten, ohne <code>parent</code>) keine Umwege: die beim Neuanlegen nötige <code>parent</code>-Spalte wird hier nicht verlangt. Der reguläre <em>Metadaten</em>-Reiter bleibt unverändert fürs Neuanlegen.</p>
 <p>Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei <strong>keine neuen Datensätze angelegt</strong>. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:</p>
@@ -4792,6 +4796,8 @@ Form und Inhalt (note.scopecontent)
 <li><strong>Keywords, Textfelder und Medien</strong> werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.</li>
 </ul>
 <p>Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.</p>
+<p>Nach dem Start zeigt die Fortschritts-Seite das Update als <strong>«Datenupdate»</strong> an (nicht als Import) und meldet am Schluss, wie viele Datensätze <em>aktualisiert</em> wurden.</p>
+<p>Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer <strong>eigenen Signatur-Serie <code>UPDATE-{jjjj}-{NNN}</code></strong> statt <code>IMPORT-{jjjj}-{NNN}</code> bzw. <code>AKZ {jjjj}/{N}</code>. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.</p>
 <div class="admonition note">
 <p class="admonition-title">Nur über die interne <code>id</code></p>
 <p>Das Update im Browser findet die Datensätze immer über die interne <code>id</code>, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
