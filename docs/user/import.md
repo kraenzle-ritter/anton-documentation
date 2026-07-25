@@ -230,7 +230,7 @@ Die weiteren Felder sind freie Textfelder::
 ## Bestehende Datensätze aktualisieren (Update über den Browser)
 
 !!! warning "Experimentelles Feature"
-    Das Datenupdate ist als **experimentell** gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Vor einem Update eine **Sicherung der Datenbank** anlegen und das Ergebnis anschliessend stichprobenweise prüfen.
+    Das Datenupdate ist als **experimentell** gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Anton legt deshalb **vor jedem Update automatisch eine Sicherung der Datenbank** an (siehe unten); das Ergebnis trotzdem stichprobenweise prüfen.
 
 Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
 
@@ -250,6 +250,8 @@ Was ein Update schreibt:
 Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.
 
 Nach dem Start zeigt die Fortschritts-Seite das Update als **«Datenupdate»** an (nicht als Import) und meldet am Schluss, wie viele Datensätze *aktualisiert* wurden.
+
+**Automatische Sicherung.** Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie `anton:backup`, abgelegt unter `db_backup/`). Der Schritt erscheint in der Fortschritts-Anzeige als Phase *backup* und wird als eigener Eintrag protokolliert, der den Dateinamen des Dumps nennt. Lässt sich die Sicherung nicht anlegen, **bricht das Update ab** und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst `no-backup` gesetzt ist — diese Option ist für schnelle Massen-*Neuanlagen* gedacht, wo ein Rückweg trivial ist.
 
 Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer **eigenen Signatur-Serie `UPDATE-{jjjj}-{NNN}`** statt `IMPORT-{jjjj}-{NNN}` bzw. `AKZ {jjjj}/{N}`. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.
 
