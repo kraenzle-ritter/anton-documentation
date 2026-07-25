@@ -209,7 +209,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (50)
+### anton: (51)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -232,6 +232,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:export-native` | Export an Anton subtree as a lossless native round-trip package (anton-import-format + media). |
 | `anton:export-rdf` | Export Anton tenant data as RDF (CIDOC CRM + RiC-O A+ profile, Memobase, or a self-contained A… |
 | `anton:home` | Get or set a home entry. If you set a value, you should also choose a locale |
+| `anton:i18n-check` | Find user-visible strings that are missing a translation (JSON + PHP keys) |
 | `anton:import` | Import an Excel File. The default options are as defensive as possible. |
 | `anton:import-actors` | Import an Excel-File to actors-table |
 | `anton:import-descriptors` | Import an Excel-File of descriptors |
