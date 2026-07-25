@@ -229,6 +229,9 @@ Die weiteren Felder sind freie Textfelder::
 
 ## Bestehende Datensätze aktualisieren (Update über den Browser)
 
+!!! warning "Experimentelles Feature"
+    Das Datenupdate ist als **experimentell** gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Vor einem Update eine **Sicherung der Datenbank** anlegen und das Ergebnis anschliessend stichprobenweise prüfen.
+
 Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
 
 Weil der *Update*-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur `id` + zu ändernde Spalten, ohne `parent`) keine Umwege: die beim Neuanlegen nötige `parent`-Spalte wird hier nicht verlangt. Der reguläre *Metadaten*-Reiter bleibt unverändert fürs Neuanlegen.
@@ -245,6 +248,10 @@ Was ein Update schreibt:
 - **Keywords, Textfelder und Medien** werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.
 
 Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.
+
+Nach dem Start zeigt die Fortschritts-Seite das Update als **«Datenupdate»** an (nicht als Import) und meldet am Schluss, wie viele Datensätze *aktualisiert* wurden.
+
+Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer **eigenen Signatur-Serie `UPDATE-{jjjj}-{NNN}`** statt `IMPORT-{jjjj}-{NNN}` bzw. `AKZ {jjjj}/{N}`. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.
 
 !!! note "Nur über die interne `id`"
     Das Update im Browser findet die Datensätze immer über die interne `id`, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
