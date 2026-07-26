@@ -262,7 +262,28 @@ Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die ak
 
 Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten (die würden das Update blockieren) sowie `location` (wird beim Update nicht geschrieben). Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
 
-Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter *Einstellungen* ausblenden.
+Beim Klick öffnet sich ein Dialog, in dem sich die **Spalten auswählen** lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt `id` und `titel` — dann kann beim Einspielen nichts anderes zu Schaden kommen. `id` ist immer enthalten und nicht abwählbar.
+
+!!! warning "Die Tabelle ist eine Momentaufnahme"
+    Zwischen Download und Update sollte möglichst wenig Zeit liegen. Die Datei enthält den Stand vom Zeitpunkt des Downloads. Wird sie erst Tage später eingespielt, überschreiben ihre alten Werte alles, was in der Zwischenzeit an diesen Datensätzen geändert wurde — auch Änderungen, die andere Personen bewusst vorgenommen haben und die erhalten bleiben sollen. Eine heruntergeladene Tabelle nicht aufbewahren und später wiederverwenden, sondern für jede Korrekturrunde neu exportieren. Je weniger Spalten gewählt sind, desto kleiner ist das Risiko.
+
+    **Anton prüft das mit.** Beim Export wird der Zeitpunkt in die Datei geschrieben (in die Dokument-Eigenschaften, nicht in eine Spalte — er übersteht auch das Umbenennen). Die Inspektionsseite vergleicht ihn mit dem Änderungsdatum der betroffenen Datensätze und meldet konkret, welche seither bearbeitet wurden: *«3 Datensätze wurden seit dem Export der Tabelle (20.07.2026 08:30) bearbeitet — das Update würde diese Änderungen überschreiben: SIG-1, SIG-7, …»*. Das blockiert das Update nicht; es kann gute Gründe geben, trotzdem einzuspielen. Lässt sich kein Zeitpunkt ermitteln (etwa bei einer von Hand erstellten Tabelle), sagt die Seite auch das — ein fehlender Hinweis bedeutet also nie automatisch «alles in Ordnung».
+
+Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter *Einstellungen* ausblenden. Daneben steht der **vollständige Excel-Export** (alle Felder inklusive `parent` und Ereignis-Spalten) — der ist für Auswertungen gedacht und lässt sich *nicht* als Update wieder einspielen.
+
+### Warum Ereignisse im Update nicht mitgehen
+
+Ereignis-Spalten (`creation_actors`, `creation_date_start`, `acquisition_place` …) sind im Update **gesperrt**. Der Grund liegt in der Struktur: In Anton ist ein Ereignis ein Tupel aus *Akteur:in, Ort, Zeitraum und Typ* — eine Zeile pro Akteur:in. Eine Tabelle kann davon pro Objekt und Ereignistyp nur **eine Kombination** abbilden: einen Ort, einen Zeitraum, einen Detailtext, geteilt von beliebig vielen Akteur:innen.
+
+Daraus folgen drei Dinge, die eine Tabelle nicht leisten kann:
+
+- **Mehrere Ereignisse desselben Typs.** Wurde ein Objekt 1920 in Zürich *und* 1925 in Bern bearbeitet, lässt sich das in einem Spaltensatz nicht ausdrücken. Im vollständigen Excel-Export werden die Spalten dieses Typs deshalb weggelassen. **Eine leere Ereignis-Zelle bedeutet also zweierlei:** entweder ist kein Ereignis erfasst — oder es sind mehr, als diese Tabellenform tragen kann. Der Download-Dialog weist darauf hin. Die Update-Tabelle enthält gar keine Ereignis-Spalten und ist davon nicht betroffen.
+- **Ereignisse löschen.** Der Import legt Ereignisse nur an oder aktualisiert sie; es gibt keinen Weg, eines über die Tabelle zu entfernen.
+- **Ein Datum verschieben.** Der Abgleich läuft über *Typ + Objekt + Akteur:in + Beginndatum*. Wird das Datum in der Tabelle geändert, entsteht ein **zweites** Ereignis, das bestehende bleibt stehen.
+
+Gerade die letzten beiden Punkte machen Ereignisse in einem Update unbrauchbar: es liesse sich nur ergänzen, nie korrigieren — und wiederholtes Einspielen würde Ereignisse vermehren. Ereignisse werden darum in Anton selbst gepflegt, nicht über die Tabelle.
+
+Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (`datierung_text`, in keiner Richtung) und die Ortsadresse (`<typ>_place_address`, nur beim Import und nur wenn die Einstellung `import_addresses` gesetzt ist).
 
 !!! note "Nur über die interne `id`"
     Das Update im Browser findet die Datensätze immer über die interne `id`, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
