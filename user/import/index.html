@@ -1583,6 +1583,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#warum-ereignisse-im-update-nicht-mitgehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum Ereignisse im Update nicht mitgehen
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4571,6 +4582,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#warum-ereignisse-im-update-nicht-mitgehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum Ereignisse im Update nicht mitgehen
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4837,7 +4859,23 @@ Form und Inhalt (note.scopecontent)
 <h3 id="passende-tabelle-herunterladen">Passende Tabelle herunterladen<a class="headerlink" href="#passende-tabelle-herunterladen" title="Permanent link">&para;</a></h3>
 <p>Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle <strong>Trefferliste direkt als Update-Tabelle herunterladen</strong>: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.</p>
 <p>Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — <code>id</code>, die Feld-Spalten, Sprachen, Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten <code>note.*</code>. Bewusst <strong>nicht</strong> enthalten sind <code>parent</code> und die Ereignis-Spalten (die würden das Update blockieren) sowie <code>location</code> (wird beim Update nicht geschrieben). Die Spalte <code>identifier</code> dient nur der Orientierung: das Update findet die Datensätze über die <code>id</code>, Änderungen an der Signatur bleiben wirkungslos.</p>
-<p>Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter <em>Einstellungen</em> ausblenden.</p>
+<p>Beim Klick öffnet sich ein Dialog, in dem sich die <strong>Spalten auswählen</strong> lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt <code>id</code> und <code>titel</code> — dann kann beim Einspielen nichts anderes zu Schaden kommen. <code>id</code> ist immer enthalten und nicht abwählbar.</p>
+<div class="admonition warning">
+<p class="admonition-title">Die Tabelle ist eine Momentaufnahme</p>
+<p>Zwischen Download und Update sollte möglichst wenig Zeit liegen. Die Datei enthält den Stand vom Zeitpunkt des Downloads. Wird sie erst Tage später eingespielt, überschreiben ihre alten Werte alles, was in der Zwischenzeit an diesen Datensätzen geändert wurde — auch Änderungen, die andere Personen bewusst vorgenommen haben und die erhalten bleiben sollen. Eine heruntergeladene Tabelle nicht aufbewahren und später wiederverwenden, sondern für jede Korrekturrunde neu exportieren. Je weniger Spalten gewählt sind, desto kleiner ist das Risiko.</p>
+<p><strong>Anton prüft das mit.</strong> Beim Export wird der Zeitpunkt in die Datei geschrieben (in die Dokument-Eigenschaften, nicht in eine Spalte — er übersteht auch das Umbenennen). Die Inspektionsseite vergleicht ihn mit dem Änderungsdatum der betroffenen Datensätze und meldet konkret, welche seither bearbeitet wurden: <em>«3 Datensätze wurden seit dem Export der Tabelle (20.07.2026 08:30) bearbeitet — das Update würde diese Änderungen überschreiben: SIG-1, SIG-7, …»</em>. Das blockiert das Update nicht; es kann gute Gründe geben, trotzdem einzuspielen. Lässt sich kein Zeitpunkt ermitteln (etwa bei einer von Hand erstellten Tabelle), sagt die Seite auch das — ein fehlender Hinweis bedeutet also nie automatisch «alles in Ordnung».</p>
+</div>
+<p>Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter <em>Einstellungen</em> ausblenden. Daneben steht der <strong>vollständige Excel-Export</strong> (alle Felder inklusive <code>parent</code> und Ereignis-Spalten) — der ist für Auswertungen gedacht und lässt sich <em>nicht</em> als Update wieder einspielen.</p>
+<h3 id="warum-ereignisse-im-update-nicht-mitgehen">Warum Ereignisse im Update nicht mitgehen<a class="headerlink" href="#warum-ereignisse-im-update-nicht-mitgehen" title="Permanent link">&para;</a></h3>
+<p>Ereignis-Spalten (<code>creation_actors</code>, <code>creation_date_start</code>, <code>acquisition_place</code> …) sind im Update <strong>gesperrt</strong>. Der Grund liegt in der Struktur: In Anton ist ein Ereignis ein Tupel aus <em>Akteur:in, Ort, Zeitraum und Typ</em> — eine Zeile pro Akteur:in. Eine Tabelle kann davon pro Objekt und Ereignistyp nur <strong>eine Kombination</strong> abbilden: einen Ort, einen Zeitraum, einen Detailtext, geteilt von beliebig vielen Akteur:innen.</p>
+<p>Daraus folgen drei Dinge, die eine Tabelle nicht leisten kann:</p>
+<ul>
+<li><strong>Mehrere Ereignisse desselben Typs.</strong> Wurde ein Objekt 1920 in Zürich <em>und</em> 1925 in Bern bearbeitet, lässt sich das in einem Spaltensatz nicht ausdrücken. Im vollständigen Excel-Export werden die Spalten dieses Typs deshalb weggelassen. <strong>Eine leere Ereignis-Zelle bedeutet also zweierlei:</strong> entweder ist kein Ereignis erfasst — oder es sind mehr, als diese Tabellenform tragen kann. Der Download-Dialog weist darauf hin. Die Update-Tabelle enthält gar keine Ereignis-Spalten und ist davon nicht betroffen.</li>
+<li><strong>Ereignisse löschen.</strong> Der Import legt Ereignisse nur an oder aktualisiert sie; es gibt keinen Weg, eines über die Tabelle zu entfernen.</li>
+<li><strong>Ein Datum verschieben.</strong> Der Abgleich läuft über <em>Typ + Objekt + Akteur:in + Beginndatum</em>. Wird das Datum in der Tabelle geändert, entsteht ein <strong>zweites</strong> Ereignis, das bestehende bleibt stehen.</li>
+</ul>
+<p>Gerade die letzten beiden Punkte machen Ereignisse in einem Update unbrauchbar: es liesse sich nur ergänzen, nie korrigieren — und wiederholtes Einspielen würde Ereignisse vermehren. Ereignisse werden darum in Anton selbst gepflegt, nicht über die Tabelle.</p>
+<p>Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (<code>datierung_text</code>, in keiner Richtung) und die Ortsadresse (<code>&lt;typ&gt;_place_address</code>, nur beim Import und nur wenn die Einstellung <code>import_addresses</code> gesetzt ist).</p>
 <div class="admonition note">
 <p class="admonition-title">Nur über die interne <code>id</code></p>
 <p>Das Update im Browser findet die Datensätze immer über die interne <code>id</code>, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
