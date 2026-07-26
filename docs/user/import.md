@@ -245,7 +245,8 @@ Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Ste
 Was ein Update schreibt:
 
 - **Nur befüllte Felder werden überschrieben.** Leere Zellen lassen den bestehenden Wert unangetastet — es ist also möglich, gezielt nur einzelne Spalten (z.B. nur `titel` oder nur `schutzfrist`) zu aktualisieren.
-- **Keywords, Textfelder und Medien** werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.
+- **Schlagworte, Akteur:innen, Orte, Sprachen und Textfelder werden ersetzt.** Eine befüllte Zelle ist die *vollständige neue Liste*: Wer einen Eintrag aus der Zelle löscht, löst damit auch die Verknüpfung am Datensatz. Eine leere Zelle ändert nichts. (Beim normalen Import — also beim Neuanlegen — werden Schlagworte weiterhin nur ergänzt.)
+- **Medien** werden weiterhin ergänzt.
 
 Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.
 
@@ -254,6 +255,14 @@ Nach dem Start zeigt die Fortschritts-Seite das Update als **«Datenupdate»** a
 **Automatische Sicherung.** Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie `anton:backup`, abgelegt unter `db_backup/`). Der Schritt erscheint in der Fortschritts-Anzeige als Phase *backup* und wird als eigener Eintrag protokolliert, der den Dateinamen des Dumps nennt. Lässt sich die Sicherung nicht anlegen, **bricht das Update ab** und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst `no-backup` gesetzt ist — diese Option ist für schnelle Massen-*Neuanlagen* gedacht, wo ein Rückweg trivial ist.
 
 Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer **eigenen Signatur-Serie `UPDATE-{jjjj}-{NNN}`** statt `IMPORT-{jjjj}-{NNN}` bzw. `AKZ {jjjj}/{N}`. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.
+
+### Passende Tabelle herunterladen
+
+Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle **Trefferliste direkt als Update-Tabelle herunterladen**: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.
+
+Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten (die würden das Update blockieren) sowie `location` (wird beim Update nicht geschrieben). Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
+
+Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter *Einstellungen* ausblenden.
 
 !!! note "Nur über die interne `id`"
     Das Update im Browser findet die Datensätze immer über die interne `id`, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
