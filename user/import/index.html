@@ -1569,6 +1569,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Bestehende Datensätze aktualisieren (Update über den Browser)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passende-tabelle-herunterladen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passende Tabelle herunterladen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4540,6 +4557,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Bestehende Datensätze aktualisieren (Update über den Browser)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passende-tabelle-herunterladen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passende Tabelle herunterladen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4793,12 +4827,17 @@ Form und Inhalt (note.scopecontent)
 <p>Was ein Update schreibt:</p>
 <ul>
 <li><strong>Nur befüllte Felder werden überschrieben.</strong> Leere Zellen lassen den bestehenden Wert unangetastet — es ist also möglich, gezielt nur einzelne Spalten (z.B. nur <code>titel</code> oder nur <code>schutzfrist</code>) zu aktualisieren.</li>
-<li><strong>Keywords, Textfelder und Medien</strong> werden — wie beim normalen Import — weiterhin ergänzt, sofern die entsprechenden Spalten vorhanden sind.</li>
+<li><strong>Schlagworte, Akteur:innen, Orte, Sprachen und Textfelder werden ersetzt.</strong> Eine befüllte Zelle ist die <em>vollständige neue Liste</em>: Wer einen Eintrag aus der Zelle löscht, löst damit auch die Verknüpfung am Datensatz. Eine leere Zelle ändert nichts. (Beim normalen Import — also beim Neuanlegen — werden Schlagworte weiterhin nur ergänzt.)</li>
+<li><strong>Medien</strong> werden weiterhin ergänzt.</li>
 </ul>
 <p>Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.</p>
 <p>Nach dem Start zeigt die Fortschritts-Seite das Update als <strong>«Datenupdate»</strong> an (nicht als Import) und meldet am Schluss, wie viele Datensätze <em>aktualisiert</em> wurden.</p>
 <p><strong>Automatische Sicherung.</strong> Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie <code>anton:backup</code>, abgelegt unter <code>db_backup/</code>). Der Schritt erscheint in der Fortschritts-Anzeige als Phase <em>backup</em> und wird als eigener Eintrag protokolliert, der den Dateinamen des Dumps nennt. Lässt sich die Sicherung nicht anlegen, <strong>bricht das Update ab</strong> und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst <code>no-backup</code> gesetzt ist — diese Option ist für schnelle Massen-<em>Neuanlagen</em> gedacht, wo ein Rückweg trivial ist.</p>
 <p>Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer <strong>eigenen Signatur-Serie <code>UPDATE-{jjjj}-{NNN}</code></strong> statt <code>IMPORT-{jjjj}-{NNN}</code> bzw. <code>AKZ {jjjj}/{N}</code>. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.</p>
+<h3 id="passende-tabelle-herunterladen">Passende Tabelle herunterladen<a class="headerlink" href="#passende-tabelle-herunterladen" title="Permanent link">&para;</a></h3>
+<p>Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle <strong>Trefferliste direkt als Update-Tabelle herunterladen</strong>: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.</p>
+<p>Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — <code>id</code>, die Feld-Spalten, Sprachen, Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten <code>note.*</code>. Bewusst <strong>nicht</strong> enthalten sind <code>parent</code> und die Ereignis-Spalten (die würden das Update blockieren) sowie <code>location</code> (wird beim Update nicht geschrieben). Die Spalte <code>identifier</code> dient nur der Orientierung: das Update findet die Datensätze über die <code>id</code>, Änderungen an der Signatur bleiben wirkungslos.</p>
+<p>Der Knopf ist Administrator:innen vorbehalten und lässt sich im eigenen Profil unter <em>Einstellungen</em> ausblenden.</p>
 <div class="admonition note">
 <p class="admonition-title">Nur über die interne <code>id</code></p>
 <p>Das Update im Browser findet die Datensätze immer über die interne <code>id</code>, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
