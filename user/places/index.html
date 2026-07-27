@@ -754,6 +754,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loschen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Löschen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dubletten-zusammenfuhren" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4047,6 +4058,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loschen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Löschen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dubletten-zusammenfuhren" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4141,6 +4163,21 @@ zu beziehen.</p>
 Leerzeichen oder Komma und Dezimalstellen sind jeweils optional.</p>
 <p>Sind Koordinaten vorhanden, erscheint in der Bearbeitungsansicht zusätzlich eine
 Taste zum Löschen.</p>
+<h2 id="loschen">Löschen<a class="headerlink" href="#loschen" title="Permanent link">&para;</a></h2>
+<p>Ein Ort lässt sich nur löschen, solange er <strong>nicht verwendet</strong> wird. Anton
+verweigert das Löschen in beiden Fällen und meldet, welcher vorliegt:</p>
+<ul>
+<li>der Ort ist an einem <strong>Ereignis</strong> beteiligt,</li>
+<li>oder er ist bei einer Verzeichnungseinheit als <strong>Deskriptor</strong> eingetragen.</li>
+</ul>
+<p>Geht es darum, eine Dublette loszuwerden, ist das <strong>Zusammenführen</strong> der bessere
+Weg als das Löschen: Die Verknüpfungen wandern dabei auf den verbleibenden
+Datensatz, statt verloren zu gehen (siehe unten).</p>
+<div class="admonition note">
+<p class="admonition-title">Bis v0.82.0 anders</p>
+<p>Bis dahin wurde ein Ort ohne Prüfung gelöscht, und seine Verknüpfungen zu
+den Verzeichnungseinheiten verschwanden stillschweigend mit.</p>
+</div>
 <h2 id="dubletten-zusammenfuhren">Dubletten zusammenführen<a class="headerlink" href="#dubletten-zusammenfuhren" title="Permanent link">&para;</a></h2>
 <p>Zwei Datensätze für denselben Ort lassen sich zusammenführen. Dabei wandern
 Ereignisse, Normdaten-Links und die Verknüpfungen zu Verzeichnungseinheiten auf

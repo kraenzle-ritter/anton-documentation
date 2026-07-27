@@ -4117,7 +4117,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>8. Juli 2026</strong> ab (Anton v0.79). Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>27. Juli 2026</strong> ab (Anton v0.82). Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -4210,10 +4210,16 @@ zusammen mit den Exportern gepflegt.</p>
 <td>Taste am Datensatz</td>
 </tr>
 <tr>
-<td>Excel</td>
+<td>Excel (voll)</td>
 <td>XLSX</td>
-<td>aktuelle Trefferliste</td>
+<td>aktuelle Trefferliste, alle Felder</td>
 <td>Trefferliste → Export</td>
+</tr>
+<tr>
+<td>Excel (Update-Tabelle)</td>
+<td>XLSX</td>
+<td>Trefferliste, <strong>nur beschreibbare Felder</strong>, wieder einspielbar</td>
+<td>Trefferliste → Export → Update</td>
 </tr>
 <tr>
 <td>Word / PDF</td>
@@ -4249,7 +4255,8 @@ zusammen mit den Exportern gepflegt.</p>
 <th>Memobase</th>
 <th>DC</th>
 <th>DIP/OCFL</th>
-<th>Excel</th>
+<th>Excel voll</th>
+<th>Excel Update</th>
 <th>SQL-Dump</th>
 </tr>
 </thead>
@@ -4265,6 +4272,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 <td>●</td>
 <td>●</td>
+<td>◐</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4278,6 +4286,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>●</td>
 <td>◐</td>
+<td>○</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4290,6 +4299,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>◐</td>
 <td>●</td>
+<td>○</td>
 <td>○</td>
 <td>●</td>
 </tr>
@@ -4305,6 +4315,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 <td>○</td>
 <td>○</td>
+<td>○</td>
 </tr>
 <tr>
 <td>Volltext / OCR</td>
@@ -4312,6 +4323,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>●¹</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4330,6 +4342,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
+<td>◐</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4339,6 +4352,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 <td>◐</td>
 <td>◐</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4356,6 +4370,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
+<td>◐</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4365,6 +4380,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 <td>◐</td>
 <td>◐</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4382,6 +4398,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
+<td>◐</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4395,6 +4412,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>◐</td>
+<td>○</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4409,6 +4427,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
+<td>●</td>
 </tr>
 <tr>
 <td>Termselect-Werte</td>
@@ -4421,6 +4440,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>◐</td>
 <td>○</td>
+<td>○</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4429,6 +4449,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>◐</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4447,10 +4468,12 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>◐</td>
+<td>◐</td>
 <td>●</td>
 </tr>
 <tr>
 <td>Benutzerkonten</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4473,6 +4496,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>○</td>
+<td>○</td>
 <td>●</td>
 </tr>
 <tr>
@@ -4486,10 +4510,12 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>○</td>
+<td>○</td>
 <td>●</td>
 </tr>
 <tr>
 <td>Datei-Provenienz (PRONOM/NARA)</td>
+<td>○</td>
 <td>○</td>
 <td>○</td>
 <td>○</td>
@@ -4543,6 +4569,17 @@ Textfeldtypen.</p>
 <p><strong>DIP und OCFL</strong> führen kein PREMIS und kein METS; die Preservation-Metadaten
 beschränken sich auf das OCFL-Inventory. Die ZH-Variante des DIP enthält nur
 Mediendateien, keine Metadaten.</p>
+<p><strong>Die beiden Excel-Exporte verfolgen entgegengesetzte Zwecke.</strong> Der <em>volle</em>
+Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
+lässt, und lässt sich <strong>nicht</strong> wieder einspielen. Die <em>Update-Tabelle</em> ist das
+Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf, und
+lässt Hierarchie (<code>parent</code>), Ereignisse und Standort weg, weil diese beim
+Zurückspielen blockiert würden oder wirkungslos blieben. Wer die schmalere Datei
+nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
+den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.</p>
+<p>Beides sind <strong>keine Sicherungen</strong>: Auch der volle Excel-Export führt weder Medien
+noch Normdateien noch Formulare. Für einen Rückweg dienen der native Round-Trip
+oder der SQL-Dump (siehe unten).</p>
 <h2 id="rdf-a-und-nativer-round-trip-sind-zwei-produkte">RDF A+ und nativer Round-Trip sind zwei Produkte<a class="headerlink" href="#rdf-a-und-nativer-round-trip-sind-zwei-produkte" title="Permanent link">&para;</a></h2>
 <p>Der <strong>A+-Graph ist eine Discovery-Sicht, kein Backup.</strong> Aus dem Bundle allein
 lässt sich kein Anton-Mandant rekonstruieren: Es fehlen die UUIDs, der
