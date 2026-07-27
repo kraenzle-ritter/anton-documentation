@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **8. Juli 2026** ab (Anton v0.79). Sie wird
+    Diese Matrix bildet den Stand vom **27. Juli 2026** ab (Anton v0.82). Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -28,7 +28,8 @@ andere sind Publikations- und Austauschsichten.**
 | Dublin Core | OAI-DC | pro Objekt (nur eingebettet) | Baustein in DIP / OCFL |
 | DIP | BagIt | Paket: Medien + Metadaten (Teilbaum) | Taste «DIP» am Datensatz |
 | OCFL | Oxford Common File Layout | Paket: Medien + Metadaten (Objekt/Teilbaum) | Taste am Datensatz |
-| Excel | XLSX | aktuelle Trefferliste | Trefferliste → Export |
+| Excel (voll) | XLSX | aktuelle Trefferliste, alle Felder | Trefferliste → Export |
+| Excel (Update-Tabelle) | XLSX | Trefferliste, **nur beschreibbare Felder**, wieder einspielbar | Trefferliste → Export → Update |
 | Word / PDF | DOCX / PDF | Findbuch pro Objekt | Taste am Datensatz |
 | Paper | HTML-Druckansicht | Trefferliste (max. 1000) | Trefferliste |
 | **SQL-Dump** | mysqldump (gzip) | **ganze Mandanten-Datenbank** | Admin → Export |
@@ -37,27 +38,27 @@ andere sind Publikations- und Austauschsichten.**
 
 Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 
-| Entität | EAD2002 | EAD3 | TEI | RDF A+ | RiC | Memobase | DC | DIP/OCFL | Excel | SQL-Dump |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Verzeichnungseinheit | ● | ◐ | ◐ | ● | ● | ● | ● | ● | ● | ● |
-| Hierarchie | ● | ● | ○ | ● | ● | ● | ◐ | ● | ◐ | ● |
-| Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ● |
-| Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ |
-| Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ● |
-| Akteur:innen (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
-| Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ● |
-| Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
-| Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ● |
-| Schlagwörter | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ● |
-| Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ● |
-| Textfelder (ISAD-Felder) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● |
-| Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ● |
-| Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ● |
-| Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Entität | EAD2002 | EAD3 | TEI | RDF A+ | RiC | Memobase | DC | DIP/OCFL | Excel voll | Excel Update | SQL-Dump |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Verzeichnungseinheit | ● | ◐ | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Hierarchie | ● | ● | ○ | ● | ● | ● | ◐ | ● | ◐ | ○ | ● |
+| Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
+| Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ | ○ |
+| Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Akteur:innen (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
+| Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
+| Schlagwörter | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
+| Textfelder (ISAD-Felder) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
+| Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
+| Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
+| Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 
 ¹ Nur im **A+ Bundle**: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
@@ -109,6 +110,19 @@ Textfeldtypen.
 **DIP und OCFL** führen kein PREMIS und kein METS; die Preservation-Metadaten
 beschränken sich auf das OCFL-Inventory. Die ZH-Variante des DIP enthält nur
 Mediendateien, keine Metadaten.
+
+**Die beiden Excel-Exporte verfolgen entgegengesetzte Zwecke.** Der *volle*
+Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
+lässt, und lässt sich **nicht** wieder einspielen. Die *Update-Tabelle* ist das
+Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf, und
+lässt Hierarchie (`parent`), Ereignisse und Standort weg, weil diese beim
+Zurückspielen blockiert würden oder wirkungslos blieben. Wer die schmalere Datei
+nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
+den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.
+
+Beides sind **keine Sicherungen**: Auch der volle Excel-Export führt weder Medien
+noch Normdateien noch Formulare. Für einen Rückweg dienen der native Round-Trip
+oder der SQL-Dump (siehe unten).
 
 ## RDF A+ und nativer Round-Trip sind zwei Produkte
 

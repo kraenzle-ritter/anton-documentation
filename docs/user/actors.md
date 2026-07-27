@@ -54,5 +54,18 @@ Personen und schützenswerte Angaben.
 
 ## Löschen
 
-Sind Akteur:innen an einem Ereignis beteiligt, verweigert Anton das Löschen und
-meldet dies. Die Ereignisse sind zuerst zu bereinigen.
+Akteur:innen lassen sich nur löschen, solange sie **nicht verwendet** werden.
+Anton verweigert das Löschen in beiden Fällen und meldet, welcher vorliegt:
+
+- die Akteur:in ist an einem **Ereignis** beteiligt,
+- oder sie ist bei einer Verzeichnungseinheit als **Deskriptor** eingetragen
+  (siehe [Zwei Wege zur Verzeichnungseinheit](#zwei-wege-zur-verzeichnungseinheit)).
+
+Um eine Akteur:in loszuwerden, sind zuerst die Verknüpfungen zu bereinigen — die
+Ereignisse bei den betroffenen Verzeichnungseinheiten, die Deskriptoren im
+Register «wird als Deskriptor verwendet» auf der Detailseite.
+
+!!! note "Bis v0.82.0 anders"
+    Bis dahin schützten nur Ereignisse. Eine Akteur:in, die ausschliesslich als
+    Deskriptor verwendet wurde, liess sich löschen — die Verknüpfungen wurden
+    dabei stillschweigend mitentfernt.
