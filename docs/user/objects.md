@@ -48,10 +48,11 @@ Jeder Abschnitt hat rechts eine eigene Taste **Speichern**; zusätzlich steht ei
 am Ende des Formulars. Gespeichert wird jeweils das ganze Formular, nicht nur der
 Abschnitt. Nach dem Speichern wechselt Anton in die Detailansicht.
 
-!!! warning "Doppelte Signaturen"
-    Vergibt eine bereits vergebene Signatur, meldet Anton dies mit Verweis auf die
-    betroffenen Datensätze. Die Meldung ist ein Hinweis und verhindert das
-    Speichern nicht — Signaturen dürfen mehrfach vorkommen.
+!!! warning "Signaturen sind nicht eindeutig"
+    Anton erzwingt keine eindeutigen Signaturen. Wird eine bereits vergebene
+    Signatur eingetragen, erscheint beim Speichern ein Hinweis mit Verweis auf
+    die betroffenen Datensätze — gespeichert wird trotzdem. Der Hinweis ist
+    bewusst nicht blockierend, weil Dubletten in der Praxis vorkommen.
 
 ## Kopieren
 
