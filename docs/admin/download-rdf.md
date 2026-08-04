@@ -130,9 +130,25 @@ Stichworte:
   etc. auf der Entität (A+-„Loss-#2-Fix").
 - **Authority-Links** (GND/VIAF/Wikidata/GeoNames) → `owl:sameAs` /
   `skos:exactMatch` auf die externe URI.
+- **Standort** → `crm:P55_has_current_location` + `rico:hasOrHadPhysicalLocation`
+  auf einen eigenen `<location/…>`-Knoten (`crm:E53_Place` /
+  `rico:PhysicalLocation`). Die `locations`-Tabelle ist nicht dieselbe wie
+  `places`, entsprechend eigener IRI-Raum.
+- **Schutzfrist** → `crm:P104_is_subject_to` + `rico:isOrWasRegulatedBy` auf einen
+  `crm:E30_Right` / `rico:Rule`-Knoten mit Fristtyp (`crm:P2_has_type` /
+  `rico:hasOrHadRuleType`), Dauer als `crm:E54_Dimension` und Freigabejahr als
+  `crm:E52_Time-Span`. Dazu eine klartextliche Aussage in
+  `rico:conditionsOfAccess` («Closed until 2099»), damit der Status ohne Rechnen
+  lesbar ist. Fehlt das Entstehungsdatum, wird die Frist ohne Jahr ausgewiesen —
+  siehe [Schutzfristen](protection-periods.md).
 - **Privates wird gefiltert**: `objects.private`, `media.private_media`,
   `actors.private` plus private Note-Types (`internal_note`,
   `archivists_notes`, `comment`).
+
+!!! warning "Der Export bildet Fristen ab, wendet sie aber nicht an"
+    Mit `--include-protected` (Migration/Backup) enthält das Paket auch
+    gesperrte Datensätze. Die Fristen stehen dann zwar im Graphen und sind
+    maschinell auswertbar, durchgesetzt werden müssen sie aber im Zielsystem.
 
 Vollständige Spec: <https://github.com/kraenzle-ritter/anton-cidoc>.
 

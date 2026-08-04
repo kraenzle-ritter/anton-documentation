@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **27. Juli 2026** ab (Anton v0.82). Sie wird
+    Diese Matrix bildet den Stand vom **4. August 2026** ab (Anton v0.82). Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -55,10 +55,18 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
+| Standort (physisch) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Schutzfrist (strukturiert) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+
+² **EAD** gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
+`<accessrestrict>` und `<originalsloc>` werden aus den gleichnamigen Textfeldern
+gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
+Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
+nicht die auswertbare Frist. `<physloc>` ist nicht implementiert.
 
 ¹ Nur im **A+ Bundle**: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die

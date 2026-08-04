@@ -23,6 +23,30 @@ keine zweite Rechnung an anderer Stelle. Massgeblich ist:
     Seither gibt es genau eine Quelle. Nach dem Aktualisieren wird das
     Freigabejahr für den Bestand einmalig neu berechnet.
 
+## Datensätze ohne Entstehungsdatum
+
+Eine Typ-Frist wird ab dem Entstehungsdatum gerechnet. Fehlt dieses, lässt sich
+das Freigabejahr nicht ermitteln — der Datensatz bleibt dann **gesperrt**, bis
+eine der beiden Angaben nachgetragen wird:
+
+* das **Entstehungsdatum**, oder
+* ein **Schutzfrist bis** direkt am Datensatz.
+
+!!! warning "Geändert: früher wurden solche Datensätze angezeigt"
+    Bis dahin rechnete Anton bei fehlendem Datum ab dem Jahr 0. Eine Frist von
+    80 Jahren lief damit im Jahr 81 ab, also längst — der Datensatz galt als
+    frei und war öffentlich sichtbar, obwohl eine Frist gesetzt war. Beim
+    Aktualisieren verschwinden diese Datensätze aus der öffentlichen Ansicht.
+
+    Betroffen sind nur Datensätze, bei denen jemand tatsächlich eine Frist
+    gewählt hat. Ohne gewählte Sperrfrist bleibt ein Datensatz frei, auch ohne
+    Entstehungsdatum.
+
+    Welche Datensätze im eigenen Bestand betroffen sind, lässt sich auf
+    Anfrage auswerten — bei Anton as a Service über k & r. Sinnvollerweise
+    trägt man die fehlenden Entstehungsdaten nach, statt die Einträge
+    gesperrt zu lassen.
+
 ## Die Typen pflegen
 
 Jeder Eintrag der Werteliste trägt:
