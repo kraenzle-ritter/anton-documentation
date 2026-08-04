@@ -308,7 +308,7 @@ Detail-Ansicht (private Objekte sind nur für Admins zugänglich).
 ## Was nicht im Export landet
 
 - Volltext (`objects.full_text`) — gehört nicht zu den ISAD-Feldern
-- Interne Notizen (Notetypes `internal_note`, `archivists_notes`,
+- Interne Textfelder (Notetypes `internal_note`, `archivists_notes`,
   `comment`) — werden im A+ und im Memobase-Profil gleich gefiltert
 - Private Datensätze (`private = 1`) — Subtree-Kinder werden zwar
   exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
