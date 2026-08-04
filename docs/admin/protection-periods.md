@@ -25,12 +25,21 @@ keine zweite Rechnung an anderer Stelle. Massgeblich ist:
 
 ## Datensätze ohne Entstehungsdatum
 
-Eine Typ-Frist wird ab dem Entstehungsdatum gerechnet. Fehlt dieses, lässt sich
-das Freigabejahr nicht ermitteln — der Datensatz bleibt dann **gesperrt**, bis
-eine der beiden Angaben nachgetragen wird:
+Eine Typ-Frist wird ab dem **Ende** des Entstehungszeitraums gerechnet, also ab
+dem Feld **Entstehung bis**. Fehlt dieses, lässt sich das Freigabejahr nicht
+ermitteln — der Datensatz bleibt dann **gesperrt**, bis eine der beiden Angaben
+nachgetragen wird:
 
-* das **Entstehungsdatum**, oder
+* das **Entstehungsdatum bis**, oder
 * ein **Schutzfrist bis** direkt am Datensatz.
+
+!!! important "Beide Datumsfelder ausfüllen"
+    Anton erwartet, dass **Entstehung von** und **Entstehung bis** gesetzt sind.
+    Bei einem einzelnen Datum stehen in beiden Feldern derselbe Wert. Ein
+    ausgefülltes «von» allein genügt nicht: Für die Frist zählt das Ende des
+    Zeitraums, und Anton rät es nicht aus dem Anfang — eine 80-Jahre-Frist ab
+    1933 endet anders als ab 1965, und welcher der beiden Werte gemeint ist,
+    weiss nur das Archiv.
 
 !!! warning "Geändert: früher wurden solche Datensätze angezeigt"
     Bis dahin rechnete Anton bei fehlendem Datum ab dem Jahr 0. Eine Frist von
