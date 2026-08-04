@@ -4117,7 +4117,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>27. Juli 2026</strong> ab (Anton v0.82). Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>4. August 2026</strong> ab (Anton v0.82). Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -4472,6 +4472,34 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 </tr>
 <tr>
+<td>Standort (physisch)</td>
+<td>○²</td>
+<td>○²</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Schutzfrist (strukturiert)</td>
+<td>○²</td>
+<td>○²</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
 <td>Benutzerkonten</td>
 <td>○</td>
 <td>○</td>
@@ -4529,6 +4557,11 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 </tbody>
 </table>
+<p>² <strong>EAD</strong> gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
+<code>&lt;accessrestrict&gt;</code> und <code>&lt;originalsloc&gt;</code> werden aus den gleichnamigen Textfeldern
+gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
+Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
+nicht die auswertbare Frist. <code>&lt;physloc&gt;</code> ist nicht implementiert.</p>
 <p>¹ Nur im <strong>A+ Bundle</strong>: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (<code>thumb</code>/<code>web</code>) daneben — <strong>nicht die Master</strong>.</p>

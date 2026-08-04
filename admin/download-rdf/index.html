@@ -4418,10 +4418,27 @@ Stichworte:</p>
   etc. auf der Entität (A+-„Loss-#2-Fix").</li>
 <li><strong>Authority-Links</strong> (GND/VIAF/Wikidata/GeoNames) → <code>owl:sameAs</code> /
   <code>skos:exactMatch</code> auf die externe URI.</li>
+<li><strong>Standort</strong> → <code>crm:P55_has_current_location</code> + <code>rico:hasOrHadPhysicalLocation</code>
+  auf einen eigenen <code>&lt;location/…&gt;</code>-Knoten (<code>crm:E53_Place</code> /
+  <code>rico:PhysicalLocation</code>). Die <code>locations</code>-Tabelle ist nicht dieselbe wie
+  <code>places</code>, entsprechend eigener IRI-Raum.</li>
+<li><strong>Schutzfrist</strong> → <code>crm:P104_is_subject_to</code> + <code>rico:isOrWasRegulatedBy</code> auf einen
+  <code>crm:E30_Right</code> / <code>rico:Rule</code>-Knoten mit Fristtyp (<code>crm:P2_has_type</code> /
+  <code>rico:hasOrHadRuleType</code>), Dauer als <code>crm:E54_Dimension</code> und Freigabejahr als
+  <code>crm:E52_Time-Span</code>. Dazu eine klartextliche Aussage in
+  <code>rico:conditionsOfAccess</code> («Closed until 2099»), damit der Status ohne Rechnen
+  lesbar ist. Fehlt das Entstehungsdatum, wird die Frist ohne Jahr ausgewiesen —
+  siehe <a href="../protection-periods/">Schutzfristen</a>.</li>
 <li><strong>Privates wird gefiltert</strong>: <code>objects.private</code>, <code>media.private_media</code>,
   <code>actors.private</code> plus private Note-Types (<code>internal_note</code>,
   <code>archivists_notes</code>, <code>comment</code>).</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Der Export bildet Fristen ab, wendet sie aber nicht an</p>
+<p>Mit <code>--include-protected</code> (Migration/Backup) enthält das Paket auch
+gesperrte Datensätze. Die Fristen stehen dann zwar im Graphen und sind
+maschinell auswertbar, durchgesetzt werden müssen sie aber im Zielsystem.</p>
+</div>
 <p>Vollständige Spec: <a href="https://github.com/kraenzle-ritter/anton-cidoc">https://github.com/kraenzle-ritter/anton-cidoc</a>.</p>
 <h2 id="was-im-ric-o-pur-profil-drinsteht">Was im RiC-O-(pur)-Profil drinsteht<a class="headerlink" href="#was-im-ric-o-pur-profil-drinsteht" title="Permanent link">&para;</a></h2>
 <p>Reines RiC-O 1.1, kein CIDOC CRM, keine Memobase-Aliase. Standard
@@ -4635,7 +4652,7 @@ haben.</p>
 <h2 id="was-nicht-im-export-landet">Was nicht im Export landet<a class="headerlink" href="#was-nicht-im-export-landet" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Volltext (<code>objects.full_text</code>) — gehört nicht zu den ISAD-Feldern</li>
-<li>Interne Notizen (Notetypes <code>internal_note</code>, <code>archivists_notes</code>,
+<li>Interne Textfelder (Notetypes <code>internal_note</code>, <code>archivists_notes</code>,
   <code>comment</code>) — werden im A+ und im Memobase-Profil gleich gefiltert</li>
 <li>Private Datensätze (<code>private = 1</code>) — Subtree-Kinder werden zwar
   exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
