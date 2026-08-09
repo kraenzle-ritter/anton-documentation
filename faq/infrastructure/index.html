@@ -1764,8 +1764,8 @@ flowchart TB
         UB[Verschlüsseltes lokales Backup]
     end
 
-    A[Backup-Server 1]
-    L[Backup-Server 2]
+    A["Backup-Server 1 (RAID 1)"]
+    L["Backup-Server 2 (RAID 1)"]
     G[Monitoring]
     E[Email Fehlermeldungen]
     %% Backup-Verbindungen
@@ -1800,7 +1800,8 @@ flowchart TB
 <li>Tägliche Vollbackups (Metadaten + Digitalisate)</li>
 </ul>
 </li>
-<li><strong>Geografische Verteilung</strong>: Backup-Server an verschiedenen Standorten in der Schweiz</li>
+<li><strong>Geografische Verteilung</strong>: Zwei Backup-Server an zwei verschiedenen Standorten in der Schweiz</li>
+<li><strong>Spiegelung</strong>: Beide Backup-Server laufen als RAID 1, jede Sicherung liegt also doppelt; insgesamt also 6fache Datenredundanz</li>
 <li><strong>Verschlüsselung</strong>: Alle Backups verschlüsselt gespeichert und übertragen</li>
 <li><strong>Pull-basierte Backups</strong>: Backup-Server holen Daten ab (kein Push)<ul>
 <li>Schutz vor Kompromittierung des Produktionsservers</li>
