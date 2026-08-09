@@ -209,7 +209,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (51)
+### anton: (53)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -246,6 +246,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:move-objects` | Move objects into a parent |
 | `anton:moveMediaToCloud` | Move media files to an cloud-storage (s3 or inge), but keep the conversions. |
 | `anton:protection-baseline` | Snapshot or diff the current per-object protection-period release decision (read-only, #256). |
+| `anton:prune-cache` | Delete expired rows from the database cache table (#389) |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
@@ -255,6 +256,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:setting` | Get or set a setting. Admin users can edit "editable" settings, superusers can edit all settin… |
 | `anton:setup-import-audit` | Migrate this tenant from accessions_archives_id (legacy) to import_audit_archives_id (new) — s… |
 | `anton:shrink-to-public` | Create a public anton from a production anton. |
+| `anton:sitemap` | Generate sitemap.xml for this tenant (#383) |
 | `anton:update` | Update Anton to the last stable Version. |
 | `anton:update-all-dates` | Fast update all dates in the objects table. |
 | `anton:update-dates` | Update the dates in the objects table. |
