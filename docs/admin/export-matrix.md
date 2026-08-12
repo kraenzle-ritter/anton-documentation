@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **4. August 2026** ab (Anton v0.82). Sie wird
+    Diese Matrix bildet den Stand vom **13. August 2026** ab (Anton v0.86). Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -57,6 +57,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
 | Standort (physisch) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Schutzfrist (strukturiert) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Kommentare (intern) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ●³ |
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
@@ -67,6 +68,12 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
 Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
 nicht die auswertbare Frist. `<physloc>` ist nicht implementiert.
+
+³ **Kommentare** sind interne Arbeitsnotizen und erscheinen bewusst in keinem
+Publikationsformat — auch nicht im nativen Round-Trip. Sie liegen ausschliesslich
+im SQL-Dump. Das ist kein Umsetzungsstand, sondern eine Festlegung: Sie werden in
+einer eigenen Tabelle geführt, die kein Exporter kennt, damit sie auch nicht
+versehentlich in eine Publikation geraten können. Siehe [Kommentare](comments.md).
 
 ¹ Nur im **A+ Bundle**: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
@@ -123,8 +130,10 @@ Mediendateien, keine Metadaten.
 Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
 lässt, und lässt sich **nicht** wieder einspielen. Die *Update-Tabelle* ist das
 Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf, und
-lässt Hierarchie (`parent`), Ereignisse und Standort weg, weil diese beim
-Zurückspielen blockiert würden oder wirkungslos blieben. Wer die schmalere Datei
+lässt Hierarchie (`parent`) und Ereignisse weg, weil diese beim Zurückspielen
+blockiert würden. Der Standort ist seit v0.86 enthalten: er wird beim Update
+geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
+Massen-Update. Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.
 
@@ -150,6 +159,16 @@ zurückgerollt.
 
 Auch Akteur:innen, Orte und Schlagwörter tragen seit v0.79 eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
+
+!!! warning "Kommentare gehen beim Round-Trip verloren"
+    «Verlustfrei» bezieht sich auf die Erschliessung. Interne
+    [Kommentare](comments.md) sind ab v0.86 davon ausgenommen: Sie werden in
+    einer eigenen Tabelle geführt, die kein Exporter kennt — auch der native
+    nicht —, damit sie nicht versehentlich in eine Publikation geraten. Ein
+    Export-Import-Zyklus lässt sie zurück.
+
+    Wer sie mitnehmen muss, braucht den **SQL-Dump**. Das ist die Sicherung,
+    die wirklich alles enthält.
 
 Nicht enthalten und damit weiterhin SQL-Dump: Benutzerkonten, Einstellungen,
 Formulardefinitionen und die KI-Daten.
