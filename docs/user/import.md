@@ -147,6 +147,19 @@ Das Feld kann mehrere Sprachen enthalten. Die Sprachen müssen entweder dem [ISO
 
 Das Feld muss einen bereits verwendeten Standort enthalten. Wenn ein neuer Standort verwendet werden soll, erst in Admin-Standorte hinzufügen.
 
+Es gibt zwei Spalten, und der Name sagt jeweils, was hineingehört: **`location_id`** nimmt nur die ID, **`location`** (auch: `standort`) nimmt ID *oder* Bezeichnung. Sind beide vorhanden, gewinnt `location_id`.
+
+### formularsatz (formset)
+
+Bestimmt, welcher Formularsatz für den Datensatz verwendet wird — also welche Felder in welcher Reihenfolge erscheinen. Das Feld ist **optional**: bleibt es leer, löst Anton den Formularsatz über die Verzeichnungsstufe auf. Nötig ist es nur, wenn ein Datensatz bewusst davon abweicht, etwa der Formularsatz `letter` auf Einzelstücken.
+
+Wie beim Standort zwei Spalten: **`formset`** (auch: `formularsatz`) nimmt den Namen *oder* die ID, **`formset_id`** nur die ID. Die Namen der verfügbaren Formularsätze stehen unter *Administration → Formularsätze* — in einer Standardinstallation etwa `fonds`, `class`, `series`, `file`, `item`, `collection`, `recordgroup`, `default`.
+
+Die heruntergeladene Update-Tabelle führt die Spalte `formset` und schreibt den **Namen**. Eine leere Zelle lässt den Formularsatz unverändert.
+
+!!! note "Vor v0.86 wurde die Spalte still verworfen"
+    Frühere Versionen kannten `formset` nicht: die Spalte wurde als unbekannt gemeldet und danach folgenlos übergangen, der Lauf meldete Erfolg. Wer den Formularsatz per Tabelle gesetzt hat und sich wundert, warum nichts passiert ist — das war der Grund.
+
 ### vacat
 
 Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält vacat keinen Wert, wird 0 gesetzt.
