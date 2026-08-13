@@ -260,10 +260,19 @@ Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert,
 
 Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle **Trefferliste direkt als Update-Tabelle herunterladen**: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.
 
-Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
+Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
 
 !!! tip "Standorte ändern"
-    `location` enthält die **ID** des Standorts, nicht seine Bezeichnung — wie bei Schlagworten, Akteur:innen und Orten. Die IDs stehen unter *Admin → Standorte*. Beim Einspielen wird auch eine Bezeichnung akzeptiert, sie muss dann aber exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung; die ID ist der sichere Weg. Eine **leere Zelle lässt den Standort unverändert** — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter *Admin → Standorte* angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.
+    Für den Standort gibt es **zwei Spalten**, und der Name sagt jeweils, was hineingehört:
+
+    | Spalte | Inhalt |
+    |---|---|
+    | `location_id` | **nur die ID** des Standorts (steht unter *Admin → Standorte*) |
+    | `location` | ID **oder** Bezeichnung |
+
+    Die heruntergeladene Update-Tabelle nutzt `location_id`. Wer lieber mit Bezeichnungen arbeitet, benennt die Spalte in `location` um; dort werden beide Formen akzeptiert. Eine Bezeichnung muss exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung — die ID ist deshalb der sichere Weg.
+
+    Eine **leere Zelle lässt den Standort unverändert** — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter *Admin → Standorte* angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.
 
 Beim Klick öffnet sich ein Dialog, in dem sich die **Spalten auswählen** lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt `id` und `titel` — dann kann beim Einspielen nichts anderes zu Schaden kommen. `id` ist immer enthalten und nicht abwählbar.
 
