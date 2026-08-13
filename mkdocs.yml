@@ -45,6 +45,7 @@ nav:
       - Signaturen: user/identifiers.md
       - Ereignisse: user/antonevents.md
       - Textfelder und Markdown: user/markdown.md
+      - Kommentare: user/comments.md
     - Normdaten:
       - Akteure: user/actors.md
       - Orte: user/places.md
@@ -98,6 +99,7 @@ nav:
       - Startseite und Navigation: admin/home.md
       - Archivbeschreibung (ISDIAH): admin/isdiah.md
     - Benutzerverwaltung: admin/users.md
+    - Kommentare: admin/comments.md
     - Medien:
       - Mediengalerie: admin/gallery.md
       - Dokumente: admin/documents.md
