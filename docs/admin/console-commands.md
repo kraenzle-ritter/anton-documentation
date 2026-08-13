@@ -240,7 +240,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:import-native` | Restore an Anton subtree from a native round-trip package (anton-import-format + media). |
 | `anton:import-pages` | Import an excel file with metadata for pages |
 | `anton:install` | Install Anton for a .env file with --env |
-| `anton:mail` | Inform users about a downtime of Anton |
+| `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |
 | `anton:measure-disk-usage` | Measure and cache storage disk usage in the background (feeds anton:doctor CheckDiskSpace, #293) |
 | `anton:merge` | Merge multiple records into one (actors, places, or keywords) |
 | `anton:move-objects` | Move objects into a parent |
