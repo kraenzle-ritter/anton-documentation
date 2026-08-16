@@ -209,7 +209,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (53)
+### anton: (54)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -249,6 +249,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:prune-cache` | Delete expired rows from the database cache table (#389) |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
+| `anton:repair-edit-metadata` | Restore updated_at/updated_by from the history column on records a mass run restamped (#421). |
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
 | `anton:restore` | Restore Database from the last Backup (by default) |
 | `anton:restore-positions` | Restore object positions from an anton:reorder-positions snapshot TSV. |

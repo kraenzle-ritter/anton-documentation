@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **13. August 2026** ab (Anton v0.86). Sie wird
+    Diese Matrix bildet den Stand vom **16. August 2026** ab (Anton v0.87). Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -136,6 +136,14 @@ geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
 Massen-Update. Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.
+
+Seit **v0.87** führt die Update-Tabelle eines **mehrsprachigen** Archivs den Titel
+in je einer Spalte pro Inhaltssprache (`title_de`, `title_fr` …) statt in einer
+einzigen. Damit ist der Round-Trip auch mehrsprachig verlustfrei: Mit einer
+Spalte müsste beim Zurückspielen die Sprache des Laufs entscheiden, wohin der
+Wert gehört, und ein französischer Titel landete im deutschen Feld. Einsprachige
+Archive behalten die bare Spalte `titel`. Der *volle* Export gibt den Titel
+weiterhin einsprachig aus — er ist eine Lesesicht, kein Rückweg.
 
 Beides sind **keine Sicherungen**: Auch der volle Excel-Export führt weder Medien
 noch Normdateien noch Formulare. Für einen Rückweg dienen der native Round-Trip

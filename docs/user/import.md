@@ -39,11 +39,64 @@ Jeder Import (egal über welchen Pfad) erzeugt einen Sidecar-Datensatz im Akzess
 - MD5-Prüfsumme
 - Import-Zeitpunkt
 - Import-Pfad (Excel / SIP / Verzeichnis / agate)
+- die **verwendeten Einstellungen**, seit v0.87.0 (siehe unten)
 
 Fehlgeschlagene Importe hinterlassen **keine Lücke** in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.
 
+### Import-Protokoll
+
+Unter **`/import/audit`** steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit **v0.87.0** ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter *Admin → Formulare* anpassen.
+
+Der **Details**-Link führt zum Akzessions-Datensatz. Dessen Ansicht zeigt seit v0.87.0 nur noch, was einen Import beschreibt — Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, die hochgeladene Datei als Medium, und wer den Lauf ausgelöst hat. Felder, die auf eine Import-Quittung nicht anwendbar sind (*Ausleihe*, *Verschoben*), erscheinen dort nicht mehr.
+
+Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit Wert und Herkunft. Sie stehen dort dauerhaft — auch ein Jahr später ist damit nachvollziehbar, unter welchen Annahmen eine Lieferung hereingekommen ist.
+
 ## Ablauf (Excel-Import)
 Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
+
+## Inhaltssprache des Imports
+
+Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Seit **v0.87.0** ist das eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.
+
+!!! warning "Verhaltensänderung"
+    Bis v0.86.x richtete sich Anton nach der **Sprache der Oberfläche**. Wer die Bedienoberfläche auf Englisch stehen hatte und eine Tabelle einspielte, legte für jeden Datensatz eine *englische* Titel-Übersetzung an — mit dem unveränderten deutschen Text darin. Der Datensatz sah auf Englisch richtig aus und hatte auf Deutsch keinen Titel mehr. Ab v0.87.0 spielt die Oberflächensprache keine Rolle mehr.
+
+Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte Wert gewinnt:
+
+1. die Wahl für diesen Lauf (`--locale` auf der Kommandozeile)
+2. die Archiv-Einstellung `import_options.locale`
+3. die erste Sprache aus `locales` — die Hauptsprache des Archivs
+
+Die Inspektionsseite nennt vor dem Start die geltende Sprache **und woher sie stammt** («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Akzessions-Datensatz (siehe [Import-Protokoll](#import-protokoll)).
+
+Eine Spalte mit Sprachkürzel (`title_fr`) sticht diese Wahl für ihr Feld aus — siehe [titel](#titel-title).
+
+### Warum die Sprache auch beim Suchen zählt
+
+Die Inhaltssprache bestimmt nicht nur, wohin geschrieben wird, sondern auch, **worin Anton nach bestehenden Akteur:innen und Orten sucht**. Wird eine Sprache gewählt, in der der Bestand nicht erfasst ist, findet der Abgleich nichts — und legt bei eingeschaltetem Anlegen für jeden Namen einen neuen Datensatz an.
+
+Anton sucht deshalb in zwei Runden: zuerst in der Sprache des Laufs, dann in der Hauptsprache des Archivs. Ein Treffer aus der zweiten Runde wird im Protokoll vermerkt. Und die Vorschau (siehe unten) zeigt die Zahl der Neuanlagen, bevor etwas geschrieben wird — passt die Sprache nicht zum Bestand, sind dort auf einen Blick fast alle Akteur:innen «neu».
+
+### Wo die Einstellungen stehen
+
+Die Import-Einstellungen sind Sache des Archivs (`import_options`) und werden dort eingesehen, wo sie wirken: auf der Inspektionsseite der hochgeladenen Datei, jeweils mit dem **geltenden Wert**, dessen Herkunft und einer Erklärung. Angezeigt werden die Inhaltssprache und die Schalter, ob unbekannte Akteur:innen, Orte, Schlagworte, Standorte und Objekttypen neu angelegt werden.
+
+Es gibt bewusst **keine** zweite Ablage im Benutzerprofil: ein Wert, den man nur beim Importieren braucht, gehört an eine Stelle — und diese Stelle nennt ihn samt Herkunft, statt bloss «Standard» zu sagen.
+
+## Vorschau: was der Import neu anlegen würde
+
+Die Inspektionsseite zeigt vor dem Start, wie viele **verschiedene** Normdaten-Einträge der Lauf neu anlegen würde: Akteur:innen, Orte, Schlagworte, Standorte, Objekttypen. Dazu die Namen selbst.
+
+Die Zahl zählt verschiedene Einträge, nicht Zeilen: Eine unbekannte Akteurin, die in 500 Zeilen vorkommt, ist **eine** Neuanlage.
+
+Die Namen sind wichtiger als die Zahl. Ein falsches Trennzeichen zeigt sich daran, dass «Muster, Hans; Beispiel, Anna» als *ein* Name in der Liste steht — in einer blossen Zahl wäre das unsichtbar.
+
+Ist das Anlegen für eine Art ausgeschaltet, erscheinen dieselben Einträge als **nicht zuzuordnen**, mit dem Hinweis, dass diese Verknüpfungen im Lauf ersatzlos entfallen. Auch das ist ein Ergebnis, das man vorher kennen will.
+
+Übersteigt die Zahl der Neuanlagen einer Art die Hälfte der Zeilen, erscheint eine **Warnung**. Das deutet häufiger auf ein Trennzeichen-, Sprach- oder Spaltenproblem hin als auf echten Zuwachs. Die Warnung blockiert nichts — der Lauf lässt sich starten.
+
+!!! note "Die Vorschau schreibt nichts"
+    Sie liest nur. Es entsteht kein Datensatz, auch keiner, der hinterher wieder entfernt werden müsste.
 
 ## Spalten
 Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:
@@ -83,8 +136,19 @@ Das Feld darf höchstens 100 Zeichen enthalten.
 
 Das Feld kann freien Text enthalten.
 
-!!! Bug "Achtung"
-    Der Import mehrsprachiger Titel ist zurzeit nicht möglich.
+Der Titel ist ein **übersetzbares Feld**. In welche Sprache er geschrieben wird, entscheidet die [Inhaltssprache des Imports](#inhaltssprache-des-imports) — oder, genauer, die Spaltenbezeichnung selbst:
+
+| Spalte | schreibt nach |
+|---|---|
+| `titel` bzw. `title` | die Inhaltssprache des Laufs |
+| `title_de`, `title_fr`, `title_it`, `title_en` | genau die genannte Sprache |
+
+Seit **v0.87.0** lassen sich also mehrsprachige Titel importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.
+
+Dasselbe gilt für die **Textfelder**: `scopecontent` schreibt in die Inhaltssprache, `scopecontent_fr` gezielt ins Französische, ohne die anderen Sprachen desselben Textfelds anzutasten.
+
+!!! note "Nur konfigurierte Sprachen"
+    Ein Sprachkürzel wird nur erkannt, wenn es in der Einstellung `locales` des Archivs steht (siehe [Sprachkonfiguration](languages.md)). `title_es` in einem Archiv ohne Spanisch ist keine Sprachangabe, sondern eine unbekannte Spalte — und die Inspektion meldet sie als solche.
 
 ### Antonevents
 Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
@@ -275,6 +339,11 @@ Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die ak
 
 Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
 
+!!! tip "Mehrsprachige Archive: eine Titel-Spalte je Sprache"
+    Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle seit **v0.87.0** statt `titel` je eine Spalte `title_de`, `title_fr` usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.
+
+    Einsprachige Archive behalten die gewohnte Spalte `titel`; dort gibt es nichts zu unterscheiden. Ältere Tabellen mit `titel` bleiben in jedem Fall einspielbar.
+
 !!! tip "Standorte ändern"
     Für den Standort gibt es **zwei Spalten**, und der Name sagt jeweils, was hineingehört:
 
@@ -336,6 +405,7 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |:---   | :----------|
 |--no-backup | dont backup the database before import |
 |--import                  |really start import|
+|--locale=                 |Inhaltssprache des Laufs (z.B. `de`, `fr`). Ohne Angabe gilt die Archiv-Einstellung, sonst die Hauptsprache des Archivs — siehe [Inhaltssprache des Imports](#inhaltssprache-des-imports)|
 |--update                  |bestehende Datensätze aktualisieren statt neu anlegen; Match standardmässig über die `id`|
 |--default-excel-column=   |`id` (Standard) oder `identifier` — bestimmt beim `--update`, worüber die Datensätze gefunden werden|
 |--dont-validate           |do not validate the file|
@@ -343,6 +413,8 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |--create-actors           |create new actors if they dont exist|
 |--create-keywords         |create new keywords if they dont exist|
 |--create-places           |create new places if they dont exist|
+|--create-locations        |create new locations if they dont exist|
+|--create-object-types     |create new object_type terms if they dont exist|
 |--show-rules              |show rules for this file|
 |--show-columns            |show the original columns of this file|
 |--show-column-mapping     |show columns with mapping|
