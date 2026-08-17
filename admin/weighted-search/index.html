@@ -4239,8 +4239,8 @@
 <h3 id="globale-aktivierung">Globale Aktivierung<a class="headerlink" href="#globale-aktivierung" title="Permanent link">&para;</a></h3>
 <p>Die gewichtete Suche kann global für die API aktiviert werden:</p>
 <div class="highlight"><pre><span></span><code><span class="x">// In Tinker oder Seeder</span>
-<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, true);  // Aktivieren</span>
-<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, false); // Deaktivieren (Standard)</span>
+<span class="x">Setting::setValue('search_weighted_enabled', true);  // Aktivieren</span>
+<span class="x">Setting::setValue('search_weighted_enabled', false); // Deaktivieren (Standard)</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Benutzereinstellungen</p>
@@ -4404,15 +4404,15 @@ GET /api/keywords?search=Archiv&amp;weighted=1
 </table>
 <h3 id="gewichtungen-anpassen">Gewichtungen anpassen<a class="headerlink" href="#gewichtungen-anpassen" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="x">// Beispiel: Gewichtungen für Akteur:innen anpassen</span>
-<span class="x">Setting::setValue(&#39;search_weight_actors&#39;, [</span>
-<span class="x">    &#39;name&#39; =&gt; 15,              // Name stark erhöhen</span>
-<span class="x">    &#39;alternative_names&#39; =&gt; 10, // Alternative Namen wichtiger</span>
-<span class="x">    &#39;variants&#39; =&gt; 5,</span>
-<span class="x">    &#39;abbreviations&#39; =&gt; 5,</span>
-<span class="x">    &#39;type_label&#39; =&gt; 3,</span>
-<span class="x">    &#39;description&#39; =&gt; 2,</span>
-<span class="x">    &#39;sources&#39; =&gt; 1,</span>
-<span class="x">    &#39;comment&#39; =&gt; 1,</span>
+<span class="x">Setting::setValue('search_weight_actors', [</span>
+<span class="x">    'name' =&gt; 15,              // Name stark erhöhen</span>
+<span class="x">    'alternative_names' =&gt; 10, // Alternative Namen wichtiger</span>
+<span class="x">    'variants' =&gt; 5,</span>
+<span class="x">    'abbreviations' =&gt; 5,</span>
+<span class="x">    'type_label' =&gt; 3,</span>
+<span class="x">    'description' =&gt; 2,</span>
+<span class="x">    'sources' =&gt; 1,</span>
+<span class="x">    'comment' =&gt; 1,</span>
 <span class="x">]);</span>
 </code></pre></div>
 <h2 id="relevanz-berechnung">Relevanz-Berechnung<a class="headerlink" href="#relevanz-berechnung" title="Permanent link">&para;</a></h2>

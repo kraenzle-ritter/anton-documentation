@@ -4227,7 +4227,7 @@
 <p>Um einen neuen <code>customer</code> einzurichten benötigt man den Zugang über die Kommandozeile.</p>
 <h3 id="configphp-in-bootstrap-anlegen">config.php in bootstrap/ anlegen<a class="headerlink" href="#configphp-in-bootstrap-anlegen" title="Permanent link">&para;</a></h3>
 <p>Falls die Umgebung nicht der subdomain entspricht, muss man ein <code>config.php</code> File anlegen, das ein Array <code>$slugArray</code> definiert. Dieses ordnet die URL der Anton-Installation einem den <code>customer</code> zu: </p>
-<div class="highlight"><pre><span></span><code><span class="x">$slugArray = [&#39;besenval.anton&#39; =&gt; &#39;besenval&#39;];</span>
+<div class="highlight"><pre><span></span><code><span class="x">$slugArray = ['besenval.anton' =&gt; 'besenval'];</span>
 </code></pre></div>
 <p>Der <code>key</code> besteht aus hier Subdomain und Domain, der <code>value</code> enthält den <code>customer-slug</code> bzw. das suffix des <code>.env</code> files, das in diesem Fall <code>.env.besenval</code> heisst.</p>
 <h3 id="umgebung-anpassen-env">Umgebung anpassen (.env)<a class="headerlink" href="#umgebung-anpassen-env" title="Permanent link">&para;</a></h3>
@@ -4271,7 +4271,7 @@ MAIL_FROM
 MAIL_NAME
 </code></pre></div>
 <p>Es ist einfach, den Email Versand zu testen:
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">&#39;kraenzle@k-r.ch&#39;</span>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">'kraenzle@k-r.ch'</span>
 </code></pre></div></p>
 <h4 id="customers-path">Customers Path<a class="headerlink" href="#customers-path" title="Permanent link">&para;</a></h4>
 <p>Ausserdem kann die Variable <code>CUSTOMER_PATH</code> gesetzt werden (sie muss einen absoluten Pfad enthalten). Ist der <code>CUSTOMER_PATH</code> nicht gesetzt wird im Anton Ordner ein <code>customers</code> Ordner angelegt und verwendet.</p>
@@ -4288,12 +4288,12 @@ GEONAMES_USERNAME
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">anton_besenval</span><span class="p">;</span>
 </code></pre></div>
 <p>Einen eigenen DB-User erstellen:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;user_password&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'user_password'</span><span class="p">;</span>
 </code></pre></div>
 <p>Ersetze <code>user_password</code> durch das Passwort.</p>
 <p>Alle Rechte für diese user einrichten:</p>
-<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="grundinstallation">Grundinstallation<a class="headerlink" href="#grundinstallation" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval

@@ -4296,23 +4296,23 @@
 <h2 id="nachrichten-uber-die-cli-verteilen">Nachrichten über die CLI verteilen<a class="headerlink" href="#nachrichten-uber-die-cli-verteilen" title="Permanent link">&para;</a></h2>
 <p>Für die Verteilung von Nachrichten an mehrere Installationen (z.B. Update-Hinweise, Wartungsankündigungen) steht der Befehl <code>notification:send</code> zur Verfügung:</p>
 <h3 id="einzelne-installation">Einzelne Installation<a class="headerlink" href="#einzelne-installation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartung am 20.4.&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Details folgen.&quot;</span><span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung am 20.4."</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details folgen."</span><span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
 <h3 id="alle-installationen">Alle Installationen<a class="headerlink" href="#alle-installationen" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Update v0.54&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Neue Features.&quot;</span><span class="w"> </span>--all
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update v0.54"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Neue Features."</span><span class="w"> </span>--all
 </code></pre></div>
 <h3 id="mehrsprachig">Mehrsprachig<a class="headerlink" href="#mehrsprachig" title="Permanent link">&para;</a></h3>
 <p>Titel und Text können als JSON übergeben werden:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--title<span class="o">=</span><span class="s1">&#39;{&quot;de&quot;:&quot;Update v0.54&quot;,&quot;fr&quot;:&quot;Mise à jour v0.54&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--body<span class="o">=</span><span class="s1">&#39;{&quot;de&quot;:&quot;Neue Features verfügbar.&quot;,&quot;fr&quot;:&quot;Nouvelles fonctions disponibles.&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--title<span class="o">=</span><span class="s1">'{"de":"Update v0.54","fr":"Mise à jour v0.54"}'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--body<span class="o">=</span><span class="s1">'{"de":"Neue Features verfügbar.","fr":"Nouvelles fonctions disponibles."}'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--all
 </code></pre></div>
 <h3 id="text-aus-datei">Text aus Datei<a class="headerlink" href="#text-aus-datei" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartungsarbeiten&quot;</span><span class="w"> </span>--file<span class="o">=</span>notification.md<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartungsarbeiten"</span><span class="w"> </span>--file<span class="o">=</span>notification.md<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
 <h3 id="adressaten-einschranken">Adressaten einschränken<a class="headerlink" href="#adressaten-einschranken" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Intern&quot;</span><span class="w"> </span>--audience<span class="o">=</span>editors<span class="w"> </span>--env<span class="o">=</span>besenval
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Intern"</span><span class="w"> </span>--audience<span class="o">=</span>editors<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
 <p>Mögliche Werte für <code>--audience</code>: <code>all</code> (Default), <code>editors</code>, <code>admins</code>.</p>
 <h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">&para;</a></h3>

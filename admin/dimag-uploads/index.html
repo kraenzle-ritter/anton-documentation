@@ -4338,7 +4338,7 @@ das Feedback-Modul verbunden ist).</p>
 das 5+ Klassen mit unterschiedlichen Schemata befüllt haben.</p>
 <p>Helper:</p>
 <div class="highlight"><pre><span></span><code><span class="x">MediumEvent::record($medium, $type, $status, $category, $details);</span>
-<span class="x">Media::ingestStatus(?string $category)  // → &#39;ok&#39; | &#39;pending&#39; | &#39;failed&#39; | null</span>
+<span class="x">Media::ingestStatus(?string $category)  // → 'ok' | 'pending' | 'failed' | null</span>
 <span class="x">Media::latestIngestEvent(?string $category)  // → MediumEvent | null</span>
 </code></pre></div>
 <p><code>pending</code> wird nur für <code>category=dimag-ingest</code> zurückgegeben, wenn die

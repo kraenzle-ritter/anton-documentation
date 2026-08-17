@@ -3961,14 +3961,14 @@
 <h2 id="wiederherstellen-des-testarchivs">Wiederherstellen des Testarchivs<a class="headerlink" href="#wiederherstellen-des-testarchivs" title="Permanent link">&para;</a></h2>
 <p>Das Testarchiv wird täglich mit <code>anton:reset</code> per cronjob wiederhergestellt.</p>
 <div class="highlight"><pre><span></span><code><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>path_to_anton<span class="p">;</span><span class="w"> </span><span class="se">\</span>
-php<span class="w"> </span>artisan<span class="w"> </span>anton:reset<span class="w"> </span>--env<span class="o">=</span><span class="s2">&quot;kr&quot;</span><span class="w"> </span><span class="se">\</span>
---dump<span class="o">=</span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_db/reset.sql.gz&quot;</span><span class="w"> </span><span class="se">\</span>
---assets<span class="o">=</span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_assets&quot;</span><span class="w"> </span><span class="se">\</span>
+php<span class="w"> </span>artisan<span class="w"> </span>anton:reset<span class="w"> </span>--env<span class="o">=</span><span class="s2">"kr"</span><span class="w"> </span><span class="se">\</span>
+--dump<span class="o">=</span><span class="s2">"{path_to_anton-customers}/kr/reset_db/reset.sql.gz"</span><span class="w"> </span><span class="se">\</span>
+--assets<span class="o">=</span><span class="s2">"{path_to_anton-customers}/kr/reset_assets"</span><span class="w"> </span><span class="se">\</span>
 --mail<span class="w"> </span>&gt;/dev/null
 </code></pre></div>
 <h2 id="anderungen-dauerhaft-speichern">Änderungen dauerhaft speichern<a class="headerlink" href="#anderungen-dauerhaft-speichern" title="Permanent link">&para;</a></h2>
 <p>Um Änderungen dauerhaft zu speichern, ist deshalb ein Backup aus dem Datenbank-Dump <code>{path_to_anton-customers}/kr/reset_db/reset.sql.gz</code> zu machen:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--file<span class="w"> </span><span class="s2">&quot;{path_to_anton-customers}/kr/reset_db/reset.sql&quot;</span><span class="w"> </span>--env<span class="w"> </span>kr
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--file<span class="w"> </span><span class="s2">"{path_to_anton-customers}/kr/reset_db/reset.sql"</span><span class="w"> </span>--env<span class="w"> </span>kr
 </code></pre></div>
 <p><code>anton:backup</code> hängt selbst <code>.gz</code> an, daher hier <code>--file …/reset.sql</code> (nicht <code>.sql.gz</code>) — sonst entsteht <code>reset.sql.gz.gz</code>.</p>
 <p>Nun wird bei der nächsten Wiederherstellung das neue Backup verwendet.</p>

@@ -1357,6 +1357,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#import-protokoll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import-Protokoll
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1367,6 +1378,56 @@
     <span class="md-ellipsis">
       
         Ablauf (Excel-Import)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inhaltssprache-des-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inhaltssprache des Imports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inhaltssprache des Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warum-die-sprache-auch-beim-suchen-zahlt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum die Sprache auch beim Suchen zählt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wo-die-einstellungen-stehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wo die Einstellungen stehen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vorschau-was-der-import-neu-anlegen-wurde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorschau: was der Import neu anlegen würde
       
     </span>
   </a>
@@ -4395,6 +4456,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#import-protokoll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import-Protokoll
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4405,6 +4477,56 @@
     <span class="md-ellipsis">
       
         Ablauf (Excel-Import)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inhaltssprache-des-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inhaltssprache des Imports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inhaltssprache des Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warum-die-sprache-auch-beim-suchen-zahlt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warum die Sprache auch beim Suchen zählt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wo-die-einstellungen-stehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wo die Einstellungen stehen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vorschau-was-der-import-neu-anlegen-wurde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorschau: was der Import neu anlegen würde
       
     </span>
   </a>
@@ -4787,10 +4909,45 @@
 <li>MD5-Prüfsumme</li>
 <li>Import-Zeitpunkt</li>
 <li>Import-Pfad (Excel / SIP / Verzeichnis / agate)</li>
+<li>die <strong>verwendeten Einstellungen</strong>, seit v0.87.0 (siehe unten)</li>
 </ul>
 <p>Fehlgeschlagene Importe hinterlassen <strong>keine Lücke</strong> in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.</p>
+<h3 id="import-protokoll">Import-Protokoll<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
+<p>Unter <strong><code>/import/audit</code></strong> steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit <strong>v0.87.0</strong> ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter <em>Admin → Formulare</em> anpassen.</p>
+<p>Der <strong>Details</strong>-Link führt zum Akzessions-Datensatz. Dessen Ansicht zeigt seit v0.87.0 nur noch, was einen Import beschreibt — Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, die hochgeladene Datei als Medium, und wer den Lauf ausgelöst hat. Felder, die auf eine Import-Quittung nicht anwendbar sind (<em>Ausleihe</em>, <em>Verschoben</em>), erscheinen dort nicht mehr.</p>
+<p>Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit Wert und Herkunft. Sie stehen dort dauerhaft — auch ein Jahr später ist damit nachvollziehbar, unter welchen Annahmen eine Lieferung hereingekommen ist.</p>
 <h2 id="ablauf-excel-import">Ablauf (Excel-Import)<a class="headerlink" href="#ablauf-excel-import" title="Permanent link">&para;</a></h2>
 <p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
+<h2 id="inhaltssprache-des-imports">Inhaltssprache des Imports<a class="headerlink" href="#inhaltssprache-des-imports" title="Permanent link">&para;</a></h2>
+<p>Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Seit <strong>v0.87.0</strong> ist das eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.</p>
+<div class="admonition warning">
+<p class="admonition-title">Verhaltensänderung</p>
+<p>Bis v0.86.x richtete sich Anton nach der <strong>Sprache der Oberfläche</strong>. Wer die Bedienoberfläche auf Englisch stehen hatte und eine Tabelle einspielte, legte für jeden Datensatz eine <em>englische</em> Titel-Übersetzung an — mit dem unveränderten deutschen Text darin. Der Datensatz sah auf Englisch richtig aus und hatte auf Deutsch keinen Titel mehr. Ab v0.87.0 spielt die Oberflächensprache keine Rolle mehr.</p>
+</div>
+<p>Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte Wert gewinnt:</p>
+<ol>
+<li>die Wahl für diesen Lauf (<code>--locale</code> auf der Kommandozeile)</li>
+<li>die Archiv-Einstellung <code>import_options.locale</code></li>
+<li>die erste Sprache aus <code>locales</code> — die Hauptsprache des Archivs</li>
+</ol>
+<p>Die Inspektionsseite nennt vor dem Start die geltende Sprache <strong>und woher sie stammt</strong> («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Akzessions-Datensatz (siehe <a href="#import-protokoll">Import-Protokoll</a>).</p>
+<p>Eine Spalte mit Sprachkürzel (<code>title_fr</code>) sticht diese Wahl für ihr Feld aus — siehe <a href="#titel-title">titel</a>.</p>
+<h3 id="warum-die-sprache-auch-beim-suchen-zahlt">Warum die Sprache auch beim Suchen zählt<a class="headerlink" href="#warum-die-sprache-auch-beim-suchen-zahlt" title="Permanent link">&para;</a></h3>
+<p>Die Inhaltssprache bestimmt nicht nur, wohin geschrieben wird, sondern auch, <strong>worin Anton nach bestehenden Akteur:innen und Orten sucht</strong>. Wird eine Sprache gewählt, in der der Bestand nicht erfasst ist, findet der Abgleich nichts — und legt bei eingeschaltetem Anlegen für jeden Namen einen neuen Datensatz an.</p>
+<p>Anton sucht deshalb in zwei Runden: zuerst in der Sprache des Laufs, dann in der Hauptsprache des Archivs. Ein Treffer aus der zweiten Runde wird im Protokoll vermerkt. Und die Vorschau (siehe unten) zeigt die Zahl der Neuanlagen, bevor etwas geschrieben wird — passt die Sprache nicht zum Bestand, sind dort auf einen Blick fast alle Akteur:innen «neu».</p>
+<h3 id="wo-die-einstellungen-stehen">Wo die Einstellungen stehen<a class="headerlink" href="#wo-die-einstellungen-stehen" title="Permanent link">&para;</a></h3>
+<p>Die Import-Einstellungen sind Sache des Archivs (<code>import_options</code>) und werden dort eingesehen, wo sie wirken: auf der Inspektionsseite der hochgeladenen Datei, jeweils mit dem <strong>geltenden Wert</strong>, dessen Herkunft und einer Erklärung. Angezeigt werden die Inhaltssprache und die Schalter, ob unbekannte Akteur:innen, Orte, Schlagworte, Standorte und Objekttypen neu angelegt werden.</p>
+<p>Es gibt bewusst <strong>keine</strong> zweite Ablage im Benutzerprofil: ein Wert, den man nur beim Importieren braucht, gehört an eine Stelle — und diese Stelle nennt ihn samt Herkunft, statt bloss «Standard» zu sagen.</p>
+<h2 id="vorschau-was-der-import-neu-anlegen-wurde">Vorschau: was der Import neu anlegen würde<a class="headerlink" href="#vorschau-was-der-import-neu-anlegen-wurde" title="Permanent link">&para;</a></h2>
+<p>Die Inspektionsseite zeigt vor dem Start, wie viele <strong>verschiedene</strong> Normdaten-Einträge der Lauf neu anlegen würde: Akteur:innen, Orte, Schlagworte, Standorte, Objekttypen. Dazu die Namen selbst.</p>
+<p>Die Zahl zählt verschiedene Einträge, nicht Zeilen: Eine unbekannte Akteurin, die in 500 Zeilen vorkommt, ist <strong>eine</strong> Neuanlage.</p>
+<p>Die Namen sind wichtiger als die Zahl. Ein falsches Trennzeichen zeigt sich daran, dass «Muster, Hans; Beispiel, Anna» als <em>ein</em> Name in der Liste steht — in einer blossen Zahl wäre das unsichtbar.</p>
+<p>Ist das Anlegen für eine Art ausgeschaltet, erscheinen dieselben Einträge als <strong>nicht zuzuordnen</strong>, mit dem Hinweis, dass diese Verknüpfungen im Lauf ersatzlos entfallen. Auch das ist ein Ergebnis, das man vorher kennen will.</p>
+<p>Übersteigt die Zahl der Neuanlagen einer Art die Hälfte der Zeilen, erscheint eine <strong>Warnung</strong>. Das deutet häufiger auf ein Trennzeichen-, Sprach- oder Spaltenproblem hin als auf echten Zuwachs. Die Warnung blockiert nichts — der Lauf lässt sich starten.</p>
+<div class="admonition note">
+<p class="admonition-title">Die Vorschau schreibt nichts</p>
+<p>Sie liest nur. Es entsteht kein Datensatz, auch keiner, der hinterher wieder entfernt werden müsste.</p>
+</div>
 <h2 id="spalten">Spalten<a class="headerlink" href="#spalten" title="Permanent link">&para;</a></h2>
 <p>Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:</p>
 <div class="codehilite"><pre><span></span><code>parent
@@ -4818,9 +4975,30 @@ Einzelstück
 <p>Das Feld darf höchstens 100 Zeichen enthalten.</p>
 <h3 id="titel-title">titel (title)<a class="headerlink" href="#titel-title" title="Permanent link">&para;</a></h3>
 <p>Das Feld kann freien Text enthalten.</p>
-<div class="admonition bug">
-<p class="admonition-title">Achtung</p>
-<p>Der Import mehrsprachiger Titel ist zurzeit nicht möglich.</p>
+<p>Der Titel ist ein <strong>übersetzbares Feld</strong>. In welche Sprache er geschrieben wird, entscheidet die <a href="#inhaltssprache-des-imports">Inhaltssprache des Imports</a> — oder, genauer, die Spaltenbezeichnung selbst:</p>
+<table>
+<thead>
+<tr>
+<th>Spalte</th>
+<th>schreibt nach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>titel</code> bzw. <code>title</code></td>
+<td>die Inhaltssprache des Laufs</td>
+</tr>
+<tr>
+<td><code>title_de</code>, <code>title_fr</code>, <code>title_it</code>, <code>title_en</code></td>
+<td>genau die genannte Sprache</td>
+</tr>
+</tbody>
+</table>
+<p>Seit <strong>v0.87.0</strong> lassen sich also mehrsprachige Titel importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.</p>
+<p>Dasselbe gilt für die <strong>Textfelder</strong>: <code>scopecontent</code> schreibt in die Inhaltssprache, <code>scopecontent_fr</code> gezielt ins Französische, ohne die anderen Sprachen desselben Textfelds anzutasten.</p>
+<div class="admonition note">
+<p class="admonition-title">Nur konfigurierte Sprachen</p>
+<p>Ein Sprachkürzel wird nur erkannt, wenn es in der Einstellung <code>locales</code> des Archivs steht (siehe <a href="../languages/">Sprachkonfiguration</a>). <code>title_es</code> in einem Archiv ohne Spanisch ist keine Sprachangabe, sondern eine unbekannte Spalte — und die Inspektion meldet sie als solche.</p>
 </div>
 <h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
 <p>Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
@@ -4947,6 +5125,11 @@ Form und Inhalt (note.scopecontent)
 <p>Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle <strong>Trefferliste direkt als Update-Tabelle herunterladen</strong>: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.</p>
 <p>Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — <code>id</code>, die Feld-Spalten, Sprachen, den Standort (<code>location_id</code>), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten <code>note.*</code>. Bewusst <strong>nicht</strong> enthalten sind <code>parent</code> und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte <code>identifier</code> dient nur der Orientierung: das Update findet die Datensätze über die <code>id</code>, Änderungen an der Signatur bleiben wirkungslos.</p>
 <div class="admonition tip">
+<p class="admonition-title">Mehrsprachige Archive: eine Titel-Spalte je Sprache</p>
+<p>Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle seit <strong>v0.87.0</strong> statt <code>titel</code> je eine Spalte <code>title_de</code>, <code>title_fr</code> usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.</p>
+<p>Einsprachige Archive behalten die gewohnte Spalte <code>titel</code>; dort gibt es nichts zu unterscheiden. Ältere Tabellen mit <code>titel</code> bleiben in jedem Fall einspielbar.</p>
+</div>
+<div class="admonition tip">
 <p class="admonition-title">Standorte ändern</p>
 <p>Für den Standort gibt es <strong>zwei Spalten</strong>, und der Name sagt jeweils, was hineingehört:</p>
 <table>
@@ -4995,7 +5178,7 @@ Form und Inhalt (note.scopecontent)
 <h3 id="einfacher-import">Einfacher Import<a class="headerlink" href="#einfacher-import" title="Permanent link">&para;</a></h3>
 <p>Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:</p>
 <p>.. code:: bash</p>
-<div class="codehilite"><pre><span></span><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">anton</span><span class="p">:</span><span class="kn">import</span><span class="w"> </span><span class="o">--</span><span class="n">env</span><span class="o">=</span><span class="n">besenval</span> <span class="o">--</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span> <span class="o">--</span><span class="kn">import</span>
+<div class="codehilite"><pre><span></span><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">anton</span><span class="p">:</span><span class="kn">import</span><span class="w"> </span><span class="o">--</span><span class="n">env</span><span class="o">=</span><span class="n">besenval</span> <span class="o">--</span><span class="n">file</span><span class="o">=</span><span class="s2">"test.xlsx"</span> <span class="o">--</span><span class="kn">import</span>
 </code></pre></div>
 
 <p>Dabei wird davon ausgegangen, dass <code>test.xlsx</code> im Ordner <code>customers/besenval/metadata_to_import/</code> liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner <code>customers/besenval/assets_to_import/</code> befinden.</p>
@@ -5017,6 +5200,10 @@ Form und Inhalt (note.scopecontent)
 <tr>
 <td style="text-align: left;">--import</td>
 <td style="text-align: left;">really start import</td>
+</tr>
+<tr>
+<td style="text-align: left;">--locale=</td>
+<td style="text-align: left;">Inhaltssprache des Laufs (z.B. <code>de</code>, <code>fr</code>). Ohne Angabe gilt die Archiv-Einstellung, sonst die Hauptsprache des Archivs — siehe <a href="#inhaltssprache-des-imports">Inhaltssprache des Imports</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">--update</td>
@@ -5045,6 +5232,14 @@ Form und Inhalt (note.scopecontent)
 <tr>
 <td style="text-align: left;">--create-places</td>
 <td style="text-align: left;">create new places if they dont exist</td>
+</tr>
+<tr>
+<td style="text-align: left;">--create-locations</td>
+<td style="text-align: left;">create new locations if they dont exist</td>
+</tr>
+<tr>
+<td style="text-align: left;">--create-object-types</td>
+<td style="text-align: left;">create new object_type terms if they dont exist</td>
 </tr>
 <tr>
 <td style="text-align: left;">--show-rules</td>

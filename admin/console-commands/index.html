@@ -3475,10 +3475,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-53" class="md-nav__link">
+  <a href="#anton-54" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (53)
+        anton: (54)
       
     </span>
   </a>
@@ -4285,10 +4285,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-53" class="md-nav__link">
+  <a href="#anton-54" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (53)
+        anton: (54)
       
     </span>
   </a>
@@ -4628,8 +4628,8 @@ Kontingents), <strong><code>anton:db-info</code></strong> (aktiver Treiber und V
 <h2 id="nachrichten">Nachrichten<a class="headerlink" href="#nachrichten" title="Permanent link">&para;</a></h2>
 <p><strong><code>notification:send</code></strong> legt eine <a href="../notifications/">System-Nachricht</a> in einer
 oder allen Installationen an:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartung&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Details.&quot;</span><span class="w"> </span>--env<span class="o">=</span>besenval
-php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Update&quot;</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details."</span><span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update"</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
 </code></pre></div>
 <p><code>--title</code> (Pflicht) und <code>--body</code> akzeptieren einen String oder JSON für
 mehrere Sprachen; <code>--audience</code> schränkt auf <code>editors</code> oder <code>admins</code> ein.</p>
@@ -4646,7 +4646,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-53">anton: (53)<a class="headerlink" href="#anton-53" title="Permanent link">&para;</a></h3>
+<h3 id="anton-54">anton: (54)<a class="headerlink" href="#anton-54" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -4798,6 +4798,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:repair-closure-table</code></td>
 <td>Check and repair the object_closure table consistency</td>
+</tr>
+<tr>
+<td><code>anton:repair-edit-metadata</code></td>
+<td>Restore updated_at/updated_by from the history column on records a mass run restamped (#421).</td>
 </tr>
 <tr>
 <td><code>anton:reset</code></td>

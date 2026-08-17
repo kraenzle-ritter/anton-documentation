@@ -1601,6 +1601,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sprache-beim-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprache beim Import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fallback-verhalten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4158,6 +4169,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sprache-beim-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprache beim Import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fallback-verhalten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4345,6 +4367,11 @@
 <p><strong>Wenn deaktiviert (<code>false</code>):</strong>
 - Nur <strong>ein Eingabefeld</strong> wird angezeigt (für die aktuelle UI-Sprache)
 - Bereits eingegebene Werte in anderen Sprachen werden als Info angezeigt, aber nicht bearbeitet</p>
+<h2 id="sprache-beim-import">Sprache beim Import<a class="headerlink" href="#sprache-beim-import" title="Permanent link">&para;</a></h2>
+<p>Ein Import hat eine eigene <strong>Inhaltssprache</strong>, unabhängig von der Sprache der Oberfläche. Sie entscheidet, in welche Sprache Titel, Textfelder und neu angelegte Normdaten geschrieben werden — und in welcher Sprache Anton nach bestehenden Akteur:innen und Orten sucht.</p>
+<p>Bis v0.86.x richtete sich der Import nach der Oberflächensprache; wer englisch eingestellt hatte, legte englische Titel mit deutschem Text an. Seit <strong>v0.87.0</strong> wird die Sprache bewusst gewählt und ist vor dem Lauf sichtbar.</p>
+<p>Übersetzbare Felder lassen sich im Import auch <strong>je Sprache</strong> ansprechen — <code>title_de</code>, <code>title_fr</code>, <code>scopecontent_it</code>. Damit sind mehrsprachige Titel importierbar, und die Update-Tabelle eines mehrsprachigen Archivs geht verlustfrei hinaus und wieder hinein.</p>
+<p>Beides ist ausführlich beschrieben unter <a href="../import/#inhaltssprache-des-imports">Import → Inhaltssprache des Imports</a>.</p>
 <h2 id="fallback-verhalten">Fallback-Verhalten<a class="headerlink" href="#fallback-verhalten" title="Permanent link">&para;</a></h2>
 <p>Wenn für die aktuelle Sprache kein Wert existiert:
 1. Anton verwendet den Wert der <strong>ersten Sprache</strong> aus <code>setting('locales')</code>
@@ -4376,21 +4403,21 @@
 <h2 id="konfigurationsbeispiele">Konfigurationsbeispiele<a class="headerlink" href="#konfigurationsbeispiele" title="Permanent link">&para;</a></h2>
 <h3 id="einsprachiges-archiv">Einsprachiges Archiv<a class="headerlink" href="#einsprachiges-archiv" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="x">// Setting: locales</span>
-<span class="x">[&quot;de&quot;]</span>
+<span class="x">["de"]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="x">// UserSettings</span>
 <span class="x">show_all_locales_in_edit_forms: false</span>
 </code></pre></div></p>
 <h3 id="zweisprachiges-archiv-defr">Zweisprachiges Archiv (DE/FR)<a class="headerlink" href="#zweisprachiges-archiv-defr" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="x">// Setting: locales</span>
-<span class="x">[&quot;de&quot;, &quot;fr&quot;]</span>
+<span class="x">["de", "fr"]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="x">// UserSettings (je nach Bedarf)</span>
 <span class="x">show_all_locales_in_edit_forms: false  // Empfohlen</span>
 </code></pre></div></p>
 <h3 id="internationales-archiv">Internationales Archiv<a class="headerlink" href="#internationales-archiv" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="x">// Setting: locales</span>
-<span class="x">[&quot;en&quot;, &quot;de&quot;, &quot;fr&quot;, &quot;it&quot;]</span>
+<span class="x">["en", "de", "fr", "it"]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="x">// UserSettings (für Übersetzer)</span>
 <span class="x">show_all_locales_in_edit_forms: true</span>

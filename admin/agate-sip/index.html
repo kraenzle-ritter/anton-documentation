@@ -4253,10 +4253,10 @@ diese beim Import in die tenant-spezifische Werteliste „Objekttyp"
 <p>Das Mapping ist <strong>pro Tenant konfigurierbar</strong>. Vorteil: agate muss das
 spezifische Vokabular des Archivs nicht kennen.</p>
 <p>Konfiguration:</p>
-<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue(&#39;nara_to_objecttype_map&#39;, [</span>
-<span class="x">    &#39;StillImage&#39; =&gt; &#39;Bild&#39;,</span>
-<span class="x">    &#39;Textual&#39;    =&gt; &#39;Akte&#39;,</span>
-<span class="x">    &#39;Audio&#39;      =&gt; &#39;Tonaufnahme&#39;,</span>
+<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('nara_to_objecttype_map', [</span>
+<span class="x">    'StillImage' =&gt; 'Bild',</span>
+<span class="x">    'Textual'    =&gt; 'Akte',</span>
+<span class="x">    'Audio'      =&gt; 'Tonaufnahme',</span>
 <span class="x">    // ...</span>
 <span class="x">]);</span>
 </code></pre></div>
@@ -4273,9 +4273,9 @@ kann später von Hand vergeben werden.</p>
 </ul>
 <p>Response: <code>202 Accepted</code> mit JSON, das die Job-ID enthält:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;job_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01J5XYZ...&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;queued&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;callback_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://your-anton.ch/api/sip/status/01J5XYZ...&quot;</span>
+<span class="w">  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01J5XYZ..."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"queued"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"callback_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://your-anton.ch/api/sip/status/01J5XYZ..."</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>agate pollt anschliessend <code>callback_url</code> bis <code>status: completed</code> (oder

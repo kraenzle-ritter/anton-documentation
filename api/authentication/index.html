@@ -4292,9 +4292,9 @@
 <h2 id="api-anfrage-mit-token">API-Anfrage mit Token<a class="headerlink" href="#api-anfrage-mit-token" title="Permanent link">&para;</a></h2>
 <h3 id="bearer-token">Bearer-Token<a class="headerlink" href="#bearer-token" title="Permanent link">&para;</a></h3>
 <p>Der Token wird als <strong>Bearer-Token</strong> im <code>Authorization</code>-Header übergeben:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer IHR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
 </code></pre></div>
 <h3 id="query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt">Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)<a class="headerlink" href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
@@ -4303,30 +4303,30 @@
 </div>
 <p>Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — bitte auf Bearer-Header umstellen</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
 </code></pre></div>
 <p>Warum weg? Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern — der Bearer-Header hat keines dieser Probleme.</p>
 <h3 id="beispiele">Beispiele<a class="headerlink" href="#beispiele" title="Permanent link">&para;</a></h3>
 <p><strong>Objekte abrufen (Bearer):</strong>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/objects&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer IHR_API_TOKEN"</span>
 </code></pre></div></p>
 <p><strong>Einzelne Akteur:in abrufen:</strong>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/actors/123&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/actors/123"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer IHR_API_TOKEN"</span>
 </code></pre></div></p>
 <p><strong>Suche mit zusätzlichen Parametern:</strong>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;https://ihre-anton-instanz.ch/api/actors?search=Müller&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer IHR_API_TOKEN&quot;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/actors?search=Müller"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer IHR_API_TOKEN"</span>
 </code></pre></div></p>
 <h3 id="beispiel-mit-javascript">Beispiel mit JavaScript<a class="headerlink" href="#beispiel-mit-javascript" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">apiToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IHR_API_TOKEN&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">apiToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'IHR_API_TOKEN'</span><span class="p">;</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://ihre-anton-instanz.ch/api/objects&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://ihre-anton-instanz.ch/api/objects'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">apiToken</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;Accept&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">    </span><span class="s1">'Authorization'</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">apiToken</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'Accept'</span><span class="o">:</span><span class="w"> </span><span class="s1">'application/json'</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
@@ -4335,12 +4335,12 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <h3 id="beispiel-mit-python">Beispiel mit Python<a class="headerlink" href="#beispiel-mit-python" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">api_token</span> <span class="o">=</span> <span class="s1">&#39;IHR_API_TOKEN&#39;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://ihre-anton-instanz.ch/api/objects&#39;</span>
+<span class="n">api_token</span> <span class="o">=</span> <span class="s1">'IHR_API_TOKEN'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://ihre-anton-instanz.ch/api/objects'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">api_token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+    <span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">api_token</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span><span class="p">:</span> <span class="s1">'application/json'</span>
 <span class="p">}</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>

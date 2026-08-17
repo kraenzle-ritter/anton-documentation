@@ -4224,7 +4224,7 @@ Filter-Layout ausgebaut.</p>
 <li><code>gallery_show_keywords_select</code>: Zeigt/verbirgt das Stichwort-Dropdown</li>
 <li><code>gallery_show_media_type_filter</code>: Zeigt/verbirgt das Medientyp-Dropdown</li>
 <li><code>gallery_media_types</code>: Welche Medientypen wählbar sind, z. B.
-  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;image/&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bilder&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;application/pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dokumente&quot;</span><span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"image/"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bilder"</span><span class="p">,</span><span class="w"> </span><span class="nt">"application/pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dokumente"</span><span class="p">}</span>
 </code></pre></div>
   Diese Einschränkung gilt auch wenn das Dropdown ausgeblendet ist.</li>
 <li><strong>Zeitraum-Filter (Von / Bis)</strong> mit flexibler Datumseingabe — wird
@@ -4244,13 +4244,13 @@ Filter-Layout ausgebaut.</p>
 <p>Seit v0.42.0 ist das Filter-Bar-Layout pro Tenant konfigurierbar über
 das Setting <code>gallery_filter_fields</code>. Damit lassen sich Reihenfolge,
 Breite und Sichtbarkeit der Filter steuern. Beispiel:</p>
-<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue(&#39;gallery_filter_fields&#39;, [</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;search&#39;,     &#39;width&#39; =&gt; 4, &#39;visible&#39; =&gt; true],</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;fonds&#39;,      &#39;width&#39; =&gt; 3, &#39;visible&#39; =&gt; true],</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;media_type&#39;, &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;date_from&#39;,  &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;date_to&#39;,    &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
-<span class="x">    [&#39;name&#39; =&gt; &#39;keywords&#39;,   &#39;width&#39; =&gt; 3, &#39;visible&#39; =&gt; false],</span>
+<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('gallery_filter_fields', [</span>
+<span class="x">    ['name' =&gt; 'search',     'width' =&gt; 4, 'visible' =&gt; true],</span>
+<span class="x">    ['name' =&gt; 'fonds',      'width' =&gt; 3, 'visible' =&gt; true],</span>
+<span class="x">    ['name' =&gt; 'media_type', 'width' =&gt; 2, 'visible' =&gt; true],</span>
+<span class="x">    ['name' =&gt; 'date_from',  'width' =&gt; 2, 'visible' =&gt; true],</span>
+<span class="x">    ['name' =&gt; 'date_to',    'width' =&gt; 2, 'visible' =&gt; true],</span>
+<span class="x">    ['name' =&gt; 'keywords',   'width' =&gt; 3, 'visible' =&gt; false],</span>
 <span class="x">]);</span>
 </code></pre></div>
 <p>Breitenangaben sind Bootstrap-Spalten (1–12). Die Reset-Schaltfläche

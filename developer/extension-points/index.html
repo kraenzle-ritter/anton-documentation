@@ -4135,8 +4135,8 @@ Diese Seite zählt die wichtigsten auf.</p>
 Modi (<code>standard</code>, <code>recordgroup_as_base</code>, <code>id_identifier</code>, <code>manual_identifiers</code>)
 oder den <strong>voll qualifizierten Klassennamen</strong> eines eigenen Generators. Anton
 instanziiert ihn und ruft <code>getNewIdentifier(...)</code> auf:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$generator = setting(&#39;identifier_generator&#39;);</span>
-<span class="x">// z.B. &#39;Anton\Models\IdentifierGenerators\KaeNewIdentifier&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="x">$generator = setting('identifier_generator');</span>
+<span class="x">// z.B. 'Anton\Models\IdentifierGenerators\KaeNewIdentifier'</span>
 <span class="x">return (new $generator($this))-&gt;getNewIdentifier($level_of_description_id, …);</span>
 </code></pre></div>
 <p>Eigene Generatoren liegen unter <code>app/Models/IdentifierGenerators/</code>

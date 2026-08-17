@@ -4263,7 +4263,7 @@ eigener Crontab-Eintrag</strong> eingerichtet – auf den k&amp;r-Servern über
 <strong>anton-ansible</strong> provisioniert, nicht in <code>app/Console/Kernel.php</code>.</p>
 <p>Ein Eintrag ruft das Kommando direkt mit dem Environment-Slug auf, z. B. für
 einen nächtlichen Lauf:</p>
-<div class="highlight"><pre><span></span><code># Normdaten-Abgleich für die Installation &quot;besenval&quot;, täglich 02:30
+<div class="highlight"><pre><span></span><code># Normdaten-Abgleich für die Installation "besenval", täglich 02:30
 30 2 * * *  cd /var/www/anton &amp;&amp; php artisan resources:sync --env=besenval --delete-duplicates --mail=admin@example.org &gt;&gt; storage/logs/resources-sync.log 2&gt;&amp;1
 </code></pre></div>
 <ul>
