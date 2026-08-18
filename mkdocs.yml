@@ -177,6 +177,53 @@ plugins:
           site_name: 'Anton – Documentation'
           nav:
             - Home: index.md
+            - User:
+              - Getting started: user/index.md
+              - Cataloguing:
+                - Units of description: user/objects.md
+                - Archival arrangement and moving: user/hierarchy.md
+                - Forms and fields: user/forms.md
+                - Reference codes: user/identifiers.md
+                - Events: user/antonevents.md
+                - Text fields and Markdown: user/markdown.md
+                - Comments: user/comments.md
+              - Authority data:
+                - Actors: user/actors.md
+                - Places: user/places.md
+                - Keywords: user/keywords.md
+                - Locations: user/locations.md
+                - Authority data synchronisation: user/authorities.md
+              - Media:
+                - Media: user/media.md
+                - Media gallery: user/gallery.md
+                - Documents: user/documents.md
+                - QR code upload: user/qr-upload.md
+                - Cataloguing film content: user/movie-tracks.md
+              - Access and protection periods: user/access.md
+              - Search:
+                - Full-text search: user/search.md
+                - Instant search: user/search-v2.md
+                - Weighted search: user/weighted-search.md
+                - Correspondences: user/correspondences.md
+                - Cart: user/cart.md
+              - Import and export:
+                - Data import: user/import.md
+                - SIP ingest: user/sip.md
+                - Downloading a DIP: user/download-dip.md
+              - Administration:
+                - Lending objects: user/loans.md
+                - Selection and bulk actions: user/selection.md
+                - Statistics: user/statistics.md
+                - AI-assisted cataloguing: user/ai-cataloging.md
+                - Language configuration: user/languages.md
+              - Login:
+                - Two-factor authentication: user/2FA.md
+                - Passkey authentication: user/passkey.md
+            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
+            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
+            - Developer (de): /developer/
+            - Admin (de): /admin/requirements/
+            - API (de): /api/
             - FAQ:
               - General FAQs: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
@@ -194,6 +241,53 @@ plugins:
           site_name: 'Anton – Documentation'
           nav:
             - Accueil: index.md
+            - Utilisation:
+              - Prise en main: user/index.md
+              - Description:
+                - Unités de description: user/objects.md
+                - Plan de classement et déplacement: user/hierarchy.md
+                - Formulaires et champs: user/forms.md
+                - Cotes: user/identifiers.md
+                - Événements: user/antonevents.md
+                - Champs de texte et Markdown: user/markdown.md
+                - Commentaires: user/comments.md
+              - Données d'autorité:
+                - Acteur·trice·s: user/actors.md
+                - Lieux: user/places.md
+                - Mots-clés: user/keywords.md
+                - Lieux de conservation: user/locations.md
+                - Synchronisation des données d'autorité: user/authorities.md
+              - Médias:
+                - Médias: user/media.md
+                - Galerie de médias: user/gallery.md
+                - Documents: user/documents.md
+                - Téléversement par code QR: user/qr-upload.md
+                - Contenu des films: user/movie-tracks.md
+              - Accès et délais de protection: user/access.md
+              - Recherche:
+                - Recherche plein texte: user/search.md
+                - Recherche instantanée: user/search-v2.md
+                - Recherche pondérée: user/weighted-search.md
+                - Correspondances: user/correspondences.md
+                - Panier: user/cart.md
+              - Import et export:
+                - Import de données: user/import.md
+                - SIP Ingest: user/sip.md
+                - Télécharger un DIP: user/download-dip.md
+              - Gestion:
+                - Prêt d'objets: user/loans.md
+                - Sélection et actions groupées: user/selection.md
+                - Statistiques: user/statistics.md
+                - Description assistée par IA: user/ai-cataloging.md
+                - Configuration linguistique: user/languages.md
+              - Connexion:
+                - Authentification à deux facteurs: user/2FA.md
+                - Authentification par passkey: user/passkey.md
+            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
+            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
+            - Developer (de): /developer/
+            - Admin (de): /admin/requirements/
+            - API (de): /api/
             - FAQ:
               - FAQ générales: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
@@ -205,17 +299,59 @@ plugins:
               - Recherche et consultation: faq/recherche.md
               - Export: faq/export.md
               - Installations: faq/installationen.md
-            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
-            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
-            - Developer (de): /developer/
-            - Admin (de): /admin/requirements/
-            - API (de): /api/
         - locale: it
           name: Italiano
           build: true
           site_name: 'Anton – Documentazione'
           nav:
             - Home: index.md
+            - Utilizzo:
+              - Per iniziare: user/index.md
+              - Descrizione:
+                - Unità di descrizione: user/objects.md
+                - Struttura e spostamento: user/hierarchy.md
+                - Formulari e campi: user/forms.md
+                - Segnature: user/identifiers.md
+                - Eventi: user/antonevents.md
+                - Campi di testo e Markdown: user/markdown.md
+                - Commenti: user/comments.md
+              - Dati di autorità:
+                - Attori e attrici: user/actors.md
+                - Luoghi: user/places.md
+                - Parole chiave: user/keywords.md
+                - Collocazioni: user/locations.md
+                - Allineamento dei dati di autorità: user/authorities.md
+              - Media:
+                - Media: user/media.md
+                - Galleria dei media: user/gallery.md
+                - Documenti: user/documents.md
+                - Caricamento tramite codice QR: user/qr-upload.md
+                - Contenuto dei film: user/movie-tracks.md
+              - Accesso e termini di protezione: user/access.md
+              - Ricerca:
+                - Ricerca full text: user/search.md
+                - Ricerca rapida: user/search-v2.md
+                - Ricerca ponderata: user/weighted-search.md
+                - Corrispondenze: user/correspondences.md
+                - Carrello: user/cart.md
+              - Importazione ed esportazione:
+                - Importazione dati: user/import.md
+                - SIP Ingest: user/sip.md
+                - Scaricare un DIP: user/download-dip.md
+              - Gestione:
+                - Prestito di oggetti: user/loans.md
+                - Selezione e azioni collettive: user/selection.md
+                - Statistiche: user/statistics.md
+                - Descrizione assistita dall'IA: user/ai-cataloging.md
+                - Configurazione delle lingue: user/languages.md
+              - Autenticazione:
+                - Autenticazione a due fattori: user/2FA.md
+                - Autenticazione con passkey: user/passkey.md
+            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
+            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
+            - Developer (de): /developer/
+            - Admin (de): /admin/requirements/
+            - API (de): /api/
             - FAQ:
               - FAQ generali: faq/index.md
               - Anton as a Service: faq/anton_as_service.md

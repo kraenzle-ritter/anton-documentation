@@ -54,12 +54,6 @@ deaktiviert.
 Die Reihenfolge gilt für die Anzeige im Katalog, in der Galerie und im
 Viewer — es ist dieselbe Reihenfolge, die beim Hochladen vergeben wird.
 
-!!! note "Warum Tasten und kein Ziehen"
-    Die Medienliste ist auf mehrere Seiten verteilt. Ziehen könnte nur
-    innerhalb der angezeigten Seite umsortieren; schrittweises Verschieben
-    trägt ein Medium auch über die Seitengrenze hinweg, weil die Reihenfolge
-    zur Sammlung gehört und nicht zur Seite.
-
 Bilder und Dokumente werden getrennt sortiert: Ein Bild kann nicht mit einem
 Dokument den Platz tauschen.
 

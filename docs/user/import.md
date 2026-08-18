@@ -464,9 +464,9 @@ Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (`datierung_text`, i
 
 Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:
 
-.. code:: bash
-
-    php artisan anton:import --env=besenval --file="test.xlsx" --import
+```bash
+php artisan anton:import --env=besenval --file="test.xlsx" --import
+```
 
 Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `customers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner `customers/besenval/assets_to_import/` befinden.
 
