@@ -18,6 +18,14 @@
       
       
         
+          <link rel="alternate" href="./" hreflang="de">
+        
+          <link rel="alternate" href="../../en/admin/export-matrix/" hreflang="en">
+        
+          <link rel="alternate" href="../../fr/admin/export-matrix/" hreflang="fr">
+        
+          <link rel="alternate" href="../../it/admin/export-matrix/" hreflang="it">
+        
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
@@ -113,6 +121,44 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/admin/export-matrix/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/admin/export-matrix/" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/admin/export-matrix/" hreflang="it" class="md-select__link">
+              Italiano
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -3185,6 +3231,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrations-export-das-bundle-als-weg-hinaus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations-Export: das Bundle als Weg hinaus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wer-welches-artefakt-auslosen-kann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wer welches Artefakt auslösen kann
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#format-einschrankungen-im-einzelnen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4102,6 +4170,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrations-export-das-bundle-als-weg-hinaus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations-Export: das Bundle als Weg hinaus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wer-welches-artefakt-auslosen-kann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wer welches Artefakt auslösen kann
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#format-einschrankungen-im-einzelnen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4238,8 +4328,8 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>RDF «A+» Bundle</td>
 <td>CIDOC CRM + RiC-O <strong>+ Mediendateien</strong> als ZIP</td>
-<td>Objekt-Baum, offline anzeigbar ohne Anton</td>
-<td><code>anton:export-rdf --profile=a-plus-bundle</code></td>
+<td>Objekt-Baum, offline anzeigbar ohne Anton; mit <code>--include-protected --include-originals</code> ein <strong>Migrationspaket</strong> (siehe unten)</td>
+<td>Admin → Export, <code>anton:export-rdf --profile=a-plus-bundle</code></td>
 </tr>
 <tr>
 <td><strong>Nativer Round-Trip</strong></td>
@@ -4639,7 +4729,9 @@ einer eigenen Tabelle geführt, die kein Exporter kennt, damit sie auch nicht
 versehentlich in eine Publikation geraten können. Siehe <a href="../comments/">Kommentare</a>.</p>
 <p>¹ Nur im <strong>A+ Bundle</strong>: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
-Derivate (<code>thumb</code>/<code>web</code>) daneben — <strong>nicht die Master</strong>.</p>
+Derivate (<code>thumb</code>/<code>web</code>) daneben — im Standardfall <strong>nicht die Master</strong>. Mit
+<code>--include-originals</code> kommen die Master-Dateien dazu, siehe
+<a href="#migrations-export-das-bundle-als-weg-hinaus">Migrations-Export</a>.</p>
 <h2 id="gut-abgedeckt">Gut abgedeckt<a class="headerlink" href="#gut-abgedeckt" title="Permanent link">&para;</a></h2>
 <p><strong>Verzeichnungseinheiten</strong> sind breit unterstützt. <strong>EAD2002</strong> ist das
 vollständigste Format: Titel, Signatur, Datierung, Stufe, Umfang, Sprachen und
@@ -4664,6 +4756,63 @@ Objektexporten.</p>
 <li><strong>Der Ereignis-Graph als Relation</strong> — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)</li>
 </ul>
+<h2 id="migrations-export-das-bundle-als-weg-hinaus">Migrations-Export: das Bundle als Weg hinaus<a class="headerlink" href="#migrations-export-das-bundle-als-weg-hinaus" title="Permanent link">&para;</a></h2>
+<p>Die Matrix oben beschreibt den <strong>Standardfall</strong>. Der RDF-Export kennt zwei Schalter,
+die ihn aus der Publikationsecke herausheben:</p>
+<table>
+<thead>
+<tr>
+<th>Schalter</th>
+<th>Wirkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--include-protected</code></td>
+<td>umgeht den Datenschutzfilter — gesperrte Objekte, private Medien und interne Textfelder kommen mit. Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code>, <strong>nicht</strong> bei <code>memobase</code></td>
+</tr>
+<tr>
+<td><code>--include-originals</code></td>
+<td>nur <code>a-plus-bundle</code>: packt die <strong>Original-Master</strong> ins ZIP, nicht nur <code>web</code>/<code>thumb</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-rdf<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--root<span class="o">=</span>&lt;id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="o">=</span>a-plus-bundle<span class="w"> </span>--include-protected<span class="w"> </span>--include-originals
+</code></pre></div>
+<p>Das Ergebnis ist ein standardkonformes Paket aus CIDOC-CRM/RiC-O-Graph, gesperrten
+Daten und Originaldateien — geeignet, um einen Bestand in ein <strong>anderes System</strong> zu
+überführen. Es ist <strong>nicht</strong> nach Anton zurück importierbar; dafür bleibt der native
+Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öffentlich hosten.</p>
+<h2 id="wer-welches-artefakt-auslosen-kann">Wer welches Artefakt auslösen kann<a class="headerlink" href="#wer-welches-artefakt-auslosen-kann" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Artefakt</th>
+<th>Selfservice in der Oberfläche</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL-Dump</td>
+<td><strong>ja</strong> — Admin → Export</td>
+</tr>
+<tr>
+<td>EAD, TEI, RDF (Standard), A+ Bundle (Standard), DIP, OCFL, Excel, Word/PDF</td>
+<td><strong>ja</strong></td>
+</tr>
+<tr>
+<td>A+ Bundle mit <code>--include-protected</code> / <code>--include-originals</code></td>
+<td><strong>nein</strong> — die UI und die API reichen die Schalter nicht durch, nur CLI</td>
+</tr>
+<tr>
+<td>Nativer Round-Trip (<code>anton:export-native</code> / <code>anton:import-native</code>)</td>
+<td><strong>nein</strong> — reines CLI-Kommando</td>
+</tr>
+</tbody>
+</table>
+<p>Bei <em>Anton as a Service</em> erzeugt k &amp; r die CLI-Artefakte auf Anfrage; <em>on premises</em>
+laufen die Kommandos bei der betreibenden Institution.</p>
 <h2 id="format-einschrankungen-im-einzelnen">Format-Einschränkungen im Einzelnen<a class="headerlink" href="#format-einschrankungen-im-einzelnen" title="Permanent link">&para;</a></h2>
 <p><strong>EAD3</strong> ist deutlich dünner als EAD2002: keine Textfelder, keine Orte, keine
 Akteur:innen-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,

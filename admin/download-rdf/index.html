@@ -18,6 +18,14 @@
       
       
         
+          <link rel="alternate" href="./" hreflang="de">
+        
+          <link rel="alternate" href="../../en/admin/download-rdf/" hreflang="en">
+        
+          <link rel="alternate" href="../../fr/admin/download-rdf/" hreflang="fr">
+        
+          <link rel="alternate" href="../../it/admin/download-rdf/" hreflang="it">
+        
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
@@ -113,6 +121,44 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/admin/download-rdf/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/admin/download-rdf/" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/admin/download-rdf/" hreflang="it" class="md-select__link">
+              Italiano
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -3029,6 +3075,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#migrations-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations-Export
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4174,6 +4231,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#migrations-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations-Export
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4447,16 +4515,60 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:export-rdf<span 
 </tr>
 <tr>
 <td><code>--format=&lt;wert&gt;</code></td>
-<td><code>turtle</code> (a-plus), <code>jsonld</code> (memobase + ric)</td>
+<td><code>turtle</code> (a-plus), <code>jsonld</code> (memobase + ric + bundle)</td>
 <td>Serialisierung</td>
 </tr>
 <tr>
 <td><code>--profile=&lt;wert&gt;</code></td>
 <td><code>a-plus</code></td>
-<td><code>a-plus</code>, <code>memobase</code> oder <code>ric</code> (alias <code>rico</code>)</td>
+<td><code>a-plus</code>, <code>memobase</code>, <code>ric</code> (alias <code>rico</code>) oder <code>a-plus-bundle</code></td>
+</tr>
+<tr>
+<td><code>--include-protected</code></td>
+<td>aus</td>
+<td>Umgeht den Datenschutzfilter: gesperrte Objekte, private Medien und interne Textfelder kommen mit. <strong>Für Migration und Backup, nicht für Publikation.</strong> Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code> — <strong>nicht</strong> bei <code>memobase</code></td>
+</tr>
+<tr>
+<td><code>--include-originals</code></td>
+<td>aus</td>
+<td>Nur <code>a-plus-bundle</code>: packt zusätzlich zu den <code>web</code>/<code>thumb</code>-Ableitungen die <strong>Original-Master</strong> ins ZIP</td>
+</tr>
+<tr>
+<td><code>--media-layout=&lt;wert&gt;</code></td>
+<td><code>flat</code></td>
+<td>Nur <code>a-plus-bundle</code>: <code>flat</code> (anton-static) oder <code>native</code> (spiegelt die Medienablage, mit Konversions-Unterordner je Medium)</td>
 </tr>
 </tbody>
 </table>
+<h3 id="migrations-export">Migrations-Export<a class="headerlink" href="#migrations-export" title="Permanent link">&para;</a></h3>
+<p>Die beiden Schalter zusammen machen aus dem Bundle ein <strong>vollständiges
+Migrationspaket</strong> statt einer Publikationsansicht:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-rdf<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--root<span class="o">=</span>&lt;id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="o">=</span>a-plus-bundle<span class="w"> </span>--include-protected<span class="w"> </span>--include-originals
+</code></pre></div>
+<p>Das ZIP enthält dann den CIDOC-CRM/RiC-O-Graphen <strong>inklusive der gesperrten
+Datensätze</strong> und die <strong>Originaldateien</strong>. Damit lässt sich ein Bestand
+standardkonform in ein anderes System überführen.</p>
+<div class="admonition warning">
+<p class="admonition-title">Drei Einschränkungen</p>
+<ul>
+<li>Das Paket ist <strong>nicht wieder nach Anton importierbar</strong> — dafür gibt es den
+  <a href="../statische-publikation/#nativer-round-trip-anton-import-format">nativen Round-Trip</a>.
+  Es ist ein Weg <em>hinaus</em>, kein Restore.</li>
+<li>Schutzfristen stehen im Graphen und sind maschinell auswertbar, <strong>durchgesetzt
+  werden müssen sie im Zielsystem</strong>.</li>
+<li>Ein so erzeugtes Paket enthält personenbezogene und gesperrte Daten und darf
+  <strong>nicht öffentlich gehostet</strong> werden.</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Nur auf der CLI</p>
+<p>Die UI (<code>/export/rdf</code>) und die API reichen <code>--include-protected</code> und
+<code>--include-originals</code> <strong>nicht</strong> durch — dort entsteht immer die gefilterte
+Publikationsvariante mit Derivaten. Bei <em>Anton as a Service</em> erzeugt k &amp; r das
+Migrationspaket auf Anfrage; <em>on premises</em> läuft das Kommando die betreibende
+Institution selbst.</p>
+</div>
 <h2 id="was-im-a-profil-drinsteht">Was im A+-Profil drinsteht<a class="headerlink" href="#was-im-a-profil-drinsteht" title="Permanent link">&para;</a></h2>
 <p>CRM trägt das volle Detail, RiC-O die wichtigsten Klassen + Skelett.
 Stichworte:</p>
@@ -4706,6 +4818,7 @@ customer-spezifischen Forms müssen bis dahin auf <code>download</code> umgestel
 haben.</p>
 </blockquote>
 <h2 id="was-nicht-im-export-landet">Was nicht im Export landet<a class="headerlink" href="#was-nicht-im-export-landet" title="Permanent link">&para;</a></h2>
+<p>Gilt für den <strong>Standardfall</strong> — also ohne <code>--include-protected</code>:</p>
 <ul>
 <li>Volltext (<code>objects.full_text</code>) — gehört nicht zu den ISAD-Feldern</li>
 <li>Interne Textfelder (Notetypes <code>internal_note</code>, <code>archivists_notes</code>,
@@ -4714,6 +4827,9 @@ haben.</p>
   exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
   fehlt</li>
 </ul>
+<p>Mit <code>--include-protected</code> entfallen die beiden letzten Punkte: gesperrte
+Datensätze, private Medien und die internen Textfelder sind dann enthalten.
+Der Volltext bleibt in jedem Fall draussen.</p>
 <h2 id="bezugspunkte">Bezugspunkte<a class="headerlink" href="#bezugspunkte" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Spec-Repo CIDOC CRM + RiC-O: <a href="https://github.com/kraenzle-ritter/anton-cidoc">https://github.com/kraenzle-ritter/anton-cidoc</a></li>
