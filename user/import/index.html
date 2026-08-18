@@ -5327,10 +5327,8 @@ echter Download.</p>
 <h2 id="import-uber-die-kommandozeile">Import über die Kommandozeile<a class="headerlink" href="#import-uber-die-kommandozeile" title="Permanent link">&para;</a></h2>
 <h3 id="einfacher-import">Einfacher Import<a class="headerlink" href="#einfacher-import" title="Permanent link">&para;</a></h3>
 <p>Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:</p>
-<p>.. code:: bash</p>
-<div class="codehilite"><pre><span></span><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">anton</span><span class="p">:</span><span class="kn">import</span><span class="w"> </span><span class="o">--</span><span class="n">env</span><span class="o">=</span><span class="n">besenval</span> <span class="o">--</span><span class="n">file</span><span class="o">=</span><span class="s2">"test.xlsx"</span> <span class="o">--</span><span class="kn">import</span>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">"test.xlsx"</span><span class="w"> </span>--import
 </code></pre></div>
-
 <p>Dabei wird davon ausgegangen, dass <code>test.xlsx</code> im Ordner <code>customers/besenval/metadata_to_import/</code> liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner <code>customers/besenval/assets_to_import/</code> befinden.</p>
 <p>Ohne die Option <code>--import</code> wird das file nur validiert.</p>
 <h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">&para;</a></h3>
