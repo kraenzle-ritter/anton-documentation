@@ -1524,6 +1524,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spalten-mit-wertelisten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spalten mit Wertelisten
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#objekttyp-object_type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4623,6 +4634,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spalten-mit-wertelisten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spalten mit Wertelisten
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#objekttyp-object_type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5018,6 +5040,63 @@ Einzelstück
 - Namen (wird durch "/" abgetrennt)<br />
 - Stadt/Gemeinde<br />
 - Kanton/Bundesland (wird in Klammern hinter der Gemeinde gesetzt)</p>
+<h3 id="spalten-mit-wertelisten">Spalten mit Wertelisten<a class="headerlink" href="#spalten-mit-wertelisten" title="Permanent link">&para;</a></h3>
+<p>Mehrere Spalten nehmen nur Werte an, die im Archiv definiert sind:
+<code>verzeichnungsstufe</code>, <code>objekttyp</code>, <code>schutzfrist</code>, <code>status_of_description</code>,
+<code>detail_of_description</code> und <code>vacat</code>.</p>
+<p>Seit <strong>v0.87.0</strong> nehmen sie alle <strong>drei Formen</strong> an, gleichwertig (<code>vacat</code>
+bereits seit v0.86.4):</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bezeichnung</td>
+<td><code>Bestand</code></td>
+</tr>
+<tr>
+<td>interner Name</td>
+<td><code>fonds</code></td>
+</tr>
+<tr>
+<td>ID</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+<p>Die ID ist die stabilste Form — sie übersteht ein Umbenennen. Wo eine
+Bezeichnung zufällig wie eine Zahl aussieht, gewinnt die Bezeichnung.</p>
+<div class="admonition tip">
+<p class="admonition-title">Die erlaubten Werte stehen in der Fehlermeldung</p>
+<p>Wird ein Wert nicht erkannt, nennt die Prüfung nicht nur das Problem,
+sondern auch die Lösung:</p>
+<blockquote>
+<p>«Schachtel» steht nicht in der Werteliste. Erlaubt sind: Archiv
+(collection), Bestandsgruppe (recordgroup), Bestand (fonds), Klasse
+(class), Dossier (file), Einzelstück (item), Serie (series)</p>
+</blockquote>
+<p>Die Bezeichnung steht voran, der interne Name in Klammern. Man muss die
+Listen also nicht vorher nachschlagen.</p>
+</div>
+<h4 id="alle-wertelisten-nachschlagen">Alle Wertelisten nachschlagen<a class="headerlink" href="#alle-wertelisten-nachschlagen" title="Permanent link">&para;</a></h4>
+<p>Seit <strong>v0.87.0</strong> gibt es unter <strong>Tabellen-Import → Wertelisten</strong>
+(<code>/valuelists</code>) eine Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
+interner Name und ID, dazu die Import-Spalte, zu der die Liste gehört. Ein
+Suchfeld filtert über alle Listen gleichzeitig.</p>
+<p>Die Seite ist rein lesend und steht allen offen, die importieren dürfen. Die
+bearbeitbaren Listen unter <em>Admin → Wertelisten</em> verlangen dagegen das Recht,
+eine Liste zu <strong>ändern</strong> — das haben ausserhalb der Systemverwaltung nur
+wenige, und nur für zwei der siebzehn Listen. Wer bloss nachschlagen wollte,
+stand vorher vor einer verschlossenen Tür.</p>
+<p>Ebenfalls auf der Seite: die <strong>Standort-IDs</strong> für die Spalte <code>location_id</code>
+der Update-Tabelle.</p>
+<p>Schlagworte, Akteur:innen und Orte stehen dort <em>nicht</em> — das sind
+Normdatensätze mit eigenen, durchsuchbaren Seiten, keine Listen zum
+Durchlesen.</p>
 <h3 id="objekttyp-object_type">objekttyp (object_type)<a class="headerlink" href="#objekttyp-object_type" title="Permanent link">&para;</a></h3>
 <p>Das Feld muss einen bereits existierenden Objekttyp enthalten:</p>
 <div class="highlight"><pre><span></span><code>Akte
@@ -5045,7 +5124,24 @@ Film
 <p>Frühere Versionen kannten <code>formset</code> nicht: die Spalte wurde als unbekannt gemeldet und danach folgenlos übergangen, der Lauf meldete Erfolg. Wer den Formularsatz per Tabelle gesetzt hat und sich wundert, warum nichts passiert ist — das war der Grund.</p>
 </div>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
-<p>Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält vacat keinen Wert, wird 0 gesetzt.</p>
+<p>Gibt an, ob die Verzeichnungseinheit ein Platzhalter ist (eine Lücke in der
+Zählung, zu der es keine Unterlagen gibt).</p>
+<p>Die Spalte führt intern Term-IDs. Angenommen werden die Bezeichnung
+(<code>vacat</code>), die ID (<code>56</code> für vacat, <code>57</code> für nicht vacat) und — aus älteren
+Tabellen — <code>1</code> und <code>0</code>.</p>
+<p><strong>Exportiert</strong> wird seit <strong>v0.87.0</strong> die Bezeichnung: <code>vacat</code> für einen
+Platzhalter, sonst eine leere Zelle. Vorher stand dort die interne Nummer,
+die in einer Spalte ohne <code>_id</code> im Namen nichts sagte und wie ein
+versehentlich geänderter Wert aussah. Ältere Tabellen mit <code>56</code>/<code>57</code> lassen
+sich unverändert weiterverwenden.</p>
+<div class="admonition warning">
+<p class="admonition-title">Vor v0.86.4</p>
+<p>Bis dahin exportierte die Update-Tabelle die interne Nummer, die Prüfung
+liess aber nur <code>0</code> und <code>1</code> zu. Eine unveränderte Update-Tabelle war damit
+nicht einspielbar, und die Meldung nannte einen Wert, den niemand
+eingegeben hatte. Wer auf eine ältere Version stösst: die Spalte <code>vacat</code>
+im Download-Dialog abwählen.</p>
+</div>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf höchstens 500 Zeichen enthalten. Mehrere Dateinamen (assets) können mit folgenden Zeichen getrennt werden:</p>
 <div class="highlight"><pre><span></span><code>, ; ::
@@ -5152,6 +5248,14 @@ Form und Inhalt (note.scopecontent)
 </table>
 <p>Die heruntergeladene Update-Tabelle nutzt <code>location_id</code>. Wer lieber mit Bezeichnungen arbeitet, benennt die Spalte in <code>location</code> um; dort werden beide Formen akzeptiert. Eine Bezeichnung muss exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung — die ID ist deshalb der sichere Weg.</p>
 <p>Eine <strong>leere Zelle lässt den Standort unverändert</strong> — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter <em>Admin → Standorte</em> angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Vor v0.87.0 lud der Knopf nichts herunter</p>
+<p>Der Herunterladen-Knopf im Spaltendialog schloss den Dialog, brach aber im
+selben Zug die Übertragung ab — ohne Fehlermeldung. Es sah aus, als sei
+etwas passiert; im Download-Ordner kam nichts an. v0.86.4 behob einen Teil
+davon, der Knopf blieb aber wirkungslos; erst seit v0.87.0 ist es ein
+echter Download.</p>
 </div>
 <p>Beim Klick öffnet sich ein Dialog, in dem sich die <strong>Spalten auswählen</strong> lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt <code>id</code> und <code>titel</code> — dann kann beim Einspielen nichts anderes zu Schaden kommen. <code>id</code> ist immer enthalten und nicht abwählbar.</p>
 <div class="admonition warning">
