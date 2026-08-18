@@ -181,6 +181,55 @@ Orte können folgende Elemente enthalten:
 - Stadt/Gemeinde  
 - Kanton/Bundesland (wird in Klammern hinter der Gemeinde gesetzt)
 
+### Spalten mit Wertelisten
+
+Mehrere Spalten nehmen nur Werte an, die im Archiv definiert sind:
+`verzeichnungsstufe`, `objekttyp`, `schutzfrist`, `status_of_description`,
+`detail_of_description` und `vacat`.
+
+Seit **v0.87.0** nehmen sie alle **drei Formen** an, gleichwertig (`vacat`
+bereits seit v0.86.4):
+
+| Form | Beispiel |
+|---|---|
+| Bezeichnung | `Bestand` |
+| interner Name | `fonds` |
+| ID | `3` |
+
+Die ID ist die stabilste Form — sie übersteht ein Umbenennen. Wo eine
+Bezeichnung zufällig wie eine Zahl aussieht, gewinnt die Bezeichnung.
+
+!!! tip "Die erlaubten Werte stehen in der Fehlermeldung"
+    Wird ein Wert nicht erkannt, nennt die Prüfung nicht nur das Problem,
+    sondern auch die Lösung:
+
+    > «Schachtel» steht nicht in der Werteliste. Erlaubt sind: Archiv
+    > (collection), Bestandsgruppe (recordgroup), Bestand (fonds), Klasse
+    > (class), Dossier (file), Einzelstück (item), Serie (series)
+
+    Die Bezeichnung steht voran, der interne Name in Klammern. Man muss die
+    Listen also nicht vorher nachschlagen.
+
+#### Alle Wertelisten nachschlagen
+
+Seit **v0.87.0** gibt es unter **Tabellen-Import → Wertelisten**
+(`/valuelists`) eine Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
+interner Name und ID, dazu die Import-Spalte, zu der die Liste gehört. Ein
+Suchfeld filtert über alle Listen gleichzeitig.
+
+Die Seite ist rein lesend und steht allen offen, die importieren dürfen. Die
+bearbeitbaren Listen unter *Admin → Wertelisten* verlangen dagegen das Recht,
+eine Liste zu **ändern** — das haben ausserhalb der Systemverwaltung nur
+wenige, und nur für zwei der siebzehn Listen. Wer bloss nachschlagen wollte,
+stand vorher vor einer verschlossenen Tür.
+
+Ebenfalls auf der Seite: die **Standort-IDs** für die Spalte `location_id`
+der Update-Tabelle.
+
+Schlagworte, Akteur:innen und Orte stehen dort *nicht* — das sind
+Normdatensätze mit eigenen, durchsuchbaren Seiten, keine Listen zum
+Durchlesen.
+
 ### objekttyp (object_type)
 
 Das Feld muss einen bereits existierenden Objekttyp enthalten:
@@ -226,7 +275,26 @@ Die heruntergeladene Update-Tabelle führt die Spalte `formset` und schreibt den
 
 ### vacat
 
-Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält vacat keinen Wert, wird 0 gesetzt.
+Gibt an, ob die Verzeichnungseinheit ein Platzhalter ist (eine Lücke in der
+Zählung, zu der es keine Unterlagen gibt).
+
+Die Spalte führt intern Term-IDs. Angenommen werden die Bezeichnung
+(`vacat`), die ID (`56` für vacat, `57` für nicht vacat) und — aus älteren
+Tabellen — `1` und `0`.
+
+**Exportiert** wird seit **v0.87.0** die Bezeichnung: `vacat` für einen
+Platzhalter, sonst eine leere Zelle. Vorher stand dort die interne Nummer,
+die in einer Spalte ohne `_id` im Namen nichts sagte und wie ein
+versehentlich geänderter Wert aussah. Ältere Tabellen mit `56`/`57` lassen
+sich unverändert weiterverwenden.
+
+!!! warning "Vor v0.86.4"
+    Bis dahin exportierte die Update-Tabelle die interne Nummer, die Prüfung
+    liess aber nur `0` und `1` zu. Eine unveränderte Update-Tabelle war damit
+    nicht einspielbar, und die Meldung nannte einen Wert, den niemand
+    eingegeben hatte. Wer auf eine ältere Version stösst: die Spalte `vacat`
+    im Download-Dialog abwählen.
+
 
 ### bilder (media)
 
@@ -355,6 +423,13 @@ Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf �
     Die heruntergeladene Update-Tabelle nutzt `location_id`. Wer lieber mit Bezeichnungen arbeitet, benennt die Spalte in `location` um; dort werden beide Formen akzeptiert. Eine Bezeichnung muss exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung — die ID ist deshalb der sichere Weg.
 
     Eine **leere Zelle lässt den Standort unverändert** — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter *Admin → Standorte* angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.
+
+!!! warning "Vor v0.87.0 lud der Knopf nichts herunter"
+    Der Herunterladen-Knopf im Spaltendialog schloss den Dialog, brach aber im
+    selben Zug die Übertragung ab — ohne Fehlermeldung. Es sah aus, als sei
+    etwas passiert; im Download-Ordner kam nichts an. v0.86.4 behob einen Teil
+    davon, der Knopf blieb aber wirkungslos; erst seit v0.87.0 ist es ein
+    echter Download.
 
 Beim Klick öffnet sich ein Dialog, in dem sich die **Spalten auswählen** lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt `id` und `titel` — dann kann beim Einspielen nichts anderes zu Schaden kommen. `id` ist immer enthalten und nicht abwählbar.
 
