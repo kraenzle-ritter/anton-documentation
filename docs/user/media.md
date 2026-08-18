@@ -41,6 +41,34 @@ Bestandsmedien lassen sich die Felder per Backfill nachholen — siehe
 [`media:extract-av-metadata`](../admin/console-commands.md#mediaextract-av-metadata).
 
 
+## Reihenfolge der Medien ändern
+
+Seit **v0.87.0** lässt sich die Reihenfolge der Medien einer
+Verzeichnungseinheit ändern, ohne sie löschen und neu hochladen zu müssen.
+
+Im **Medien-Reiter** der Verzeichnungseinheit steht bei jedem Medium ein Paar
+Pfeiltasten (↑ ↓). Ein Klick verschiebt das Medium um eine Position innerhalb
+seiner Sammlung. Beim ersten und beim letzten Medium ist die jeweilige Taste
+deaktiviert.
+
+Die Reihenfolge gilt für die Anzeige im Katalog, in der Galerie und im
+Viewer — es ist dieselbe Reihenfolge, die beim Hochladen vergeben wird.
+
+!!! note "Warum Tasten und kein Ziehen"
+    Die Medienliste ist auf mehrere Seiten verteilt. Ziehen könnte nur
+    innerhalb der angezeigten Seite umsortieren; schrittweises Verschieben
+    trägt ein Medium auch über die Seitengrenze hinweg, weil die Reihenfolge
+    zur Sammlung gehört und nicht zur Seite.
+
+Bilder und Dokumente werden getrennt sortiert: Ein Bild kann nicht mit einem
+Dokument den Platz tauschen.
+
+Das Umsortieren ist eine sichtbare Änderung und wird entsprechend am
+Datensatz vermerkt (Änderungsdatum, bearbeitende Person,
+Bearbeitungsprotokoll). Nötig ist dafür dieselbe Berechtigung wie zum
+Löschen eines Mediums.
+
+
 ## Originalmedien bereitstellen
 Um für Kundinnen die originalen Medien bereitzustellen, kann man in einer Verzeichnungseinheit den Medien-Reiter aufrufen:
 

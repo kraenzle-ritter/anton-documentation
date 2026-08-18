@@ -75,15 +75,22 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
 | **SQL-Dump** | **Sicherung.** Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der Datei-Provenienz (PRONOM/NARA-Historie). Enthält keine Mediendateien. |
 | [**DIP**](download-dip.md) (BagIt) und [**OCFL**](download-ocfl.md) | **Abgabepakete.** Medien und Metadaten gebündelt, mit Prüfsummen im Manifest. |
 | [**RDF/CIDOC**](download-rdf.md), **EAD**, **TEI**, **Memobase** | **Publikationsansichten.** Gefiltert und verlustbehaftet — aus ihnen lässt sich Anton nicht wiederherstellen. |
+| [**A+ Bundle mit `--include-protected --include-originals`**](download-rdf.md#migrations-export) | **Migrationspaket.** Graph inklusive gesperrter Daten plus Originaldateien — für den Weg in ein *anderes* System. Kein Restore nach Anton, und wegen der enthaltenen Personendaten nicht öffentlich zu hosten. |
 
 !!! danger "Ein RDF- oder EAD-Export ist kein Backup"
     Diese Formate sind für Recherche und Austausch gebaut. Ihnen fehlen unter
-    anderem die UUIDs, die Rohwerte und die Schutzfristen; private Inhalte sind
+    anderem die UUIDs und die Rohwerte; im Standardfall sind private Inhalte
     herausgefiltert. Für eine Sicherung braucht es den nativen Export **und**
     den SQL-Dump.
 
-Welche Daten jedes Format im Einzelnen mitnimmt und welche nur im SQL-Dump
-stehen, zeigt die [Export-Matrix](export-matrix.md).
+    Das gilt auch dann, wenn mit `--include-protected --include-originals`
+    exportiert wird: dieses Paket ist ein **Migrationsweg hinaus**, kein Restore —
+    nach Anton zurück lesen lässt es sich nicht.
+
+Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
+wer welches Artefakt auslösen kann, zeigt die [Export-Matrix](export-matrix.md).
+Kurz: Der SQL-Dump und die Standard-Exporte gehen über die Oberfläche, der native
+Round-Trip und das Migrationspaket nur über die CLI.
 
 Für die [statische Publikation](statische-publikation.md) eines Bestandes als
 eigenständige Website gibt es ein eigenes Bundle.

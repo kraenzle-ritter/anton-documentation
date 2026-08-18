@@ -46,9 +46,16 @@ jobs:
           pip install pymdown-extensions
           pip install mkdocs-mermaid2-plugin
           pip install mkdocs-render-swagger-plugin
+          pip install mkdocs-static-i18n
 
       - name: Check command reference
         run: python3 scripts/gen-command-reference.py --check
+
+      # Meldet Uebersetzungen, die ihrer deutschen Quelle hinterherhinken.
+      # Bewusst nicht blockierend: sonst braeuchte jede deutsche Korrektur
+      # sofort drei Uebersetzungen, sonst laesst sich nichts mehr deployen.
+      - name: Report translation drift
+        run: python3 scripts/check-translations.py
 
       - name: Build documentation
         run: mkdocs build --verbose

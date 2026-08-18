@@ -23,7 +23,7 @@ andere sind Publikations- und Austauschsichten.**
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Objekt-Baum, alle Entitäten | Admin → Export, `anton:export-rdf` |
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
-| RDF «A+» Bundle | CIDOC CRM + RiC-O **+ Mediendateien** als ZIP | Objekt-Baum, offline anzeigbar ohne Anton | `anton:export-rdf --profile=a-plus-bundle` |
+| RDF «A+» Bundle | CIDOC CRM + RiC-O **+ Mediendateien** als ZIP | Objekt-Baum, offline anzeigbar ohne Anton; mit `--include-protected --include-originals` ein **Migrationspaket** (siehe unten) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
 | **Nativer Round-Trip** | `anton-import-format` v0.4 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | pro Objekt (nur eingebettet) | Baustein in DIP / OCFL |
 | DIP | BagIt | Paket: Medien + Metadaten (Teilbaum) | Taste «DIP» am Datensatz |
@@ -77,7 +77,9 @@ versehentlich in eine Publikation geraten können. Siehe [Kommentare](comments.m
 
 ¹ Nur im **A+ Bundle**: Der reine A+-Export liefert bundle-relative Medien-Verweise,
 Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
-Derivate (`thumb`/`web`) daneben — **nicht die Master**.
+Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
+`--include-originals` kommen die Master-Dateien dazu, siehe
+[Migrations-Export](#migrations-export-das-bundle-als-weg-hinaus).
 
 ## Gut abgedeckt
 
@@ -106,6 +108,38 @@ Diese Daten überleben **keinen** Formatexport:
 - **Volltext-Index**
 - **Der Ereignis-Graph als Relation** — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)
+
+## Migrations-Export: das Bundle als Weg hinaus
+
+Die Matrix oben beschreibt den **Standardfall**. Der RDF-Export kennt zwei Schalter,
+die ihn aus der Publikationsecke herausheben:
+
+| Schalter | Wirkung |
+|---|---|
+| `--include-protected` | umgeht den Datenschutzfilter — gesperrte Objekte, private Medien und interne Textfelder kommen mit. Wirkt bei `a-plus`, `ric` und `a-plus-bundle`, **nicht** bei `memobase` |
+| `--include-originals` | nur `a-plus-bundle`: packt die **Original-Master** ins ZIP, nicht nur `web`/`thumb` |
+
+```bash
+php artisan anton:export-rdf --env=<slug> --root=<id> \
+    --profile=a-plus-bundle --include-protected --include-originals
+```
+
+Das Ergebnis ist ein standardkonformes Paket aus CIDOC-CRM/RiC-O-Graph, gesperrten
+Daten und Originaldateien — geeignet, um einen Bestand in ein **anderes System** zu
+überführen. Es ist **nicht** nach Anton zurück importierbar; dafür bleibt der native
+Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öffentlich hosten.
+
+## Wer welches Artefakt auslösen kann
+
+| Artefakt | Selfservice in der Oberfläche |
+|---|---|
+| SQL-Dump | **ja** — Admin → Export |
+| EAD, TEI, RDF (Standard), A+ Bundle (Standard), DIP, OCFL, Excel, Word/PDF | **ja** |
+| A+ Bundle mit `--include-protected` / `--include-originals` | **nein** — die UI und die API reichen die Schalter nicht durch, nur CLI |
+| Nativer Round-Trip (`anton:export-native` / `anton:import-native`) | **nein** — reines CLI-Kommando |
+
+Bei *Anton as a Service* erzeugt k & r die CLI-Artefakte auf Anfrage; *on premises*
+laufen die Kommandos bei der betreibenden Institution.
 
 ## Format-Einschränkungen im Einzelnen
 

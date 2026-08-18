@@ -154,10 +154,85 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/kraenzle-ritter
 plugins:
+  # Mehrsprachigkeit: Deutsch ist Quell- und Default-Sprache und bleibt unter «/».
+  # en/fr/it liegen unter /en/, /fr/, /it/ — bestehende deutsche URLs bleiben gueltig.
+  # Uebersetzungen sind Suffix-Dateien: faq/index.md -> faq/index.fr.md
+  # fallback_to_default sorgt dafuer, dass noch nicht uebersetzte Seiten in allen
+  # Sprachen erreichbar bleiben (mit deutschem Inhalt) und keine Links brechen.
+  # Die nav pro Sprache listet nur, was in dieser Sprache wirklich uebersetzt ist.
+  # Beim Uebersetzen einer Seite: Datei anlegen UND hier in die nav aufnehmen.
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: de
+          name: Deutsch
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          site_name: 'Anton – Documentation'
+          nav:
+            - Home: index.md
+            - FAQ:
+              - General FAQs: faq/index.md
+              - Anton as a Service: faq/anton_as_service.md
+              - Anton on Premises: faq/anton_on_premises.md
+              - Open Source: faq/open_source.md
+              - Digital Preservation: faq/longterm_archives.md
+              - Cataloguing: faq/erschliessung.md
+              - Migration and Import: faq/import.md
+              - Search and Use: faq/recherche.md
+              - Export: faq/export.md
+              - Installations: faq/installationen.md
+        - locale: fr
+          name: Français
+          build: true
+          site_name: 'Anton – Documentation'
+          nav:
+            - Accueil: index.md
+            - FAQ:
+              - FAQ générales: faq/index.md
+              - Anton as a Service: faq/anton_as_service.md
+              - Anton on Premises: faq/anton_on_premises.md
+              - Open Source: faq/open_source.md
+              - Archivage à long terme: faq/longterm_archives.md
+              - Description archivistique: faq/erschliessung.md
+              - Migration et import: faq/import.md
+              - Recherche et consultation: faq/recherche.md
+              - Export: faq/export.md
+              - Installations: faq/installationen.md
+            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
+            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
+            - Developer (de): /developer/
+            - Admin (de): /admin/requirements/
+            - API (de): /api/
+        - locale: it
+          name: Italiano
+          build: true
+          site_name: 'Anton – Documentazione'
+          nav:
+            - Home: index.md
+            - FAQ:
+              - FAQ generali: faq/index.md
+              - Anton as a Service: faq/anton_as_service.md
+              - Anton on Premises: faq/anton_on_premises.md
+              - Open Source: faq/open_source.md
+              - Archiviazione a lungo termine: faq/longterm_archives.md
+              - Descrizione archivistica: faq/erschliessung.md
+              - Migrazione e importazione: faq/import.md
+              - Ricerca e consultazione: faq/recherche.md
+              - Export: faq/export.md
+              - Installazioni: faq/installationen.md
   - mermaid2
   - render_swagger
   - search:
       lang:
-        - de 
+        - de
         - en
+        - fr
+        - it
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'

@@ -109,8 +109,41 @@ Optionen:
 | Option | Default | Bedeutung |
 |---|---|---|
 | `--root=<id>` | leer | Beschränkt den Export auf den Closure-Table-Teilbaum unter dem AntonObject mit dieser ID. Ohne `--root=` werden alle Root-Objekte exportiert. |
-| `--format=<wert>` | `turtle` (a-plus), `jsonld` (memobase + ric) | Serialisierung |
-| `--profile=<wert>` | `a-plus` | `a-plus`, `memobase` oder `ric` (alias `rico`) |
+| `--format=<wert>` | `turtle` (a-plus), `jsonld` (memobase + ric + bundle) | Serialisierung |
+| `--profile=<wert>` | `a-plus` | `a-plus`, `memobase`, `ric` (alias `rico`) oder `a-plus-bundle` |
+| `--include-protected` | aus | Umgeht den Datenschutzfilter: gesperrte Objekte, private Medien und interne Textfelder kommen mit. **Für Migration und Backup, nicht für Publikation.** Wirkt bei `a-plus`, `ric` und `a-plus-bundle` — **nicht** bei `memobase` |
+| `--include-originals` | aus | Nur `a-plus-bundle`: packt zusätzlich zu den `web`/`thumb`-Ableitungen die **Original-Master** ins ZIP |
+| `--media-layout=<wert>` | `flat` | Nur `a-plus-bundle`: `flat` (anton-static) oder `native` (spiegelt die Medienablage, mit Konversions-Unterordner je Medium) |
+
+### Migrations-Export
+
+Die beiden Schalter zusammen machen aus dem Bundle ein **vollständiges
+Migrationspaket** statt einer Publikationsansicht:
+
+```bash
+php artisan anton:export-rdf --env=<slug> --root=<id> \
+    --profile=a-plus-bundle --include-protected --include-originals
+```
+
+Das ZIP enthält dann den CIDOC-CRM/RiC-O-Graphen **inklusive der gesperrten
+Datensätze** und die **Originaldateien**. Damit lässt sich ein Bestand
+standardkonform in ein anderes System überführen.
+
+!!! warning "Drei Einschränkungen"
+    - Das Paket ist **nicht wieder nach Anton importierbar** — dafür gibt es den
+      [nativen Round-Trip](statische-publikation.md#nativer-round-trip-anton-import-format).
+      Es ist ein Weg *hinaus*, kein Restore.
+    - Schutzfristen stehen im Graphen und sind maschinell auswertbar, **durchgesetzt
+      werden müssen sie im Zielsystem**.
+    - Ein so erzeugtes Paket enthält personenbezogene und gesperrte Daten und darf
+      **nicht öffentlich gehostet** werden.
+
+!!! info "Nur auf der CLI"
+    Die UI (`/export/rdf`) und die API reichen `--include-protected` und
+    `--include-originals` **nicht** durch — dort entsteht immer die gefilterte
+    Publikationsvariante mit Derivaten. Bei *Anton as a Service* erzeugt k & r das
+    Migrationspaket auf Anfrage; *on premises* läuft das Kommando die betreibende
+    Institution selbst.
 
 ## Was im A+-Profil drinsteht
 
@@ -307,12 +340,18 @@ Detail-Ansicht (private Objekte sind nur für Admins zugänglich).
 
 ## Was nicht im Export landet
 
+Gilt für den **Standardfall** — also ohne `--include-protected`:
+
 - Volltext (`objects.full_text`) — gehört nicht zu den ISAD-Feldern
 - Interne Textfelder (Notetypes `internal_note`, `archivists_notes`,
   `comment`) — werden im A+ und im Memobase-Profil gleich gefiltert
 - Private Datensätze (`private = 1`) — Subtree-Kinder werden zwar
   exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
   fehlt
+
+Mit `--include-protected` entfallen die beiden letzten Punkte: gesperrte
+Datensätze, private Medien und die internen Textfelder sind dann enthalten.
+Der Volltext bleibt in jedem Fall draussen.
 
 ## Bezugspunkte
 

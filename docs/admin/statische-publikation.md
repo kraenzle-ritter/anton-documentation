@@ -55,6 +55,15 @@ RDF-Export — private Objekte, `private_media` und private Notiztypen
 `manifest.json` zählt transparent, wie viel gefiltert wurde und welche
 Konversionen fehlten, damit man das Paket vor dem Publizieren prüfen kann.
 
+!!! warning "Ausser man schaltet den Filter ab"
+    Mit `--include-protected` kommen die gesperrten Datensätze mit, mit
+    `--include-originals` zusätzlich die Master-Dateien. Beides ist für
+    **Migration** gedacht, nicht für Publikation — ein so erzeugtes Paket
+    gehört nicht auf GitHub Pages. Siehe
+    [Migrations-Export](download-rdf.md#migrations-export). Die UI reicht die
+    Schalter nicht durch; über die Oberfläche entsteht immer die
+    öffentlich-sichere Variante.
+
 Details zum A+-Graphen selbst: siehe
 [RDF-Export](download-rdf.md).
 
@@ -130,10 +139,10 @@ konsumierbar, semantisch reich, verlustbehaftet), das andere ist
 | **Standardisiert** | Nein (Anton-eigenes Schema) | Ja (internationale Ontologien) |
 | **Verlustfrei** | **Ja** — `uuid`, `formset_id`, alle Locales, alle Notizen, termselect, Rohwerte | Nein — Discovery-Sicht; kein `formset_id`, keine Rohwerte |
 | **Wieder importierbar** | **Ja** (`anton:import-native`, uuid-anchored) | Nein |
-| **Privatsphäre** | Enthält Privates (Backup!) → **nicht öffentlich hosten** | Privates gefiltert → **für öffentliches Hosting gedacht** |
+| **Privatsphäre** | Enthält Privates (Backup!) → **nicht öffentlich hosten** | Privates gefiltert → **für öffentliches Hosting gedacht**; mit `--include-protected` nicht mehr |
 | **Struktur** | Flach & Anton-nah: `entries[]` mit `title`/`identifier`/`events`/`notes`/`files` | Graph aus CRM/RiC-Knoten & -Properties |
 | **Rendern in einem JS-Viewer** | **Einfach** (direkt les-/mapbar) | **Aufwändiger** (Ontologie-Traversierung nötig) |
-| **Medien** | Master-Dateien (Originale) | `thumb`/`web`-Derivate |
+| **Medien** | Master-Dateien (Originale) | `thumb`/`web`-Derivate, mit `--include-originals` auch die Master |
 | **Portabilität** | `uuid`-Identität, auch cross-tenant | bundle-relative Locatoren, offline |
 | **Zielgruppe** | Anton-Betreiber:innen | Aggregatoren (Europeana, Memobase) · eigener statischer Viewer |
 | **Kommando** | `anton:export-native` / `anton:import-native` | `anton:export-rdf --profile=a-plus-bundle` |

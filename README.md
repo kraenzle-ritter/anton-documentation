@@ -18,6 +18,17 @@ mkdocs gh-deploy
 
 Images must be referenced with a __relative path__ from the document.
 
+## Übersetzungen
+
+Die Doku wird viersprachig geführt (de/en/fr/it, Deutsch ist Quellsprache).
+Dateikonvention, Sprachumfang pro Bereich und das verbindliche Glossar stehen in
+[TRANSLATING.md](TRANSLATING.md):
+
+```bash
+python3 scripts/check-translations.py           # veraltete Übersetzungen melden
+python3 scripts/check-translations.py --strict  # Exit 1 bei Drift
+```
+
 ## Console-Command-Referenz
 
 Die Tabelle am Ende von `docs/admin/console-commands.md` (zwischen den
