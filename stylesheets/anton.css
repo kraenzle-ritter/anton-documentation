@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,600,700');
+body, html {
+  color: #133253 !important;;
+  font-family: 'Roboto', sans-serif !important;
+  line-height: 1.42857143;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600 !important;;
+  font-family: 'Roboto', sans-serif !important;
+  color: #133253 !important;
+}
+
+.md-header {
+  color: #133253 !important;
+  background-color: #FFDDAA !important;
+  height: 81px !important;
+  font-family: 'Nunito', sans-serif !important;
+}
+
+/* Die innere Zeile auf die volle Leistenhoehe ziehen, damit Logo, Titel und
+   Suche mittig stehen statt oben zu kleben. */
+.md-header__inner {
+  height: 81px;
+  align-items: center;
+}
+
+/* Das Logo so gross wie auf anton.ch (50px). Die Kopfleiste ist auf 70px
+   fixiert und die innere Zeile nur 48px hoch — ein 50px-Logo passt also
+   hinein, ohne dass die Leiste waechst.
+   Der frueher hier stehende Selektor .md-header-nav__button stammte aus
+   Material 7 und griff seit dem Update auf Material 9 nicht mehr; das Logo
+   lief deshalb mit den voreingestellten 24px. */
+.md-header__button.md-logo {
+  padding: 0;
+  margin-right: 0.4rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 50px;
+  width: auto;
+}
+
+/* .md-search_input war ein Tippfehler (die Klasse heisst __input), und das
+   margin-top glich frueher die oben klebende Kopfzeile aus — seit die innere
+   Zeile zentriert ist, wuerde es die Suche 10px nach unten schieben. */
+.md-search,
+.md-search__input {
+  font-family: 'Nunito', sans-serif !important;
+}
+
+.md-search__icon {
+  color: #133253 !important;
+}
+
+::placeholder {
+  color: #133253 !important;
+}
+
+/* --- Kopfzeile pro Seite: Sprachwahl und Stand-Datum ------------------- */
+
+.page-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  margin: 0 0 0.9rem;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.page-meta__label {
+  margin-right: 0.35rem;
+  color: #8a98a8;
+}
+
+/* Die Sprachen sollen als Auswahl lesbar sein, nicht als Datenangabe:
+   Linkfarbe, Unterstrich, klickbarer Abstand. */
+.md-typeset a.page-meta__lang {
+  color: #1c5f9e;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  padding: 0 0.28rem;
+}
+
+.md-typeset a.page-meta__lang:hover,
+.md-typeset a.page-meta__lang:focus {
+  color: #133253;
+  background-color: #ffddaa;
+  border-radius: 2px;
+}
+
+/* Die aktuelle Sprache ist kein Link — dunkel, fett, dezent unterlegt. */
+.page-meta__lang--current {
+  color: #133253;
+  font-weight: 600;
+  padding: 0 0.28rem;
+  background-color: #f0f2f5;
+  border-radius: 2px;
+}
+
+.page-meta__date {
+  color: #8a98a8;
+}
+
+/* Die Sprachwahl steht neu pro Seite ueber der Ueberschrift; der
+   Umschalter in der Kopfleiste waere doppelt und ohne Beschriftung. */
+.md-header__option {
+  display: none !important;
+}
+
+@media print {
+  .page-meta__langs { display: none; }
+}
