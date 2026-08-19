@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2124,10 +2124,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#voraussetzungen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Requirements
+        Voraussetzungen
       
     </span>
   </a>
@@ -2147,6 +2147,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/sip-ingest/" hreflang="en">en</a></span>
+        <span class="page-meta__date">État: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2155,7 +2162,7 @@
 
 
 <h1 id="sip-ingest-ech-0160">SIP Ingest (eCH-0160)<a class="headerlink" href="#sip-ingest-ech-0160" title="Permanent link">&para;</a></h1>
-<p>Anton enables the import/ingest of Submission Information Packages (SIP) in accordance with eCH-0160, whereby the files (dossiers) and documents are imported into the archive tectonics.</p>
+<p>Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) nach eCH-0160, wobei die Dossiers und Dokumente in die Archivtektonik übernommen werden.</p>
 <p>Zum Standard: <a href="https://ech.ch/de/ech/ech-0160/1.2.0">https://ech.ch/de/ech/ech-0160/1.2.0</a></p>
 <div class="admonition note">
 <p class="admonition-title">Seit v0.62.0: Unified Import Hub</p>
@@ -2165,37 +2172,23 @@
 <p class="admonition-title">agate-SIP-Import (seit v0.61.0)</p>
 <p>BagIt-SIPs, die von agate (Anton-Vorbereitungs-Tool) per HTTP geschickt werden, laufen über einen eigenen Pfad mit NARA-Kategorie-Mapping und Eingangskorb. Details: <a href="../agate-sip/">agate-sip.md</a>.</p>
 </div>
-<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<h3 id="voraussetzungen">Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Accession archive (Akzessionsarchiv): A (locked) archive whose ID is entered in the <code>accessions_archives_id</code> setting.</li>
-<li>The archive hierarchy (parents) must already exist in Anton.</li>
-<li>If the identifiers in the archive hierarchy have a prefix, this must be set (setting: identifier-prefix)</li>
-<li>With the setting strict_sip_validation, Anton issues an error during validation if a file is not found in the SIP.</li>
-<li>Anton Form (default_intern): </li>
-<li>sip_id: Contains the linked signature to the entry of the SIP in the accession archive (should be default_internal in the form)</li>
-<li>note.sip_md5sum, note.actual_backup should be in the default_internal form (displayed at fonds level/SIP)</li>
+<li>Akzessionsarchiv: Ein (gesperrtes) Archiv, dessen ID in das Setting <code>accessions_archives_id</code> eingetragen wird.</li>
+<li>Die Archivhierarchie (<code>parents</code>) muss bereits in Anton vorhanden sein.</li>
+<li>Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: <code>identifier-prefix</code>).</li>
+<li>Mit dem Setting <code>strict_sip_validation</code> gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.</li>
+<li>Anton-Formular (<code>default_intern</code>):<ul>
+<li><code>sip_id</code>: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular <code>default_intern</code> sein).</li>
+<li><code>note.sip_md5sum</code>, <code>note.actual_backup</code> sollten im Formular <code>default_intern</code> sein (werden auf Bestandsebene/SIP angezeigt).</li>
+</ul>
+</li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Example for the setting identifier-prefix</p>
-<p>The parent element (<code>&lt;ordnungssystemposition&gt;</code>) of the <code>&lt;dossier&gt;</code> corresponds to the <code>parent</code> in Anton. The <code>parent</code> in Anton is determined based on the content of the <code>&lt;number&gt;</code> element in the SIP. For example, if this number is "0.6.6", but the archive signature is "A.1.4.0.6.6", the prefix must be filled in accordingly with "A.1.4.".</p>
+<p class="admonition-title">Beispiel zum identifier-prefix</p>
+<p>Das Elternelement (<code>&lt;ordnungssystemposition&gt;</code>) des <code>&lt;dossier&gt;</code> entspricht dem <code>parent</code> in Anton. Der <code>parent</code> in Anton wird anhand des Inhalts des Elements <code>&lt;nummer&gt;</code> im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.</p>
 </div>
-<!--
-### Requirements
-
-#### Anton
-- Akzessionsarchiv: Ein (gesperrtes) Archiv, dessen ID in das Setting `accessions_archives_id` eingetragen wird.
-- Die Archivhierarchie (`parents`) muss bereits in Anton vorhanden sein.
-- Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (setting: `identifier-prefix`)
-- Mit dem Setting `strict_sip_validation` gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.
-
-- Anton Formular (default_intern): 
-    - `sip_id`: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular `default_intern`  sein)
-    - `note.sip_md5sum`, `note.actual_backup` sollte im Formular `default_intern` sein (wird auf Bestandsebene/SIP angezeigt)
-
-!!! note "Beispiel zum identifier-prefix"
-    Das Elternelement (`<ordnungssystemposition>`) des `<dossier>` entspricht dem `parent` in Anton. Der `parent` in Anton wird anhand des Inhalts des Elements `<nummer>` im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.
--->
 
 
 
@@ -2209,6 +2202,7 @@
 
 
                 
+
               </article>
             </div>
           
@@ -2223,6 +2217,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Une partie de cette documentation a été produite et traduite à l'aide de l'IA. Toutes les indications sont donc fournies sans garantie.
+    </div>
   
   
     Made with

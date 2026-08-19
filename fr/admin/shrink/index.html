@@ -29,7 +29,7 @@
     
     
       
-        <title>Shrink Anton for a public installation - Anton – Documentation</title>
+        <title>Verkleinern für eine öffentliche Installation - Anton – Documentation</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shrink-anton-for-a-public-installation" class="md-skip">
+        <a href="#verkleinern-fur-eine-offentliche-installation" class="md-skip">
           Aller au contenu
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Shrink Anton for a public installation
+              Verkleinern für eine öffentliche Installation
             
           </span>
         </div>
@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2124,10 +2124,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#process" class="md-nav__link">
+  <a href="#ablauf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Process
+        Ablauf
       
     </span>
   </a>
@@ -2158,6 +2158,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/shrink/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/shrink/" hreflang="en">en</a></span>
+        <span class="page-meta__date">État: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2165,34 +2172,34 @@
   
 
 
-<h1 id="shrink-anton-for-a-public-installation">Shrink Anton for a public installation<a class="headerlink" href="#shrink-anton-for-a-public-installation" title="Permanent link">&para;</a></h1>
-<p>If Anton is also to manage highly sensitive data, it is a good idea to run Anton on a private network rather than on the Internet. To publish your data nevertheless, it is possible to synchronise Anton with an instance on the Internet in which private and blocked information has been deleted.</p>
-<p>For this we use 3 Anton instances:</p>
-<p>Private Network:</p>
+<h1 id="verkleinern-fur-eine-offentliche-installation">Verkleinern für eine öffentliche Installation<a class="headerlink" href="#verkleinern-fur-eine-offentliche-installation" title="Permanent link">&para;</a></h1>
+<p>Soll Anton auch hochsensible Daten verwalten, empfiehlt es sich, Anton in einem privaten Netz statt im Internet zu betreiben. Um die Daten dennoch zu veröffentlichen, lässt sich Anton mit einer Instanz im Internet abgleichen, in der private und gesperrte Informationen gelöscht sind.</p>
+<p>Dafür verwenden wir drei Anton-Instanzen:</p>
+<p>Privates Netz:</p>
 <ul>
-<li><strong>production</strong>: your working environment with all data  </li>
-<li><strong>sync</strong>: a non-visible installation to delete the sensitive data</li>
+<li><strong>production</strong>: die Arbeitsumgebung mit allen Daten  </li>
+<li><strong>sync</strong>: eine nicht sichtbare Installation, in der die sensiblen Daten gelöscht werden</li>
 </ul>
 <p>Internet:</p>
 <ul>
-<li><strong>public</strong>: a clone of the sync environment in the internet</li>
+<li><strong>public</strong>: ein Klon der sync-Umgebung im Internet</li>
 </ul>
-<h2 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
+<h2 id="ablauf">Ablauf<a class="headerlink" href="#ablauf" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Backup of production  </li>
-<li>Restore database with data from production in sync  </li>
-<li>Shrink the data  </li>
-<li>Delete Media if not referenced in Sync; copy web-versions from production when needed  </li>
-<li>Backup of sync  </li>
-<li>Sync data from sync to public  </li>
-<li>Restore public</li>
+<li>Sicherung von production  </li>
+<li>Datenbank mit den Daten aus production in sync wiederherstellen  </li>
+<li>Daten verkleinern  </li>
+<li>Medien löschen, die in sync nicht referenziert sind; bei Bedarf Webversionen aus production kopieren  </li>
+<li>Sicherung von sync  </li>
+<li>Daten von sync nach public abgleichen  </li>
+<li>public wiederherstellen</li>
 </ol>
-<p>For steps 1 to 4 there is the bash script <code>sync.sh</code>, which after the backup/restore starts the laravel script <code>anton:shrink-to-public</code> for step 3 and 4.</p>
+<p>Für die Schritte 1 bis 4 gibt es das Bash-Skript <code>sync.sh</code>, das nach Sicherung und Wiederherstellung für die Schritte 3 und 4 den Laravel-Befehl <code>anton:shrink-to-public</code> startet.</p>
 <h2 id="shrink-to-public">Shrink to public<a class="headerlink" href="#shrink-to-public" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="x">php artisan anton:shrink-to-public --path-to-media {path} --env {sync}</span>
 </code></pre></div>
-<p>Since we are running this command in the sync environment, we need to pass the path to the media directory of the production environment.</p>
-<p>There is also an option <code>--days</code>. If set the command only copies media from production to sync if in the database the media has been updated during this period. If the synchronisation once has been done that is an option to accelerate the cronjob.</p>
+<p>Da der Befehl in der sync-Umgebung läuft, ist der Pfad zum Medienverzeichnis der production-Umgebung zu übergeben.</p>
+<p>Ausserdem gibt es die Option <code>--days</code>. Ist sie gesetzt, kopiert der Befehl Medien nur dann von production nach sync, wenn sie in der Datenbank innerhalb dieses Zeitraums aktualisiert wurden. Nach einem ersten vollständigen Abgleich beschleunigt das den Cronjob.</p>
 
 
 
@@ -2206,6 +2213,7 @@
 
 
                 
+
               </article>
             </div>
           
@@ -2220,6 +2228,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Une partie de cette documentation a été produite et traduite à l'aide de l'IA. Toutes les indications sont donc fournies sans garantie.
+    </div>
   
   
     Made with

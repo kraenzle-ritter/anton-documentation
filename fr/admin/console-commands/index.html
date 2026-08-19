@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2340,6 +2340,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en">en</a></span>
+        <span class="page-meta__date">État: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2412,7 +2419,7 @@ was welche Sicherung enthält, zeigt die <a href="../export-matrix/">Export-Matr
 definierten Stand zurück — die Grundlage des täglich zurückgesetzten
 Testarchivs.</p>
 <h2 id="medien-und-integritat">Medien und Integrität<a class="headerlink" href="#medien-und-integritat" title="Permanent link">&para;</a></h2>
-<p><strong><code>media:check</code></strong> prüft die Konsistenz zwischen Anton-Datenbank, lokalem
+<p><strong id="mediacheck"><code>media:check</code></strong> prüft die Konsistenz zwischen Anton-Datenbank, lokalem
 Dateisystem, Inge und DIMAG. Sechs Prüfebenen, einzeln oder kombiniert:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>-vv
 </code></pre></div>
@@ -2427,16 +2434,16 @@ Dateisystem, Inge und DIMAG. Sechs Prüfebenen, einzeln oder kombiniert:</p>
 eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
 (die Master liegen dort). Details siehe <a href="../inge/">Inge und DIMAG</a> und
 <a href="../preservation/#integritat-prufen">Langzeitarchivierung</a>.</p>
-<p><strong><code>media:snapshot --verify --git</code></strong> schreibt einen Prüfsummen-Schnappschuss
+<p><strong id="mediasnapshot"><code>media:snapshot --verify --git</code></strong> schreibt einen Prüfsummen-Schnappschuss
 aller Medien und committet Änderungen in ein lokales Git-Repository — die
 Grundlage einer wiederkehrenden Integritätsprüfung. Anton führt ihn nicht von
 selbst aus; er wird pro Installation als Cronjob eingerichtet.</p>
-<p><strong><code>media:identify</code></strong> bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
+<p><strong id="mediaidentify"><code>media:identify</code></strong> bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
 automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne <code>--force</code>
 nur Medien ohne Erkennungsdaten. Auswertung siehe
 <a href="../preservation-planning/">Preservation Planning</a>.</p>
-<p><strong><code>media:extract-av-metadata</code></strong> füllt die <code>av_*</code>-Spalten (Dauer, Codec, Bitrate,
+<p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> füllt die <code>av_*</code>-Spalten (Dauer, Codec, Bitrate,
 Auflösung …) via <code>ffprobe</code> — ebenfalls ein Backfill-Befehl, da neue Uploads das
 automatisch tun. <code>--dry-run</code> zeigt nur, was sich ändern würde; <code>--force</code> auch
 über bereits gefüllte Werte.</p>
@@ -2555,7 +2562,7 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 </tbody>
 </table>
 <h2 id="diagnose">Diagnose<a class="headerlink" href="#diagnose" title="Permanent link">&para;</a></h2>
-<p><strong><code>anton:doctor</code></strong> prüft eine Installation auf Konsistenz — dieselben Prüfungen
+<p><strong id="antondoctor"><code>anton:doctor</code></strong> prüft eine Installation auf Konsistenz — dieselben Prüfungen
 wie die Oberfläche unter <a href="../doctor/">Anton Doctor</a>, nur skriptfähig:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--all<span class="w"> </span>-vv
 </code></pre></div>
@@ -3046,6 +3053,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 
 
                 
+
               </article>
             </div>
           
@@ -3060,6 +3068,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Une partie de cette documentation a été produite et traduite à l'aide de l'IA. Toutes les indications sont donc fournies sans garantie.
+    </div>
   
   
     Made with

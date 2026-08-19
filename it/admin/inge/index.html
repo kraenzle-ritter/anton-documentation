@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2124,15 +2124,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#voraussetzungen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Requirements
+        Voraussetzungen
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Requirements">
+    <nav class="md-nav" aria-label="Voraussetzungen">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2175,10 +2175,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#revert-a-sip-import-or-confirm-import-with-inge" class="md-nav__link">
+  <a href="#einen-sip-import-zurucknehmen-oder-mit-inge-bestatigen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Revert a SIP Import or Confirm Import with Inge
+        Einen SIP-Import zurücknehmen oder mit Inge bestätigen
       
     </span>
   </a>
@@ -2186,10 +2186,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#checking-and-repairing-media-sync-anton-inge-dimag" class="md-nav__link">
+  <a href="#medienabgleich-prufen-und-reparieren-anton-inge-dimag" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)
+        Medienabgleich prüfen und reparieren (Anton ↔ Inge ↔ Dimag)
       
     </span>
   </a>
@@ -2208,10 +2208,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#debugging" class="md-nav__link">
+  <a href="#fehlersuche" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Debugging
+        Fehlersuche
       
     </span>
   </a>
@@ -2236,6 +2236,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/inge/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/inge/" hreflang="en">en</a></span>
+        <span class="page-meta__date">Aggiornamento: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2245,14 +2252,12 @@
 
 <h1 id="inge-und-dimag">Inge und Dimag<a class="headerlink" href="#inge-und-dimag" title="Permanent link">&para;</a></h1>
 <p>Mit Inge ist es möglich, DIMAG als Repository für die Primärdaten zu integrieren. Die originalen Dateien werden dann nicht im lokalen Filesystem von Anton, sondern in DIMAG gespeichert. Nur die Dateien, die für das Internet optimiert wurden, bleiben in Anton. Wenn nötig können interne User die originalen Dateien herunterladen. Aus Perspektive der Nutzer:innen gibt es deshalb keinen Unterschied.</p>
-<!--With Inge it is possible to integrate DIMAG as a data repository. The original files are then not stored on the Anton file system, but in DIMAG. Only files that have been optimized for use on the Internet are then stored in Anton. If required, internal users can download the original files. So there is no difference for the users.-->
-
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<h2 id="voraussetzungen">Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Setting <code>fulltext-from-webpdf</code>: true </li>
 <li>Setting <code>cloud</code>: "inge"</li>
 <li>.env INGE_API_TOKEN </li>
-<li>User "Inge" with Email address and api_token for Inge</li>
+<li>Benutzer «Inge» mit E-Mail-Adresse und <code>api_token</code> für Inge</li>
 </ul>
 <h3 id="ablauf-des-sip-ingest">Ablauf des SIP-Ingest<a class="headerlink" href="#ablauf-des-sip-ingest" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
@@ -2304,17 +2309,17 @@
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--from-sip<span class="w"> </span>--no-validation<span class="w"> </span>
 --create-actors<span class="w"> </span>-vv<span class="w"> </span><span class="o">{</span>path/to/sip<span class="o">}</span><span class="w"> </span>--import
 </code></pre></div>
-<h3 id="revert-a-sip-import-or-confirm-import-with-inge">Revert a SIP Import or Confirm Import with Inge<a class="headerlink" href="#revert-a-sip-import-or-confirm-import-with-inge" title="Permanent link">&para;</a></h3>
-<p>Before a SIP Import Anton backups the database, so if anything goes wrong you can come back to the status before the Import. </p>
-<p>The backup name is stored in the SIP-Entry and the <code>Status of description</code> is set to draft.</p>
-<p>This will restore the database from the last/actual backup and sync the media with the database (namely delete media wich are not registered in the database):</p>
+<h3 id="einen-sip-import-zurucknehmen-oder-mit-inge-bestatigen">Einen SIP-Import zurücknehmen oder mit Inge bestätigen<a class="headerlink" href="#einen-sip-import-zurucknehmen-oder-mit-inge-bestatigen" title="Permanent link">&para;</a></h3>
+<p>Vor einem SIP-Import sichert Anton die Datenbank; geht etwas schief, lässt sich damit der Zustand vor dem Import wiederherstellen.</p>
+<p>Der Name der Sicherung wird im SIP-Eintrag festgehalten, und der <code>Status of description</code> steht auf «Entwurf».</p>
+<p>Der folgende Befehl stellt die Datenbank aus der letzten Sicherung wieder her und gleicht die Medien mit der Datenbank ab (löscht also Medien, die in der Datenbank nicht registriert sind):</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
 </code></pre></div>
-<p>The <code>sip_id</code> is the ID of an AntonObject which is a SIP.</p>
-<p>This will set the <code>Status of description</code> in the SIP-Entry to "final":</p>
+<p>Die <code>sip_id</code> ist die ID eines AntonObjects, das ein SIP ist.</p>
+<p>Der folgende Befehl setzt den <code>Status of description</code> im SIP-Eintrag auf «final»:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
 </code></pre></div>
-<h3 id="checking-and-repairing-media-sync-anton-inge-dimag">Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)<a class="headerlink" href="#checking-and-repairing-media-sync-anton-inge-dimag" title="Permanent link">&para;</a></h3>
+<h3 id="medienabgleich-prufen-und-reparieren-anton-inge-dimag">Medienabgleich prüfen und reparieren (Anton ↔ Inge ↔ Dimag)<a class="headerlink" href="#medienabgleich-prufen-und-reparieren-anton-inge-dimag" title="Permanent link">&para;</a></h3>
 <p><code>media:check</code> prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Gesamtüberblick (Counts + Verifikation + Orphan-Check)</span>
 php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
@@ -2376,8 +2381,8 @@ php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span cla
 php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span class="w"> </span>--clean-masters<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
 </code></pre></div>
 <p>Bei Inge-Installationen sollten lokale Masterfiles 0 sein. Falls nicht, weist <code>storage:audit</code> darauf hin und <code>--clean-masters</code> bereinigt verifizierte Dateien.</p>
-<h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
-<h4 id="check-the-sip-import-data">Check the SIP Import Data<a class="headerlink" href="#check-the-sip-import-data" title="Permanent link">&para;</a></h4>
+<h3 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h3>
+<h4 id="die-sip-import-daten-prufen">Die SIP-Import-Daten prüfen<a class="headerlink" href="#die-sip-import-daten-prufen" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-import-array
@@ -2395,6 +2400,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span cla
 
 
                 
+
               </article>
             </div>
           
@@ -2409,6 +2415,10 @@ php<span class="w"> </span>artisan<span class="w"> </span>storage:audit<span cla
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Parte di questa documentazione è stata prodotta e tradotta con l'IA. Tutte le indicazioni sono quindi fornite senza garanzia.
+    </div>
   
   
     Made with

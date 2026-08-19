@@ -29,7 +29,7 @@
     
     
       
-        <title>Authentication - Anton – Documentazione</title>
+        <title>Anmeldung - Anton – Documentazione</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentication" class="md-skip">
+        <a href="#anmeldung" class="md-skip">
           Vai al contenuto
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Authentication
+              Anmeldung
             
           </span>
         </div>
@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2124,22 +2124,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#two-factor-authentication" class="md-nav__link">
+  <a href="#zwei-faktor-authentifizierung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Two-Factor Authentication
+        Zwei-Faktor-Authentifizierung
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Two-Factor Authentication">
+    <nav class="md-nav" aria-label="Zwei-Faktor-Authentifizierung">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#activate" class="md-nav__link">
+  <a href="#aktivieren" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Activate
+        Aktivieren
       
     </span>
   </a>
@@ -2147,10 +2147,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deactivate-2fa-for-a-user" class="md-nav__link">
+  <a href="#2fa-fur-eine-person-zurucksetzen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deactivate 2FA for a User
+        2FA für eine Person zurücksetzen
       
     </span>
   </a>
@@ -2163,10 +2163,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registration" class="md-nav__link">
+  <a href="#registrierung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Registration
+        Registrierung
       
     </span>
   </a>
@@ -2197,6 +2197,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/authentication/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/authentication/" hreflang="en">en</a></span>
+        <span class="page-meta__date">Aggiornamento: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2204,21 +2211,21 @@
   
 
 
-<h1 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h1>
-<h2 id="two-factor-authentication">Two-Factor Authentication<a class="headerlink" href="#two-factor-authentication" title="Permanent link">&para;</a></h2>
-<h3 id="activate">Activate<a class="headerlink" href="#activate" title="Permanent link">&para;</a></h3>
-<p>The two-factor authentication can be enabled with an entry in the <code>.env</code> file:</p>
+<h1 id="anmeldung">Anmeldung<a class="headerlink" href="#anmeldung" title="Permanent link">&para;</a></h1>
+<h2 id="zwei-faktor-authentifizierung">Zwei-Faktor-Authentifizierung<a class="headerlink" href="#zwei-faktor-authentifizierung" title="Permanent link">&para;</a></h2>
+<h3 id="aktivieren">Aktivieren<a class="headerlink" href="#aktivieren" title="Permanent link">&para;</a></h3>
+<p>Die Zwei-Faktor-Authentifizierung wird über einen Eintrag in der <code>.env</code>-Datei eingeschaltet:</p>
 <div class="highlight"><pre><span></span><code>2FA=1
 </code></pre></div>
-<p>In the settings (<code>two-factor-auth-role</code>) you can set a role for which the 2FA is obligatory. If for example editor is specified, a 2FA is mandatory for editor and admin.</p>
-<h3 id="deactivate-2fa-for-a-user">Deactivate 2FA for a User<a class="headerlink" href="#deactivate-2fa-for-a-user" title="Permanent link">&para;</a></h3>
-<p>If a user has lost the two-factor secrets and has also no recovery code, it is possible to remove this from the user so that it is possible to start over with a fresh 2FA.</p>
-<h2 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h2>
-<p>It is also possible via the <code>.env</code> file to allow user registration:</p>
+<p>In den Einstellungen (<code>two-factor-auth-role</code>) lässt sich eine Rolle festlegen, ab der die 2FA verbindlich ist. Steht dort beispielsweise editor, ist die 2FA für Editor:innen und Admins Pflicht.</p>
+<h3 id="2fa-fur-eine-person-zurucksetzen">2FA für eine Person zurücksetzen<a class="headerlink" href="#2fa-fur-eine-person-zurucksetzen" title="Permanent link">&para;</a></h3>
+<p>Hat jemand das Zwei-Faktor-Geheimnis verloren und auch keinen Wiederherstellungscode mehr, lässt es sich beim Benutzerkonto entfernen. Die 2FA kann danach neu eingerichtet werden.</p>
+<h2 id="registrierung">Registrierung<a class="headerlink" href="#registrierung" title="Permanent link">&para;</a></h2>
+<p>Ebenfalls über die <code>.env</code>-Datei lässt sich die Selbstregistrierung freigeben:</p>
 <div class="highlight"><pre><span></span><code>REGISTRATION=1
 </code></pre></div>
 <h2 id="passkeys">Passkeys<a class="headerlink" href="#passkeys" title="Permanent link">&para;</a></h2>
-<p>To enable passkeys, simply set the Setting <code>passkeys_enabled</code> to true. When using subdomains set WEBAUTHN_ID in the .env file. E.g.:</p>
+<p>Für Passkeys genügt es, die Einstellung <code>passkeys_enabled</code> auf true zu setzen. Bei Betrieb unter Subdomains ist zusätzlich <code>WEBAUTHN_ID</code> in der <code>.env</code>-Datei zu setzen, zum Beispiel:</p>
 <div class="highlight"><pre><span></span><code>WEBAUTHN_ID=kba.anton.ch
 </code></pre></div>
 
@@ -2234,6 +2241,7 @@
 
 
                 
+
               </article>
             </div>
           
@@ -2248,6 +2256,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Parte di questa documentazione è stata prodotta e tradotta con l'IA. Tutte le indicazioni sono quindi fornite senza garanzia.
+    </div>
   
   
     Made with

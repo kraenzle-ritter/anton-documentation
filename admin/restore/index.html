@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#backup-and-restore-from-backup" class="md-skip">
+        <a href="#sicherung-und-wiederherstellung" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -3382,10 +3382,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#restore-from-backup" class="md-nav__link">
+  <a href="#wiederherstellung-aus-einer-sicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Restore from Backup
+        Wiederherstellung aus einer Sicherung
       
     </span>
   </a>
@@ -3393,10 +3393,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete-obsolete-media" class="md-nav__link">
+  <a href="#verwaiste-medien-entfernen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Delete obsolete Media
+        Verwaiste Medien entfernen
       
     </span>
   </a>
@@ -3404,10 +3404,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restore-lost-media" class="md-nav__link">
+  <a href="#fehlende-medien-zuruckholen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Restore lost Media
+        Fehlende Medien zurückholen
       
     </span>
   </a>
@@ -4049,10 +4049,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#restore-from-backup" class="md-nav__link">
+  <a href="#wiederherstellung-aus-einer-sicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Restore from Backup
+        Wiederherstellung aus einer Sicherung
       
     </span>
   </a>
@@ -4060,10 +4060,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete-obsolete-media" class="md-nav__link">
+  <a href="#verwaiste-medien-entfernen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Delete obsolete Media
+        Verwaiste Medien entfernen
       
     </span>
   </a>
@@ -4071,10 +4071,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restore-lost-media" class="md-nav__link">
+  <a href="#fehlende-medien-zuruckholen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Restore lost Media
+        Fehlende Medien zurückholen
       
     </span>
   </a>
@@ -4094,6 +4094,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><span class="page-meta__lang page-meta__lang--current">de</span><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/restore/" hreflang="en">en</a></span>
+        <span class="page-meta__date">Stand: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -4101,8 +4108,8 @@
   
 
 
-<h1 id="backup-and-restore-from-backup">Backup and Restore from Backup<a class="headerlink" href="#backup-and-restore-from-backup" title="Permanent link">&para;</a></h1>
-<p>To backup the database just use the command</p>
+<h1 id="sicherung-und-wiederherstellung">Sicherung und Wiederherstellung<a class="headerlink" href="#sicherung-und-wiederherstellung" title="Permanent link">&para;</a></h1>
+<p>Für die Sicherung der Datenbank genügt der Befehl</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:backup<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Options:
@@ -4114,8 +4121,8 @@
   --monthly                  Monthly Backup (filename: 00_backup_slug-monthly-04)
   --yearly                   Yearly Backup (filename: 00_backup_slug-yearly-2019)
 </code></pre></div>
-<h2 id="restore-from-backup">Restore from Backup<a class="headerlink" href="#restore-from-backup" title="Permanent link">&para;</a></h2>
-<p>Restoring from a backup may become necessary for various reasons. The database can be restored with the command 'anton:restore':</p>
+<h2 id="wiederherstellung-aus-einer-sicherung">Wiederherstellung aus einer Sicherung<a class="headerlink" href="#wiederherstellung-aus-einer-sicherung" title="Permanent link">&para;</a></h2>
+<p>Eine Wiederherstellung kann aus verschiedenen Gründen nötig werden. Die Datenbank lässt sich mit dem Befehl <code>anton:restore</code> zurückspielen:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:restore<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
 <p><div class="highlight"><pre><span></span><code>Options:
@@ -4123,13 +4130,13 @@
   --file[=FILE]     Source file.
   --drop            Erase all tables.
 </code></pre></div>
-The database dump must be located in the <code>db_backup</code> folder in the customers-dir.</p>
-<h2 id="delete-obsolete-media">Delete obsolete Media<a class="headerlink" href="#delete-obsolete-media" title="Permanent link">&para;</a></h2>
-<p>To delete any media that may no longer referenced in the database after restoring from the backup:</p>
+Der Datenbank-Dump muss im Ordner <code>db_backup</code> im Kundenverzeichnis liegen.</p>
+<h2 id="verwaiste-medien-entfernen">Verwaiste Medien entfernen<a class="headerlink" href="#verwaiste-medien-entfernen" title="Permanent link">&para;</a></h2>
+<p>Um Medien zu löschen, die nach der Wiederherstellung nicht mehr in der Datenbank referenziert sind:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:check-media<span class="w"> </span>-vv<span class="w"> </span>--levels<span class="w"> </span><span class="m">3</span><span class="w"> </span>--delete-from-system<span class="w"> </span>--env<span class="w"> </span>besenval
 </code></pre></div>
-<h2 id="restore-lost-media">Restore lost Media<a class="headerlink" href="#restore-lost-media" title="Permanent link">&para;</a></h2>
-<p>If media-files are missing, they must be copied back from the external backup.</p>
+<h2 id="fehlende-medien-zuruckholen">Fehlende Medien zurückholen<a class="headerlink" href="#fehlende-medien-zuruckholen" title="Permanent link">&para;</a></h2>
+<p>Fehlen Mediendateien, sind sie aus der externen Sicherung zurückzukopieren.</p>
 
 
 
@@ -4143,6 +4150,7 @@ The database dump must be located in the <code>db_backup</code> folder in the cu
 
 
                 
+
               </article>
             </div>
           
@@ -4157,6 +4165,10 @@ The database dump must be located in the <code>db_backup</code> folder in the cu
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Diese Dokumentation wurde teilweise mit KI erstellt und übersetzt. Alle Angaben deshalb ohne Gewähr.
+    </div>
   
   
     Made with

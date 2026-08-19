@@ -1689,14 +1689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="/en/developer/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Developer (en)
   
 
     
@@ -1716,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="/en/admin/requirements/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Admin (en)
   
 
     
@@ -1743,14 +1743,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="/en/api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    API (en)
   
 
     
@@ -2124,10 +2124,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#custom-word-export" class="md-nav__link">
+  <a href="#eigener-word-export" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Word Export
+        Eigener Word-Export
       
     </span>
   </a>
@@ -2147,6 +2147,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/admin/download-word/" hreflang="de">de</a><span class="page-meta__sep">|</span><a class="page-meta__lang" href="/en/admin/download-word/" hreflang="en">en</a></span>
+        <span class="page-meta__date">État: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2158,13 +2165,13 @@
 <p>Die Möglichkeit, Findbücher zu einzelnen Beständen herunterzuladen, können in das Formular (default, internal, detail) eingebaut werden: <code>module_word_download</code>. Der Download wird aber nur für die Verzeichnungsstufen angezeigt die im Setting <code>level_of_description_ids_for_word_download</code> angegeben sind. Für Bestände: <code>[3]</code></p>
 <p>Um das Logo einzubinden, ist im <code>customers/{slug}/img</code> Ordner das Logo als <code>word_logo.png</code> abzuspeichern.</p>
 <p>Ausserdem kann in der Einstellungen der Footer (<code>word_footer</code>) sowie der Header <code>word_header</code> angepasst werden.</p>
-<h2 id="custom-word-export">Custom Word Export<a class="headerlink" href="#custom-word-export" title="Permanent link">&para;</a></h2>
-<p>For a Word Export there must be a Class in the <code>Controller\Word</code> directory, which organizes the download, for example <code>ArchivdatenWordEdxport</code>. The class must be named like <code>${template}WordEdxport</code>. So in the example the template is «Archivdaten». </p>
-<p>The export class must have one method which takes as an argument an integer and returns a <code>Symfony\Component\HttpFoundation\Response</code>:</p>
+<h2 id="eigener-word-export">Eigener Word-Export<a class="headerlink" href="#eigener-word-export" title="Permanent link">&para;</a></h2>
+<p>Für einen eigenen Word-Export braucht es im Verzeichnis <code>Controller\Word</code> eine Klasse, die den Download organisiert, zum Beispiel <code>ArchivdatenWordEdxport</code>. Die Klasse muss nach dem Muster <code>${template}WordEdxport</code> benannt sein; im Beispiel lautet das Template also «Archivdaten».</p>
+<p>Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und eine <code>Symfony\Component\HttpFoundation\Response</code> zurückgibt:</p>
 <div class="highlight"><pre><span></span><code><span class="x">public function run($id) : Response</span>
 </code></pre></div>
-<p>When the class is done you have to add the <code>ModuleWordDownload</code> to the default objectform (via the gui). </p>
-<p>Then you can specify the level_of_descriptions, which should offer the download by adding an array of level_of_description_ids to the setting <code>level_of_description_ids_for_word_download</code> and to the setting <code>word_export_template</code> you have to add the template (casesensitive), in the example «Archivdaten». </p>
+<p>Ist die Klasse fertig, wird das <code>ModuleWordDownload</code> über die Oberfläche in das Standard-Objektformular aufgenommen.</p>
+<p>Anschliessend lässt sich festlegen, für welche Verzeichnungsstufen der Download angeboten wird: Dazu kommt ein Array mit den Ids der Verzeichnungsstufen in die Einstellung <code>level_of_description_ids_for_word_download</code>, und in die Einstellung <code>word_export_template</code> das Template (Gross- und Kleinschreibung beachten) — im Beispiel «Archivdaten».</p>
 
 
 
@@ -2178,6 +2185,7 @@
 
 
                 
+
               </article>
             </div>
           
@@ -2192,6 +2200,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Une partie de cette documentation a été produite et traduite à l'aide de l'IA. Toutes les indications sont donc fournies sans garantie.
+    </div>
   
   
     Made with

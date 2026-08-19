@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../forms/">
+      
+      
+        <link rel="next" href="../extension-points/">
       
       
         
@@ -29,7 +33,7 @@
     
     
       
-        <title>Nebenläufigkeit: Events, Listener, Jobs - Anton – Documentation</title>
+        <title>Concurrency - Anton – Documentation</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nebenlaufigkeit-events-listener-jobs" class="md-skip">
+        <a href="#concurrency-events-listeners-jobs" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Nebenläufigkeit: Events, Listener, Jobs
+              Concurrency
             
           </span>
         </div>
@@ -1686,17 +1690,66 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="/developer/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Developer (de)
+    Architecture overview
   
 
     
@@ -1708,22 +1761,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="/admin/requirements/" class="md-nav__link">
+      <a href="../domain-model/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Admin (de)
+    Domain model
   
 
     
@@ -1735,22 +1789,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="/api/" class="md-nav__link">
+      <a href="../forms/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API (de)
+    The form system
   
 
     
@@ -1759,6 +1814,1907 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-asynchronous-and-idempotent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why asynchronous and idempotent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-events-are-suppressed-in-bulk-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain events are suppressed in bulk operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-derived-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The derived fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite-the-supervisor-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite: the supervisor is running
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-scheduler-on-the-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No scheduler on the servers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Admin
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/logo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logo and favicons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring the archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuring the archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms and form sets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/valuelists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Value lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/protection-periods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protection periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/searchfields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search fields
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/home/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home page and navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/isdiah/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive description (ISDIAH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Media
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Media
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Media gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/documents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/watermarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Watermarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/bulk-media-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Media list and bulk actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/typesense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instant search (Typesense)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/weighted-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weighted search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Import
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/sip-ingest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIP ingest (eCH-0160)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/agate-sip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agate SIP import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/authorities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authority data synchronisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export and publication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Export and publication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/download-dip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloading a DIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/download-word/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word finding aids
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/download-ocfl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloading OCFL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/download-rdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RDF export (CIDOC CRM / Memobase)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/statische-publikation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static publication and round trip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/mastodon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mastodon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Long-term preservation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Long-term preservation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/preservation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/export-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/preservation-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preservation planning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/inge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inge and DIMAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/dimag-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DIMAG upload status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/doctor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anton Doctor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/restore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and restoration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/console-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback to development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/shrink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shrinking for a public installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/ai-cataloging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI-assisted cataloguing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2124,10 +4080,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#das-muster" class="md-nav__link">
+  <a href="#the-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Das Muster
+        The pattern
       
     </span>
   </a>
@@ -2135,10 +4091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#warum-asynchron-und-idempotent" class="md-nav__link">
+  <a href="#why-asynchronous-and-idempotent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Warum asynchron und idempotent
+        Why asynchronous and idempotent
       
     </span>
   </a>
@@ -2146,10 +4102,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#domain-events-werden-bei-massenoperationen-unterdruckt" class="md-nav__link">
+  <a href="#domain-events-are-suppressed-in-bulk-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Domain-Events werden bei Massenoperationen unterdrückt
+        Domain events are suppressed in bulk operations
       
     </span>
   </a>
@@ -2157,10 +4113,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#die-abgeleiteten-felder" class="md-nav__link">
+  <a href="#the-derived-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Die abgeleiteten Felder
+        The derived fields
       
     </span>
   </a>
@@ -2168,10 +4124,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#voraussetzung-der-supervisor-lauft" class="md-nav__link">
+  <a href="#prerequisite-the-supervisor-is-running" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Voraussetzung: der Supervisor läuft
+        Prerequisite: the supervisor is running
       
     </span>
   </a>
@@ -2179,10 +4135,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kein-scheduler-auf-den-servern" class="md-nav__link">
+  <a href="#no-scheduler-on-the-servers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kein Scheduler auf den Servern
+        No scheduler on the servers
       
     </span>
   </a>
@@ -2202,6 +4158,13 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
+    <div class="page-meta">
+        <span class="page-meta__langs"><a class="page-meta__lang" href="/developer/events-jobs/" hreflang="de">de</a><span class="page-meta__sep">|</span><span class="page-meta__lang page-meta__lang--current">en</span></span>
+        <span class="page-meta__date">Last updated: 2026-08-19</span>
+    </div>
+  
+  
                   
 
 
@@ -2209,94 +4172,94 @@
   
 
 
-<h1 id="nebenlaufigkeit-events-listener-jobs">Nebenläufigkeit: Events, Listener, Jobs<a class="headerlink" href="#nebenlaufigkeit-events-listener-jobs" title="Permanent link">&para;</a></h1>
-<p>Eine Verzeichnungseinheit trägt Felder, die aus anderen Daten <strong>folgen</strong>: ihren
-Pfad in der Tektonik, ihre Tiefe, das Freigabejahr, den Volltextindex, die über
-den Teilbaum aggregierte Datierung. Diese Werte sind <strong>materialisiert</strong> — sie
-stehen in Spalten, statt bei jeder Abfrage neu gerechnet zu werden.</p>
-<p>Materialisierung erkauft schnelle Abfragen mit dem Zwang, die Werte konsistent
-zu halten. Genau das leistet die Ereignis- und Job-Schicht. Wer sie versteht,
-versteht, warum eine scheinbar einfache Änderung an einem Objekt eine Kette von
-Hintergrundaufträgen auslöst.</p>
-<h2 id="das-muster">Das Muster<a class="headerlink" href="#das-muster" title="Permanent link">&para;</a></h2>
-<p>Anton koppelt Domänenoperationen und Nachpflege lose über Laravel-Events:</p>
-<div class="highlight"><pre><span></span><code>Operation am AntonObject  →  Domain-Event  →  Listener  →  Job (Queue)
+<h1 id="concurrency-events-listeners-jobs">Concurrency: events, listeners, jobs<a class="headerlink" href="#concurrency-events-listeners-jobs" title="Permanent link">&para;</a></h1>
+<p>A unit of description carries fields that <strong>follow</strong> from other data: its path in
+the archival arrangement, its depth, the release year, the full-text index, the
+dating aggregated across the subtree. These values are <strong>materialised</strong> — they
+sit in columns instead of being recalculated on every query.</p>
+<p>Materialisation buys fast queries at the price of having to keep the values
+consistent. That is exactly what the event and job layer does. Understanding it
+means understanding why a seemingly simple change to an object triggers a chain
+of background jobs.</p>
+<h2 id="the-pattern">The pattern<a class="headerlink" href="#the-pattern" title="Permanent link">&para;</a></h2>
+<p>Anton couples domain operations and follow-up maintenance loosely via Laravel
+events:</p>
+<div class="highlight"><pre><span></span><code>Operation on the AntonObject  →  domain event  →  listener  →  job (queue)
 </code></pre></div>
-<p>Der Kern liegt in den Model-Hooks von <code>AntonObject</code> (<code>booted()</code>) und in
-<code>EventServiceProvider</code>. Die Nachpflege läuft über die Queue, weil sie ganze
-Teilbäume berühren kann — bei einer Closure Table ist das potenziell teuer.</p>
-<h2 id="warum-asynchron-und-idempotent">Warum asynchron und idempotent<a class="headerlink" href="#warum-asynchron-und-idempotent" title="Permanent link">&para;</a></h2>
-<p>Zwei Entwurfsentscheidungen erklären fast alles:</p>
-<p><strong>Teilbaum-Arbeit gehört in die Queue.</strong> Ein Verschieben schreibt Pfade und
-Tiefen aller Nachkommen um; eine Titeländerung kann den Volltext des ganzen
-Teilbaums betreffen. Solche Arbeit synchron im Request zu erledigen, würde ihn
-sprengen — deshalb Jobs mit grosszügigen Timeouts und Retries.</p>
-<p><strong>Die Jobs sind wiederholbar.</strong> Jeder rechnet den Zielzustand aus den
-Quelldaten neu, statt Deltas fortzuschreiben. Das macht sie idempotent: Ein
-zweiter Lauf schadet nicht, ein verlorener Lauf lässt sich nachholen. Genau
-darauf beruht die Reparaturfähigkeit — <code>anton:doctor</code> und
-<code>RepairAllDerivedAttributes</code> können jederzeit den konsistenten Zustand
-wiederherstellen.</p>
-<h2 id="domain-events-werden-bei-massenoperationen-unterdruckt">Domain-Events werden bei Massenoperationen unterdrückt<a class="headerlink" href="#domain-events-werden-bei-massenoperationen-unterdruckt" title="Permanent link">&para;</a></h2>
-<p>Ein wichtiges Detail: Beim Anlegen vieler Datensätze (<code>create_bulk</code>) und während
-eines Verschiebens setzt der Code <code>$suppressDomainEvents = true</code> und stösst die
-Nachpflege <strong>einmal am Ende</strong> an, statt pro Objekt. Sonst würde eine
-Bulk-Operation Hunderte redundanter Jobs erzeugen. Wer eine neue Massenoperation
-schreibt, muss dieses Muster kennen und selbst dafür sorgen, dass Pfade, Daten
-und Volltext danach einmal aktualisiert werden.</p>
-<h2 id="die-abgeleiteten-felder">Die abgeleiteten Felder<a class="headerlink" href="#die-abgeleiteten-felder" title="Permanent link">&para;</a></h2>
+<p>The core lies in the model hooks of <code>AntonObject</code> (<code>booted()</code>) and in
+<code>EventServiceProvider</code>. The follow-up maintenance runs via the queue, because it
+can touch entire subtrees — with a closure table that is potentially expensive.</p>
+<h2 id="why-asynchronous-and-idempotent">Why asynchronous and idempotent<a class="headerlink" href="#why-asynchronous-and-idempotent" title="Permanent link">&para;</a></h2>
+<p>Two design decisions explain almost everything:</p>
+<p><strong>Subtree work belongs in the queue.</strong> A move rewrites the paths and depths of
+all descendants; a title change can affect the full text of the entire subtree.
+Doing such work synchronously in the request would blow it up — hence jobs with
+generous timeouts and retries.</p>
+<p><strong>The jobs are repeatable.</strong> Each recalculates the target state from the source
+data instead of carrying deltas forward. That makes them idempotent: a second
+run does no harm, a lost run can be made up. The ability to repair rests on
+exactly this — <code>anton:doctor</code> and <code>RepairAllDerivedAttributes</code> can restore the
+consistent state at any time.</p>
+<h2 id="domain-events-are-suppressed-in-bulk-operations">Domain events are suppressed in bulk operations<a class="headerlink" href="#domain-events-are-suppressed-in-bulk-operations" title="Permanent link">&para;</a></h2>
+<p>An important detail: when creating many records (<code>create_bulk</code>) and during a
+move, the code sets <code>$suppressDomainEvents = true</code> and triggers the follow-up
+maintenance <strong>once at the end</strong> instead of per object. Otherwise a bulk
+operation would generate hundreds of redundant jobs. Anyone writing a new bulk
+operation has to know this pattern and take care themselves that paths, dates
+and full text are updated once afterwards.</p>
+<h2 id="the-derived-fields">The derived fields<a class="headerlink" href="#the-derived-fields" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Feld</th>
-<th>Wird neu berechnet bei</th>
+<th>Field</th>
+<th>Recalculated on</th>
 <th>Job</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>path</code>, <code>real_depth</code></td>
-<td>Anlegen, Verschieben</td>
+<td>Creation, move</td>
 <td><code>UpdatePaths</code></td>
 </tr>
 <tr>
-<td>aggregierte Datierung</td>
-<td>Datumsänderung im Teilbaum</td>
+<td>aggregated dating</td>
+<td>Date change in the subtree</td>
 <td><code>UpdateDates</code></td>
 </tr>
 <tr>
 <td><code>full_text</code>, <code>full_text_intern</code></td>
-<td>Titel-/Inhaltsänderung, neuen Medien</td>
+<td>Title/content change, new media</td>
 <td><code>RefreshFulltext</code></td>
 </tr>
 <tr>
 <td><code>release_year_calculated</code></td>
-<td>Schutzfrist-/Datumsänderung</td>
-<td>über die Nachkommen-Pflege</td>
+<td>Protection period/date change</td>
+<td>via descendant maintenance</td>
 </tr>
 <tr>
 <td><code>private</code>, <code>status_of_description_id</code></td>
-<td>Änderung auf einem Vorfahren</td>
-<td>Vererbung an alle Nachkommen</td>
+<td>Change on an ancestor</td>
+<td>inheritance to all descendants</td>
 </tr>
 </tbody>
 </table>
-<p><code>RefreshFulltext</code> illustriert eine allgemeine Vorsichtsregel der Schicht: Bei
-wenigen IDs läuft es in-process, bei vielen oder der ganzen Datenbank in einem
-<strong>eigenen PHP-Prozess</strong> — zur Speicher-Isolation, damit ein grosser Rebuild den
-Worker nicht sprengt.</p>
-<h2 id="voraussetzung-der-supervisor-lauft">Voraussetzung: der Supervisor läuft<a class="headerlink" href="#voraussetzung-der-supervisor-lauft" title="Permanent link">&para;</a></h2>
-<p>Die ganze Schicht setzt voraus, dass die Queue abgearbeitet wird. Steht der
-Supervisor nicht, stauen sich die Jobs ohne Fehlermeldung, und die abgeleiteten
-Felder veralten still. Der Reiter <strong>Supervisor</strong> im
-<a href="../../admin/doctor/">Anton Doctor</a> zeigt den Zustand — die erste Station bei
-«Änderungen kommen nicht an».</p>
-<h2 id="kein-scheduler-auf-den-servern">Kein Scheduler auf den Servern<a class="headerlink" href="#kein-scheduler-auf-den-servern" title="Permanent link">&para;</a></h2>
-<p>Der Laravel-Scheduler (<code>schedule:run</code>) läuft auf den Produktionsservern nicht
-(vgl. den Kommentar in <code>app/Console/Kernel.php</code>). Wiederkehrende Aufgaben —
-Integritätsprüfungen, Disk-Messung, Normdaten-Abgleich — werden deshalb pro
-Installation als Cronjob eingerichtet, nicht über den Scheduler. Wer eine
-periodische Aufgabe braucht, plant sie als Cron ein.</p>
+<p><code>RefreshFulltext</code> illustrates a general precaution of the layer: with few IDs it
+runs in-process, with many or with the whole database in a <strong>separate PHP
+process</strong> — for memory isolation, so that a large rebuild does not blow up the
+worker.</p>
+<h2 id="prerequisite-the-supervisor-is-running">Prerequisite: the supervisor is running<a class="headerlink" href="#prerequisite-the-supervisor-is-running" title="Permanent link">&para;</a></h2>
+<p>The whole layer presupposes that the queue is being worked off. If the
+supervisor is down, jobs pile up without an error message and the derived fields
+go stale silently. The <strong>Supervisor</strong> tab in
+<a href="../../admin/doctor/">Anton Doctor</a> shows the state — the first port of call for
+«changes are not coming through».</p>
+<h2 id="no-scheduler-on-the-servers">No scheduler on the servers<a class="headerlink" href="#no-scheduler-on-the-servers" title="Permanent link">&para;</a></h2>
+<p>The Laravel scheduler (<code>schedule:run</code>) does not run on the production servers
+(cf. the comment in <code>app/Console/Kernel.php</code>). Recurring tasks — integrity
+checks, disk measurement, authority data synchronisation — are therefore set up
+per installation as cron jobs, not via the scheduler. Anyone needing a periodic
+task schedules it as a cron job.</p>
 
 
 
@@ -2310,6 +4273,7 @@ periodische Aufgabe braucht, plant sie als Cron ein.</p>
 
 
                 
+
               </article>
             </div>
           
@@ -2324,6 +4288,10 @@ periodische Aufgabe braucht, plant sie als Cron ein.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Parts of this documentation were produced and translated with AI. All information is therefore provided without warranty.
+    </div>
   
   
     Made with
