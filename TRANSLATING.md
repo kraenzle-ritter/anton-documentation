@@ -30,13 +30,40 @@ Bilder, Diagramme und andere Assets werden geteilt — die Pfade in den
 | `docs/index.md` | de, en, fr, it | Einstiegsseite |
 | `docs/faq/` | de, en, fr, it | Erste Anlaufstelle für Interessierte |
 | `docs/user/` | de, en, fr, it | Archivmitarbeitende in der Romandie und im Tessin |
-| `docs/admin/` | de, en | Technikpersonal |
-| `docs/developer/`, `docs/api/` | de | Technikpersonal |
+| `docs/admin/`, `docs/developer/`, `docs/api/` | de, en | Technikpersonal |
 | `docs/customers/` | de | Kundenspezifisch, nicht in der Navigation |
 
-Stand: `docs/index.md`, `docs/faq/` und `docs/user/` sind in allen vier Sprachen
-übersetzt (46 von 106 Seiten). Nicht übersetzt sind `docs/user/settings.md` und
-`docs/user/uploads.md` — unfertige Stubs, die nicht in der Navigation stehen.
+Stand: alles ausser `docs/customers/` ist auf Deutsch **und Englisch** vorhanden;
+Startseite, FAQ und `docs/user/` zusätzlich auf Französisch und Italienisch.
+Nicht übersetzt sind `docs/user/settings.md` und `docs/user/uploads.md` —
+unfertige Stubs, die nicht in der Navigation stehen.
+
+## Sprachen und Stand-Datum im Seitenkopf
+
+Über der Überschrift steht klein und rechtsbündig, in welchen Sprachen es die
+Seite **wirklich** gibt (`de | en | fr | it`), und rechts daneben das Datum des
+letzten Commits, der die Datei angefasst hat. Die Angaben liefert
+`hooks/page_meta.py`, gerendert werden sie in `overrides/main.html`.
+
+Wichtig dabei:
+
+- Gezählt werden nur **echte Übersetzungen**, nicht die Fallback-Seiten. Eine
+  Admin-Seite zeigt darum `de | en`, eine User-Seite `de | en | fr | it`.
+- Massgeblich für Beschriftung und Markierung ist die Sprache der **gebauten
+  Site**, nicht die der Datei — auf einer deutschen Fallback-Seite unter `/fr/`
+  steht das Datum französisch beschriftet, und keine Sprache ist als aktiv
+  markiert.
+- Das Datum stammt aus **einem** `git log`-Lauf beim Build, nicht aus einem
+  Subprozess je Seite. Eine noch nicht committete Seite zeigt kein Datum.
+- Der Sprachumschalter in der Kopfleiste ist per CSS ausgeblendet
+  (`.md-header__option`) — die Sprachwahl steht neu pro Seite.
+
+## Fusszeile
+
+Der KI-Hinweis in der Fusszeile hängt an `copyright` in `mkdocs.yml`: einmal
+global (deutsch) und je Sprache im i18n-Plugin überschrieben. Französisch und
+Italienisch brauchen dort **doppelte** Anführungszeichen, weil die Texte
+Apostrophe enthalten.
 
 ## Eine Seite übersetzen
 
@@ -54,20 +81,20 @@ deutschem Inhalt.
 ### Nicht übersetzte Bereiche in der Navigation
 
 Damit die Hauptmenüpunkte in jeder Sprache vorhanden sind, stehen für
-`Developer`, `Admin` und `API` **absolute Links auf die deutsche Fassung** in der
-`nav` der Fremdsprachen:
+`Developer`, `Admin` und `API` **absolute Links auf die nächstbeste vorhandene
+Sprache** in der `nav` von Französisch und Italienisch:
 
 ```yaml
-- Developer (de): /developer/
-- Admin (de): /admin/requirements/
-- API (de): /api/
+- Developer (en): /en/developer/
+- Admin (en): /en/admin/requirements/
+- API (en): /en/api/
 ```
 
-Das Sprachkürzel im Label ist Absicht: der Klick führt sichtbar in die deutsche
-Site, statt französische Beschriftung mit deutschem Inhalt zu mischen. MkDocs
+Das Sprachkürzel im Label ist Absicht: der Klick führt sichtbar in die englische
+Site, statt französische Beschriftung mit englischem Inhalt zu mischen. MkDocs
 behandelt absolute Pfade als externe Links (nur eine INFO-Meldung im Build).
-Sobald `admin/` auf Englisch vorliegt, wird der Eintrag zu `Admin (en):
-/en/admin/requirements/`.
+Käme eine französische Fassung dazu, würde der Eintrag durch die echten
+Unterseiten ersetzt — so wie es die englische `nav` inzwischen hat.
 
 ### Anker über Sprachgrenzen
 
@@ -229,9 +256,10 @@ Diese kommen in der Oberfläche nicht vor; die Doku legt sie fest:
   `locale` entgegen; für eigene Screenshots pro Sprache müsste das Skript in
   vier Durchläufen mit je eigenem Zielverzeichnis laufen.
 - **Die generierte Command-Referenz** (`docs/admin/console-commands.md`) bezieht
-  ihre Beschreibungen aus `php artisan list` und ist damit ohnehin englisch;
-  nur die Tabellenköpfe sind deutsch. `scripts/gen-command-reference.py` schreibt
-  bisher nur in die deutsche Seite.
+  ihre Beschreibungen aus `php artisan list` und ist damit ohnehin englisch.
+  `scripts/gen-command-reference.py` schreibt in **alle** Sprachfassungen der
+  Seite und übersetzt dabei nur den Tabellenkopf (`TABLE_HEADERS`); der
+  `--check`-Lauf prüft ebenfalls alle.
 - **Die Suche** liefert für noch nicht übersetzte Inhalte deutsche Treffer,
   weil die Fallback-Seiten aus dem Index dedupliziert werden.
 - **Zwei Begriffe in den italienischen App-Sprachdateien wirken falsch:**

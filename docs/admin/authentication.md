@@ -1,24 +1,24 @@
-# Authentication
+# Anmeldung
 
-## Two-Factor Authentication
+## Zwei-Faktor-Authentifizierung
 
-### Activate
+### Aktivieren
 
-The two-factor authentication can be enabled with an entry in the `.env` file:
+Die Zwei-Faktor-Authentifizierung wird über einen Eintrag in der `.env`-Datei eingeschaltet:
 
 ```
 2FA=1
 ```
 
-In the settings (`two-factor-auth-role`) you can set a role for which the 2FA is obligatory. If for example editor is specified, a 2FA is mandatory for editor and admin.
+In den Einstellungen (`two-factor-auth-role`) lässt sich eine Rolle festlegen, ab der die 2FA verbindlich ist. Steht dort beispielsweise editor, ist die 2FA für Editor:innen und Admins Pflicht.
 
-### Deactivate 2FA for a User
+### 2FA für eine Person zurücksetzen
 
-If a user has lost the two-factor secrets and has also no recovery code, it is possible to remove this from the user so that it is possible to start over with a fresh 2FA.
+Hat jemand das Zwei-Faktor-Geheimnis verloren und auch keinen Wiederherstellungscode mehr, lässt es sich beim Benutzerkonto entfernen. Die 2FA kann danach neu eingerichtet werden.
 
-## Registration
+## Registrierung
 
-It is also possible via the `.env` file to allow user registration:
+Ebenfalls über die `.env`-Datei lässt sich die Selbstregistrierung freigeben:
 
 ```
 REGISTRATION=1
@@ -26,7 +26,7 @@ REGISTRATION=1
 
 ## Passkeys
 
-To enable passkeys, simply set the Setting `passkeys_enabled` to true. When using subdomains set WEBAUTHN_ID in the .env file. E.g.:
+Für Passkeys genügt es, die Einstellung `passkeys_enabled` auf true zu setzen. Bei Betrieb unter Subdomains ist zusätzlich `WEBAUTHN_ID` in der `.env`-Datei zu setzen, zum Beispiel:
 
 ```
 WEBAUTHN_ID=kba.anton.ch

@@ -87,5 +87,5 @@ hängengebliebene Einträge.
 
 - [Notifications](notifications.md) — wenn Feedback-Antworten als
   Notification ins Anton-UI zurückfliessen sollen (separates Feature)
-- [API Authentication](authentication.md) — falls eigene Tools per
+- [API-Authentifizierung](../api/authentication.md) — falls eigene Tools per
   API Feedback schicken sollen statt über das UI-Formular

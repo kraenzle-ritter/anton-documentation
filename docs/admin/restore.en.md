@@ -1,6 +1,6 @@
-# Sicherung und Wiederherstellung
+# Backup and restore from backup
 
-Für die Sicherung der Datenbank genügt der Befehl
+To back up the database, simply use the command
 
 ```bash
 php artisan anton:backup --env besenval
@@ -17,9 +17,9 @@ Options:
   --yearly                   Yearly Backup (filename: 00_backup_slug-yearly-2019)
 ```
 
-## Wiederherstellung aus einer Sicherung
+## Restore from backup
 
-Eine Wiederherstellung kann aus verschiedenen Gründen nötig werden. Die Datenbank lässt sich mit dem Befehl `anton:restore` zurückspielen:
+Restoring from a backup may become necessary for various reasons. The database can be restored with the command `anton:restore`:
 
 ```bash
 php artisan anton:restore --env besenval
@@ -31,14 +31,14 @@ Options:
   --file[=FILE]     Source file.
   --drop            Erase all tables.
 ```
-Der Datenbank-Dump muss im Ordner `db_backup` im Kundenverzeichnis liegen.
+The database dump has to be located in the `db_backup` folder in the customers directory.
 
-## Verwaiste Medien entfernen 
-Um Medien zu löschen, die nach der Wiederherstellung nicht mehr in der Datenbank referenziert sind:
+## Delete obsolete media 
+To delete any media that may no longer be referenced in the database after restoring from the backup:
 
 ```bash
 php artisan anton:check-media -vv --levels 3 --delete-from-system --env besenval
 ```
 
-## Fehlende Medien zurückholen
-Fehlen Mediendateien, sind sie aus der externen Sicherung zurückzukopieren.
+## Restore lost media
+If media files are missing, they have to be copied back from the external backup.

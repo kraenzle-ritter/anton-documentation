@@ -1,217 +1,220 @@
-# Console Commands
+# Console commands
 
-Antons Kommandos sind [Laravel-Kommandos](https://laravel.com/docs/artisan) und
-werden über `artisan` aufgerufen.
+Anton's commands are [Laravel commands](https://laravel.com/docs/artisan) and are
+called via `artisan`.
 
-Diese Seite beschreibt die im Betrieb wichtigsten Befehle mit Kontext. Eine
-**vollständige, automatisch erzeugte Liste** aller Befehle steht am Ende unter
-[Vollständige Referenz](#vollstandige-referenz).
+This page describes the commands most important in operation, with context. A
+**complete, automatically generated list** of all commands is at the end under
+[Complete reference](#vollstandige-referenz).
 
-## Grundsätzliches
+## Basics
 
-Die meisten Befehle erwarten die Angabe einer Umgebung, also eines
-Kunden-Slugs:
+Most commands expect an environment to be specified, that is, a customer slug:
 
 ```bash
 php artisan anton:command --env=besenval
 ```
 
-Anton-Befehle geben auf `stdout` nur etwas aus, wenn die Ausführlichkeit erhöht
-wird: `-v` zeigt `info`-Meldungen, `-vv` zusätzlich `debug`-Meldungen. Ohne
-Flag laufen sie still.
+Anton commands only output something on `stdout` when the verbosity is
+increased: `-v` shows `info` messages, `-vv` additionally `debug` messages.
+Without a flag they run silently.
 
-!!! warning "Vor schreibenden Befehlen sichern"
-    Befehle, die in die Datenbank schreiben — Reparaturen, Merges, Reset —
-    sollten nie ungesichert auf einem produktiven Archiv laufen. Erst
-    [`anton:backup`](#sicherung-und-wiederherstellung), dann handeln.
+!!! warning "Back up before writing commands"
+    Commands that write to the database — repairs, merges, reset — should never
+    run unsecured on a production archive. First
+    [`anton:backup`](#sicherung-und-wiederherstellung), then act.
 
-## Installation und Aktualisierung
+## Installation and updating
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `anton:install --env=<slug>` | Eine neue Installation aus einer `.env`-Datei aufsetzen |
-| `anton:customdir` | Das Kundenverzeichnis samt Unterordnern anlegen (siehe [Installation](installation.md)) |
-| `anton:update --env=<slug>` | Auf die letzte stabile Version aktualisieren — führt Migrationen und Seeder aus, ohne Beschriftungen zu überschreiben |
-| `anton:setting` / `anton:home` | Eine Einstellung bzw. einen Startseiten-Eintrag lesen oder setzen |
+| `anton:install --env=<slug>` | Set up a new installation from a `.env` file |
+| `anton:customdir` | Create the customer directory including subfolders (see [installation](installation.md)) |
+| `anton:update --env=<slug>` | Update to the latest stable version — runs migrations and seeders without overwriting labels |
+| `anton:setting` / `anton:home` | Read or set a setting or a home page entry |
 
-## Sicherung und Wiederherstellung {#sicherung-und-wiederherstellung}
+## Backup and restoration {#sicherung-und-wiederherstellung}
 
-**`anton:backup`** erstellt einen Datenbank-Dump. Ohne `--target-dir` landet er
-im Kundenverzeichnis (`db_backup`). Für rotierende Sicherungen bereiten
-`--hourly`, `--weekly`, `--monthly`, `--yearly` die Dateinamen vor (z.B.
-`00_backup_besenval-daily-19.sql.gz`); `--file` gibt einen eigenen Namen vor.
+**`anton:backup`** creates a database dump. Without `--target-dir` it ends up in
+the customer directory (`db_backup`). For rotating backups, `--hourly`,
+`--weekly`, `--monthly`, `--yearly` prepare the file names (e.g.
+`00_backup_besenval-daily-19.sql.gz`); `--file` specifies a name of your own.
 
 ```bash
 php artisan anton:backup --env=besenval
 ```
 
-!!! note "Nur die Datenbank"
-    `anton:backup` sichert **keine** Mediendateien. Ein vollständiges
-    Backup-Konzept behandelt [Sicherung und Wiederherstellung](restore.md);
-    was welche Sicherung enthält, zeigt die [Export-Matrix](export-matrix.md).
+!!! note "The database only"
+    `anton:backup` does **not** back up media files. A complete backup concept is
+    covered by [backup and restoration](restore.md); what each backup contains is
+    shown by the [export matrix](export-matrix.md).
 
-**`anton:restore`** spielt standardmässig die letzte Sicherung zurück.
-**`anton:reset`** setzt eine Installation (Datenbank und Assets) auf einen
-definierten Stand zurück — die Grundlage des täglich zurückgesetzten
-Testarchivs.
+**`anton:restore`** restores the most recent backup by default.
+**`anton:reset`** resets an installation (database and assets) to a defined
+state — the basis of the test archive that is reset daily.
 
-## Medien und Integrität
+## Media and integrity
 
-**`media:check`**{#mediacheck} prüft die Konsistenz zwischen Anton-Datenbank, lokalem
-Dateisystem, Inge und DIMAG. Sechs Prüfebenen, einzeln oder kombiniert:
+**`media:check`**{#mediacheck} checks the consistency between the Anton
+database, the local file system, Inge and DIMAG. Six check levels, individually
+or combined:
 
 ```bash
 php artisan media:check --levels=1,5,6 --env=besenval -vv
 ```
 
 ```
-    --levels=               Prüfebenen (1-6), kommasepariert
-    --sip=                  Nur Medien eines bestimmten SIP (AntonObject-ID)
-    --fix-cloud-status      Repariert cloud_status in der DB (Ebene 5)
-    --delete-local-masters  Löscht lokale Master nach Cloud-Verifikation (Ebene 5)
-    --delete-from-system    Löscht Dateisystem-Einträge ohne DB-Pendant (Ebene 3)
-    --delete-from-inge      Löscht Waisen aus Inge/DIMAG (Ebene 6)
+    --levels=               Check levels (1-6), comma-separated
+    --sip=                  Only media of a particular SIP (AntonObject ID)
+    --fix-cloud-status      Repairs cloud_status in the DB (level 5)
+    --delete-local-masters  Deletes local masters after cloud verification (level 5)
+    --delete-from-system    Deletes file system entries without a DB counterpart (level 3)
+    --delete-from-inge      Deletes orphans from Inge/DIMAG (level 6)
 ```
 
-Ebene 4 verifiziert die **MD5-Prüfsumme** jeder Datei gegen die Datenbank — die
-eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
-(die Master liegen dort). Details siehe [Inge und DIMAG](inge.md) und
-[Langzeitarchivierung](preservation.md#integritat-prufen).
+Level 4 verifies the **MD5 checksum** of every file against the database — the
+actual fixity check. On DIMAG installations it is skipped (the masters are held
+there). For details see [Inge and DIMAG](inge.md) and
+[long-term preservation](preservation.md#integritat-prufen).
 
-**`media:snapshot --verify --git`**{#mediasnapshot} schreibt einen Prüfsummen-Schnappschuss
-aller Medien und committet Änderungen in ein lokales Git-Repository — die
-Grundlage einer wiederkehrenden Integritätsprüfung. Anton führt ihn nicht von
-selbst aus; er wird pro Installation als Cronjob eingerichtet.
+**`media:snapshot --verify --git`**{#mediasnapshot} writes a checksum snapshot
+of all media and commits changes to a local Git repository — the basis of a
+recurring integrity check. Anton does not run it by itself; it is set up per
+installation as a cron job.
 
-**`media:identify`**{#mediaidentify} bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
-leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
-automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne `--force`
-nur Medien ohne Erkennungsdaten. Auswertung siehe
-[Preservation Planning](preservation-planning.md).
+**`media:identify`**{#mediaidentify} determines the file format
+(Siegfried/Fido → PRONOM ID) and derives the NARA risk assessment from it. With
+new uploads this runs automatically; the command serves to supply the data
+retrospectively for existing holdings. Without `--force`, only media without
+identification data. For the evaluation see
+[preservation planning](preservation-planning.md).
 
-**`media:extract-av-metadata`**{#mediaextract-av-metadata} füllt die `av_*`-Spalten (Dauer, Codec, Bitrate,
-Auflösung …) via `ffprobe` — ebenfalls ein Backfill-Befehl, da neue Uploads das
-automatisch tun. `--dry-run` zeigt nur, was sich ändern würde; `--force` auch
-über bereits gefüllte Werte.
+**`media:extract-av-metadata`**{#mediaextract-av-metadata} fills the `av_*`
+columns (duration, codec, bitrate, resolution …) via `ffprobe` — likewise a
+backfill command, since new uploads do this automatically. `--dry-run` only
+shows what would change; `--force` also overwrites values that are already
+filled.
 
-**`media:add`** hängt ein Medium über die Kommandozeile an einen Datensatz —
-nützlich, wenn eine Datei zu gross für den Browser-Upload ist:
+**`media:add`** attaches a medium to a record from the command line — useful
+when a file is too large for the browser upload:
 
 ```bash
 php artisan media:add file.jpg --env=besenval --id=123
 ```
 
-**`storage:audit`** prüft lokale Masterdateien und SIP-Verzeichnisse;
-`--clean-sips` und `--clean-masters` räumen auf.
+**`storage:audit`** checks local master files and SIP directories;
+`--clean-sips` and `--clean-masters` tidy up.
 
-## Suche (Typesense)
+## Search (Typesense)
 
-Die [schnelle Suche](typesense.md) hält einen eigenen Index. Bei Störungen oder
-nach grösseren Datenänderungen wird er neu aufgebaut:
+The [instant search](typesense.md) maintains its own index. In case of problems
+or after larger data changes, it is rebuilt:
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `typesense:status` | Zustand der Collections anzeigen |
-| `typesense:reindex` | Alle Collections eines Archivs neu aufbauen (Setup + Objekte + Volltext + Galerie) |
-| `typesense:reindex-all-tenants` | Dasselbe über alle Installationen |
-| `typesense:flush` | Alle Dokumente aus der Collection entfernen |
+| `typesense:status` | Show the state of the collections |
+| `typesense:reindex` | Rebuild all collections of an archive (setup + objects + full text + gallery) |
+| `typesense:reindex-all-tenants` | The same across all installations |
+| `typesense:flush` | Remove all documents from the collection |
 
-## Import und Export
+## Import and export
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `anton:import` | Excel-Import; die Vorgaben sind bewusst defensiv (siehe [Datenimport](../user/import.md)) |
-| `anton:import-native` / `anton:export-native` | Verlustfreier Round-Trip eines Teilbaums (Sicherung, wieder einlesbar) |
-| `anton:export` | EAD/EAD3-Export |
-| `anton:export-rdf` | RDF-Export in drei Profilen (siehe unten) |
-| `resources:sync` | [Normdaten-Abgleich](authorities.md) mit GND, Wikidata, Metagrid |
+| `anton:import` | Excel import; the defaults are deliberately defensive (see [data import](../user/import.md)) |
+| `anton:import-native` / `anton:export-native` | Lossless round trip of a subtree (backup, re-importable) |
+| `anton:export` | EAD/EAD3 export |
+| `anton:export-rdf` | RDF export in three profiles (see below) |
+| `resources:sync` | [Authority data synchronisation](authorities.md) with GND, Wikidata, Metagrid |
 
-**`anton:export-rdf`** exportiert einen Bestand — oder den ganzen Mandanten,
-wenn `--root=` fehlt — als RDF:
+**`anton:export-rdf`** exports a fonds — or the whole tenant if `--root=` is
+missing — as RDF:
 
 ```bash
 php artisan anton:export-rdf --env=kr --root=42 --profile=a-plus --format=turtle > fonds.ttl
 ```
 
-- `--profile=a-plus` (Vorgabe) — CIDOC CRM + RiC-O; `turtle`, `jsonld`, `rdfxml`, `ntriples`
-- `--profile=ric` — reines RiC-O 1.1, Vorgabe `jsonld`
-- `--profile=memobase` — Memobase-JSON-LD
+- `--profile=a-plus` (default) — CIDOC CRM + RiC-O; `turtle`, `jsonld`,
+  `rdfxml`, `ntriples`
+- `--profile=ric` — pure RiC-O 1.1, default `jsonld`
+- `--profile=memobase` — Memobase JSON-LD
 
-Details unter [RDF-Export](download-rdf.md). Die Ausgabe geht auf `stdout`.
+Details under [RDF export](download-rdf.md). The output goes to `stdout`.
 
-## Wartung und Reparatur
+## Maintenance and repair
 
-Diese Befehle stellen die Konsistenz abgeleiteter Felder wieder her. Warum es sie
-gibt — materialisierte Felder in einer Closure Table — erklärt
-[Nebenläufigkeit](../developer/events-jobs.md).
+These commands restore the consistency of derived fields. Why they exist —
+materialised fields in a closure table — is explained by
+[concurrency](../developer/events-jobs.md).
 
-| Befehl | Zweck |
+| Command | Purpose |
 |---|---|
-| `anton:repair-closure-table` | Konsistenz der Hierarchie-Tabelle prüfen und reparieren |
-| `anton:reorder-positions` | Positionsfeld der Geschwister neu ordnen; `anton:restore-positions` macht es aus einem Snapshot rückgängig |
-| `anton:update-fulltext` | Volltextindex neu aufbauen (nötig z.B. nach Sprachänderungen) |
-| `anton:update-dates` / `anton:update-all-dates` | Aggregierte Datierung neu berechnen |
-| `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
-| `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
+| `anton:repair-closure-table` | Check and repair the consistency of the hierarchy table |
+| `anton:reorder-positions` | Reorder the position field of siblings; `anton:restore-positions` undoes it from a snapshot |
+| `anton:update-fulltext` | Rebuild the full-text index (necessary after language changes, for example) |
+| `anton:update-dates` / `anton:update-all-dates` | Recalculate the aggregated dating |
+| `anton:update-release-year` | Materialise the effective release year |
+| `anton:merge <type> <target_id>` | Merge actors, places or keywords |
 
-## Diagnose
+## Diagnosis
 
-**`anton:doctor`**{#antondoctor} prüft eine Installation auf Konsistenz — dieselben Prüfungen
-wie die Oberfläche unter [Anton Doctor](doctor.md), nur skriptfähig:
+**`anton:doctor`**{#antondoctor} checks an installation for consistency — the
+same checks as the interface under [Anton Doctor](doctor.md), only scriptable:
 
 ```bash
 php artisan anton:doctor --env=besenval --all -vv
 ```
 
 ```
-    --all           alles prüfen
-    --binaries      externe Programme
-    --closure       Closure-Table (mit --repair reparieren)
-    --database      Positionskollisionen
-    --disk          Speicherplatz
-    --environment   Umgebungsvariablen, Einstellungen
-    --jobs          läuft der Supervisor?
-    --media         problematische Medien
+    --all           check everything
+    --binaries      external programs
+    --closure       closure table (repair with --repair)
+    --database      position collisions
+    --disk          storage space
+    --environment   environment variables, settings
+    --jobs          is the supervisor running?
+    --media         problematic media
 ```
 
-Weitere Diagnosebefehle: **`anton:check-disk-space`** (identisch mit
-`anton:doctor --disk`; warnt ab 80 % des in `maximum_storage` hinterlegten
-Kontingents), **`anton:db-info`** (aktiver Treiber und Version),
-**`sip:reconcile`** (SIP-Status über Anton, Inge und DIMAG),
-**`inge:check-infrastructure`** (Verbindung zu Inge/DIMAG). Die
-`anton:audit-*`-Befehle melden Dubletten bei Signaturen und Positionen, ohne zu
-ändern.
+Further diagnostic commands: **`anton:check-disk-space`** (identical to
+`anton:doctor --disk`; warns from 80 % of the quota stored in
+`maximum_storage`), **`anton:db-info`** (active driver and version),
+**`sip:reconcile`** (SIP status across Anton, Inge and DIMAG),
+**`inge:check-infrastructure`** (connection to Inge/DIMAG). The `anton:audit-*`
+commands report duplicates in reference codes and positions without changing
+anything.
 
-## Nachrichten
+## Notifications
 
-**`notification:send`** legt eine [System-Nachricht](notifications.md) in einer
-oder allen Installationen an:
+**`notification:send`** creates a [system notification](notifications.md) in one
+or all installations:
 
 ```bash
 php artisan notification:send --title="Wartung" --body="Details." --env=besenval
 php artisan notification:send --title="Update" --all --audience=editors
 ```
 
-`--title` (Pflicht) und `--body` akzeptieren einen String oder JSON für
-mehrere Sprachen; `--audience` schränkt auf `editors` oder `admins` ein.
+`--title` (mandatory) and `--body` accept a string or JSON for several
+languages; `--audience` restricts to `editors` or `admins`.
 
-## Vollständige Referenz
+## Complete reference {#vollstandige-referenz}
 
-Die folgende Tabelle listet **alle** admin-relevanten Befehle mit der
-Beschreibung aus ihrer eigenen `--help`-Ausgabe. Sie wird aus `php artisan list`
-erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
+The following table lists **all** admin-relevant commands with the description
+from their own `--help` output. It is generated from `php artisan list` and kept
+up to date with every change to the commands.
 
-!!! note "Automatisch erzeugt"
-    Dieser Abschnitt wird generiert; die Beschreibungen stehen in der Sprache
-    des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
-    (`boost:`, `debugbar:`, `ide-helper:` …) und kundenspezifische Namespaces
-    (`gf:`, `gosteli:`, `ballyana:`).
+!!! note "Automatically generated"
+    This section is generated; the descriptions are in the language of the code
+    (English). Not included are internal developer commands (`boost:`,
+    `debugbar:`, `ide-helper:` …) and customer-specific namespaces (`gf:`,
+    `gosteli:`, `ballyana:`).
+
 
 <!-- BEGIN generated command reference -->
 
 ### anton: (54)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `anton:add-user` | Add or Update a User. With --api-token option, an api token will be issued. |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
@@ -270,13 +273,13 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 ### inge: (1)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `inge:check-infrastructure` | Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a … |
 
 ### media: (12)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `media:add` | Add a media file to an AntonObject |
 | `media:check` | Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from … |
@@ -293,20 +296,20 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 ### notification: (1)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `notification:send` | Create a system notification in one or all tenant databases. |
 
 ### resources: (2)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `resources:sync` | Anton-specific resources (external links) management |
 | `resources:test-resources` | Test resources providers functionality |
 
 ### sip: (5)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `sip:check` | Some function for debugging the SIP-Ingest / import array. It checks the package (zip) and sho… |
 | `sip:check-import` | Check the Import of a SIP after the import was done. Revert a SipImport if it failed somewhere… |
@@ -316,7 +319,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 ### storage: (3)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `storage:audit` | Audit local storage: count master files on disk, list SIP archives vs. unpacked directories. |
 | `storage:link` | Create the symbolic links configured for the application |
@@ -324,7 +327,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 ### typesense: (9)
 
-| Befehl | Beschreibung |
+| Command | Description |
 |---|---|
 | `typesense:flush` | Delete all documents from the active tenant's Typesense collection (keeps the collection schem… |
 | `typesense:gallery-index` | Index gallery media into the active tenant's Typesense gallery collection. |

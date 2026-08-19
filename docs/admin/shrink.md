@@ -1,29 +1,29 @@
-# Shrink Anton for a public installation
+# Verkleinern für eine öffentliche Installation
 
-If Anton is also to manage highly sensitive data, it is a good idea to run Anton on a private network rather than on the Internet. To publish your data nevertheless, it is possible to synchronise Anton with an instance on the Internet in which private and blocked information has been deleted.
+Soll Anton auch hochsensible Daten verwalten, empfiehlt es sich, Anton in einem privaten Netz statt im Internet zu betreiben. Um die Daten dennoch zu veröffentlichen, lässt sich Anton mit einer Instanz im Internet abgleichen, in der private und gesperrte Informationen gelöscht sind.
 
-For this we use 3 Anton instances:
+Dafür verwenden wir drei Anton-Instanzen:
 
-Private Network:
+Privates Netz:
 
-- __production__: your working environment with all data  
-- __sync__: a non-visible installation to delete the sensitive data
+- __production__: die Arbeitsumgebung mit allen Daten  
+- __sync__: eine nicht sichtbare Installation, in der die sensiblen Daten gelöscht werden
 
 Internet:
 
-- __public__: a clone of the sync environment in the internet
+- __public__: ein Klon der sync-Umgebung im Internet
 
-## Process
+## Ablauf
 
-1. Backup of production  
-2. Restore database with data from production in sync  
-3. Shrink the data  
-4. Delete Media if not referenced in Sync; copy web-versions from production when needed  
-5. Backup of sync  
-6. Sync data from sync to public  
-7. Restore public
+1. Sicherung von production  
+2. Datenbank mit den Daten aus production in sync wiederherstellen  
+3. Daten verkleinern  
+4. Medien löschen, die in sync nicht referenziert sind; bei Bedarf Webversionen aus production kopieren  
+5. Sicherung von sync  
+6. Daten von sync nach public abgleichen  
+7. public wiederherstellen
 
-For steps 1 to 4 there is the bash script `sync.sh`, which after the backup/restore starts the laravel script `anton:shrink-to-public` for step 3 and 4.
+Für die Schritte 1 bis 4 gibt es das Bash-Skript `sync.sh`, das nach Sicherung und Wiederherstellung für die Schritte 3 und 4 den Laravel-Befehl `anton:shrink-to-public` startet.
 
 ## Shrink to public
 
@@ -31,6 +31,6 @@ For steps 1 to 4 there is the bash script `sync.sh`, which after the backup/rest
 php artisan anton:shrink-to-public --path-to-media {path} --env {sync}
 ```
 
-Since we are running this command in the sync environment, we need to pass the path to the media directory of the production environment.
+Da der Befehl in der sync-Umgebung läuft, ist der Pfad zum Medienverzeichnis der production-Umgebung zu übergeben.
 
-There is also an option `--days`. If set the command only copies media from production to sync if in the database the media has been updated during this period. If the synchronisation once has been done that is an option to accelerate the cronjob.
+Ausserdem gibt es die Option `--days`. Ist sie gesetzt, kopiert der Befehl Medien nur dann von production nach sync, wenn sie in der Datenbank innerhalb dieses Zeitraums aktualisiert wurden. Nach einem ersten vollständigen Abgleich beschleunigt das den Cronjob.

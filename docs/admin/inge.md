@@ -2,13 +2,11 @@
 
 Mit Inge ist es möglich, DIMAG als Repository für die Primärdaten zu integrieren. Die originalen Dateien werden dann nicht im lokalen Filesystem von Anton, sondern in DIMAG gespeichert. Nur die Dateien, die für das Internet optimiert wurden, bleiben in Anton. Wenn nötig können interne User die originalen Dateien herunterladen. Aus Perspektive der Nutzer:innen gibt es deshalb keinen Unterschied.
 
-<!--With Inge it is possible to integrate DIMAG as a data repository. The original files are then not stored on the Anton file system, but in DIMAG. Only files that have been optimized for use on the Internet are then stored in Anton. If required, internal users can download the original files. So there is no difference for the users.-->
-
-## Requirements 
+## Voraussetzungen 
 - Setting `fulltext-from-webpdf`: true 
 - Setting `cloud`: "inge"
 - .env INGE_API_TOKEN 
-- User "Inge" with Email address and api_token for Inge
+- Benutzer «Inge» mit E-Mail-Adresse und `api_token` für Inge
 
 ### Ablauf des SIP-Ingest
 
@@ -59,28 +57,28 @@ php artisan anton:import --env {slug} --from-sip --no-validation
 --create-actors -vv {path/to/sip} --import
 ```
 
-### Revert a SIP Import or Confirm Import with Inge
+### Einen SIP-Import zurücknehmen oder mit Inge bestätigen
 
-Before a SIP Import Anton backups the database, so if anything goes wrong you can come back to the status before the Import. 
+Vor einem SIP-Import sichert Anton die Datenbank; geht etwas schief, lässt sich damit der Zustand vor dem Import wiederherstellen.
 
-The backup name is stored in the SIP-Entry and the `Status of description` is set to draft.
+Der Name der Sicherung wird im SIP-Eintrag festgehalten, und der `Status of description` steht auf «Entwurf».
 
-This will restore the database from the last/actual backup and sync the media with the database (namely delete media wich are not registered in the database):
+Der folgende Befehl stellt die Datenbank aus der letzten Sicherung wieder her und gleicht die Medien mit der Datenbank ab (löscht also Medien, die in der Datenbank nicht registriert sind):
 
 ```bash
 php artisan anton:sip-import --env {slug} --id {sip_id} -vv --revert
 ```
 
-The `sip_id` is the ID of an AntonObject which is a SIP.
+Die `sip_id` ist die ID eines AntonObjects, das ein SIP ist.
 
-This will set the `Status of description` in the SIP-Entry to "final":
+Der folgende Befehl setzt den `Status of description` im SIP-Eintrag auf «final»:
 
 ```bash
 php artisan anton:sip-import --env {slug} --id {sip_id} -vv --confirm
 ```
 
 
-### Checking and Repairing Media Sync (Anton ↔ Inge ↔ Dimag)
+### Medienabgleich prüfen und reparieren (Anton ↔ Inge ↔ Dimag)
 
 `media:check` prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag.
 
@@ -128,9 +126,9 @@ php artisan storage:audit --clean-masters --env={slug} -vv
 
 Bei Inge-Installationen sollten lokale Masterfiles 0 sein. Falls nicht, weist `storage:audit` darauf hin und `--clean-masters` bereinigt verifizierte Dateien.
 
-### Debugging
+### Fehlersuche
 
-#### Check the SIP Import Data
+#### Die SIP-Import-Daten prüfen
 
 ```bash 
 php artisan sip:check --env {slug}  --path {path_to_sip} --show-sip_entry

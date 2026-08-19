@@ -23,6 +23,26 @@ DOCS = Path(__file__).resolve().parent.parent
 PAGE = DOCS / "docs" / "admin" / "console-commands.md"
 ANTON = DOCS.parent / "anton.test"
 
+# Die Seite gibt es auch uebersetzt (console-commands.en.md …). Der generierte
+# Block ist in allen Sprachen derselbe — die Beschreibungen kommen aus
+# `artisan` und sind ohnehin englisch. Uebersetzt wird nur der Tabellenkopf.
+TABLE_HEADERS = {
+    "de": ("Befehl", "Beschreibung"),
+    "en": ("Command", "Description"),
+    "fr": ("Commande", "Description"),
+    "it": ("Comando", "Descrizione"),
+}
+
+
+def pages() -> list[tuple[Path, str]]:
+    """Alle Sprachfassungen der Seite mit ihrem Locale."""
+    found = [(PAGE, "de")]
+    for path in sorted(PAGE.parent.glob("console-commands.*.md")):
+        locale = path.suffixes[-2].lstrip(".")
+        if locale in TABLE_HEADERS:
+            found.append((path, locale))
+    return found
+
 # Admin-relevante Namespaces. Alles andere ist intern (boost:, debugbar:,
 # ide-helper: …) oder kundenspezifisch (gf:, gosteli:, ballyana: …).
 ADMIN_NAMESPACES = {
@@ -54,7 +74,7 @@ def artisan_list() -> list[dict] | None:
         return None
 
 
-def build_block(commands: list[dict]) -> str:
+def build_block(commands: list[dict], locale: str = "de") -> str:
     rows = []
     for c in commands:
         name = c["name"]
@@ -68,6 +88,7 @@ def build_block(commands: list[dict]) -> str:
         rows.append((name, desc))
     rows.sort()
 
+    head_name, head_desc = TABLE_HEADERS.get(locale, TABLE_HEADERS["de"])
     lines = [BEGIN]
     ns = None
     for name, desc in rows:
@@ -75,7 +96,8 @@ def build_block(commands: list[dict]) -> str:
         if cur != ns:
             ns = cur
             count = sum(1 for n, _ in rows if n.split(":")[0] == ns)
-            lines += [f"\n### {ns}: ({count})\n", "| Befehl | Beschreibung |", "|---|---|"]
+            lines += [f"\n### {ns}: ({count})\n",
+                      f"| {head_name} | {head_desc} |", "|---|---|"]
         lines.append(f"| `{name}` | {desc} |")
     lines.append(END)
     return "\n".join(lines) + "\n"
@@ -99,37 +121,53 @@ def structure_ok(text: str) -> bool:
 
 def main() -> int:
     check = "--check" in sys.argv
-    text = PAGE.read_text()
-    if BEGIN not in text or END not in text:
-        print(f"Marker {BEGIN} / {END} fehlen in {PAGE}", file=sys.stderr)
-        return 2
+    targets = pages()
+
+    for path, _ in targets:
+        text = path.read_text()
+        if BEGIN not in text or END not in text:
+            print(f"Marker {BEGIN} / {END} fehlen in {path}", file=sys.stderr)
+            return 2
 
     commands = artisan_list()
 
     if commands is None:
-        # Anton nicht erreichbar (CI): nur Strukturprüfung.
+        # Anton nicht erreichbar (CI): nur Strukturprüfung, aber über alle
+        # Sprachfassungen — eine zerschossene Uebersetzung faellt sonst durch.
         if check:
-            ok = structure_ok(text)
-            print("Struktur ok (Anton nicht erreichbar — volle Drift-Prüfung "
-                  "braucht DDEV)." if ok else "Struktur fehlerhaft.")
+            ok = all(structure_ok(p.read_text()) for p, _ in targets)
+            print(f"Struktur ok in {len(targets)} Sprachfassung(en) (Anton nicht "
+                  "erreichbar — volle Drift-Prüfung braucht DDEV)."
+                  if ok else "Struktur fehlerhaft.")
             return 0 if ok else 1
         print("Anton nicht erreichbar (DDEV?) — nichts zu tun.", file=sys.stderr)
         return 2
 
-    block = build_block(commands)
-    new = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), block.rstrip("\n"),
-                 text, flags=re.S)
+    stale, written = [], []
+    for path, locale in targets:
+        text = path.read_text()
+        block = build_block(commands, locale)
+        new = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), block.rstrip("\n"),
+                     text, flags=re.S)
+        if new == text:
+            continue
+        if check:
+            stale.append(path)
+        else:
+            path.write_text(new)
+            written.append(path)
 
     if check:
-        if new != text:
-            print("Referenz ist veraltet — `python3 scripts/gen-command-reference.py` ausführen.")
+        if stale:
+            names = ", ".join(p.name for p in stale)
+            print(f"Referenz ist veraltet ({names}) — "
+                  "`python3 scripts/gen-command-reference.py` ausführen.")
             return 1
-        print("Referenz ist aktuell.")
+        print(f"Referenz ist aktuell ({len(targets)} Sprachfassung(en)).")
         return 0
 
-    if new != text:
-        PAGE.write_text(new)
-        print(f"Referenz aktualisiert: {PAGE}")
+    if written:
+        print("Referenz aktualisiert: " + ", ".join(str(p) for p in written))
     else:
         print("Keine Änderung nötig.")
     return 0

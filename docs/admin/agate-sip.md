@@ -82,7 +82,7 @@ Request:
 
 - Multipart-Form mit `file`-Feld (`sip.zip` BagIt-Container)
 - Header `Authorization: Bearer <api_token>` (Sanctum-Token, siehe
-  [API Authentication](authentication.md))
+  [API-Authentifizierung](../api/authentication.md))
 
 Response: `202 Accepted` mit JSON, das die Job-ID enthält:
 
@@ -112,7 +112,7 @@ Damit agate-Imports funktionieren:
 1. **`setting('enable_sip_anton_import')` auf `true`** setzen (default
    false aus Sicherheitsgründen)
 2. **API-Token** für agate erzeugen (siehe
-   [API Authentication](authentication.md))
+   [API-Authentifizierung](../api/authentication.md))
 3. **`accessions_archives_id`** auf einen geeigneten Wrapper-Bestand
    setzen, damit die Eingangsbuchung erfolgt
 4. **NARA-Mapping** anlegen (siehe oben) — Default-Mapping vorhanden,
@@ -133,4 +133,4 @@ Damit agate-Imports funktionieren:
 
 - [SIP Ingest](sip-ingest.md) — generische SIP-Import-Mechanik
 - [Inge / DIMAG Upload](inge.md) — DIMAG-Anbindung für ZH-Gemeinden
-- [API Authentication](authentication.md) — Tokens für agate
+- [API-Authentifizierung](../api/authentication.md) — Tokens für agate

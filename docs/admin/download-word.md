@@ -6,16 +6,16 @@ Um das Logo einzubinden, ist im `customers/{slug}/img` Ordner das Logo als `word
 
 Ausserdem kann in der Einstellungen der Footer (`word_footer`) sowie der Header `word_header` angepasst werden.
 
-## Custom Word Export
+## Eigener Word-Export
 
-For a Word Export there must be a Class in the `Controller\Word` directory, which organizes the download, for example `ArchivdatenWordEdxport`. The class must be named like `${template}WordEdxport`. So in the example the template is «Archivdaten». 
+Für einen eigenen Word-Export braucht es im Verzeichnis `Controller\Word` eine Klasse, die den Download organisiert, zum Beispiel `ArchivdatenWordEdxport`. Die Klasse muss nach dem Muster `${template}WordEdxport` benannt sein; im Beispiel lautet das Template also «Archivdaten».
 
-The export class must have one method which takes as an argument an integer and returns a `Symfony\Component\HttpFoundation\Response`:
+Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und eine `Symfony\Component\HttpFoundation\Response` zurückgibt:
 
 ```php
 public function run($id) : Response
 ```
 
-When the class is done you have to add the `ModuleWordDownload` to the default objectform (via the gui). 
+Ist die Klasse fertig, wird das `ModuleWordDownload` über die Oberfläche in das Standard-Objektformular aufgenommen.
 
-Then you can specify the level_of_descriptions, which should offer the download by adding an array of level_of_description_ids to the setting `level_of_description_ids_for_word_download` and to the setting `word_export_template` you have to add the template (casesensitive), in the example «Archivdaten». 
+Anschliessend lässt sich festlegen, für welche Verzeichnungsstufen der Download angeboten wird: Dazu kommt ein Array mit den Ids der Verzeichnungsstufen in die Einstellung `level_of_description_ids_for_word_download`, und in die Einstellung `word_export_template` das Template (Gross- und Kleinschreibung beachten) — im Beispiel «Archivdaten».
