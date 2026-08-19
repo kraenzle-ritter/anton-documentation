@@ -212,7 +212,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (54)
+### anton: (55)
 
 | Command | Description |
 |---|---|
@@ -246,6 +246,7 @@ up to date with every change to the commands.
 | `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |
 | `anton:measure-disk-usage` | Measure and cache storage disk usage in the background (feeds anton:doctor CheckDiskSpace, #293) |
 | `anton:merge` | Merge multiple records into one (actors, places, or keywords) |
+| `anton:migrate-import-audit` | Move import sidecars from the archive into the import audit log. |
 | `anton:move-objects` | Move objects into a parent |
 | `anton:moveMediaToCloud` | Move media files to an cloud-storage (s3 or inge), but keep the conversions. |
 | `anton:protection-baseline` | Snapshot or diff the current per-object protection-period release decision (read-only, #256). |

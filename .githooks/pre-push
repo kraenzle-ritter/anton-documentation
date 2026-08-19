@@ -20,7 +20,7 @@ script="$repo_root/scripts/gen-command-reference.py"
 if ! python3 "$script" --check; then
     echo
     echo "✗ Command-Referenz ist veraltet."
-    echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands.md"
+    echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands*.md"
     echo "  Umgehen:  git push --no-verify"
     exit 1
 fi
