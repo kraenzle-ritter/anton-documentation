@@ -14,8 +14,15 @@ h1, h2, h3, h4, h5, h6 {
 .md-header {
   color: #133253 !important;
   background-color: #FFDDAA !important;
-  height: 70px !important;
+  height: 81px !important;
   font-family: 'Nunito', sans-serif !important;
+}
+
+/* Die innere Zeile auf die volle Leistenhoehe ziehen, damit Logo, Titel und
+   Suche mittig stehen statt oben zu kleben. */
+.md-header__inner {
+  height: 81px;
+  align-items: center;
 }
 
 /* Das Logo so gross wie auf anton.ch (50px). Die Kopfleiste ist auf 70px
@@ -35,23 +42,12 @@ h1, h2, h3, h4, h5, h6 {
   width: auto;
 }
 
-.md-header-nav__title {
-  font-family: 'Nunito', sans-serif;
-  padding-top: 10px !important;
-  padding-bottom: 5px !important;
-  padding-left: 10px !important;
-  font-weight: 400 !important;
-  font-size: 14px !important;
-  font-style: bold !important;
-}
-
-.md-search, .md-search_input, .md-header-nav__source {
+/* .md-search_input war ein Tippfehler (die Klasse heisst __input), und das
+   margin-top glich frueher die oben klebende Kopfzeile aus — seit die innere
+   Zeile zentriert ist, wuerde es die Suche 10px nach unten schieben. */
+.md-search,
+.md-search__input {
   font-family: 'Nunito', sans-serif !important;
-  margin-top: 10px !important;
-}
-
-.md-header-nav__button {
-  line-height: 3rem !important;
 }
 
 .md-search__icon {
