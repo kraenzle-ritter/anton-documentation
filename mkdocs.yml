@@ -2,8 +2,11 @@ site_name: Anton – Dokumentation
 repo_url: https://github.com/kraenzle-ritter/anton-documentation
 repo_name: 'anton-documentation'
 site_author: 'Andreas Kraenzle, Gerold Ritter'
+# Erscheint in der Fusszeile; je Sprache im i18n-Plugin ueberschrieben.
+copyright: 'Diese Dokumentation wurde teilweise mit KI erstellt und übersetzt. Alle Angaben deshalb ohne Gewähr.'
 theme:
   name: material
+  custom_dir: overrides
   language: de
   logo: images/kr_logo.png
   favicon: images/favicon-anton.png
@@ -16,6 +19,10 @@ theme:
     - search.share
 extra_css:
   - stylesheets/extra.css
+# Liefert je Seite die wirklich vorhandenen Sprachfassungen und das Datum des
+# letzten Commits; gerendert in overrides/main.html ueber der Ueberschrift.
+hooks:
+  - hooks/page_meta.py
 markdown_extensions:
   - admonition
   - codehilite
@@ -175,6 +182,7 @@ plugins:
           name: English
           build: true
           site_name: 'Anton – Documentation'
+          copyright: 'Parts of this documentation were produced and translated with AI. All information is therefore provided without warranty.'
           nav:
             - Home: index.md
             - User:
@@ -219,11 +227,64 @@ plugins:
               - Login:
                 - Two-factor authentication: user/2FA.md
                 - Passkey authentication: user/passkey.md
-            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
-            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
-            - Developer (de): /developer/
-            - Admin (de): /admin/requirements/
-            - API (de): /api/
+            - Developer:
+              - Architecture overview: developer/index.md
+              - Domain model: developer/domain-model.md
+              - The form system: developer/forms.md
+              - Concurrency: developer/events-jobs.md
+              - Extension points: developer/extension-points.md
+            - Admin:
+              - Setup:
+                - Server requirements: admin/requirements.md
+                - Installation: admin/installation.md
+                - Settings: admin/configuration.md
+                - Logo and favicons: admin/logo.md
+                - Authentication: admin/authentication.md
+              - Configuring the archive:
+                - Forms and form sets: admin/forms.md
+                - Value lists: admin/valuelists.md
+                - Protection periods: admin/protection-periods.md
+                - Search fields: admin/searchfields.md
+                - Home page and navigation: admin/home.md
+                - Archive description (ISDIAH): admin/isdiah.md
+              - User administration: admin/users.md
+              - Comments: admin/comments.md
+              - Media:
+                - Media gallery: admin/gallery.md
+                - Documents: admin/documents.md
+                - Watermarks: admin/watermarks.md
+                - Media list and bulk actions: admin/bulk-media-list.md
+              - Search:
+                - Instant search (Typesense): admin/typesense.md
+                - Weighted search: admin/weighted-search.md
+              - Import:
+                - SIP ingest (eCH-0160): admin/sip-ingest.md
+                - agate SIP import: admin/agate-sip.md
+                - Authority data synchronisation: admin/authorities.md
+              - Export and publication:
+                - Downloading a DIP: admin/download-dip.md
+                - Word finding aids: admin/download-word.md
+                - Downloading OCFL: admin/download-ocfl.md
+                - RDF export (CIDOC CRM / Memobase): admin/download-rdf.md
+                - Static publication and round trip: admin/statische-publikation.md
+                - Mastodon: admin/mastodon.md
+              - Long-term preservation:
+                - Overview: admin/preservation.md
+                - Export matrix: admin/export-matrix.md
+                - Preservation planning: admin/preservation-planning.md
+                - Inge and DIMAG: admin/inge.md
+                - DIMAG upload status: admin/dimag-uploads.md
+              - Operations:
+                - Anton Doctor: admin/doctor.md
+                - Backup and restoration: admin/restore.md
+                - Console commands: admin/console-commands.md
+                - Notifications: admin/notifications.md
+                - Feedback to development: admin/feedback.md
+                - Shrinking for a public installation: admin/shrink.md
+              - AI-assisted cataloguing: admin/ai-cataloging.md
+            - API:
+              - Authentication: api/authentication.md
+              - Endpoints: api/index.md
             - FAQ:
               - General FAQs: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
@@ -239,6 +300,7 @@ plugins:
           name: Français
           build: true
           site_name: 'Anton – Documentation'
+          copyright: "Une partie de cette documentation a été produite et traduite à l'aide de l'IA. Toutes les indications sont donc fournies sans garantie."
           nav:
             - Accueil: index.md
             - Utilisation:
@@ -283,11 +345,11 @@ plugins:
               - Connexion:
                 - Authentification à deux facteurs: user/2FA.md
                 - Authentification par passkey: user/passkey.md
-            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
-            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
-            - Developer (de): /developer/
-            - Admin (de): /admin/requirements/
-            - API (de): /api/
+            # Diese Bereiche gibt es auf Deutsch und Englisch, nicht auf
+            # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
+            - Developer (en): /en/developer/
+            - Admin (en): /en/admin/requirements/
+            - API (en): /en/api/
             - FAQ:
               - FAQ générales: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
@@ -303,6 +365,7 @@ plugins:
           name: Italiano
           build: true
           site_name: 'Anton – Documentazione'
+          copyright: "Parte di questa documentazione è stata prodotta e tradotta con l'IA. Tutte le indicazioni sono quindi fornite senza garanzia."
           nav:
             - Home: index.md
             - Utilizzo:
@@ -347,11 +410,11 @@ plugins:
               - Autenticazione:
                 - Autenticazione a due fattori: user/2FA.md
                 - Autenticazione con passkey: user/passkey.md
-            # Nicht uebersetzte Bereiche: Eintrag vorhanden, Ziel ist die
-            # deutsche Fassung. Absolute Pfade -> MkDocs rendert externe Links.
-            - Developer (de): /developer/
-            - Admin (de): /admin/requirements/
-            - API (de): /api/
+            # Diese Bereiche gibt es auf Deutsch und Englisch, nicht auf
+            # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
+            - Developer (en): /en/developer/
+            - Admin (en): /en/admin/requirements/
+            - API (en): /en/api/
             - FAQ:
               - FAQ generali: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
