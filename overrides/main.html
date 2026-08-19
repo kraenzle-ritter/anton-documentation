@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {#
-  Kopfzeile ueber der Ueberschrift: verfuegbare Sprachen und Stand-Datum.
+  Kopfzeile ueber der Ueberschrift: Sprachwahl und Stand-Datum, rechtsbuendig.
   Der content-Block liegt innerhalb von <article class="md-content__inner">,
   die Zeile steht damit im Textblock und nicht ueber der ganzen Seite.
   Die Daten liefert hooks/page_meta.py.
@@ -11,13 +11,13 @@
     <div class="page-meta">
       {%- if page_locales %}
         <span class="page-meta__langs">
+          <span class="page-meta__label">{{ page_locales_label }}:</span>
           {%- for locale in page_locales -%}
             {%- if locale.current -%}
-              <span class="page-meta__lang page-meta__lang--current">{{ locale.code }}</span>
+              <span class="page-meta__lang page-meta__lang--current" lang="{{ locale.code }}">{{ locale.name }}</span>
             {%- else -%}
-              <a class="page-meta__lang" href="{{ locale.url }}" hreflang="{{ locale.code }}">{{ locale.code }}</a>
+              <a class="page-meta__lang" href="{{ locale.url }}" hreflang="{{ locale.code }}" lang="{{ locale.code }}">{{ locale.name }}</a>
             {%- endif -%}
-            {%- if not loop.last %}<span class="page-meta__sep">|</span>{% endif -%}
           {%- endfor -%}
         </span>
       {%- endif %}

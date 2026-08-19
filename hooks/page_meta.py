@@ -18,12 +18,27 @@ from pathlib import Path
 SOURCE_LOCALE = "de"
 TRANSLATED_LOCALES = ("en", "fr", "it")
 
-# Beschriftung des Datums je Sprache der gerade gebauten Site.
-UPDATED_LABEL = {
-    "de": "Stand",
-    "en": "Last updated",
-    "fr": "État",
-    "it": "Aggiornamento",
+# Beschriftung des Datums. Bewusst in allen Sprachen englisch: «Last updated»
+# ist auch ausserhalb des Englischen gelaeufig, und die Zeile bleibt damit in
+# jeder Sprachfassung gleich lang und gleich erkennbar.
+UPDATED_LABEL = "Last updated"
+
+# Beschriftung der Sprachwahl — ohne sie liest sich die Zeile wie eine
+# Datenangabe und nicht wie etwas, das man anklicken kann.
+LANGUAGE_LABEL = {
+    "de": "Sprache",
+    "en": "Language",
+    "fr": "Langue",
+    "it": "Lingua",
+}
+
+# Ausgeschriebene Namen statt Kürzel: «Français» versteht auch jemand, der
+# nicht weiss, wofür «fr» steht.
+LOCALE_NAMES = {
+    "de": "Deutsch",
+    "en": "English",
+    "fr": "Français",
+    "it": "Italiano",
 }
 
 _commit_dates: dict[str, str] = {}
@@ -76,9 +91,9 @@ def on_page_context(context, page, config, nav):
 
     # Massgeblich ist die Sprache der gerade gebauten Site, nicht die der
     # Datei: eine deutsche Fallback-Seite unter /fr/ wird von jemandem
-    # gelesen, der auf der franzoesischen Site ist — das Datum gehoert
-    # franzoesisch beschriftet. Das i18n-Plugin setzt die Theme-Sprache je
-    # Durchlauf. Auf einer Fallback-Seite ist die aktuelle Sprache dann in
+    # gelesen, der auf der franzoesischen Site ist — die Sprachwahl gehoert
+    # dort franzoesisch beschriftet. Das i18n-Plugin setzt die Theme-Sprache
+    # je Durchlauf. Auf einer Fallback-Seite ist die aktuelle Sprache dann in
     # `available` gar nicht enthalten, es wird also keine als aktiv markiert.
     current = config["theme"]["language"]
 
@@ -98,10 +113,16 @@ def on_page_context(context, page, config, nav):
 
     # Nur anzeigen, wenn es ueberhaupt etwas zu waehlen gibt.
     context["page_locales"] = [
-        {"code": loc, "url": href(loc), "current": loc == current}
+        {
+            "code": loc,
+            "name": LOCALE_NAMES.get(loc, loc),
+            "url": href(loc),
+            "current": loc == current,
+        }
         for loc in available
     ] if len(available) > 1 else []
 
+    context["page_locales_label"] = LANGUAGE_LABEL.get(current, LANGUAGE_LABEL["de"])
     context["page_updated"] = _commit_dates.get(f"docs/{page.file.src_uri}")
-    context["page_updated_label"] = UPDATED_LABEL.get(current, UPDATED_LABEL["de"])
+    context["page_updated_label"] = UPDATED_LABEL
     return context
