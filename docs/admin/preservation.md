@@ -75,7 +75,7 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
 | **SQL-Dump** | **Sicherung.** Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der Datei-Provenienz (PRONOM/NARA-Historie). Enthält keine Mediendateien. |
 | [**DIP**](download-dip.md) (BagIt) und [**OCFL**](download-ocfl.md) | **Abgabepakete.** Medien und Metadaten gebündelt, mit Prüfsummen im Manifest. |
 | [**RDF/CIDOC**](download-rdf.md), **EAD**, **TEI**, **Memobase** | **Publikationsansichten.** Gefiltert und verlustbehaftet — aus ihnen lässt sich Anton nicht wiederherstellen. |
-| [**A+ Bundle mit `--include-protected --include-originals`**](download-rdf.md#migrations-export) | **Migrationspaket.** Graph inklusive gesperrter Daten plus Originaldateien — für den Weg in ein *anderes* System. Kein Restore nach Anton, und wegen der enthaltenen Personendaten nicht öffentlich zu hosten. |
+| [**A+ Bundle mit `--include-protected --include-originals`**](download-rdf.md#migrations-export) | **Migrationspaket.** Graph inklusive gesperrter Daten plus Originaldateien — für den Weg in ein *anderes* System. Kein Restore-Werkzeug nach Anton, und wegen der enthaltenen Personendaten nicht öffentlich zu hosten. |
 
 !!! danger "Ein RDF- oder EAD-Export ist kein Backup"
     Diese Formate sind für Recherche und Austausch gebaut. Ihnen fehlen unter
@@ -84,8 +84,8 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
     den SQL-Dump.
 
     Das gilt auch dann, wenn mit `--include-protected --include-originals`
-    exportiert wird: dieses Paket ist ein **Migrationsweg hinaus**, kein Restore —
-    nach Anton zurück lesen lässt es sich nicht.
+    exportiert wird: dieses Paket ist als **Migrationsweg hinaus** gedacht. Ein
+    Rückweg wäre mit Aufwand konstruierbar, ein Werkzeug dafür gibt es nicht.
 
 Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
 wer welches Artefakt auslösen kann, zeigt die [Export-Matrix](export-matrix.md).

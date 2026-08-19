@@ -130,9 +130,11 @@ Datensätze** und die **Originaldateien**. Damit lässt sich ein Bestand
 standardkonform in ein anderes System überführen.
 
 !!! warning "Drei Einschränkungen"
-    - Das Paket ist **nicht wieder nach Anton importierbar** — dafür gibt es den
-      [nativen Round-Trip](statische-publikation.md#nativer-round-trip-anton-import-format).
-      Es ist ein Weg *hinaus*, kein Restore.
+    - Es gibt **kein fertiges Werkzeug, das das Paket wieder nach Anton einliest**.
+      Machbar wäre ein Rückweg mit einigem Aufwand, gebaut ist er nicht — für Backup
+      und Wiederherstellung ist der
+      [native Round-Trip](statische-publikation.md#nativer-round-trip-anton-import-format)
+      der vorgesehene Weg.
     - Schutzfristen stehen im Graphen und sind maschinell auswertbar, **durchgesetzt
       werden müssen sie im Zielsystem**.
     - Ein so erzeugtes Paket enthält personenbezogene und gesperrte Daten und darf

@@ -126,8 +126,8 @@ php artisan anton:export-rdf --env=<slug> --root=<id> \
 
 Das Ergebnis ist ein standardkonformes Paket aus CIDOC-CRM/RiC-O-Graph, gesperrten
 Daten und Originaldateien — geeignet, um einen Bestand in ein **anderes System** zu
-überführen. Es ist **nicht** nach Anton zurück importierbar; dafür bleibt der native
-Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öffentlich hosten.
+überführen. Für den Rückweg nach Anton gibt es kein fertiges Werkzeug — dafür bleibt der
+native Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öffentlich hosten.
 
 ## Wer welches Artefakt auslösen kann
 
