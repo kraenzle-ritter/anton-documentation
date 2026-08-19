@@ -54,7 +54,7 @@ dettaglio compare come semplice testo.
 Le **sezioni** su sfondo grigio suddividono la maschera. Non sono esse stesse
 campi; una sezione senza campi visibili viene omessa del tutto.
 
-## Testi di aiuto sui campi
+## Testi di aiuto sui campi {#hilfetexte-zu-feldern}
 
 A un campo può essere associato un testo di aiuto — la regola di descrizione
 propria dell'archivio per quel campo. Se è presente, compare nella maschera di

@@ -20,7 +20,7 @@ Nel modulo **un documento corrisponde a un'unità di descrizione**. Chi intende
 utilizzarlo descrive quindi i PDF singolarmente e non raccolti in un'unica unità
 archivistica.
 
-## Il visualizzatore
+## Il visualizzatore {#der-viewer}
 
 All'apertura di un documento compare a sinistra il contenuto del campo **forma e
 contenuto**, a destra il PDF.

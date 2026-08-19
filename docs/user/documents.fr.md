@@ -21,7 +21,7 @@ Dans le module, **un document correspond à une unité de description**. Qui
 souhaite l'utiliser décrit donc les PDF individuellement et non regroupés dans un
 dossier.
 
-## La visionneuse
+## La visionneuse {#der-viewer}
 
 À l'ouverture d'un document, le contenu du champ **forme et contenu** apparaît à
 gauche, le PDF à droite.

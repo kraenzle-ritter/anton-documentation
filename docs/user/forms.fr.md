@@ -56,7 +56,7 @@ dans la vue de détail.
 Des **sections** sur fond gris structurent le masque. Elles ne sont pas
 elles-mêmes des champs ; une section sans champ visible est entièrement omise.
 
-## Textes d'aide sur les champs
+## Textes d'aide sur les champs {#hilfetexte-zu-feldern}
 
 Un texte d'aide peut être associé à un champ — la règle de description propre au
 service pour ce champ. S'il est renseigné, il apparaît dans le masque de saisie

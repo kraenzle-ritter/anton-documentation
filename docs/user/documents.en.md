@@ -20,7 +20,7 @@ In the module, **one document corresponds to one unit of description**. Anyone
 wishing to use it therefore catalogues the PDFs individually and not collectively
 in one file.
 
-## The viewer
+## The viewer {#der-viewer}
 
 When a document is opened, the content of the **form and content** field appears
 on the left, the PDF on the right.

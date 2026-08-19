@@ -51,7 +51,7 @@ or a selection list when editing appears as plain text in the detail view.
 **Sections** with a grey background structure the form. They are not fields
 themselves; a section without visible fields is omitted entirely.
 
-## Help texts for fields
+## Help texts for fields {#hilfetexte-zu-feldern}
 
 A help text can be stored for a field — the archive's own cataloguing rule for
 that field. If one is stored, it appears in the edit form as a small note
