@@ -55,6 +55,13 @@ Con un'espressione **non** si cerca automaticamente per inizio di parola — l'e
 !!! warning "Le parole molto brevi vengono ignorate anche nelle espressioni"
     Le parole di meno di 3 caratteri e alcune parole vuote inglesi (`the`, `for`, `and`) restano escluse dal confronto anche all'interno delle virgolette. Un'espressione come `"AG Reinach"` corrisponde quindi di fatto solo a «Reinach».
 
+!!! note "Espressioni nel testo dei documenti"
+    Se l'archivio tiene il testo integrale in forma **condensata**
+    (impostazione `optimize_fulltext`), l'indice contiene solo la prima
+    occorrenza di ogni parola — le espressioni sono quindi reperibili solo in
+    misura limitata nel testo dei PDF. La ricerca di parole singole non ne è
+    toccata. Se sia il caso lo sa l'amministrazione.
+
 ### Termini con trattino
 
 I termini con trattino (ad es. `Arp-Hagenbach`) vengono trattati automaticamente come un'espressione: si cercano le due parti direttamente accostate.

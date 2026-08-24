@@ -55,6 +55,13 @@ Pour une expression, la recherche par début de mot n'est **pas** appliquée aut
 !!! warning "Les mots très courts sont ignorés y compris dans les expressions"
     Les mots de moins de 3 caractères et quelques mots vides anglais (`the`, `for`, `and`) sont écartés de la comparaison même à l'intérieur de guillemets. Une expression telle que `"AG Reinach"` ne correspond donc en fait qu'à «&nbsp;Reinach&nbsp;».
 
+!!! note "Expressions dans le texte des documents"
+    Si le service tient le texte intégral sous forme **condensée** (réglage
+    `optimize_fulltext`), l'index ne contient que la première occurrence de
+    chaque mot — les expressions ne sont alors que partiellement trouvables dans
+    le texte des PDF. La recherche de mots isolés n'en est pas affectée.
+    L'administration sait si c'est le cas.
+
 ### Termes avec trait d'union
 
 Les termes comportant un trait d'union (p. ex. `Arp-Hagenbach`) sont automatiquement traités comme une expression : la recherche porte sur les deux parties directement accolées.

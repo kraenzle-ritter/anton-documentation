@@ -55,6 +55,13 @@ Bei einer Phrase wird **nicht** automatisch nach Wortanfängen gesucht — die P
 !!! warning "Sehr kurze Wörter werden auch in Phrasen ignoriert"
     Wörter unter 3 Zeichen und einige englische Stopwörter (`the`, `for`, `and`) fallen auch innerhalb von Anführungszeichen aus dem Vergleich. Eine Phrase wie `"AG Reinach"` matcht damit faktisch nur „Reinach".
 
+!!! note "Phrasen im Dokumententext"
+    Führt das Archiv den Volltext **verdichtet** (Einstellung
+    `optimize_fulltext`), stehen im Index nur die ersten Vorkommen jedes Wortes
+    — Phrasen sind im Text von PDFs dann nur eingeschränkt auffindbar. Die
+    Suche nach einzelnen Wörtern bleibt davon unberührt. Ob das zutrifft, weiss
+    die Administration; siehe [Suchfelder](../admin/searchfields.md).
+
 ### Begriffe mit Bindestrich
 
 Begriffe mit Bindestrich (z. B. `Arp-Hagenbach`) werden automatisch wie eine Phrase behandelt: gesucht wird nach beiden Teilen direkt nebeneinander.

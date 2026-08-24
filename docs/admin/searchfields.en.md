@@ -37,3 +37,22 @@ The advanced search is only one of three routes. The
 [full-text search](../user/search.md) searches a combined index across all
 relevant fields and is not controlled via the search fields; the
 [instant search](typesense.md) has its own configuration.
+
+### Condensed full text (`optimize_fulltext`)
+
+The stored full text can be **condensed**: Anton then throws away every
+repetition of a word and keeps only its first occurrence. That keeps the column
+small — in holdings with PDF full text, the document text is by far the largest
+part.
+
+The price is **phrase search**. Condensing loses every adjacency of two words
+that did not already exist at their first occurrence: `"rudolf leder"` then only
+finds the record if the two words happened to stand together right there. Search
+for single words is unaffected.
+
+Anyone changing the setting has to **rebuild the index** — what is stored
+condensed stays condensed, the setting only takes effect on writing:
+
+```bash
+php artisan anton:update-fulltext --env={slug}
+```

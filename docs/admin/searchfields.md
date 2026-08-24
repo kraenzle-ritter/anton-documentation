@@ -38,3 +38,22 @@ Die erweiterte Suche ist nur einer von drei Wegen. Die
 [Volltextsuche](../user/search.md) durchsucht einen zusammengefassten Index über
 alle relevanten Felder und wird nicht über die Suchfelder gesteuert; die
 [schnelle Suche](typesense.md) hat eine eigene Konfiguration.
+
+### Verdichteter Volltext (`optimize_fulltext`)
+
+Der gespeicherte Volltext lässt sich **verdichten**: Anton wirft dabei jede
+Wortwiederholung weg und behält nur das erste Vorkommen. Das hält die Spalte
+klein — bei Beständen mit PDF-Volltext macht der Dokumententext den weitaus
+grössten Teil aus.
+
+Der Preis ist die **Phrasensuche**. Wer verdichtet, verliert jede Nachbarschaft
+zweier Wörter, die nicht schon beim ersten Vorkommen bestand: `"rudolf leder"`
+findet den Datensatz dann nur, wenn die beiden Wörter zufällig gerade dort
+nebeneinander standen. Die Suche nach einzelnen Wörtern bleibt unberührt.
+
+Wer die Einstellung ändert, muss den Index **neu aufbauen** — verdichtet
+gespeichert ist verdichtet, die Einstellung wirkt nur beim Schreiben:
+
+```bash
+php artisan anton:update-fulltext --env={slug}
+```

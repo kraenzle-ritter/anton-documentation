@@ -55,6 +55,13 @@ With a phrase, word beginnings are **not** searched automatically — the phrase
 !!! warning "Very short words are ignored in phrases too"
     Words of fewer than 3 characters and some English stop words (`the`, `for`, `and`) drop out of the comparison even within quotation marks. A phrase such as `"AG Reinach"` therefore effectively matches only «Reinach».
 
+!!! note "Phrases in the document text"
+    If the archive keeps the full text **condensed** (setting
+    `optimize_fulltext`), the index holds only the first occurrence of each word
+    — phrases are then only findable to a limited extent in the text of PDFs.
+    Search for single words is unaffected. Whether this applies is known to the
+    administration; see [search fields](../admin/searchfields.md).
+
 ### Terms with a hyphen
 
 Terms with a hyphen (e.g. `Arp-Hagenbach`) are automatically treated like a phrase: the search looks for both parts directly next to each other.
