@@ -19,7 +19,7 @@ With Inge it is possible to integrate DIMAG as a repository for the primary data
 - User: Anton ingest (`/sip/ingest`)
     - Backup of the database
     - Import SIP (`<dossier>` and `<dokument>`/`<datei>`)
-        - SIP entry in the accession archive («draft»)
+        - Entry in the import log, signature `IMPORT-{yyyy}-{NNN}`
         - Import dossiers and documents/files 
             - Anton creates web versions and thumbnails
             - if the SIP ingest takes place with Inge and DIMAG, Anton deletes the master files
@@ -43,7 +43,7 @@ Inge:
 - DIMAG: imports the package and sends the result to Inge 
 - Inge: sends the result to Anton
 - Anton: finalises the SIP ingest
-    - Confirms the SIP ingest (the SIP entry is «final») or restores the state before the ingest from the backup 
+    - Confirms the ingest (DIMAG report on the run) or restores the state before the ingest from the backup 
     - Sends an email to the user Inge with the result 
 
 ### Retrieving a master file
@@ -61,20 +61,23 @@ php artisan anton:import --env {slug} --from-sip --no-validation
 
 Before a SIP import, Anton backs up the database, so that if anything goes wrong the state before the import can be restored.
 
-The backup name is stored in the SIP entry and the `Status of description` is set to draft.
+The backup name is recorded on the run, in the import log under *Admin → Data import → Imports*.
 
 The following restores the database from the last/current backup and synchronises the media with the database (namely deletes media that are not registered in the database):
 
 ```bash
-php artisan anton:sip-import --env {slug} --id {sip_id} -vv --revert
+php artisan sip:check-import --env {slug} --id {run_id} -vv --revert
 ```
 
-The `sip_id` is the ID of an AntonObject that is a SIP.
+The `run_id` is the run id from the import log (`/import/audit/{run_id}`). `--list` shows the most recent runs, `--check` inspects the state only.
 
-The following sets the `Status of description` in the SIP entry to "final":
+!!! warning "Only the latest backup"
+    Only this run's backup is restored, and only while it is the latest. An older one discards everything written since — including other people's work.
+
+The following confirms the run and records the DIMAG report on it:
 
 ```bash
-php artisan anton:sip-import --env {slug} --id {sip_id} -vv --confirm
+php artisan sip:check-import --env {slug} --id {run_id} -vv --confirm
 ```
 
 

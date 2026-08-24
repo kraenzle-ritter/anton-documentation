@@ -19,7 +19,7 @@ Mit Inge ist es möglich, DIMAG als Repository für die Primärdaten zu integrie
 - User: Anton-Ingest (`/sip/ingest`)
     - Backup der Datenbank
     - Import SIP (`<dossier>` and `<dokument>`/`<datei>`)
-        - SIP Eintrag im Akzessionsarchiv («Entwurf»)
+        - Eintrag im Importprotokoll, Signatur `IMPORT-{jjjj}-{NNN}`
         - Import Dossiers and Dokumente/Dateien 
             - Anton erstellt Web-Versionen und Thumbs
             - falls der SIP-Ingest mit Inge und DIMAG erfolgt löscht Anton die  Masterdateien
@@ -43,7 +43,7 @@ Inge:
 - DIMAG: Importiert das Paket and sendet das Resultat an Inge 
 - Inge: Inge sendet das Resultat an Anton
 - Anton: Finalisiere den SIP-Ingest
-    - Bestätige den SIP-Ingest (SIP Eintrag ist «Final») oder stelle den Zustand vor dem Ingest aus dem Backup wieder her 
+    - Bestätige den Ingest (DIMAG-Bericht am Lauf) oder stelle den Zustand vor dem Ingest aus der Sicherung wieder her 
     - Schicke eine Email an User Inge mit dem Resultat 
 
 ### Abfrage eines Master Files
@@ -61,20 +61,23 @@ php artisan anton:import --env {slug} --from-sip --no-validation
 
 Vor einem SIP-Import sichert Anton die Datenbank; geht etwas schief, lässt sich damit der Zustand vor dem Import wiederherstellen.
 
-Der Name der Sicherung wird im SIP-Eintrag festgehalten, und der `Status of description` steht auf «Entwurf».
+Der Name der Sicherung steht am Lauf, im Importprotokoll unter *Admin → Daten-Import → Imports*.
 
 Der folgende Befehl stellt die Datenbank aus der letzten Sicherung wieder her und gleicht die Medien mit der Datenbank ab (löscht also Medien, die in der Datenbank nicht registriert sind):
 
 ```bash
-php artisan anton:sip-import --env {slug} --id {sip_id} -vv --revert
+php artisan sip:check-import --env {slug} --id {run_id} -vv --revert
 ```
 
-Die `sip_id` ist die ID eines AntonObjects, das ein SIP ist.
+Die `run_id` ist die Lauf-Id aus dem Importprotokoll (`/import/audit/{run_id}`). `--list` zeigt die letzten Läufe, `--check` prüft nur den Zustand.
 
-Der folgende Befehl setzt den `Status of description` im SIP-Eintrag auf «final»:
+!!! warning "Nur die neueste Sicherung"
+    Wiederhergestellt wird nur die Sicherung dieses Laufs, und nur solange sie die neueste ist. Eine ältere verwirft alles Spätere — auch die Arbeit anderer.
+
+Der folgende Befehl bestätigt den Lauf und vermerkt den DIMAG-Bericht daran:
 
 ```bash
-php artisan anton:sip-import --env {slug} --id {sip_id} -vv --confirm
+php artisan sip:check-import --env {slug} --id {run_id} -vv --confirm
 ```
 
 
