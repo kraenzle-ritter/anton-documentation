@@ -4232,7 +4232,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/inge/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4265,7 +4265,7 @@
 <li>User: Anton ingest (<code>/sip/ingest</code>)<ul>
 <li>Backup of the database</li>
 <li>Import SIP (<code>&lt;dossier&gt;</code> and <code>&lt;dokument&gt;</code>/<code>&lt;datei&gt;</code>)<ul>
-<li>SIP entry in the accession archive («draft»)</li>
+<li>Entry in the import log, signature <code>IMPORT-{yyyy}-{NNN}</code></li>
 <li>Import dossiers and documents/files <ul>
 <li>Anton creates web versions and thumbnails</li>
 <li>if the SIP ingest takes place with Inge and DIMAG, Anton deletes the master files</li>
@@ -4294,7 +4294,7 @@
 - DIMAG: imports the package and sends the result to Inge 
 - Inge: sends the result to Anton
 - Anton: finalises the SIP ingest
-    - Confirms the SIP ingest (the SIP entry is «final») or restores the state before the ingest from the backup 
+    - Confirms the ingest (DIMAG report on the run) or restores the state before the ingest from the backup 
     - Sends an email to the user Inge with the result </p>
 <h3 id="retrieving-a-master-file">Retrieving a master file<a class="headerlink" href="#retrieving-a-master-file" title="Permanent link">&para;</a></h3>
 <p><img alt="Course of the ingest with Inge and DIMAG" src="../../../admin/images/Anton-Inge-Abruf.drawio.png" /></p>
@@ -4304,13 +4304,17 @@
 </code></pre></div>
 <h3 id="reverting-a-sip-import-or-confirming-an-import-with-inge">Reverting a SIP import or confirming an import with Inge<a class="headerlink" href="#reverting-a-sip-import-or-confirming-an-import-with-inge" title="Permanent link">&para;</a></h3>
 <p>Before a SIP import, Anton backs up the database, so that if anything goes wrong the state before the import can be restored.</p>
-<p>The backup name is stored in the SIP entry and the <code>Status of description</code> is set to draft.</p>
+<p>The backup name is recorded on the run, in the import log under <em>Admin → Data import → Imports</em>.</p>
 <p>The following restores the database from the last/current backup and synchronises the media with the database (namely deletes media that are not registered in the database):</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>run_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
 </code></pre></div>
-<p>The <code>sip_id</code> is the ID of an AntonObject that is a SIP.</p>
-<p>The following sets the <code>Status of description</code> in the SIP entry to "final":</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
+<p>The <code>run_id</code> is the run id from the import log (<code>/import/audit/{run_id}</code>). <code>--list</code> shows the most recent runs, <code>--check</code> inspects the state only.</p>
+<div class="admonition warning">
+<p class="admonition-title">Only the latest backup</p>
+<p>Only this run's backup is restored, and only while it is the latest. An older one discards everything written since — including other people's work.</p>
+</div>
+<p>The following confirms the run and records the DIMAG report on it:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>run_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
 </code></pre></div>
 <h3 id="checking-and-repairing-media-sync-anton-inge-dimag">Checking and repairing media sync (Anton ↔ Inge ↔ Dimag)<a class="headerlink" href="#checking-and-repairing-media-sync-anton-inge-dimag" title="Permanent link">&para;</a></h3>
 <p><code>media:check</code> checks the consistency between the Anton database, the local file system, Inge and Dimag.</p>

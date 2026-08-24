@@ -1393,10 +1393,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#una-segnatura-di-accessione-per-ogni-importazione" class="md-nav__link">
+  <a href="#una-segnatura-per-ogni-importazione" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Una segnatura di accessione per ogni importazione
+        Una segnatura per ogni importazione
       
     </span>
   </a>
@@ -2666,10 +2666,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#una-segnatura-di-accessione-per-ogni-importazione" class="md-nav__link">
+  <a href="#una-segnatura-per-ogni-importazione" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Una segnatura di accessione per ogni importazione
+        Una segnatura per ogni importazione
       
     </span>
   </a>
@@ -3085,7 +3085,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -3124,7 +3124,7 @@
 </tr>
 <tr>
 <td><strong>Directory</strong></td>
-<td>Importazione di una struttura di directory (ZIP/GZ) come entrata nell'archivio delle accessioni.</td>
+<td>Importazione di una struttura di directory (ZIP/GZ).</td>
 </tr>
 </tbody>
 </table>
@@ -3141,19 +3141,26 @@
 <h3 id="avanzamento-in-tempo-reale">Avanzamento in tempo reale<a class="headerlink" href="#avanzamento-in-tempo-reale" title="Permanent link">&para;</a></h3>
 <p>Dalla v0.62.0 tutte le importazioni vengono eseguite <strong>in modo asincrono in background</strong>. Dopo il clic su «Importa» si arriva su una pagina di avanzamento che aggiorna lo stato corrente ogni pochi secondi: fase (preparazione / creazione delle schede / lettura dei media), righe elaborate e, alla fine, un link alla <strong>segnatura di accessione</strong> creata nell'archivio.</p>
 <p>Ciò vale per tutte le vie — Excel, SIP, directory e finalizzazione della casella d'entrata.</p>
-<h3 id="una-segnatura-di-accessione-per-ogni-importazione">Una segnatura di accessione per ogni importazione<a class="headerlink" href="#una-segnatura-di-accessione-per-ogni-importazione" title="Permanent link">&para;</a></h3>
-<p>Ogni importazione (indipendentemente dalla via) crea una scheda accessoria nell'archivio delle accessioni (AKZ) con il numero <code>AKZ {anno}/{N}</code>. La voce registra:</p>
+<h3 id="una-segnatura-per-ogni-importazione">Una segnatura per ogni importazione<a class="headerlink" href="#una-segnatura-per-ogni-importazione" title="Permanent link">&para;</a></h3>
+<p>Ogni importazione (indipendentemente dalla via) riceve una segnatura <code>IMPORT-{aaaa}-{NNN}</code> e una voce nel protocollo delle importazioni. La voce registra:</p>
 <ul>
 <li>il nome del file originario</li>
 <li>la somma di controllo MD5</li>
 <li>il momento dell'importazione</li>
 <li>la via di importazione (Excel / SIP / directory / agate)</li>
 <li>le <strong>impostazioni utilizzate</strong>, dalla v0.87.0 (vedi sotto)</li>
+<li>l'esito e, in caso di fallimento, il messaggio</li>
 </ul>
-<p>Le importazioni fallite non lasciano <strong>alcun buco</strong> nella numerazione AKZ — il numero viene assegnato solo al completamento riuscito.</p>
+<div class="admonition info">
+<p class="admonition-title">Novità dalla v0.88.0</p>
+<p>Fino alla v0.87.x ogni importazione creava inoltre una ricevuta come unità di descrizione nell'archivio delle accessioni, con il numero <code>AKZ {anno}/{N}</code>. L'archivio delle accessioni è di nuovo riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono più consumate dalle importazioni. Le ricevute esistenti sono state spostate nel protocollo con tutto ciò che portavano.</p>
+</div>
+<p>La segnatura viene assegnata all'avvio. Un'esecuzione fallita la mantiene quindi e resta nel protocollo con il suo errore — una consegna fallita deve restare distinguibile da una che non è mai avvenuta.</p>
 <h3 id="protocollo-delle-importazioni">Protocollo delle importazioni<a class="headerlink" href="#protocollo-delle-importazioni" title="Permanent link">&para;</a></h3>
 <p>Sotto <strong><code>/import/audit</code></strong> si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Dalla <strong>v0.87.0</strong> si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in <em>Admin → Formulari</em> come per qualsiasi altro elenco.</p>
-<p>Il link <strong>Dettagli</strong> porta alla scheda di accessione. Dalla v0.87.0 la sua vista mostra soltanto ciò che descrive un'importazione — file di origine, somma di controllo, impostazioni utilizzate con la loro provenienza, il file caricato come media e chi ha avviato l'esecuzione. I campi non applicabili a una ricevuta di importazione (<em>prestito</em>, <em>spostato</em>) non compaiono più.</p>
+<p>Di norma vengono mostrate le esecuzioni riuscite; un filtro rivela quelle fallite o interrotte. Nulla viene mai cancellato.</p>
+<p>Il link <strong>Dettagli</strong> porta all'esecuzione: file di origine, somma di controllo, impostazioni utilizzate con la loro provenienza, chi l'ha avviata e le schede che ha creato.</p>
+<p>Il file importato viene conservato. Dopo un'esecuzione riuscita passa in <code>metadata_imported/</code> — così non compare più nell'elenco di scelta — e la voce indica dove si trova.</p>
 <p>Le impostazioni vengono registrate in chiaro, una riga per impostazione con valore e provenienza. Vi restano in modo permanente — anche un anno dopo è così ricostruibile sotto quali presupposti è entrata una consegna.</p>
 <h2 id="svolgimento-importazione-excel">Svolgimento (importazione Excel)<a class="headerlink" href="#svolgimento-importazione-excel" title="Permanent link">&para;</a></h2>
 <p>Occorre anzitutto creare un file Excel secondo le indicazioni seguenti. Questo va caricato sotto «Upload Metadata» e i file multimediali corrispondenti sotto «Upload Medien». Infine il file Excel può essere verificato sotto «Validation». La validazione segnala gli errori ed emette avvertimenti. I dati possono essere importati solo quando la validazione è priva di errori. L'importazione viene avviata sotto «Ingest» e, a seconda del volume, può richiedere alcuni minuti.</p>
@@ -3169,7 +3176,7 @@
 <li>l'impostazione d'archivio <code>import_options.locale</code></li>
 <li>la prima lingua di <code>locales</code> — la lingua principale dell'archivio</li>
 </ol>
-<p>Prima dell'avvio la pagina di ispezione indica la lingua in vigore <strong>e da dove proviene</strong> («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella scheda di accessione (vedi <a href="#protocollo-delle-importazioni">Protocollo delle importazioni</a>).</p>
+<p>Prima dell'avvio la pagina di ispezione indica la lingua in vigore <strong>e da dove proviene</strong> («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi <a href="#protocollo-delle-importazioni">Protocollo delle importazioni</a>).</p>
 <p>Una colonna con sigla di lingua (<code>title_fr</code>) prevale su questa scelta per il proprio campo — vedi <a href="#titel-title">titel</a>.</p>
 <h3 id="perche-la-lingua-conta-anche-nella-ricerca">Perché la lingua conta anche nella ricerca<a class="headerlink" href="#perche-la-lingua-conta-anche-nella-ricerca" title="Permanent link">&para;</a></h3>
 <p>La lingua dei contenuti determina non solo dove si scrive, ma anche <strong>in che cosa Anton cerca attori, attrici e luoghi esistenti</strong>. Se si scegle una lingua nella quale il fondo non è descritto, il confronto non trova nulla — e, con la creazione attivata, crea una nuova scheda per ogni nome.</p>
@@ -3432,8 +3439,8 @@ Form und Inhalt (note.scopecontent)
 </ul>
 <p>Lo stesso file può essere caricato più volte come aggiornamento; il blocco dei duplicati altrimenti valido (stesso file = stessa somma di controllo MD5) non si applica agli aggiornamenti, poiché un aggiornamento è ripetibile.</p>
 <p>Dopo l'avvio la pagina di avanzamento mostra l'aggiornamento come <strong>«aggiornamento dati»</strong> (non come importazione) e riferisce alla fine quante schede sono state <em>aggiornate</em>.</p>
-<p><strong>Backup automatico.</strong> Prima che un aggiornamento scriva anche una sola riga, Anton crea un dump della banca dati (lo stesso backup di <code>anton:backup</code>, depositato sotto <code>db_backup/</code>). Il passaggio compare nella visualizzazione dell'avanzamento come fase <em>backup</em> ed è registrato come voce a sé che indica il nome del file del dump. Se il backup non può essere creato, <strong>l'aggiornamento si interrompe</strong> e non viene modificato nulla. Il backup viene imposto anche quando per il mandante è altrimenti impostato <code>no-backup</code> — quell'opzione è pensata per <em>creazioni</em> di massa rapide, dove il ritorno è banale.</p>
-<p>Ogni esecuzione di aggiornamento viene registrata — come un'importazione — nell'archivio delle accessioni, ma con una <strong>serie di segnature propria <code>UPDATE-{aaaa}-{NNN}</code></strong> invece di <code>IMPORT-{aaaa}-{NNN}</code> o <code>AKZ {aaaa}/{N}</code>. Un aggiornamento non è un'accessione — nell'archivio non entra nulla di nuovo — e la serie separata rende visibile a colpo d'occhio, nell'elenco delle accessioni, quali voci siano aggiornamenti. Il contatore scorre indipendentemente dalla serie di importazione e viene azzerato per ogni anno civile.</p>
+<p><strong>Backup automatico.</strong> Prima che un aggiornamento scriva anche una sola riga, Anton crea un dump della banca dati (lo stesso backup di <code>anton:backup</code>, depositato sotto <code>db_backup/</code>). Il passaggio compare nella visualizzazione dell'avanzamento come fase <em>backup</em>; il nome del file del dump è annotato sull'esecuzione. Se il backup non può essere creato, <strong>l'aggiornamento si interrompe</strong> e non viene modificato nulla. Il backup viene imposto anche quando per il mandante è altrimenti impostato <code>no-backup</code> — quell'opzione è pensata per <em>creazioni</em> di massa rapide, dove il ritorno è banale.</p>
+<p>Ogni esecuzione di aggiornamento sta — come un'importazione — nel protocollo delle importazioni, ma con una <strong>serie di segnature propria <code>UPDATE-{aaaa}-{NNN}</code></strong> invece di <code>IMPORT-{aaaa}-{NNN}</code>. Un aggiornamento non è un'accessione — nell'archivio non entra nulla di nuovo — e la serie separata rende visibile a colpo d'occhio quali voci siano aggiornamenti. Il contatore scorre indipendentemente dalla serie di importazione e viene azzerato per ogni anno civile.</p>
 <h3 id="scaricare-la-tabella-adatta">Scaricare la tabella adatta<a class="headerlink" href="#scaricare-la-tabella-adatta" title="Permanent link">&para;</a></h3>
 <p>Perché un aggiornamento non debba essere composto a mano, l'<strong>elenco dei risultati corrente può essere scaricato direttamente come tabella di aggiornamento</strong>: nell'elenco degli oggetti, in alto a destra, il simbolo Excel accanto all'anteprima di stampa. Il download riprende esattamente i filtri attualmente visualizzati.</p>
 <p>Il file contiene esclusivamente colonne che un aggiornamento è autorizzato a scrivere — <code>id</code>, le colonne dei campi, le lingue, la collocazione (<code>location_id</code>), parole chiave / attori / luoghi (come ID) e le colonne dei campi di testo <code>note.*</code>. Non sono deliberatamente <strong>compresi</strong> <code>parent</code> e le colonne di evento, che bloccherebbero l'aggiornamento. La colonna <code>identifier</code> serve solo all'orientamento: l'aggiornamento trova le schede tramite l'<code>id</code>, e le modifiche alla segnatura restano senza effetto.</p>

@@ -2151,7 +2151,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/sip-ingest/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2176,13 +2176,12 @@
 <h3 id="voraussetzungen">Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Akzessionsarchiv: Ein (gesperrtes) Archiv, dessen ID in das Setting <code>accessions_archives_id</code> eingetragen wird.</li>
+<li>Akzessionsarchiv: nicht mehr nötig. Bis v0.87.x legte ein SIP-Ingest dort einen Beleg ab; seit v0.88.0 steht der Lauf im Importprotokoll (siehe <a href="../../user/import/#import-protokoll">Import</a>).</li>
 <li>Die Archivhierarchie (<code>parents</code>) muss bereits in Anton vorhanden sein.</li>
 <li>Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: <code>identifier-prefix</code>).</li>
 <li>Mit dem Setting <code>strict_sip_validation</code> gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.</li>
 <li>Anton-Formular (<code>default_intern</code>):<ul>
-<li><code>sip_id</code>: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular <code>default_intern</code> sein).</li>
-<li><code>note.sip_md5sum</code>, <code>note.actual_backup</code> sollten im Formular <code>default_intern</code> sein (werden auf Bestandsebene/SIP angezeigt).</li>
+<li><code>sip_id</code>: verlinkt auf den Lauf im Importprotokoll, aus dem dieser Datensatz stammt (sollte im Formular <code>default_intern</code> sein).</li>
 </ul>
 </li>
 </ul>

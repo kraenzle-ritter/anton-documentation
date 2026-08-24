@@ -2886,10 +2886,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#accession-archive" class="md-nav__link">
+  <a href="#import-log" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Accession archive
+        Import log
       
     </span>
   </a>
@@ -4182,10 +4182,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#accession-archive" class="md-nav__link">
+  <a href="#import-log" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Accession archive
+        Import log
       
     </span>
   </a>
@@ -4242,7 +4242,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4332,11 +4332,12 @@ later.</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>agate then polls <code>callback_url</code> until <code>status: completed</code> (or <code>failed</code>).</p>
-<h2 id="accession-archive">Accession archive<a class="headerlink" href="#accession-archive" title="Permanent link">&para;</a></h2>
-<p>If the tenant has an <strong>accession archive</strong> configured
-(<code>setting('accessions_archives_id')</code>), the SIP import is recorded there as a new
-entry — with date, agate version information and a file name reference. The
-import path is thereby auditable after the fact as well.</p>
+<h2 id="import-log">Import log<a class="headerlink" href="#import-log" title="Permanent link">&para;</a></h2>
+<p>Every agate SIP import is a run in the import log — with reference code
+<code>IMPORT-{yyyy}-{NNN}</code>, file name, checksum, time, outcome and the records it
+created. The import path is thereby auditable after the fact as well; no
+accession archive is needed for it.</p>
+<p>Up to v0.87.x a receipt was recorded in the accession archive instead.</p>
 <h2 id="configuration-checklist">Configuration checklist<a class="headerlink" href="#configuration-checklist" title="Permanent link">&para;</a></h2>
 <p>For agate imports to work:</p>
 <ol>
@@ -4344,8 +4345,6 @@ import path is thereby auditable after the fact as well.</p>
    security reasons)</li>
 <li>Generate an <strong>API token</strong> for agate (see
    <a href="../../api/authentication/">API authentication</a>)</li>
-<li>Set <strong><code>accessions_archives_id</code></strong> to a suitable wrapper fonds, so that the
-   entry is recorded</li>
 <li>Create the <strong>NARA mapping</strong> (see above) — a default mapping exists, but
    tenant-specific values are likely to be necessary</li>
 <li>The <strong>queue worker</strong> has to be running (Anton standard: Supervisor)</li>

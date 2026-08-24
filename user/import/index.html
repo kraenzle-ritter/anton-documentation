@@ -1393,10 +1393,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#akzessions-signatur-fur-jeden-import" class="md-nav__link">
+  <a href="#signatur-fur-jeden-import" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Akzessions-Signatur für jeden Import
+        Signatur für jeden Import
       
     </span>
   </a>
@@ -4503,10 +4503,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#akzessions-signatur-fur-jeden-import" class="md-nav__link">
+  <a href="#signatur-fur-jeden-import" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Akzessions-Signatur für jeden Import
+        Signatur für jeden Import
       
     </span>
   </a>
@@ -4922,7 +4922,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4961,7 +4961,7 @@
 </tr>
 <tr>
 <td><strong>Verzeichnis</strong></td>
-<td>Import einer Verzeichnis-Struktur (ZIP/GZ) als Akzessionsarchiv-Eingang.</td>
+<td>Import einer Verzeichnis-Struktur (ZIP/GZ).</td>
 </tr>
 </tbody>
 </table>
@@ -4976,21 +4976,28 @@
 </ul>
 <p>So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Vokabular passt, und das SIP gegebenenfalls verwerfen, bevor etwas in der Datenbank landet.</p>
 <h3 id="live-fortschritt">Live-Fortschritt<a class="headerlink" href="#live-fortschritt" title="Permanent link">&para;</a></h3>
-<p>Alle Imports laufen seit v0.62.0 <strong>asynchron im Hintergrund</strong>. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zur entstandenen <strong>Akzessions-Signatur</strong> im Archiv.</p>
+<p>Alle Imports laufen seit v0.62.0 <strong>asynchron im Hintergrund</strong>. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum <strong>Lauf im Importprotokoll</strong>.</p>
 <p>Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.</p>
-<h3 id="akzessions-signatur-fur-jeden-import">Akzessions-Signatur für jeden Import<a class="headerlink" href="#akzessions-signatur-fur-jeden-import" title="Permanent link">&para;</a></h3>
-<p>Jeder Import (egal über welchen Pfad) erzeugt einen Sidecar-Datensatz im Akzessionsarchiv (AKZ) mit der Nummer <code>AKZ {Jahr}/{N}</code>. Der Eintrag hält fest:</p>
+<h3 id="signatur-fur-jeden-import">Signatur für jeden Import<a class="headerlink" href="#signatur-fur-jeden-import" title="Permanent link">&para;</a></h3>
+<p>Jeder Import (egal über welchen Pfad) bekommt eine Signatur <code>IMPORT-{jjjj}-{NNN}</code> und einen Eintrag im Importprotokoll. Der Eintrag hält fest:</p>
 <ul>
 <li>Ursprünglicher Dateiname</li>
 <li>MD5-Prüfsumme</li>
 <li>Import-Zeitpunkt</li>
 <li>Import-Pfad (Excel / SIP / Verzeichnis / agate)</li>
 <li>die <strong>verwendeten Einstellungen</strong>, seit v0.87.0 (siehe unten)</li>
+<li>das Ergebnis, und bei einem Fehlschlag die Meldung</li>
 </ul>
-<p>Fehlgeschlagene Importe hinterlassen <strong>keine Lücke</strong> in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.</p>
+<div class="admonition info">
+<p class="admonition-title">Neu seit v0.88.0</p>
+<p>Bis v0.87.x legte jeder Import zusätzlich einen Beleg als Verzeichnungseinheit im Akzessionsarchiv an, mit der Nummer <code>AKZ {Jahr}/{N}</code>. Das Akzessionsarchiv ist wieder den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht mehr von Importen aufgebraucht. Bestehende Belege sind samt allem, was sie trugen, ins Protokoll gezogen worden.</p>
+</div>
+<p>Die Signatur wird beim Start vergeben. Ein gescheiterter Lauf behält sie also und bleibt mit seinem Fehler im Protokoll stehen — eine gescheiterte Lieferung muss von einer unterscheidbar bleiben, die nie stattfand.</p>
 <h3 id="import-protokoll">Import-Protokoll<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
 <p>Unter <strong><code>/import/audit</code></strong> steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit <strong>v0.87.0</strong> ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter <em>Admin → Formulare</em> anpassen.</p>
-<p>Der <strong>Details</strong>-Link führt zum Akzessions-Datensatz. Dessen Ansicht zeigt seit v0.87.0 nur noch, was einen Import beschreibt — Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, die hochgeladene Datei als Medium, und wer den Lauf ausgelöst hat. Felder, die auf eine Import-Quittung nicht anwendbar sind (<em>Ausleihe</em>, <em>Verschoben</em>), erscheinen dort nicht mehr.</p>
+<p>Gezeigt werden standardmässig die erfolgreichen Läufe; ein Filter blendet gescheiterte und abgebrochene ein. Gelöscht wird nie.</p>
+<p>Der <strong>Details</strong>-Link führt zum Lauf: Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, wer ihn ausgelöst hat, und die Datensätze, die er angelegt hat.</p>
+<p>Die eingespielte Datei bleibt erhalten. Nach einem erfolgreichen Lauf wandert sie nach <code>metadata_imported/</code> — damit sie nicht mehr in der Auswahlliste steht — und der Eintrag nennt den Ablageort.</p>
 <p>Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit Wert und Herkunft. Sie stehen dort dauerhaft — auch ein Jahr später ist damit nachvollziehbar, unter welchen Annahmen eine Lieferung hereingekommen ist.</p>
 <h2 id="ablauf-excel-import">Ablauf (Excel-Import)<a class="headerlink" href="#ablauf-excel-import" title="Permanent link">&para;</a></h2>
 <p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
@@ -5006,7 +5013,7 @@
 <li>die Archiv-Einstellung <code>import_options.locale</code></li>
 <li>die erste Sprache aus <code>locales</code> — die Hauptsprache des Archivs</li>
 </ol>
-<p>Die Inspektionsseite nennt vor dem Start die geltende Sprache <strong>und woher sie stammt</strong> («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Akzessions-Datensatz (siehe <a href="#import-protokoll">Import-Protokoll</a>).</p>
+<p>Die Inspektionsseite nennt vor dem Start die geltende Sprache <strong>und woher sie stammt</strong> («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Protokolleintrag (siehe <a href="#import-protokoll">Import-Protokoll</a>).</p>
 <p>Eine Spalte mit Sprachkürzel (<code>title_fr</code>) sticht diese Wahl für ihr Feld aus — siehe <a href="#titel-title">titel</a>.</p>
 <h3 id="warum-die-sprache-auch-beim-suchen-zahlt">Warum die Sprache auch beim Suchen zählt<a class="headerlink" href="#warum-die-sprache-auch-beim-suchen-zahlt" title="Permanent link">&para;</a></h3>
 <p>Die Inhaltssprache bestimmt nicht nur, wohin geschrieben wird, sondern auch, <strong>worin Anton nach bestehenden Akteur:innen und Orten sucht</strong>. Wird eine Sprache gewählt, in der der Bestand nicht erfasst ist, findet der Abgleich nichts — und legt bei eingeschaltetem Anlegen für jeden Namen einen neuen Datensatz an.</p>
@@ -5269,8 +5276,8 @@ Form und Inhalt (note.scopecontent)
 </ul>
 <p>Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende Duplikat-Sperre (gleiche Datei = gleiche MD5-Prüfsumme) greift für Updates nicht, da ein Update wiederholbar ist.</p>
 <p>Nach dem Start zeigt die Fortschritts-Seite das Update als <strong>«Datenupdate»</strong> an (nicht als Import) und meldet am Schluss, wie viele Datensätze <em>aktualisiert</em> wurden.</p>
-<p><strong>Automatische Sicherung.</strong> Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie <code>anton:backup</code>, abgelegt unter <code>db_backup/</code>). Der Schritt erscheint in der Fortschritts-Anzeige als Phase <em>backup</em> und wird als eigener Eintrag protokolliert, der den Dateinamen des Dumps nennt. Lässt sich die Sicherung nicht anlegen, <strong>bricht das Update ab</strong> und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst <code>no-backup</code> gesetzt ist — diese Option ist für schnelle Massen-<em>Neuanlagen</em> gedacht, wo ein Rückweg trivial ist.</p>
-<p>Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer <strong>eigenen Signatur-Serie <code>UPDATE-{jjjj}-{NNN}</code></strong> statt <code>IMPORT-{jjjj}-{NNN}</code> bzw. <code>AKZ {jjjj}/{N}</code>. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.</p>
+<p><strong>Automatische Sicherung.</strong> Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie <code>anton:backup</code>, abgelegt unter <code>db_backup/</code>). Der Schritt erscheint in der Fortschritts-Anzeige als Phase <em>backup</em>; der Dateiname des Dumps steht am Lauf. Lässt sich die Sicherung nicht anlegen, <strong>bricht das Update ab</strong> und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst <code>no-backup</code> gesetzt ist — diese Option ist für schnelle Massen-<em>Neuanlagen</em> gedacht, wo ein Rückweg trivial ist.</p>
+<p>Jeder Update-Lauf steht — wie ein Import — im Importprotokoll, aber mit einer <strong>eigenen Signatur-Serie <code>UPDATE-{jjjj}-{NNN}</code></strong> statt <code>IMPORT-{jjjj}-{NNN}</code>. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.</p>
 <h3 id="passende-tabelle-herunterladen">Passende Tabelle herunterladen<a class="headerlink" href="#passende-tabelle-herunterladen" title="Permanent link">&para;</a></h3>
 <p>Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle <strong>Trefferliste direkt als Update-Tabelle herunterladen</strong>: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.</p>
 <p>Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — <code>id</code>, die Feld-Spalten, Sprachen, den Standort (<code>location_id</code>), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten <code>note.*</code>. Bewusst <strong>nicht</strong> enthalten sind <code>parent</code> und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte <code>identifier</code> dient nur der Orientierung: das Update findet die Datensätze über die <code>id</code>, Änderungen an der Signatur bleiben wirkungslos.</p>

@@ -4054,7 +4054,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4079,13 +4079,12 @@
 <h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Accession archive: a (blocked) archive whose ID is entered in the <code>accessions_archives_id</code> setting.</li>
+<li>Accession archive: no longer needed. Up to v0.87.x a SIP ingest filed a receipt there; since v0.88.0 the run is in the import log (see <a href="../../user/import/#import-log">Import</a>).</li>
 <li>The archive hierarchy (<code>parents</code>) must already exist in Anton.</li>
 <li>If the reference codes in the archive hierarchy have a prefix, this has to be set (setting: <code>identifier-prefix</code>).</li>
 <li>With the setting <code>strict_sip_validation</code>, Anton issues an error during validation if a file is not found in the SIP.</li>
 <li>Anton form (<code>default_intern</code>):<ul>
-<li><code>sip_id</code>: contains the linked reference code pointing to the entry of the SIP in the accession archive (should be in the <code>default_intern</code> form).</li>
-<li><code>note.sip_md5sum</code>, <code>note.actual_backup</code> should be in the <code>default_intern</code> form (displayed at fonds level / SIP).</li>
+<li><code>sip_id</code>: links to the run in the import log this record came from (should be in the <code>default_intern</code> form).</li>
 </ul>
 </li>
 </ul>

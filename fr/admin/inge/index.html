@@ -2240,7 +2240,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/inge/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/inge/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2273,7 +2273,7 @@
 <li>User: Anton-Ingest (<code>/sip/ingest</code>)<ul>
 <li>Backup der Datenbank</li>
 <li>Import SIP (<code>&lt;dossier&gt;</code> and <code>&lt;dokument&gt;</code>/<code>&lt;datei&gt;</code>)<ul>
-<li>SIP Eintrag im Akzessionsarchiv («Entwurf»)</li>
+<li>Eintrag im Importprotokoll, Signatur <code>IMPORT-{jjjj}-{NNN}</code></li>
 <li>Import Dossiers and Dokumente/Dateien <ul>
 <li>Anton erstellt Web-Versionen und Thumbs</li>
 <li>falls der SIP-Ingest mit Inge und DIMAG erfolgt löscht Anton die  Masterdateien</li>
@@ -2282,7 +2282,7 @@
 <li>Signaturen und Dateinamen basieren zunächst auf UUIDs</li>
 </ul>
 </li>
-<li>Post Import (Listener `ImportFinished``)<ul>
+<li>Post Import (Listener <code>mportFinished</code>)<ul>
 <li>Update der Archiv-Hierarchie (<code>path</code>)</li>
 <li>Update der Datierungen und des Volltextindexes</li>
 </ul>
@@ -2302,7 +2302,7 @@
 - DIMAG: Importiert das Paket and sendet das Resultat an Inge 
 - Inge: Inge sendet das Resultat an Anton
 - Anton: Finalisiere den SIP-Ingest
-    - Bestätige den SIP-Ingest (SIP Eintrag ist «Final») oder stelle den Zustand vor dem Ingest aus dem Backup wieder her 
+    - Bestätige den Ingest (DIMAG-Bericht am Lauf) oder stelle den Zustand vor dem Ingest aus der Sicherung wieder her 
     - Schicke eine Email an User Inge mit dem Resultat </p>
 <h3 id="abfrage-eines-master-files">Abfrage eines Master Files<a class="headerlink" href="#abfrage-eines-master-files" title="Permanent link">&para;</a></h3>
 <p><img alt="Ablauf Ingest mit Inge und DIMAG" src="../../../admin/images/Anton-Inge-Abruf.drawio.png" /></p>
@@ -2312,13 +2312,17 @@
 </code></pre></div>
 <h3 id="einen-sip-import-zurucknehmen-oder-mit-inge-bestatigen">Einen SIP-Import zurücknehmen oder mit Inge bestätigen<a class="headerlink" href="#einen-sip-import-zurucknehmen-oder-mit-inge-bestatigen" title="Permanent link">&para;</a></h3>
 <p>Vor einem SIP-Import sichert Anton die Datenbank; geht etwas schief, lässt sich damit der Zustand vor dem Import wiederherstellen.</p>
-<p>Der Name der Sicherung wird im SIP-Eintrag festgehalten, und der <code>Status of description</code> steht auf «Entwurf».</p>
+<p>Der Name der Sicherung steht am Lauf, im Importprotokoll unter <em>Admin → Daten-Import → Imports</em>.</p>
 <p>Der folgende Befehl stellt die Datenbank aus der letzten Sicherung wieder her und gleicht die Medien mit der Datenbank ab (löscht also Medien, die in der Datenbank nicht registriert sind):</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>run_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--revert
 </code></pre></div>
-<p>Die <code>sip_id</code> ist die ID eines AntonObjects, das ein SIP ist.</p>
-<p>Der folgende Befehl setzt den <code>Status of description</code> im SIP-Eintrag auf «final»:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:sip-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>sip_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
+<p>Die <code>run_id</code> ist die Lauf-Id aus dem Importprotokoll (<code>/import/audit/{run_id}</code>). <code>--list</code> zeigt die letzten Läufe, <code>--check</code> prüft nur den Zustand.</p>
+<div class="admonition warning">
+<p class="admonition-title">Nur die neueste Sicherung</p>
+<p>Wiederhergestellt wird nur die Sicherung dieses Laufs, und nur solange sie die neueste ist. Eine ältere verwirft alles Spätere — auch die Arbeit anderer.</p>
+</div>
+<p>Der folgende Befehl bestätigt den Lauf und vermerkt den DIMAG-Bericht daran:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check-import<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w"> </span>--id<span class="w"> </span><span class="o">{</span>run_id<span class="o">}</span><span class="w"> </span>-vv<span class="w"> </span>--confirm
 </code></pre></div>
 <h3 id="medienabgleich-prufen-und-reparieren-anton-inge-dimag">Medienabgleich prüfen und reparieren (Anton ↔ Inge ↔ Dimag)<a class="headerlink" href="#medienabgleich-prufen-und-reparieren-anton-inge-dimag" title="Permanent link">&para;</a></h3>
 <p><code>media:check</code> prüft die Konsistenz zwischen Anton-Datenbank, lokalem Filesystem, Inge und Dimag.</p>

@@ -1393,10 +1393,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#an-accession-reference-code-for-every-import" class="md-nav__link">
+  <a href="#a-reference-code-for-every-import" class="md-nav__link">
     <span class="md-ellipsis">
       
-        An accession reference code for every import
+        A reference code for every import
       
     </span>
   </a>
@@ -4503,10 +4503,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#an-accession-reference-code-for-every-import" class="md-nav__link">
+  <a href="#a-reference-code-for-every-import" class="md-nav__link">
     <span class="md-ellipsis">
       
-        An accession reference code for every import
+        A reference code for every import
       
     </span>
   </a>
@@ -4922,7 +4922,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4961,7 +4961,7 @@
 </tr>
 <tr>
 <td><strong>Directory</strong></td>
-<td>Import of a directory structure (ZIP/GZ) as an accession archive entry.</td>
+<td>Import of a directory structure (ZIP/GZ).</td>
 </tr>
 </tbody>
 </table>
@@ -4976,21 +4976,28 @@
 </ul>
 <p>This makes it possible to see before the import whether the SIP makes sense, whether the tenant vocabulary fits, and to discard the SIP if necessary before anything ends up in the database.</p>
 <h3 id="live-progress">Live progress<a class="headerlink" href="#live-progress" title="Permanent link">&para;</a></h3>
-<p>Since v0.62.0, all imports run <strong>asynchronously in the background</strong>. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the <strong>accession reference code</strong> created in the archive.</p>
+<p>Since v0.62.0, all imports run <strong>asynchronously in the background</strong>. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the <strong>run in the import log</strong>.</p>
 <p>This applies to all paths — Excel, SIP, directory and finalising the inbox.</p>
-<h3 id="an-accession-reference-code-for-every-import">An accession reference code for every import<a class="headerlink" href="#an-accession-reference-code-for-every-import" title="Permanent link">&para;</a></h3>
-<p>Every import (regardless of the path) creates a sidecar record in the accession archive (AKZ) with the number <code>AKZ {year}/{N}</code>. The entry records:</p>
+<h3 id="a-reference-code-for-every-import">A reference code for every import<a class="headerlink" href="#a-reference-code-for-every-import" title="Permanent link">&para;</a></h3>
+<p>Every import (regardless of the path) gets a reference code <code>IMPORT-{yyyy}-{NNN}</code> and an entry in the import log. The entry records:</p>
 <ul>
 <li>the original file name</li>
 <li>the MD5 checksum</li>
 <li>the time of import</li>
 <li>the import path (Excel / SIP / directory / agate)</li>
 <li>the <strong>settings used</strong>, since v0.87.0 (see below)</li>
+<li>the outcome, and the message if it failed</li>
 </ul>
-<p>Failed imports leave <strong>no gap</strong> in the AKZ numbering — the number is only assigned on successful completion.</p>
+<div class="admonition info">
+<p class="admonition-title">New in v0.88.0</p>
+<p>Up to v0.87.x every import also filed a receipt as an archival record in the accession archive, numbered <code>AKZ {year}/{N}</code>. The accession archive is reserved for real accessions again — physically arrived, not yet catalogued — and its reference codes are no longer used up by imports. Existing receipts were moved into the log with everything they carried.</p>
+</div>
+<p>The reference code is assigned at the start. A failed run therefore keeps it and stays in the log with its error — a failed delivery has to stay distinguishable from one that never happened.</p>
 <h3 id="import-log">Import log<a class="headerlink" href="#import-log" title="Permanent link">&para;</a></h3>
 <p>Under <strong><code>/import/audit</code></strong> is the list of all import runs: reference code, source file, time, number of records created and the content language used. Since <strong>v0.87.0</strong> this is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under <em>Admin → Forms</em> like those of any other list.</p>
-<p>The <strong>details</strong> link leads to the accession record. Since v0.87.0, its view shows only what describes an import — source file, checksum, settings used together with their origin, the uploaded file as a medium, and who triggered the run. Fields that are not applicable to an import receipt (<em>loan</em>, <em>moved</em>) no longer appear there.</p>
+<p>Successful runs are shown by default; a filter reveals failed and aborted ones. Nothing is ever deleted.</p>
+<p>The <strong>details</strong> link leads to the run: source file, checksum, settings used together with their origin, who triggered it, and the records it created.</p>
+<p>The imported file is kept. After a successful run it moves to <code>metadata_imported/</code> — so it stops appearing in the picker — and the entry says where it went.</p>
 <p>The settings are recorded in plain text, one line per setting with its value and origin. They remain there permanently — even a year later it is thus possible to trace the assumptions under which a delivery came in.</p>
 <h2 id="procedure-excel-import">Procedure (Excel import)<a class="headerlink" href="#procedure-excel-import" title="Permanent link">&para;</a></h2>
 <p>First, an Excel file has to be created according to the specifications below. This is uploaded under "Upload Metadata", and the associated media files are uploaded under "Upload Media". Finally, the Excel file can be checked under "Validation". The validation displays errors and issues warnings. The data can only be imported once the validation is free of errors. The import is triggered under "Ingest" and can take several minutes depending on the volume.</p>
@@ -5006,7 +5013,7 @@
 <li>the archive setting <code>import_options.locale</code></li>
 <li>the first language from <code>locales</code> — the main language of the archive</li>
 </ol>
-<p>Before the start, the inspection page names the language that applies <strong>and where it comes from</strong> («chosen for this run», «archive setting», «default»). After the run, the same information is in the accession record (see <a href="#import-log">Import log</a>).</p>
+<p>Before the start, the inspection page names the language that applies <strong>and where it comes from</strong> («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see <a href="#import-log">Import log</a>).</p>
 <p>A column with a language code (<code>title_fr</code>) trumps this choice for its own field — see <a href="#titel-title">titel</a>.</p>
 <h3 id="why-the-language-matters-for-searching-too">Why the language matters for searching too<a class="headerlink" href="#why-the-language-matters-for-searching-too" title="Permanent link">&para;</a></h3>
 <p>The content language determines not only where data is written, but also <strong>what Anton searches in when looking for existing actors and places</strong>. If a language is chosen in which the holdings are not recorded, the matching finds nothing — and, where creation is switched on, creates a new record for every name.</p>
@@ -5268,8 +5275,8 @@ Form und Inhalt (note.scopecontent)
 </ul>
 <p>The same file may be loaded as an update several times; the duplicate block that otherwise applies (same file = same MD5 checksum) does not take effect for updates, since an update is repeatable.</p>
 <p>After the start, the progress page shows the update as a <strong>«data update»</strong> (not as an import) and reports at the end how many records were <em>updated</em>.</p>
-<p><strong>Automatic backup.</strong> Before an update writes even a single row, Anton creates a dump of the database (the same backup as <code>anton:backup</code>, stored under <code>db_backup/</code>). The step appears in the progress display as the <em>backup</em> phase and is logged as a separate entry naming the file name of the dump. If the backup cannot be created, <strong>the update is aborted</strong> and nothing is changed. The backup is also enforced when <code>no-backup</code> is otherwise set for the tenant — that option is intended for fast bulk <em>creation</em>, where a way back is trivial.</p>
-<p>Every update run is logged in the accession archive — like an import — but with its <strong>own reference code series <code>UPDATE-{yyyy}-{NNN}</code></strong> instead of <code>IMPORT-{yyyy}-{NNN}</code> or <code>AKZ {yyyy}/{N}</code>. An update is not an accession — nothing new comes into the archive — and the separate series makes it visible at a glance in the accession list which entries are updates. The counter runs independently of the import series and is reset for each calendar year.</p>
+<p><strong>Automatic backup.</strong> Before an update writes even a single row, Anton creates a dump of the database (the same backup as <code>anton:backup</code>, stored under <code>db_backup/</code>). The step appears in the progress display as the <em>backup</em> phase; the dump's file name is recorded on the run. If the backup cannot be created, <strong>the update is aborted</strong> and nothing is changed. The backup is also enforced when <code>no-backup</code> is otherwise set for the tenant — that option is intended for fast bulk <em>creation</em>, where a way back is trivial.</p>
+<p>Every update run is in the import log — like an import — but with its <strong>own reference code series <code>UPDATE-{yyyy}-{NNN}</code></strong> instead of <code>IMPORT-{yyyy}-{NNN}</code>. An update is not an accession — nothing new comes into the archive — and the separate series makes it visible at a glance which entries are updates. The counter runs independently of the import series and is reset for each calendar year.</p>
 <h3 id="downloading-a-suitable-table">Downloading a suitable table<a class="headerlink" href="#downloading-a-suitable-table" title="Permanent link">&para;</a></h3>
 <p>So that an update does not have to be compiled by hand, the current <strong>result list can be downloaded directly as an update table</strong>: in the object list, top right, the Excel symbol next to the print view. The download adopts exactly the filters currently displayed.</p>
 <p>The file contains exclusively columns that an update is also allowed to write — <code>id</code>, the field columns, languages, the location (<code>location_id</code>), keywords/actors/places (as IDs) and the text field columns <code>note.*</code>. Deliberately <strong>not</strong> included are <code>parent</code> and the event columns, which would block the update. The <code>identifier</code> column serves only for orientation: the update finds the records via the <code>id</code>, and changes to the reference code have no effect.</p>

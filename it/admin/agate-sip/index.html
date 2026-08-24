@@ -2185,10 +2185,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#akzessions-archiv" class="md-nav__link">
+  <a href="#importprotokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Akzessions-Archiv
+        Importprotokoll
       
     </span>
   </a>
@@ -2245,7 +2245,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2337,12 +2337,12 @@ kann später von Hand vergeben werden.</p>
 </code></pre></div>
 <p>agate pollt anschliessend <code>callback_url</code> bis <code>status: completed</code> (oder
 <code>failed</code>).</p>
-<h2 id="akzessions-archiv">Akzessions-Archiv<a class="headerlink" href="#akzessions-archiv" title="Permanent link">&para;</a></h2>
-<p>Wenn der Tenant ein <strong>Akzessions-Archiv</strong> konfiguriert hat
-(<code>setting('accessions_archives_id')</code>), wird der SIP-Import dort als
-neuer Eingang verbucht — mit Datum, agate-Versionsangabe und
-Filename-Referenz. Damit ist der Importpfad auch nachträglich
-auditierbar.</p>
+<h2 id="importprotokoll">Importprotokoll<a class="headerlink" href="#importprotokoll" title="Permanent link">&para;</a></h2>
+<p>Jeder agate-SIP-Import steht als Lauf im Importprotokoll — mit Signatur
+<code>IMPORT-{jjjj}-{NNN}</code>, Dateiname, Prüfsumme, Zeitpunkt, Ergebnis und den
+angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
+auditierbar; ein Akzessions-Archiv braucht es dafür nicht.</p>
+<p>Bis v0.87.x wurde stattdessen ein Beleg im Akzessions-Archiv verbucht.</p>
 <h2 id="konfigurations-checkliste">Konfigurations-Checkliste<a class="headerlink" href="#konfigurations-checkliste" title="Permanent link">&para;</a></h2>
 <p>Damit agate-Imports funktionieren:</p>
 <ol>
@@ -2350,8 +2350,6 @@ auditierbar.</p>
    false aus Sicherheitsgründen)</li>
 <li><strong>API-Token</strong> für agate erzeugen (siehe
    <a href="../../api/authentication/">API-Authentifizierung</a>)</li>
-<li><strong><code>accessions_archives_id</code></strong> auf einen geeigneten Wrapper-Bestand
-   setzen, damit die Eingangsbuchung erfolgt</li>
 <li><strong>NARA-Mapping</strong> anlegen (siehe oben) — Default-Mapping vorhanden,
    aber tenant-spezifische Werte sind wahrscheinlich nötig</li>
 <li><strong>Queue-Worker</strong> muss laufen (Anton-Standard: Supervisor)</li>
