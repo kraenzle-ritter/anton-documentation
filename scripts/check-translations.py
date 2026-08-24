@@ -28,6 +28,12 @@ gepflegte Seite (Admin) in den viersprachigen User-Bereich verlinkt: der
 fallback_to_default-Build zieht die deutsche Seite nach /fr/ und /it/, wo der
 automatische Anker anders heisst. Siehe scripts/check-anchors.py.
 
+Die Abdeckung wird gegen den **vorgesehenen** Umfang gezaehlt, nicht gegen alle
+Seiten (siehe SCOPE). Eine noch nicht angelegte Uebersetzung wird gemeldet, macht
+aber auch unter `--strict` kein Exit 1: sie ist Rueckstand, kein Fehler, und eine
+neue deutsche Seite haette sonst im selben Moment drei rote Sprachen. `--strict`
+schlaegt allein bei *Drift* an — bei etwas, das es gibt und das nicht mehr passt.
+
 Aufruf (aus dem anton-documentation-Repo):
     python3 scripts/check-translations.py             # Bericht, Exit 0
     python3 scripts/check-translations.py --strict    # Exit 1 bei Drift
@@ -44,6 +50,30 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 DOCS = REPO / "docs"
 LANGS = ("en", "fr", "it")
+
+# Nicht jeder Bereich wird in jede Sprache uebersetzt — der Umfang steht in
+# TRANSLATING.md, Abschnitt «Sprachumfang pro Bereich». Ohne diese Tabelle misst
+# der Check gegen ein Soll, das gar nicht gilt, und meldet fuer fr/it dauerhaft
+# «43 %», obwohl der vorgesehene Umfang zu 95 % erfuellt ist. Eine Kennzahl, der
+# niemand glaubt, ist so gut wie keine.
+SCOPE = (
+    ("customers/", ()),                 # kundenspezifisch, nur Deutsch
+    ("admin/", ("en",)),                # Technikpersonal
+    ("developer/", ("en",)),
+    ("api/", ("en",)),
+)                                       # alles uebrige: alle Sprachen
+
+# Unfertige Stubs, die nicht in der Navigation stehen. Sie zu uebersetzen waere
+# verfrueht — sie zaehlen darum nicht als Luecke.
+STUBS = ("user/settings.md", "user/uploads.md")
+
+
+def target_langs(rel: str) -> tuple[str, ...]:
+    """In welche Sprachen diese Seite laut TRANSLATING.md gehoert."""
+    for prefix, langs in SCOPE:
+        if rel.startswith(prefix):
+            return langs
+    return LANGS
 
 FENCE = re.compile(r"^\s*(```|~~~)")
 HEADING = re.compile(r"^(#{1,6})\s+\S")
@@ -195,19 +225,31 @@ def main() -> int:
 
     stale: list[tuple[str, str]] = []
     drifted: list[tuple[str, str, list[str]]] = []
-    translated = {lang: 0 for lang in langs}
-    total = 0
+    missing: dict[str, list[str]] = {lang: [] for lang in langs}
+    done = {lang: 0 for lang in langs}
+    due = {lang: 0 for lang in langs}
 
     for src in sources():
-        total += 1
+        src_rel = src.relative_to(DOCS).as_posix()
         src_time = last_change(src)
+        wanted = target_langs(src_rel)
+
         for lang in langs:
             tr = src.with_suffix(f".{lang}.md")
+
+            # Abdeckung wird gegen den vorgesehenen Umfang gezaehlt, Drift
+            # dagegen an jeder Uebersetzung, die es tatsaechlich gibt — auch an
+            # einer ausserhalb des Umfangs.
+            if lang in wanted and src_rel not in STUBS:
+                due[lang] += 1
+                if tr.exists():
+                    done[lang] += 1
+                else:
+                    missing[lang].append(src_rel)
+
             if not tr.exists():
                 continue
-            translated[lang] += 1
             tr_rel = tr.relative_to(DOCS).as_posix()
-            src_rel = src.relative_to(DOCS).as_posix()
 
             tr_time = last_change(tr)
             if src_time is not None and tr_time is not None and tr_time < src_time:
@@ -217,8 +259,15 @@ def main() -> int:
                 drifted.append((tr_rel, src_rel, diffs))
 
     for lang in langs:
-        n = translated[lang]
-        print(f"{lang}: {n}/{total} Seiten uebersetzt ({n * 100 // total}%)")
+        n, soll = done[lang], due[lang]
+        pct = f" ({n * 100 // soll}%)" if soll else ""
+        print(f"{lang}: {n}/{soll} vorgesehene Seiten uebersetzt{pct}")
+
+    if any(missing.values()):
+        print("\nNoch nicht uebersetzt (laut Sprachumfang faellig):")
+        for lang in langs:
+            for rel in missing[lang]:
+                print(f"  {lang}: {rel}")
 
     if stale:
         print(f"\n{len(stale)} veraltete Uebersetzung(en) (Zeitstempel):")

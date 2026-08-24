@@ -33,10 +33,11 @@ Bilder, Diagramme und andere Assets werden geteilt — die Pfade in den
 | `docs/admin/`, `docs/developer/`, `docs/api/` | de, en | Technikpersonal |
 | `docs/customers/` | de | Kundenspezifisch, nicht in der Navigation |
 
-Stand: alles ausser `docs/customers/` ist auf Deutsch **und Englisch** vorhanden;
-Startseite, FAQ und `docs/user/` zusätzlich auf Französisch und Italienisch.
-Nicht übersetzt sind `docs/user/settings.md` und `docs/user/uploads.md` —
-unfertige Stubs, die nicht in der Navigation stehen.
+Stand: der vorgesehene Umfang ist **vollständig** erfüllt — alles ausser
+`docs/customers/` liegt auf Deutsch und Englisch vor, Startseite, FAQ und
+`docs/user/` zusätzlich auf Französisch und Italienisch. Nicht übersetzt sind
+`docs/user/settings.md` und `docs/user/uploads.md` — unfertige Stubs, die nicht
+in der Navigation stehen und darum auch nicht mitgezählt werden.
 
 ## Sprachen und Stand-Datum im Seitenkopf
 
@@ -140,7 +141,17 @@ python3 scripts/check-translations.py --strict    # Exit 1 bei Drift
 python3 scripts/check-translations.py --lang fr   # nur eine Sprache
 ```
 
-Er prüft zweierlei, weil eine Übersetzung auf zwei Arten driftet:
+Die Abdeckung zählt er gegen den **vorgesehenen** Umfang aus der Tabelle oben,
+nicht gegen alle Seiten — `docs/admin/` fehlt auf Französisch nicht, es ist dort
+gar nicht vorgesehen. Die beiden Stubs `user/settings.md` und `user/uploads.md`
+sind ausgenommen. Ändert sich der Sprachumfang, gehört er in `SCOPE` im Skript
+nachgeführt, sonst misst der Check gegen ein Soll, das nicht mehr gilt.
+
+Eine fällige, aber noch nicht angelegte Übersetzung meldet er — sie macht aber
+auch unter `--strict` kein Exit 1. Sie ist Rückstand, kein Fehler; sonst hätte
+eine neue deutsche Seite im selben Moment drei rote Sprachen.
+
+Auf Drift prüft er zweierlei, weil eine Übersetzung auf zwei Arten driftet:
 
 * **Zeitstempel** — die deutsche Seite ist neuer als ihre Übersetzung.
   Verglichen wird der letzte Commit, bzw. der Working Tree, damit der Check
