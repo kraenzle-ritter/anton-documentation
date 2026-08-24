@@ -10,7 +10,7 @@ Depuis la **v0.62.0**, toutes les voies d'import sont regroupées à une seule a
 | **Boîte d'entrée** (par défaut) | SIP agate en attente, auxquels il manque encore un fonds parent. Lorsque quelque chose est en attente, un badge compteur apparaît à côté dans le menu Admin. |
 | **SIP** | Téléversement SIP direct (paquets BagIt) avec validation et ingest. Voir [SIP Ingest](../admin/sip-ingest.md) et [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Imports Excel (le thème principal de cette page, voir ci-dessous). |
-| **Répertoire** | Import d'une arborescence de répertoires (ZIP/GZ) comme entrée dans les archives d'accroissement. |
+| **Répertoire** | Import d'une arborescence de répertoires (ZIP/GZ). |
 
 Les anciennes URL (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) redirigent de manière transparente vers l'onglet correspondant — les signets et les liens externes restent valables.
 
@@ -27,27 +27,35 @@ On peut ainsi voir avant l'import si le SIP est pertinent, si le vocabulaire du 
 
 ### Progression en direct
 
-Depuis la v0.62.0, tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers la **cote d'accroissement** créée dans les archives.
+Depuis la v0.62.0, tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'**exécution dans le journal des imports**.
 
 Cela vaut pour toutes les voies — Excel, SIP, répertoire et finalisation de la boîte d'entrée.
 
-### Une cote d'accroissement pour chaque import
+### Une cote pour chaque import
 
-Chaque import (quelle que soit la voie) crée une notice annexe dans les archives d'accroissement (AKZ) portant le numéro `AKZ {année}/{N}`. L'entrée consigne :
+Chaque import (quelle que soit la voie) reçoit une cote `IMPORT-{aaaa}-{NNN}` et une entrée dans le journal des imports. L'entrée consigne :
 
 - le nom de fichier d'origine
 - la somme de contrôle MD5
 - le moment de l'import
 - la voie d'import (Excel / SIP / répertoire / agate)
 - les **réglages utilisés**, depuis la v0.87.0 (voir ci-dessous)
+- le résultat, et le message en cas d'échec
 
-Les imports échoués ne laissent **aucun trou** dans la numérotation AKZ — le numéro n'est attribué qu'à l'issue d'un import réussi.
+!!! info "Nouveau depuis la v0.88.0"
+    Jusqu'à la v0.87.x, chaque import créait en plus un accusé sous forme d'unité de description dans les archives d'accroissement, numéroté `AKZ {année}/{N}`. Les archives d'accroissement sont de nouveau réservées aux véritables accroissements — arrivés physiquement, pas encore décrits — et leurs cotes ne sont plus consommées par des imports. Les accusés existants ont été déplacés dans le journal avec tout ce qu'ils portaient.
+
+La cote est attribuée au démarrage. Une exécution échouée la conserve donc et reste dans le journal avec son erreur — un versement échoué doit rester distinguable d'un versement qui n'a jamais eu lieu.
 
 ### Journal des imports
 
 Sous **`/import/audit`** se trouve la liste de toutes les exécutions d'import : cote, fichier source, moment, nombre de notices créées et langue de contenu utilisée. Depuis la **v0.87.0**, il s'agit d'un tableau Anton ordinaire — triable, avec une longueur de page paramétrable, et les colonnes peuvent être adaptées sous *Admin → Formulaires* comme pour n'importe quelle autre liste.
 
-Le lien **Détails** conduit à la notice d'accroissement. Depuis la v0.87.0, sa vue ne montre plus que ce qui décrit un import — fichier source, somme de contrôle, réglages utilisés avec leur provenance, le fichier téléversé comme média, et qui a déclenché l'exécution. Les champs sans objet pour un accusé d'import (*prêt*, *déplacé*) n'y apparaissent plus.
+Les exécutions réussies sont affichées par défaut ; un filtre révèle celles qui ont échoué ou été interrompues. Rien n'est jamais supprimé.
+
+Le lien **Détails** conduit à l'exécution : fichier source, somme de contrôle, réglages utilisés avec leur provenance, qui l'a déclenchée, et les notices qu'elle a créées.
+
+Le fichier importé est conservé. Après une exécution réussie, il passe dans `metadata_imported/` — afin de ne plus figurer dans la liste de sélection — et l'entrée indique où il se trouve.
 
 Les réglages sont consignés en clair, une ligne par réglage avec sa valeur et sa provenance. Ils y restent durablement — même un an plus tard, il est ainsi possible de retracer sous quelles hypothèses un versement est entré.
 
@@ -67,7 +75,7 @@ La langue de contenu est déterminée dans cet ordre — la première valeur dé
 2. le réglage d'archive `import_options.locale`
 3. la première langue de `locales` — la langue principale du service
 
-Avant le démarrage, la page d'inspection indique la langue en vigueur **et sa provenance** («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans la notice d'accroissement (voir [Journal des imports](#journal-des-imports)).
+Avant le démarrage, la page d'inspection indique la langue en vigueur **et sa provenance** («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir [Journal des imports](#journal-des-imports)).
 
 Une colonne comportant un code de langue (`title_fr`) l'emporte sur ce choix pour son propre champ — voir [titel](#titel-title).
 
@@ -401,9 +409,9 @@ Le même fichier peut être chargé plusieurs fois comme mise à jour ; le bloca
 
 Après le démarrage, la page de progression affiche la mise à jour comme **«&nbsp;mise à jour de données&nbsp;»** (et non comme import) et indique à la fin combien de notices ont été *mises à jour*.
 
-**Sauvegarde automatique.** Avant qu'une mise à jour n'écrive ne serait-ce qu'une ligne, Anton crée un dump de la base de données (la même sauvegarde que `anton:backup`, déposée sous `db_backup/`). L'étape apparaît dans l'affichage de progression comme phase *backup* et est journalisée comme entrée distincte nommant le fichier du dump. Si la sauvegarde ne peut pas être créée, **la mise à jour est interrompue** et rien n'est modifié. La sauvegarde est également imposée lorsque `no-backup` est par ailleurs défini pour le mandant — cette option est prévue pour des *créations* de masse rapides, où le retour en arrière est trivial.
+**Sauvegarde automatique.** Avant qu'une mise à jour n'écrive ne serait-ce qu'une ligne, Anton crée un dump de la base de données (la même sauvegarde que `anton:backup`, déposée sous `db_backup/`). L'étape apparaît dans l'affichage de progression comme phase *backup* ; le nom du fichier du dump est consigné sur l'exécution. Si la sauvegarde ne peut pas être créée, **la mise à jour est interrompue** et rien n'est modifié. La sauvegarde est également imposée lorsque `no-backup` est par ailleurs défini pour le mandant — cette option est prévue pour des *créations* de masse rapides, où le retour en arrière est trivial.
 
-Chaque exécution de mise à jour est journalisée — comme un import — dans les archives d'accroissement, mais avec une **série de cotes propre `UPDATE-{aaaa}-{NNN}`** au lieu de `IMPORT-{aaaa}-{NNN}` ou `AKZ {aaaa}/{N}`. Une mise à jour n'est pas un accroissement — rien de nouveau n'entre dans les archives — et la série distincte rend visible d'un coup d'œil, dans la liste des accroissements, quelles entrées sont des mises à jour. Le compteur est indépendant de la série d'import et est réinitialisé à chaque année civile.
+Chaque exécution de mise à jour figure — comme un import — dans le journal des imports, mais avec une **série de cotes propre `UPDATE-{aaaa}-{NNN}`** au lieu de `IMPORT-{aaaa}-{NNN}`. Une mise à jour n'est pas un accroissement — rien de nouveau n'entre dans les archives — et la série distincte rend visible d'un coup d'œil quelles entrées sont des mises à jour. Le compteur est indépendant de la série d'import et est réinitialisé à chaque année civile.
 
 ### Télécharger un tableau adéquat
 

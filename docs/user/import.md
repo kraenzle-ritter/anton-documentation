@@ -10,7 +10,7 @@ Seit **v0.62.0** sind alle Import-Pfade unter einer Adresse zusammengefasst: `/i
 | **Eingangskorb** (Standard) | Wartende agate-SIPs, die noch einen Parent-Bestand brauchen. Wenn etwas wartet, erscheint im Admin-Menü eine Zähler-Badge daneben. |
 | **SIP** | Direkter SIP-Upload (BagIt-Pakete) mit Validation + Ingest. Siehe [SIP Ingest](../admin/sip-ingest.md) und [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Excel-Importe (das Hauptthema dieser Seite, siehe unten). |
-| **Verzeichnis** | Import einer Verzeichnis-Struktur (ZIP/GZ) als Akzessionsarchiv-Eingang. |
+| **Verzeichnis** | Import einer Verzeichnis-Struktur (ZIP/GZ). |
 
 Die alten URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) leiten transparent auf den passenden Tab um — Lesezeichen und externe Links bleiben gültig.
 
@@ -27,27 +27,35 @@ So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Voka
 
 ### Live-Fortschritt
 
-Alle Imports laufen seit v0.62.0 **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zur entstandenen **Akzessions-Signatur** im Archiv.
+Alle Imports laufen seit v0.62.0 **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum **Lauf im Importprotokoll**.
 
 Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.
 
-### Akzessions-Signatur für jeden Import
+### Signatur für jeden Import
 
-Jeder Import (egal über welchen Pfad) erzeugt einen Sidecar-Datensatz im Akzessionsarchiv (AKZ) mit der Nummer `AKZ {Jahr}/{N}`. Der Eintrag hält fest:
+Jeder Import (egal über welchen Pfad) bekommt eine Signatur `IMPORT-{jjjj}-{NNN}` und einen Eintrag im Importprotokoll. Der Eintrag hält fest:
 
 - Ursprünglicher Dateiname
 - MD5-Prüfsumme
 - Import-Zeitpunkt
 - Import-Pfad (Excel / SIP / Verzeichnis / agate)
 - die **verwendeten Einstellungen**, seit v0.87.0 (siehe unten)
+- das Ergebnis, und bei einem Fehlschlag die Meldung
 
-Fehlgeschlagene Importe hinterlassen **keine Lücke** in der AKZ-Nummerierung — die Nummer wird erst beim erfolgreichen Abschluss vergeben.
+!!! info "Neu seit v0.88.0"
+    Bis v0.87.x legte jeder Import zusätzlich einen Beleg als Verzeichnungseinheit im Akzessionsarchiv an, mit der Nummer `AKZ {Jahr}/{N}`. Das Akzessionsarchiv ist wieder den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht mehr von Importen aufgebraucht. Bestehende Belege sind samt allem, was sie trugen, ins Protokoll gezogen worden.
+
+Die Signatur wird beim Start vergeben. Ein gescheiterter Lauf behält sie also und bleibt mit seinem Fehler im Protokoll stehen — eine gescheiterte Lieferung muss von einer unterscheidbar bleiben, die nie stattfand.
 
 ### Import-Protokoll
 
 Unter **`/import/audit`** steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit **v0.87.0** ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter *Admin → Formulare* anpassen.
 
-Der **Details**-Link führt zum Akzessions-Datensatz. Dessen Ansicht zeigt seit v0.87.0 nur noch, was einen Import beschreibt — Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, die hochgeladene Datei als Medium, und wer den Lauf ausgelöst hat. Felder, die auf eine Import-Quittung nicht anwendbar sind (*Ausleihe*, *Verschoben*), erscheinen dort nicht mehr.
+Gezeigt werden standardmässig die erfolgreichen Läufe; ein Filter blendet gescheiterte und abgebrochene ein. Gelöscht wird nie.
+
+Der **Details**-Link führt zum Lauf: Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, wer ihn ausgelöst hat, und die Datensätze, die er angelegt hat.
+
+Die eingespielte Datei bleibt erhalten. Nach einem erfolgreichen Lauf wandert sie nach `metadata_imported/` — damit sie nicht mehr in der Auswahlliste steht — und der Eintrag nennt den Ablageort.
 
 Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit Wert und Herkunft. Sie stehen dort dauerhaft — auch ein Jahr später ist damit nachvollziehbar, unter welchen Annahmen eine Lieferung hereingekommen ist.
 
@@ -67,7 +75,7 @@ Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte We
 2. die Archiv-Einstellung `import_options.locale`
 3. die erste Sprache aus `locales` — die Hauptsprache des Archivs
 
-Die Inspektionsseite nennt vor dem Start die geltende Sprache **und woher sie stammt** («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Akzessions-Datensatz (siehe [Import-Protokoll](#import-protokoll)).
+Die Inspektionsseite nennt vor dem Start die geltende Sprache **und woher sie stammt** («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Protokolleintrag (siehe [Import-Protokoll](#import-protokoll)).
 
 Eine Spalte mit Sprachkürzel (`title_fr`) sticht diese Wahl für ihr Feld aus — siehe [titel](#titel-title).
 
@@ -397,9 +405,9 @@ Dieselbe Datei darf mehrfach als Update eingespielt werden; die sonst geltende D
 
 Nach dem Start zeigt die Fortschritts-Seite das Update als **«Datenupdate»** an (nicht als Import) und meldet am Schluss, wie viele Datensätze *aktualisiert* wurden.
 
-**Automatische Sicherung.** Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie `anton:backup`, abgelegt unter `db_backup/`). Der Schritt erscheint in der Fortschritts-Anzeige als Phase *backup* und wird als eigener Eintrag protokolliert, der den Dateinamen des Dumps nennt. Lässt sich die Sicherung nicht anlegen, **bricht das Update ab** und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst `no-backup` gesetzt ist — diese Option ist für schnelle Massen-*Neuanlagen* gedacht, wo ein Rückweg trivial ist.
+**Automatische Sicherung.** Bevor ein Update auch nur eine Zeile schreibt, legt Anton einen Dump der Datenbank an (dieselbe Sicherung wie `anton:backup`, abgelegt unter `db_backup/`). Der Schritt erscheint in der Fortschritts-Anzeige als Phase *backup*; der Dateiname des Dumps steht am Lauf. Lässt sich die Sicherung nicht anlegen, **bricht das Update ab** und es wird nichts geändert. Die Sicherung wird auch dann erzwungen, wenn für den Mandanten sonst `no-backup` gesetzt ist — diese Option ist für schnelle Massen-*Neuanlagen* gedacht, wo ein Rückweg trivial ist.
 
-Jeder Update-Lauf wird — wie ein Import — im Akzessionsarchiv protokolliert, aber mit einer **eigenen Signatur-Serie `UPDATE-{jjjj}-{NNN}`** statt `IMPORT-{jjjj}-{NNN}` bzw. `AKZ {jjjj}/{N}`. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht in der Akzessionsliste auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.
+Jeder Update-Lauf steht — wie ein Import — im Importprotokoll, aber mit einer **eigenen Signatur-Serie `UPDATE-{jjjj}-{NNN}`** statt `IMPORT-{jjjj}-{NNN}`. Ein Update ist keine Akzession — es kommt nichts Neues ins Archiv —, und die eigene Serie macht auf einen Blick sichtbar, welche Einträge Updates sind. Der Zähler läuft unabhängig von der Import-Serie und wird pro Kalenderjahr zurückgesetzt.
 
 ### Passende Tabelle herunterladen
 

@@ -95,12 +95,14 @@ Response: `202 Accepted` with JSON containing the job ID:
 
 agate then polls `callback_url` until `status: completed` (or `failed`).
 
-## Accession archive
+## Import log
 
-If the tenant has an **accession archive** configured
-(`setting('accessions_archives_id')`), the SIP import is recorded there as a new
-entry — with date, agate version information and a file name reference. The
-import path is thereby auditable after the fact as well.
+Every agate SIP import is a run in the import log — with reference code
+`IMPORT-{yyyy}-{NNN}`, file name, checksum, time, outcome and the records it
+created. The import path is thereby auditable after the fact as well; no
+accession archive is needed for it.
+
+Up to v0.87.x a receipt was recorded in the accession archive instead.
 
 ## Configuration checklist
 
@@ -110,11 +112,9 @@ For agate imports to work:
    security reasons)
 2. Generate an **API token** for agate (see
    [API authentication](../api/authentication.md))
-3. Set **`accessions_archives_id`** to a suitable wrapper fonds, so that the
-   entry is recorded
-4. Create the **NARA mapping** (see above) — a default mapping exists, but
+3. Create the **NARA mapping** (see above) — a default mapping exists, but
    tenant-specific values are likely to be necessary
-5. The **queue worker** has to be running (Anton standard: Supervisor)
+4. The **queue worker** has to be running (Anton standard: Supervisor)
 
 ## Common stumbling blocks
 

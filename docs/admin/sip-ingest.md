@@ -13,13 +13,12 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 ### Voraussetzungen
 
 #### Anton
-- Akzessionsarchiv: Ein (gesperrtes) Archiv, dessen ID in das Setting `accessions_archives_id` eingetragen wird.
+- Akzessionsarchiv: nicht mehr nötig. Bis v0.87.x legte ein SIP-Ingest dort einen Beleg ab; seit v0.88.0 steht der Lauf im Importprotokoll (siehe [Import](../user/import.md#import-protokoll)).
 - Die Archivhierarchie (`parents`) muss bereits in Anton vorhanden sein.
 - Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: `identifier-prefix`).
 - Mit dem Setting `strict_sip_validation` gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.
 - Anton-Formular (`default_intern`):
-    - `sip_id`: Enthält die verlinkte Signatur auf den Eintrag des SIP im Akzessionsarchiv (sollte im Formular `default_intern` sein).
-    - `note.sip_md5sum`, `note.actual_backup` sollten im Formular `default_intern` sein (werden auf Bestandsebene/SIP angezeigt).
+    - `sip_id`: verlinkt auf den Lauf im Importprotokoll, aus dem dieser Datensatz stammt (sollte im Formular `default_intern` sein).
 
 !!! note "Beispiel zum identifier-prefix"
     Das Elternelement (`<ordnungssystemposition>`) des `<dossier>` entspricht dem `parent` in Anton. Der `parent` in Anton wird anhand des Inhalts des Elements `<nummer>` im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.

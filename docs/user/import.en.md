@@ -10,7 +10,7 @@ Since **v0.62.0**, all import paths are brought together at one address: `/impor
 | **Inbox** (default) | Waiting agate SIPs that still need a parent fonds. When something is waiting, a counter badge appears next to it in the admin menu. |
 | **SIP** | Direct SIP upload (BagIt packages) with validation and ingest. See [SIP ingest](../admin/sip-ingest.md) and [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Excel imports (the main subject of this page, see below). |
-| **Directory** | Import of a directory structure (ZIP/GZ) as an accession archive entry. |
+| **Directory** | Import of a directory structure (ZIP/GZ). |
 
 The old URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) redirect transparently to the appropriate tab — bookmarks and external links remain valid.
 
@@ -27,27 +27,35 @@ This makes it possible to see before the import whether the SIP makes sense, whe
 
 ### Live progress
 
-Since v0.62.0, all imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the **accession reference code** created in the archive.
+Since v0.62.0, all imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the **run in the import log**.
 
 This applies to all paths — Excel, SIP, directory and finalising the inbox.
 
-### An accession reference code for every import
+### A reference code for every import
 
-Every import (regardless of the path) creates a sidecar record in the accession archive (AKZ) with the number `AKZ {year}/{N}`. The entry records:
+Every import (regardless of the path) gets a reference code `IMPORT-{yyyy}-{NNN}` and an entry in the import log. The entry records:
 
 - the original file name
 - the MD5 checksum
 - the time of import
 - the import path (Excel / SIP / directory / agate)
 - the **settings used**, since v0.87.0 (see below)
+- the outcome, and the message if it failed
 
-Failed imports leave **no gap** in the AKZ numbering — the number is only assigned on successful completion.
+!!! info "New in v0.88.0"
+    Up to v0.87.x every import also filed a receipt as an archival record in the accession archive, numbered `AKZ {year}/{N}`. The accession archive is reserved for real accessions again — physically arrived, not yet catalogued — and its reference codes are no longer used up by imports. Existing receipts were moved into the log with everything they carried.
+
+The reference code is assigned at the start. A failed run therefore keeps it and stays in the log with its error — a failed delivery has to stay distinguishable from one that never happened.
 
 ### Import log
 
 Under **`/import/audit`** is the list of all import runs: reference code, source file, time, number of records created and the content language used. Since **v0.87.0** this is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under *Admin → Forms* like those of any other list.
 
-The **details** link leads to the accession record. Since v0.87.0, its view shows only what describes an import — source file, checksum, settings used together with their origin, the uploaded file as a medium, and who triggered the run. Fields that are not applicable to an import receipt (*loan*, *moved*) no longer appear there.
+Successful runs are shown by default; a filter reveals failed and aborted ones. Nothing is ever deleted.
+
+The **details** link leads to the run: source file, checksum, settings used together with their origin, who triggered it, and the records it created.
+
+The imported file is kept. After a successful run it moves to `metadata_imported/` — so it stops appearing in the picker — and the entry says where it went.
 
 The settings are recorded in plain text, one line per setting with its value and origin. They remain there permanently — even a year later it is thus possible to trace the assumptions under which a delivery came in.
 
@@ -67,7 +75,7 @@ The content language is determined in this order — the first value that is set
 2. the archive setting `import_options.locale`
 3. the first language from `locales` — the main language of the archive
 
-Before the start, the inspection page names the language that applies **and where it comes from** («chosen for this run», «archive setting», «default»). After the run, the same information is in the accession record (see [Import log](#import-log)).
+Before the start, the inspection page names the language that applies **and where it comes from** («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see [Import log](#import-log)).
 
 A column with a language code (`title_fr`) trumps this choice for its own field — see [titel](#titel-title).
 
@@ -396,9 +404,9 @@ The same file may be loaded as an update several times; the duplicate block that
 
 After the start, the progress page shows the update as a **«data update»** (not as an import) and reports at the end how many records were *updated*.
 
-**Automatic backup.** Before an update writes even a single row, Anton creates a dump of the database (the same backup as `anton:backup`, stored under `db_backup/`). The step appears in the progress display as the *backup* phase and is logged as a separate entry naming the file name of the dump. If the backup cannot be created, **the update is aborted** and nothing is changed. The backup is also enforced when `no-backup` is otherwise set for the tenant — that option is intended for fast bulk *creation*, where a way back is trivial.
+**Automatic backup.** Before an update writes even a single row, Anton creates a dump of the database (the same backup as `anton:backup`, stored under `db_backup/`). The step appears in the progress display as the *backup* phase; the dump's file name is recorded on the run. If the backup cannot be created, **the update is aborted** and nothing is changed. The backup is also enforced when `no-backup` is otherwise set for the tenant — that option is intended for fast bulk *creation*, where a way back is trivial.
 
-Every update run is logged in the accession archive — like an import — but with its **own reference code series `UPDATE-{yyyy}-{NNN}`** instead of `IMPORT-{yyyy}-{NNN}` or `AKZ {yyyy}/{N}`. An update is not an accession — nothing new comes into the archive — and the separate series makes it visible at a glance in the accession list which entries are updates. The counter runs independently of the import series and is reset for each calendar year.
+Every update run is in the import log — like an import — but with its **own reference code series `UPDATE-{yyyy}-{NNN}`** instead of `IMPORT-{yyyy}-{NNN}`. An update is not an accession — nothing new comes into the archive — and the separate series makes it visible at a glance which entries are updates. The counter runs independently of the import series and is reset for each calendar year.
 
 ### Downloading a suitable table
 

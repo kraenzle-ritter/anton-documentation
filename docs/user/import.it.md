@@ -10,7 +10,7 @@ Dalla **v0.62.0** tutte le vie di importazione sono raccolte a un unico indirizz
 | **Casella d'entrata** (predefinita) | SIP agate in attesa, ai quali manca ancora un fondo superiore. Quando qualcosa è in attesa, nel menu Admin compare accanto un badge contatore. |
 | **SIP** | Caricamento SIP diretto (pacchetti BagIt) con validazione e ingest. Vedi [SIP Ingest](../admin/sip-ingest.md) e [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Importazioni Excel (il tema principale di questa pagina, vedi sotto). |
-| **Directory** | Importazione di una struttura di directory (ZIP/GZ) come entrata nell'archivio delle accessioni. |
+| **Directory** | Importazione di una struttura di directory (ZIP/GZ). |
 
 Le vecchie URL (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) reindirizzano in modo trasparente alla scheda corrispondente — segnalibri e link esterni restano validi.
 
@@ -31,23 +31,31 @@ Dalla v0.62.0 tutte le importazioni vengono eseguite **in modo asincrono in back
 
 Ciò vale per tutte le vie — Excel, SIP, directory e finalizzazione della casella d'entrata.
 
-### Una segnatura di accessione per ogni importazione
+### Una segnatura per ogni importazione
 
-Ogni importazione (indipendentemente dalla via) crea una scheda accessoria nell'archivio delle accessioni (AKZ) con il numero `AKZ {anno}/{N}`. La voce registra:
+Ogni importazione (indipendentemente dalla via) riceve una segnatura `IMPORT-{aaaa}-{NNN}` e una voce nel protocollo delle importazioni. La voce registra:
 
 - il nome del file originario
 - la somma di controllo MD5
 - il momento dell'importazione
 - la via di importazione (Excel / SIP / directory / agate)
 - le **impostazioni utilizzate**, dalla v0.87.0 (vedi sotto)
+- l'esito e, in caso di fallimento, il messaggio
 
-Le importazioni fallite non lasciano **alcun buco** nella numerazione AKZ — il numero viene assegnato solo al completamento riuscito.
+!!! info "Novità dalla v0.88.0"
+    Fino alla v0.87.x ogni importazione creava inoltre una ricevuta come unità di descrizione nell'archivio delle accessioni, con il numero `AKZ {anno}/{N}`. L'archivio delle accessioni è di nuovo riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono più consumate dalle importazioni. Le ricevute esistenti sono state spostate nel protocollo con tutto ciò che portavano.
+
+La segnatura viene assegnata all'avvio. Un'esecuzione fallita la mantiene quindi e resta nel protocollo con il suo errore — una consegna fallita deve restare distinguibile da una che non è mai avvenuta.
 
 ### Protocollo delle importazioni
 
 Sotto **`/import/audit`** si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Dalla **v0.87.0** si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in *Admin → Formulari* come per qualsiasi altro elenco.
 
-Il link **Dettagli** porta alla scheda di accessione. Dalla v0.87.0 la sua vista mostra soltanto ciò che descrive un'importazione — file di origine, somma di controllo, impostazioni utilizzate con la loro provenienza, il file caricato come media e chi ha avviato l'esecuzione. I campi non applicabili a una ricevuta di importazione (*prestito*, *spostato*) non compaiono più.
+Di norma vengono mostrate le esecuzioni riuscite; un filtro rivela quelle fallite o interrotte. Nulla viene mai cancellato.
+
+Il link **Dettagli** porta all'esecuzione: file di origine, somma di controllo, impostazioni utilizzate con la loro provenienza, chi l'ha avviata e le schede che ha creato.
+
+Il file importato viene conservato. Dopo un'esecuzione riuscita passa in `metadata_imported/` — così non compare più nell'elenco di scelta — e la voce indica dove si trova.
 
 Le impostazioni vengono registrate in chiaro, una riga per impostazione con valore e provenienza. Vi restano in modo permanente — anche un anno dopo è così ricostruibile sotto quali presupposti è entrata una consegna.
 
@@ -67,7 +75,7 @@ La lingua dei contenuti viene determinata in questo ordine — vince il primo va
 2. l'impostazione d'archivio `import_options.locale`
 3. la prima lingua di `locales` — la lingua principale dell'archivio
 
-Prima dell'avvio la pagina di ispezione indica la lingua in vigore **e da dove proviene** («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella scheda di accessione (vedi [Protocollo delle importazioni](#protocollo-delle-importazioni)).
+Prima dell'avvio la pagina di ispezione indica la lingua in vigore **e da dove proviene** («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi [Protocollo delle importazioni](#protocollo-delle-importazioni)).
 
 Una colonna con sigla di lingua (`title_fr`) prevale su questa scelta per il proprio campo — vedi [titel](#titel-title).
 
@@ -397,9 +405,9 @@ Lo stesso file può essere caricato più volte come aggiornamento; il blocco dei
 
 Dopo l'avvio la pagina di avanzamento mostra l'aggiornamento come **«aggiornamento dati»** (non come importazione) e riferisce alla fine quante schede sono state *aggiornate*.
 
-**Backup automatico.** Prima che un aggiornamento scriva anche una sola riga, Anton crea un dump della banca dati (lo stesso backup di `anton:backup`, depositato sotto `db_backup/`). Il passaggio compare nella visualizzazione dell'avanzamento come fase *backup* ed è registrato come voce a sé che indica il nome del file del dump. Se il backup non può essere creato, **l'aggiornamento si interrompe** e non viene modificato nulla. Il backup viene imposto anche quando per il mandante è altrimenti impostato `no-backup` — quell'opzione è pensata per *creazioni* di massa rapide, dove il ritorno è banale.
+**Backup automatico.** Prima che un aggiornamento scriva anche una sola riga, Anton crea un dump della banca dati (lo stesso backup di `anton:backup`, depositato sotto `db_backup/`). Il passaggio compare nella visualizzazione dell'avanzamento come fase *backup*; il nome del file del dump è annotato sull'esecuzione. Se il backup non può essere creato, **l'aggiornamento si interrompe** e non viene modificato nulla. Il backup viene imposto anche quando per il mandante è altrimenti impostato `no-backup` — quell'opzione è pensata per *creazioni* di massa rapide, dove il ritorno è banale.
 
-Ogni esecuzione di aggiornamento viene registrata — come un'importazione — nell'archivio delle accessioni, ma con una **serie di segnature propria `UPDATE-{aaaa}-{NNN}`** invece di `IMPORT-{aaaa}-{NNN}` o `AKZ {aaaa}/{N}`. Un aggiornamento non è un'accessione — nell'archivio non entra nulla di nuovo — e la serie separata rende visibile a colpo d'occhio, nell'elenco delle accessioni, quali voci siano aggiornamenti. Il contatore scorre indipendentemente dalla serie di importazione e viene azzerato per ogni anno civile.
+Ogni esecuzione di aggiornamento sta — come un'importazione — nel protocollo delle importazioni, ma con una **serie di segnature propria `UPDATE-{aaaa}-{NNN}`** invece di `IMPORT-{aaaa}-{NNN}`. Un aggiornamento non è un'accessione — nell'archivio non entra nulla di nuovo — e la serie separata rende visibile a colpo d'occhio quali voci siano aggiornamenti. Il contatore scorre indipendentemente dalla serie di importazione e viene azzerato per ogni anno civile.
 
 ### Scaricare la tabella adatta
 

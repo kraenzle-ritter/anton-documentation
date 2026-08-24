@@ -97,13 +97,14 @@ Response: `202 Accepted` mit JSON, das die Job-ID enthält:
 agate pollt anschliessend `callback_url` bis `status: completed` (oder
 `failed`).
 
-## Akzessions-Archiv
+## Importprotokoll
 
-Wenn der Tenant ein **Akzessions-Archiv** konfiguriert hat
-(`setting('accessions_archives_id')`), wird der SIP-Import dort als
-neuer Eingang verbucht — mit Datum, agate-Versionsangabe und
-Filename-Referenz. Damit ist der Importpfad auch nachträglich
-auditierbar.
+Jeder agate-SIP-Import steht als Lauf im Importprotokoll — mit Signatur
+`IMPORT-{jjjj}-{NNN}`, Dateiname, Prüfsumme, Zeitpunkt, Ergebnis und den
+angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
+auditierbar; ein Akzessions-Archiv braucht es dafür nicht.
+
+Bis v0.87.x wurde stattdessen ein Beleg im Akzessions-Archiv verbucht.
 
 ## Konfigurations-Checkliste
 
@@ -113,11 +114,9 @@ Damit agate-Imports funktionieren:
    false aus Sicherheitsgründen)
 2. **API-Token** für agate erzeugen (siehe
    [API-Authentifizierung](../api/authentication.md))
-3. **`accessions_archives_id`** auf einen geeigneten Wrapper-Bestand
-   setzen, damit die Eingangsbuchung erfolgt
-4. **NARA-Mapping** anlegen (siehe oben) — Default-Mapping vorhanden,
+3. **NARA-Mapping** anlegen (siehe oben) — Default-Mapping vorhanden,
    aber tenant-spezifische Werte sind wahrscheinlich nötig
-5. **Queue-Worker** muss laufen (Anton-Standard: Supervisor)
+4. **Queue-Worker** muss laufen (Anton-Standard: Supervisor)
 
 ## Häufige Stolpersteine
 

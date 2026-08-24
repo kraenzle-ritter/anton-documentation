@@ -306,14 +306,14 @@ up to date with every change to the commands.
 | Command | Description |
 |---|---|
 | `resources:sync` | Anton-specific resources (external links) management |
-| `resources:test-resources` | Test resources providers functionality |
+| `resources:test-resources` | Check that every configured resource provider still answers |
 
 ### sip: (5)
 
 | Command | Description |
 |---|---|
 | `sip:check` | Some function for debugging the SIP-Ingest / import array. It checks the package (zip) and sho… |
-| `sip:check-import` | Check the Import of a SIP after the import was done. Revert a SipImport if it failed somewhere… |
+| `sip:check-import` | Check the import of a SIP after it was done. Revert it if something failed downstream (INGE, D… |
 | `sip:import-agate` | Run an agate-driven SIP import for an existing Importevent (issue #190). |
 | `sip:load-xml` | Transform a metadata.xml to LoadXml which can be fed to Dimag |
 | `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-SIP media counts and flags disc… |

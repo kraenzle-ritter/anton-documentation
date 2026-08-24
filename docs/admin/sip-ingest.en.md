@@ -13,13 +13,12 @@ On the standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ec
 ### Requirements
 
 #### Anton
-- Accession archive: a (blocked) archive whose ID is entered in the `accessions_archives_id` setting.
+- Accession archive: no longer needed. Up to v0.87.x a SIP ingest filed a receipt there; since v0.88.0 the run is in the import log (see [Import](../user/import.md#import-log)).
 - The archive hierarchy (`parents`) must already exist in Anton.
 - If the reference codes in the archive hierarchy have a prefix, this has to be set (setting: `identifier-prefix`).
 - With the setting `strict_sip_validation`, Anton issues an error during validation if a file is not found in the SIP.
 - Anton form (`default_intern`):
-    - `sip_id`: contains the linked reference code pointing to the entry of the SIP in the accession archive (should be in the `default_intern` form).
-    - `note.sip_md5sum`, `note.actual_backup` should be in the `default_intern` form (displayed at fonds level / SIP).
+    - `sip_id`: links to the run in the import log this record came from (should be in the `default_intern` form).
 
 !!! note "Example for identifier-prefix"
     The parent element (`<ordnungssystemposition>`) of the `<dossier>` corresponds to the `parent` in Anton. The `parent` in Anton is determined on the basis of the content of the `<nummer>` element in the SIP. If, for example, this number is "0.6.6" but the archival reference code is "A.1.4.0.6.6", the prefix has to be filled in accordingly with "A.1.4.".
