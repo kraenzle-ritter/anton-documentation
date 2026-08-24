@@ -6,7 +6,15 @@ Mit Inge ist es möglich, DIMAG als Repository für die Primärdaten zu integrie
 - Setting `fulltext-from-webpdf`: true 
 - Setting `cloud`: "inge"
 - .env INGE_API_TOKEN 
-- Benutzer «Inge» mit E-Mail-Adresse und `api_token` für Inge
+- Benutzer «Inge» mit E-Mail-Adresse und `api_token` für Inge, mit
+  mindestens der Rolle **editor**
+
+!!! warning "Inge braucht die Rolle editor"
+    Den Ingest bestätigen und den Stand davor wiederherstellen
+    (`/api/sips/{id}/confirm` und `/revert`) dürfen nur Bearbeiter:innen —
+    ein Token allein genügt nicht. Hat der Dienstbenutzer «Inge» die Rolle
+    nicht, quittiert Anton den Abschluss des Umlaufs mit einem 403, und der
+    Ingest bleibt unbestätigt stehen.
 
 ### Ablauf des SIP-Ingest
 
@@ -89,8 +97,9 @@ php artisan sip:check-import --env {slug} --id {run_id} -vv --confirm
 # Gesamtüberblick (Counts + Verifikation + Orphan-Check)
 php artisan media:check --levels=1,5,6 --env={slug} -vv
 
-# Nur einen bestimmten SIP prüfen (nach unterbrochenem Ingest)
-php artisan media:check --levels=1,5,6 --sip={sip_id} --env={slug} -vv
+# Nur einen bestimmten SIP prüfen (nach unterbrochenem Ingest);
+# {run_id} ist die Lauf-Id aus dem Importprotokoll
+php artisan media:check --levels=1,5,6 --sip={run_id} --env={slug} -vv
 
 # cloud_status in der DB reparieren (wenn Inge status=20, aber DB falsch)
 php artisan media:check --levels=5 --fix-cloud-status --env={slug} -vv

@@ -6,7 +6,15 @@ With Inge it is possible to integrate DIMAG as a repository for the primary data
 - Setting `fulltext-from-webpdf`: true 
 - Setting `cloud`: "inge"
 - .env INGE_API_TOKEN 
-- User "Inge" with an email address and `api_token` for Inge
+- User "Inge" with an email address and `api_token` for Inge, holding at
+  least the role **editor**
+
+!!! warning "Inge needs the editor role"
+    Confirming the ingest and restoring the state before it
+    (`/api/sips/{id}/confirm` and `/revert`) are reserved for editors — a
+    token alone is not enough. If the service user "Inge" does not hold the
+    role, Anton answers the closing step of the cycle with a 403 and the
+    ingest stays unconfirmed.
 
 ### Course of the SIP ingest
 
@@ -89,8 +97,9 @@ php artisan sip:check-import --env {slug} --id {run_id} -vv --confirm
 # overall picture (counts + verification + orphan check)
 php artisan media:check --levels=1,5,6 --env={slug} -vv
 
-# check only one particular SIP (after an interrupted ingest)
-php artisan media:check --levels=1,5,6 --sip={sip_id} --env={slug} -vv
+# check only one particular SIP (after an interrupted ingest);
+# {run_id} is the run id from the import log
+php artisan media:check --levels=1,5,6 --sip={run_id} --env={slug} -vv
 
 # repair cloud_status in the DB (when Inge status=20 but the DB is wrong)
 php artisan media:check --levels=5 --fix-cloud-status --env={slug} -vv
