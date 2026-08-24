@@ -45,8 +45,8 @@ backfill — vedi
 
 ## Modificare l'ordine dei media
 
-Dalla **v0.87.0** l'ordine dei media di un'unità di descrizione può essere
-modificato senza doverli eliminare e caricare di nuovo.
+L'ordine dei media di un'unità di descrizione può essere modificato senza
+doverli eliminare e caricare di nuovo.
 
 Nella **scheda dei media** dell'unità di descrizione ogni media dispone di una
 coppia di frecce (↑ ↓). Un clic sposta il media di una posizione all'interno

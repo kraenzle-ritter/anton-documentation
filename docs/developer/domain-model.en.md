@@ -70,7 +70,7 @@ Things one can rely on — and that one should not violate:
   `notes.note_type_id` refer to `antonfields.id`. The enums `Eventtype` and
   `Notetype` map the types referenced in the code — not necessarily all those a
   tenant has configured.
-- **Authority data carries a portable UUID** (since v0.79) — the basis for the
+- **Authority data carries a portable UUID** — the basis for the
   lossless re-import, which does not merge records of the same name.
 - **Deletion cascades.** The `deleting` hook on AntonObject removes every child
   recursively; there is no recycle bin (no `deleted_at`).

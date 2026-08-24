@@ -43,8 +43,8 @@ Bestandsmedien lassen sich die Felder per Backfill nachholen — siehe
 
 ## Reihenfolge der Medien ändern
 
-Seit **v0.87.0** lässt sich die Reihenfolge der Medien einer
-Verzeichnungseinheit ändern, ohne sie löschen und neu hochladen zu müssen.
+Die Reihenfolge der Medien einer Verzeichnungseinheit lässt sich ändern,
+ohne sie löschen und neu hochladen zu müssen.
 
 Im **Medien-Reiter** der Verzeichnungseinheit steht bei jedem Medium ein Paar
 Pfeiltasten (↑ ↓). Ein Klick verschiebt das Medium um eine Position innerhalb

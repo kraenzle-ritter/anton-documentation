@@ -14,7 +14,7 @@ The import process is divided into three main phases, corresponding to the tabs 
 2. **Validation** – check and validate the file  
 3. **Ingest** – carry out the import and process the documents
 
-!!! note "Since v0.62.0: a shared import hub"
+!!! note "A shared import hub"
     All import paths (SIP, Excel, directory, agate) are brought together under `/import` — the SIP tabs are now integrated into the import hub as the **«SIP»** tab. Old bookmarks continue to work (transparent redirect).
     See [import.md](import.md).
 

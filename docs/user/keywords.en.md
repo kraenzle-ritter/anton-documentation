@@ -60,8 +60,3 @@ A keyword can only be deleted as long as it is entered on **no unit of
 description**. Otherwise Anton refuses deletion and reports the reason. Which
 units are affected is shown by «appears in» on the detail page; the assignments
 have to be removed there first.
-
-!!! note "Different up to v0.82.0"
-    Until then, a keyword in use was deleted — together with its assignments:
-    Anton first dissolved all links and then removed the term. The cataloguing
-    work behind it was thus gone in a single step, without any query.

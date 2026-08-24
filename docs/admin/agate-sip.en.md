@@ -1,8 +1,8 @@
 # agate SIP import
 
-Since **v0.61.0**, [agate](https://github.com/kraenzle-ritter/agate) (the Anton
-preparation tool for SIPs built from loose file collections) can send BagIt
-packages directly to Anton via HTTP. Anton receives the ZIP, checks it, creates
+[agate](https://github.com/kraenzle-ritter/agate) (the Anton preparation tool
+for SIPs built from loose file collections) can send BagIt packages directly to
+Anton via HTTP. Anton receives the ZIP, checks it, creates
 a backup, imports the contents as units of description below the chosen fonds
 and notifies agate when everything is finished.
 
@@ -102,8 +102,6 @@ Every agate SIP import is a run in the import log — with reference code
 created. The import path is thereby auditable after the fact as well; no
 accession archive is needed for it.
 
-Up to v0.87.x a receipt was recorded in the accession archive instead.
-
 ## Configuration checklist
 
 For agate imports to work:
@@ -118,10 +116,10 @@ For agate imports to work:
 
 ## Common stumbling blocks
 
-- **Repeated uploads with the same file name** work since v0.61.0 — Anton now
-  checks the original file name, not the UUID-suffixed path on disk.
-- **A NARA category without a tenant type** no longer aborts the import (since
-  v0.61.0). The `object_type` remains empty.
+- **Repeated uploads with the same file name** work — Anton checks the
+  original file name, not the UUID-suffixed path on disk.
+- **A NARA category without a tenant type** does not abort the import. The
+  `object_type` remains empty.
 - **The wrapper record at the top of the SIP** is no longer forced to have an
   object type — the hard-coded "Agate SIP" has been removed.
 

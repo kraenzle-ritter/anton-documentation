@@ -1,6 +1,6 @@
 # KI-Erschliessung
 
-Anton kann seit **v0.63.0** auf Knopfdruck Vorschläge für Titel,
+Anton kann auf Knopfdruck Vorschläge für Titel,
 Textfelder, Datierung, Akteur:innen, Orte und Schlagwörter generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.
@@ -27,8 +27,8 @@ Risiko von Provider-Fehlern. Tenants ohne KI-Vertrag merken nichts.
 ## Der Operator-Workflow
 
 Beim Bearbeiten eines Datensatzes erscheint oben in der Aktionsleiste
-ein Button **"🤖 KI-Vorschläge generieren"** (seit v0.65.0 direkt neben
-dem Upload-Bereich, sichtbar sobald eine Datei angehängt ist).
+ein Button **"🤖 KI-Vorschläge generieren"** (direkt neben dem
+Upload-Bereich, sichtbar sobald eine Datei angehängt ist).
 
 Nach Klick:
 
@@ -50,7 +50,7 @@ Mensch entscheidet.
 
 - **Bilder** (Fotos, Scans) direkt als Vision-Input
 - **PDFs** — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
-  (seit v0.65.0 für bessere Qualität bei getippten Dokumenten)
+  (für bessere Qualität bei getippten Dokumenten)
 - **Audio** — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
   Das Transkript kann optional als Textfeld in den Volltext-Index landen.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
@@ -78,11 +78,11 @@ Unter **Admin → KI-Erschliessung** stehen fünf Tabs:
 |---|---|
 | **Verbrauch** | Monatsbudget, Kostenstand, letzte 50 Aufrufe pro Datensatz mit Token-Counts und CHF-Kosten |
 | **Modelle** | Verfügbare Provider/Modelle mit Beschreibung, Vision-Fähigkeit, Aktiv-Status, Preise pro 1k Tokens |
-| **Budget** | Monats-Caps pro Kalendermonat (seit v0.65.0 auch über UI editierbar, vorher nur SQL) |
+| **Budget** | Monats-Caps pro Kalendermonat, über die Oberfläche editierbar |
 | **Profile** | Definierte KI-Profile mit Anlegen/Bearbeiten/Löschen |
 | **Audit-Trail** | Alle Aufrufe mit Prompt, AI-Antwort und Operator-Entscheidung (übernommen/geändert/ignoriert) |
 
-Der Audit-Tab seit v0.65.0 zeigt nicht nur "Vorschlag generiert",
+Der Audit-Tab zeigt nicht nur "Vorschlag generiert",
 sondern auch ob er **übernommen, geändert oder ignoriert** wurde — wichtig
 für die Qualitätskontrolle und für späteres Prompt-Tuning.
 
@@ -111,9 +111,8 @@ Profile ohne API-Key im env werden im Anlegen-Formular sichtbar (mit
 Warnung), erscheinen aber **nicht** in der Operator-Profil-Auswahl —
 Anwender:innen sehen nur funktionsfähige Profile.
 
-Seit v0.65.0 ist ein **Standard-Profil pro Tenant** vorkonfiguriert,
-so dass die Profil-Auswahl im Operator-Workflow nur noch auf Wunsch
-aufklappt.
+Ein **Standard-Profil pro Tenant** ist vorkonfiguriert, so dass die
+Profil-Auswahl im Operator-Workflow nur auf Wunsch aufklappt.
 
 ## Kosten + Budgets
 
@@ -147,6 +146,6 @@ Schweiz.
   Snapshot, damit Audit-Trails reproduzierbar bleiben
 - **JS-Chip-Decorator** statt Modal-Stack: Vorschläge erscheinen direkt
   bei den Form-Feldern statt in einem separaten Panel
-- **Auto-Save beim Upload** (seit v0.65.0): Drag-and-Drop-Uploads
+- **Auto-Save beim Upload**: Drag-and-Drop-Uploads
   speichern den Datensatz automatisch und behalten die Bearbeitungs-
   Seite + Scrollposition

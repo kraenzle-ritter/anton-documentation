@@ -63,7 +63,3 @@ deletion in both of the following cases and reports which one applies:
 To get rid of an actor, the links have to be cleaned up first — the events on
 the units of description concerned, the descriptors in the «is used as
 descriptor» register on the detail page.
-
-!!! note "Different up to v0.82.0"
-    Until then, only events offered protection. An actor used exclusively as a
-    descriptor could be deleted — the links were silently removed along with it.

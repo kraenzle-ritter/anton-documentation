@@ -17,11 +17,9 @@ calculation elsewhere. Decisive is:
    closure period** field, counted from the date of creation. Type periods apply
    **only to the record itself** and are not inherited.
 
-!!! note "Unified since v0.78"
-    Before version 0.78, several places calculated the period independently of
-    one another, which could lead to discrepancies between catalogue, gallery
-    and search. Since then there is exactly one source. After updating, the
-    release year is recalculated once for the whole holdings.
+!!! note "One source for the period"
+    Catalogue, gallery and search calculate the period in exactly one place —
+    so they cannot drift apart.
 
 ## Records without a date of creation
 
@@ -41,12 +39,7 @@ supplied:
     differently from one starting in 1965, and only the archive knows which of
     the two values is meant.
 
-!!! warning "Changed: such records used to be displayed"
-    Until then, Anton calculated from year 0 when the date was missing. A period
-    of 80 years therefore expired in the year 81, that is, long ago — the record
-    counted as free and was publicly visible even though a period was set. On
-    updating, these records disappear from the public view.
-
+!!! note "Whom the block affects"
     Only records for which someone actually chose a period are affected. Without
     a chosen closure period, a record remains free even without a date of
     creation.

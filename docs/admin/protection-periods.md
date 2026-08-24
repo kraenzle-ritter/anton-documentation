@@ -17,11 +17,9 @@ keine zweite Rechnung an anderer Stelle. Massgeblich ist:
    Typs, gerechnet ab dem Entstehungsdatum. Typ-Fristen gelten **nur für den
    Datensatz selbst** und vererben sich nicht.
 
-!!! note "Vereinheitlicht seit v0.78"
-    Vor Version 0.78 rechneten mehrere Stellen die Frist unabhängig voneinander
-    aus, was zu Abweichungen zwischen Katalog, Galerie und Suche führen konnte.
-    Seither gibt es genau eine Quelle. Nach dem Aktualisieren wird das
-    Freigabejahr für den Bestand einmalig neu berechnet.
+!!! note "Eine Quelle für die Frist"
+    Katalog, Galerie und Suche rechnen die Frist an genau einer Stelle — sie
+    können also nicht auseinanderlaufen.
 
 ## Datensätze ohne Entstehungsdatum
 
@@ -41,12 +39,7 @@ nachgetragen wird:
     1933 endet anders als ab 1965, und welcher der beiden Werte gemeint ist,
     weiss nur das Archiv.
 
-!!! warning "Geändert: früher wurden solche Datensätze angezeigt"
-    Bis dahin rechnete Anton bei fehlendem Datum ab dem Jahr 0. Eine Frist von
-    80 Jahren lief damit im Jahr 81 ab, also längst — der Datensatz galt als
-    frei und war öffentlich sichtbar, obwohl eine Frist gesetzt war. Beim
-    Aktualisieren verschwinden diese Datensätze aus der öffentlichen Ansicht.
-
+!!! note "Wen die Sperre betrifft"
     Betroffen sind nur Datensätze, bei denen jemand tatsächlich eine Frist
     gewählt hat. Ohne gewählte Sperrfrist bleibt ein Datensatz frei, auch ohne
     Entstehungsdatum.

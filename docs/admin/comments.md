@@ -45,8 +45,8 @@ Ein unbekannter Wert (Tippfehler) gilt als leer, also als ausgeschaltet.
 Anton rät hier nicht auf die freizügigere Seite.
 
 !!! note "Das Feld ist bereits im Formular"
-    Beim Update auf v0.86 legt Anton das Feld «Kommentare» an und stellt es
-    ans Ende Ihres **internen Detailformulars**. Solange die Einstellung leer
+    Anton legt das Feld «Kommentare» an und stellt es ans Ende Ihres
+    **internen Detailformulars**. Solange die Einstellung leer
     ist, zeichnet es nichts — Sie sehen also nichts, bis Sie es wollen.
 
     Wo der Bereich steht, bestimmen weiterhin Sie: im

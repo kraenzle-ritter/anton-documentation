@@ -1,6 +1,6 @@
 # AI-assisted cataloguing
 
-Since **v0.63.0**, Anton can generate suggestions for titles, text fields,
+Anton can generate suggestions for titles, text fields,
 dating, actors, places and keywords at the push of a button — based on the
 attached media files (images, PDFs, audio transcripts, video frames) and the
 existing context of a record.
@@ -26,8 +26,8 @@ errors. Tenants without an AI contract notice nothing.
 ## The operator workflow
 
 When editing a record, a button **"🤖 Generate AI suggestions"** appears at the
-top of the action bar (since v0.65.0 directly next to the upload area, visible
-as soon as a file is attached).
+top of the action bar (directly next to the upload area, visible as soon as a
+file is attached).
 
 After clicking:
 
@@ -45,8 +45,8 @@ writes — the AI only makes suggestions, the human decides.
 ## What the AI receives as input
 
 - **Images** (photographs, scans) directly as vision input
-- **PDFs** — page images; additionally the OCR text layer if present (since
-  v0.65.0, for better quality with typed documents)
+- **PDFs** — page images; additionally the OCR text layer if present (for
+  better quality with typed documents)
 - **Audio** — Whisper V3 transcript via the Infomaniak async batch API. The
   transcript can optionally end up in the full-text index as a text field.
 - **Video** — 5 ffmpeg stills, evenly spaced across the running time
@@ -74,11 +74,11 @@ Under **Admin → AI cataloguing** there are five tabs:
 |---|---|
 | **Consumption** | Monthly budget, cost status, last 50 calls per record with token counts and CHF costs |
 | **Models** | Available providers/models with description, vision capability, active status, prices per 1k tokens |
-| **Budget** | Monthly caps per calendar month (since v0.65.0 also editable via the UI, previously SQL only) |
+| **Budget** | Monthly caps per calendar month, editable via the UI |
 | **Profiles** | Defined AI profiles with create/edit/delete |
 | **Audit trail** | All calls with prompt, AI response and operator decision (applied/changed/ignored) |
 
-Since v0.65.0 the audit tab shows not only "suggestion generated" but also
+The audit tab shows not only "suggestion generated" but also
 whether it was **applied, changed or ignored** — important for quality control
 and for later prompt tuning.
 
@@ -107,8 +107,8 @@ Profiles without an API key in the env are visible in the creation form (with a
 warning) but do **not** appear in the operator profile selection — users only
 see profiles that work.
 
-Since v0.65.0 a **default profile per tenant** is preconfigured, so that the
-profile selection in the operator workflow only unfolds on request.
+A **default profile per tenant** is preconfigured, so that the profile
+selection in the operator workflow only unfolds on request.
 
 ## Costs and budgets
 
@@ -140,5 +140,5 @@ data flow outside Switzerland.
   audit trails remain reproducible
 - **JS chip decorator** instead of a modal stack: suggestions appear directly at
   the form fields rather than in a separate panel
-- **Auto-save on upload** (since v0.65.0): drag-and-drop uploads save the record
+- **Auto-save on upload**: drag-and-drop uploads save the record
   automatically and keep the editing page and scroll position

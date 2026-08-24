@@ -70,8 +70,3 @@ signale lequel s'applique :
 Pour supprimer un·e acteur·trice, il faut d'abord nettoyer les liens — les
 événements des unités de description concernées, les descripteurs dans le
 registre «&nbsp;est utilisé comme descripteur&nbsp;» de la page de détail.
-
-!!! note "Différent jusqu'à la v0.82.0"
-    Jusque-là, seuls les événements protégeaient. Un·e acteur·trice utilisé·e
-    exclusivement comme descripteur pouvait être supprimé·e — les liens étaient
-    alors supprimés silencieusement avec.

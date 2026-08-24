@@ -2,7 +2,7 @@
 
 Under **Admin → Media → List / Bulk** (`/admin/media/list`), administrators find
 a paginated list of all media files of the archive with a filter bar, per-row
-switches and bulk actions. Available since **v0.66.0**.
+switches and bulk actions.
 
 The page addresses the original request from the Gosteli archive: setting
 several hundred digitised items to "not in gallery" without opening each record

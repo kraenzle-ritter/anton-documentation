@@ -63,9 +63,3 @@ Una parola chiave può essere eliminata solo finché non è registrata presso
 **alcuna unità di descrizione**. In caso contrario Anton rifiuta l'eliminazione
 e ne segnala il motivo. Quali unità siano interessate lo mostra «compare in»
 nella pagina di dettaglio; lì vanno dapprima rimosse le attribuzioni.
-
-!!! note "Diverso fino alla v0.82.0"
-    Fino ad allora una parola chiave in uso veniva eliminata — e con essa le sue
-    attribuzioni: Anton scioglieva dapprima tutti i collegamenti e rimuoveva poi
-    il termine. Il lavoro di descrizione che vi stava dietro spariva così in un
-    solo passaggio, senza alcuna richiesta di conferma.

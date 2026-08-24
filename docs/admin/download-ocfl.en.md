@@ -6,8 +6,6 @@ for long-term preservation: versioned, checksum-secured, content-addressed,
 self-describing. Several Swiss long-term archives — namely UB Basel and the
 DLZA — expect OCFL for handover.
 
-Available since **v0.66.0**.
-
 ## Two modes
 
 | Mode | Button in the detail view | Content |

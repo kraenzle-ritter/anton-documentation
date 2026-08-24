@@ -64,8 +64,3 @@ ricorre:
 Per eliminare un attore o un'attrice occorre prima ripulire i collegamenti — gli
 eventi presso le unità di descrizione interessate, i descrittori nel registro
 «viene utilizzato come descrittore» nella pagina di dettaglio.
-
-!!! note "Diverso fino alla v0.82.0"
-    Fino ad allora proteggevano soltanto gli eventi. Un attore o un'attrice
-    utilizzati esclusivamente come descrittore potevano essere eliminati — i
-    collegamenti venivano rimossi silenziosamente insieme a loro.

@@ -49,7 +49,7 @@ Defines which languages are available for translatable fields.
 
 An import has its own **content language**, independent of the language of the interface. It determines which language titles, text fields and newly created authority data are written in — and in which language Anton searches for existing actors and places.
 
-Up to v0.86.x, the import followed the interface language; anyone who had set English created English titles with German text. Since **v0.87.0** the language is chosen deliberately and is visible before the run.
+The language is chosen deliberately and is visible before the run.
 
 Translatable fields can also be addressed **per language** in the import — `title_de`, `title_fr`, `scopecontent_it`. Multilingual titles can thus be imported, and the update table of a multilingual archive goes out and comes back in without loss.
 

@@ -1,7 +1,6 @@
 # Preservation planning
 
-Since the **v0.40 series**, Anton has offered a dashboard for digital
-preservation — an overview of file formats, risks and recommended actions per
+Anton offers a dashboard for digital preservation — an overview of file formats, risks and recommended actions per
 tenant.
 
 Under **Admin → Preservation Planning** there are four areas of analysis.

@@ -7,8 +7,6 @@ prüfsummen-gesichert, Content-Adressing, self-describing. Mehrere
 Schweizer Langzeitarchive — namentlich UB Basel und das DLZA — erwarten
 OCFL für die Übergabe.
 
-Verfügbar seit **v0.66.0**.
-
 ## Zwei Modi
 
 | Modus | Knopf in der Detail-Ansicht | Inhalt |

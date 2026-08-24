@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **16 August 2026** (Anton v0.87). It is
+    This matrix reflects the state of **24 August 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -167,13 +167,13 @@ evaluation view: it takes along everything that can be represented flatly and
 **cannot** be loaded back in. The *update table* is the opposite — it
 deliberately contains only what a data update is allowed to write, and leaves
 out hierarchy (`parent`) and events, because these would be blocked on
-re-import. The location has been included since v0.86: it is written on update,
+re-import. The location is included: it is written on update,
 and rearranging the stacks is one of the most frequent reasons for a bulk
 update. Taking the narrower file therefore does not lose information by
 accident; it deliberately limits the scope of effect, and the download dialogue
 allows this to be narrowed further.
 
-Since **v0.87**, the update table of a **multilingual** archive carries the title
+The update table of a **multilingual** archive carries the title
 in one column per content language (`title_de`, `title_fr` …) instead of a single
 one. This makes the round trip lossless in the multilingual case too: with one
 column, the language of the run would have to decide on re-import where the value
@@ -199,3 +199,35 @@ hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of **all** carriers including private ones, termselect values, form set
 and the reconnection of the media. Before every write operation the whole package
 is validated; if it fails, it is rolled back.
+
+Actors, places and keywords carry a portable UUID too — a re-import anchors them
+to it instead of merging authority records that happen to share a name.
+
+!!! warning "Comments are lost in the round trip"
+    «Lossless» refers to the description. Internal
+    [comments](comments.md) are excluded: they are kept in a table of their own
+    that no exporter knows — not even the native one — so that they cannot end
+    up in a publication by accident. An export-import cycle leaves them behind.
+
+    Anyone who has to take them along needs the **SQL dump**. That is the backup
+    which really does contain everything.
+
+Not included, and therefore still the SQL dump: user accounts, settings, form
+definitions and the AI data.
+
+## Privacy filter
+
+RDF, TEI and EAD filter out private objects, actors and media as well as private
+text field types (internal archival remarks, cataloguer's information, comment).
+
+!!! warning "Plain flag logic"
+    The filter evaluates the `private` flag — it is **not a role check**. Apart
+    from the file name, downloading a generated RDF file checks no further
+    permissions.
+
+## The essence
+
+**Descriptive metadata** is excellently covered by open standards and can be
+packaged. **Authority data** has exactly one export of its own (TEI). **The event
+graph, users, configuration, AI data and file provenance** have no
+standards-based export and can only be secured through the complete SQL dump.

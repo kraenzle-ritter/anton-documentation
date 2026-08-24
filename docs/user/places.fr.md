@@ -75,10 +75,6 @@ S'il s'agit d'éliminer un doublon, la **fusion** est préférable à la
 suppression : les liens migrent alors vers la notice conservée au lieu d'être
 perdus (voir ci-dessous).
 
-!!! note "Différent jusqu'à la v0.82.0"
-    Jusque-là, un lieu était supprimé sans vérification, et ses liens vers les
-    unités de description disparaissaient silencieusement avec lui.
-
 ## Fusionner des doublons
 
 Deux notices pour un même lieu peuvent être fusionnées. Les événements, les

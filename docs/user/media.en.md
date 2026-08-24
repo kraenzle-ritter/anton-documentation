@@ -43,8 +43,8 @@ the fields can be filled in retrospectively by backfill — see
 
 ## Changing the order of media
 
-Since **v0.87.0**, the order of the media of a unit of description can be
-changed without having to delete them and upload them again.
+The order of the media of a unit of description can be changed without
+having to delete them and upload them again.
 
 In the **media tab** of the unit of description, each medium has a pair of arrow
 buttons (↑ ↓). A click moves the medium one position within its collection. On

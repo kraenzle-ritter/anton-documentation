@@ -44,8 +44,8 @@ rétroactivement par backfill — voir
 
 ## Modifier l'ordre des médias
 
-Depuis la **v0.87.0**, l'ordre des médias d'une unité de description peut être
-modifié sans devoir les supprimer et les téléverser à nouveau.
+L'ordre des médias d'une unité de description peut être modifié sans devoir
+les supprimer et les téléverser à nouveau.
 
 Dans l'**onglet des médias** de l'unité de description, chaque média dispose
 d'une paire de flèches (↑ ↓). Un clic déplace le média d'une position à

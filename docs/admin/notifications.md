@@ -46,7 +46,7 @@ php artisan notification:send --title="Wartung am 20.4." --body="Details folgen.
 ### Alle Installationen
 
 ```bash
-php artisan notification:send --title="Update v0.54" --body="Neue Features." --all
+php artisan notification:send --title="Neue Version" --body="Neue Features." --all
 ```
 
 ### Mehrsprachig
@@ -55,7 +55,7 @@ Titel und Text können als JSON übergeben werden:
 
 ```bash
 php artisan notification:send \
-  --title='{"de":"Update v0.54","fr":"Mise à jour v0.54"}' \
+  --title='{"de":"Neue Version","fr":"Nouvelle version"}' \
   --body='{"de":"Neue Features verfügbar.","fr":"Nouvelles fonctions disponibles."}' \
   --all
 ```

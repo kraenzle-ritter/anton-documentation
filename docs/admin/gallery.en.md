@@ -1,9 +1,8 @@
 # Media gallery
 
 The gallery is an Anton module offering facet-based access to selected media
-(images, PDFs, audio, video). Since the v0.41–v0.45 series it has grown from a
-pure image gallery into a full **media gallery** with a PDF.js viewer, video
-chapters and a configurable filter layout.
+(images, PDFs, audio, video) — with a PDF.js viewer, video chapters and a
+configurable filter layout.
 
 Reachable at `/gallery`.
 
@@ -31,17 +30,17 @@ Reachable at `/gallery`.
   `gallery_filter_fields` (see the next section).
 - **Full-text search** searches object titles and the full text of the media
   files (PDF text layer via `media_texts`, see
-  [weighted search](weighted-search.md)). Since v0.51.0 the gallery full-text
-  search works with **prefix matching**: a search term such as `alkohol` also
+  [weighted search](weighted-search.md)). The gallery full-text search works
+  with **prefix matching**: a search term such as `alkohol` also
   finds `Alkoholkonsum`, `alkoholisch` and so on. Parts of words in the middle
   are not found (`alkohol` does **not** find `Methylalkohol`). Several terms are
   combined with AND.
 - **The PDF viewer adopts the search term**: clicking a PDF hit opens PDF.js
-  directly with the current search term prefilled (since v0.51.0).
+  directly with the current search term prefilled.
 
 ### Configurable filter layout
 
-Since v0.42.0 the filter bar layout is configurable per tenant via the setting
+The filter bar layout is configurable per tenant via the setting
 `gallery_filter_fields`. This allows the order, width and visibility of the
 filters to be controlled. Example:
 
@@ -56,8 +55,7 @@ Setting::setValue('gallery_filter_fields', [
 ]);
 ```
 
-Widths are Bootstrap columns (1–12). The reset button is always visible (since
-v0.42.0).
+Widths are Bootstrap columns (1–12). The reset button is always visible.
 
 ## Modal views
 
@@ -90,13 +88,13 @@ A **masonry layout** ensures optimal image arrangement; images are not cropped.
   item.
 
 If a medium carries the flag `dont_show_in_gallery = 1`, it does not appear in
-the gallery — even if the corresponding record is public. Since v0.66.0 this
-flag can conveniently be managed per filter in the
+the gallery — even if the corresponding record is public. This flag is
+conveniently managed per filter in the
 [bulk media list](bulk-media-list.md).
 
 ## Performance
 
-- The redundant field `objects.fonds_id` (since v0.41.0) allows fast gallery
+- The redundant field `objects.fonds_id` allows fast gallery
   queries without a closure table join
 - Gallery facets are held in a **per-tenant cache**
   (`{slug}.gallery.facets.intern` / `…extern`) and invalidated via the

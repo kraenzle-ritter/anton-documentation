@@ -74,10 +74,6 @@ Geht es darum, eine Dublette loszuwerden, ist das **Zusammenführen** der besser
 Weg als das Löschen: Die Verknüpfungen wandern dabei auf den verbleibenden
 Datensatz, statt verloren zu gehen (siehe unten).
 
-!!! note "Bis v0.82.0 anders"
-    Bis dahin wurde ein Ort ohne Prüfung gelöscht, und seine Verknüpfungen zu
-    den Verzeichnungseinheiten verschwanden stillschweigend mit.
-
 ## Dubletten zusammenführen
 
 Zwei Datensätze für denselben Ort lassen sich zusammenführen. Dabei wandern

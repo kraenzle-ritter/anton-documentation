@@ -12,8 +12,6 @@ konform liefert:
 - **Memobase-Profil** — JSON-LD-Form gemäss `https://api.memobase.ch/context/*`
   (für die Lieferung an Memobase via Memoriav-Konvention §9)
 
-Verfügbar seit **v0.71.0**.
-
 ## Drei Profile im Überblick
 
 | Profil | Leitmodell | Format | Zweck |
@@ -270,9 +268,9 @@ Alle Settings werden über `/settings` oder per Tinker (`setting('key', 'value')
 
 ## AV-Metadaten
 
-Anton hat seit v0.71.0 sechs neue Spalten in `media`:
-`av_duration_seconds`, `av_codec`, `av_bitrate`, `av_resolution`,
-`av_sample_rate`, `av_aspect_ratio`.
+Anton führt sechs AV-Spalten in `media`: `av_duration_seconds`,
+`av_codec`, `av_bitrate`, `av_resolution`, `av_sample_rate`,
+`av_aspect_ratio`.
 
 Sie werden automatisch befüllt:
 
@@ -297,9 +295,8 @@ kleine Zeile mit den vorhandenen Werten — `1:08`, `1246x1020 (623:510)`,
 
 Zusätzlich zum `/export/rdf`-Tab (Job-basiert, asynchron) kann jedes
 Objekt in der Detail-Ansicht synchron-downloadbar gemacht werden über
-das **Download-Modul** (Antonfield id 1105, seit v0.71.0 von
-`word_download` umbenannt). Das Modul rendert bis zu **acht Buttons**
-in der internen Detail-Ansicht — welche erscheinen, steuert pro Format
+das **Download-Modul** (Antonfield id 1105, früher `word_download`). Das
+Modul rendert bis zu **acht Buttons** in der internen Detail-Ansicht — welche erscheinen, steuert pro Format
 ein eigenes Setting:
 
 | Button | Setting | Inhalt |
@@ -333,12 +330,11 @@ Die Buttons hängen alle an synchrone Inline-Download-Routes
 und respektieren die `mayBeShown()`-Privacy-Logik der bestehenden
 Detail-Ansicht (private Objekte sind nur für Admins zugänglich).
 
-> **Hinweis zum Rename:** Bis v0.72.0 bleibt eine Backwards-Compat-Klasse
-> `WordDownload extends Download` bestehen, damit kundenspezifische
-> Form-Konfigurationen, die noch `word_download` referenzieren, weiter
-> rendern. Ab v0.73.0 wird der Alias entfernt — Tenants mit
-> customer-spezifischen Forms müssen bis dahin auf `download` umgestellt
-> haben.
+> **Hinweis zum Rename:** Eine Backwards-Compat-Klasse
+> `WordDownload extends Download` besteht weiterhin, damit
+> kundenspezifische Form-Konfigurationen, die noch `word_download`
+> referenzieren, rendern. Der Alias wird irgendwann entfernt — Tenants mit
+> customer-spezifischen Forms sollten auf `download` umstellen.
 
 ## Was nicht im Export landet
 

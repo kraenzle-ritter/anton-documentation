@@ -2,8 +2,7 @@
 
 Unter **Admin → Medien → Liste / Bulk** (`/admin/media/list`) finden
 Administrator:innen eine paginierte Liste aller Mediendateien des Archivs
-mit Filter-Bar, Per-Row-Schaltern und Bulk-Aktionen. Verfügbar seit
-**v0.66.0**.
+mit Filter-Bar, Per-Row-Schaltern und Bulk-Aktionen.
 
 Die Seite löst den ursprünglichen Wunsch aus dem Gosteli-Archiv: mehrere
 hundert Digitalisate "nicht in Galerie" setzen, ohne sie einzeln in der

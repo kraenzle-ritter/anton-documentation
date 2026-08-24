@@ -71,7 +71,7 @@ Dinge, auf die man sich verlassen kann — und die man nicht verletzen sollte:
   `notes.note_type_id` verweisen auf `antonfields.id`. Die Enums `Eventtype` und
   `Notetype` bilden die im Code referenzierten Typen ab — nicht zwingend alle,
   die ein Mandant konfiguriert hat.
-- **Normdaten tragen eine portable UUID** (seit v0.79) — Grundlage für den
+- **Normdaten tragen eine portable UUID** — Grundlage für den
   verlustfreien Re-Import, der gleichnamige Datensätze nicht verschmilzt.
 - **Löschen kaskadiert.** Der `deleting`-Hook auf AntonObject verschiebt jedes
   Kind rekursiv; es gibt keinen Papierkorb (kein `deleted_at`).

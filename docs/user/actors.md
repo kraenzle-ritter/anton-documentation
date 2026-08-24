@@ -64,8 +64,3 @@ Anton verweigert das Löschen in beiden Fällen und meldet, welcher vorliegt:
 Um eine Akteur:in loszuwerden, sind zuerst die Verknüpfungen zu bereinigen — die
 Ereignisse bei den betroffenen Verzeichnungseinheiten, die Deskriptoren im
 Register «wird als Deskriptor verwendet» auf der Detailseite.
-
-!!! note "Bis v0.82.0 anders"
-    Bis dahin schützten nur Ereignisse. Eine Akteur:in, die ausschliesslich als
-    Deskriptor verwendet wurde, liess sich löschen — die Verknüpfungen wurden
-    dabei stillschweigend mitentfernt.

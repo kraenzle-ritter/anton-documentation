@@ -3,7 +3,7 @@ It is possible to import data and the associated files (media) into Anton. The d
 
 ## Import hub `/import`
 
-Since **v0.62.0**, all import paths are brought together at one address: `/import` (in the menu under **Import / Export → Import**). The page has four tabs:
+All import paths are brought together at one address: `/import` (in the menu under **Import / Export → Import**). The page has four tabs:
 
 | Tab | Content |
 |---|---|
@@ -27,7 +27,7 @@ This makes it possible to see before the import whether the SIP makes sense, whe
 
 ### Live progress
 
-Since v0.62.0, all imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the **run in the import log**.
+All imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the **run in the import log**.
 
 This applies to all paths — Excel, SIP, directory and finalising the inbox.
 
@@ -39,17 +39,18 @@ Every import (regardless of the path) gets a reference code `IMPORT-{yyyy}-{NNN}
 - the MD5 checksum
 - the time of import
 - the import path (Excel / SIP / directory / agate)
-- the **settings used**, since v0.87.0 (see below)
+- the **settings used** (see below)
 - the outcome, and the message if it failed
 
-!!! info "New in v0.88.0"
-    Up to v0.87.x every import also filed a receipt as an archival record in the accession archive, numbered `AKZ {year}/{N}`. The accession archive is reserved for real accessions again — physically arrived, not yet catalogued — and its reference codes are no longer used up by imports. Existing receipts were moved into the log with everything they carried.
+<!-- v0.88.0: receipts in the accession archive retired, existing ones migrated into the log -->
+!!! info "No receipt in the accession archive"
+    An import does not create an archival record as a receipt. The accession archive stays reserved for real accessions — physically arrived, not yet catalogued — and its reference codes are not used up by imports.
 
 The reference code is assigned at the start. A failed run therefore keeps it and stays in the log with its error — a failed delivery has to stay distinguishable from one that never happened.
 
-### Import log
+### Import log {#import-protokoll}
 
-Under **`/import/audit`** is the list of all import runs: reference code, source file, time, number of records created and the content language used. Since **v0.87.0** this is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under *Admin → Forms* like those of any other list.
+Under **`/import/audit`** is the list of all import runs: reference code, source file, time, number of records created and the content language used. It is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under *Admin → Forms* like those of any other list.
 
 Successful runs are shown by default; a filter reveals failed and aborted ones. Nothing is ever deleted.
 
@@ -64,10 +65,11 @@ First, an Excel file has to be created according to the specifications below. Th
 
 ## Content language of the import
 
-Translatable fields — titles, text fields, newly created keywords, actors, places and locations — need a language. Since **v0.87.0** this is a deliberate decision that is visible before the run.
+Translatable fields — titles, text fields, newly created keywords, actors, places and locations — need a language. This is a deliberate decision that is visible before the run.
 
-!!! warning "Change of behaviour"
-    Up to v0.86.x, Anton followed the **language of the interface**. Anyone who had the interface set to English and loaded a table created an *English* title translation for every record — containing the unchanged German text. The record looked correct in English and no longer had a title in German. From v0.87.0, the interface language no longer plays any role.
+<!-- v0.87.0: content language made explicit; before that the import followed the interface language -->
+!!! note "The interface language plays no role"
+    Whichever language the interface is currently showing has no influence on the import. What counts is solely the content language of the run.
 
 The content language is determined in this order — the first value that is set wins:
 
@@ -75,7 +77,7 @@ The content language is determined in this order — the first value that is set
 2. the archive setting `import_options.locale`
 3. the first language from `locales` — the main language of the archive
 
-Before the start, the inspection page names the language that applies **and where it comes from** («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see [Import log](#import-log)).
+Before the start, the inspection page names the language that applies **and where it comes from** («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see [Import log](#import-protokoll)).
 
 A column with a language code (`title_fr`) trumps this choice for its own field — see [titel](#titel-title).
 
@@ -151,7 +153,7 @@ The title is a **translatable field**. Which language it is written in is decide
 | `titel` or `title` | the content language of the run |
 | `title_de`, `title_fr`, `title_it`, `title_en` | exactly the language named |
 
-Since **v0.87.0**, multilingual titles can therefore be imported: one column per language. Both forms may stand side by side; the column with a language code is the more precise specification and wins, and the inspection page points this out.
+Multilingual titles can therefore be imported: one column per language. Both forms may stand side by side; the column with a language code is the more precise specification and wins, and the inspection page points this out.
 
 The same applies to the **text fields**: `scopecontent` writes into the content language, `scopecontent_fr` specifically into French, without touching the other languages of the same text field.
 
@@ -195,8 +197,7 @@ Several columns only accept values that are defined in the archive:
 `verzeichnungsstufe`, `objekttyp`, `schutzfrist`, `status_of_description`,
 `detail_of_description` and `vacat`.
 
-Since **v0.87.0** they all accept **three forms**, equivalently (`vacat`
-already since v0.86.4):
+They all accept **three forms**, equivalently:
 
 | Form | Example |
 |---|---|
@@ -220,7 +221,7 @@ happens to look like a number, the designation wins.
 
 #### Looking up all value lists
 
-Since **v0.87.0** there is an overview of all value lists under
+There is an overview of all value lists under
 **Table import → Value lists** (`/valuelists`): for each entry the
 designation, internal name and ID, plus the import column to which the list
 belongs. A search field filters across all lists at once.
@@ -277,9 +278,6 @@ As with the location, two columns: **`formset`** (also: `formularsatz`) takes th
 
 The downloaded update table carries the `formset` column and writes the **name**. An empty cell leaves the form set unchanged.
 
-!!! note "Before v0.86 the column was silently discarded"
-    Earlier versions did not know `formset`: the column was reported as unknown and then passed over without consequence, and the run reported success. Anyone who set the form set via a table and wondered why nothing happened — that was the reason.
-
 ### vacat
 
 Specifies whether the unit of description is a placeholder (a gap in the
@@ -289,18 +287,9 @@ Internally the column carries term IDs. Accepted are the designation
 (`vacat`), the ID (`56` for vacat, `57` for not vacat) and — from older
 tables — `1` and `0`.
 
-Since **v0.87.0**, what is **exported** is the designation: `vacat` for a
-placeholder, otherwise an empty cell. Previously the internal number stood
-there, which said nothing in a column without `_id` in its name and looked
-like a value changed by mistake. Older tables with `56`/`57` can continue to
-be used unchanged.
-
-!!! warning "Before v0.86.4"
-    Until then, the update table exported the internal number, but the check
-    only permitted `0` and `1`. An unchanged update table therefore could not
-    be loaded, and the message named a value that nobody had entered. If you
-    come across an older version: deselect the `vacat` column in the download
-    dialogue.
+What is **exported** is the designation: `vacat` for a placeholder,
+otherwise an empty cell. Older tables with `56`/`57` can continue to be used
+unchanged.
 
 
 ### bilder (media)
@@ -384,7 +373,7 @@ The further fields are free text fields::
 !!! warning "Experimental feature"
     The data update is marked as **experimental** (badge in the tab and on the upload page). It changes existing records directly. Anton therefore **automatically creates a backup of the database before every update** (see below); nevertheless, check the result on a sample basis.
 
-Besides creating new records, existing units of description can also be updated directly via the browser. Since **v0.81.2** there is a dedicated **«Update»** tab under **Table import** for this (after *Metadata* and *Media*). Upload the table there — update files have their own list, separate from the normal import — and open it with **«Details»**. The file is checked directly in update mode, and the button **«Load as update»** appears.
+Besides creating new records, existing units of description can also be updated directly via the browser. There is a dedicated **«Update»** tab under **Table import** for this (after *Metadata* and *Media*). Upload the table there — update files have their own list, separate from the normal import — and open it with **«Details»**. The file is checked directly in update mode, and the button **«Load as update»** appears.
 
 Because the *Update* tab checks the file exclusively as an update, a pure update table (only `id` plus the columns to be changed, without `parent`) needs no detours: the `parent` column required when creating new records is not demanded here. The regular *Metadata* tab remains unchanged for creating new records.
 
@@ -415,7 +404,7 @@ So that an update does not have to be compiled by hand, the current **result lis
 The file contains exclusively columns that an update is also allowed to write — `id`, the field columns, languages, the location (`location_id`), keywords/actors/places (as IDs) and the text field columns `note.*`. Deliberately **not** included are `parent` and the event columns, which would block the update. The `identifier` column serves only for orientation: the update finds the records via the `id`, and changes to the reference code have no effect.
 
 !!! tip "Multilingual archives: one title column per language"
-    If the archive maintains several content languages, the update table has contained, since **v0.87.0**, one column `title_de`, `title_fr` and so on instead of `titel`. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.
+    If the archive maintains several content languages, the update table contains one column `title_de`, `title_fr` and so on instead of `titel`. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.
 
     Monolingual archives keep the familiar `titel` column; there is nothing to distinguish there. Older tables with `titel` remain loadable in any case.
 
@@ -430,13 +419,6 @@ The file contains exclusively columns that an update is also allowed to write �
     The downloaded update table uses `location_id`. Anyone who prefers to work with designations renames the column to `location`; there both forms are accepted. A designation has to be written exactly as in the location administration, including capitalisation — the ID is therefore the safe route.
 
     An **empty cell leaves the location unchanged** — for rearranging, therefore change only the rows that actually move. A location that does not yet exist has to be created under *Admin → Locations* beforehand; otherwise the inspection reports it as unknown and the update does not run.
-
-!!! warning "Before v0.87.0 the button downloaded nothing"
-    The download button in the column dialogue closed the dialogue but aborted
-    the transfer in the same movement — without an error message. It looked as
-    though something had happened; nothing arrived in the download folder.
-    v0.86.4 fixed part of this, but the button remained without effect; only
-    since v0.87.0 is it a genuine download.
 
 On clicking, a dialogue opens in which the **columns can be selected**. That is more than convenience: what is not in the file cannot be written by an update either. Anyone who only wants to correct a single title selects `id` and `titel` — then nothing else can come to harm when loading. `id` is always included and cannot be deselected.
 

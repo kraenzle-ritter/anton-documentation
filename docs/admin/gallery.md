@@ -1,10 +1,8 @@
 # Mediengalerie
 
 Die Galerie ist ein Anton-Modul mit einem facettenbasierten Zugang zu
-ausgewählten Medien (Bilder, PDFs, Audio, Video). Seit der v0.41–v0.45-
-Serie ist sie aus der reinen Bildergalerie zu einer vollwertigen
-**Mediengalerie** mit PDF.js-Viewer, Video-Kapiteln und konfigurierbarem
-Filter-Layout ausgebaut.
+ausgewählten Medien (Bilder, PDFs, Audio, Video) — mit PDF.js-Viewer,
+Video-Kapiteln und konfigurierbarem Filter-Layout.
 
 Erreichbar unter `/gallery`.
 
@@ -34,19 +32,18 @@ Erreichbar unter `/gallery`.
   konfiguriert über `gallery_filter_fields` (siehe nächster Abschnitt).
 - **Volltextsuche** durchsucht Objekttitel und den Volltext der
   Mediendateien (PDF-Textebene über `media_texts`, siehe
-  [Weighted Search](weighted-search.md)). Seit v0.51.0 arbeitet die
-  Galerie-Volltextsuche mit **Präfix-Matching**: ein Suchbegriff wie
+  [Weighted Search](weighted-search.md)). Die Galerie-Volltextsuche
+  arbeitet mit **Präfix-Matching**: ein Suchbegriff wie
   `alkohol` findet auch `Alkoholkonsum`, `alkoholisch` usw. Wortteile in
   der Mitte werden nicht gefunden (`alkohol` findet **nicht**
   `Methylalkohol`). Mehrere Begriffe werden als AND verknüpft.
 - **PDF-Viewer übernimmt Suchbegriff**: Klick auf ein Treffer-PDF
-  öffnet PDF.js direkt mit dem aktuellen Suchbegriff vorbelegt (seit
-  v0.51.0).
+  öffnet PDF.js direkt mit dem aktuellen Suchbegriff vorbelegt.
 
 ### Konfigurierbares Filter-Layout
 
-Seit v0.42.0 ist das Filter-Bar-Layout pro Tenant konfigurierbar über
-das Setting `gallery_filter_fields`. Damit lassen sich Reihenfolge,
+Das Filter-Bar-Layout ist pro Tenant konfigurierbar über das Setting
+`gallery_filter_fields`. Damit lassen sich Reihenfolge,
 Breite und Sichtbarkeit der Filter steuern. Beispiel:
 
 ```php
@@ -61,7 +58,7 @@ Setting::setValue('gallery_filter_fields', [
 ```
 
 Breitenangaben sind Bootstrap-Spalten (1–12). Die Reset-Schaltfläche
-ist immer sichtbar (seit v0.42.0).
+ist immer sichtbar.
 
 ## Modale Ansichten
 
@@ -98,12 +95,12 @@ nicht abgeschnitten.
 
 Wenn ein Medium das Flag `dont_show_in_gallery = 1` trägt, taucht es
 nicht in der Galerie auf — auch wenn der zugehörige Datensatz öffentlich
-ist. Verwaltung dieses Flags ist seit v0.66.0 in
-[Bulk Media List](bulk-media-list.md) komfortabel pro Filter machbar.
+ist. Verwaltet wird dieses Flag komfortabel pro Filter in der
+[Bulk Media List](bulk-media-list.md).
 
 ## Performance
 
-- Redundantes Feld `objects.fonds_id` (seit v0.41.0): erlaubt
+- Redundantes Feld `objects.fonds_id`: erlaubt
   schnelle Galerie-Abfragen ohne Closure-Table-Join
 - Galerie-Facetten werden in einem **per-Tenant Cache** gehalten
   (`{slug}.gallery.facets.intern` / `…extern`) und über den

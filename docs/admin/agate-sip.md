@@ -1,7 +1,7 @@
 # agate-SIP-Import
 
-Seit **v0.61.0** kann [agate](https://github.com/kraenzle-ritter/agate)
-(das Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) BagIt-
+[agate](https://github.com/kraenzle-ritter/agate) (das
+Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann BagIt-
 Pakete direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
 prüft es, legt ein Backup an, importiert die Inhalte als
 Verzeichnungseinheiten unter dem gewählten Bestand und gibt agate
@@ -104,8 +104,6 @@ Jeder agate-SIP-Import steht als Lauf im Importprotokoll — mit Signatur
 angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
 auditierbar; ein Akzessions-Archiv braucht es dafür nicht.
 
-Bis v0.87.x wurde stattdessen ein Beleg im Akzessions-Archiv verbucht.
-
 ## Konfigurations-Checkliste
 
 Damit agate-Imports funktionieren:
@@ -120,11 +118,10 @@ Damit agate-Imports funktionieren:
 
 ## Häufige Stolpersteine
 
-- **Wiederholte Uploads mit gleichem Filename** funktionieren seit
-  v0.61.0 — Anton prüft jetzt den Original-Filename, nicht den
-  UUID-suffixed Pfad auf Disk.
-- **NARA-Kategorie ohne Tenant-Typ** bricht den Import nicht mehr ab
-  (seit v0.61.0). Das `object_type` bleibt leer.
+- **Wiederholte Uploads mit gleichem Filename** funktionieren — Anton
+  prüft den Original-Filename, nicht den UUID-suffixed Pfad auf Disk.
+- **NARA-Kategorie ohne Tenant-Typ** bricht den Import nicht ab. Das
+  `object_type` bleibt leer.
 - **Wrapper-Datensatz oben am SIP** bekommt keinen Objekttyp
   aufgedrückt — Hardcoded "Agate SIP" wurde entfernt.
 

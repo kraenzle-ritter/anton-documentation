@@ -32,8 +32,8 @@ curl -X GET "https://ihre-anton-instanz.ch/api/objects" \
 
 ### Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
 
-!!! warning "Veraltet seit v0.70.x"
-    Der Query-Parameter `?api_token=` wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt seit v0.70.x jeden Aufruf mit `?api_token=` als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.
+!!! warning "Veraltet"
+    Der Query-Parameter `?api_token=` wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt jeden Aufruf mit `?api_token=` als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.
 
 Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter `api_token` akzeptiert:
 

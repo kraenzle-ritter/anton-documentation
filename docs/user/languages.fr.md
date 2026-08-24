@@ -49,7 +49,7 @@ Définit les langues disponibles pour les champs traduisibles.
 
 Un import possède sa propre **langue de contenu**, indépendante de la langue de l'interface. Elle détermine dans quelle langue sont écrits les titres, les champs de texte et les données d'autorité nouvellement créées — et dans quelle langue Anton recherche les acteur·trice·s et lieux existants.
 
-Jusqu'à la v0.86.x, l'import suivait la langue de l'interface ; qui avait choisi l'anglais créait des titres anglais avec du texte allemand. Depuis la **v0.87.0**, la langue est choisie délibérément et est visible avant l'exécution.
+La langue est choisie délibérément et est visible avant l'exécution.
 
 Les champs traduisibles peuvent aussi être adressés **par langue** dans l'import — `title_de`, `title_fr`, `scopecontent_it`. Des titres multilingues sont ainsi importables, et le tableau de mise à jour d'un service multilingue sort et rentre sans perte.
 

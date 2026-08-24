@@ -61,9 +61,3 @@ Ein Schlagwort lässt sich nur löschen, solange es **bei keiner
 Verzeichnungseinheit** eingetragen ist. Andernfalls verweigert Anton das Löschen
 und meldet den Grund. Welche Einheiten betroffen sind, zeigt «erscheint in» auf
 der Detailseite; dort sind die Zuordnungen zuerst zu entfernen.
-
-!!! note "Bis v0.82.0 anders"
-    Bis dahin wurde ein verwendetes Schlagwort gelöscht — und zwar samt seinen
-    Zuordnungen: Anton löste erst alle Verknüpfungen und entfernte dann den
-    Begriff. Die Erschliessungsarbeit, die dahinterstand, war damit in einem
-    Schritt weg, ohne Rückfrage.

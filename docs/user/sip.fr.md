@@ -14,7 +14,7 @@ Le processus d'import se divise en trois phases principales, correspondant aux o
 2. **Validation** – contrôler et valider le fichier  
 3. **Ingest** – effectuer l'import et traiter les documents
 
-!!! note "Depuis la v0.62.0 : un hub d'import commun"
+!!! note "Un hub d'import commun"
     Toutes les voies d'import (SIP, Excel, répertoire, agate) sont regroupées sous `/import` — les onglets SIP sont désormais intégrés au hub d'import sous l'onglet **«&nbsp;SIP&nbsp;»**. Les anciens signets continuent de fonctionner (redirection transparente).
     Voir [import.md](import.md).
 

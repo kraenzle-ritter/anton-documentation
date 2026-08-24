@@ -4,16 +4,16 @@ Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) na
 
 Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0160/1.2.0)
 
-!!! note "Seit v0.62.0: Unified Import Hub"
+!!! note "Unified Import Hub"
     Alle Import-Pfade — SIP, Excel, Verzeichnis, agate — sind unter `/import` zusammengefasst (vier Tabs). Die alten URLs (`/sip/validation`, `/sip/ingest`, `/sip/inbox`) leiten transparent auf den passenden Tab um. Siehe [user/import.md](../user/import.md) für die UI-Übersicht.
 
-!!! note "agate-SIP-Import (seit v0.61.0)"
+!!! note "agate-SIP-Import"
     BagIt-SIPs, die von agate (Anton-Vorbereitungs-Tool) per HTTP geschickt werden, laufen über einen eigenen Pfad mit NARA-Kategorie-Mapping und Eingangskorb. Details: [agate-sip.md](agate-sip.md).
 
 ### Voraussetzungen
 
 #### Anton
-- Akzessionsarchiv: nicht mehr nötig. Bis v0.87.x legte ein SIP-Ingest dort einen Beleg ab; seit v0.88.0 steht der Lauf im Importprotokoll (siehe [Import](../user/import.md#import-protokoll)).
+- Akzessionsarchiv: nicht nötig. Ein SIP-Ingest steht als Lauf im Importprotokoll (siehe [Import](../user/import.md#import-protokoll)).
 - Die Archivhierarchie (`parents`) muss bereits in Anton vorhanden sein.
 - Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: `identifier-prefix`).
 - Mit dem Setting `strict_sip_validation` gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.

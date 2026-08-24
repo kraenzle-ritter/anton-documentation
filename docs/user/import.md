@@ -3,7 +3,7 @@ Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren
 
 ## Import-Hub `/import`
 
-Seit **v0.62.0** sind alle Import-Pfade unter einer Adresse zusammengefasst: `/import` (im Menü unter **Import / Export → Import**). Die Seite hat vier Tabs:
+Alle Import-Pfade sind unter einer Adresse zusammengefasst: `/import` (im Menü unter **Import / Export → Import**). Die Seite hat vier Tabs:
 
 | Tab | Inhalt |
 |---|---|
@@ -27,7 +27,7 @@ So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Voka
 
 ### Live-Fortschritt
 
-Alle Imports laufen seit v0.62.0 **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum **Lauf im Importprotokoll**.
+Alle Imports laufen **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum **Lauf im Importprotokoll**.
 
 Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.
 
@@ -39,17 +39,18 @@ Jeder Import (egal über welchen Pfad) bekommt eine Signatur `IMPORT-{jjjj}-{NNN
 - MD5-Prüfsumme
 - Import-Zeitpunkt
 - Import-Pfad (Excel / SIP / Verzeichnis / agate)
-- die **verwendeten Einstellungen**, seit v0.87.0 (siehe unten)
+- die **verwendeten Einstellungen** (siehe unten)
 - das Ergebnis, und bei einem Fehlschlag die Meldung
 
-!!! info "Neu seit v0.88.0"
-    Bis v0.87.x legte jeder Import zusätzlich einen Beleg als Verzeichnungseinheit im Akzessionsarchiv an, mit der Nummer `AKZ {Jahr}/{N}`. Das Akzessionsarchiv ist wieder den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht mehr von Importen aufgebraucht. Bestehende Belege sind samt allem, was sie trugen, ins Protokoll gezogen worden.
+<!-- v0.88.0: Belege im Akzessionsarchiv abgeschafft, Bestand ins Protokoll migriert -->
+!!! info "Kein Beleg im Akzessionsarchiv"
+    Ein Import legt keine Verzeichnungseinheit als Beleg an. Das Akzessionsarchiv bleibt den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht von Importen aufgebraucht.
 
 Die Signatur wird beim Start vergeben. Ein gescheiterter Lauf behält sie also und bleibt mit seinem Fehler im Protokoll stehen — eine gescheiterte Lieferung muss von einer unterscheidbar bleiben, die nie stattfand.
 
-### Import-Protokoll
+### Import-Protokoll {#import-protokoll}
 
-Unter **`/import/audit`** steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit **v0.87.0** ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter *Admin → Formulare* anpassen.
+Unter **`/import/audit`** steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Es ist eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter *Admin → Formulare* anpassen.
 
 Gezeigt werden standardmässig die erfolgreichen Läufe; ein Filter blendet gescheiterte und abgebrochene ein. Gelöscht wird nie.
 
@@ -64,10 +65,11 @@ Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses i
 
 ## Inhaltssprache des Imports
 
-Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Seit **v0.87.0** ist das eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.
+Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Das ist eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.
 
-!!! warning "Verhaltensänderung"
-    Bis v0.86.x richtete sich Anton nach der **Sprache der Oberfläche**. Wer die Bedienoberfläche auf Englisch stehen hatte und eine Tabelle einspielte, legte für jeden Datensatz eine *englische* Titel-Übersetzung an — mit dem unveränderten deutschen Text darin. Der Datensatz sah auf Englisch richtig aus und hatte auf Deutsch keinen Titel mehr. Ab v0.87.0 spielt die Oberflächensprache keine Rolle mehr.
+<!-- v0.87.0: Inhaltssprache explizit, vorher richtete sich der Import nach der Oberflächensprache -->
+!!! note "Die Oberflächensprache spielt keine Rolle"
+    Welche Sprache die Bedienoberfläche gerade zeigt, hat auf den Import keinen Einfluss. Massgeblich ist allein die Inhaltssprache des Laufs.
 
 Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte Wert gewinnt:
 
@@ -151,7 +153,7 @@ Der Titel ist ein **übersetzbares Feld**. In welche Sprache er geschrieben wird
 | `titel` bzw. `title` | die Inhaltssprache des Laufs |
 | `title_de`, `title_fr`, `title_it`, `title_en` | genau die genannte Sprache |
 
-Seit **v0.87.0** lassen sich also mehrsprachige Titel importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.
+Mehrsprachige Titel lassen sich also importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.
 
 Dasselbe gilt für die **Textfelder**: `scopecontent` schreibt in die Inhaltssprache, `scopecontent_fr` gezielt ins Französische, ohne die anderen Sprachen desselben Textfelds anzutasten.
 
@@ -195,8 +197,7 @@ Mehrere Spalten nehmen nur Werte an, die im Archiv definiert sind:
 `verzeichnungsstufe`, `objekttyp`, `schutzfrist`, `status_of_description`,
 `detail_of_description` und `vacat`.
 
-Seit **v0.87.0** nehmen sie alle **drei Formen** an, gleichwertig (`vacat`
-bereits seit v0.86.4):
+Sie nehmen alle **drei Formen** an, gleichwertig:
 
 | Form | Beispiel |
 |---|---|
@@ -220,8 +221,8 @@ Bezeichnung zufällig wie eine Zahl aussieht, gewinnt die Bezeichnung.
 
 #### Alle Wertelisten nachschlagen
 
-Seit **v0.87.0** gibt es unter **Tabellen-Import → Wertelisten**
-(`/valuelists`) eine Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
+Unter **Tabellen-Import → Wertelisten** (`/valuelists`) steht eine
+Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
 interner Name und ID, dazu die Import-Spalte, zu der die Liste gehört. Ein
 Suchfeld filtert über alle Listen gleichzeitig.
 
@@ -278,9 +279,6 @@ Wie beim Standort zwei Spalten: **`formset`** (auch: `formularsatz`) nimmt den N
 
 Die heruntergeladene Update-Tabelle führt die Spalte `formset` und schreibt den **Namen**. Eine leere Zelle lässt den Formularsatz unverändert.
 
-!!! note "Vor v0.86 wurde die Spalte still verworfen"
-    Frühere Versionen kannten `formset` nicht: die Spalte wurde als unbekannt gemeldet und danach folgenlos übergangen, der Lauf meldete Erfolg. Wer den Formularsatz per Tabelle gesetzt hat und sich wundert, warum nichts passiert ist — das war der Grund.
-
 ### vacat
 
 Gibt an, ob die Verzeichnungseinheit ein Platzhalter ist (eine Lücke in der
@@ -290,18 +288,9 @@ Die Spalte führt intern Term-IDs. Angenommen werden die Bezeichnung
 (`vacat`), die ID (`56` für vacat, `57` für nicht vacat) und — aus älteren
 Tabellen — `1` und `0`.
 
-**Exportiert** wird seit **v0.87.0** die Bezeichnung: `vacat` für einen
-Platzhalter, sonst eine leere Zelle. Vorher stand dort die interne Nummer,
-die in einer Spalte ohne `_id` im Namen nichts sagte und wie ein
-versehentlich geänderter Wert aussah. Ältere Tabellen mit `56`/`57` lassen
-sich unverändert weiterverwenden.
-
-!!! warning "Vor v0.86.4"
-    Bis dahin exportierte die Update-Tabelle die interne Nummer, die Prüfung
-    liess aber nur `0` und `1` zu. Eine unveränderte Update-Tabelle war damit
-    nicht einspielbar, und die Meldung nannte einen Wert, den niemand
-    eingegeben hatte. Wer auf eine ältere Version stösst: die Spalte `vacat`
-    im Download-Dialog abwählen.
+**Exportiert** wird die Bezeichnung: `vacat` für einen Platzhalter, sonst
+eine leere Zelle. Ältere Tabellen mit `56`/`57` lassen sich unverändert
+weiterverwenden.
 
 
 ### bilder (media)
@@ -385,7 +374,7 @@ Die weiteren Felder sind freie Textfelder::
 !!! warning "Experimentelles Feature"
     Das Datenupdate ist als **experimentell** gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Anton legt deshalb **vor jedem Update automatisch eine Sicherung der Datenbank** an (siehe unten); das Ergebnis trotzdem stichprobenweise prüfen.
 
-Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** seit **v0.81.2** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
+Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
 
 Weil der *Update*-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur `id` + zu ändernde Spalten, ohne `parent`) keine Umwege: die beim Neuanlegen nötige `parent`-Spalte wird hier nicht verlangt. Der reguläre *Metadaten*-Reiter bleibt unverändert fürs Neuanlegen.
 
@@ -416,7 +405,7 @@ Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die ak
 Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
 
 !!! tip "Mehrsprachige Archive: eine Titel-Spalte je Sprache"
-    Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle seit **v0.87.0** statt `titel` je eine Spalte `title_de`, `title_fr` usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.
+    Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle statt `titel` je eine Spalte `title_de`, `title_fr` usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.
 
     Einsprachige Archive behalten die gewohnte Spalte `titel`; dort gibt es nichts zu unterscheiden. Ältere Tabellen mit `titel` bleiben in jedem Fall einspielbar.
 
@@ -431,13 +420,6 @@ Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf �
     Die heruntergeladene Update-Tabelle nutzt `location_id`. Wer lieber mit Bezeichnungen arbeitet, benennt die Spalte in `location` um; dort werden beide Formen akzeptiert. Eine Bezeichnung muss exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung — die ID ist deshalb der sichere Weg.
 
     Eine **leere Zelle lässt den Standort unverändert** — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter *Admin → Standorte* angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.
-
-!!! warning "Vor v0.87.0 lud der Knopf nichts herunter"
-    Der Herunterladen-Knopf im Spaltendialog schloss den Dialog, brach aber im
-    selben Zug die Übertragung ab — ohne Fehlermeldung. Es sah aus, als sei
-    etwas passiert; im Download-Ordner kam nichts an. v0.86.4 behob einen Teil
-    davon, der Knopf blieb aber wirkungslos; erst seit v0.87.0 ist es ein
-    echter Download.
 
 Beim Klick öffnet sich ein Dialog, in dem sich die **Spalten auswählen** lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt `id` und `titel` — dann kann beim Einspielen nichts anderes zu Schaden kommen. `id` ist immer enthalten und nicht abwählbar.
 

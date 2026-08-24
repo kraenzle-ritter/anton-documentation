@@ -12,8 +12,6 @@ way:
   `https://api.memobase.ch/context/*` (for delivery to Memobase via Memoriav
   convention §9)
 
-Available since **v0.71.0**.
-
 ## The three profiles at a glance
 
 | Profile | Leading model | Format | Purpose |
@@ -271,9 +269,8 @@ All settings are maintained via `/settings` or by Tinker
 
 ## AV metadata
 
-Since v0.71.0, Anton has six new columns in `media`: `av_duration_seconds`,
-`av_codec`, `av_bitrate`, `av_resolution`, `av_sample_rate`,
-`av_aspect_ratio`.
+Anton carries six AV columns in `media`: `av_duration_seconds`, `av_codec`,
+`av_bitrate`, `av_resolution`, `av_sample_rate`, `av_aspect_ratio`.
 
 They are filled automatically:
 
@@ -297,7 +294,7 @@ values appears per medium — `1:08`, `1246x1020 (623:510)`, `h264`, `903 kbps`,
 
 In addition to the `/export/rdf` tab (job-based, asynchronous), every object can
 be made synchronously downloadable in the detail view via the **download
-module** (Antonfield id 1105, renamed from `word_download` in v0.71.0). The
+module** (Antonfield id 1105, formerly `word_download`). The
 module renders up to **eight buttons** in the internal detail view — which ones
 appear is controlled per format by its own setting:
 
@@ -332,11 +329,11 @@ The buttons all hang off synchronous inline download routes
 respect the `mayBeShown()` privacy logic of the existing detail view (private
 objects are accessible to admins only).
 
-> **Note on the rename:** up to v0.72.0 a backwards-compatibility class
+> **Note on the rename:** a backwards-compatibility class
 > `WordDownload extends Download` remains in place, so that customer-specific
 > form configurations still referring to `word_download` continue to render.
-> From v0.73.0 the alias will be removed — tenants with customer-specific forms
-> have to have switched to `download` by then.
+> The alias will be removed eventually — tenants with customer-specific forms
+> should switch to `download`.
 
 ## What does not end up in the export
 

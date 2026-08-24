@@ -1,7 +1,6 @@
 # Preservation Planning
 
-Anton bietet seit der **v0.40er-Serie** ein Dashboard für die digitale
-Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
+Anton bietet ein Dashboard für die digitale Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
 empfohlene Handlungen pro Tenant.
 
 Unter **Admin → Preservation Planning** stehen vier Analyse-Bereiche.

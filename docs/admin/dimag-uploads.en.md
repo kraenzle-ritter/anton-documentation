@@ -1,8 +1,8 @@
 # DIMAG upload status
 
 For archives with a DIMAG connection (Canton of Zurich municipalities such as
-Opfikon, Lindau, Dürnten), Anton has since **v0.65.0** shown the transfer status
-of every media file visibly in the UI — and reports structural errors to the
+Opfikon, Lindau, Dürnten), Anton shows the transfer status of every media file
+visibly in the UI — and reports structural errors to the
 administration by email immediately.
 
 Background: previously it could happen that a file was stored locally but not
@@ -70,8 +70,7 @@ feedback module is connected).
 
 ## Data model: `media_events`
 
-Since v0.65.0, status events are stored in a dedicated table `media_events`
-(append-only). Schema:
+Status events are stored in a dedicated table `media_events` (append-only). Schema:
 
 | Column | Content |
 |---|---|
@@ -107,8 +106,8 @@ Media::latestIngestEvent(?string $category)  // → MediumEvent | null
 
 ## SIP status tab
 
-In addition to the per-file status, since v0.65.0/v0.66.0 there is an admin tab
-`/sip/status` under **SIP import → Status** (only with `cloud === 'inge'`),
+In addition to the per-file status, there is an admin tab `/sip/status` under
+**SIP import → Status** (only with `cloud === 'inge'`),
 which shows the current Inge URL and the token setup and offers a "Run
 infrastructure check now" button. The same check is available as the command
 `inge:check-infrastructure`.

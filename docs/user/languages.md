@@ -49,7 +49,7 @@ Definiert, welche Sprachen für übersetzbare Felder verfügbar sind.
 
 Ein Import hat eine eigene **Inhaltssprache**, unabhängig von der Sprache der Oberfläche. Sie entscheidet, in welche Sprache Titel, Textfelder und neu angelegte Normdaten geschrieben werden — und in welcher Sprache Anton nach bestehenden Akteur:innen und Orten sucht.
 
-Bis v0.86.x richtete sich der Import nach der Oberflächensprache; wer englisch eingestellt hatte, legte englische Titel mit deutschem Text an. Seit **v0.87.0** wird die Sprache bewusst gewählt und ist vor dem Lauf sichtbar.
+Die Sprache wird bewusst gewählt und ist vor dem Lauf sichtbar.
 
 Übersetzbare Felder lassen sich im Import auch **je Sprache** ansprechen — `title_de`, `title_fr`, `scopecontent_it`. Damit sind mehrsprachige Titel importierbar, und die Update-Tabelle eines mehrsprachigen Archivs geht verlustfrei hinaus und wieder hinein.
 

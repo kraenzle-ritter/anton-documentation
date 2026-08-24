@@ -3,7 +3,7 @@ Il est possible d'importer dans Anton des données et les fichiers associés (m�
 
 ## Hub d'import `/import`
 
-Depuis la **v0.62.0**, toutes les voies d'import sont regroupées à une seule adresse : `/import` (dans le menu sous **Import / Export → Import**). La page comporte quatre onglets :
+Toutes les voies d'import sont regroupées à une seule adresse : `/import` (dans le menu sous **Import / Export → Import**). La page comporte quatre onglets :
 
 | Onglet | Contenu |
 |---|---|
@@ -27,7 +27,7 @@ On peut ainsi voir avant l'import si le SIP est pertinent, si le vocabulaire du 
 
 ### Progression en direct
 
-Depuis la v0.62.0, tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'**exécution dans le journal des imports**.
+Tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'**exécution dans le journal des imports**.
 
 Cela vaut pour toutes les voies — Excel, SIP, répertoire et finalisation de la boîte d'entrée.
 
@@ -39,17 +39,18 @@ Chaque import (quelle que soit la voie) reçoit une cote `IMPORT-{aaaa}-{NNN}` e
 - la somme de contrôle MD5
 - le moment de l'import
 - la voie d'import (Excel / SIP / répertoire / agate)
-- les **réglages utilisés**, depuis la v0.87.0 (voir ci-dessous)
+- les **réglages utilisés** (voir ci-dessous)
 - le résultat, et le message en cas d'échec
 
-!!! info "Nouveau depuis la v0.88.0"
-    Jusqu'à la v0.87.x, chaque import créait en plus un accusé sous forme d'unité de description dans les archives d'accroissement, numéroté `AKZ {année}/{N}`. Les archives d'accroissement sont de nouveau réservées aux véritables accroissements — arrivés physiquement, pas encore décrits — et leurs cotes ne sont plus consommées par des imports. Les accusés existants ont été déplacés dans le journal avec tout ce qu'ils portaient.
+<!-- v0.88.0 : accusés dans les archives d'accroissement supprimés, les existants migrés dans le journal -->
+!!! info "Pas d'accusé dans les archives d'accroissement"
+    Un import ne crée pas d'unité de description en guise d'accusé. Les archives d'accroissement restent réservées aux véritables accroissements — arrivés physiquement, pas encore décrits — et leurs cotes ne sont pas consommées par des imports.
 
 La cote est attribuée au démarrage. Une exécution échouée la conserve donc et reste dans le journal avec son erreur — un versement échoué doit rester distinguable d'un versement qui n'a jamais eu lieu.
 
-### Journal des imports
+### Journal des imports {#import-protokoll}
 
-Sous **`/import/audit`** se trouve la liste de toutes les exécutions d'import : cote, fichier source, moment, nombre de notices créées et langue de contenu utilisée. Depuis la **v0.87.0**, il s'agit d'un tableau Anton ordinaire — triable, avec une longueur de page paramétrable, et les colonnes peuvent être adaptées sous *Admin → Formulaires* comme pour n'importe quelle autre liste.
+Sous **`/import/audit`** se trouve la liste de toutes les exécutions d'import : cote, fichier source, moment, nombre de notices créées et langue de contenu utilisée. Il s'agit d'un tableau Anton ordinaire — triable, avec une longueur de page paramétrable, et les colonnes peuvent être adaptées sous *Admin → Formulaires* comme pour n'importe quelle autre liste.
 
 Les exécutions réussies sont affichées par défaut ; un filtre révèle celles qui ont échoué ou été interrompues. Rien n'est jamais supprimé.
 
@@ -64,10 +65,11 @@ Il faut d'abord créer un fichier Excel selon les prescriptions ci-dessous. Celu
 
 ## Langue de contenu de l'import
 
-Les champs traduisibles — titres, champs de texte, mots-clés, acteur·trice·s, lieux et lieux de conservation nouvellement créés — ont besoin d'une langue. Depuis la **v0.87.0**, il s'agit d'une décision délibérée, visible avant l'exécution.
+Les champs traduisibles — titres, champs de texte, mots-clés, acteur·trice·s, lieux et lieux de conservation nouvellement créés — ont besoin d'une langue. Il s'agit d'une décision délibérée, visible avant l'exécution.
 
-!!! warning "Changement de comportement"
-    Jusqu'à la v0.86.x, Anton suivait la **langue de l'interface**. Qui avait l'interface en anglais et chargeait un tableau créait pour chaque notice une traduction *anglaise* du titre — contenant le texte allemand inchangé. La notice paraissait correcte en anglais et n'avait plus de titre en allemand. À partir de la v0.87.0, la langue de l'interface ne joue plus aucun rôle.
+<!-- v0.87.0 : langue de contenu explicite ; auparavant l'import suivait la langue de l'interface -->
+!!! note "La langue de l'interface ne joue aucun rôle"
+    La langue affichée par l'interface n'a aucune influence sur l'import. Seule compte la langue de contenu de l'exécution.
 
 La langue de contenu est déterminée dans cet ordre — la première valeur définie l'emporte :
 
@@ -75,7 +77,7 @@ La langue de contenu est déterminée dans cet ordre — la première valeur dé
 2. le réglage d'archive `import_options.locale`
 3. la première langue de `locales` — la langue principale du service
 
-Avant le démarrage, la page d'inspection indique la langue en vigueur **et sa provenance** («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir [Journal des imports](#journal-des-imports)).
+Avant le démarrage, la page d'inspection indique la langue en vigueur **et sa provenance** («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir [Journal des imports](#import-protokoll)).
 
 Une colonne comportant un code de langue (`title_fr`) l'emporte sur ce choix pour son propre champ — voir [titel](#titel-title).
 
@@ -151,7 +153,7 @@ Le titre est un **champ traduisible**. La langue dans laquelle il est écrit est
 | `titel` ou `title` | la langue de contenu de l'exécution |
 | `title_de`, `title_fr`, `title_it`, `title_en` | exactement la langue indiquée |
 
-Depuis la **v0.87.0**, des titres multilingues peuvent donc être importés : une colonne par langue. Les deux formes peuvent coexister ; la colonne comportant un code de langue est l'indication la plus précise et l'emporte, et la page d'inspection le signale.
+Des titres multilingues peuvent donc être importés : une colonne par langue. Les deux formes peuvent coexister ; la colonne comportant un code de langue est l'indication la plus précise et l'emporte, et la page d'inspection le signale.
 
 Il en va de même pour les **champs de texte** : `scopecontent` écrit dans la langue de contenu, `scopecontent_fr` spécifiquement en français, sans toucher aux autres langues du même champ.
 
@@ -195,8 +197,7 @@ Plusieurs colonnes n'acceptent que des valeurs définies dans le service :
 `verzeichnungsstufe`, `objekttyp`, `schutzfrist`, `status_of_description`,
 `detail_of_description` et `vacat`.
 
-Depuis la **v0.87.0**, elles acceptent toutes **trois formes**, de manière
-équivalente (`vacat` déjà depuis la v0.86.4) :
+Elles acceptent toutes **trois formes**, de manière équivalente :
 
 | Forme | Exemple |
 |---|---|
@@ -221,8 +222,8 @@ une désignation ressemble par hasard à un nombre, la désignation l'emporte.
 
 #### Consulter toutes les listes de valeurs
 
-Depuis la **v0.87.0**, une vue d'ensemble de toutes les listes de valeurs est
-disponible sous **Import de tableau → Listes de valeurs** (`/valuelists`) :
+Une vue d'ensemble de toutes les listes de valeurs est disponible sous
+**Import de tableau → Listes de valeurs** (`/valuelists`) :
 pour chaque entrée la désignation, le nom interne et l'ID, ainsi que la colonne
 d'import à laquelle la liste appartient. Un champ de recherche filtre toutes
 les listes simultanément.
@@ -281,9 +282,6 @@ Comme pour le lieu de conservation, deux colonnes : **`formset`** (également : 
 
 Le tableau de mise à jour téléchargé comporte la colonne `formset` et écrit le **nom**. Une cellule vide laisse le jeu de formulaires inchangé.
 
-!!! note "Avant la v0.86, la colonne était silencieusement écartée"
-    Les versions antérieures ne connaissaient pas `formset` : la colonne était signalée comme inconnue puis ignorée sans conséquence, et l'exécution annonçait un succès. Qui a défini le jeu de formulaires par tableau et s'étonne que rien ne se soit produit — voilà la raison.
-
 ### vacat
 
 Indique si l'unité de description est un espace réservé (une lacune dans la
@@ -293,19 +291,9 @@ La colonne porte en interne des identifiants de termes. Sont acceptés la
 désignation (`vacat`), l'ID (`56` pour vacat, `57` pour non vacat) et — issus
 de tableaux plus anciens — `1` et `0`.
 
-Depuis la **v0.87.0**, ce qui est **exporté** est la désignation : `vacat` pour
-un espace réservé, sinon une cellule vide. Auparavant figurait là le numéro
-interne, qui ne signifiait rien dans une colonne dont le nom ne comporte pas
-`_id` et ressemblait à une valeur modifiée par erreur. Les tableaux plus
-anciens comportant `56`/`57` peuvent continuer d'être utilisés sans
-modification.
-
-!!! warning "Avant la v0.86.4"
-    Jusque-là, le tableau de mise à jour exportait le numéro interne, mais le
-    contrôle n'admettait que `0` et `1`. Un tableau de mise à jour non modifié
-    n'était donc pas chargeable, et le message nommait une valeur que personne
-    n'avait saisie. Si vous tombez sur une version plus ancienne : désélectionnez
-    la colonne `vacat` dans la boîte de dialogue de téléchargement.
+Ce qui est **exporté** est la désignation : `vacat` pour un espace réservé,
+sinon une cellule vide. Les tableaux plus anciens comportant `56`/`57` peuvent
+continuer d'être utilisés sans modification.
 
 
 ### bilder (media)
@@ -389,7 +377,7 @@ Les autres champs sont des champs de texte libre ::
 !!! warning "Fonction expérimentale"
     La mise à jour des données est signalée comme **expérimentale** (badge dans l'onglet et sur la page de téléversement). Elle modifie directement des notices existantes. Anton crée donc **automatiquement une sauvegarde de la base de données avant chaque mise à jour** (voir ci-dessous) ; contrôlez néanmoins le résultat par échantillonnage.
 
-Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre **«&nbsp;Update&nbsp;»** existe à cet effet sous **Import de tableau** depuis la **v0.81.2** (après *Métadonnées* et *Médias*). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec **«&nbsp;Détails&nbsp;»**. Le fichier est contrôlé directement en mode mise à jour, et le bouton **«&nbsp;Charger comme mise à jour&nbsp;»** apparaît.
+Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre **«&nbsp;Update&nbsp;»** existe à cet effet sous **Import de tableau** (après *Métadonnées* et *Médias*). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec **«&nbsp;Détails&nbsp;»**. Le fichier est contrôlé directement en mode mise à jour, et le bouton **«&nbsp;Charger comme mise à jour&nbsp;»** apparaît.
 
 Comme l'onglet *Update* contrôle le fichier exclusivement en tant que mise à jour, un tableau de mise à jour pur (uniquement `id` + les colonnes à modifier, sans `parent`) n'exige aucun détour : la colonne `parent`, nécessaire à la création, n'est pas requise ici. L'onglet *Métadonnées* régulier reste inchangé pour la création.
 
@@ -420,7 +408,7 @@ Pour ne pas devoir composer une mise à jour à la main, la **liste de résultat
 Le fichier ne contient que des colonnes qu'une mise à jour est autorisée à écrire — `id`, les colonnes de champs, les langues, le lieu de conservation (`location_id`), les mots-clés / acteur·trice·s / lieux (sous forme d'ID) et les colonnes de champs de texte `note.*`. Ne sont délibérément **pas** inclus `parent` ni les colonnes d'événement, qui bloqueraient la mise à jour. La colonne `identifier` ne sert qu'à l'orientation : la mise à jour trouve les notices par l'`id`, et les modifications de la cote restent sans effet.
 
 !!! tip "Services multilingues : une colonne de titre par langue"
-    Si le service tient plusieurs langues de contenu, le tableau de mise à jour contient depuis la **v0.87.0**, au lieu de `titel`, une colonne `title_de`, `title_fr` etc. Ce n'est qu'ainsi que l'aller-retour est sans perte : avec une unique colonne de titre, la langue de l'exécution devrait décider, au chargement, vers quel champ la valeur retourne — et un titre français aboutirait dans le champ allemand.
+    Si le service tient plusieurs langues de contenu, le tableau de mise à jour contient, au lieu de `titel`, une colonne `title_de`, `title_fr` etc. Ce n'est qu'ainsi que l'aller-retour est sans perte : avec une unique colonne de titre, la langue de l'exécution devrait décider, au chargement, vers quel champ la valeur retourne — et un titre français aboutirait dans le champ allemand.
 
     Les services monolingues conservent la colonne habituelle `titel` ; il n'y a rien à distinguer. Les tableaux plus anciens comportant `titel` restent chargeables en toute hypothèse.
 
@@ -435,14 +423,6 @@ Le fichier ne contient que des colonnes qu'une mise à jour est autorisée à é
     Le tableau de mise à jour téléchargé utilise `location_id`. Qui préfère travailler avec des désignations renomme la colonne en `location` ; les deux formes y sont acceptées. Une désignation doit être écrite exactement comme dans la gestion des lieux de conservation, majuscules et minuscules comprises — l'ID est donc la voie sûre.
 
     Une **cellule vide laisse le lieu de conservation inchangé** — pour un déménagement, ne modifier donc que les lignes réellement concernées. Un lieu de conservation qui n'existe pas encore doit être créé au préalable sous *Admin → Lieux de conservation* ; sinon l'inspection le signale comme inconnu et la mise à jour ne s'exécute pas.
-
-!!! warning "Avant la v0.87.0, le bouton ne téléchargeait rien"
-    Le bouton de téléchargement de la boîte de dialogue des colonnes fermait la
-    boîte de dialogue, mais interrompait dans le même mouvement le transfert —
-    sans message d'erreur. On avait l'impression que quelque chose s'était
-    produit ; rien n'arrivait dans le dossier de téléchargement. La v0.86.4 a
-    corrigé une partie du problème, mais le bouton restait sans effet ; ce n'est
-    que depuis la v0.87.0 qu'il s'agit d'un véritable téléchargement.
 
 Au clic s'ouvre une boîte de dialogue permettant de **sélectionner les colonnes**. C'est plus qu'une commodité : ce qui ne figure pas dans le fichier, une mise à jour ne peut pas non plus l'écrire. Qui veut seulement corriger un titre isolé sélectionne `id` et `titel` — rien d'autre ne peut alors être endommagé au chargement. `id` est toujours inclus et ne peut pas être désélectionné.
 

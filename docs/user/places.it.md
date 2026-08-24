@@ -74,10 +74,6 @@ Se si tratta di eliminare un doppione, l'**unione** è la via preferibile
 all'eliminazione: i collegamenti migrano così sulla scheda che rimane invece di
 andare perduti (vedi sotto).
 
-!!! note "Diverso fino alla v0.82.0"
-    Fino ad allora un luogo veniva eliminato senza controllo e i suoi
-    collegamenti alle unità di descrizione sparivano silenziosamente con esso.
-
 ## Unire i doppioni
 
 Due schede riferite allo stesso luogo possono essere unite. Eventi, link ai dati

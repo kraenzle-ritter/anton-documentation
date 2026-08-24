@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **16. August 2026** ab (Anton v0.87). Sie wird
+    Diese Matrix bildet den Stand vom **24. August 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -165,13 +165,13 @@ Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
 lässt, und lässt sich **nicht** wieder einspielen. Die *Update-Tabelle* ist das
 Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf, und
 lässt Hierarchie (`parent`) und Ereignisse weg, weil diese beim Zurückspielen
-blockiert würden. Der Standort ist seit v0.86 enthalten: er wird beim Update
+blockiert würden. Der Standort ist enthalten: er wird beim Update
 geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
 Massen-Update. Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.
 
-Seit **v0.87** führt die Update-Tabelle eines **mehrsprachigen** Archivs den Titel
+Die Update-Tabelle eines **mehrsprachigen** Archivs führt den Titel
 in je einer Spalte pro Inhaltssprache (`title_de`, `title_fr` …) statt in einer
 einzigen. Damit ist der Round-Trip auch mehrsprachig verlustfrei: Mit einer
 Spalte müsste beim Zurückspielen die Sprache des Laufs entscheiden, wohin der
@@ -199,12 +199,12 @@ Termselect-Werte, Formularsatz und die Wiederanbindung der Medien. Vor jedem
 Schreibvorgang wird das ganze Paket validiert; schlägt es fehl, wird
 zurückgerollt.
 
-Auch Akteur:innen, Orte und Schlagwörter tragen seit v0.79 eine portable UUID — ein
+Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
 
 !!! warning "Kommentare gehen beim Round-Trip verloren"
     «Verlustfrei» bezieht sich auf die Erschliessung. Interne
-    [Kommentare](comments.md) sind ab v0.86 davon ausgenommen: Sie werden in
+    [Kommentare](comments.md) sind davon ausgenommen: Sie werden in
     einer eigenen Tabelle geführt, die kein Exporter kennt — auch der native
     nicht —, damit sie nicht versehentlich in eine Publikation geraten. Ein
     Export-Import-Zyklus lässt sie zurück.

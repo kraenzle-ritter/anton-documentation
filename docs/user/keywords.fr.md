@@ -65,9 +65,3 @@ unité de description**. Dans le cas contraire, Anton refuse la suppression et e
 indique le motif. Les unités concernées sont présentées sous
 «&nbsp;apparaît dans&nbsp;» sur la page de détail ; les attributions doivent y
 être retirées au préalable.
-
-!!! note "Différent jusqu'à la v0.82.0"
-    Jusque-là, un mot-clé utilisé était supprimé — et avec lui ses attributions :
-    Anton dissolvait d'abord tous les liens, puis supprimait le terme. Le travail
-    de description qui se trouvait derrière disparaissait ainsi en une seule
-    opération, sans demande de confirmation.

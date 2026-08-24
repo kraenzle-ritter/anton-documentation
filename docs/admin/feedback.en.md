@@ -1,11 +1,10 @@
 # Feedback form
 
-Since **v0.55.0**, admins and superusers can send feedback to the development
-team directly from within Anton. Every message automatically ends up as an issue
+Admins and superusers can send feedback to the development team directly from
+within Anton. Every message automatically ends up as an issue
 in Anton's GitHub repository, together with technical context.
 
-Since **v0.58.0** the form runs on the same upload pipeline as Anton's other
-input masks (with drag and drop / Cmd-V for screenshots).
+The form runs on the same upload pipeline as Anton's other input masks (with drag and drop / Cmd-V for screenshots).
 
 ## How it is used
 
@@ -23,8 +22,7 @@ After submission, Anton creates a GitHub issue in the
 The issue contains:
 
 - title and description from the form
-- the email address of the sending user (since v0.58.0; previously a manual SSH
-  lookup was needed)
+- the email address of the sending user
 - the path called in Anton
 - the Anton version (tag)
 - the tenant slug
@@ -48,8 +46,8 @@ Additionally, per Anton installation **(env, not per tenant)**:
 
 ## Screenshot configuration
 
-Since v0.58.0, the upload constraints are configurable per tenant in the
-database, without a code change:
+The upload constraints are configurable per tenant in the database, without a
+code change:
 
 - **Permitted file types** (default: `image/png`, `image/jpeg`, `image/webp`)
 - **Maximum number** per feedback entry
@@ -61,9 +59,6 @@ now runs on the same database mechanism as well — the old
 
 ## Known peculiarities
 
-- **The Windows Snipping Tool** triggered two identical images per issue before
-  v0.58.0 (double paste). Since v0.58.0 the form responds to paste events with
-  only one upload.
 - **Attachments on GitHub** — all images are uploaded directly into the issue
   (not linked externally), so that they are still accessible years later.
 

@@ -1,8 +1,8 @@
 # DIMAG-Upload-Status
 
 Für Archive mit DIMAG-Anbindung (ZH-Kanton-Gemeinden wie Opfikon,
-Lindau, Dürnten) zeigt Anton seit **v0.65.0** den Übertragungs-Status
-jeder Mediendatei sichtbar in der UI — und meldet strukturelle Fehler
+Lindau, Dürnten) zeigt Anton den Übertragungs-Status jeder Mediendatei
+sichtbar in der UI — und meldet strukturelle Fehler
 sofort per E-Mail an die Administration.
 
 Hintergrund: Vorher konnte es passieren, dass eine Datei lokal
@@ -72,8 +72,8 @@ das Feedback-Modul verbunden ist).
 
 ## Daten-Modell: `media_events`
 
-Status-Events werden seit v0.65.0 in einer eigenen Tabelle
-`media_events` gespeichert (append-only). Schema:
+Status-Events werden in einer eigenen Tabelle `media_events` gespeichert
+(append-only). Schema:
 
 | Spalte | Inhalt |
 |---|---|
@@ -109,8 +109,8 @@ Datei `original_location='inge'` hat aber noch keine Events.
 
 ## SIP-Status-Tab
 
-Ergänzend zum Per-File-Status gibt es seit v0.65.0/v0.66.0 unter
-**SIP Import → Status** einen Admin-Tab `/sip/status` (nur bei
+Ergänzend zum Per-File-Status gibt es unter **SIP Import → Status**
+einen Admin-Tab `/sip/status` (nur bei
 `cloud === 'inge'`), der die aktuelle Inge-URL und das Token-Setup
 anzeigt und einen „Run infrastructure check now"-Button bietet. Derselbe
 Check steht als Befehl `inge:check-infrastructure` bereit.

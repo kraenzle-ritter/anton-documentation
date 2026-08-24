@@ -49,7 +49,7 @@ Definisce quali lingue sono disponibili per i campi traducibili.
 
 Un'importazione possiede una propria **lingua dei contenuti**, indipendente dalla lingua dell'interfaccia. Essa determina in quale lingua vengono scritti titoli, campi di testo e dati di autorità di nuova creazione — e in quale lingua Anton cerca attori, attrici e luoghi esistenti.
 
-Fino alla v0.86.x l'importazione seguiva la lingua dell'interfaccia; chi aveva impostato l'inglese creava titoli inglesi con testo tedesco. Dalla **v0.87.0** la lingua viene scelta consapevolmente ed è visibile prima dell'esecuzione.
+La lingua viene scelta consapevolmente ed è visibile prima dell'esecuzione.
 
 I campi traducibili possono essere indirizzati nell'importazione anche **per lingua** — `title_de`, `title_fr`, `scopecontent_it`. In questo modo si possono importare titoli multilingue e la tabella di aggiornamento di un archivio multilingue esce e rientra senza perdite.
 

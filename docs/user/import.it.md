@@ -3,7 +3,7 @@
 
 ## Hub di importazione `/import`
 
-Dalla **v0.62.0** tutte le vie di importazione sono raccolte a un unico indirizzo: `/import` (nel menu sotto **Import / Export → Import**). La pagina ha quattro schede:
+Tutte le vie di importazione sono raccolte a un unico indirizzo: `/import` (nel menu sotto **Import / Export → Import**). La pagina ha quattro schede:
 
 | Scheda | Contenuto |
 |---|---|
@@ -27,7 +27,7 @@ Così, prima dell'importazione, si può vedere se il SIP è sensato, se il vocab
 
 ### Avanzamento in tempo reale
 
-Dalla v0.62.0 tutte le importazioni vengono eseguite **in modo asincrono in background**. Dopo il clic su «Importa» si arriva su una pagina di avanzamento che aggiorna lo stato corrente ogni pochi secondi: fase (preparazione / creazione delle schede / lettura dei media), righe elaborate e, alla fine, un link alla **segnatura di accessione** creata nell'archivio.
+Tutte le importazioni vengono eseguite **in modo asincrono in background**. Dopo il clic su «Importa» si arriva su una pagina di avanzamento che aggiorna lo stato corrente ogni pochi secondi: fase (preparazione / creazione delle schede / lettura dei media), righe elaborate e, alla fine, un link all'**esecuzione nel protocollo delle importazioni**.
 
 Ciò vale per tutte le vie — Excel, SIP, directory e finalizzazione della casella d'entrata.
 
@@ -39,17 +39,18 @@ Ogni importazione (indipendentemente dalla via) riceve una segnatura `IMPORT-{aa
 - la somma di controllo MD5
 - il momento dell'importazione
 - la via di importazione (Excel / SIP / directory / agate)
-- le **impostazioni utilizzate**, dalla v0.87.0 (vedi sotto)
+- le **impostazioni utilizzate** (vedi sotto)
 - l'esito e, in caso di fallimento, il messaggio
 
-!!! info "Novità dalla v0.88.0"
-    Fino alla v0.87.x ogni importazione creava inoltre una ricevuta come unità di descrizione nell'archivio delle accessioni, con il numero `AKZ {anno}/{N}`. L'archivio delle accessioni è di nuovo riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono più consumate dalle importazioni. Le ricevute esistenti sono state spostate nel protocollo con tutto ciò che portavano.
+<!-- v0.88.0: ricevute nell'archivio delle accessioni abolite, quelle esistenti migrate nel protocollo -->
+!!! info "Nessuna ricevuta nell'archivio delle accessioni"
+    Un'importazione non crea un'unità di descrizione come ricevuta. L'archivio delle accessioni resta riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono consumate dalle importazioni.
 
 La segnatura viene assegnata all'avvio. Un'esecuzione fallita la mantiene quindi e resta nel protocollo con il suo errore — una consegna fallita deve restare distinguibile da una che non è mai avvenuta.
 
-### Protocollo delle importazioni
+### Protocollo delle importazioni {#import-protokoll}
 
-Sotto **`/import/audit`** si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Dalla **v0.87.0** si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in *Admin → Formulari* come per qualsiasi altro elenco.
+Sotto **`/import/audit`** si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in *Admin → Formulari* come per qualsiasi altro elenco.
 
 Di norma vengono mostrate le esecuzioni riuscite; un filtro rivela quelle fallite o interrotte. Nulla viene mai cancellato.
 
@@ -64,10 +65,11 @@ Occorre anzitutto creare un file Excel secondo le indicazioni seguenti. Questo v
 
 ## Lingua dei contenuti dell'importazione
 
-I campi traducibili — titoli, campi di testo, parole chiave, attori e attrici, luoghi e collocazioni di nuova creazione — necessitano di una lingua. Dalla **v0.87.0** si tratta di una decisione consapevole, visibile prima dell'esecuzione.
+I campi traducibili — titoli, campi di testo, parole chiave, attori e attrici, luoghi e collocazioni di nuova creazione — necessitano di una lingua. Si tratta di una decisione consapevole, visibile prima dell'esecuzione.
 
-!!! warning "Modifica di comportamento"
-    Fino alla v0.86.x Anton seguiva la **lingua dell'interfaccia**. Chi aveva l'interfaccia in inglese e caricava una tabella creava per ogni scheda una traduzione *inglese* del titolo — contenente il testo tedesco invariato. La scheda appariva corretta in inglese e in tedesco non aveva più titolo. Dalla v0.87.0 la lingua dell'interfaccia non ha più alcun ruolo.
+<!-- v0.87.0: lingua dei contenuti esplicita; prima l'importazione seguiva la lingua dell'interfaccia -->
+!!! note "La lingua dell'interfaccia non ha alcun ruolo"
+    La lingua mostrata dall'interfaccia non ha alcuna influenza sull'importazione. Conta unicamente la lingua dei contenuti dell'esecuzione.
 
 La lingua dei contenuti viene determinata in questo ordine — vince il primo valore impostato:
 
@@ -75,7 +77,7 @@ La lingua dei contenuti viene determinata in questo ordine — vince il primo va
 2. l'impostazione d'archivio `import_options.locale`
 3. la prima lingua di `locales` — la lingua principale dell'archivio
 
-Prima dell'avvio la pagina di ispezione indica la lingua in vigore **e da dove proviene** («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi [Protocollo delle importazioni](#protocollo-delle-importazioni)).
+Prima dell'avvio la pagina di ispezione indica la lingua in vigore **e da dove proviene** («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi [Protocollo delle importazioni](#import-protokoll)).
 
 Una colonna con sigla di lingua (`title_fr`) prevale su questa scelta per il proprio campo — vedi [titel](#titel-title).
 
@@ -151,7 +153,7 @@ Il titolo è un **campo traducibile**. In quale lingua venga scritto lo decide l
 | `titel` oppure `title` | la lingua dei contenuti dell'esecuzione |
 | `title_de`, `title_fr`, `title_it`, `title_en` | esattamente la lingua indicata |
 
-Dalla **v0.87.0** si possono quindi importare titoli multilingue: una colonna per lingua. Entrambe le forme possono coesistere; la colonna con sigla di lingua è l'indicazione più precisa e prevale, e la pagina di ispezione lo segnala.
+Si possono quindi importare titoli multilingue: una colonna per lingua. Entrambe le forme possono coesistere; la colonna con sigla di lingua è l'indicazione più precisa e prevale, e la pagina di ispezione lo segnala.
 
 Lo stesso vale per i **campi di testo**: `scopecontent` scrive nella lingua dei contenuti, `scopecontent_fr` specificamente in francese, senza toccare le altre lingue dello stesso campo.
 
@@ -195,8 +197,7 @@ Diverse colonne accettano solo valori definiti nell'archivio:
 `verzeichnungsstufe`, `objekttyp`, `schutzfrist`, `status_of_description`,
 `detail_of_description` e `vacat`.
 
-Dalla **v0.87.0** le accettano tutte in **tre forme**, equivalenti (`vacat`
-già dalla v0.86.4):
+Le accettano tutte in **tre forme**, equivalenti:
 
 | Forma | Esempio |
 |---|---|
@@ -220,8 +221,8 @@ denominazione somiglia casualmente a un numero, prevale la denominazione.
 
 #### Consultare tutte le liste di valori
 
-Dalla **v0.87.0** in **Importazione tabellare → Liste di valori**
-(`/valuelists`) è disponibile una panoramica di tutte le liste di valori: per
+In **Importazione tabellare → Liste di valori** (`/valuelists`) è
+disponibile una panoramica di tutte le liste di valori: per
 ogni voce denominazione, nome interno e ID, oltre alla colonna di importazione
 a cui la lista appartiene. Un campo di ricerca filtra contemporaneamente tutte
 le liste.
@@ -278,9 +279,6 @@ Come per la collocazione, due colonne: **`formset`** (anche: `formularsatz`) acc
 
 La tabella di aggiornamento scaricata riporta la colonna `formset` e scrive il **nome**. Una cella vuota lascia il set di formulari invariato.
 
-!!! note "Prima della v0.86 la colonna veniva scartata silenziosamente"
-    Le versioni precedenti non conoscevano `formset`: la colonna veniva segnalata come sconosciuta e poi ignorata senza conseguenze, mentre l'esecuzione riportava un successo. Chi ha impostato il set di formulari tramite tabella e si chiede perché non sia accaduto nulla — questo era il motivo.
-
 ### vacat
 
 Indica se l'unità di descrizione è un segnaposto (una lacuna nella numerazione
@@ -290,18 +288,9 @@ La colonna gestisce internamente ID di termini. Vengono accettati la
 denominazione (`vacat`), l'ID (`56` per vacat, `57` per non vacat) e — da
 tabelle più vecchie — `1` e `0`.
 
-Dalla **v0.87.0** viene **esportata** la denominazione: `vacat` per un
-segnaposto, altrimenti una cella vuota. Prima vi figurava il numero interno,
-che in una colonna senza `_id` nel nome non diceva nulla e sembrava un valore
-modificato per errore. Le tabelle più vecchie con `56`/`57` possono continuare
-a essere utilizzate senza modifiche.
-
-!!! warning "Prima della v0.86.4"
-    Fino ad allora la tabella di aggiornamento esportava il numero interno, ma
-    la verifica ammetteva solo `0` e `1`. Una tabella di aggiornamento non
-    modificata non era quindi caricabile, e il messaggio nominava un valore che
-    nessuno aveva inserito. Chi si imbatte in una versione più vecchia:
-    deselezionare la colonna `vacat` nella finestra di download.
+Viene **esportata** la denominazione: `vacat` per un segnaposto, altrimenti
+una cella vuota. Le tabelle più vecchie con `56`/`57` possono continuare a
+essere utilizzate senza modifiche.
 
 
 ### bilder (media)
@@ -385,7 +374,7 @@ Gli ulteriori campi sono campi di testo libero::
 !!! warning "Funzione sperimentale"
     L'aggiornamento dei dati è contrassegnato come **sperimentale** (badge nella scheda e nella pagina di caricamento). Modifica direttamente schede esistenti. Anton crea perciò **automaticamente un backup della banca dati prima di ogni aggiornamento** (vedi sotto); verificare comunque il risultato a campione.
 
-Oltre alla creazione di nuove schede, le unità di descrizione esistenti possono essere aggiornate anche direttamente tramite browser. A questo scopo, sotto **Importazione tabellare** esiste dalla **v0.81.2** una scheda propria **«Update»** (dopo *Metadati* e *Media*). Lì si carica la tabella — i file di aggiornamento hanno un elenco proprio, separato dall'importazione normale — e si apre con **«Dettagli»**. Il file viene verificato direttamente in modalità aggiornamento e compare il pulsante **«Carica come aggiornamento»**.
+Oltre alla creazione di nuove schede, le unità di descrizione esistenti possono essere aggiornate anche direttamente tramite browser. A questo scopo, sotto **Importazione tabellare** esiste una scheda propria **«Update»** (dopo *Metadati* e *Media*). Lì si carica la tabella — i file di aggiornamento hanno un elenco proprio, separato dall'importazione normale — e si apre con **«Dettagli»**. Il file viene verificato direttamente in modalità aggiornamento e compare il pulsante **«Carica come aggiornamento»**.
 
 Poiché la scheda *Update* verifica il file esclusivamente come aggiornamento, una tabella di solo aggiornamento (solo `id` + le colonne da modificare, senza `parent`) non richiede scorciatoie: la colonna `parent`, necessaria alla creazione, qui non è richiesta. La scheda *Metadati* regolare resta invariata per la creazione.
 
@@ -416,7 +405,7 @@ Perché un aggiornamento non debba essere composto a mano, l'**elenco dei risult
 Il file contiene esclusivamente colonne che un aggiornamento è autorizzato a scrivere — `id`, le colonne dei campi, le lingue, la collocazione (`location_id`), parole chiave / attori / luoghi (come ID) e le colonne dei campi di testo `note.*`. Non sono deliberatamente **compresi** `parent` e le colonne di evento, che bloccherebbero l'aggiornamento. La colonna `identifier` serve solo all'orientamento: l'aggiornamento trova le schede tramite l'`id`, e le modifiche alla segnatura restano senza effetto.
 
 !!! tip "Archivi multilingue: una colonna di titolo per lingua"
-    Se l'archivio gestisce più lingue dei contenuti, dalla **v0.87.0** la tabella di aggiornamento contiene, al posto di `titel`, una colonna `title_de`, `title_fr` ecc. Solo così il percorso di uscita e rientro è senza perdite: con un'unica colonna di titolo, al caricamento dovrebbe essere la lingua dell'esecuzione a decidere dove torna il valore — e un titolo francese finirebbe nel campo tedesco.
+    Se l'archivio gestisce più lingue dei contenuti, la tabella di aggiornamento contiene, al posto di `titel`, una colonna `title_de`, `title_fr` ecc. Solo così il percorso di uscita e rientro è senza perdite: con un'unica colonna di titolo, al caricamento dovrebbe essere la lingua dell'esecuzione a decidere dove torna il valore — e un titolo francese finirebbe nel campo tedesco.
 
     Gli archivi monolingue mantengono la consueta colonna `titel`; lì non c'è nulla da distinguere. Le tabelle più vecchie con `titel` restano in ogni caso caricabili.
 
@@ -431,14 +420,6 @@ Il file contiene esclusivamente colonne che un aggiornamento è autorizzato a sc
     La tabella di aggiornamento scaricata utilizza `location_id`. Chi preferisce lavorare con le denominazioni rinomina la colonna in `location`; lì vengono accettate entrambe le forme. Una denominazione deve essere scritta esattamente come nella gestione delle collocazioni, comprese maiuscole e minuscole — l'ID è perciò la via sicura.
 
     Una **cella vuota lascia la collocazione invariata** — per uno spostamento occorre quindi modificare solo le righe che effettivamente cambiano posto. Una collocazione non ancora esistente va creata in precedenza in *Admin → Collocazioni*; altrimenti l'ispezione la segnala come sconosciuta e l'aggiornamento non viene eseguito.
-
-!!! warning "Prima della v0.87.0 il pulsante non scaricava nulla"
-    Il pulsante di download nella finestra delle colonne chiudeva la finestra,
-    ma nello stesso movimento interrompeva il trasferimento — senza messaggio
-    d'errore. Sembrava che qualcosa fosse accaduto; nella cartella dei download
-    non arrivava nulla. La v0.86.4 ha corretto una parte del problema, ma il
-    pulsante restava senza effetto; solo dalla v0.87.0 si tratta di un vero
-    download.
 
 Al clic si apre una finestra in cui si possono **selezionare le colonne**. È più di una comodità: ciò che non figura nel file, un aggiornamento non può nemmeno scriverlo. Chi vuole correggere solo un singolo titolo seleziona `id` e `titel` — così al caricamento nient'altro può subire danni. `id` è sempre incluso e non può essere deselezionato.
 

@@ -73,10 +73,6 @@ If the aim is to get rid of a duplicate, **merging** is the better route than
 deletion: the links then move to the remaining record instead of being lost (see
 below).
 
-!!! note "Different up to v0.82.0"
-    Until then, a place was deleted without any check, and its links to the
-    units of description silently disappeared with it.
-
 ## Merging duplicates
 
 Two records for the same place can be merged. Events, authority links and the

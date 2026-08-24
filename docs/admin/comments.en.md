@@ -44,8 +44,8 @@ An unknown value (a typo) counts as empty, that is, as switched off. Anton does
 not guess in the more permissive direction here.
 
 !!! note "The field is already in the form"
-    On updating to v0.86, Anton creates the «Comments» field and places it at
-    the end of your **internal detail form**. As long as the setting is empty it
+    Anton creates the «Comments» field and places it at the end of your
+    **internal detail form**. As long as the setting is empty it
     draws nothing — so you see nothing until you want to.
 
     Where the area sits remains up to you: in the [form editor](forms.md) it can
