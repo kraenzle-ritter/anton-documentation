@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
-# Pre-push-Hook: hält die generierte Console-Command-Referenz konsistent.
+# Pre-push-Hook: hält zwei Dinge konsistent, die man sonst erst in der CI merkt.
 #
-# Lokal (DDEV erreichbar) prüft der Generator die echte Drift — hat Anton
-# Befehle geändert und die Referenz ist veraltet, bricht der Push ab. Ohne
-# DDEV fällt er auf eine Strukturprüfung zurück und blockiert nicht.
+# 1. Die generierte Console-Command-Referenz.
+#    Lokal (DDEV erreichbar) prüft der Generator die echte Drift — hat Anton
+#    Befehle geändert und die Referenz ist veraltet, bricht der Push ab. Ohne
+#    DDEV fällt er auf eine Strukturprüfung zurück und blockiert nicht.
+#
+# 2. Anker über Sprachgrenzen.
+#    Ein Link aus dem nur deutsch/englisch gepflegten Admin-Bereich in den
+#    viersprachigen User-Bereich bricht im Fallback-Build für fr/it, wenn die
+#    Zielüberschrift dort keinen expliziten Anker trägt. MkDocs meldet das nur
+#    als INFO — auch unter --strict —, darum der eigene Check. Er fährt einen
+#    vollen Build und braucht ein paar Sekunden.
+#
+# Beide blockieren nur, wenn ihr Werkzeug vorhanden ist: wer ohne Build-Umgebung
+# arbeitet, soll pushen können.
 #
 # Aktivieren (einmalig pro Klon):
 #     git config core.hooksPath .githooks
@@ -13,14 +24,32 @@
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
+
+# --- 1. Command-Referenz ----------------------------------------------------
+
 script="$repo_root/scripts/gen-command-reference.py"
 
-[ -f "$script" ] || exit 0   # Skript fehlt (z.B. alter Branch) — nicht blockieren
+if [ -f "$script" ]; then   # Skript fehlt (z.B. alter Branch) — nicht blockieren
+    if ! python3 "$script" --check; then
+        echo
+        echo "✗ Command-Referenz ist veraltet."
+        echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands*.md"
+        echo "  Umgehen:  git push --no-verify"
+        exit 1
+    fi
+fi
 
-if ! python3 "$script" --check; then
-    echo
-    echo "✗ Command-Referenz ist veraltet."
-    echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands*.md"
-    echo "  Umgehen:  git push --no-verify"
-    exit 1
+# --- 2. Anker über Sprachgrenzen -------------------------------------------
+
+anchors="$repo_root/scripts/check-anchors.py"
+
+if [ -f "$anchors" ] && command -v mkdocs >/dev/null 2>&1; then
+    if ! python3 "$anchors" --quiet; then
+        echo
+        echo "✗ Gebrochene Anker über Sprachgrenzen."
+        echo "  Beheben:  der Zielüberschrift in allen Sprachfassungen denselben"
+        echo "            expliziten Anker geben — siehe TRANSLATING.md"
+        echo "  Umgehen:  git push --no-verify"
+        exit 1
+    fi
 fi

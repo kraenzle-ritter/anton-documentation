@@ -6,6 +6,21 @@ Work in progress...
 
 https://documentation.anton.ch
 
+## Lokal bauen
+
+CI und Arbeitsplatz ziehen aus derselben Liste, damit ein Build, der lokal
+durchläuft, auch in der Pipeline durchläuft:
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve            # Vorschau auf http://127.0.0.1:8000
+mkdocs build --strict   # wie in der CI
+```
+
+Ohne `mkdocs-static-i18n` bricht der Build schon in der Konfigurationsphase ab
+(«The "i18n" plugin is not installed») — die Mehrsprachigkeit hängt daran.
+
 ## Deployment of the github page:
 
 https://www.mkdocs.org/user-guide/deploying-your-docs/
@@ -25,9 +40,15 @@ Dateikonvention, Sprachumfang pro Bereich und das verbindliche Glossar stehen in
 [TRANSLATING.md](TRANSLATING.md):
 
 ```bash
-python3 scripts/check-translations.py           # veraltete Übersetzungen melden
+python3 scripts/check-translations.py           # Drift melden (Zeitstempel + Form)
 python3 scripts/check-translations.py --strict  # Exit 1 bei Drift
+python3 scripts/check-anchors.py                # Anker über Sprachgrenzen prüfen
 ```
+
+Der Übersetzungs-Check läuft in der CI **nicht blockierend** (sonst bräuchte
+jede deutsche Korrektur sofort drei Übersetzungen), der Anker-Check dagegen
+**blockierend**: ein Link ins Leere ist kein Rückstand, sondern ein Fehler, und
+MkDocs meldet ihn nur als INFO — auch unter `--strict`.
 
 ## Console-Command-Referenz
 

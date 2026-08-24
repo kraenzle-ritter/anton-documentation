@@ -1,0 +1,28 @@
+# Build-Abhaengigkeiten der Doku-Site.
+#
+# CI und lokale Arbeitsplaetze ziehen aus derselben Liste, damit ein Build, der
+# lokal durchlaeuft, auch in der Pipeline durchlaeuft:
+#
+#     pip install -r requirements.txt
+#     mkdocs build --strict
+#
+# Die unteren Schranken sind die Versionen, mit denen die Site nachweislich
+# baut. Wer exakt reproduzieren muss (Fehlersuche an einem alten Stand), friert
+# den Stand mit `pip freeze > requirements.lock.txt` ein.
+
+# Theme. Bringt mkdocs selbst und pymdown-extensions als Abhaengigkeit mit.
+mkdocs-material>=9.7.6
+
+# Mehrsprachigkeit: Suffix-Dateien (seite.en.md) und der Fallback auf Deutsch.
+# Ohne dieses Plugin bricht der Build in der Konfigurationsphase ab.
+mkdocs-static-i18n>=1.3.1
+
+# Mermaid-Diagramme in ```mermaid-Bloecken.
+mkdocs-mermaid2-plugin>=1.2.3
+
+# Rendert die OpenAPI-Spezifikation unter docs/api/.
+mkdocs-render-swagger-plugin>=0.1.2
+
+# Wird von mkdocs-material mitgezogen, steht aber hier, weil mkdocs.yml die
+# pymdownx-Extensions direkt konfiguriert.
+pymdown-extensions>=10.0

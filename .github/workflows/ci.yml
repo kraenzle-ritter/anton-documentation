@@ -39,23 +39,27 @@ jobs:
           restore-keys: |
             mkdocs-material-
 
+      # Eine Liste fuer CI und Arbeitsplatz: was hier baut, baut auch lokal.
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install mkdocs-material
-          pip install pymdown-extensions
-          pip install mkdocs-mermaid2-plugin
-          pip install mkdocs-render-swagger-plugin
-          pip install mkdocs-static-i18n
+          pip install -r requirements.txt
 
       - name: Check command reference
         run: python3 scripts/gen-command-reference.py --check
 
-      # Meldet Uebersetzungen, die ihrer deutschen Quelle hinterherhinken.
+      # Meldet Uebersetzungen, die ihrer deutschen Quelle hinterherhinken —
+      # nach Zeitstempel und nach Form (Gliederung, Admonitions, Anker).
       # Bewusst nicht blockierend: sonst braeuchte jede deutsche Korrektur
       # sofort drei Uebersetzungen, sonst laesst sich nichts mehr deployen.
       - name: Report translation drift
         run: python3 scripts/check-translations.py
+
+      # Anders als eine fehlende Uebersetzung ist ein gebrochener Anker ein
+      # Fehler und kein Rueckstand: der Link zeigt ins Leere, und mkdocs meldet
+      # es nur als INFO — auch unter --strict. Darum hier blockierend.
+      - name: Check cross-language anchors
+        run: python3 scripts/check-anchors.py
 
       - name: Build documentation
         run: mkdocs build --verbose

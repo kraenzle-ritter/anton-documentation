@@ -109,9 +109,25 @@ mitgeben, damit er sprachunabhängig stabil bleibt:
 ## Il visualizzatore {#der-viewer}
 ```
 
-So gelöst in `documents.*.md` (`#der-viewer`) und `forms.*.md`
-(`#hilfetexte-zu-feldern`). Nach jedem Übersetzungslauf den Build auf
-«does not contain an anchor» prüfen.
+So gelöst in `documents.*.md` (`#der-viewer`), `forms.*.md`
+(`#hilfetexte-zu-feldern`) und `import.*.md` (`#import-protokoll`).
+
+Am häufigsten trifft es Links aus dem Admin- und Developer-Bereich, den es nur
+auf Deutsch und Englisch gibt: `fallback_to_default` zieht diese Seiten trotzdem
+nach `/fr/` und `/it/`, und von dort zeigt der Link auf die *französische* bzw.
+*italienische* Fassung der Zielseite. Der Anker heisst dort anders — der Link
+bricht in genau den zwei Sprachen, in denen die verweisende Seite gar nicht
+übersetzt ist.
+
+Das prüft ein eigener Check, denn MkDocs meldet es nur als INFO und lässt es
+auch unter `--strict` durch:
+
+```bash
+python3 scripts/check-anchors.py    # Exit 1 bei gebrochenen Ankern
+```
+
+Er läuft in der CI **blockierend** — anders als eine fehlende Übersetzung ist
+ein Link ins Leere kein Rückstand, sondern ein Fehler.
 
 ## Eine bestehende Seite ändern
 
@@ -119,13 +135,31 @@ Wird eine deutsche Seite geändert, sind ihre Übersetzungen veraltet. Der Check
 findet das:
 
 ```bash
-python3 scripts/check-translations.py           # Bericht
-python3 scripts/check-translations.py --strict  # Exit 1 bei Drift
+python3 scripts/check-translations.py             # Bericht
+python3 scripts/check-translations.py --strict    # Exit 1 bei Drift
+python3 scripts/check-translations.py --lang fr   # nur eine Sprache
 ```
 
-Er vergleicht den letzten Commit (bzw. den Working Tree) von Quelle und
-Übersetzung. Er läuft in der CI mit und meldet Drift, ohne den Build zu
-blockieren — sonst bräuchte jede deutsche Korrektur sofort drei Übersetzungen.
+Er prüft zweierlei, weil eine Übersetzung auf zwei Arten driftet:
+
+* **Zeitstempel** — die deutsche Seite ist neuer als ihre Übersetzung.
+  Verglichen wird der letzte Commit, bzw. der Working Tree, damit der Check
+  schon vor dem Commit anschlägt.
+* **Form** — beide wurden angefasst, aber die Übersetzung hat einen Abschnitt
+  weniger, eine Admonition mehr oder einen expliziten Anker der Quelle nicht
+  übernommen. Das fängt den Fall, den der Zeitstempel nicht sieht: eine
+  Übersetzung, die im selben Commit nur halb nachgezogen wurde. Verglichen wird
+  nie der Text, sondern die Gliederung (Folge der Überschriftenebenen), die Zahl
+  der Code-Blöcke, Admonitions und Tabellenzeilen sowie die expliziten Anker.
+  Mit `--no-structure` abschaltbar.
+
+Ein expliziter Anker in der Übersetzung, den die deutsche Seite als
+automatischen Anker führt, gilt als richtig — das ist ja gerade die Lösung von
+oben. Gemeldet wird nur ein Anker, den es auf der Quellseite überhaupt nicht
+gibt.
+
+Der Check läuft in der CI mit und meldet Drift, ohne den Build zu blockieren —
+sonst bräuchte jede deutsche Korrektur sofort drei Übersetzungen.
 
 ## Glossar
 
