@@ -4142,7 +4142,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/protection-periods/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4170,11 +4170,9 @@ calculation elsewhere. Decisive is:</p>
    <strong>only to the record itself</strong> and are not inherited.</li>
 </ol>
 <div class="admonition note">
-<p class="admonition-title">Unified since v0.78</p>
-<p>Before version 0.78, several places calculated the period independently of
-one another, which could lead to discrepancies between catalogue, gallery
-and search. Since then there is exactly one source. After updating, the
-release year is recalculated once for the whole holdings.</p>
+<p class="admonition-title">One source for the period</p>
+<p>Catalogue, gallery and search calculate the period in exactly one place —
+so they cannot drift apart.</p>
 </div>
 <h2 id="records-without-a-date-of-creation">Records without a date of creation<a class="headerlink" href="#records-without-a-date-of-creation" title="Permanent link">&para;</a></h2>
 <p>A type period is counted from the <strong>end</strong> of the period of creation, that is,
@@ -4194,12 +4192,8 @@ does not guess it from the start — an 80-year period from 1933 ends
 differently from one starting in 1965, and only the archive knows which of
 the two values is meant.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Changed: such records used to be displayed</p>
-<p>Until then, Anton calculated from year 0 when the date was missing. A period
-of 80 years therefore expired in the year 81, that is, long ago — the record
-counted as free and was publicly visible even though a period was set. On
-updating, these records disappear from the public view.</p>
+<div class="admonition note">
+<p class="admonition-title">Whom the block affects</p>
 <p>Only records for which someone actually chose a period are affected. Without
 a chosen closure period, a record remains free even without a date of
 creation.</p>

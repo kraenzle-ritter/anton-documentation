@@ -2257,8 +2257,8 @@
 
 
 <h1 id="agate-sip-import">agate-SIP-Import<a class="headerlink" href="#agate-sip-import" title="Permanent link">&para;</a></h1>
-<p>Seit <strong>v0.61.0</strong> kann <a href="https://github.com/kraenzle-ritter/agate">agate</a>
-(das Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) BagIt-
+<p><a href="https://github.com/kraenzle-ritter/agate">agate</a> (das
+Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann BagIt-
 Pakete direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
 prüft es, legt ein Backup an, importiert die Inhalte als
 Verzeichnungseinheiten unter dem gewählten Bestand und gibt agate
@@ -2342,7 +2342,6 @@ kann später von Hand vergeben werden.</p>
 <code>IMPORT-{jjjj}-{NNN}</code>, Dateiname, Prüfsumme, Zeitpunkt, Ergebnis und den
 angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
 auditierbar; ein Akzessions-Archiv braucht es dafür nicht.</p>
-<p>Bis v0.87.x wurde stattdessen ein Beleg im Akzessions-Archiv verbucht.</p>
 <h2 id="konfigurations-checkliste">Konfigurations-Checkliste<a class="headerlink" href="#konfigurations-checkliste" title="Permanent link">&para;</a></h2>
 <p>Damit agate-Imports funktionieren:</p>
 <ol>
@@ -2356,11 +2355,10 @@ auditierbar; ein Akzessions-Archiv braucht es dafür nicht.</p>
 </ol>
 <h2 id="haufige-stolpersteine">Häufige Stolpersteine<a class="headerlink" href="#haufige-stolpersteine" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Wiederholte Uploads mit gleichem Filename</strong> funktionieren seit
-  v0.61.0 — Anton prüft jetzt den Original-Filename, nicht den
-  UUID-suffixed Pfad auf Disk.</li>
-<li><strong>NARA-Kategorie ohne Tenant-Typ</strong> bricht den Import nicht mehr ab
-  (seit v0.61.0). Das <code>object_type</code> bleibt leer.</li>
+<li><strong>Wiederholte Uploads mit gleichem Filename</strong> funktionieren — Anton
+  prüft den Original-Filename, nicht den UUID-suffixed Pfad auf Disk.</li>
+<li><strong>NARA-Kategorie ohne Tenant-Typ</strong> bricht den Import nicht ab. Das
+  <code>object_type</code> bleibt leer.</li>
 <li><strong>Wrapper-Datensatz oben am SIP</strong> bekommt keinen Objekttyp
   aufgedrückt — Hardcoded "Agate SIP" wurde entfernt.</li>
 </ul>

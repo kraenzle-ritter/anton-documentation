@@ -4228,7 +4228,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/ai-cataloging/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4240,7 +4240,7 @@
 
 
 <h1 id="ki-erschliessung">KI-Erschliessung<a class="headerlink" href="#ki-erschliessung" title="Permanent link">&para;</a></h1>
-<p>Anton kann seit <strong>v0.63.0</strong> auf Knopfdruck Vorschläge für Titel,
+<p>Anton kann auf Knopfdruck Vorschläge für Titel,
 Textfelder, Datierung, Akteur:innen, Orte und Schlagwörter generieren — basierend
 auf den angehängten Mediendateien (Bilder, PDFs, Audio-Transkripten,
 Video-Frames) und dem bestehenden Kontext eines Datensatzes.</p>
@@ -4262,8 +4262,8 @@ ansprechbar ist:</p>
 Risiko von Provider-Fehlern. Tenants ohne KI-Vertrag merken nichts.</p>
 <h2 id="der-operator-workflow">Der Operator-Workflow<a class="headerlink" href="#der-operator-workflow" title="Permanent link">&para;</a></h2>
 <p>Beim Bearbeiten eines Datensatzes erscheint oben in der Aktionsleiste
-ein Button <strong>"🤖 KI-Vorschläge generieren"</strong> (seit v0.65.0 direkt neben
-dem Upload-Bereich, sichtbar sobald eine Datei angehängt ist).</p>
+ein Button <strong>"🤖 KI-Vorschläge generieren"</strong> (direkt neben dem
+Upload-Bereich, sichtbar sobald eine Datei angehängt ist).</p>
 <p>Nach Klick:</p>
 <ol>
 <li>Anton lädt die angehängten Medien zum konfigurierten Provider hoch
@@ -4283,7 +4283,7 @@ Mensch entscheidet.</p>
 <ul>
 <li><strong>Bilder</strong> (Fotos, Scans) direkt als Vision-Input</li>
 <li><strong>PDFs</strong> — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
-  (seit v0.65.0 für bessere Qualität bei getippten Dokumenten)</li>
+  (für bessere Qualität bei getippten Dokumenten)</li>
 <li><strong>Audio</strong> — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
   Das Transkript kann optional als Textfeld in den Volltext-Index landen.</li>
 <li><strong>Video</strong> — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit</li>
@@ -4336,7 +4336,7 @@ können mit einem Klick direkt angelegt und verknüpft werden.</p>
 </tr>
 <tr>
 <td><strong>Budget</strong></td>
-<td>Monats-Caps pro Kalendermonat (seit v0.65.0 auch über UI editierbar, vorher nur SQL)</td>
+<td>Monats-Caps pro Kalendermonat, über die Oberfläche editierbar</td>
 </tr>
 <tr>
 <td><strong>Profile</strong></td>
@@ -4348,7 +4348,7 @@ können mit einem Klick direkt angelegt und verknüpft werden.</p>
 </tr>
 </tbody>
 </table>
-<p>Der Audit-Tab seit v0.65.0 zeigt nicht nur "Vorschlag generiert",
+<p>Der Audit-Tab zeigt nicht nur "Vorschlag generiert",
 sondern auch ob er <strong>übernommen, geändert oder ignoriert</strong> wurde — wichtig
 für die Qualitätskontrolle und für späteres Prompt-Tuning.</p>
 <h2 id="ki-profile">KI-Profile<a class="headerlink" href="#ki-profile" title="Permanent link">&para;</a></h2>
@@ -4373,9 +4373,8 @@ Standard-Schema-Anleitung.</p>
 <p>Profile ohne API-Key im env werden im Anlegen-Formular sichtbar (mit
 Warnung), erscheinen aber <strong>nicht</strong> in der Operator-Profil-Auswahl —
 Anwender:innen sehen nur funktionsfähige Profile.</p>
-<p>Seit v0.65.0 ist ein <strong>Standard-Profil pro Tenant</strong> vorkonfiguriert,
-so dass die Profil-Auswahl im Operator-Workflow nur noch auf Wunsch
-aufklappt.</p>
+<p>Ein <strong>Standard-Profil pro Tenant</strong> ist vorkonfiguriert, so dass die
+Profil-Auswahl im Operator-Workflow nur auf Wunsch aufklappt.</p>
 <h2 id="kosten-budgets">Kosten + Budgets<a class="headerlink" href="#kosten-budgets" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Default-Modelle: Infomaniak Gemma 4 31B-it (multimodal, 256k Kontext)</li>
@@ -4406,7 +4405,7 @@ Schweiz.</p>
   Snapshot, damit Audit-Trails reproduzierbar bleiben</li>
 <li><strong>JS-Chip-Decorator</strong> statt Modal-Stack: Vorschläge erscheinen direkt
   bei den Form-Feldern statt in einem separaten Panel</li>
-<li><strong>Auto-Save beim Upload</strong> (seit v0.65.0): Drag-and-Drop-Uploads
+<li><strong>Auto-Save beim Upload</strong>: Drag-and-Drop-Uploads
   speichern den Datensatz automatisch und behalten die Bearbeitungs-
   Seite + Scrollposition</li>
 </ul>

@@ -4220,7 +4220,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4318,6 +4318,14 @@
 <div class="admonition warning">
 <p class="admonition-title">Sehr kurze Wörter werden auch in Phrasen ignoriert</p>
 <p>Wörter unter 3 Zeichen und einige englische Stopwörter (<code>the</code>, <code>for</code>, <code>and</code>) fallen auch innerhalb von Anführungszeichen aus dem Vergleich. Eine Phrase wie <code>"AG Reinach"</code> matcht damit faktisch nur „Reinach".</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Phrasen im Dokumententext</p>
+<p>Führt das Archiv den Volltext <strong>verdichtet</strong> (Einstellung
+<code>optimize_fulltext</code>), stehen im Index nur die ersten Vorkommen jedes Wortes
+— Phrasen sind im Text von PDFs dann nur eingeschränkt auffindbar. Die
+Suche nach einzelnen Wörtern bleibt davon unberührt. Ob das zutrifft, weiss
+die Administration; siehe <a href="../../admin/searchfields/">Suchfelder</a>.</p>
 </div>
 <h3 id="begriffe-mit-bindestrich">Begriffe mit Bindestrich<a class="headerlink" href="#begriffe-mit-bindestrich" title="Permanent link">&para;</a></h3>
 <p>Begriffe mit Bindestrich (z. B. <code>Arp-Hagenbach</code>) werden automatisch wie eine Phrase behandelt: gesucht wird nach beiden Teilen direkt nebeneinander.</p>

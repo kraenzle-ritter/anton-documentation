@@ -4242,7 +4242,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/gallery/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4255,9 +4255,8 @@
 
 <h1 id="media-gallery">Media gallery<a class="headerlink" href="#media-gallery" title="Permanent link">&para;</a></h1>
 <p>The gallery is an Anton module offering facet-based access to selected media
-(images, PDFs, audio, video). Since the v0.41–v0.45 series it has grown from a
-pure image gallery into a full <strong>media gallery</strong> with a PDF.js viewer, video
-chapters and a configurable filter layout.</p>
+(images, PDFs, audio, video) — with a PDF.js viewer, video chapters and a
+configurable filter layout.</p>
 <p>Reachable at <code>/gallery</code>.</p>
 <h2 id="content-and-title">Content and title<a class="headerlink" href="#content-and-title" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4282,16 +4281,16 @@ chapters and a configurable filter layout.</p>
   <code>gallery_filter_fields</code> (see the next section).</li>
 <li><strong>Full-text search</strong> searches object titles and the full text of the media
   files (PDF text layer via <code>media_texts</code>, see
-  <a href="../weighted-search/">weighted search</a>). Since v0.51.0 the gallery full-text
-  search works with <strong>prefix matching</strong>: a search term such as <code>alkohol</code> also
+  <a href="../weighted-search/">weighted search</a>). The gallery full-text search works
+  with <strong>prefix matching</strong>: a search term such as <code>alkohol</code> also
   finds <code>Alkoholkonsum</code>, <code>alkoholisch</code> and so on. Parts of words in the middle
   are not found (<code>alkohol</code> does <strong>not</strong> find <code>Methylalkohol</code>). Several terms are
   combined with AND.</li>
 <li><strong>The PDF viewer adopts the search term</strong>: clicking a PDF hit opens PDF.js
-  directly with the current search term prefilled (since v0.51.0).</li>
+  directly with the current search term prefilled.</li>
 </ul>
 <h3 id="configurable-filter-layout">Configurable filter layout<a class="headerlink" href="#configurable-filter-layout" title="Permanent link">&para;</a></h3>
-<p>Since v0.42.0 the filter bar layout is configurable per tenant via the setting
+<p>The filter bar layout is configurable per tenant via the setting
 <code>gallery_filter_fields</code>. This allows the order, width and visibility of the
 filters to be controlled. Example:</p>
 <div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('gallery_filter_fields', [</span>
@@ -4303,8 +4302,7 @@ filters to be controlled. Example:</p>
 <span class="x">    ['name' =&gt; 'keywords',   'width' =&gt; 3, 'visible' =&gt; false],</span>
 <span class="x">]);</span>
 </code></pre></div>
-<p>Widths are Bootstrap columns (1–12). The reset button is always visible (since
-v0.42.0).</p>
+<p>Widths are Bootstrap columns (1–12). The reset button is always visible.</p>
 <h2 id="modal-views">Modal views<a class="headerlink" href="#modal-views" title="Permanent link">&para;</a></h2>
 <p>Clicking a medium opens a modal detail view. Per media type:</p>
 <table>
@@ -4351,12 +4349,12 @@ v0.42.0).</p>
   item.</li>
 </ul>
 <p>If a medium carries the flag <code>dont_show_in_gallery = 1</code>, it does not appear in
-the gallery — even if the corresponding record is public. Since v0.66.0 this
-flag can conveniently be managed per filter in the
+the gallery — even if the corresponding record is public. This flag is
+conveniently managed per filter in the
 <a href="../bulk-media-list/">bulk media list</a>.</p>
 <h2 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The redundant field <code>objects.fonds_id</code> (since v0.41.0) allows fast gallery
+<li>The redundant field <code>objects.fonds_id</code> allows fast gallery
   queries without a closure table join</li>
 <li>Gallery facets are held in a <strong>per-tenant cache</strong>
   (<code>{slug}.gallery.facets.intern</code> / <code>…extern</code>) and invalidated via the

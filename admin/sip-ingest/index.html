@@ -4069,17 +4069,17 @@
 <p>Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) nach eCH-0160, wobei die Dossiers und Dokumente in die Archivtektonik übernommen werden.</p>
 <p>Zum Standard: <a href="https://ech.ch/de/ech/ech-0160/1.2.0">https://ech.ch/de/ech/ech-0160/1.2.0</a></p>
 <div class="admonition note">
-<p class="admonition-title">Seit v0.62.0: Unified Import Hub</p>
+<p class="admonition-title">Unified Import Hub</p>
 <p>Alle Import-Pfade — SIP, Excel, Verzeichnis, agate — sind unter <code>/import</code> zusammengefasst (vier Tabs). Die alten URLs (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/sip/inbox</code>) leiten transparent auf den passenden Tab um. Siehe <a href="../../user/import/">user/import.md</a> für die UI-Übersicht.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">agate-SIP-Import (seit v0.61.0)</p>
+<p class="admonition-title">agate-SIP-Import</p>
 <p>BagIt-SIPs, die von agate (Anton-Vorbereitungs-Tool) per HTTP geschickt werden, laufen über einen eigenen Pfad mit NARA-Kategorie-Mapping und Eingangskorb. Details: <a href="../agate-sip/">agate-sip.md</a>.</p>
 </div>
 <h3 id="voraussetzungen">Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Akzessionsarchiv: nicht mehr nötig. Bis v0.87.x legte ein SIP-Ingest dort einen Beleg ab; seit v0.88.0 steht der Lauf im Importprotokoll (siehe <a href="../../user/import/#import-protokoll">Import</a>).</li>
+<li>Akzessionsarchiv: nicht nötig. Ein SIP-Ingest steht als Lauf im Importprotokoll (siehe <a href="../../user/import/#import-protokoll">Import</a>).</li>
 <li>Die Archivhierarchie (<code>parents</code>) muss bereits in Anton vorhanden sein.</li>
 <li>Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: <code>identifier-prefix</code>).</li>
 <li>Mit dem Setting <code>strict_sip_validation</code> gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.</li>

@@ -2284,7 +2284,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/api/authentication/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/api/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2318,8 +2318,8 @@
 </code></pre></div>
 <h3 id="query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt">Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)<a class="headerlink" href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
-<p class="admonition-title">Veraltet seit v0.70.x</p>
-<p>Der Query-Parameter <code>?api_token=</code> wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt seit v0.70.x jeden Aufruf mit <code>?api_token=</code> als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.</p>
+<p class="admonition-title">Veraltet</p>
+<p>Der Query-Parameter <code>?api_token=</code> wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt jeden Aufruf mit <code>?api_token=</code> als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.</p>
 </div>
 <p>Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — bitte auf Bearer-Header umstellen</span>

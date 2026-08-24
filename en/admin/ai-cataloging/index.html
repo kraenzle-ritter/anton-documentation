@@ -4228,7 +4228,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4240,7 +4240,7 @@
 
 
 <h1 id="ai-assisted-cataloguing">AI-assisted cataloguing<a class="headerlink" href="#ai-assisted-cataloguing" title="Permanent link">&para;</a></h1>
-<p>Since <strong>v0.63.0</strong>, Anton can generate suggestions for titles, text fields,
+<p>Anton can generate suggestions for titles, text fields,
 dating, actors, places and keywords at the push of a button — based on the
 attached media files (images, PDFs, audio transcripts, video frames) and the
 existing context of a record.</p>
@@ -4261,8 +4261,8 @@ FADP/GDPR-compliant), so that archival data does not leave Switzerland.</p>
 errors. Tenants without an AI contract notice nothing.</p>
 <h2 id="the-operator-workflow">The operator workflow<a class="headerlink" href="#the-operator-workflow" title="Permanent link">&para;</a></h2>
 <p>When editing a record, a button <strong>"🤖 Generate AI suggestions"</strong> appears at the
-top of the action bar (since v0.65.0 directly next to the upload area, visible
-as soon as a file is attached).</p>
+top of the action bar (directly next to the upload area, visible as soon as a
+file is attached).</p>
 <p>After clicking:</p>
 <ol>
 <li>Anton uploads the attached media to the configured provider (PDFs are
@@ -4278,8 +4278,8 @@ writes — the AI only makes suggestions, the human decides.</p>
 <h2 id="what-the-ai-receives-as-input">What the AI receives as input<a class="headerlink" href="#what-the-ai-receives-as-input" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Images</strong> (photographs, scans) directly as vision input</li>
-<li><strong>PDFs</strong> — page images; additionally the OCR text layer if present (since
-  v0.65.0, for better quality with typed documents)</li>
+<li><strong>PDFs</strong> — page images; additionally the OCR text layer if present (for
+  better quality with typed documents)</li>
 <li><strong>Audio</strong> — Whisper V3 transcript via the Infomaniak async batch API. The
   transcript can optionally end up in the full-text index as a text field.</li>
 <li><strong>Video</strong> — 5 ffmpeg stills, evenly spaced across the running time</li>
@@ -4332,7 +4332,7 @@ linked directly with one click.</p>
 </tr>
 <tr>
 <td><strong>Budget</strong></td>
-<td>Monthly caps per calendar month (since v0.65.0 also editable via the UI, previously SQL only)</td>
+<td>Monthly caps per calendar month, editable via the UI</td>
 </tr>
 <tr>
 <td><strong>Profiles</strong></td>
@@ -4344,7 +4344,7 @@ linked directly with one click.</p>
 </tr>
 </tbody>
 </table>
-<p>Since v0.65.0 the audit tab shows not only "suggestion generated" but also
+<p>The audit tab shows not only "suggestion generated" but also
 whether it was <strong>applied, changed or ignored</strong> — important for quality control
 and for later prompt tuning.</p>
 <h2 id="ai-profiles">AI profiles<a class="headerlink" href="#ai-profiles" title="Permanent link">&para;</a></h2>
@@ -4369,8 +4369,8 @@ instruction.</p>
 <p>Profiles without an API key in the env are visible in the creation form (with a
 warning) but do <strong>not</strong> appear in the operator profile selection — users only
 see profiles that work.</p>
-<p>Since v0.65.0 a <strong>default profile per tenant</strong> is preconfigured, so that the
-profile selection in the operator workflow only unfolds on request.</p>
+<p>A <strong>default profile per tenant</strong> is preconfigured, so that the profile
+selection in the operator workflow only unfolds on request.</p>
 <h2 id="costs-and-budgets">Costs and budgets<a class="headerlink" href="#costs-and-budgets" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Default models: Infomaniak Gemma 4 31B-it (multimodal, 256k context) +
@@ -4399,7 +4399,7 @@ data flow outside Switzerland.</p>
   audit trails remain reproducible</li>
 <li><strong>JS chip decorator</strong> instead of a modal stack: suggestions appear directly at
   the form fields rather than in a separate panel</li>
-<li><strong>Auto-save on upload</strong> (since v0.65.0): drag-and-drop uploads save the record
+<li><strong>Auto-save on upload</strong>: drag-and-drop uploads save the record
   automatically and keep the editing page and scroll position</li>
 </ul>
 

@@ -2278,7 +2278,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/notifications/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/notifications/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-04-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2323,12 +2323,12 @@
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung am 20.4."</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details folgen."</span><span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
 <h3 id="alle-installationen">Alle Installationen<a class="headerlink" href="#alle-installationen" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update v0.54"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Neue Features."</span><span class="w"> </span>--all
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Neue Version"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Neue Features."</span><span class="w"> </span>--all
 </code></pre></div>
 <h3 id="mehrsprachig">Mehrsprachig<a class="headerlink" href="#mehrsprachig" title="Permanent link">&para;</a></h3>
 <p>Titel und Text können als JSON übergeben werden:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--title<span class="o">=</span><span class="s1">'{"de":"Update v0.54","fr":"Mise à jour v0.54"}'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--title<span class="o">=</span><span class="s1">'{"de":"Neue Version","fr":"Nouvelle version"}'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--body<span class="o">=</span><span class="s1">'{"de":"Neue Features verfügbar.","fr":"Nouvelles fonctions disponibles."}'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--all
 </code></pre></div>

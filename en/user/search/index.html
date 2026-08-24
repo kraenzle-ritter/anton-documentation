@@ -4220,7 +4220,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4318,6 +4318,14 @@
 <div class="admonition warning">
 <p class="admonition-title">Very short words are ignored in phrases too</p>
 <p>Words of fewer than 3 characters and some English stop words (<code>the</code>, <code>for</code>, <code>and</code>) drop out of the comparison even within quotation marks. A phrase such as <code>"AG Reinach"</code> therefore effectively matches only «Reinach».</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Phrases in the document text</p>
+<p>If the archive keeps the full text <strong>condensed</strong> (setting
+<code>optimize_fulltext</code>), the index holds only the first occurrence of each word
+— phrases are then only findable to a limited extent in the text of PDFs.
+Search for single words is unaffected. Whether this applies is known to the
+administration; see <a href="../../admin/searchfields/">search fields</a>.</p>
 </div>
 <h3 id="terms-with-a-hyphen">Terms with a hyphen<a class="headerlink" href="#terms-with-a-hyphen" title="Permanent link">&para;</a></h3>
 <p>Terms with a hyphen (e.g. <code>Arp-Hagenbach</code>) are automatically treated like a phrase: the search looks for both parts directly next to each other.</p>

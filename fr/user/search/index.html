@@ -2383,7 +2383,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2481,6 +2481,14 @@
 <div class="admonition warning">
 <p class="admonition-title">Les mots très courts sont ignorés y compris dans les expressions</p>
 <p>Les mots de moins de 3 caractères et quelques mots vides anglais (<code>the</code>, <code>for</code>, <code>and</code>) sont écartés de la comparaison même à l'intérieur de guillemets. Une expression telle que <code>"AG Reinach"</code> ne correspond donc en fait qu'à «&nbsp;Reinach&nbsp;».</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Expressions dans le texte des documents</p>
+<p>Si le service tient le texte intégral sous forme <strong>condensée</strong> (réglage
+<code>optimize_fulltext</code>), l'index ne contient que la première occurrence de
+chaque mot — les expressions ne sont alors que partiellement trouvables dans
+le texte des PDF. La recherche de mots isolés n'en est pas affectée.
+L'administration sait si c'est le cas.</p>
 </div>
 <h3 id="termes-avec-trait-dunion">Termes avec trait d'union<a class="headerlink" href="#termes-avec-trait-dunion" title="Permanent link">&para;</a></h3>
 <p>Les termes comportant un trait d'union (p. ex. <code>Arp-Hagenbach</code>) sont automatiquement traités comme une expression : la recherche porte sur les deux parties directement accolées.</p>

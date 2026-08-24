@@ -2250,7 +2250,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2269,7 +2269,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>16. August 2026</strong> ab (Anton v0.87). Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>24. August 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2837,12 +2837,12 @@ Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
 lässt, und lässt sich <strong>nicht</strong> wieder einspielen. Die <em>Update-Tabelle</em> ist das
 Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf, und
 lässt Hierarchie (<code>parent</code>) und Ereignisse weg, weil diese beim Zurückspielen
-blockiert würden. Der Standort ist seit v0.86 enthalten: er wird beim Update
+blockiert würden. Der Standort ist enthalten: er wird beim Update
 geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
 Massen-Update. Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.</p>
-<p>Seit <strong>v0.87</strong> führt die Update-Tabelle eines <strong>mehrsprachigen</strong> Archivs den Titel
+<p>Die Update-Tabelle eines <strong>mehrsprachigen</strong> Archivs führt den Titel
 in je einer Spalte pro Inhaltssprache (<code>title_de</code>, <code>title_fr</code> …) statt in einer
 einzigen. Damit ist der Round-Trip auch mehrsprachig verlustfrei: Mit einer
 Spalte müsste beim Zurückspielen die Sprache des Laufs entscheiden, wohin der
@@ -2865,12 +2865,12 @@ alle Sprachen, Ereignisse, Textfelder <strong>aller</strong> Träger einschliess
 Termselect-Werte, Formularsatz und die Wiederanbindung der Medien. Vor jedem
 Schreibvorgang wird das ganze Paket validiert; schlägt es fehl, wird
 zurückgerollt.</p>
-<p>Auch Akteur:innen, Orte und Schlagwörter tragen seit v0.79 eine portable UUID — ein
+<p>Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.</p>
 <div class="admonition warning">
 <p class="admonition-title">Kommentare gehen beim Round-Trip verloren</p>
 <p>«Verlustfrei» bezieht sich auf die Erschliessung. Interne
-<a href="../comments/">Kommentare</a> sind ab v0.86 davon ausgenommen: Sie werden in
+<a href="../comments/">Kommentare</a> sind davon ausgenommen: Sie werden in
 einer eigenen Tabelle geführt, die kein Exporter kennt — auch der native
 nicht —, damit sie nicht versehentlich in eine Publikation geraten. Ein
 Export-Import-Zyklus lässt sie zurück.</p>

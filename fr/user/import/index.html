@@ -1404,7 +1404,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#journal-des-imports" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Journal des imports
@@ -2677,7 +2677,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#journal-des-imports" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Journal des imports
@@ -3101,7 +3101,7 @@
 <h2 id="resume">Résumé<a class="headerlink" href="#resume" title="Permanent link">&para;</a></h2>
 <p>Il est possible d'importer dans Anton des données et les fichiers associés (médias). Les données de description (fichier Excel) sont saisies dans une feuille Excel (imposée) et chargées sur le serveur avec les fichiers. Les données sont ensuite validées et, si la validation a réussi, l'import/ingest peut avoir lieu (données de description et médias). Voir aussi la documentation dans Anton sous <code>/import/documentation</code>.</p>
 <h2 id="hub-dimport-import">Hub d'import <code>/import</code><a class="headerlink" href="#hub-dimport-import" title="Permanent link">&para;</a></h2>
-<p>Depuis la <strong>v0.62.0</strong>, toutes les voies d'import sont regroupées à une seule adresse : <code>/import</code> (dans le menu sous <strong>Import / Export → Import</strong>). La page comporte quatre onglets :</p>
+<p>Toutes les voies d'import sont regroupées à une seule adresse : <code>/import</code> (dans le menu sous <strong>Import / Export → Import</strong>). La page comporte quatre onglets :</p>
 <table>
 <thead>
 <tr>
@@ -3139,7 +3139,7 @@
 </ul>
 <p>On peut ainsi voir avant l'import si le SIP est pertinent, si le vocabulaire du tenant convient, et le cas échéant écarter le SIP avant que quoi que ce soit n'arrive dans la base de données.</p>
 <h3 id="progression-en-direct">Progression en direct<a class="headerlink" href="#progression-en-direct" title="Permanent link">&para;</a></h3>
-<p>Depuis la v0.62.0, tous les imports s'exécutent <strong>de manière asynchrone en arrière-plan</strong>. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'<strong>exécution dans le journal des imports</strong>.</p>
+<p>Tous les imports s'exécutent <strong>de manière asynchrone en arrière-plan</strong>. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'<strong>exécution dans le journal des imports</strong>.</p>
 <p>Cela vaut pour toutes les voies — Excel, SIP, répertoire et finalisation de la boîte d'entrée.</p>
 <h3 id="une-cote-pour-chaque-import">Une cote pour chaque import<a class="headerlink" href="#une-cote-pour-chaque-import" title="Permanent link">&para;</a></h3>
 <p>Chaque import (quelle que soit la voie) reçoit une cote <code>IMPORT-{aaaa}-{NNN}</code> et une entrée dans le journal des imports. L'entrée consigne :</p>
@@ -3148,16 +3148,17 @@
 <li>la somme de contrôle MD5</li>
 <li>le moment de l'import</li>
 <li>la voie d'import (Excel / SIP / répertoire / agate)</li>
-<li>les <strong>réglages utilisés</strong>, depuis la v0.87.0 (voir ci-dessous)</li>
+<li>les <strong>réglages utilisés</strong> (voir ci-dessous)</li>
 <li>le résultat, et le message en cas d'échec</li>
 </ul>
+<!-- v0.88.0 : accusés dans les archives d'accroissement supprimés, les existants migrés dans le journal -->
 <div class="admonition info">
-<p class="admonition-title">Nouveau depuis la v0.88.0</p>
-<p>Jusqu'à la v0.87.x, chaque import créait en plus un accusé sous forme d'unité de description dans les archives d'accroissement, numéroté <code>AKZ {année}/{N}</code>. Les archives d'accroissement sont de nouveau réservées aux véritables accroissements — arrivés physiquement, pas encore décrits — et leurs cotes ne sont plus consommées par des imports. Les accusés existants ont été déplacés dans le journal avec tout ce qu'ils portaient.</p>
+<p class="admonition-title">Pas d'accusé dans les archives d'accroissement</p>
+<p>Un import ne crée pas d'unité de description en guise d'accusé. Les archives d'accroissement restent réservées aux véritables accroissements — arrivés physiquement, pas encore décrits — et leurs cotes ne sont pas consommées par des imports.</p>
 </div>
 <p>La cote est attribuée au démarrage. Une exécution échouée la conserve donc et reste dans le journal avec son erreur — un versement échoué doit rester distinguable d'un versement qui n'a jamais eu lieu.</p>
-<h3 id="journal-des-imports">Journal des imports<a class="headerlink" href="#journal-des-imports" title="Permanent link">&para;</a></h3>
-<p>Sous <strong><code>/import/audit</code></strong> se trouve la liste de toutes les exécutions d'import : cote, fichier source, moment, nombre de notices créées et langue de contenu utilisée. Depuis la <strong>v0.87.0</strong>, il s'agit d'un tableau Anton ordinaire — triable, avec une longueur de page paramétrable, et les colonnes peuvent être adaptées sous <em>Admin → Formulaires</em> comme pour n'importe quelle autre liste.</p>
+<h3 id="import-protokoll">Journal des imports<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
+<p>Sous <strong><code>/import/audit</code></strong> se trouve la liste de toutes les exécutions d'import : cote, fichier source, moment, nombre de notices créées et langue de contenu utilisée. Il s'agit d'un tableau Anton ordinaire — triable, avec une longueur de page paramétrable, et les colonnes peuvent être adaptées sous <em>Admin → Formulaires</em> comme pour n'importe quelle autre liste.</p>
 <p>Les exécutions réussies sont affichées par défaut ; un filtre révèle celles qui ont échoué ou été interrompues. Rien n'est jamais supprimé.</p>
 <p>Le lien <strong>Détails</strong> conduit à l'exécution : fichier source, somme de contrôle, réglages utilisés avec leur provenance, qui l'a déclenchée, et les notices qu'elle a créées.</p>
 <p>Le fichier importé est conservé. Après une exécution réussie, il passe dans <code>metadata_imported/</code> — afin de ne plus figurer dans la liste de sélection — et l'entrée indique où il se trouve.</p>
@@ -3165,10 +3166,11 @@
 <h2 id="deroulement-import-excel">Déroulement (import Excel)<a class="headerlink" href="#deroulement-import-excel" title="Permanent link">&para;</a></h2>
 <p>Il faut d'abord créer un fichier Excel selon les prescriptions ci-dessous. Celui-ci est à téléverser sous «&nbsp;Upload Metadata&nbsp;» et les fichiers médias associés sous «&nbsp;Upload Medien&nbsp;». Le fichier Excel peut ensuite être contrôlé sous «&nbsp;Validation&nbsp;». La validation signale les erreurs et émet des avertissements. Les données ne peuvent être importées que lorsque la validation est exempte d'erreurs. L'import est déclenché sous «&nbsp;Ingest&nbsp;» et peut prendre quelques minutes selon le volume.</p>
 <h2 id="langue-de-contenu-de-limport">Langue de contenu de l'import<a class="headerlink" href="#langue-de-contenu-de-limport" title="Permanent link">&para;</a></h2>
-<p>Les champs traduisibles — titres, champs de texte, mots-clés, acteur·trice·s, lieux et lieux de conservation nouvellement créés — ont besoin d'une langue. Depuis la <strong>v0.87.0</strong>, il s'agit d'une décision délibérée, visible avant l'exécution.</p>
-<div class="admonition warning">
-<p class="admonition-title">Changement de comportement</p>
-<p>Jusqu'à la v0.86.x, Anton suivait la <strong>langue de l'interface</strong>. Qui avait l'interface en anglais et chargeait un tableau créait pour chaque notice une traduction <em>anglaise</em> du titre — contenant le texte allemand inchangé. La notice paraissait correcte en anglais et n'avait plus de titre en allemand. À partir de la v0.87.0, la langue de l'interface ne joue plus aucun rôle.</p>
+<p>Les champs traduisibles — titres, champs de texte, mots-clés, acteur·trice·s, lieux et lieux de conservation nouvellement créés — ont besoin d'une langue. Il s'agit d'une décision délibérée, visible avant l'exécution.</p>
+<!-- v0.87.0 : langue de contenu explicite ; auparavant l'import suivait la langue de l'interface -->
+<div class="admonition note">
+<p class="admonition-title">La langue de l'interface ne joue aucun rôle</p>
+<p>La langue affichée par l'interface n'a aucune influence sur l'import. Seule compte la langue de contenu de l'exécution.</p>
 </div>
 <p>La langue de contenu est déterminée dans cet ordre — la première valeur définie l'emporte :</p>
 <ol>
@@ -3176,7 +3178,7 @@
 <li>le réglage d'archive <code>import_options.locale</code></li>
 <li>la première langue de <code>locales</code> — la langue principale du service</li>
 </ol>
-<p>Avant le démarrage, la page d'inspection indique la langue en vigueur <strong>et sa provenance</strong> («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir <a href="#journal-des-imports">Journal des imports</a>).</p>
+<p>Avant le démarrage, la page d'inspection indique la langue en vigueur <strong>et sa provenance</strong> («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir <a href="#import-protokoll">Journal des imports</a>).</p>
 <p>Une colonne comportant un code de langue (<code>title_fr</code>) l'emporte sur ce choix pour son propre champ — voir <a href="#titel-title">titel</a>.</p>
 <h3 id="pourquoi-la-langue-compte-aussi-lors-de-la-recherche">Pourquoi la langue compte aussi lors de la recherche<a class="headerlink" href="#pourquoi-la-langue-compte-aussi-lors-de-la-recherche" title="Permanent link">&para;</a></h3>
 <p>La langue de contenu détermine non seulement où l'écriture a lieu, mais aussi <strong>dans quoi Anton recherche les acteur·trice·s et lieux existants</strong>. Si l'on choisit une langue dans laquelle le fonds n'est pas décrit, le rapprochement ne trouve rien — et, si la création est activée, crée une nouvelle notice pour chaque nom.</p>
@@ -3240,7 +3242,7 @@ Einzelstück
 </tr>
 </tbody>
 </table>
-<p>Depuis la <strong>v0.87.0</strong>, des titres multilingues peuvent donc être importés : une colonne par langue. Les deux formes peuvent coexister ; la colonne comportant un code de langue est l'indication la plus précise et l'emporte, et la page d'inspection le signale.</p>
+<p>Des titres multilingues peuvent donc être importés : une colonne par langue. Les deux formes peuvent coexister ; la colonne comportant un code de langue est l'indication la plus précise et l'emporte, et la page d'inspection le signale.</p>
 <p>Il en va de même pour les <strong>champs de texte</strong> : <code>scopecontent</code> écrit dans la langue de contenu, <code>scopecontent_fr</code> spécifiquement en français, sans toucher aux autres langues du même champ.</p>
 <div class="admonition note">
 <p class="admonition-title">Uniquement les langues configurées</p>
@@ -3268,8 +3270,7 @@ Einzelstück
 <p>Plusieurs colonnes n'acceptent que des valeurs définies dans le service :
 <code>verzeichnungsstufe</code>, <code>objekttyp</code>, <code>schutzfrist</code>, <code>status_of_description</code>,
 <code>detail_of_description</code> et <code>vacat</code>.</p>
-<p>Depuis la <strong>v0.87.0</strong>, elles acceptent toutes <strong>trois formes</strong>, de manière
-équivalente (<code>vacat</code> déjà depuis la v0.86.4) :</p>
+<p>Elles acceptent toutes <strong>trois formes</strong>, de manière équivalente :</p>
 <table>
 <thead>
 <tr>
@@ -3308,8 +3309,8 @@ admis : Archiv (collection), Bestandsgruppe (recordgroup), Bestand
 donc pas nécessaire de consulter les listes au préalable.</p>
 </div>
 <h4 id="consulter-toutes-les-listes-de-valeurs">Consulter toutes les listes de valeurs<a class="headerlink" href="#consulter-toutes-les-listes-de-valeurs" title="Permanent link">&para;</a></h4>
-<p>Depuis la <strong>v0.87.0</strong>, une vue d'ensemble de toutes les listes de valeurs est
-disponible sous <strong>Import de tableau → Listes de valeurs</strong> (<code>/valuelists</code>) :
+<p>Une vue d'ensemble de toutes les listes de valeurs est disponible sous
+<strong>Import de tableau → Listes de valeurs</strong> (<code>/valuelists</code>) :
 pour chaque entrée la désignation, le nom interne et l'ID, ainsi que la colonne
 d'import à laquelle la liste appartient. Un champ de recherche filtre toutes
 les listes simultanément.</p>
@@ -3346,30 +3347,15 @@ Film
 <p>Détermine quel jeu de formulaires est utilisé pour la notice — donc quels champs apparaissent et dans quel ordre. Le champ est <strong>facultatif</strong> : s'il reste vide, Anton résout le jeu de formulaires par le niveau de description. Il n'est nécessaire que si une notice s'en écarte délibérément, par exemple le jeu de formulaires <code>letter</code> sur des pièces.</p>
 <p>Comme pour le lieu de conservation, deux colonnes : <strong><code>formset</code></strong> (également : <code>formularsatz</code>) accepte le nom <em>ou</em> l'ID, <strong><code>formset_id</code></strong> uniquement l'ID. Les noms des jeux de formulaires disponibles figurent sous <em>Administration → Jeux de formulaires</em> — dans une installation standard par exemple <code>fonds</code>, <code>class</code>, <code>series</code>, <code>file</code>, <code>item</code>, <code>collection</code>, <code>recordgroup</code>, <code>default</code>.</p>
 <p>Le tableau de mise à jour téléchargé comporte la colonne <code>formset</code> et écrit le <strong>nom</strong>. Une cellule vide laisse le jeu de formulaires inchangé.</p>
-<div class="admonition note">
-<p class="admonition-title">Avant la v0.86, la colonne était silencieusement écartée</p>
-<p>Les versions antérieures ne connaissaient pas <code>formset</code> : la colonne était signalée comme inconnue puis ignorée sans conséquence, et l'exécution annonçait un succès. Qui a défini le jeu de formulaires par tableau et s'étonne que rien ne se soit produit — voilà la raison.</p>
-</div>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
 <p>Indique si l'unité de description est un espace réservé (une lacune dans la
 numérotation à laquelle ne correspond aucun document).</p>
 <p>La colonne porte en interne des identifiants de termes. Sont acceptés la
 désignation (<code>vacat</code>), l'ID (<code>56</code> pour vacat, <code>57</code> pour non vacat) et — issus
 de tableaux plus anciens — <code>1</code> et <code>0</code>.</p>
-<p>Depuis la <strong>v0.87.0</strong>, ce qui est <strong>exporté</strong> est la désignation : <code>vacat</code> pour
-un espace réservé, sinon une cellule vide. Auparavant figurait là le numéro
-interne, qui ne signifiait rien dans une colonne dont le nom ne comporte pas
-<code>_id</code> et ressemblait à une valeur modifiée par erreur. Les tableaux plus
-anciens comportant <code>56</code>/<code>57</code> peuvent continuer d'être utilisés sans
-modification.</p>
-<div class="admonition warning">
-<p class="admonition-title">Avant la v0.86.4</p>
-<p>Jusque-là, le tableau de mise à jour exportait le numéro interne, mais le
-contrôle n'admettait que <code>0</code> et <code>1</code>. Un tableau de mise à jour non modifié
-n'était donc pas chargeable, et le message nommait une valeur que personne
-n'avait saisie. Si vous tombez sur une version plus ancienne : désélectionnez
-la colonne <code>vacat</code> dans la boîte de dialogue de téléchargement.</p>
-</div>
+<p>Ce qui est <strong>exporté</strong> est la désignation : <code>vacat</code> pour un espace réservé,
+sinon une cellule vide. Les tableaux plus anciens comportant <code>56</code>/<code>57</code> peuvent
+continuer d'être utilisés sans modification.</p>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>Le champ peut contenir au maximum 500 caractères. Plusieurs noms de fichiers (assets) peuvent être séparés par les caractères suivants :</p>
 <div class="highlight"><pre><span></span><code>, ; ::
@@ -3427,7 +3413,7 @@ Form und Inhalt (note.scopecontent)
 <p class="admonition-title">Fonction expérimentale</p>
 <p>La mise à jour des données est signalée comme <strong>expérimentale</strong> (badge dans l'onglet et sur la page de téléversement). Elle modifie directement des notices existantes. Anton crée donc <strong>automatiquement une sauvegarde de la base de données avant chaque mise à jour</strong> (voir ci-dessous) ; contrôlez néanmoins le résultat par échantillonnage.</p>
 </div>
-<p>Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre <strong>«&nbsp;Update&nbsp;»</strong> existe à cet effet sous <strong>Import de tableau</strong> depuis la <strong>v0.81.2</strong> (après <em>Métadonnées</em> et <em>Médias</em>). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec <strong>«&nbsp;Détails&nbsp;»</strong>. Le fichier est contrôlé directement en mode mise à jour, et le bouton <strong>«&nbsp;Charger comme mise à jour&nbsp;»</strong> apparaît.</p>
+<p>Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre <strong>«&nbsp;Update&nbsp;»</strong> existe à cet effet sous <strong>Import de tableau</strong> (après <em>Métadonnées</em> et <em>Médias</em>). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec <strong>«&nbsp;Détails&nbsp;»</strong>. Le fichier est contrôlé directement en mode mise à jour, et le bouton <strong>«&nbsp;Charger comme mise à jour&nbsp;»</strong> apparaît.</p>
 <p>Comme l'onglet <em>Update</em> contrôle le fichier exclusivement en tant que mise à jour, un tableau de mise à jour pur (uniquement <code>id</code> + les colonnes à modifier, sans <code>parent</code>) n'exige aucun détour : la colonne <code>parent</code>, nécessaire à la création, n'est pas requise ici. L'onglet <em>Métadonnées</em> régulier reste inchangé pour la création.</p>
 <p>Une mise à jour écrase les champs des notices existantes «&nbsp;sur place&nbsp;» — <strong>aucune nouvelle notice n'est créée</strong> dans ce processus. Pour qu'une mise à jour reste sûre et prévisible, trois conditions s'appliquent. Si l'une d'elles est violée, le fichier est bloqué et le motif est affiché sur la page d'inspection :</p>
 <ol>
@@ -3450,7 +3436,7 @@ Form und Inhalt (note.scopecontent)
 <p>Le fichier ne contient que des colonnes qu'une mise à jour est autorisée à écrire — <code>id</code>, les colonnes de champs, les langues, le lieu de conservation (<code>location_id</code>), les mots-clés / acteur·trice·s / lieux (sous forme d'ID) et les colonnes de champs de texte <code>note.*</code>. Ne sont délibérément <strong>pas</strong> inclus <code>parent</code> ni les colonnes d'événement, qui bloqueraient la mise à jour. La colonne <code>identifier</code> ne sert qu'à l'orientation : la mise à jour trouve les notices par l'<code>id</code>, et les modifications de la cote restent sans effet.</p>
 <div class="admonition tip">
 <p class="admonition-title">Services multilingues : une colonne de titre par langue</p>
-<p>Si le service tient plusieurs langues de contenu, le tableau de mise à jour contient depuis la <strong>v0.87.0</strong>, au lieu de <code>titel</code>, une colonne <code>title_de</code>, <code>title_fr</code> etc. Ce n'est qu'ainsi que l'aller-retour est sans perte : avec une unique colonne de titre, la langue de l'exécution devrait décider, au chargement, vers quel champ la valeur retourne — et un titre français aboutirait dans le champ allemand.</p>
+<p>Si le service tient plusieurs langues de contenu, le tableau de mise à jour contient, au lieu de <code>titel</code>, une colonne <code>title_de</code>, <code>title_fr</code> etc. Ce n'est qu'ainsi que l'aller-retour est sans perte : avec une unique colonne de titre, la langue de l'exécution devrait décider, au chargement, vers quel champ la valeur retourne — et un titre français aboutirait dans le champ allemand.</p>
 <p>Les services monolingues conservent la colonne habituelle <code>titel</code> ; il n'y a rien à distinguer. Les tableaux plus anciens comportant <code>titel</code> restent chargeables en toute hypothèse.</p>
 </div>
 <div class="admonition tip">
@@ -3476,15 +3462,6 @@ Form und Inhalt (note.scopecontent)
 </table>
 <p>Le tableau de mise à jour téléchargé utilise <code>location_id</code>. Qui préfère travailler avec des désignations renomme la colonne en <code>location</code> ; les deux formes y sont acceptées. Une désignation doit être écrite exactement comme dans la gestion des lieux de conservation, majuscules et minuscules comprises — l'ID est donc la voie sûre.</p>
 <p>Une <strong>cellule vide laisse le lieu de conservation inchangé</strong> — pour un déménagement, ne modifier donc que les lignes réellement concernées. Un lieu de conservation qui n'existe pas encore doit être créé au préalable sous <em>Admin → Lieux de conservation</em> ; sinon l'inspection le signale comme inconnu et la mise à jour ne s'exécute pas.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Avant la v0.87.0, le bouton ne téléchargeait rien</p>
-<p>Le bouton de téléchargement de la boîte de dialogue des colonnes fermait la
-boîte de dialogue, mais interrompait dans le même mouvement le transfert —
-sans message d'erreur. On avait l'impression que quelque chose s'était
-produit ; rien n'arrivait dans le dossier de téléchargement. La v0.86.4 a
-corrigé une partie du problème, mais le bouton restait sans effet ; ce n'est
-que depuis la v0.87.0 qu'il s'agit d'un véritable téléchargement.</p>
 </div>
 <p>Au clic s'ouvre une boîte de dialogue permettant de <strong>sélectionner les colonnes</strong>. C'est plus qu'une commodité : ce qui ne figure pas dans le fichier, une mise à jour ne peut pas non plus l'écrire. Qui veut seulement corriger un titre isolé sélectionne <code>id</code> et <code>titel</code> — rien d'autre ne peut alors être endommagé au chargement. <code>id</code> est toujours inclus et ne peut pas être désélectionné.</p>
 <div class="admonition warning">

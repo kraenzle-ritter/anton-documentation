@@ -1404,7 +1404,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#protocollo-delle-importazioni" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Protocollo delle importazioni
@@ -2677,7 +2677,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#protocollo-delle-importazioni" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Protocollo delle importazioni
@@ -3101,7 +3101,7 @@
 <h2 id="sintesi">Sintesi<a class="headerlink" href="#sintesi" title="Permanent link">&para;</a></h2>
 <p>È possibile importare in Anton dati e i file corrispondenti (media). I dati di descrizione (file Excel) vengono registrati in un foglio Excel (predefinito) e caricati sul server insieme ai file. I dati vengono poi validati e, se la validazione è riuscita, può avvenire l'importazione/ingest (dati di descrizione e media). Cfr. anche la documentazione in Anton sotto <code>/import/documentation</code>.</p>
 <h2 id="hub-di-importazione-import">Hub di importazione <code>/import</code><a class="headerlink" href="#hub-di-importazione-import" title="Permanent link">&para;</a></h2>
-<p>Dalla <strong>v0.62.0</strong> tutte le vie di importazione sono raccolte a un unico indirizzo: <code>/import</code> (nel menu sotto <strong>Import / Export → Import</strong>). La pagina ha quattro schede:</p>
+<p>Tutte le vie di importazione sono raccolte a un unico indirizzo: <code>/import</code> (nel menu sotto <strong>Import / Export → Import</strong>). La pagina ha quattro schede:</p>
 <table>
 <thead>
 <tr>
@@ -3139,7 +3139,7 @@
 </ul>
 <p>Così, prima dell'importazione, si può vedere se il SIP è sensato, se il vocabolario del tenant è adatto e, all'occorrenza, scartare il SIP prima che qualcosa finisca nella banca dati.</p>
 <h3 id="avanzamento-in-tempo-reale">Avanzamento in tempo reale<a class="headerlink" href="#avanzamento-in-tempo-reale" title="Permanent link">&para;</a></h3>
-<p>Dalla v0.62.0 tutte le importazioni vengono eseguite <strong>in modo asincrono in background</strong>. Dopo il clic su «Importa» si arriva su una pagina di avanzamento che aggiorna lo stato corrente ogni pochi secondi: fase (preparazione / creazione delle schede / lettura dei media), righe elaborate e, alla fine, un link alla <strong>segnatura di accessione</strong> creata nell'archivio.</p>
+<p>Tutte le importazioni vengono eseguite <strong>in modo asincrono in background</strong>. Dopo il clic su «Importa» si arriva su una pagina di avanzamento che aggiorna lo stato corrente ogni pochi secondi: fase (preparazione / creazione delle schede / lettura dei media), righe elaborate e, alla fine, un link all'<strong>esecuzione nel protocollo delle importazioni</strong>.</p>
 <p>Ciò vale per tutte le vie — Excel, SIP, directory e finalizzazione della casella d'entrata.</p>
 <h3 id="una-segnatura-per-ogni-importazione">Una segnatura per ogni importazione<a class="headerlink" href="#una-segnatura-per-ogni-importazione" title="Permanent link">&para;</a></h3>
 <p>Ogni importazione (indipendentemente dalla via) riceve una segnatura <code>IMPORT-{aaaa}-{NNN}</code> e una voce nel protocollo delle importazioni. La voce registra:</p>
@@ -3148,16 +3148,17 @@
 <li>la somma di controllo MD5</li>
 <li>il momento dell'importazione</li>
 <li>la via di importazione (Excel / SIP / directory / agate)</li>
-<li>le <strong>impostazioni utilizzate</strong>, dalla v0.87.0 (vedi sotto)</li>
+<li>le <strong>impostazioni utilizzate</strong> (vedi sotto)</li>
 <li>l'esito e, in caso di fallimento, il messaggio</li>
 </ul>
+<!-- v0.88.0: ricevute nell'archivio delle accessioni abolite, quelle esistenti migrate nel protocollo -->
 <div class="admonition info">
-<p class="admonition-title">Novità dalla v0.88.0</p>
-<p>Fino alla v0.87.x ogni importazione creava inoltre una ricevuta come unità di descrizione nell'archivio delle accessioni, con il numero <code>AKZ {anno}/{N}</code>. L'archivio delle accessioni è di nuovo riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono più consumate dalle importazioni. Le ricevute esistenti sono state spostate nel protocollo con tutto ciò che portavano.</p>
+<p class="admonition-title">Nessuna ricevuta nell'archivio delle accessioni</p>
+<p>Un'importazione non crea un'unità di descrizione come ricevuta. L'archivio delle accessioni resta riservato alle accessioni vere — arrivate fisicamente, non ancora descritte — e le sue segnature non vengono consumate dalle importazioni.</p>
 </div>
 <p>La segnatura viene assegnata all'avvio. Un'esecuzione fallita la mantiene quindi e resta nel protocollo con il suo errore — una consegna fallita deve restare distinguibile da una che non è mai avvenuta.</p>
-<h3 id="protocollo-delle-importazioni">Protocollo delle importazioni<a class="headerlink" href="#protocollo-delle-importazioni" title="Permanent link">&para;</a></h3>
-<p>Sotto <strong><code>/import/audit</code></strong> si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Dalla <strong>v0.87.0</strong> si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in <em>Admin → Formulari</em> come per qualsiasi altro elenco.</p>
+<h3 id="import-protokoll">Protocollo delle importazioni<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
+<p>Sotto <strong><code>/import/audit</code></strong> si trova l'elenco di tutte le esecuzioni di importazione: segnatura, file di origine, momento, numero di schede create e lingua dei contenuti utilizzata. Si tratta di una normale tabella Anton — ordinabile, con lunghezza di pagina impostabile, e le colonne possono essere adattate in <em>Admin → Formulari</em> come per qualsiasi altro elenco.</p>
 <p>Di norma vengono mostrate le esecuzioni riuscite; un filtro rivela quelle fallite o interrotte. Nulla viene mai cancellato.</p>
 <p>Il link <strong>Dettagli</strong> porta all'esecuzione: file di origine, somma di controllo, impostazioni utilizzate con la loro provenienza, chi l'ha avviata e le schede che ha creato.</p>
 <p>Il file importato viene conservato. Dopo un'esecuzione riuscita passa in <code>metadata_imported/</code> — così non compare più nell'elenco di scelta — e la voce indica dove si trova.</p>
@@ -3165,10 +3166,11 @@
 <h2 id="svolgimento-importazione-excel">Svolgimento (importazione Excel)<a class="headerlink" href="#svolgimento-importazione-excel" title="Permanent link">&para;</a></h2>
 <p>Occorre anzitutto creare un file Excel secondo le indicazioni seguenti. Questo va caricato sotto «Upload Metadata» e i file multimediali corrispondenti sotto «Upload Medien». Infine il file Excel può essere verificato sotto «Validation». La validazione segnala gli errori ed emette avvertimenti. I dati possono essere importati solo quando la validazione è priva di errori. L'importazione viene avviata sotto «Ingest» e, a seconda del volume, può richiedere alcuni minuti.</p>
 <h2 id="lingua-dei-contenuti-dellimportazione">Lingua dei contenuti dell'importazione<a class="headerlink" href="#lingua-dei-contenuti-dellimportazione" title="Permanent link">&para;</a></h2>
-<p>I campi traducibili — titoli, campi di testo, parole chiave, attori e attrici, luoghi e collocazioni di nuova creazione — necessitano di una lingua. Dalla <strong>v0.87.0</strong> si tratta di una decisione consapevole, visibile prima dell'esecuzione.</p>
-<div class="admonition warning">
-<p class="admonition-title">Modifica di comportamento</p>
-<p>Fino alla v0.86.x Anton seguiva la <strong>lingua dell'interfaccia</strong>. Chi aveva l'interfaccia in inglese e caricava una tabella creava per ogni scheda una traduzione <em>inglese</em> del titolo — contenente il testo tedesco invariato. La scheda appariva corretta in inglese e in tedesco non aveva più titolo. Dalla v0.87.0 la lingua dell'interfaccia non ha più alcun ruolo.</p>
+<p>I campi traducibili — titoli, campi di testo, parole chiave, attori e attrici, luoghi e collocazioni di nuova creazione — necessitano di una lingua. Si tratta di una decisione consapevole, visibile prima dell'esecuzione.</p>
+<!-- v0.87.0: lingua dei contenuti esplicita; prima l'importazione seguiva la lingua dell'interfaccia -->
+<div class="admonition note">
+<p class="admonition-title">La lingua dell'interfaccia non ha alcun ruolo</p>
+<p>La lingua mostrata dall'interfaccia non ha alcuna influenza sull'importazione. Conta unicamente la lingua dei contenuti dell'esecuzione.</p>
 </div>
 <p>La lingua dei contenuti viene determinata in questo ordine — vince il primo valore impostato:</p>
 <ol>
@@ -3176,7 +3178,7 @@
 <li>l'impostazione d'archivio <code>import_options.locale</code></li>
 <li>la prima lingua di <code>locales</code> — la lingua principale dell'archivio</li>
 </ol>
-<p>Prima dell'avvio la pagina di ispezione indica la lingua in vigore <strong>e da dove proviene</strong> («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi <a href="#protocollo-delle-importazioni">Protocollo delle importazioni</a>).</p>
+<p>Prima dell'avvio la pagina di ispezione indica la lingua in vigore <strong>e da dove proviene</strong> («scelta per questa esecuzione», «impostazione d'archivio», «valore predefinito»). Dopo l'esecuzione la stessa indicazione si trova nella voce di protocollo (vedi <a href="#import-protokoll">Protocollo delle importazioni</a>).</p>
 <p>Una colonna con sigla di lingua (<code>title_fr</code>) prevale su questa scelta per il proprio campo — vedi <a href="#titel-title">titel</a>.</p>
 <h3 id="perche-la-lingua-conta-anche-nella-ricerca">Perché la lingua conta anche nella ricerca<a class="headerlink" href="#perche-la-lingua-conta-anche-nella-ricerca" title="Permanent link">&para;</a></h3>
 <p>La lingua dei contenuti determina non solo dove si scrive, ma anche <strong>in che cosa Anton cerca attori, attrici e luoghi esistenti</strong>. Se si scegle una lingua nella quale il fondo non è descritto, il confronto non trova nulla — e, con la creazione attivata, crea una nuova scheda per ogni nome.</p>
@@ -3240,7 +3242,7 @@ Einzelstück
 </tr>
 </tbody>
 </table>
-<p>Dalla <strong>v0.87.0</strong> si possono quindi importare titoli multilingue: una colonna per lingua. Entrambe le forme possono coesistere; la colonna con sigla di lingua è l'indicazione più precisa e prevale, e la pagina di ispezione lo segnala.</p>
+<p>Si possono quindi importare titoli multilingue: una colonna per lingua. Entrambe le forme possono coesistere; la colonna con sigla di lingua è l'indicazione più precisa e prevale, e la pagina di ispezione lo segnala.</p>
 <p>Lo stesso vale per i <strong>campi di testo</strong>: <code>scopecontent</code> scrive nella lingua dei contenuti, <code>scopecontent_fr</code> specificamente in francese, senza toccare le altre lingue dello stesso campo.</p>
 <div class="admonition note">
 <p class="admonition-title">Solo le lingue configurate</p>
@@ -3268,8 +3270,7 @@ Einzelstück
 <p>Diverse colonne accettano solo valori definiti nell'archivio:
 <code>verzeichnungsstufe</code>, <code>objekttyp</code>, <code>schutzfrist</code>, <code>status_of_description</code>,
 <code>detail_of_description</code> e <code>vacat</code>.</p>
-<p>Dalla <strong>v0.87.0</strong> le accettano tutte in <strong>tre forme</strong>, equivalenti (<code>vacat</code>
-già dalla v0.86.4):</p>
+<p>Le accettano tutte in <strong>tre forme</strong>, equivalenti:</p>
 <table>
 <thead>
 <tr>
@@ -3307,8 +3308,8 @@ problema, ma anche la soluzione:</p>
 necessario consultare prima le liste.</p>
 </div>
 <h4 id="consultare-tutte-le-liste-di-valori">Consultare tutte le liste di valori<a class="headerlink" href="#consultare-tutte-le-liste-di-valori" title="Permanent link">&para;</a></h4>
-<p>Dalla <strong>v0.87.0</strong> in <strong>Importazione tabellare → Liste di valori</strong>
-(<code>/valuelists</code>) è disponibile una panoramica di tutte le liste di valori: per
+<p>In <strong>Importazione tabellare → Liste di valori</strong> (<code>/valuelists</code>) è
+disponibile una panoramica di tutte le liste di valori: per
 ogni voce denominazione, nome interno e ID, oltre alla colonna di importazione
 a cui la lista appartiene. Un campo di ricerca filtra contemporaneamente tutte
 le liste.</p>
@@ -3343,29 +3344,15 @@ Film
 <p>Determina quale set di formulari viene utilizzato per la scheda — ossia quali campi compaiono e in quale ordine. Il campo è <strong>facoltativo</strong>: se resta vuoto, Anton risolve il set di formulari attraverso il livello di descrizione. È necessario solo se una scheda se ne discosta deliberatamente, ad esempio il set di formulari <code>letter</code> su unità documentarie.</p>
 <p>Come per la collocazione, due colonne: <strong><code>formset</code></strong> (anche: <code>formularsatz</code>) accetta il nome <em>o</em> l'ID, <strong><code>formset_id</code></strong> solo l'ID. I nomi dei set di formulari disponibili si trovano in <em>Amministrazione → Set di formulari</em> — in un'installazione standard ad esempio <code>fonds</code>, <code>class</code>, <code>series</code>, <code>file</code>, <code>item</code>, <code>collection</code>, <code>recordgroup</code>, <code>default</code>.</p>
 <p>La tabella di aggiornamento scaricata riporta la colonna <code>formset</code> e scrive il <strong>nome</strong>. Una cella vuota lascia il set di formulari invariato.</p>
-<div class="admonition note">
-<p class="admonition-title">Prima della v0.86 la colonna veniva scartata silenziosamente</p>
-<p>Le versioni precedenti non conoscevano <code>formset</code>: la colonna veniva segnalata come sconosciuta e poi ignorata senza conseguenze, mentre l'esecuzione riportava un successo. Chi ha impostato il set di formulari tramite tabella e si chiede perché non sia accaduto nulla — questo era il motivo.</p>
-</div>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
 <p>Indica se l'unità di descrizione è un segnaposto (una lacuna nella numerazione
 alla quale non corrisponde alcuna documentazione).</p>
 <p>La colonna gestisce internamente ID di termini. Vengono accettati la
 denominazione (<code>vacat</code>), l'ID (<code>56</code> per vacat, <code>57</code> per non vacat) e — da
 tabelle più vecchie — <code>1</code> e <code>0</code>.</p>
-<p>Dalla <strong>v0.87.0</strong> viene <strong>esportata</strong> la denominazione: <code>vacat</code> per un
-segnaposto, altrimenti una cella vuota. Prima vi figurava il numero interno,
-che in una colonna senza <code>_id</code> nel nome non diceva nulla e sembrava un valore
-modificato per errore. Le tabelle più vecchie con <code>56</code>/<code>57</code> possono continuare
-a essere utilizzate senza modifiche.</p>
-<div class="admonition warning">
-<p class="admonition-title">Prima della v0.86.4</p>
-<p>Fino ad allora la tabella di aggiornamento esportava il numero interno, ma
-la verifica ammetteva solo <code>0</code> e <code>1</code>. Una tabella di aggiornamento non
-modificata non era quindi caricabile, e il messaggio nominava un valore che
-nessuno aveva inserito. Chi si imbatte in una versione più vecchia:
-deselezionare la colonna <code>vacat</code> nella finestra di download.</p>
-</div>
+<p>Viene <strong>esportata</strong> la denominazione: <code>vacat</code> per un segnaposto, altrimenti
+una cella vuota. Le tabelle più vecchie con <code>56</code>/<code>57</code> possono continuare a
+essere utilizzate senza modifiche.</p>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>Il campo può contenere al massimo 500 caratteri. Più nomi di file (assets) possono essere separati con i caratteri seguenti:</p>
 <div class="highlight"><pre><span></span><code>, ; ::
@@ -3423,7 +3410,7 @@ Form und Inhalt (note.scopecontent)
 <p class="admonition-title">Funzione sperimentale</p>
 <p>L'aggiornamento dei dati è contrassegnato come <strong>sperimentale</strong> (badge nella scheda e nella pagina di caricamento). Modifica direttamente schede esistenti. Anton crea perciò <strong>automaticamente un backup della banca dati prima di ogni aggiornamento</strong> (vedi sotto); verificare comunque il risultato a campione.</p>
 </div>
-<p>Oltre alla creazione di nuove schede, le unità di descrizione esistenti possono essere aggiornate anche direttamente tramite browser. A questo scopo, sotto <strong>Importazione tabellare</strong> esiste dalla <strong>v0.81.2</strong> una scheda propria <strong>«Update»</strong> (dopo <em>Metadati</em> e <em>Media</em>). Lì si carica la tabella — i file di aggiornamento hanno un elenco proprio, separato dall'importazione normale — e si apre con <strong>«Dettagli»</strong>. Il file viene verificato direttamente in modalità aggiornamento e compare il pulsante <strong>«Carica come aggiornamento»</strong>.</p>
+<p>Oltre alla creazione di nuove schede, le unità di descrizione esistenti possono essere aggiornate anche direttamente tramite browser. A questo scopo, sotto <strong>Importazione tabellare</strong> esiste una scheda propria <strong>«Update»</strong> (dopo <em>Metadati</em> e <em>Media</em>). Lì si carica la tabella — i file di aggiornamento hanno un elenco proprio, separato dall'importazione normale — e si apre con <strong>«Dettagli»</strong>. Il file viene verificato direttamente in modalità aggiornamento e compare il pulsante <strong>«Carica come aggiornamento»</strong>.</p>
 <p>Poiché la scheda <em>Update</em> verifica il file esclusivamente come aggiornamento, una tabella di solo aggiornamento (solo <code>id</code> + le colonne da modificare, senza <code>parent</code>) non richiede scorciatoie: la colonna <code>parent</code>, necessaria alla creazione, qui non è richiesta. La scheda <em>Metadati</em> regolare resta invariata per la creazione.</p>
 <p>Un aggiornamento sovrascrive i campi delle schede esistenti «sul posto» — <strong>non vengono create nuove schede</strong>. Perché un aggiornamento resti sicuro e prevedibile valgono tre presupposti. Se uno di essi è violato, il file viene bloccato e il motivo è visualizzato nella pagina di ispezione:</p>
 <ol>
@@ -3446,7 +3433,7 @@ Form und Inhalt (note.scopecontent)
 <p>Il file contiene esclusivamente colonne che un aggiornamento è autorizzato a scrivere — <code>id</code>, le colonne dei campi, le lingue, la collocazione (<code>location_id</code>), parole chiave / attori / luoghi (come ID) e le colonne dei campi di testo <code>note.*</code>. Non sono deliberatamente <strong>compresi</strong> <code>parent</code> e le colonne di evento, che bloccherebbero l'aggiornamento. La colonna <code>identifier</code> serve solo all'orientamento: l'aggiornamento trova le schede tramite l'<code>id</code>, e le modifiche alla segnatura restano senza effetto.</p>
 <div class="admonition tip">
 <p class="admonition-title">Archivi multilingue: una colonna di titolo per lingua</p>
-<p>Se l'archivio gestisce più lingue dei contenuti, dalla <strong>v0.87.0</strong> la tabella di aggiornamento contiene, al posto di <code>titel</code>, una colonna <code>title_de</code>, <code>title_fr</code> ecc. Solo così il percorso di uscita e rientro è senza perdite: con un'unica colonna di titolo, al caricamento dovrebbe essere la lingua dell'esecuzione a decidere dove torna il valore — e un titolo francese finirebbe nel campo tedesco.</p>
+<p>Se l'archivio gestisce più lingue dei contenuti, la tabella di aggiornamento contiene, al posto di <code>titel</code>, una colonna <code>title_de</code>, <code>title_fr</code> ecc. Solo così il percorso di uscita e rientro è senza perdite: con un'unica colonna di titolo, al caricamento dovrebbe essere la lingua dell'esecuzione a decidere dove torna il valore — e un titolo francese finirebbe nel campo tedesco.</p>
 <p>Gli archivi monolingue mantengono la consueta colonna <code>titel</code>; lì non c'è nulla da distinguere. Le tabelle più vecchie con <code>titel</code> restano in ogni caso caricabili.</p>
 </div>
 <div class="admonition tip">
@@ -3472,15 +3459,6 @@ Form und Inhalt (note.scopecontent)
 </table>
 <p>La tabella di aggiornamento scaricata utilizza <code>location_id</code>. Chi preferisce lavorare con le denominazioni rinomina la colonna in <code>location</code>; lì vengono accettate entrambe le forme. Una denominazione deve essere scritta esattamente come nella gestione delle collocazioni, comprese maiuscole e minuscole — l'ID è perciò la via sicura.</p>
 <p>Una <strong>cella vuota lascia la collocazione invariata</strong> — per uno spostamento occorre quindi modificare solo le righe che effettivamente cambiano posto. Una collocazione non ancora esistente va creata in precedenza in <em>Admin → Collocazioni</em>; altrimenti l'ispezione la segnala come sconosciuta e l'aggiornamento non viene eseguito.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Prima della v0.87.0 il pulsante non scaricava nulla</p>
-<p>Il pulsante di download nella finestra delle colonne chiudeva la finestra,
-ma nello stesso movimento interrompeva il trasferimento — senza messaggio
-d'errore. Sembrava che qualcosa fosse accaduto; nella cartella dei download
-non arrivava nulla. La v0.86.4 ha corretto una parte del problema, ma il
-pulsante restava senza effetto; solo dalla v0.87.0 si tratta di un vero
-download.</p>
 </div>
 <p>Al clic si apre una finestra in cui si possono <strong>selezionare le colonne</strong>. È più di una comodità: ciò che non figura nel file, un aggiornamento non può nemmeno scriverlo. Chi vuole correggere solo un singolo titolo seleziona <code>id</code> e <code>titel</code> — così al caricamento nient'altro può subire danni. <code>id</code> è sempre incluso e non può essere deselezionato.</p>
 <div class="admonition warning">

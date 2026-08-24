@@ -2300,7 +2300,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-rdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2324,7 +2324,6 @@ konform liefert:</p>
 <li><strong>Memobase-Profil</strong> — JSON-LD-Form gemäss <code>https://api.memobase.ch/context/*</code>
   (für die Lieferung an Memobase via Memoriav-Konvention §9)</li>
 </ul>
-<p>Verfügbar seit <strong>v0.71.0</strong>.</p>
 <h2 id="drei-profile-im-uberblick">Drei Profile im Überblick<a class="headerlink" href="#drei-profile-im-uberblick" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2674,9 +2673,9 @@ automatisch zur Export-Laufzeit.</p>
 </table>
 <p>Alle Settings werden über <code>/settings</code> oder per Tinker (<code>setting('key', 'value')</code>) gepflegt.</p>
 <h2 id="av-metadaten">AV-Metadaten<a class="headerlink" href="#av-metadaten" title="Permanent link">&para;</a></h2>
-<p>Anton hat seit v0.71.0 sechs neue Spalten in <code>media</code>:
-<code>av_duration_seconds</code>, <code>av_codec</code>, <code>av_bitrate</code>, <code>av_resolution</code>,
-<code>av_sample_rate</code>, <code>av_aspect_ratio</code>.</p>
+<p>Anton führt sechs AV-Spalten in <code>media</code>: <code>av_duration_seconds</code>,
+<code>av_codec</code>, <code>av_bitrate</code>, <code>av_resolution</code>, <code>av_sample_rate</code>,
+<code>av_aspect_ratio</code>.</p>
 <p>Sie werden automatisch befüllt:</p>
 <ul>
 <li><strong>Bei neuem Upload</strong>: Listener <code>MediumIdentifyAndConvert</code> ruft direkt
@@ -2697,9 +2696,8 @@ kleine Zeile mit den vorhandenen Werten — <code>1:08</code>, <code>1246x1020 (
 <h2 id="per-objekt-buttons-in-der-detail-ansicht">Per-Objekt-Buttons in der Detail-Ansicht<a class="headerlink" href="#per-objekt-buttons-in-der-detail-ansicht" title="Permanent link">&para;</a></h2>
 <p>Zusätzlich zum <code>/export/rdf</code>-Tab (Job-basiert, asynchron) kann jedes
 Objekt in der Detail-Ansicht synchron-downloadbar gemacht werden über
-das <strong>Download-Modul</strong> (Antonfield id 1105, seit v0.71.0 von
-<code>word_download</code> umbenannt). Das Modul rendert bis zu <strong>acht Buttons</strong>
-in der internen Detail-Ansicht — welche erscheinen, steuert pro Format
+das <strong>Download-Modul</strong> (Antonfield id 1105, früher <code>word_download</code>). Das
+Modul rendert bis zu <strong>acht Buttons</strong> in der internen Detail-Ansicht — welche erscheinen, steuert pro Format
 ein eigenes Setting:</p>
 <table>
 <thead>
@@ -2768,12 +2766,11 @@ neuen Button bis ein Admin via <code>/settings</code> (oder Tinker) die LoDs ein
 und respektieren die <code>mayBeShown()</code>-Privacy-Logik der bestehenden
 Detail-Ansicht (private Objekte sind nur für Admins zugänglich).</p>
 <blockquote>
-<p><strong>Hinweis zum Rename:</strong> Bis v0.72.0 bleibt eine Backwards-Compat-Klasse
-<code>WordDownload extends Download</code> bestehen, damit kundenspezifische
-Form-Konfigurationen, die noch <code>word_download</code> referenzieren, weiter
-rendern. Ab v0.73.0 wird der Alias entfernt — Tenants mit
-customer-spezifischen Forms müssen bis dahin auf <code>download</code> umgestellt
-haben.</p>
+<p><strong>Hinweis zum Rename:</strong> Eine Backwards-Compat-Klasse
+<code>WordDownload extends Download</code> besteht weiterhin, damit
+kundenspezifische Form-Konfigurationen, die noch <code>word_download</code>
+referenzieren, rendern. Der Alias wird irgendwann entfernt — Tenants mit
+customer-spezifischen Forms sollten auf <code>download</code> umstellen.</p>
 </blockquote>
 <h2 id="was-nicht-im-export-landet">Was nicht im Export landet<a class="headerlink" href="#was-nicht-im-export-landet" title="Permanent link">&para;</a></h2>
 <p>Gilt für den <strong>Standardfall</strong> — also ohne <code>--include-protected</code>:</p>

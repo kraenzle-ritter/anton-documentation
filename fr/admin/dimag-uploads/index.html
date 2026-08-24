@@ -2245,7 +2245,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/dimag-uploads/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/dimag-uploads/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2258,8 +2258,8 @@
 
 <h1 id="dimag-upload-status">DIMAG-Upload-Status<a class="headerlink" href="#dimag-upload-status" title="Permanent link">&para;</a></h1>
 <p>Für Archive mit DIMAG-Anbindung (ZH-Kanton-Gemeinden wie Opfikon,
-Lindau, Dürnten) zeigt Anton seit <strong>v0.65.0</strong> den Übertragungs-Status
-jeder Mediendatei sichtbar in der UI — und meldet strukturelle Fehler
+Lindau, Dürnten) zeigt Anton den Übertragungs-Status jeder Mediendatei
+sichtbar in der UI — und meldet strukturelle Fehler
 sofort per E-Mail an die Administration.</p>
 <p>Hintergrund: Vorher konnte es passieren, dass eine Datei lokal
 gespeichert, aber nicht erfolgreich an DIMAG übertragen wurde
@@ -2355,8 +2355,8 @@ vier Kategorien ein:</p>
 <p>Die Kategorie steht im Mail-Subject und im Issue-Tracker-Eintrag (falls
 das Feedback-Modul verbunden ist).</p>
 <h2 id="daten-modell-media_events">Daten-Modell: <code>media_events</code><a class="headerlink" href="#daten-modell-media_events" title="Permanent link">&para;</a></h2>
-<p>Status-Events werden seit v0.65.0 in einer eigenen Tabelle
-<code>media_events</code> gespeichert (append-only). Schema:</p>
+<p>Status-Events werden in einer eigenen Tabelle <code>media_events</code> gespeichert
+(append-only). Schema:</p>
 <table>
 <thead>
 <tr>
@@ -2433,8 +2433,8 @@ Datei <code>original_location='inge'</code> hat aber noch keine Events.</p>
 </tbody>
 </table>
 <h2 id="sip-status-tab">SIP-Status-Tab<a class="headerlink" href="#sip-status-tab" title="Permanent link">&para;</a></h2>
-<p>Ergänzend zum Per-File-Status gibt es seit v0.65.0/v0.66.0 unter
-<strong>SIP Import → Status</strong> einen Admin-Tab <code>/sip/status</code> (nur bei
+<p>Ergänzend zum Per-File-Status gibt es unter <strong>SIP Import → Status</strong>
+einen Admin-Tab <code>/sip/status</code> (nur bei
 <code>cloud === 'inge'</code>), der die aktuelle Inge-URL und das Token-Setup
 anzeigt und einen „Run infrastructure check now"-Button bietet. Derselbe
 Check steht als Befehl <code>inge:check-infrastructure</code> bereit.</p>

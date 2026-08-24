@@ -1404,7 +1404,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#import-log" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Import log
@@ -4514,7 +4514,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#import-log" class="md-nav__link">
+  <a href="#import-protokoll" class="md-nav__link">
     <span class="md-ellipsis">
       
         Import log
@@ -4938,7 +4938,7 @@
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>It is possible to import data and the associated files (media) into Anton. The descriptive data (Excel file) is recorded in a (prescribed) Excel sheet and uploaded to the server together with the files. The data is then validated and, if validation was successful, the import/ingest can take place (descriptive data and media). See also the documentation in Anton at <code>/import/documentation</code>.</p>
 <h2 id="import-hub-import">Import hub <code>/import</code><a class="headerlink" href="#import-hub-import" title="Permanent link">&para;</a></h2>
-<p>Since <strong>v0.62.0</strong>, all import paths are brought together at one address: <code>/import</code> (in the menu under <strong>Import / Export → Import</strong>). The page has four tabs:</p>
+<p>All import paths are brought together at one address: <code>/import</code> (in the menu under <strong>Import / Export → Import</strong>). The page has four tabs:</p>
 <table>
 <thead>
 <tr>
@@ -4976,7 +4976,7 @@
 </ul>
 <p>This makes it possible to see before the import whether the SIP makes sense, whether the tenant vocabulary fits, and to discard the SIP if necessary before anything ends up in the database.</p>
 <h3 id="live-progress">Live progress<a class="headerlink" href="#live-progress" title="Permanent link">&para;</a></h3>
-<p>Since v0.62.0, all imports run <strong>asynchronously in the background</strong>. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the <strong>run in the import log</strong>.</p>
+<p>All imports run <strong>asynchronously in the background</strong>. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the <strong>run in the import log</strong>.</p>
 <p>This applies to all paths — Excel, SIP, directory and finalising the inbox.</p>
 <h3 id="a-reference-code-for-every-import">A reference code for every import<a class="headerlink" href="#a-reference-code-for-every-import" title="Permanent link">&para;</a></h3>
 <p>Every import (regardless of the path) gets a reference code <code>IMPORT-{yyyy}-{NNN}</code> and an entry in the import log. The entry records:</p>
@@ -4985,16 +4985,17 @@
 <li>the MD5 checksum</li>
 <li>the time of import</li>
 <li>the import path (Excel / SIP / directory / agate)</li>
-<li>the <strong>settings used</strong>, since v0.87.0 (see below)</li>
+<li>the <strong>settings used</strong> (see below)</li>
 <li>the outcome, and the message if it failed</li>
 </ul>
+<!-- v0.88.0: receipts in the accession archive retired, existing ones migrated into the log -->
 <div class="admonition info">
-<p class="admonition-title">New in v0.88.0</p>
-<p>Up to v0.87.x every import also filed a receipt as an archival record in the accession archive, numbered <code>AKZ {year}/{N}</code>. The accession archive is reserved for real accessions again — physically arrived, not yet catalogued — and its reference codes are no longer used up by imports. Existing receipts were moved into the log with everything they carried.</p>
+<p class="admonition-title">No receipt in the accession archive</p>
+<p>An import does not create an archival record as a receipt. The accession archive stays reserved for real accessions — physically arrived, not yet catalogued — and its reference codes are not used up by imports.</p>
 </div>
 <p>The reference code is assigned at the start. A failed run therefore keeps it and stays in the log with its error — a failed delivery has to stay distinguishable from one that never happened.</p>
-<h3 id="import-log">Import log<a class="headerlink" href="#import-log" title="Permanent link">&para;</a></h3>
-<p>Under <strong><code>/import/audit</code></strong> is the list of all import runs: reference code, source file, time, number of records created and the content language used. Since <strong>v0.87.0</strong> this is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under <em>Admin → Forms</em> like those of any other list.</p>
+<h3 id="import-protokoll">Import log<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
+<p>Under <strong><code>/import/audit</code></strong> is the list of all import runs: reference code, source file, time, number of records created and the content language used. It is an ordinary Anton table — sortable, with a configurable page length, and the columns can be adapted under <em>Admin → Forms</em> like those of any other list.</p>
 <p>Successful runs are shown by default; a filter reveals failed and aborted ones. Nothing is ever deleted.</p>
 <p>The <strong>details</strong> link leads to the run: source file, checksum, settings used together with their origin, who triggered it, and the records it created.</p>
 <p>The imported file is kept. After a successful run it moves to <code>metadata_imported/</code> — so it stops appearing in the picker — and the entry says where it went.</p>
@@ -5002,10 +5003,11 @@
 <h2 id="procedure-excel-import">Procedure (Excel import)<a class="headerlink" href="#procedure-excel-import" title="Permanent link">&para;</a></h2>
 <p>First, an Excel file has to be created according to the specifications below. This is uploaded under "Upload Metadata", and the associated media files are uploaded under "Upload Media". Finally, the Excel file can be checked under "Validation". The validation displays errors and issues warnings. The data can only be imported once the validation is free of errors. The import is triggered under "Ingest" and can take several minutes depending on the volume.</p>
 <h2 id="content-language-of-the-import">Content language of the import<a class="headerlink" href="#content-language-of-the-import" title="Permanent link">&para;</a></h2>
-<p>Translatable fields — titles, text fields, newly created keywords, actors, places and locations — need a language. Since <strong>v0.87.0</strong> this is a deliberate decision that is visible before the run.</p>
-<div class="admonition warning">
-<p class="admonition-title">Change of behaviour</p>
-<p>Up to v0.86.x, Anton followed the <strong>language of the interface</strong>. Anyone who had the interface set to English and loaded a table created an <em>English</em> title translation for every record — containing the unchanged German text. The record looked correct in English and no longer had a title in German. From v0.87.0, the interface language no longer plays any role.</p>
+<p>Translatable fields — titles, text fields, newly created keywords, actors, places and locations — need a language. This is a deliberate decision that is visible before the run.</p>
+<!-- v0.87.0: content language made explicit; before that the import followed the interface language -->
+<div class="admonition note">
+<p class="admonition-title">The interface language plays no role</p>
+<p>Whichever language the interface is currently showing has no influence on the import. What counts is solely the content language of the run.</p>
 </div>
 <p>The content language is determined in this order — the first value that is set wins:</p>
 <ol>
@@ -5013,7 +5015,7 @@
 <li>the archive setting <code>import_options.locale</code></li>
 <li>the first language from <code>locales</code> — the main language of the archive</li>
 </ol>
-<p>Before the start, the inspection page names the language that applies <strong>and where it comes from</strong> («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see <a href="#import-log">Import log</a>).</p>
+<p>Before the start, the inspection page names the language that applies <strong>and where it comes from</strong> («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see <a href="#import-protokoll">Import log</a>).</p>
 <p>A column with a language code (<code>title_fr</code>) trumps this choice for its own field — see <a href="#titel-title">titel</a>.</p>
 <h3 id="why-the-language-matters-for-searching-too">Why the language matters for searching too<a class="headerlink" href="#why-the-language-matters-for-searching-too" title="Permanent link">&para;</a></h3>
 <p>The content language determines not only where data is written, but also <strong>what Anton searches in when looking for existing actors and places</strong>. If a language is chosen in which the holdings are not recorded, the matching finds nothing — and, where creation is switched on, creates a new record for every name.</p>
@@ -5077,7 +5079,7 @@ Einzelstück
 </tr>
 </tbody>
 </table>
-<p>Since <strong>v0.87.0</strong>, multilingual titles can therefore be imported: one column per language. Both forms may stand side by side; the column with a language code is the more precise specification and wins, and the inspection page points this out.</p>
+<p>Multilingual titles can therefore be imported: one column per language. Both forms may stand side by side; the column with a language code is the more precise specification and wins, and the inspection page points this out.</p>
 <p>The same applies to the <strong>text fields</strong>: <code>scopecontent</code> writes into the content language, <code>scopecontent_fr</code> specifically into French, without touching the other languages of the same text field.</p>
 <div class="admonition note">
 <p class="admonition-title">Only configured languages</p>
@@ -5105,8 +5107,7 @@ Einzelstück
 <p>Several columns only accept values that are defined in the archive:
 <code>verzeichnungsstufe</code>, <code>objekttyp</code>, <code>schutzfrist</code>, <code>status_of_description</code>,
 <code>detail_of_description</code> and <code>vacat</code>.</p>
-<p>Since <strong>v0.87.0</strong> they all accept <strong>three forms</strong>, equivalently (<code>vacat</code>
-already since v0.86.4):</p>
+<p>They all accept <strong>three forms</strong>, equivalently:</p>
 <table>
 <thead>
 <tr>
@@ -5144,7 +5145,7 @@ also the solution:</p>
 therefore do not have to be looked up beforehand.</p>
 </div>
 <h4 id="looking-up-all-value-lists">Looking up all value lists<a class="headerlink" href="#looking-up-all-value-lists" title="Permanent link">&para;</a></h4>
-<p>Since <strong>v0.87.0</strong> there is an overview of all value lists under
+<p>There is an overview of all value lists under
 <strong>Table import → Value lists</strong> (<code>/valuelists</code>): for each entry the
 designation, internal name and ID, plus the import column to which the list
 belongs. A search field filters across all lists at once.</p>
@@ -5179,29 +5180,15 @@ Film
 <p>Determines which form set is used for the record — that is, which fields appear in what order. The field is <strong>optional</strong>: if it remains empty, Anton resolves the form set via the level of description. It is only necessary if a record deliberately deviates from that, for example the form set <code>letter</code> on items.</p>
 <p>As with the location, two columns: <strong><code>formset</code></strong> (also: <code>formularsatz</code>) takes the name <em>or</em> the ID, <strong><code>formset_id</code></strong> only the ID. The names of the available form sets are listed under <em>Administration → Form sets</em> — in a standard installation, for example, <code>fonds</code>, <code>class</code>, <code>series</code>, <code>file</code>, <code>item</code>, <code>collection</code>, <code>recordgroup</code>, <code>default</code>.</p>
 <p>The downloaded update table carries the <code>formset</code> column and writes the <strong>name</strong>. An empty cell leaves the form set unchanged.</p>
-<div class="admonition note">
-<p class="admonition-title">Before v0.86 the column was silently discarded</p>
-<p>Earlier versions did not know <code>formset</code>: the column was reported as unknown and then passed over without consequence, and the run reported success. Anyone who set the form set via a table and wondered why nothing happened — that was the reason.</p>
-</div>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
 <p>Specifies whether the unit of description is a placeholder (a gap in the
 numbering for which there are no records).</p>
 <p>Internally the column carries term IDs. Accepted are the designation
 (<code>vacat</code>), the ID (<code>56</code> for vacat, <code>57</code> for not vacat) and — from older
 tables — <code>1</code> and <code>0</code>.</p>
-<p>Since <strong>v0.87.0</strong>, what is <strong>exported</strong> is the designation: <code>vacat</code> for a
-placeholder, otherwise an empty cell. Previously the internal number stood
-there, which said nothing in a column without <code>_id</code> in its name and looked
-like a value changed by mistake. Older tables with <code>56</code>/<code>57</code> can continue to
-be used unchanged.</p>
-<div class="admonition warning">
-<p class="admonition-title">Before v0.86.4</p>
-<p>Until then, the update table exported the internal number, but the check
-only permitted <code>0</code> and <code>1</code>. An unchanged update table therefore could not
-be loaded, and the message named a value that nobody had entered. If you
-come across an older version: deselect the <code>vacat</code> column in the download
-dialogue.</p>
-</div>
+<p>What is <strong>exported</strong> is the designation: <code>vacat</code> for a placeholder,
+otherwise an empty cell. Older tables with <code>56</code>/<code>57</code> can continue to be used
+unchanged.</p>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>The field may contain at most 500 characters. Several file names (assets) can be separated with the following characters:</p>
 <div class="highlight"><pre><span></span><code>, ; ::
@@ -5259,7 +5246,7 @@ Form und Inhalt (note.scopecontent)
 <p class="admonition-title">Experimental feature</p>
 <p>The data update is marked as <strong>experimental</strong> (badge in the tab and on the upload page). It changes existing records directly. Anton therefore <strong>automatically creates a backup of the database before every update</strong> (see below); nevertheless, check the result on a sample basis.</p>
 </div>
-<p>Besides creating new records, existing units of description can also be updated directly via the browser. Since <strong>v0.81.2</strong> there is a dedicated <strong>«Update»</strong> tab under <strong>Table import</strong> for this (after <em>Metadata</em> and <em>Media</em>). Upload the table there — update files have their own list, separate from the normal import — and open it with <strong>«Details»</strong>. The file is checked directly in update mode, and the button <strong>«Load as update»</strong> appears.</p>
+<p>Besides creating new records, existing units of description can also be updated directly via the browser. There is a dedicated <strong>«Update»</strong> tab under <strong>Table import</strong> for this (after <em>Metadata</em> and <em>Media</em>). Upload the table there — update files have their own list, separate from the normal import — and open it with <strong>«Details»</strong>. The file is checked directly in update mode, and the button <strong>«Load as update»</strong> appears.</p>
 <p>Because the <em>Update</em> tab checks the file exclusively as an update, a pure update table (only <code>id</code> plus the columns to be changed, without <code>parent</code>) needs no detours: the <code>parent</code> column required when creating new records is not demanded here. The regular <em>Metadata</em> tab remains unchanged for creating new records.</p>
 <p>An update overwrites the fields of the existing records «in place» — <strong>no new records are created</strong> in the process. So that an update remains safe and predictable, three preconditions apply. If one of them is violated, the file is blocked and the reason is displayed on the inspection page:</p>
 <ol>
@@ -5282,7 +5269,7 @@ Form und Inhalt (note.scopecontent)
 <p>The file contains exclusively columns that an update is also allowed to write — <code>id</code>, the field columns, languages, the location (<code>location_id</code>), keywords/actors/places (as IDs) and the text field columns <code>note.*</code>. Deliberately <strong>not</strong> included are <code>parent</code> and the event columns, which would block the update. The <code>identifier</code> column serves only for orientation: the update finds the records via the <code>id</code>, and changes to the reference code have no effect.</p>
 <div class="admonition tip">
 <p class="admonition-title">Multilingual archives: one title column per language</p>
-<p>If the archive maintains several content languages, the update table has contained, since <strong>v0.87.0</strong>, one column <code>title_de</code>, <code>title_fr</code> and so on instead of <code>titel</code>. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.</p>
+<p>If the archive maintains several content languages, the update table contains one column <code>title_de</code>, <code>title_fr</code> and so on instead of <code>titel</code>. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.</p>
 <p>Monolingual archives keep the familiar <code>titel</code> column; there is nothing to distinguish there. Older tables with <code>titel</code> remain loadable in any case.</p>
 </div>
 <div class="admonition tip">
@@ -5308,14 +5295,6 @@ Form und Inhalt (note.scopecontent)
 </table>
 <p>The downloaded update table uses <code>location_id</code>. Anyone who prefers to work with designations renames the column to <code>location</code>; there both forms are accepted. A designation has to be written exactly as in the location administration, including capitalisation — the ID is therefore the safe route.</p>
 <p>An <strong>empty cell leaves the location unchanged</strong> — for rearranging, therefore change only the rows that actually move. A location that does not yet exist has to be created under <em>Admin → Locations</em> beforehand; otherwise the inspection reports it as unknown and the update does not run.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Before v0.87.0 the button downloaded nothing</p>
-<p>The download button in the column dialogue closed the dialogue but aborted
-the transfer in the same movement — without an error message. It looked as
-though something had happened; nothing arrived in the download folder.
-v0.86.4 fixed part of this, but the button remained without effect; only
-since v0.87.0 is it a genuine download.</p>
 </div>
 <p>On clicking, a dialogue opens in which the <strong>columns can be selected</strong>. That is more than convenience: what is not in the file cannot be written by an update either. Anyone who only wants to correct a single title selects <code>id</code> and <code>titel</code> — then nothing else can come to harm when loading. <code>id</code> is always included and cannot be deselected.</p>
 <div class="admonition warning">

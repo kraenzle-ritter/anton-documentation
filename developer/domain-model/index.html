@@ -4140,7 +4140,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/developer/domain-model/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4228,7 +4228,7 @@ festhält, dass jemand erwähnt wird, den Deskriptor.</p>
   <code>notes.note_type_id</code> verweisen auf <code>antonfields.id</code>. Die Enums <code>Eventtype</code> und
   <code>Notetype</code> bilden die im Code referenzierten Typen ab — nicht zwingend alle,
   die ein Mandant konfiguriert hat.</li>
-<li><strong>Normdaten tragen eine portable UUID</strong> (seit v0.79) — Grundlage für den
+<li><strong>Normdaten tragen eine portable UUID</strong> — Grundlage für den
   verlustfreien Re-Import, der gleichnamige Datensätze nicht verschmilzt.</li>
 <li><strong>Löschen kaskadiert.</strong> Der <code>deleting</code>-Hook auf AntonObject verschiebt jedes
   Kind rekursiv; es gibt keinen Papierkorb (kein <code>deleted_at</code>).</li>

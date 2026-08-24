@@ -4254,9 +4254,9 @@
 
 
 <h1 id="agate-sip-import">agate SIP import<a class="headerlink" href="#agate-sip-import" title="Permanent link">&para;</a></h1>
-<p>Since <strong>v0.61.0</strong>, <a href="https://github.com/kraenzle-ritter/agate">agate</a> (the Anton
-preparation tool for SIPs built from loose file collections) can send BagIt
-packages directly to Anton via HTTP. Anton receives the ZIP, checks it, creates
+<p><a href="https://github.com/kraenzle-ritter/agate">agate</a> (the Anton preparation tool
+for SIPs built from loose file collections) can send BagIt packages directly to
+Anton via HTTP. Anton receives the ZIP, checks it, creates
 a backup, imports the contents as units of description below the chosen fonds
 and notifies agate when everything is finished.</p>
 <p>The whole path runs <strong>asynchronously</strong> — agate can carry on working in parallel
@@ -4337,7 +4337,6 @@ later.</p>
 <code>IMPORT-{yyyy}-{NNN}</code>, file name, checksum, time, outcome and the records it
 created. The import path is thereby auditable after the fact as well; no
 accession archive is needed for it.</p>
-<p>Up to v0.87.x a receipt was recorded in the accession archive instead.</p>
 <h2 id="configuration-checklist">Configuration checklist<a class="headerlink" href="#configuration-checklist" title="Permanent link">&para;</a></h2>
 <p>For agate imports to work:</p>
 <ol>
@@ -4351,10 +4350,10 @@ accession archive is needed for it.</p>
 </ol>
 <h2 id="common-stumbling-blocks">Common stumbling blocks<a class="headerlink" href="#common-stumbling-blocks" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Repeated uploads with the same file name</strong> work since v0.61.0 — Anton now
-  checks the original file name, not the UUID-suffixed path on disk.</li>
-<li><strong>A NARA category without a tenant type</strong> no longer aborts the import (since
-  v0.61.0). The <code>object_type</code> remains empty.</li>
+<li><strong>Repeated uploads with the same file name</strong> work — Anton checks the
+  original file name, not the UUID-suffixed path on disk.</li>
+<li><strong>A NARA category without a tenant type</strong> does not abort the import. The
+  <code>object_type</code> remains empty.</li>
 <li><strong>The wrapper record at the top of the SIP</strong> is no longer forced to have an
   object type — the hard-coded "Agate SIP" has been removed.</li>
 </ul>

@@ -2354,6 +2354,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Full text and instant search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condensed-full-text-optimize_fulltext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condensed full text (optimize_fulltext)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4079,6 +4096,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Full text and instant search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condensed-full-text-optimize_fulltext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condensed full text (optimize_fulltext)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4098,7 +4132,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/searchfields/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4139,6 +4173,19 @@ translation of the field name applies.</p>
 <a href="../../user/search/">full-text search</a> searches a combined index across all
 relevant fields and is not controlled via the search fields; the
 <a href="../typesense/">instant search</a> has its own configuration.</p>
+<h3 id="condensed-full-text-optimize_fulltext">Condensed full text (<code>optimize_fulltext</code>)<a class="headerlink" href="#condensed-full-text-optimize_fulltext" title="Permanent link">&para;</a></h3>
+<p>The stored full text can be <strong>condensed</strong>: Anton then throws away every
+repetition of a word and keeps only its first occurrence. That keeps the column
+small — in holdings with PDF full text, the document text is by far the largest
+part.</p>
+<p>The price is <strong>phrase search</strong>. Condensing loses every adjacency of two words
+that did not already exist at their first occurrence: <code>"rudolf leder"</code> then only
+finds the record if the two words happened to stand together right there. Search
+for single words is unaffected.</p>
+<p>Anyone changing the setting has to <strong>rebuild the index</strong> — what is stored
+condensed stays condensed, the setting only takes effect on writing:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:update-fulltext<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
+</code></pre></div>
 
 
 

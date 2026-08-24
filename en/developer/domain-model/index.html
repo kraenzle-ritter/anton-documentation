@@ -4140,7 +4140,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/developer/domain-model/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4227,7 +4227,7 @@ event; anyone noting that someone is mentioned wants the descriptor.</p>
   <code>notes.note_type_id</code> refer to <code>antonfields.id</code>. The enums <code>Eventtype</code> and
   <code>Notetype</code> map the types referenced in the code — not necessarily all those a
   tenant has configured.</li>
-<li><strong>Authority data carries a portable UUID</strong> (since v0.79) — the basis for the
+<li><strong>Authority data carries a portable UUID</strong> — the basis for the
   lossless re-import, which does not merge records of the same name.</li>
 <li><strong>Deletion cascades.</strong> The <code>deleting</code> hook on AntonObject removes every child
   recursively; there is no recycle bin (no <code>deleted_at</code>).</li>

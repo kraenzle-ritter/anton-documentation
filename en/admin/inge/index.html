@@ -4250,8 +4250,17 @@
 <li>Setting <code>fulltext-from-webpdf</code>: true </li>
 <li>Setting <code>cloud</code>: "inge"</li>
 <li>.env INGE_API_TOKEN </li>
-<li>User "Inge" with an email address and <code>api_token</code> for Inge</li>
+<li>User "Inge" with an email address and <code>api_token</code> for Inge, holding at
+  least the role <strong>editor</strong></li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Inge needs the editor role</p>
+<p>Confirming the ingest and restoring the state before it
+(<code>/api/sips/{id}/confirm</code> and <code>/revert</code>) are reserved for editors — a
+token alone is not enough. If the service user "Inge" does not hold the
+role, Anton answers the closing step of the cycle with a 403 and the
+ingest stays unconfirmed.</p>
+</div>
 <h3 id="course-of-the-sip-ingest">Course of the SIP ingest<a class="headerlink" href="#course-of-the-sip-ingest" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
@@ -4321,8 +4330,9 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># overall picture (counts + verification + orphan check)</span>
 php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
 
-<span class="c1"># check only one particular SIP (after an interrupted ingest)</span>
-php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--sip<span class="o">={</span>sip_id<span class="o">}</span><span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+<span class="c1"># check only one particular SIP (after an interrupted ingest);</span>
+<span class="c1"># {run_id} is the run id from the import log</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--sip<span class="o">={</span>run_id<span class="o">}</span><span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
 
 <span class="c1"># repair cloud_status in the DB (when Inge status=20 but the DB is wrong)</span>
 php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">5</span><span class="w"> </span>--fix-cloud-status<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv

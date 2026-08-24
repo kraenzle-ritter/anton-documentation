@@ -2154,6 +2154,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Volltext und schnelle Suche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verdichteter-volltext-optimize_fulltext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verdichteter Volltext (optimize_fulltext)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2173,7 +2190,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/searchfields/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/searchfields/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2215,6 +2232,19 @@ eines Suchfelds folgt derselben Logik wie bei den
 <a href="../../user/search/">Volltextsuche</a> durchsucht einen zusammengefassten Index über
 alle relevanten Felder und wird nicht über die Suchfelder gesteuert; die
 <a href="../typesense/">schnelle Suche</a> hat eine eigene Konfiguration.</p>
+<h3 id="verdichteter-volltext-optimize_fulltext">Verdichteter Volltext (<code>optimize_fulltext</code>)<a class="headerlink" href="#verdichteter-volltext-optimize_fulltext" title="Permanent link">&para;</a></h3>
+<p>Der gespeicherte Volltext lässt sich <strong>verdichten</strong>: Anton wirft dabei jede
+Wortwiederholung weg und behält nur das erste Vorkommen. Das hält die Spalte
+klein — bei Beständen mit PDF-Volltext macht der Dokumententext den weitaus
+grössten Teil aus.</p>
+<p>Der Preis ist die <strong>Phrasensuche</strong>. Wer verdichtet, verliert jede Nachbarschaft
+zweier Wörter, die nicht schon beim ersten Vorkommen bestand: <code>"rudolf leder"</code>
+findet den Datensatz dann nur, wenn die beiden Wörter zufällig gerade dort
+nebeneinander standen. Die Suche nach einzelnen Wörtern bleibt unberührt.</p>
+<p>Wer die Einstellung ändert, muss den Index <strong>neu aufbauen</strong> — verdichtet
+gespeichert ist verdichtet, die Einstellung wirkt nur beim Schreiben:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:update-fulltext<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
+</code></pre></div>
 
 
 

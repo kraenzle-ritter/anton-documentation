@@ -4352,7 +4352,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4376,7 +4376,6 @@ way:</p>
   <code>https://api.memobase.ch/context/*</code> (for delivery to Memobase via Memoriav
   convention §9)</li>
 </ul>
-<p>Available since <strong>v0.71.0</strong>.</p>
 <h2 id="the-three-profiles-at-a-glance">The three profiles at a glance<a class="headerlink" href="#the-three-profiles-at-a-glance" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4727,9 +4726,8 @@ export runtime.</p>
 <p>All settings are maintained via <code>/settings</code> or by Tinker
 (<code>setting('key', 'value')</code>).</p>
 <h2 id="av-metadata">AV metadata<a class="headerlink" href="#av-metadata" title="Permanent link">&para;</a></h2>
-<p>Since v0.71.0, Anton has six new columns in <code>media</code>: <code>av_duration_seconds</code>,
-<code>av_codec</code>, <code>av_bitrate</code>, <code>av_resolution</code>, <code>av_sample_rate</code>,
-<code>av_aspect_ratio</code>.</p>
+<p>Anton carries six AV columns in <code>media</code>: <code>av_duration_seconds</code>, <code>av_codec</code>,
+<code>av_bitrate</code>, <code>av_resolution</code>, <code>av_sample_rate</code>, <code>av_aspect_ratio</code>.</p>
 <p>They are filled automatically:</p>
 <ul>
 <li><strong>On a new upload</strong>: the listener <code>MediumIdentifyAndConvert</code> calls
@@ -4749,7 +4747,7 @@ values appears per medium — <code>1:08</code>, <code>1246x1020 (623:510)</code
 <h2 id="per-object-buttons-in-the-detail-view">Per-object buttons in the detail view<a class="headerlink" href="#per-object-buttons-in-the-detail-view" title="Permanent link">&para;</a></h2>
 <p>In addition to the <code>/export/rdf</code> tab (job-based, asynchronous), every object can
 be made synchronously downloadable in the detail view via the <strong>download
-module</strong> (Antonfield id 1105, renamed from <code>word_download</code> in v0.71.0). The
+module</strong> (Antonfield id 1105, formerly <code>word_download</code>). The
 module renders up to <strong>eight buttons</strong> in the internal detail view — which ones
 appear is controlled per format by its own setting:</p>
 <table>
@@ -4819,11 +4817,11 @@ admin enters the LoDs via <code>/settings</code> (or Tinker).</p>
 respect the <code>mayBeShown()</code> privacy logic of the existing detail view (private
 objects are accessible to admins only).</p>
 <blockquote>
-<p><strong>Note on the rename:</strong> up to v0.72.0 a backwards-compatibility class
+<p><strong>Note on the rename:</strong> a backwards-compatibility class
 <code>WordDownload extends Download</code> remains in place, so that customer-specific
 form configurations still referring to <code>word_download</code> continue to render.
-From v0.73.0 the alias will be removed — tenants with customer-specific forms
-have to have switched to <code>download</code> by then.</p>
+The alias will be removed eventually — tenants with customer-specific forms
+should switch to <code>download</code>.</p>
 </blockquote>
 <h2 id="what-does-not-end-up-in-the-export">What does not end up in the export<a class="headerlink" href="#what-does-not-end-up-in-the-export" title="Permanent link">&para;</a></h2>
 <p>Applies to the <strong>standard case</strong> — that is, without <code>--include-protected</code>:</p>

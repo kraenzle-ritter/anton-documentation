@@ -4938,7 +4938,7 @@
 <h2 id="zusammenfassung">Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permanent link">&para;</a></h2>
 <p>Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren. Die Erschliessungsdaten (Excel-File) werden in einem (vorgegeben) Excelsheet erfasst und mit den Dateien auf den Server geladen. Danach werden die Daten validiert und falls die Validierung erfolgreich war, kann der Import/Ingest erfolgen (Erschliessungsdaten und media). Vgl. auch die Dokumentation in Anton <code>/import/documentation</code>.</p>
 <h2 id="import-hub-import">Import-Hub <code>/import</code><a class="headerlink" href="#import-hub-import" title="Permanent link">&para;</a></h2>
-<p>Seit <strong>v0.62.0</strong> sind alle Import-Pfade unter einer Adresse zusammengefasst: <code>/import</code> (im Menü unter <strong>Import / Export → Import</strong>). Die Seite hat vier Tabs:</p>
+<p>Alle Import-Pfade sind unter einer Adresse zusammengefasst: <code>/import</code> (im Menü unter <strong>Import / Export → Import</strong>). Die Seite hat vier Tabs:</p>
 <table>
 <thead>
 <tr>
@@ -4976,7 +4976,7 @@
 </ul>
 <p>So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Vokabular passt, und das SIP gegebenenfalls verwerfen, bevor etwas in der Datenbank landet.</p>
 <h3 id="live-fortschritt">Live-Fortschritt<a class="headerlink" href="#live-fortschritt" title="Permanent link">&para;</a></h3>
-<p>Alle Imports laufen seit v0.62.0 <strong>asynchron im Hintergrund</strong>. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum <strong>Lauf im Importprotokoll</strong>.</p>
+<p>Alle Imports laufen <strong>asynchron im Hintergrund</strong>. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum <strong>Lauf im Importprotokoll</strong>.</p>
 <p>Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.</p>
 <h3 id="signatur-fur-jeden-import">Signatur für jeden Import<a class="headerlink" href="#signatur-fur-jeden-import" title="Permanent link">&para;</a></h3>
 <p>Jeder Import (egal über welchen Pfad) bekommt eine Signatur <code>IMPORT-{jjjj}-{NNN}</code> und einen Eintrag im Importprotokoll. Der Eintrag hält fest:</p>
@@ -4985,16 +4985,17 @@
 <li>MD5-Prüfsumme</li>
 <li>Import-Zeitpunkt</li>
 <li>Import-Pfad (Excel / SIP / Verzeichnis / agate)</li>
-<li>die <strong>verwendeten Einstellungen</strong>, seit v0.87.0 (siehe unten)</li>
+<li>die <strong>verwendeten Einstellungen</strong> (siehe unten)</li>
 <li>das Ergebnis, und bei einem Fehlschlag die Meldung</li>
 </ul>
+<!-- v0.88.0: Belege im Akzessionsarchiv abgeschafft, Bestand ins Protokoll migriert -->
 <div class="admonition info">
-<p class="admonition-title">Neu seit v0.88.0</p>
-<p>Bis v0.87.x legte jeder Import zusätzlich einen Beleg als Verzeichnungseinheit im Akzessionsarchiv an, mit der Nummer <code>AKZ {Jahr}/{N}</code>. Das Akzessionsarchiv ist wieder den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht mehr von Importen aufgebraucht. Bestehende Belege sind samt allem, was sie trugen, ins Protokoll gezogen worden.</p>
+<p class="admonition-title">Kein Beleg im Akzessionsarchiv</p>
+<p>Ein Import legt keine Verzeichnungseinheit als Beleg an. Das Akzessionsarchiv bleibt den echten Übernahmen vorbehalten — physisch eingetroffen, noch nicht erschlossen — und seine Signaturen werden nicht von Importen aufgebraucht.</p>
 </div>
 <p>Die Signatur wird beim Start vergeben. Ein gescheiterter Lauf behält sie also und bleibt mit seinem Fehler im Protokoll stehen — eine gescheiterte Lieferung muss von einer unterscheidbar bleiben, die nie stattfand.</p>
 <h3 id="import-protokoll">Import-Protokoll<a class="headerlink" href="#import-protokoll" title="Permanent link">&para;</a></h3>
-<p>Unter <strong><code>/import/audit</code></strong> steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Seit <strong>v0.87.0</strong> ist das eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter <em>Admin → Formulare</em> anpassen.</p>
+<p>Unter <strong><code>/import/audit</code></strong> steht die Liste aller Importläufe: Signatur, Quelldatei, Zeitpunkt, Zahl der erzeugten Datensätze und die verwendete Inhaltssprache. Es ist eine gewöhnliche Anton-Tabelle — sortierbar, mit einstellbarer Seitenlänge, und die Spalten lassen sich wie bei jeder anderen Liste unter <em>Admin → Formulare</em> anpassen.</p>
 <p>Gezeigt werden standardmässig die erfolgreichen Läufe; ein Filter blendet gescheiterte und abgebrochene ein. Gelöscht wird nie.</p>
 <p>Der <strong>Details</strong>-Link führt zum Lauf: Quelldatei, Prüfsumme, verwendete Einstellungen samt Herkunft, wer ihn ausgelöst hat, und die Datensätze, die er angelegt hat.</p>
 <p>Die eingespielte Datei bleibt erhalten. Nach einem erfolgreichen Lauf wandert sie nach <code>metadata_imported/</code> — damit sie nicht mehr in der Auswahlliste steht — und der Eintrag nennt den Ablageort.</p>
@@ -5002,10 +5003,11 @@
 <h2 id="ablauf-excel-import">Ablauf (Excel-Import)<a class="headerlink" href="#ablauf-excel-import" title="Permanent link">&para;</a></h2>
 <p>Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.</p>
 <h2 id="inhaltssprache-des-imports">Inhaltssprache des Imports<a class="headerlink" href="#inhaltssprache-des-imports" title="Permanent link">&para;</a></h2>
-<p>Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Seit <strong>v0.87.0</strong> ist das eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.</p>
-<div class="admonition warning">
-<p class="admonition-title">Verhaltensänderung</p>
-<p>Bis v0.86.x richtete sich Anton nach der <strong>Sprache der Oberfläche</strong>. Wer die Bedienoberfläche auf Englisch stehen hatte und eine Tabelle einspielte, legte für jeden Datensatz eine <em>englische</em> Titel-Übersetzung an — mit dem unveränderten deutschen Text darin. Der Datensatz sah auf Englisch richtig aus und hatte auf Deutsch keinen Titel mehr. Ab v0.87.0 spielt die Oberflächensprache keine Rolle mehr.</p>
+<p>Übersetzbare Felder — Titel, Textfelder, neu angelegte Schlagworte, Akteur:innen, Orte und Standorte — brauchen eine Sprache. Das ist eine bewusste Entscheidung, die vor dem Lauf sichtbar ist.</p>
+<!-- v0.87.0: Inhaltssprache explizit, vorher richtete sich der Import nach der Oberflächensprache -->
+<div class="admonition note">
+<p class="admonition-title">Die Oberflächensprache spielt keine Rolle</p>
+<p>Welche Sprache die Bedienoberfläche gerade zeigt, hat auf den Import keinen Einfluss. Massgeblich ist allein die Inhaltssprache des Laufs.</p>
 </div>
 <p>Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte Wert gewinnt:</p>
 <ol>
@@ -5077,7 +5079,7 @@ Einzelstück
 </tr>
 </tbody>
 </table>
-<p>Seit <strong>v0.87.0</strong> lassen sich also mehrsprachige Titel importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.</p>
+<p>Mehrsprachige Titel lassen sich also importieren: eine Spalte je Sprache. Beide Formen dürfen nebeneinander stehen; die Spalte mit Sprachkürzel ist die genauere Angabe und gewinnt, und die Inspektionsseite weist darauf hin.</p>
 <p>Dasselbe gilt für die <strong>Textfelder</strong>: <code>scopecontent</code> schreibt in die Inhaltssprache, <code>scopecontent_fr</code> gezielt ins Französische, ohne die anderen Sprachen desselben Textfelds anzutasten.</p>
 <div class="admonition note">
 <p class="admonition-title">Nur konfigurierte Sprachen</p>
@@ -5105,8 +5107,7 @@ Einzelstück
 <p>Mehrere Spalten nehmen nur Werte an, die im Archiv definiert sind:
 <code>verzeichnungsstufe</code>, <code>objekttyp</code>, <code>schutzfrist</code>, <code>status_of_description</code>,
 <code>detail_of_description</code> und <code>vacat</code>.</p>
-<p>Seit <strong>v0.87.0</strong> nehmen sie alle <strong>drei Formen</strong> an, gleichwertig (<code>vacat</code>
-bereits seit v0.86.4):</p>
+<p>Sie nehmen alle <strong>drei Formen</strong> an, gleichwertig:</p>
 <table>
 <thead>
 <tr>
@@ -5144,8 +5145,8 @@ sondern auch die Lösung:</p>
 Listen also nicht vorher nachschlagen.</p>
 </div>
 <h4 id="alle-wertelisten-nachschlagen">Alle Wertelisten nachschlagen<a class="headerlink" href="#alle-wertelisten-nachschlagen" title="Permanent link">&para;</a></h4>
-<p>Seit <strong>v0.87.0</strong> gibt es unter <strong>Tabellen-Import → Wertelisten</strong>
-(<code>/valuelists</code>) eine Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
+<p>Unter <strong>Tabellen-Import → Wertelisten</strong> (<code>/valuelists</code>) steht eine
+Übersicht aller Wertelisten: pro Eintrag Bezeichnung,
 interner Name und ID, dazu die Import-Spalte, zu der die Liste gehört. Ein
 Suchfeld filtert über alle Listen gleichzeitig.</p>
 <p>Die Seite ist rein lesend und steht allen offen, die importieren dürfen. Die
@@ -5180,29 +5181,15 @@ Film
 <p>Bestimmt, welcher Formularsatz für den Datensatz verwendet wird — also welche Felder in welcher Reihenfolge erscheinen. Das Feld ist <strong>optional</strong>: bleibt es leer, löst Anton den Formularsatz über die Verzeichnungsstufe auf. Nötig ist es nur, wenn ein Datensatz bewusst davon abweicht, etwa der Formularsatz <code>letter</code> auf Einzelstücken.</p>
 <p>Wie beim Standort zwei Spalten: <strong><code>formset</code></strong> (auch: <code>formularsatz</code>) nimmt den Namen <em>oder</em> die ID, <strong><code>formset_id</code></strong> nur die ID. Die Namen der verfügbaren Formularsätze stehen unter <em>Administration → Formularsätze</em> — in einer Standardinstallation etwa <code>fonds</code>, <code>class</code>, <code>series</code>, <code>file</code>, <code>item</code>, <code>collection</code>, <code>recordgroup</code>, <code>default</code>.</p>
 <p>Die heruntergeladene Update-Tabelle führt die Spalte <code>formset</code> und schreibt den <strong>Namen</strong>. Eine leere Zelle lässt den Formularsatz unverändert.</p>
-<div class="admonition note">
-<p class="admonition-title">Vor v0.86 wurde die Spalte still verworfen</p>
-<p>Frühere Versionen kannten <code>formset</code> nicht: die Spalte wurde als unbekannt gemeldet und danach folgenlos übergangen, der Lauf meldete Erfolg. Wer den Formularsatz per Tabelle gesetzt hat und sich wundert, warum nichts passiert ist — das war der Grund.</p>
-</div>
 <h3 id="vacat">vacat<a class="headerlink" href="#vacat" title="Permanent link">&para;</a></h3>
 <p>Gibt an, ob die Verzeichnungseinheit ein Platzhalter ist (eine Lücke in der
 Zählung, zu der es keine Unterlagen gibt).</p>
 <p>Die Spalte führt intern Term-IDs. Angenommen werden die Bezeichnung
 (<code>vacat</code>), die ID (<code>56</code> für vacat, <code>57</code> für nicht vacat) und — aus älteren
 Tabellen — <code>1</code> und <code>0</code>.</p>
-<p><strong>Exportiert</strong> wird seit <strong>v0.87.0</strong> die Bezeichnung: <code>vacat</code> für einen
-Platzhalter, sonst eine leere Zelle. Vorher stand dort die interne Nummer,
-die in einer Spalte ohne <code>_id</code> im Namen nichts sagte und wie ein
-versehentlich geänderter Wert aussah. Ältere Tabellen mit <code>56</code>/<code>57</code> lassen
-sich unverändert weiterverwenden.</p>
-<div class="admonition warning">
-<p class="admonition-title">Vor v0.86.4</p>
-<p>Bis dahin exportierte die Update-Tabelle die interne Nummer, die Prüfung
-liess aber nur <code>0</code> und <code>1</code> zu. Eine unveränderte Update-Tabelle war damit
-nicht einspielbar, und die Meldung nannte einen Wert, den niemand
-eingegeben hatte. Wer auf eine ältere Version stösst: die Spalte <code>vacat</code>
-im Download-Dialog abwählen.</p>
-</div>
+<p><strong>Exportiert</strong> wird die Bezeichnung: <code>vacat</code> für einen Platzhalter, sonst
+eine leere Zelle. Ältere Tabellen mit <code>56</code>/<code>57</code> lassen sich unverändert
+weiterverwenden.</p>
 <h3 id="bilder-media">bilder (media)<a class="headerlink" href="#bilder-media" title="Permanent link">&para;</a></h3>
 <p>Das Feld darf höchstens 500 Zeichen enthalten. Mehrere Dateinamen (assets) können mit folgenden Zeichen getrennt werden:</p>
 <div class="highlight"><pre><span></span><code>, ; ::
@@ -5260,7 +5247,7 @@ Form und Inhalt (note.scopecontent)
 <p class="admonition-title">Experimentelles Feature</p>
 <p>Das Datenupdate ist als <strong>experimentell</strong> gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Anton legt deshalb <strong>vor jedem Update automatisch eine Sicherung der Datenbank</strong> an (siehe unten); das Ergebnis trotzdem stichprobenweise prüfen.</p>
 </div>
-<p>Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter <strong>Tabellen-Import</strong> seit <strong>v0.81.2</strong> einen eigenen Reiter <strong>«Update»</strong> (nach <em>Metadaten</em> und <em>Medien</em>). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit <strong>«Details»</strong> öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button <strong>«Als Update einspielen»</strong>.</p>
+<p>Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter <strong>Tabellen-Import</strong> einen eigenen Reiter <strong>«Update»</strong> (nach <em>Metadaten</em> und <em>Medien</em>). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit <strong>«Details»</strong> öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button <strong>«Als Update einspielen»</strong>.</p>
 <p>Weil der <em>Update</em>-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur <code>id</code> + zu ändernde Spalten, ohne <code>parent</code>) keine Umwege: die beim Neuanlegen nötige <code>parent</code>-Spalte wird hier nicht verlangt. Der reguläre <em>Metadaten</em>-Reiter bleibt unverändert fürs Neuanlegen.</p>
 <p>Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei <strong>keine neuen Datensätze angelegt</strong>. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:</p>
 <ol>
@@ -5283,7 +5270,7 @@ Form und Inhalt (note.scopecontent)
 <p>Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — <code>id</code>, die Feld-Spalten, Sprachen, den Standort (<code>location_id</code>), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten <code>note.*</code>. Bewusst <strong>nicht</strong> enthalten sind <code>parent</code> und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte <code>identifier</code> dient nur der Orientierung: das Update findet die Datensätze über die <code>id</code>, Änderungen an der Signatur bleiben wirkungslos.</p>
 <div class="admonition tip">
 <p class="admonition-title">Mehrsprachige Archive: eine Titel-Spalte je Sprache</p>
-<p>Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle seit <strong>v0.87.0</strong> statt <code>titel</code> je eine Spalte <code>title_de</code>, <code>title_fr</code> usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.</p>
+<p>Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle statt <code>titel</code> je eine Spalte <code>title_de</code>, <code>title_fr</code> usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.</p>
 <p>Einsprachige Archive behalten die gewohnte Spalte <code>titel</code>; dort gibt es nichts zu unterscheiden. Ältere Tabellen mit <code>titel</code> bleiben in jedem Fall einspielbar.</p>
 </div>
 <div class="admonition tip">
@@ -5309,14 +5296,6 @@ Form und Inhalt (note.scopecontent)
 </table>
 <p>Die heruntergeladene Update-Tabelle nutzt <code>location_id</code>. Wer lieber mit Bezeichnungen arbeitet, benennt die Spalte in <code>location</code> um; dort werden beide Formen akzeptiert. Eine Bezeichnung muss exakt so geschrieben sein wie in der Standort-Verwaltung, inklusive Gross- und Kleinschreibung — die ID ist deshalb der sichere Weg.</p>
 <p>Eine <strong>leere Zelle lässt den Standort unverändert</strong> — zum Umräumen also nur die Zeilen ändern, die wirklich umziehen. Ein Standort, den es noch nicht gibt, muss vorher unter <em>Admin → Standorte</em> angelegt werden; sonst meldet die Inspektion ihn als unbekannt und das Update läuft nicht.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Vor v0.87.0 lud der Knopf nichts herunter</p>
-<p>Der Herunterladen-Knopf im Spaltendialog schloss den Dialog, brach aber im
-selben Zug die Übertragung ab — ohne Fehlermeldung. Es sah aus, als sei
-etwas passiert; im Download-Ordner kam nichts an. v0.86.4 behob einen Teil
-davon, der Knopf blieb aber wirkungslos; erst seit v0.87.0 ist es ein
-echter Download.</p>
 </div>
 <p>Beim Klick öffnet sich ein Dialog, in dem sich die <strong>Spalten auswählen</strong> lassen. Das ist mehr als Bequemlichkeit: Was nicht in der Datei steht, kann ein Update auch nicht schreiben. Wer nur einen einzelnen Titel korrigieren will, wählt <code>id</code> und <code>titel</code> — dann kann beim Einspielen nichts anderes zu Schaden kommen. <code>id</code> ist immer enthalten und nicht abwählbar.</p>
 <div class="admonition warning">

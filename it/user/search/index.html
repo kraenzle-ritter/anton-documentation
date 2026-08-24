@@ -2383,7 +2383,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2481,6 +2481,14 @@
 <div class="admonition warning">
 <p class="admonition-title">Le parole molto brevi vengono ignorate anche nelle espressioni</p>
 <p>Le parole di meno di 3 caratteri e alcune parole vuote inglesi (<code>the</code>, <code>for</code>, <code>and</code>) restano escluse dal confronto anche all'interno delle virgolette. Un'espressione come <code>"AG Reinach"</code> corrisponde quindi di fatto solo a «Reinach».</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Espressioni nel testo dei documenti</p>
+<p>Se l'archivio tiene il testo integrale in forma <strong>condensata</strong>
+(impostazione <code>optimize_fulltext</code>), l'indice contiene solo la prima
+occorrenza di ogni parola — le espressioni sono quindi reperibili solo in
+misura limitata nel testo dei PDF. La ricerca di parole singole non ne è
+toccata. Se sia il caso lo sa l'amministrazione.</p>
 </div>
 <h3 id="termini-con-trattino">Termini con trattino<a class="headerlink" href="#termini-con-trattino" title="Permanent link">&para;</a></h3>
 <p>I termini con trattino (ad es. <code>Arp-Hagenbach</code>) vengono trattati automaticamente come un'espressione: si cercano le due parti direttamente accostate.</p>

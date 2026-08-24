@@ -4164,7 +4164,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/feedback/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4176,12 +4176,12 @@
 
 
 <h1 id="feedback-formular">Feedback-Formular<a class="headerlink" href="#feedback-formular" title="Permanent link">&para;</a></h1>
-<p>Seit <strong>v0.55.0</strong> können Admins und Superuser direkt aus Anton heraus
-Feedback an die Entwicklung schicken. Jede Rückmeldung landet
+<p>Admins und Superuser können direkt aus Anton heraus Feedback an die
+Entwicklung schicken. Jede Rückmeldung landet
 automatisch als Issue im GitHub-Repository von Anton, samt
 technischem Kontext.</p>
-<p>Seit <strong>v0.58.0</strong> läuft das Formular auf derselben Upload-Pipeline wie
-die übrigen Anton-Eingabemasken (mit Drag-and-Drop / Cmd-V für
+<p>Das Formular läuft auf derselben Upload-Pipeline wie die übrigen
+Anton-Eingabemasken (mit Drag-and-Drop / Cmd-V für
 Screenshots).</p>
 <h2 id="wie-es-benutzt-wird">Wie es benutzt wird<a class="headerlink" href="#wie-es-benutzt-wird" title="Permanent link">&para;</a></h2>
 <p>Im Footer ist für Admins/Superuser ein Link <strong>„Feedback"</strong> sichtbar.
@@ -4198,8 +4198,7 @@ Klick öffnet <code>/feedback</code>. Das Formular hat:</p>
 Repository an. Das Issue enthält:</p>
 <ul>
 <li>Titel + Beschreibung aus dem Formular</li>
-<li>E-Mail-Adresse des absendenden Users (seit v0.58.0, vorher manueller
-  SSH-Lookup nötig)</li>
+<li>E-Mail-Adresse des absendenden Users</li>
 <li>Aufgerufener Pfad in Anton</li>
 <li>Anton-Version (Tag)</li>
 <li>Tenant-Slug</li>
@@ -4241,8 +4240,8 @@ Repository an. Das Issue enthält:</p>
   Absender-Account kommen.</li>
 </ul>
 <h2 id="screenshot-konfiguration">Screenshot-Konfiguration<a class="headerlink" href="#screenshot-konfiguration" title="Permanent link">&para;</a></h2>
-<p>Seit v0.58.0 sind die Upload-Constraints pro Tenant in der DB
-konfigurierbar, ohne Code-Änderung:</p>
+<p>Die Upload-Constraints sind pro Tenant in der DB konfigurierbar, ohne
+Code-Änderung:</p>
 <ul>
 <li><strong>Erlaubte Dateitypen</strong> (Default: <code>image/png</code>, <code>image/jpeg</code>,
   <code>image/webp</code>)</li>
@@ -4254,9 +4253,6 @@ Intranet-Hosts wie ZH) läuft jetzt auf demselben DB-Mechanismus — das
 alte <code>feedback_screenshots_enabled</code>-Setting ist obsolet.</p>
 <h2 id="bekannte-eigenheiten">Bekannte Eigenheiten<a class="headerlink" href="#bekannte-eigenheiten" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Windows Snipping Tool</strong> triggerte vor v0.58.0 zwei identische
-  Bilder pro Issue (Doppelpaste). Seit v0.58.0 reagiert das Formular
-  auf Paste-Events mit nur noch einem Upload.</li>
 <li><strong>Anhänge auf GitHub</strong> — alle Bilder werden direkt in das Issue
   hochgeladen (nicht extern verlinkt), so dass sie auch in Jahren
   noch zugänglich sind.</li>

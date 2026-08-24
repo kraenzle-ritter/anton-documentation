@@ -4250,8 +4250,17 @@
 <li>Setting <code>fulltext-from-webpdf</code>: true </li>
 <li>Setting <code>cloud</code>: "inge"</li>
 <li>.env INGE_API_TOKEN </li>
-<li>Benutzer «Inge» mit E-Mail-Adresse und <code>api_token</code> für Inge</li>
+<li>Benutzer «Inge» mit E-Mail-Adresse und <code>api_token</code> für Inge, mit
+  mindestens der Rolle <strong>editor</strong></li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Inge braucht die Rolle editor</p>
+<p>Den Ingest bestätigen und den Stand davor wiederherstellen
+(<code>/api/sips/{id}/confirm</code> und <code>/revert</code>) dürfen nur Bearbeiter:innen —
+ein Token allein genügt nicht. Hat der Dienstbenutzer «Inge» die Rolle
+nicht, quittiert Anton den Abschluss des Umlaufs mit einem 403, und der
+Ingest bleibt unbestätigt stehen.</p>
+</div>
 <h3 id="ablauf-des-sip-ingest">Ablauf des SIP-Ingest<a class="headerlink" href="#ablauf-des-sip-ingest" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
@@ -4321,8 +4330,9 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># Gesamtüberblick (Counts + Verifikation + Orphan-Check)</span>
 php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
 
-<span class="c1"># Nur einen bestimmten SIP prüfen (nach unterbrochenem Ingest)</span>
-php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--sip<span class="o">={</span>sip_id<span class="o">}</span><span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
+<span class="c1"># Nur einen bestimmten SIP prüfen (nach unterbrochenem Ingest);</span>
+<span class="c1"># {run_id} ist die Lauf-Id aus dem Importprotokoll</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">1</span>,5,6<span class="w"> </span>--sip<span class="o">={</span>run_id<span class="o">}</span><span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv
 
 <span class="c1"># cloud_status in der DB reparieren (wenn Inge status=20, aber DB falsch)</span>
 php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class="w"> </span>--levels<span class="o">=</span><span class="m">5</span><span class="w"> </span>--fix-cloud-status<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>-vv

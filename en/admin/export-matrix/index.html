@@ -3274,6 +3274,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#privacy-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privacy filter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-essence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The essence
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4191,6 +4213,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#privacy-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privacy filter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-essence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The essence
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4208,7 +4252,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -4228,7 +4272,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>16 August 2026</strong> (Anton v0.87). It is
+<p>This matrix reflects the state of <strong>24 August 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4797,12 +4841,12 @@ evaluation view: it takes along everything that can be represented flatly and
 <strong>cannot</strong> be loaded back in. The <em>update table</em> is the opposite — it
 deliberately contains only what a data update is allowed to write, and leaves
 out hierarchy (<code>parent</code>) and events, because these would be blocked on
-re-import. The location has been included since v0.86: it is written on update,
+re-import. The location is included: it is written on update,
 and rearranging the stacks is one of the most frequent reasons for a bulk
 update. Taking the narrower file therefore does not lose information by
 accident; it deliberately limits the scope of effect, and the download dialogue
 allows this to be narrowed further.</p>
-<p>Since <strong>v0.87</strong>, the update table of a <strong>multilingual</strong> archive carries the title
+<p>The update table of a <strong>multilingual</strong> archive carries the title
 in one column per content language (<code>title_de</code>, <code>title_fr</code> …) instead of a single
 one. This makes the round trip lossless in the multilingual case too: with one
 column, the language of the run would have to decide on re-import where the value
@@ -4824,6 +4868,33 @@ hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of <strong>all</strong> carriers including private ones, termselect values, form set
 and the reconnection of the media. Before every write operation the whole package
 is validated; if it fails, it is rolled back.</p>
+<p>Actors, places and keywords carry a portable UUID too — a re-import anchors them
+to it instead of merging authority records that happen to share a name.</p>
+<div class="admonition warning">
+<p class="admonition-title">Comments are lost in the round trip</p>
+<p>«Lossless» refers to the description. Internal
+<a href="../comments/">comments</a> are excluded: they are kept in a table of their own
+that no exporter knows — not even the native one — so that they cannot end
+up in a publication by accident. An export-import cycle leaves them behind.</p>
+<p>Anyone who has to take them along needs the <strong>SQL dump</strong>. That is the backup
+which really does contain everything.</p>
+</div>
+<p>Not included, and therefore still the SQL dump: user accounts, settings, form
+definitions and the AI data.</p>
+<h2 id="privacy-filter">Privacy filter<a class="headerlink" href="#privacy-filter" title="Permanent link">&para;</a></h2>
+<p>RDF, TEI and EAD filter out private objects, actors and media as well as private
+text field types (internal archival remarks, cataloguer's information, comment).</p>
+<div class="admonition warning">
+<p class="admonition-title">Plain flag logic</p>
+<p>The filter evaluates the <code>private</code> flag — it is <strong>not a role check</strong>. Apart
+from the file name, downloading a generated RDF file checks no further
+permissions.</p>
+</div>
+<h2 id="the-essence">The essence<a class="headerlink" href="#the-essence" title="Permanent link">&para;</a></h2>
+<p><strong>Descriptive metadata</strong> is excellently covered by open standards and can be
+packaged. <strong>Authority data</strong> has exactly one export of its own (TEI). <strong>The event
+graph, users, configuration, AI data and file provenance</strong> have no
+standards-based export and can only be secured through the complete SQL dump.</p>
 
 
 

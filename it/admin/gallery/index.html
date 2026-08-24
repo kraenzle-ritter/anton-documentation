@@ -2245,7 +2245,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/gallery/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/gallery/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-05-23</span>
+        <span class="page-meta__date">Last updated: 2026-08-24</span>
     </div>
   
   
@@ -2258,10 +2258,8 @@
 
 <h1 id="mediengalerie">Mediengalerie<a class="headerlink" href="#mediengalerie" title="Permanent link">&para;</a></h1>
 <p>Die Galerie ist ein Anton-Modul mit einem facettenbasierten Zugang zu
-ausgewählten Medien (Bilder, PDFs, Audio, Video). Seit der v0.41–v0.45-
-Serie ist sie aus der reinen Bildergalerie zu einer vollwertigen
-<strong>Mediengalerie</strong> mit PDF.js-Viewer, Video-Kapiteln und konfigurierbarem
-Filter-Layout ausgebaut.</p>
+ausgewählten Medien (Bilder, PDFs, Audio, Video) — mit PDF.js-Viewer,
+Video-Kapiteln und konfigurierbarem Filter-Layout.</p>
 <p>Erreichbar unter <code>/gallery</code>.</p>
 <h2 id="inhalt-und-titel">Inhalt und Titel<a class="headerlink" href="#inhalt-und-titel" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2288,18 +2286,17 @@ Filter-Layout ausgebaut.</p>
   konfiguriert über <code>gallery_filter_fields</code> (siehe nächster Abschnitt).</li>
 <li><strong>Volltextsuche</strong> durchsucht Objekttitel und den Volltext der
   Mediendateien (PDF-Textebene über <code>media_texts</code>, siehe
-  <a href="../weighted-search/">Weighted Search</a>). Seit v0.51.0 arbeitet die
-  Galerie-Volltextsuche mit <strong>Präfix-Matching</strong>: ein Suchbegriff wie
+  <a href="../weighted-search/">Weighted Search</a>). Die Galerie-Volltextsuche
+  arbeitet mit <strong>Präfix-Matching</strong>: ein Suchbegriff wie
   <code>alkohol</code> findet auch <code>Alkoholkonsum</code>, <code>alkoholisch</code> usw. Wortteile in
   der Mitte werden nicht gefunden (<code>alkohol</code> findet <strong>nicht</strong>
   <code>Methylalkohol</code>). Mehrere Begriffe werden als AND verknüpft.</li>
 <li><strong>PDF-Viewer übernimmt Suchbegriff</strong>: Klick auf ein Treffer-PDF
-  öffnet PDF.js direkt mit dem aktuellen Suchbegriff vorbelegt (seit
-  v0.51.0).</li>
+  öffnet PDF.js direkt mit dem aktuellen Suchbegriff vorbelegt.</li>
 </ul>
 <h3 id="konfigurierbares-filter-layout">Konfigurierbares Filter-Layout<a class="headerlink" href="#konfigurierbares-filter-layout" title="Permanent link">&para;</a></h3>
-<p>Seit v0.42.0 ist das Filter-Bar-Layout pro Tenant konfigurierbar über
-das Setting <code>gallery_filter_fields</code>. Damit lassen sich Reihenfolge,
+<p>Das Filter-Bar-Layout ist pro Tenant konfigurierbar über das Setting
+<code>gallery_filter_fields</code>. Damit lassen sich Reihenfolge,
 Breite und Sichtbarkeit der Filter steuern. Beispiel:</p>
 <div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('gallery_filter_fields', [</span>
 <span class="x">    ['name' =&gt; 'search',     'width' =&gt; 4, 'visible' =&gt; true],</span>
@@ -2311,7 +2308,7 @@ Breite und Sichtbarkeit der Filter steuern. Beispiel:</p>
 <span class="x">]);</span>
 </code></pre></div>
 <p>Breitenangaben sind Bootstrap-Spalten (1–12). Die Reset-Schaltfläche
-ist immer sichtbar (seit v0.42.0).</p>
+ist immer sichtbar.</p>
 <h2 id="modale-ansichten">Modale Ansichten<a class="headerlink" href="#modale-ansichten" title="Permanent link">&para;</a></h2>
 <p>Klick auf ein Medium öffnet eine modale Detailansicht. Pro Medientyp:</p>
 <table>
@@ -2362,11 +2359,11 @@ nicht abgeschnitten.</p>
 </ul>
 <p>Wenn ein Medium das Flag <code>dont_show_in_gallery = 1</code> trägt, taucht es
 nicht in der Galerie auf — auch wenn der zugehörige Datensatz öffentlich
-ist. Verwaltung dieses Flags ist seit v0.66.0 in
-<a href="../bulk-media-list/">Bulk Media List</a> komfortabel pro Filter machbar.</p>
+ist. Verwaltet wird dieses Flag komfortabel pro Filter in der
+<a href="../bulk-media-list/">Bulk Media List</a>.</p>
 <h2 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Redundantes Feld <code>objects.fonds_id</code> (seit v0.41.0): erlaubt
+<li>Redundantes Feld <code>objects.fonds_id</code>: erlaubt
   schnelle Galerie-Abfragen ohne Closure-Table-Join</li>
 <li>Galerie-Facetten werden in einem <strong>per-Tenant Cache</strong> gehalten
   (<code>{slug}.gallery.facets.intern</code> / <code>…extern</code>) und über den

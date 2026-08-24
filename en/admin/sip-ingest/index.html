@@ -4069,17 +4069,17 @@
 <p>Anton enables the import/ingest of Submission Information Packages (SIP) in accordance with eCH-0160, whereby the files (dossiers) and documents are imported into the archival arrangement.</p>
 <p>On the standard: <a href="https://ech.ch/de/ech/ech-0160/1.2.0">https://ech.ch/de/ech/ech-0160/1.2.0</a></p>
 <div class="admonition note">
-<p class="admonition-title">Since v0.62.0: unified import hub</p>
+<p class="admonition-title">Unified import hub</p>
 <p>All import paths — SIP, Excel, directory, agate — are brought together under <code>/import</code> (four tabs). The old URLs (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/sip/inbox</code>) redirect transparently to the appropriate tab. See <a href="../../user/import/">user/import.md</a> for the UI overview.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">agate SIP import (since v0.61.0)</p>
+<p class="admonition-title">agate SIP import</p>
 <p>BagIt SIPs sent by agate (the Anton preparation tool) via HTTP run through a separate path with NARA category mapping and an inbox. Details: <a href="../agate-sip/">agate-sip.md</a>.</p>
 </div>
 <h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
 <h4 id="anton">Anton<a class="headerlink" href="#anton" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Accession archive: no longer needed. Up to v0.87.x a SIP ingest filed a receipt there; since v0.88.0 the run is in the import log (see <a href="../../user/import/#import-log">Import</a>).</li>
+<li>Accession archive: not needed. A SIP ingest appears as a run in the import log (see <a href="../../user/import/#import-protokoll">Import</a>).</li>
 <li>The archive hierarchy (<code>parents</code>) must already exist in Anton.</li>
 <li>If the reference codes in the archive hierarchy have a prefix, this has to be set (setting: <code>identifier-prefix</code>).</li>
 <li>With the setting <code>strict_sip_validation</code>, Anton issues an error during validation if a file is not found in the SIP.</li>
