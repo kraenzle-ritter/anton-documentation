@@ -316,7 +316,7 @@ up to date with every change to the commands.
 | `sip:check-import` | Check the import of a SIP after it was done. Revert it if something failed downstream (INGE, D… |
 | `sip:import-agate` | Run an agate-driven SIP import for an existing Importevent (issue #190). |
 | `sip:load-xml` | Transform a metadata.xml to LoadXml which can be fed to Dimag |
-| `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-SIP media counts and flags disc… |
+| `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-run media counts and flags disc… |
 
 ### storage: (3)
 
