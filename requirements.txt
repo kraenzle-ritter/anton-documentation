@@ -11,7 +11,7 @@
 # den Stand mit `pip freeze > requirements.lock.txt` ein.
 
 # Theme. Bringt mkdocs selbst und pymdown-extensions als Abhaengigkeit mit.
-mkdocs-material>=9.7.6
+mkdocs-material>=9.7.7
 
 # Mehrsprachigkeit: Suffix-Dateien (seite.en.md) und der Fallback auf Deutsch.
 # Ohne dieses Plugin bricht der Build in der Konfigurationsphase ab.
