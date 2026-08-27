@@ -12,6 +12,8 @@ Aufruf (aus dem anton-documentation-Repo):
     python3 scripts/gen-command-reference.py --check    # nur prüfen, Exit 1 bei Drift
 
 Setzt voraus, dass DDEV im Anton-Repo läuft (Standardpfad ../anton.test).
+Befehle, die dort nur in der Arbeitskopie stehen (untracked oder geändert),
+bleiben aussen vor — dokumentiert wird, was committet ist.
 """
 import json
 import re
@@ -72,6 +74,50 @@ def artisan_list() -> list[dict] | None:
         return json.loads(out)["commands"]
     except (FileNotFoundError, subprocess.SubprocessError, json.JSONDecodeError):
         return None
+
+
+def pending_command_names() -> set[str]:
+    """Befehle, deren Datei in Anton noch nicht committet ist.
+
+    Der Generator liest `php artisan list` aus dem laufenden DDEV und sieht
+    damit die Arbeitskopie — also auch Befehle, die gerade erst entstehen. Die
+    gehören nicht in die öffentliche Doku: bis zum Commit können sie noch
+    umbenannt oder verworfen werden, und beschrieben wäre dann etwas, das es in
+    keinem Anton-Stand gibt. Dasselbe gilt für geänderte, aber nicht committete
+    Beschreibungen.
+
+    Leere Menge, wenn Anton kein Git-Repo ist oder git fehlt — dann verhält sich
+    der Generator wie bisher.
+    """
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(ANTON), "status", "--porcelain", "--",
+             "app/Console/Commands"],
+            capture_output=True, text=True, check=True, timeout=30,
+        ).stdout
+    except (FileNotFoundError, subprocess.SubprocessError):
+        return set()
+
+    names = set()
+    for line in out.splitlines():
+        code, rel = line[:2], line[3:]
+        # Geloeschtes listet artisan ohnehin nicht mehr auf.
+        if "D" in code:
+            continue
+        # Umbenanntes steht als «alt -> neu»; gemeint ist der neue Pfad.
+        if " -> " in rel:
+            rel = rel.split(" -> ", 1)[1]
+        f = ANTON / rel.strip('"')
+        if not f.is_file():
+            continue
+        # Der Name steht am Anfang der Signatur, vor Argumenten und Optionen:
+        #     protected $signature = 'anton:reencrypt-secrets
+        #         {--dry-run}';
+        m = re.search(r"protected\s+\$(?:signature|name)\s*=\s*['\"]([^\s'\"{]+)",
+                      f.read_text(errors="replace"))
+        if m:
+            names.add(m.group(1))
+    return names
 
 
 def build_block(commands: list[dict], locale: str = "de") -> str:
@@ -142,6 +188,19 @@ def main() -> int:
             return 0 if ok else 1
         print("Anton nicht erreichbar (DDEV?) — nichts zu tun.", file=sys.stderr)
         return 2
+
+    pending = pending_command_names()
+    if pending:
+        # Nur melden, was ueberhaupt in der Referenz stuende — internes und
+        # Uebersprungenes interessiert hier nicht.
+        hidden = sorted(
+            n for n in pending
+            if ":" in n and n.split(":")[0] in ADMIN_NAMESPACES and n not in SKIP
+        )
+        commands = [c for c in commands if c["name"] not in pending]
+        if hidden:
+            print("Übergangen, in Anton noch nicht committet: " + ", ".join(hidden),
+                  file=sys.stderr)
 
     stale, written = [], []
     for path, locale in targets:
