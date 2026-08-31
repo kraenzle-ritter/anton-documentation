@@ -75,7 +75,7 @@ Begriffe mit Bindestrich (z. B. `Arp-Hagenbach`) werden automatisch wie eine Phr
 ## Boolesche Volltextsuche
 
 Neben dem gewöhnlichen Suchfeld gibt es in der erweiterten Suche das Feld
-**«Boolsche Volltextsuche»**. Es durchsucht dieselben Inhalte, versteht aber
+**«Boolesche Volltextsuche»**. Es durchsucht dieselben Inhalte, versteht aber
 Verknüpfungen — und verhält sich in einem Punkt **umgekehrt** zum normalen Feld.
 
 !!! warning "Blosse Wörter sind hier ODER, nicht UND"

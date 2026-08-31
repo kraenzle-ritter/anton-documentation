@@ -212,7 +212,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (55)
+### anton: (56)
 
 | Command | Description |
 |---|---|
@@ -251,6 +251,7 @@ up to date with every change to the commands.
 | `anton:moveMediaToCloud` | Move media files to an cloud-storage (s3 or inge), but keep the conversions. |
 | `anton:protection-baseline` | Snapshot or diff the current per-object protection-period release decision (read-only, #256). |
 | `anton:prune-cache` | Delete expired rows from the database cache table (#389) |
+| `anton:reencrypt-secrets` | Re-encrypt two-factor secrets and passkeys onto the current APP_KEY (#479). |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
 | `anton:repair-edit-metadata` | Restore updated_at/updated_by from the history column on records a mass run restamped (#421). |
