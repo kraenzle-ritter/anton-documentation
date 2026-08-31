@@ -72,6 +72,59 @@ Les termes comportant un trait d'union (p. ex. `Arp-Hagenbach`) sont automatique
 - **Les mots courts très fréquents** tels que «&nbsp;und&nbsp;», «&nbsp;der&nbsp;», «&nbsp;die&nbsp;» sont exclus de l'index de recherche de la base de données (mots vides).
 - **La recherche au milieu d'un mot** n'est pas possible (voir ci-dessus).
 
+## Recherche booléenne en texte intégral
+
+Outre le champ de recherche ordinaire, la recherche avancée propose le champ
+**«Recherche booléenne en texte intégral»**. Il interroge les mêmes contenus mais
+comprend des connecteurs — et sur un point il se comporte à l'**inverse** du
+champ ordinaire.
+
+!!! warning "Ici, des mots isolés valent OU, non ET"
+    Dans le champ ordinaire, chaque mot saisi doit figurer. Dans le champ
+    booléen, un seul suffit : `Maur Gemeinde` trouve les notices contenant
+    «Maur» **ou** «Gemeinde». Pour exiger les deux, écrivez
+    `Maur AND Gemeinde`.
+
+### Les opérateurs
+
+| Saisie | Signification |
+|---|---|
+| `Maur Gemeinde` | l'un des deux suffit |
+| `Maur AND Gemeinde` | les deux doivent figurer |
+| `Maur OR Gemeinde` | explicitement l'un ou l'autre (le défaut) |
+| `Maur NOT Gemeinde` | «Maur», mais sans «Gemeinde» |
+| `+Maur -Gemeinde` | la même chose en notation brève |
+| `"Feuerwehr Maur"` | cette suite de mots exactement |
+| `Gemeinde*` | tous les mots commençant par «Gemeinde» |
+
+`AND`, `OR` et `NOT` s'écrivent en majuscules. Ils agissent des deux côtés :
+`Maur AND Gemeinde` exige «Maur» aussi, et pas seulement «Gemeinde». Un signe
+explicite l'emporte sur un `AND` qui précède — `Maur AND -Gemeinde` reste une
+exclusion.
+
+### Caractères génériques
+
+L'astérisque ne vaut qu'**en fin de mot** : `Gemeinde*` trouve
+«Gemeindearchiv». Le placer devant n'aide pas — dans `*archiv` l'astérisque est
+supprimé et il reste la recherche ordinaire de «archiv», qui trouve les mots
+commençant ainsi, non ceux qui se terminent ainsi. À l'intérieur d'un mot, il
+est sans effet.
+
+### Mots courts
+
+Les mots de moins de trois caractères ne figurent dans aucun index de la base de
+données. Contrairement au champ ordinaire, ils ne disparaissent **pas** de la
+recherche ici : Anton les cherche comme suite de caractères dans le texte. Ainsi
+`FC Maur` trouve ce qu'il doit trouver — «FC» est alors aussi trouvé à
+l'intérieur d'un mot, cette recherche ne connaissant pas les limites de mots.
+
+### Ce que le champ ne peut pas faire
+
+- Les **parenthèses** de regroupement sont supprimées. `(a OR b) AND c` ne peut
+  pas s'exprimer.
+- **Un guillemet isolé** est écarté plutôt que signalé comme erreur :
+  `"Feuerwehr` devient une recherche ordinaire de «Feuerwehr».
+
 ## Distinction avec la recherche pondérée
 
 La recherche plein texte interroge les **objets d'archives**. La [recherche pondérée](weighted-search.md) est une autre fonction et concerne les vues en liste des **acteur·trice·s, lieux et mots-clés** — les résultats y sont triés par pertinence.

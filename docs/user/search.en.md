@@ -72,6 +72,55 @@ Terms with a hyphen (e.g. `Arp-Hagenbach`) are automatically treated like a phra
 - **Very frequent short words** such as «und», «der», «die» are excluded from the database's search index (so-called stop words).
 - **Searching in the middle of a word** is not possible (see above).
 
+## Boolean full-text search
+
+Besides the ordinary search box, the advanced search offers the field **«Boolean
+Full-Text Search»**. It searches the same content but understands connectors —
+and in one respect it behaves the **opposite** way to the ordinary field.
+
+!!! warning "Bare words are OR here, not AND"
+    In the ordinary search box every word entered has to occur. In the boolean
+    field one is enough: `Maur Gemeinde` finds records with «Maur» **or**
+    «Gemeinde». To require both, write `Maur AND Gemeinde`.
+
+### The operators
+
+| Input | Meaning |
+|---|---|
+| `Maur Gemeinde` | either one is enough |
+| `Maur AND Gemeinde` | both have to occur |
+| `Maur OR Gemeinde` | explicitly either (the default) |
+| `Maur NOT Gemeinde` | «Maur», but without «Gemeinde» |
+| `+Maur -Gemeinde` | the same in short form |
+| `"Feuerwehr Maur"` | that exact sequence of words |
+| `Gemeinde*` | all words beginning with «Gemeinde» |
+
+`AND`, `OR` and `NOT` are written in capitals. They act on both sides: `Maur AND
+Gemeinde` requires «Maur» too, not only «Gemeinde». An explicit sign wins over a
+preceding `AND` — `Maur AND -Gemeinde` stays an exclusion.
+
+### Wildcards
+
+The asterisk works **only at the end of a word**: `Gemeinde*` finds
+«Gemeindearchiv». Putting it in front does not help — in `*archiv` the asterisk
+is removed and what remains is the ordinary search for «archiv», which finds
+words beginning that way, not words ending that way. Inside a word it has no
+effect.
+
+### Short words
+
+Words of fewer than three characters are in no database search index. Unlike in
+the ordinary field they do **not** drop out of the search here: Anton looks for
+them as a character sequence in the text instead. So `FC Maur` finds what it
+should — «FC» is then also found inside a word, because this kind of search knows
+no word boundaries.
+
+### What the field cannot do
+
+- **Brackets** for grouping are removed. `(a OR b) AND c` cannot be expressed.
+- **A single quotation mark** is discarded rather than reported as an error:
+  `"Feuerwehr` becomes an ordinary search for «Feuerwehr».
+
 ## Distinction from the weighted search
 
 The full-text search searches **archival objects**. The [weighted search](weighted-search.md) is a different function and concerns the list views of **actors, places and keywords** — there, hits are sorted by relevance.
