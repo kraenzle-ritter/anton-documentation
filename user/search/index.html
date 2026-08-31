@@ -1240,6 +1240,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#boolesche-volltextsuche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolesche Volltextsuche
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolesche Volltextsuche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#die-operatoren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die Operatoren
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platzhalter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platzhalter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kurze-worter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kurze Wörter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-das-feld-nicht-kann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was das Feld nicht kann
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#abgrenzung-zur-gewichteten-suche" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4193,6 +4254,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#boolesche-volltextsuche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolesche Volltextsuche
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolesche Volltextsuche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#die-operatoren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die Operatoren
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platzhalter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platzhalter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kurze-worter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kurze Wörter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-das-feld-nicht-kann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was das Feld nicht kann
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#abgrenzung-zur-gewichteten-suche" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4220,7 +4342,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-08-31</span>
     </div>
   
   
@@ -4334,6 +4456,77 @@ die Administration; siehe <a href="../../admin/searchfields/">Suchfelder</a>.</p
 <li><strong>Begriffe unter 3 Zeichen</strong> werden ignoriert (<code>ag</code>, <code>zb</code>).</li>
 <li><strong>Sehr häufige kurze Wörter</strong> wie „und", „der", „die" sind aus dem Suchindex der Datenbank ausgeschlossen (sogenannte Stopwörter).</li>
 <li><strong>Suche in der Wortmitte</strong> ist nicht möglich (siehe oben).</li>
+</ul>
+<h2 id="boolesche-volltextsuche">Boolesche Volltextsuche<a class="headerlink" href="#boolesche-volltextsuche" title="Permanent link">&para;</a></h2>
+<p>Neben dem gewöhnlichen Suchfeld gibt es in der erweiterten Suche das Feld
+<strong>«Boolesche Volltextsuche»</strong>. Es durchsucht dieselben Inhalte, versteht aber
+Verknüpfungen — und verhält sich in einem Punkt <strong>umgekehrt</strong> zum normalen Feld.</p>
+<div class="admonition warning">
+<p class="admonition-title">Blosse Wörter sind hier ODER, nicht UND</p>
+<p>Im gewöhnlichen Suchfeld müssen alle eingegebenen Wörter vorkommen. Im
+booleschen Feld genügt eines: <code>Maur Gemeinde</code> findet Datensätze mit «Maur»
+<strong>oder</strong> «Gemeinde». Wer beide verlangt, schreibt <code>Maur AND Gemeinde</code>.</p>
+</div>
+<h3 id="die-operatoren">Die Operatoren<a class="headerlink" href="#die-operatoren" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Eingabe</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Maur Gemeinde</code></td>
+<td>eines von beiden genügt</td>
+</tr>
+<tr>
+<td><code>Maur AND Gemeinde</code></td>
+<td>beide müssen vorkommen</td>
+</tr>
+<tr>
+<td><code>Maur OR Gemeinde</code></td>
+<td>ausdrücklich eines von beiden (die Vorgabe)</td>
+</tr>
+<tr>
+<td><code>Maur NOT Gemeinde</code></td>
+<td>«Maur», aber ohne «Gemeinde»</td>
+</tr>
+<tr>
+<td><code>+Maur -Gemeinde</code></td>
+<td>dasselbe in Kurzschreibweise</td>
+</tr>
+<tr>
+<td><code>"Feuerwehr Maur"</code></td>
+<td>die Wortfolge genau so</td>
+</tr>
+<tr>
+<td><code>Gemeinde*</code></td>
+<td>alle Wörter, die mit «Gemeinde» beginnen</td>
+</tr>
+</tbody>
+</table>
+<p><code>AND</code>, <code>OR</code> und <code>NOT</code> schreibt man in Grossbuchstaben. Sie wirken auf beide
+Seiten: <code>Maur AND Gemeinde</code> verlangt auch «Maur», nicht nur «Gemeinde». Ein
+ausdrückliches Vorzeichen gewinnt gegen ein vorangehendes <code>AND</code> — <code>Maur AND
+-Gemeinde</code> bleibt ein Ausschluss.</p>
+<h3 id="platzhalter">Platzhalter<a class="headerlink" href="#platzhalter" title="Permanent link">&para;</a></h3>
+<p>Der Stern steht <strong>nur am Wortende</strong>: <code>Gemeinde*</code> findet «Gemeindearchiv».
+Voranstellen hilft nicht — bei <code>*archiv</code> wird der Stern entfernt und es bleibt
+die gewöhnliche Suche nach «archiv», die Wörter mit diesem Anfang findet, nicht
+Wörter mit dieser Endung. Innerhalb eines Wortes hat er keine Wirkung.</p>
+<h3 id="kurze-worter">Kurze Wörter<a class="headerlink" href="#kurze-worter" title="Permanent link">&para;</a></h3>
+<p>Wörter unter drei Zeichen stehen in keinem Suchindex der Datenbank. Anders als
+im gewöhnlichen Feld fallen sie hier aber <strong>nicht</strong> aus der Suche: Anton sucht
+sie stattdessen als Zeichenfolge im Text. <code>FC Maur</code> findet also, was es finden
+soll — «FC» wird dabei auch mitten im Wort gefunden, weil diese Suche keine
+Wortgrenzen kennt.</p>
+<h3 id="was-das-feld-nicht-kann">Was das Feld nicht kann<a class="headerlink" href="#was-das-feld-nicht-kann" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Klammern</strong> zur Gruppierung werden entfernt. <code>(a OR b) AND c</code> lässt sich
+  nicht ausdrücken.</li>
+<li><strong>Ein einzelnes Anführungszeichen</strong> wird verworfen statt als Fehler gemeldet:
+  aus <code>"Feuerwehr</code> wird die gewöhnliche Suche nach «Feuerwehr».</li>
 </ul>
 <h2 id="abgrenzung-zur-gewichteten-suche">Abgrenzung zur Gewichteten Suche<a class="headerlink" href="#abgrenzung-zur-gewichteten-suche" title="Permanent link">&para;</a></h2>
 <p>Die Volltextsuche durchsucht <strong>Archivobjekte</strong>. Die <a href="../weighted-search/">Gewichtete Suche</a> ist eine andere Funktion und betrifft die Listenansichten von <strong>Akteur:innen, Orten und Schlagwörtern</strong> — dort werden Treffer nach Relevanz sortiert.</p>

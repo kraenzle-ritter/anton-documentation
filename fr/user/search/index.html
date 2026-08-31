@@ -1240,6 +1240,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recherche-booleenne-en-texte-integral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recherche booléenne en texte intégral
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recherche booléenne en texte intégral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteres-generiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caractères génériques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mots-courts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mots courts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-le-champ-ne-peut-pas-faire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que le champ ne peut pas faire
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinction-avec-la-recherche-ponderee" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2356,6 +2417,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recherche-booleenne-en-texte-integral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recherche booléenne en texte intégral
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recherche booléenne en texte intégral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-operateurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les opérateurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteres-generiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caractères génériques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mots-courts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mots courts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-le-champ-ne-peut-pas-faire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que le champ ne peut pas faire
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinction-avec-la-recherche-ponderee" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2383,7 +2505,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-08-31</span>
     </div>
   
   
@@ -2497,6 +2619,80 @@ L'administration sait si c'est le cas.</p>
 <li><strong>Les termes de moins de 3 caractères</strong> sont ignorés (<code>ag</code>, <code>zb</code>).</li>
 <li><strong>Les mots courts très fréquents</strong> tels que «&nbsp;und&nbsp;», «&nbsp;der&nbsp;», «&nbsp;die&nbsp;» sont exclus de l'index de recherche de la base de données (mots vides).</li>
 <li><strong>La recherche au milieu d'un mot</strong> n'est pas possible (voir ci-dessus).</li>
+</ul>
+<h2 id="recherche-booleenne-en-texte-integral">Recherche booléenne en texte intégral<a class="headerlink" href="#recherche-booleenne-en-texte-integral" title="Permanent link">&para;</a></h2>
+<p>Outre le champ de recherche ordinaire, la recherche avancée propose le champ
+<strong>«Recherche booléenne en texte intégral»</strong>. Il interroge les mêmes contenus mais
+comprend des connecteurs — et sur un point il se comporte à l'<strong>inverse</strong> du
+champ ordinaire.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ici, des mots isolés valent OU, non ET</p>
+<p>Dans le champ ordinaire, chaque mot saisi doit figurer. Dans le champ
+booléen, un seul suffit : <code>Maur Gemeinde</code> trouve les notices contenant
+«Maur» <strong>ou</strong> «Gemeinde». Pour exiger les deux, écrivez
+<code>Maur AND Gemeinde</code>.</p>
+</div>
+<h3 id="les-operateurs">Les opérateurs<a class="headerlink" href="#les-operateurs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Saisie</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Maur Gemeinde</code></td>
+<td>l'un des deux suffit</td>
+</tr>
+<tr>
+<td><code>Maur AND Gemeinde</code></td>
+<td>les deux doivent figurer</td>
+</tr>
+<tr>
+<td><code>Maur OR Gemeinde</code></td>
+<td>explicitement l'un ou l'autre (le défaut)</td>
+</tr>
+<tr>
+<td><code>Maur NOT Gemeinde</code></td>
+<td>«Maur», mais sans «Gemeinde»</td>
+</tr>
+<tr>
+<td><code>+Maur -Gemeinde</code></td>
+<td>la même chose en notation brève</td>
+</tr>
+<tr>
+<td><code>"Feuerwehr Maur"</code></td>
+<td>cette suite de mots exactement</td>
+</tr>
+<tr>
+<td><code>Gemeinde*</code></td>
+<td>tous les mots commençant par «Gemeinde»</td>
+</tr>
+</tbody>
+</table>
+<p><code>AND</code>, <code>OR</code> et <code>NOT</code> s'écrivent en majuscules. Ils agissent des deux côtés :
+<code>Maur AND Gemeinde</code> exige «Maur» aussi, et pas seulement «Gemeinde». Un signe
+explicite l'emporte sur un <code>AND</code> qui précède — <code>Maur AND -Gemeinde</code> reste une
+exclusion.</p>
+<h3 id="caracteres-generiques">Caractères génériques<a class="headerlink" href="#caracteres-generiques" title="Permanent link">&para;</a></h3>
+<p>L'astérisque ne vaut qu'<strong>en fin de mot</strong> : <code>Gemeinde*</code> trouve
+«Gemeindearchiv». Le placer devant n'aide pas — dans <code>*archiv</code> l'astérisque est
+supprimé et il reste la recherche ordinaire de «archiv», qui trouve les mots
+commençant ainsi, non ceux qui se terminent ainsi. À l'intérieur d'un mot, il
+est sans effet.</p>
+<h3 id="mots-courts">Mots courts<a class="headerlink" href="#mots-courts" title="Permanent link">&para;</a></h3>
+<p>Les mots de moins de trois caractères ne figurent dans aucun index de la base de
+données. Contrairement au champ ordinaire, ils ne disparaissent <strong>pas</strong> de la
+recherche ici : Anton les cherche comme suite de caractères dans le texte. Ainsi
+<code>FC Maur</code> trouve ce qu'il doit trouver — «FC» est alors aussi trouvé à
+l'intérieur d'un mot, cette recherche ne connaissant pas les limites de mots.</p>
+<h3 id="ce-que-le-champ-ne-peut-pas-faire">Ce que le champ ne peut pas faire<a class="headerlink" href="#ce-que-le-champ-ne-peut-pas-faire" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Les <strong>parenthèses</strong> de regroupement sont supprimées. <code>(a OR b) AND c</code> ne peut
+  pas s'exprimer.</li>
+<li><strong>Un guillemet isolé</strong> est écarté plutôt que signalé comme erreur :
+  <code>"Feuerwehr</code> devient une recherche ordinaire de «Feuerwehr».</li>
 </ul>
 <h2 id="distinction-avec-la-recherche-ponderee">Distinction avec la recherche pondérée<a class="headerlink" href="#distinction-avec-la-recherche-ponderee" title="Permanent link">&para;</a></h2>
 <p>La recherche plein texte interroge les <strong>objets d'archives</strong>. La <a href="../weighted-search/">recherche pondérée</a> est une autre fonction et concerne les vues en liste des <strong>acteur·trice·s, lieux et mots-clés</strong> — les résultats y sont triés par pertinence.</p>

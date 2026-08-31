@@ -1240,6 +1240,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ricerca-booleana-del-testo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ricerca booleana del testo completo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ricerca booleana del testo completo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gli-operatori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gli operatori
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caratteri-jolly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caratteri jolly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parole-brevi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parole brevi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#che-cosa-il-campo-non-puo-fare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Che cosa il campo non può fare
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinzione-rispetto-alla-ricerca-ponderata" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2356,6 +2417,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ricerca-booleana-del-testo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ricerca booleana del testo completo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ricerca booleana del testo completo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gli-operatori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gli operatori
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caratteri-jolly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caratteri jolly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parole-brevi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parole brevi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#che-cosa-il-campo-non-puo-fare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Che cosa il campo non può fare
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinzione-rispetto-alla-ricerca-ponderata" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2383,7 +2505,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-08-31</span>
     </div>
   
   
@@ -2497,6 +2619,77 @@ toccata. Se sia il caso lo sa l'amministrazione.</p>
 <li><strong>I termini di meno di 3 caratteri</strong> vengono ignorati (<code>ag</code>, <code>zb</code>).</li>
 <li><strong>Le parole brevi molto frequenti</strong> come «und», «der», «die» sono escluse dall'indice di ricerca della banca dati (le cosiddette parole vuote).</li>
 <li><strong>La ricerca a metà parola</strong> non è possibile (vedi sopra).</li>
+</ul>
+<h2 id="ricerca-booleana-del-testo-completo">Ricerca booleana del testo completo<a class="headerlink" href="#ricerca-booleana-del-testo-completo" title="Permanent link">&para;</a></h2>
+<p>Oltre al campo di ricerca ordinario, la ricerca avanzata offre il campo
+<strong>«Ricerca booleana del testo completo»</strong>. Interroga gli stessi contenuti ma
+comprende i connettivi — e su un punto si comporta all'<strong>opposto</strong> del campo
+ordinario.</p>
+<div class="admonition warning">
+<p class="admonition-title">Qui le parole singole valgono O, non E</p>
+<p>Nel campo ordinario devono comparire tutte le parole inserite. Nel campo
+booleano ne basta una: <code>Maur Gemeinde</code> trova i record con «Maur» <strong>o</strong>
+«Gemeinde». Per esigerle entrambe si scrive <code>Maur AND Gemeinde</code>.</p>
+</div>
+<h3 id="gli-operatori">Gli operatori<a class="headerlink" href="#gli-operatori" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Immissione</th>
+<th>Significato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Maur Gemeinde</code></td>
+<td>ne basta una delle due</td>
+</tr>
+<tr>
+<td><code>Maur AND Gemeinde</code></td>
+<td>devono comparire entrambe</td>
+</tr>
+<tr>
+<td><code>Maur OR Gemeinde</code></td>
+<td>esplicitamente l'una o l'altra (il valore predefinito)</td>
+</tr>
+<tr>
+<td><code>Maur NOT Gemeinde</code></td>
+<td>«Maur», ma senza «Gemeinde»</td>
+</tr>
+<tr>
+<td><code>+Maur -Gemeinde</code></td>
+<td>lo stesso in forma breve</td>
+</tr>
+<tr>
+<td><code>"Feuerwehr Maur"</code></td>
+<td>esattamente quella sequenza di parole</td>
+</tr>
+<tr>
+<td><code>Gemeinde*</code></td>
+<td>tutte le parole che iniziano con «Gemeinde»</td>
+</tr>
+</tbody>
+</table>
+<p><code>AND</code>, <code>OR</code> e <code>NOT</code> si scrivono in maiuscolo. Agiscono su entrambi i lati:
+<code>Maur AND Gemeinde</code> esige anche «Maur», non solo «Gemeinde». Un segno esplicito
+prevale su un <code>AND</code> che precede — <code>Maur AND -Gemeinde</code> resta un'esclusione.</p>
+<h3 id="caratteri-jolly">Caratteri jolly<a class="headerlink" href="#caratteri-jolly" title="Permanent link">&para;</a></h3>
+<p>L'asterisco vale <strong>solo a fine parola</strong>: <code>Gemeinde*</code> trova «Gemeindearchiv».
+Anteporlo non aiuta — in <code>*archiv</code> l'asterisco viene rimosso e resta la ricerca
+ordinaria di «archiv», che trova le parole che iniziano così, non quelle che così
+finiscono. All'interno di una parola non ha effetto.</p>
+<h3 id="parole-brevi">Parole brevi<a class="headerlink" href="#parole-brevi" title="Permanent link">&para;</a></h3>
+<p>Le parole di meno di tre caratteri non figurano in alcun indice della banca
+dati. A differenza del campo ordinario, qui <strong>non</strong> escono dalla ricerca: Anton
+le cerca come sequenza di caratteri nel testo. Così <code>FC Maur</code> trova quello che
+deve — «FC» viene allora trovato anche all'interno di una parola, poiché questa
+ricerca non conosce i confini di parola.</p>
+<h3 id="che-cosa-il-campo-non-puo-fare">Che cosa il campo non può fare<a class="headerlink" href="#che-cosa-il-campo-non-puo-fare" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Le <strong>parentesi</strong> di raggruppamento vengono rimosse. <code>(a OR b) AND c</code> non è
+  esprimibile.</li>
+<li><strong>Una virgoletta isolata</strong> viene scartata anziché segnalata come errore:
+  <code>"Feuerwehr</code> diventa una ricerca ordinaria di «Feuerwehr».</li>
 </ul>
 <h2 id="distinzione-rispetto-alla-ricerca-ponderata">Distinzione rispetto alla ricerca ponderata<a class="headerlink" href="#distinzione-rispetto-alla-ricerca-ponderata" title="Permanent link">&para;</a></h2>
 <p>La ricerca full text interroga gli <strong>oggetti d'archivio</strong>. La <a href="../weighted-search/">ricerca ponderata</a> è un'altra funzione e riguarda le viste a elenco di <strong>attori e attrici, luoghi e parole chiave</strong> — lì i risultati vengono ordinati per rilevanza.</p>

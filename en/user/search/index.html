@@ -1240,6 +1240,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#boolean-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean full-text search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean full-text search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wildcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-field-cannot-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the field cannot do
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinction-from-the-weighted-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4193,6 +4254,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#boolean-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean full-text search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean full-text search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wildcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-field-cannot-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the field cannot do
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distinction-from-the-weighted-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4220,7 +4342,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-08-31</span>
     </div>
   
   
@@ -4334,6 +4456,76 @@ administration; see <a href="../../admin/searchfields/">search fields</a>.</p>
 <li><strong>Terms of fewer than 3 characters</strong> are ignored (<code>ag</code>, <code>zb</code>).</li>
 <li><strong>Very frequent short words</strong> such as «und», «der», «die» are excluded from the database's search index (so-called stop words).</li>
 <li><strong>Searching in the middle of a word</strong> is not possible (see above).</li>
+</ul>
+<h2 id="boolean-full-text-search">Boolean full-text search<a class="headerlink" href="#boolean-full-text-search" title="Permanent link">&para;</a></h2>
+<p>Besides the ordinary search box, the advanced search offers the field <strong>«Boolean
+Full-Text Search»</strong>. It searches the same content but understands connectors —
+and in one respect it behaves the <strong>opposite</strong> way to the ordinary field.</p>
+<div class="admonition warning">
+<p class="admonition-title">Bare words are OR here, not AND</p>
+<p>In the ordinary search box every word entered has to occur. In the boolean
+field one is enough: <code>Maur Gemeinde</code> finds records with «Maur» <strong>or</strong>
+«Gemeinde». To require both, write <code>Maur AND Gemeinde</code>.</p>
+</div>
+<h3 id="the-operators">The operators<a class="headerlink" href="#the-operators" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Maur Gemeinde</code></td>
+<td>either one is enough</td>
+</tr>
+<tr>
+<td><code>Maur AND Gemeinde</code></td>
+<td>both have to occur</td>
+</tr>
+<tr>
+<td><code>Maur OR Gemeinde</code></td>
+<td>explicitly either (the default)</td>
+</tr>
+<tr>
+<td><code>Maur NOT Gemeinde</code></td>
+<td>«Maur», but without «Gemeinde»</td>
+</tr>
+<tr>
+<td><code>+Maur -Gemeinde</code></td>
+<td>the same in short form</td>
+</tr>
+<tr>
+<td><code>"Feuerwehr Maur"</code></td>
+<td>that exact sequence of words</td>
+</tr>
+<tr>
+<td><code>Gemeinde*</code></td>
+<td>all words beginning with «Gemeinde»</td>
+</tr>
+</tbody>
+</table>
+<p><code>AND</code>, <code>OR</code> and <code>NOT</code> are written in capitals. They act on both sides: <code>Maur AND
+Gemeinde</code> requires «Maur» too, not only «Gemeinde». An explicit sign wins over a
+preceding <code>AND</code> — <code>Maur AND -Gemeinde</code> stays an exclusion.</p>
+<h3 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h3>
+<p>The asterisk works <strong>only at the end of a word</strong>: <code>Gemeinde*</code> finds
+«Gemeindearchiv». Putting it in front does not help — in <code>*archiv</code> the asterisk
+is removed and what remains is the ordinary search for «archiv», which finds
+words beginning that way, not words ending that way. Inside a word it has no
+effect.</p>
+<h3 id="short-words">Short words<a class="headerlink" href="#short-words" title="Permanent link">&para;</a></h3>
+<p>Words of fewer than three characters are in no database search index. Unlike in
+the ordinary field they do <strong>not</strong> drop out of the search here: Anton looks for
+them as a character sequence in the text instead. So <code>FC Maur</code> finds what it
+should — «FC» is then also found inside a word, because this kind of search knows
+no word boundaries.</p>
+<h3 id="what-the-field-cannot-do">What the field cannot do<a class="headerlink" href="#what-the-field-cannot-do" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Brackets</strong> for grouping are removed. <code>(a OR b) AND c</code> cannot be expressed.</li>
+<li><strong>A single quotation mark</strong> is discarded rather than reported as an error:
+  <code>"Feuerwehr</code> becomes an ordinary search for «Feuerwehr».</li>
 </ul>
 <h2 id="distinction-from-the-weighted-search">Distinction from the weighted search<a class="headerlink" href="#distinction-from-the-weighted-search" title="Permanent link">&para;</a></h2>
 <p>The full-text search searches <strong>archival objects</strong>. The <a href="../weighted-search/">weighted search</a> is a different function and concerns the list views of <strong>actors, places and keywords</strong> — there, hits are sorted by relevance.</p>
