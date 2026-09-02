@@ -3521,10 +3521,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-56" class="md-nav__link">
+  <a href="#anton-57" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (56)
+        anton: (57)
       
     </span>
   </a>
@@ -4331,10 +4331,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-56" class="md-nav__link">
+  <a href="#anton-57" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (56)
+        anton: (57)
       
     </span>
   </a>
@@ -4440,7 +4440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-02</span>
     </div>
   
   
@@ -4656,8 +4656,22 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 <td><code>anton:merge &lt;type&gt; &lt;target_id&gt;</code></td>
 <td>Akteur:innen, Orte oder Schlagwörter zusammenführen</td>
 </tr>
+<tr>
+<td><code>anton:repair-content-locale --from=&lt;sprache&gt;</code></td>
+<td>Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben</td>
+</tr>
 </tbody>
 </table>
+<p><code>anton:repair-content-locale</code> betrifft Archive, die <strong>vor dem 15. August 2026</strong>
+importiert haben: bis dahin schrieb ein Import die Standardsprache der Anwendung
+statt die des Archivs. Ein Titel, der unter einer nicht eingerichteten Sprache
+liegt, erscheint auf der Detailseite, in Listen aber als leere Zelle.</p>
+<p>Der Befehl macht ohne <code>--write</code> nur einen Probelauf und meldet, was er
+verschieben würde. <code>--from</code> ist erforderlich, <code>--to</code> ist die erste eingerichtete
+Sprache des Archivs. Datensätze, die die Zielsprache bereits tragen, werden
+nicht überschrieben, sondern aufgelistet. Eine <code>--from</code>-Sprache, die zu den
+eingerichteten Sprachen des Archivs gehört, wird ohne <code>--force</code> abgelehnt —
+Inhalt in einer eingerichteten Sprache ist nicht falsch abgelegt.</p>
 <h2 id="diagnose">Diagnose<a class="headerlink" href="#diagnose" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> prüft eine Installation auf Konsistenz — dieselben Prüfungen
 wie die Oberfläche unter <a href="../doctor/">Anton Doctor</a>, nur skriptfähig:</p>
@@ -4700,7 +4714,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-56">anton: (56)<a class="headerlink" href="#anton-56" title="Permanent link">&para;</a></h3>
+<h3 id="anton-57">anton: (57)<a class="headerlink" href="#anton-57" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -4860,6 +4874,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:repair-closure-table</code></td>
 <td>Check and repair the object_closure table consistency</td>
+</tr>
+<tr>
+<td><code>anton:repair-content-locale</code></td>
+<td>Move objects.title and notes from a wrongly written language into the archive's own (#506).</td>
 </tr>
 <tr>
 <td><code>anton:repair-edit-metadata</code></td>

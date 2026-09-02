@@ -3521,10 +3521,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-56" class="md-nav__link">
+  <a href="#anton-57" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (56)
+        anton: (57)
       
     </span>
   </a>
@@ -4331,10 +4331,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-56" class="md-nav__link">
+  <a href="#anton-57" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (56)
+        anton: (57)
       
     </span>
   </a>
@@ -4440,7 +4440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-02</span>
     </div>
   
   
@@ -4658,8 +4658,21 @@ materialised fields in a closure table — is explained by
 <td><code>anton:merge &lt;type&gt; &lt;target_id&gt;</code></td>
 <td>Merge actors, places or keywords</td>
 </tr>
+<tr>
+<td><code>anton:repair-content-locale --from=&lt;language&gt;</code></td>
+<td>Move titles and text fields an import filed under the wrong language into the archive's content language</td>
+</tr>
 </tbody>
 </table>
+<p><code>anton:repair-content-locale</code> concerns archives that imported <strong>before 15 August
+2026</strong>: until then an import wrote the application's default language rather than
+the archive's. A title filed under a language the archive does not keep shows on
+the detail page but leaves an empty cell in every list.</p>
+<p>Without <code>--write</code> the command only reports what it would move. <code>--from</code> is
+required, <code>--to</code> defaults to the archive's first configured language. Records
+that already carry the target language are listed rather than overwritten. A
+<code>--from</code> that is one of the archive's own configured languages is refused unless
+<code>--force</code> — content in a configured language is not misfiled.</p>
 <h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> checks an installation for consistency — the
 same checks as the interface under <a href="../doctor/">Anton Doctor</a>, only scriptable:</p>
@@ -4702,7 +4715,7 @@ up to date with every change to the commands.</p>
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-56">anton: (56)<a class="headerlink" href="#anton-56" title="Permanent link">&para;</a></h3>
+<h3 id="anton-57">anton: (57)<a class="headerlink" href="#anton-57" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -4862,6 +4875,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>anton:repair-closure-table</code></td>
 <td>Check and repair the object_closure table consistency</td>
+</tr>
+<tr>
+<td><code>anton:repair-content-locale</code></td>
+<td>Move objects.title and notes from a wrongly written language into the archive's own (#506).</td>
 </tr>
 <tr>
 <td><code>anton:repair-edit-metadata</code></td>
