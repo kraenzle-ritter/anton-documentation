@@ -153,6 +153,19 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:update-dates` / `anton:update-all-dates` | Aggregierte Datierung neu berechnen |
 | `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
 | `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
+| `anton:repair-content-locale --from=<sprache>` | Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben |
+
+`anton:repair-content-locale` betrifft Archive, die **vor dem 15. August 2026**
+importiert haben: bis dahin schrieb ein Import die Standardsprache der Anwendung
+statt die des Archivs. Ein Titel, der unter einer nicht eingerichteten Sprache
+liegt, erscheint auf der Detailseite, in Listen aber als leere Zelle.
+
+Der Befehl macht ohne `--write` nur einen Probelauf und meldet, was er
+verschieben würde. `--from` ist erforderlich, `--to` ist die erste eingerichtete
+Sprache des Archivs. Datensätze, die die Zielsprache bereits tragen, werden
+nicht überschrieben, sondern aufgelistet. Eine `--from`-Sprache, die zu den
+eingerichteten Sprachen des Archivs gehört, wird ohne `--force` abgelehnt —
+Inhalt in einer eingerichteten Sprache ist nicht falsch abgelegt.
 
 ## Diagnose
 
@@ -209,7 +222,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (56)
+### anton: (57)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -251,6 +264,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:reencrypt-secrets` | Re-encrypt two-factor secrets and passkeys onto the current APP_KEY (#479). |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
+| `anton:repair-content-locale` | Move objects.title and notes from a wrongly written language into the archive's own (#506). |
 | `anton:repair-edit-metadata` | Restore updated_at/updated_by from the history column on records a mass run restamped (#421). |
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
 | `anton:restore` | Restore Database from the last Backup (by default) |

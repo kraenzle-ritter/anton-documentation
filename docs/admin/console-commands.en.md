@@ -155,6 +155,18 @@ materialised fields in a closure table — is explained by
 | `anton:update-dates` / `anton:update-all-dates` | Recalculate the aggregated dating |
 | `anton:update-release-year` | Materialise the effective release year |
 | `anton:merge <type> <target_id>` | Merge actors, places or keywords |
+| `anton:repair-content-locale --from=<language>` | Move titles and text fields an import filed under the wrong language into the archive's content language |
+
+`anton:repair-content-locale` concerns archives that imported **before 15 August
+2026**: until then an import wrote the application's default language rather than
+the archive's. A title filed under a language the archive does not keep shows on
+the detail page but leaves an empty cell in every list.
+
+Without `--write` the command only reports what it would move. `--from` is
+required, `--to` defaults to the archive's first configured language. Records
+that already carry the target language are listed rather than overwritten. A
+`--from` that is one of the archive's own configured languages is refused unless
+`--force` — content in a configured language is not misfiled.
 
 ## Diagnosis
 
@@ -212,7 +224,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (56)
+### anton: (57)
 
 | Command | Description |
 |---|---|
@@ -254,6 +266,7 @@ up to date with every change to the commands.
 | `anton:reencrypt-secrets` | Re-encrypt two-factor secrets and passkeys onto the current APP_KEY (#479). |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
+| `anton:repair-content-locale` | Move objects.title and notes from a wrongly written language into the archive's own (#506). |
 | `anton:repair-edit-metadata` | Restore updated_at/updated_by from the history column on records a mass run restamped (#421). |
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
 | `anton:restore` | Restore Database from the last Backup (by default) |
