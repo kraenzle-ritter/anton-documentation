@@ -3521,10 +3521,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-57" class="md-nav__link">
+  <a href="#anton-58" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (57)
+        anton: (58)
       
     </span>
   </a>
@@ -4331,10 +4331,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-57" class="md-nav__link">
+  <a href="#anton-58" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (57)
+        anton: (58)
       
     </span>
   </a>
@@ -4440,7 +4440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-02</span>
+        <span class="page-meta__date">Last updated: 2026-09-03</span>
     </div>
   
   
@@ -4662,6 +4662,10 @@ materialised fields in a closure table — is explained by
 <td><code>anton:repair-content-locale --from=&lt;language&gt;</code></td>
 <td>Move titles and text fields an import filed under the wrong language into the archive's content language</td>
 </tr>
+<tr>
+<td><code>anton:audit-orphans</code></td>
+<td>Report rows whose record no longer exists, and remove them on request</td>
+</tr>
 </tbody>
 </table>
 <p><code>anton:repair-content-locale</code> concerns archives that imported <strong>before 15 August
@@ -4673,6 +4677,15 @@ required, <code>--to</code> defaults to the archive's first configured language.
 that already carry the target language are listed rather than overwritten. A
 <code>--from</code> that is one of the archive's own configured languages is refused unless
 <code>--force</code> — content in a configured language is not misfiled.</p>
+<p><code>anton:audit-orphans</code> looks for rows pointing at a record that is no longer
+there. Anton keeps text fields, external identifiers, comments, term values,
+upload tokens and relations in polymorphic tables; when the owner goes, nothing
+takes them with it. None of it is visible — nothing renders a row whose owner is
+missing — which is exactly why it has to be looked for.</p>
+<p>Without <code>--write</code> it only reports. <code>--only=</code> narrows it to one place, and every
+finding comes with the first few ids so you can look before deciding. <strong>Media is
+reported and never removed</strong>: a media row is the registration of a file on disk,
+and dropping the row loses the trail to the file rather than the file.</p>
 <h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> checks an installation for consistency — the
 same checks as the interface under <a href="../doctor/">Anton Doctor</a>, only scriptable:</p>
@@ -4715,7 +4728,7 @@ up to date with every change to the commands.</p>
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-57">anton: (57)<a class="headerlink" href="#anton-57" title="Permanent link">&para;</a></h3>
+<h3 id="anton-58">anton: (58)<a class="headerlink" href="#anton-58" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -4735,6 +4748,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>anton:audit-note-name-collisions</code></td>
 <td>Detect (name, type) collisions that would block the unify-note migration on this tenant.</td>
+</tr>
+<tr>
+<td><code>anton:audit-orphans</code></td>
+<td>Report (and optionally remove) rows pointing at a record that no longer exists (#512).</td>
 </tr>
 <tr>
 <td><code>anton:audit-positions</code></td>
