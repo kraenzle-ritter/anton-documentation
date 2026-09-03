@@ -156,6 +156,7 @@ materialised fields in a closure table — is explained by
 | `anton:update-release-year` | Materialise the effective release year |
 | `anton:merge <type> <target_id>` | Merge actors, places or keywords |
 | `anton:repair-content-locale --from=<language>` | Move titles and text fields an import filed under the wrong language into the archive's content language |
+| `anton:audit-orphans` | Report rows whose record no longer exists, and remove them on request |
 
 `anton:repair-content-locale` concerns archives that imported **before 15 August
 2026**: until then an import wrote the application's default language rather than
@@ -167,6 +168,17 @@ required, `--to` defaults to the archive's first configured language. Records
 that already carry the target language are listed rather than overwritten. A
 `--from` that is one of the archive's own configured languages is refused unless
 `--force` — content in a configured language is not misfiled.
+
+`anton:audit-orphans` looks for rows pointing at a record that is no longer
+there. Anton keeps text fields, external identifiers, comments, term values,
+upload tokens and relations in polymorphic tables; when the owner goes, nothing
+takes them with it. None of it is visible — nothing renders a row whose owner is
+missing — which is exactly why it has to be looked for.
+
+Without `--write` it only reports. `--only=` narrows it to one place, and every
+finding comes with the first few ids so you can look before deciding. **Media is
+reported and never removed**: a media row is the registration of a file on disk,
+and dropping the row loses the trail to the file rather than the file.
 
 ## Diagnosis
 
@@ -224,13 +236,14 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (57)
+### anton: (58)
 
 | Command | Description |
 |---|---|
 | `anton:add-user` | Add or Update a User. With --api-token option, an api token will be issued. |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
 | `anton:audit-note-name-collisions` | Detect (name, type) collisions that would block the unify-note migration on this tenant. |
+| `anton:audit-orphans` | Report (and optionally remove) rows pointing at a record that no longer exists (#512). |
 | `anton:audit-positions` | Report position collisions: records sharing the same (parent_id, position) value. |
 | `anton:backup` | Create a Database dump and save it to local storage. |
 | `anton:check-customer-fields` | Check the current database for legacy antonfields with id > 4999 |

@@ -154,6 +154,7 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
 | `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
 | `anton:repair-content-locale --from=<sprache>` | Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben |
+| `anton:audit-orphans` | Zeilen melden, deren Datensatz nicht mehr existiert, und sie auf Wunsch entfernen |
 
 `anton:repair-content-locale` betrifft Archive, die **vor dem 15. August 2026**
 importiert haben: bis dahin schrieb ein Import die Standardsprache der Anwendung
@@ -166,6 +167,18 @@ Sprache des Archivs. Datensätze, die die Zielsprache bereits tragen, werden
 nicht überschrieben, sondern aufgelistet. Eine `--from`-Sprache, die zu den
 eingerichteten Sprachen des Archivs gehört, wird ohne `--force` abgelehnt —
 Inhalt in einer eingerichteten Sprache ist nicht falsch abgelegt.
+
+`anton:audit-orphans` sucht Zeilen, die auf einen Datensatz zeigen, den es
+nicht mehr gibt. Anton führt Textfelder, externe Identifikatoren, Kommentare,
+Termwerte, Upload-Token und Beziehungen in polymorphen Tabellen; fällt der
+Besitzer weg, nimmt ihn nichts mit. Sichtbar ist davon nichts — eine Zeile ohne
+Besitzer stellt niemand dar —, und genau deshalb muss man sie suchen.
+
+Ohne `--write` wird nur berichtet. `--only=` grenzt auf eine Stelle ein, und
+jeder Fund bringt die ersten Ids mit, damit man hinsehen kann, bevor man
+entscheidet. **Medien werden gemeldet und nie entfernt**: eine Medienzeile ist
+die Anmeldung einer Datei auf der Platte, und die Zeile zu löschen verliert die
+Spur zur Datei, nicht die Datei.
 
 ## Diagnose
 
@@ -222,13 +235,14 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (57)
+### anton: (58)
 
 | Befehl | Beschreibung |
 |---|---|
 | `anton:add-user` | Add or Update a User. With --api-token option, an api token will be issued. |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
 | `anton:audit-note-name-collisions` | Detect (name, type) collisions that would block the unify-note migration on this tenant. |
+| `anton:audit-orphans` | Report (and optionally remove) rows pointing at a record that no longer exists (#512). |
 | `anton:audit-positions` | Report position collisions: records sharing the same (parent_id, position) value. |
 | `anton:backup` | Create a Database dump and save it to local storage. |
 | `anton:check-customer-fields` | Check the current database for legacy antonfields with id > 4999 |
