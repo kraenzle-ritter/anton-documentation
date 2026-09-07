@@ -2143,6 +2143,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Auf der Kommandozeile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#die-oai-schnittstelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die OAI-Schnittstelle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2173,7 +2190,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/doctor/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/doctor/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -2230,6 +2247,22 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span clas
 <p>Ein Reparaturlauf schreibt in die Datenbank. Vorher eine
 <a href="../restore/">Sicherung</a> anlegen.</p>
 </div>
+<h3 id="die-oai-schnittstelle">Die OAI-Schnittstelle<a class="headerlink" href="#die-oai-schnittstelle" title="Permanent link">&para;</a></h3>
+<p><code>--oai</code> vergleicht die Einstellung <code>oai_enabled</code> mit dem, was die Schnittstelle
+tatsächlich tut, und meldet beide Richtungen: eingeschaltet, aber stumm — und
+ausgeschaltet, aber trotzdem antwortend.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--oai<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+</code></pre></div>
+<p>Diese Prüfung gibt es, weil der Fehler sich sonst nicht meldet. Bleibt die
+Schnittstelle stumm, obwohl sie eingeschaltet ist, empfängt der erntende Dienst
+einfach nichts mehr: keine Fehlermeldung, kein Protokolleintrag. Das Archiv
+erfährt es Wochen später vom Portal. Wer geerntet wird, nimmt den Aufruf darum
+in den wiederkehrenden Auftrag auf.</p>
+<p>Die Prüfung fragt die Route über die Anwendung selbst, nicht über das Netz —
+Route und Middleware stehen in Frage, und eine Maschine erreicht ihren eigenen
+öffentlichen Namen nicht immer. Ein vorgelagerter Proxy kann einen erntenden
+Dienst also noch abweisen, den diese Prüfung für gesund erklärt; die Meldung
+nennt darum die öffentliche Adresse zum Nachprüfen von aussen.</p>
 <h2 id="kein-automatismus">Kein Automatismus<a class="headerlink" href="#kein-automatismus" title="Permanent link">&para;</a></h2>
 <p>Anton führt die Prüfungen <strong>nicht</strong> von sich aus aus; einen eingebauten
 Zeitplan gibt es nicht. Wo sie wiederkehrend laufen sollen, werden sie pro

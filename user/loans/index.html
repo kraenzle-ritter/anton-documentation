@@ -1543,6 +1543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#auf-welchen-stufen-eine-ausleihe-moglich-ist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auf welchen Stufen eine Ausleihe möglich ist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rollen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4138,6 +4149,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#auf-welchen-stufen-eine-ausleihe-moglich-ist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auf welchen Stufen eine Ausleihe möglich ist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rollen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4170,7 +4192,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/loans/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/loans/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/loans/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4193,6 +4215,19 @@
 <p>Im Admin Bereich gibt es eine Liste der offenen Ausleihen (<code>/loans</code>), also der Ausleihen die kein Rückgabedatum besitzen. Von dort kann einerseits auf die User gesprungen werden, um etwa Ausleihen eines Users als zurückgegeben einzutragen oder auf die ausgeliehenen Objekte. </p>
 <h3 id="anzeige-bei-den-einzelnen-usern">Anzeige bei den einzelnen Usern<a class="headerlink" href="#anzeige-bei-den-einzelnen-usern" title="Permanent link">&para;</a></h3>
 <p>Bei den einzelnen Usern (<code>/users/{user_id}</code>) werden die Ausleihen in einer Tabelle angezeigt.</p>
+<h3 id="auf-welchen-stufen-eine-ausleihe-moglich-ist">Auf welchen Stufen eine Ausleihe möglich ist<a class="headerlink" href="#auf-welchen-stufen-eine-ausleihe-moglich-ist" title="Permanent link">&para;</a></h3>
+<p>Die Einstellung <code>level_of_description_ids_for_loans</code> bestimmt, auf welchen
+Verzeichnungsstufen das Ausleihe-Modul angeboten wird. Ausgeliehen wird eine
+physische Einheit, keine Ordnungsebene — ohne diese Einschränkung liess sich
+auch ein ganzer Bestand oder das Archiv selbst «ausleihen», was sämtliche
+Untereinträge als ausgeliehen markierte.</p>
+<p>Ein <strong>leerer</strong> Wert bedeutet: alle Stufen. Das ist der Zustand bestehender
+Installationen, und dabei bleibt es, bis jemand etwas einträgt. Neue
+Installationen erhalten Dossier und Einzelstück (<code>[5, 6]</code>). Wer regelmässig
+ganze Bestände ausleiht, trägt die <code>3</code> dazu.</p>
+<p>Ein Datensatz, der bereits Ausleihen trägt, behält sein Modul unabhängig von
+dieser Einstellung — es zu verbergen würde die Ausleihe nicht rückgängig machen,
+sondern nur unerreichbar.</p>
 <h3 id="rollen">Rollen<a class="headerlink" href="#rollen" title="Permanent link">&para;</a></h3>
 <p>Ausleihen können von <code>editor</code>, <code>admin</code> und <code>loan_admin</code> verwaltet werden.</p>
 <!-- 

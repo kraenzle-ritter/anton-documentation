@@ -1543,6 +1543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sur-quels-niveaux-un-pret-est-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sur quels niveaux un prêt est possible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2301,6 +2312,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sur-quels-niveaux-un-pret-est-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sur quels niveaux un prêt est possible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,7 +2355,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/loans/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/loans/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/loans/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -2356,6 +2378,19 @@
 <p>La section Admin comporte une liste des prêts en cours (<code>/loans</code>), c'est-à-dire des prêts sans date de retour. De là, on peut aussi bien sauter vers les utilisateur·trice·s — pour enregistrer par exemple les prêts d'une personne comme rendus — que vers les objets prêtés.</p>
 <h3 id="affichage-chez-chaque-utilisateurtrice">Affichage chez chaque utilisateur·trice<a class="headerlink" href="#affichage-chez-chaque-utilisateurtrice" title="Permanent link">&para;</a></h3>
 <p>Chez chaque utilisateur·trice (<code>/users/{user_id}</code>), les prêts sont présentés dans un tableau.</p>
+<h3 id="sur-quels-niveaux-un-pret-est-possible">Sur quels niveaux un prêt est possible<a class="headerlink" href="#sur-quels-niveaux-un-pret-est-possible" title="Permanent link">&para;</a></h3>
+<p>Le paramètre <code>level_of_description_ids_for_loans</code> détermine les niveaux de
+description auxquels le module de prêt est proposé. Ce que l'on prête est une
+unité physique, non un niveau de classement — sans cette restriction, un fonds
+entier ou les archives elles-mêmes pouvaient être « prêtés », ce qui marquait
+toutes les entrées subordonnées comme prêtées.</p>
+<p>Une valeur <strong>vide</strong> signifie : tous les niveaux. C'est l'état des installations
+existantes, et il le reste jusqu'à ce que quelqu'un saisisse une valeur. Les
+nouvelles installations reçoivent dossier et pièce (<code>[5, 6]</code>). Qui prête
+régulièrement des fonds entiers y ajoute le <code>3</code>.</p>
+<p>Une notice qui porte déjà des prêts conserve son module quelle que soit ce
+paramètre — le masquer n'annulerait pas le prêt, il le rendrait seulement
+inaccessible.</p>
 <h3 id="roles">Rôles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
 <p>Les prêts peuvent être gérés par <code>editor</code>, <code>admin</code> et <code>loan_admin</code>.</p>
 <!-- 

@@ -3543,6 +3543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#matomo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matomo (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#media-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4353,6 +4364,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#matomo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matomo (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#media-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4440,7 +4462,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-03</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4495,6 +4517,10 @@ sollten nie ungesichert auf einem produktiven Archiv laufen. Erst
 <tr>
 <td><code>anton:setting</code> / <code>anton:home</code></td>
 <td>Eine Einstellung bzw. einen Startseiten-Eintrag lesen oder setzen</td>
+</tr>
+<tr>
+<td><strong id="matomo"><code>matomo --env=&lt;slug&gt;</code></strong></td>
+<td>Den Mandanten bei Matomo anmelden: Website, Benutzer mit Leserecht darauf und Token, und die beiden Einstellungen <code>analytics_id</code> und <code>analytics_auth_token</code> eintragen (siehe <a href="../installation/#matomo-einbinden">Installation</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4983,6 +5009,21 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>inge:check-infrastructure</code></td>
 <td>Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="matomo-1">matomo (1)<a class="headerlink" href="#matomo-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>matomo</code></td>
+<td>Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI…</td>
 </tr>
 </tbody>
 </table>

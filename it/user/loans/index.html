@@ -1543,6 +1543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-quali-livelli-e-possibile-un-prestito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A quali livelli è possibile un prestito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ruoli" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2301,6 +2312,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-quali-livelli-e-possibile-un-prestito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A quali livelli è possibile un prestito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ruoli" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,7 +2355,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/loans/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/loans/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/loans/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -2356,6 +2378,19 @@
 <p>Nell'area Admin esiste un elenco dei prestiti aperti (<code>/loans</code>), ossia dei prestiti privi di data di restituzione. Da lì si può passare sia alle utenze — per registrare ad esempio come restituiti i prestiti di una persona — sia agli oggetti prestati.</p>
 <h3 id="visualizzazione-presso-le-singole-utenze">Visualizzazione presso le singole utenze<a class="headerlink" href="#visualizzazione-presso-le-singole-utenze" title="Permanent link">&para;</a></h3>
 <p>Presso le singole utenze (<code>/users/{user_id}</code>) i prestiti sono visualizzati in una tabella.</p>
+<h3 id="a-quali-livelli-e-possibile-un-prestito">A quali livelli è possibile un prestito<a class="headerlink" href="#a-quali-livelli-e-possibile-un-prestito" title="Permanent link">&para;</a></h3>
+<p>L'impostazione <code>level_of_description_ids_for_loans</code> determina a quali livelli di
+descrizione viene proposto il modulo di prestito. Ciò che si presta è un'unità
+fisica, non un livello di ordinamento — senza questa restrizione era possibile
+«prestare» anche un intero fondo o l'archivio stesso, il che contrassegnava come
+prestate tutte le voci subordinate.</p>
+<p>Un valore <strong>vuoto</strong> significa: tutti i livelli. È lo stato delle installazioni
+esistenti e resta tale finché qualcuno non inserisce un valore. Le nuove
+installazioni ricevono fascicolo e pezzo (<code>[5, 6]</code>). Chi presta regolarmente
+interi fondi vi aggiunge il <code>3</code>.</p>
+<p>Una scheda che porta già dei prestiti conserva il proprio modulo
+indipendentemente da questa impostazione — nasconderlo non annullerebbe il
+prestito, lo renderebbe soltanto irraggiungibile.</p>
 <h3 id="ruoli">Ruoli<a class="headerlink" href="#ruoli" title="Permanent link">&para;</a></h3>
 <p>I prestiti possono essere gestiti da <code>editor</code>, <code>admin</code> e <code>loan_admin</code>.</p>
 <!-- 

@@ -4154,7 +4154,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4172,6 +4172,18 @@
 <div class="highlight"><pre><span></span><code>2FA=1
 </code></pre></div>
 <p>In den Einstellungen (<code>two-factor-auth-role</code>) lässt sich eine Rolle festlegen, ab der die 2FA verbindlich ist. Steht dort beispielsweise editor, ist die 2FA für Editor:innen und Admins Pflicht.</p>
+<p>Die Prüfung ist also <strong>hierarchisch</strong>, und das ist die Stelle, an der man sich
+leicht vertut: <code>user_intern</code> verpflichtet nicht nur diese eine Rolle, sondern
+user_intern, loan_admin, editor und admin — vier Rollen. Ein leerer Wert oder
+<code>none</code> schaltet die Pflicht ab.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ohne <code>2FA=1</code> bleibt die Einstellung wirkungslos</p>
+<p>Die Umgebung hat das letzte Wort. Ist die Zwei-Faktor-Anmeldung dort nicht
+eingeschaltet, registriert Anton die Routen zur Einrichtung gar nicht — eine
+Rolle, die sie dann einrichten müsste, könnte es nicht, und die Anmeldung
+liefe im Kreis. Anton verlangt sie darum nicht, wo sie sich nicht einrichten
+lässt.</p>
+</div>
 <h3 id="2fa-fur-eine-person-zurucksetzen">2FA für eine Person zurücksetzen<a class="headerlink" href="#2fa-fur-eine-person-zurucksetzen" title="Permanent link">&para;</a></h3>
 <p>Hat jemand das Zwei-Faktor-Geheimnis verloren und auch keinen Wiederherstellungscode mehr, lässt es sich beim Benutzerkonto entfernen. Die 2FA kann danach neu eingerichtet werden.</p>
 <h2 id="registrierung">Registrierung<a class="headerlink" href="#registrierung" title="Permanent link">&para;</a></h2>

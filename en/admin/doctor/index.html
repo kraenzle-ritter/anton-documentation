@@ -3373,6 +3373,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="On the command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-oai-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The OAI endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4068,6 +4085,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="On the command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-oai-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The OAI endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4098,7 +4132,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/doctor/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4154,6 +4188,22 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span clas
 <p>A repair run writes to the database. Create a <a href="../restore/">backup</a>
 beforehand.</p>
 </div>
+<h3 id="the-oai-endpoint">The OAI endpoint<a class="headerlink" href="#the-oai-endpoint" title="Permanent link">&para;</a></h3>
+<p><code>--oai</code> compares the <code>oai_enabled</code> setting with what the endpoint actually
+does, and reports both directions: switched on but silent — and switched off
+but answering all the same.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--oai<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+</code></pre></div>
+<p>The check exists because this failure does not announce itself. If the endpoint
+stays silent while the setting says otherwise, the harvester simply stops
+receiving: no error, no log entry. The archive hears about it from the portal
+weeks later. An archive that is harvested therefore adds the call to its
+recurring job.</p>
+<p>The check asks the route through the application itself rather than over the
+network — the route and its middleware are what is in question, and a machine
+cannot always reach its own public name. A proxy in front of Anton can still
+refuse a harvester that this check calls healthy, which is why the message
+names the public address to try from outside.</p>
 <h2 id="no-automatism">No automatism<a class="headerlink" href="#no-automatism" title="Permanent link">&para;</a></h2>
 <p>Anton does <strong>not</strong> run the checks of its own accord; there is no built-in
 schedule. Where they are meant to run recurrently, they are set up per

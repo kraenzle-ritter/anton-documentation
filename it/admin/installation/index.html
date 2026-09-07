@@ -2226,6 +2226,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Matomo einbinden">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-die-statistikseite-zeigt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was die Statistikseite zeigt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2256,7 +2273,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/installation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/installation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -2358,9 +2375,37 @@ GEONAMES_USERNAME
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>--logo<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval
 </code></pre></div>
 <h2 id="matomo-einbinden">Matomo einbinden<a class="headerlink" href="#matomo-einbinden" title="Permanent link">&para;</a></h2>
-<p>Auf Matomo einloggen <a href="http://matomo.anton.ch/">http://matomo.anton.ch/</a>. Unter "Alle Websites" eine neue Website hinzufügen.</p>
-<p>Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.</p>
-<p>In den Anton Settings <code>analytics_id</code> mit der Matomo ID ausfüllen und den <code>analytics_auth_token</code> aus Matomo kopieren.</p>
+<p>Der Befehl <a href="../console-commands/#matomo"><code>matomo</code></a> richtet alles drei ein — die
+Website in Matomo, einen Benutzer mit Leserecht auf genau diese Website, und
+einen Token dafür — und trägt <code>analytics_id</code> und <code>analytics_auth_token</code> in die
+Einstellungen des Mandanten ein:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>matomo<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+php<span class="w"> </span>artisan<span class="w"> </span>matomo<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--show-sites<span class="w">   </span><span class="c1"># nur nachsehen, was Matomo kennt</span>
+</code></pre></div>
+<p>Vorausgesetzt sind <code>APP_URL</code>, <code>MATOMO_ADMIN_AUTH_TOKEN</code> und <code>MATOMO_EMAIL</code> in
+der <code>.env</code> des Mandanten. <code>MATOMO_URL</code> ist optional und steht standardmässig auf
+<code>https://matomo.anton.ch</code>; <code>analytics.anton.ch</code> ist dieselbe Installation unter
+einem zweiten Namen.</p>
+<p>Jeder Mandant bekommt einen <strong>eigenen</strong> Token mit Leserecht auf seine eigene
+Website. Ein gemeinsamer Hauptschlüssel wäre bequemer und ist bewusst nicht
+vorgesehen: Ein Matomo-Token mit Superuser-Rechten löscht über
+<code>SitesManager.deleteSite</code> eine Website samt ihrer ganzen Auswertungshistorie,
+ohne nach einem Passwort zu fragen.</p>
+<p>Von Hand geht es weiterhin: in Matomo einloggen, unter «Alle Websites» eine
+Website anlegen, einen Benutzer mit Leserecht darauf einrichten, und
+<code>analytics_id</code> und <code>analytics_auth_token</code> in den Anton-Einstellungen eintragen.</p>
+<h3 id="was-die-statistikseite-zeigt">Was die Statistikseite zeigt<a class="headerlink" href="#was-die-statistikseite-zeigt" title="Permanent link">&para;</a></h3>
+<p>Die Seite «Anton Analytics» holt die Zahlen serverseitig von Matomo und stellt
+sie selbst dar: Besuche, verschiedene Besucher:innen, Seitenaufrufe,
+Verweildauer, Absprungrate, die zehn meistgesehenen Seiten, die Herkunft der
+Besucher:innen und die Suchbegriffe. Zwischen Tag, Woche, Monat und Jahr lässt
+sich oben wechseln.</p>
+<p>Der Token verlässt den Server dabei nicht. Bis Version 0.93.0 war Matomos
+eigenes Auswertungsfenster eingebettet, und dessen Adresse trug den Token — er
+stand damit im Quelltext der Seite, in der Verlaufsliste des Browsers und im
+Zugriffsprotokoll von Matomo.</p>
+<p>Ist für einen Mandanten keine <code>analytics_id</code> oder kein Token hinterlegt, sagt
+die Seite das. Sie zeigte in diesem Fall früher stillschweigend nichts.</p>
 <h2 id="configure-supervisor">Configure Supervisor<a class="headerlink" href="#configure-supervisor" title="Permanent link">&para;</a></h2>
 <p>Als <code>root</code> die Konfigurationsdatei <code>etc/supervisor/supervisor.conf</code> öffnen und einen neuen <code>customer</code> einrichten.</p>
 <p><div class="highlight"><pre><span></span><code>[program:laravel-worker-besenval]

@@ -3543,6 +3543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#matomo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matomo (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#media-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4353,6 +4364,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#matomo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matomo (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#media-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4440,7 +4462,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-03</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4494,6 +4516,10 @@ run unsecured on a production archive. First
 <tr>
 <td><code>anton:setting</code> / <code>anton:home</code></td>
 <td>Read or set a setting or a home page entry</td>
+</tr>
+<tr>
+<td><strong id="matomo"><code>matomo --env=&lt;slug&gt;</code></strong></td>
+<td>Register the tenant with Matomo: site, a user with view access to it, and a token, and write the two settings <code>analytics_id</code> and <code>analytics_auth_token</code> (see <a href="../installation/#integrating-matomo">installation</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4983,6 +5009,21 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>inge:check-infrastructure</code></td>
 <td>Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="matomo-1">matomo (1)<a class="headerlink" href="#matomo-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>matomo</code></td>
+<td>Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI…</td>
 </tr>
 </tbody>
 </table>
