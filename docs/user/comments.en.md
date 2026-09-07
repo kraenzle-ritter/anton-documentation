@@ -13,9 +13,14 @@ by the administration; see [Setting up comments](../admin/comments.md).
 ## Writing a comment
 
 The comment section is in the detail view of the record — **beside** the form,
-not within it. You write in the field and save; the record itself is not changed
-in the process. Anyone editing a record does not have to touch the comments, and
-vice versa.
+not within it. It is set apart by its own ground and type size, so that a
+working note does not read as a piece of description: the description says what
+the record *is*; a comment says what somebody still has to check.
+
+The writing field appears at the press of a button. You write and save; the
+record itself is not changed in the process, and the field closes again after
+saving. Anyone editing a record does not have to touch the comments, and vice
+versa. The existing comments stay visible throughout.
 
 Comments are plain text. Markdown markup such as `**bold**` remains as it was
 written — unlike in the [text fields](markdown.md).

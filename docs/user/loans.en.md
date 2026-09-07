@@ -14,6 +14,21 @@ In the admin area there is a list of open loans (`/loans`), that is, of loans th
 ### Display for individual users
 For individual users (`/users/{user_id}`), the loans are displayed in a table.
 
+### On which levels a loan is possible
+The `level_of_description_ids_for_loans` setting determines the levels of
+description on which the loan module is offered. What is lent is a physical
+unit, not a level of arrangement — without this restriction a whole fonds, or
+the archive itself, could be «lent», which marked every subordinate entry as on
+loan.
+
+An **empty** value means: every level. That is the state of existing
+installations, and it stays that way until somebody enters a value. New
+installations are given file and item (`[5, 6]`). An archive that regularly
+lends whole fonds adds the `3`.
+
+A record that already carries loans keeps its module whatever this setting says
+— hiding it would not undo the loan, only make it unreachable.
+
 ### Roles
 Loans can be managed by `editor`, `admin` and `loan_admin`.
 
