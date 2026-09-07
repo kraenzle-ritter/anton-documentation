@@ -14,6 +14,22 @@ Nell'area Admin esiste un elenco dei prestiti aperti (`/loans`), ossia dei prest
 ### Visualizzazione presso le singole utenze
 Presso le singole utenze (`/users/{user_id}`) i prestiti sono visualizzati in una tabella.
 
+### A quali livelli è possibile un prestito
+L'impostazione `level_of_description_ids_for_loans` determina a quali livelli di
+descrizione viene proposto il modulo di prestito. Ciò che si presta è un'unità
+fisica, non un livello di ordinamento — senza questa restrizione era possibile
+«prestare» anche un intero fondo o l'archivio stesso, il che contrassegnava come
+prestate tutte le voci subordinate.
+
+Un valore **vuoto** significa: tutti i livelli. È lo stato delle installazioni
+esistenti e resta tale finché qualcuno non inserisce un valore. Le nuove
+installazioni ricevono fascicolo e pezzo (`[5, 6]`). Chi presta regolarmente
+interi fondi vi aggiunge il `3`.
+
+Una scheda che porta già dei prestiti conserva il proprio modulo
+indipendentemente da questa impostazione — nasconderlo non annullerebbe il
+prestito, lo renderebbe soltanto irraggiungibile.
+
 ### Ruoli
 I prestiti possono essere gestiti da `editor`, `admin` e `loan_admin`.
 

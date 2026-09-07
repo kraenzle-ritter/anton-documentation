@@ -13,9 +13,15 @@ decide l'amministrazione; si veda [Configurare i commenti](../admin/comments.md)
 ## Inserire un commento
 
 La sezione dei commenti si trova nella vista di dettaglio della scheda —
-**accanto** al formulario, non al suo interno. Si scrive nel campo e si salva;
-la scheda stessa non viene modificata. Chi modifica una scheda non deve toccare
-i commenti, e viceversa.
+**accanto** al formulario, non al suo interno. Si distingue per colore di sfondo
+e corpo del carattere, affinché una nota di lavoro non assomigli a un dato di
+descrizione: la descrizione dice che cosa la scheda *è*; un commento dice che
+cosa qualcuno deve ancora verificare.
+
+Il campo di scrittura compare premendo un pulsante. Si scrive e si salva; la
+scheda stessa non viene modificata e dopo il salvataggio il campo si richiude.
+Chi modifica una scheda non deve toccare i commenti, e viceversa. I commenti
+esistenti restano sempre visibili.
 
 I commenti sono testo semplice. Le marcature Markdown come `**grassetto**`
 restano come sono state scritte — diversamente da quanto avviene nei

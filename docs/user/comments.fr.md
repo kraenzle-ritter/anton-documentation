@@ -13,9 +13,15 @@ la section figure ; voir [Configurer les commentaires](../admin/comments.md).
 ## Saisir un commentaire
 
 La section des commentaires se trouve dans la vue de détail de la notice — **à
-côté** du formulaire, non à l'intérieur. Vous écrivez dans le champ et
-enregistrez ; la notice elle-même n'est pas modifiée. Qui édite une notice n'a
-pas à toucher aux commentaires, et inversement.
+côté** du formulaire, non à l'intérieur. Elle s'en distingue par sa couleur de
+fond et sa taille de caractères, afin qu'une note de travail ne ressemble pas à
+une donnée de description : la description dit ce que la notice *est* ; un
+commentaire dit ce qu'il reste à vérifier.
+
+Le champ de saisie apparaît sur un bouton. Vous écrivez et enregistrez ; la
+notice elle-même n'est pas modifiée, et le champ se referme après
+l'enregistrement. Qui édite une notice n'a pas à toucher aux commentaires, et
+inversement. Les commentaires existants restent toujours visibles.
 
 Les commentaires sont du texte brut. Les balises Markdown telles que `**gras**`
 restent telles qu'elles ont été saisies — contrairement aux

@@ -57,6 +57,28 @@ php artisan anton:doctor --closure --repair --env=<slug>
     Ein Reparaturlauf schreibt in die Datenbank. Vorher eine
     [Sicherung](restore.md) anlegen.
 
+### Die OAI-Schnittstelle
+
+`--oai` vergleicht die Einstellung `oai_enabled` mit dem, was die Schnittstelle
+tatsächlich tut, und meldet beide Richtungen: eingeschaltet, aber stumm — und
+ausgeschaltet, aber trotzdem antwortend.
+
+```bash
+php artisan anton:doctor --oai --env=<slug>
+```
+
+Diese Prüfung gibt es, weil der Fehler sich sonst nicht meldet. Bleibt die
+Schnittstelle stumm, obwohl sie eingeschaltet ist, empfängt der erntende Dienst
+einfach nichts mehr: keine Fehlermeldung, kein Protokolleintrag. Das Archiv
+erfährt es Wochen später vom Portal. Wer geerntet wird, nimmt den Aufruf darum
+in den wiederkehrenden Auftrag auf.
+
+Die Prüfung fragt die Route über die Anwendung selbst, nicht über das Netz —
+Route und Middleware stehen in Frage, und eine Maschine erreicht ihren eigenen
+öffentlichen Namen nicht immer. Ein vorgelagerter Proxy kann einen erntenden
+Dienst also noch abweisen, den diese Prüfung für gesund erklärt; die Meldung
+nennt darum die öffentliche Adresse zum Nachprüfen von aussen.
+
 ## Kein Automatismus
 
 Anton führt die Prüfungen **nicht** von sich aus aus; einen eingebauten

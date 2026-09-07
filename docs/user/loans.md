@@ -14,6 +14,22 @@ Im Admin Bereich gibt es eine Liste der offenen Ausleihen (`/loans`), also der A
 ### Anzeige bei den einzelnen Usern
 Bei den einzelnen Usern (`/users/{user_id}`) werden die Ausleihen in einer Tabelle angezeigt.
 
+### Auf welchen Stufen eine Ausleihe möglich ist
+Die Einstellung `level_of_description_ids_for_loans` bestimmt, auf welchen
+Verzeichnungsstufen das Ausleihe-Modul angeboten wird. Ausgeliehen wird eine
+physische Einheit, keine Ordnungsebene — ohne diese Einschränkung liess sich
+auch ein ganzer Bestand oder das Archiv selbst «ausleihen», was sämtliche
+Untereinträge als ausgeliehen markierte.
+
+Ein **leerer** Wert bedeutet: alle Stufen. Das ist der Zustand bestehender
+Installationen, und dabei bleibt es, bis jemand etwas einträgt. Neue
+Installationen erhalten Dossier und Einzelstück (`[5, 6]`). Wer regelmässig
+ganze Bestände ausleiht, trägt die `3` dazu.
+
+Ein Datensatz, der bereits Ausleihen trägt, behält sein Modul unabhängig von
+dieser Einstellung — es zu verbergen würde die Ausleihe nicht rückgängig machen,
+sondern nur unerreichbar.
+
 ### Rollen
 Ausleihen können von `editor`, `admin` und `loan_admin` verwaltet werden.
 

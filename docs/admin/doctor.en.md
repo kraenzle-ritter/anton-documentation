@@ -56,6 +56,28 @@ php artisan anton:doctor --closure --repair --env=<slug>
     A repair run writes to the database. Create a [backup](restore.md)
     beforehand.
 
+### The OAI endpoint
+
+`--oai` compares the `oai_enabled` setting with what the endpoint actually
+does, and reports both directions: switched on but silent — and switched off
+but answering all the same.
+
+```bash
+php artisan anton:doctor --oai --env=<slug>
+```
+
+The check exists because this failure does not announce itself. If the endpoint
+stays silent while the setting says otherwise, the harvester simply stops
+receiving: no error, no log entry. The archive hears about it from the portal
+weeks later. An archive that is harvested therefore adds the call to its
+recurring job.
+
+The check asks the route through the application itself rather than over the
+network — the route and its middleware are what is in question, and a machine
+cannot always reach its own public name. A proxy in front of Anton can still
+refuse a harvester that this check calls healthy, which is why the message
+names the public address to try from outside.
+
 ## No automatism
 
 Anton does **not** run the checks of its own accord; there is no built-in

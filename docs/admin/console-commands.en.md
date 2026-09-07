@@ -32,6 +32,7 @@ Without a flag they run silently.
 | `anton:customdir` | Create the customer directory including subfolders (see [installation](installation.md)) |
 | `anton:update --env=<slug>` | Update to the latest stable version — runs migrations and seeders without overwriting labels |
 | `anton:setting` / `anton:home` | Read or set a setting or a home page entry |
+| **`matomo --env=<slug>`**{#matomo} | Register the tenant with Matomo: site, a user with view access to it, and a token, and write the two settings `analytics_id` and `analytics_auth_token` (see [installation](installation.en.md#integrating-matomo)) |
 
 ## Backup and restoration {#sicherung-und-wiederherstellung}
 
@@ -304,6 +305,12 @@ up to date with every change to the commands.
 | Command | Description |
 |---|---|
 | `inge:check-infrastructure` | Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a … |
+
+### matomo (1)
+
+| Command | Description |
+|---|---|
+| `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
 ### media: (12)
 

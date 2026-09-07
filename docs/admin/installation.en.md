@@ -155,11 +155,42 @@ php artisan anton:install --logo -vv --env=besenval
 
 ## Integrating Matomo
 
-Log in to Matomo at [http://matomo.anton.ch/](http://matomo.anton.ch/). Under "All websites", add a new website.
+The [`matomo`](console-commands.md#matomo) command sets up all three — the site
+in Matomo, a user with view access to exactly that site, and a token for it —
+and writes `analytics_id` and `analytics_auth_token` into the tenant's settings:
 
-Set up a user in Matomo with the appropriate permission.
+```bash
+php artisan matomo --env=<slug>
+php artisan matomo --env=<slug> --show-sites   # only list what Matomo knows
+```
 
-In the Anton settings, fill in `analytics_id` with the Matomo ID and copy the `analytics_auth_token` from Matomo.
+It needs `APP_URL`, `MATOMO_ADMIN_AUTH_TOKEN` and `MATOMO_EMAIL` in the
+tenant's `.env`. `MATOMO_URL` is optional and defaults to
+`https://matomo.anton.ch`; `analytics.anton.ch` is the same installation under a
+second name.
+
+Every tenant gets a token **of its own**, with view access to its own site. One
+shared master key would be more convenient and is deliberately not offered: a
+Matomo token with superuser rights deletes a site and its entire reporting
+history through `SitesManager.deleteSite` without being asked for a password.
+
+Doing it by hand still works: log in to Matomo, add a website under "All
+websites", set up a user with view access to it, and enter `analytics_id` and
+`analytics_auth_token` in the Anton settings.
+
+### What the statistics page shows
+
+The "Anton Analytics" page fetches the figures from Matomo server-side and
+renders them itself: visits, unique visitors, page views, average time on site,
+bounce rate, the ten most viewed pages, where visitors come from, and the search
+terms. Day, week, month and year can be switched at the top.
+
+The token does not leave the server. Up to version 0.93.0 Matomo's own reporting
+frame was embedded, and its address carried the token — which put it in the page
+source, the browser history and Matomo's own access log.
+
+If a tenant has no `analytics_id` or no token, the page says so. It used to show
+nothing at all, silently.
 
 ## Configure Supervisor
 

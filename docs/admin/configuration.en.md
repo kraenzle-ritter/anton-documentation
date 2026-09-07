@@ -58,6 +58,8 @@ Most settings belong to a topic and are described there:
 - [Media gallery](gallery.md), [watermarks](watermarks.md),
   [documents](documents.md)
 - [Home page and navigation](home.md), [logo and favicons](logo.md)
+- [Loans](../user/loans.md) — the levels of description on which a loan is
+  offered (`level_of_description_ids_for_loans`)
 - [Authority data synchronisation](authorities.md), [Inge and DIMAG](inge.md),
   [AI-assisted cataloguing](ai-cataloging.md)
 

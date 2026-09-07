@@ -33,6 +33,7 @@ Flag laufen sie still.
 | `anton:customdir` | Das Kundenverzeichnis samt Unterordnern anlegen (siehe [Installation](installation.md)) |
 | `anton:update --env=<slug>` | Auf die letzte stabile Version aktualisieren — führt Migrationen und Seeder aus, ohne Beschriftungen zu überschreiben |
 | `anton:setting` / `anton:home` | Eine Einstellung bzw. einen Startseiten-Eintrag lesen oder setzen |
+| **`matomo --env=<slug>`**{#matomo} | Den Mandanten bei Matomo anmelden: Website, Benutzer mit Leserecht darauf und Token, und die beiden Einstellungen `analytics_id` und `analytics_auth_token` eintragen (siehe [Installation](installation.md#matomo-einbinden)) |
 
 ## Sicherung und Wiederherstellung {#sicherung-und-wiederherstellung}
 
@@ -303,6 +304,12 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | Befehl | Beschreibung |
 |---|---|
 | `inge:check-infrastructure` | Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a … |
+
+### matomo (1)
+
+| Befehl | Beschreibung |
+|---|---|
+| `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
 ### media: (12)
 

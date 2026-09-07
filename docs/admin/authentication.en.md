@@ -12,6 +12,17 @@ Two-factor authentication can be enabled with an entry in the `.env` file:
 
 In the settings (`two-factor-auth-role`) a role can be set for which 2FA is obligatory. If, for example, editor is specified, 2FA is mandatory for editor and admin.
 
+The check is therefore **hierarchical**, and that is where it is easy to get
+wrong: `user_intern` obliges not that one role but user_intern, loan_admin,
+editor and admin — four of them. An empty value, or `none`, switches the
+requirement off.
+
+!!! warning "Without `2FA=1` the setting has no effect"
+    The environment has the last word. If two-factor authentication is not
+    enabled there, Anton does not register the enrolment routes at all — a role
+    obliged to enrol could not, and sign-in would go round in circles. Anton
+    therefore does not require it where it cannot be set up.
+
 ### Deactivating 2FA for a user
 
 If a user has lost their two-factor secret and has no recovery code either, it is possible to remove it from the user so that they can start over with a fresh 2FA.

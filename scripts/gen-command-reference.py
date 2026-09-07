@@ -51,6 +51,12 @@ ADMIN_NAMESPACES = {
     "anton", "media", "sip", "typesense", "resources",
     "inge", "notification", "storage",
 }
+# Admin-relevante Befehle ohne Namespace. Namenlose Befehle sind sonst
+# ausgeschlossen, weil dort Laravels eigene liegen (migrate, serve, tinker …).
+# `matomo` registriert einen Mandanten bei Matomo (Website, Benutzer, Token) und
+# war deshalb in keiner Referenz zu finden, obwohl er zur Einrichtung gehört.
+ADMIN_PLAIN = {"matomo"}
+
 # Einzelne Befehle, die technisch im Namespace liegen, aber nicht für Admins sind.
 SKIP = {
     "anton:baseCommand", "anton:antonseed", "anton:word-export",
@@ -120,11 +126,19 @@ def pending_command_names() -> set[str]:
     return names
 
 
+def is_admin_command(name: str) -> bool:
+    """Gehört der Befehl in die Referenz?"""
+    if name in ADMIN_PLAIN:
+        return True
+
+    return ":" in name and name.split(":")[0] in ADMIN_NAMESPACES
+
+
 def build_block(commands: list[dict], locale: str = "de") -> str:
     rows = []
     for c in commands:
         name = c["name"]
-        if ":" not in name or name.split(":")[0] not in ADMIN_NAMESPACES:
+        if not is_admin_command(name):
             continue
         if name in SKIP:
             continue
@@ -142,7 +156,10 @@ def build_block(commands: list[dict], locale: str = "de") -> str:
         if cur != ns:
             ns = cur
             count = sum(1 for n, _ in rows if n.split(":")[0] == ns)
-            lines += [f"\n### {ns}: ({count})\n",
+            # Ohne Doppelpunkt fuer Befehle, die keinen Namespace haben
+            # (`matomo`) -- «matomo: (1)» las sich wie ein abgeschnittener Name.
+            heading = f"{ns}: ({count})" if ":" in name else f"{ns} ({count})"
+            lines += [f"\n### {heading}\n",
                       f"| {head_name} | {head_desc} |", "|---|---|"]
         lines.append(f"| `{name}` | {desc} |")
     lines.append(END)
@@ -195,7 +212,7 @@ def main() -> int:
         # Uebersprungenes interessiert hier nicht.
         hidden = sorted(
             n for n in pending
-            if ":" in n and n.split(":")[0] in ADMIN_NAMESPACES and n not in SKIP
+            if is_admin_command(n) and n not in SKIP
         )
         commands = [c for c in commands if c["name"] not in pending]
         if hidden:

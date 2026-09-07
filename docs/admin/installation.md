@@ -155,11 +155,46 @@ php artisan anton:install --logo -vv --env=besenval
 
 ## Matomo einbinden
 
-Auf Matomo einloggen [http://matomo.anton.ch/](http://matomo.anton.ch/). Unter "Alle Websites" eine neue Website hinzufügen.
+Der Befehl [`matomo`](console-commands.md#matomo) richtet alles drei ein — die
+Website in Matomo, einen Benutzer mit Leserecht auf genau diese Website, und
+einen Token dafür — und trägt `analytics_id` und `analytics_auth_token` in die
+Einstellungen des Mandanten ein:
 
-Auf Matomo einen User mit der entsprechenden Berechtigung einrichten.
+```bash
+php artisan matomo --env=<slug>
+php artisan matomo --env=<slug> --show-sites   # nur nachsehen, was Matomo kennt
+```
 
-In den Anton Settings `analytics_id` mit der Matomo ID ausfüllen und den `analytics_auth_token` aus Matomo kopieren.
+Vorausgesetzt sind `APP_URL`, `MATOMO_ADMIN_AUTH_TOKEN` und `MATOMO_EMAIL` in
+der `.env` des Mandanten. `MATOMO_URL` ist optional und steht standardmässig auf
+`https://matomo.anton.ch`; `analytics.anton.ch` ist dieselbe Installation unter
+einem zweiten Namen.
+
+Jeder Mandant bekommt einen **eigenen** Token mit Leserecht auf seine eigene
+Website. Ein gemeinsamer Hauptschlüssel wäre bequemer und ist bewusst nicht
+vorgesehen: Ein Matomo-Token mit Superuser-Rechten löscht über
+`SitesManager.deleteSite` eine Website samt ihrer ganzen Auswertungshistorie,
+ohne nach einem Passwort zu fragen.
+
+Von Hand geht es weiterhin: in Matomo einloggen, unter «Alle Websites» eine
+Website anlegen, einen Benutzer mit Leserecht darauf einrichten, und
+`analytics_id` und `analytics_auth_token` in den Anton-Einstellungen eintragen.
+
+### Was die Statistikseite zeigt
+
+Die Seite «Anton Analytics» holt die Zahlen serverseitig von Matomo und stellt
+sie selbst dar: Besuche, verschiedene Besucher:innen, Seitenaufrufe,
+Verweildauer, Absprungrate, die zehn meistgesehenen Seiten, die Herkunft der
+Besucher:innen und die Suchbegriffe. Zwischen Tag, Woche, Monat und Jahr lässt
+sich oben wechseln.
+
+Der Token verlässt den Server dabei nicht. Bis Version 0.93.0 war Matomos
+eigenes Auswertungsfenster eingebettet, und dessen Adresse trug den Token — er
+stand damit im Quelltext der Seite, in der Verlaufsliste des Browsers und im
+Zugriffsprotokoll von Matomo.
+
+Ist für einen Mandanten keine `analytics_id` oder kein Token hinterlegt, sagt
+die Seite das. Sie zeigte in diesem Fall früher stillschweigend nichts.
 
 ## Configure Supervisor
 

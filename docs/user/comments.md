@@ -13,9 +13,15 @@ Administration; siehe [Kommentare einrichten](../admin/comments.md).
 ## Kommentar erfassen
 
 Der Kommentarbereich steht in der Detailansicht des Datensatzes — **neben**
-dem Formular, nicht darin. Sie schreiben in das Feld und speichern; der
-Datensatz selbst wird dabei nicht verändert. Wer einen Datensatz bearbeitet,
-muss die Kommentare nicht anfassen, und umgekehrt.
+dem Formular, nicht darin. Er ist farblich und in der Schriftgrösse abgesetzt,
+damit eine Arbeitsnotiz nicht wie eine Verzeichnungsangabe aussieht: Die
+Verzeichnung sagt, was der Datensatz *ist*; ein Kommentar sagt, was noch jemand
+prüfen muss.
+
+Das Schreibfeld erscheint auf Knopfdruck. Sie schreiben und speichern; der
+Datensatz selbst wird dabei nicht verändert, und nach dem Speichern schliesst
+sich das Feld wieder. Wer einen Datensatz bearbeitet, muss die Kommentare nicht
+anfassen, und umgekehrt. Die vorhandenen Kommentare bleiben immer sichtbar.
 
 Kommentare sind reiner Text. Markdown-Auszeichnungen wie `**fett**` bleiben
 stehen, wie sie geschrieben wurden — anders als in den

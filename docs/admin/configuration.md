@@ -59,6 +59,8 @@ Die meisten Einstellungen gehören zu einem Thema und sind dort beschrieben:
 - [Mediengalerie](gallery.md), [Wasserzeichen](watermarks.md),
   [Dokumente](documents.md)
 - [Startseite und Navigation](home.md), [Logo und Favicons](logo.md)
+- [Ausleihe](../user/loans.md) — auf welchen Verzeichnungsstufen sie angeboten
+  wird (`level_of_description_ids_for_loans`)
 - [Normdaten-Abgleich](authorities.md), [Inge und DIMAG](inge.md),
   [KI-Erschliessung](ai-cataloging.md)
 

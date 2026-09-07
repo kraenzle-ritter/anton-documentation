@@ -14,6 +14,22 @@ La section Admin comporte une liste des prêts en cours (`/loans`), c'est-à-dir
 ### Affichage chez chaque utilisateur·trice
 Chez chaque utilisateur·trice (`/users/{user_id}`), les prêts sont présentés dans un tableau.
 
+### Sur quels niveaux un prêt est possible
+Le paramètre `level_of_description_ids_for_loans` détermine les niveaux de
+description auxquels le module de prêt est proposé. Ce que l'on prête est une
+unité physique, non un niveau de classement — sans cette restriction, un fonds
+entier ou les archives elles-mêmes pouvaient être « prêtés », ce qui marquait
+toutes les entrées subordonnées comme prêtées.
+
+Une valeur **vide** signifie : tous les niveaux. C'est l'état des installations
+existantes, et il le reste jusqu'à ce que quelqu'un saisisse une valeur. Les
+nouvelles installations reçoivent dossier et pièce (`[5, 6]`). Qui prête
+régulièrement des fonds entiers y ajoute le `3`.
+
+Une notice qui porte déjà des prêts conserve son module quelle que soit ce
+paramètre — le masquer n'annulerait pas le prêt, il le rendrait seulement
+inaccessible.
+
 ### Rôles
 Les prêts peuvent être gérés par `editor`, `admin` et `loan_admin`.
 
