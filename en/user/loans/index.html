@@ -1543,6 +1543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#on-which-levels-a-loan-is-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On which levels a loan is possible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4138,6 +4149,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#on-which-levels-a-loan-is-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On which levels a loan is possible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4170,7 +4192,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/loans/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/loans/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/loans/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-07</span>
     </div>
   
   
@@ -4193,6 +4215,18 @@
 <p>In the admin area there is a list of open loans (<code>/loans</code>), that is, of loans that have no return date. From there it is possible to jump to the users, in order to record a user's loans as returned, for example, or to the objects lent out.</p>
 <h3 id="display-for-individual-users">Display for individual users<a class="headerlink" href="#display-for-individual-users" title="Permanent link">&para;</a></h3>
 <p>For individual users (<code>/users/{user_id}</code>), the loans are displayed in a table.</p>
+<h3 id="on-which-levels-a-loan-is-possible">On which levels a loan is possible<a class="headerlink" href="#on-which-levels-a-loan-is-possible" title="Permanent link">&para;</a></h3>
+<p>The <code>level_of_description_ids_for_loans</code> setting determines the levels of
+description on which the loan module is offered. What is lent is a physical
+unit, not a level of arrangement — without this restriction a whole fonds, or
+the archive itself, could be «lent», which marked every subordinate entry as on
+loan.</p>
+<p>An <strong>empty</strong> value means: every level. That is the state of existing
+installations, and it stays that way until somebody enters a value. New
+installations are given file and item (<code>[5, 6]</code>). An archive that regularly
+lends whole fonds adds the <code>3</code>.</p>
+<p>A record that already carries loans keeps its module whatever this setting says
+— hiding it would not undo the loan, only make it unreachable.</p>
 <h3 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
 <p>Loans can be managed by <code>editor</code>, <code>admin</code> and <code>loan_admin</code>.</p>
 <!-- 
