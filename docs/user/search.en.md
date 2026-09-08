@@ -43,6 +43,24 @@ Wildcards (`*`) are not necessary — the search automatically finds all words t
 |---|---|
 | `alkohol verbot` | Records in which **both** terms occur — they may be any distance apart |
 
+### OR instead of AND
+
+| Search | Finds |
+|---|---|
+| `alcohol OR ban` | Records containing **either** of the two |
+
+`ODER` works the same way. `AND` and `UND` are the default and can be left out.
+The operators themselves are not searched for.
+
+### Excluding a term
+
+| Search | Finds |
+|---|---|
+| `alcohol -ban` | Records with *alcohol* but **without** *ban* |
+
+The minus sits directly against the word, with no space. A search consisting
+only of exclusions returns nothing.
+
 ### Quotation marks for exact phrases
 
 | Search | Finds |
@@ -69,7 +87,7 @@ Terms with a hyphen (e.g. `Arp-Hagenbach`) are automatically treated like a phra
 ## What does not work
 
 - **Terms of fewer than 3 characters** are ignored (`ag`, `zb`).
-- **Very frequent short words** such as «und», «der», «die» are excluded from the database's search index (so-called stop words).
+- **A small stopword list** of the database is skipped. It is English and holds, among others, `the`, `of`, `for` — and, notably here, `und`, `de`, `en` and `la`. `der`, `die` and `das` are **not** on it and are searchable. A name such as *de Rougemont* is therefore only found through *Rougemont*.
 - **Searching in the middle of a word** is not possible (see above).
 
 ## Boolean full-text search

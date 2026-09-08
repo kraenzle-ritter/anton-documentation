@@ -43,6 +43,24 @@ Les caractères génériques (`*`) ne sont pas nécessaires — la recherche tro
 |---|---|
 | `alkohol verbot` | Les notices dans lesquelles **les deux** termes apparaissent — ils peuvent être éloignés l'un de l'autre |
 
+### OU au lieu de ET
+
+| Recherche | Trouve |
+|---|---|
+| `alcool ODER interdiction` | Les notices contenant **l’un** des deux |
+
+`OR` fonctionne de la même manière. `UND` et `AND` sont la valeur par défaut et
+peuvent être omis. Les opérateurs eux-mêmes ne sont pas recherchés.
+
+### Exclure un terme
+
+| Recherche | Trouve |
+|---|---|
+| `alcool -interdiction` | Les notices avec *alcool* mais **sans** *interdiction* |
+
+Le moins se place directement contre le mot, sans espace. Une recherche
+composée uniquement d’exclusions ne renvoie rien.
+
 ### Guillemets pour les expressions exactes
 
 | Recherche | Trouve |
@@ -69,7 +87,7 @@ Les termes comportant un trait d'union (p. ex. `Arp-Hagenbach`) sont automatique
 ## Ce qui ne fonctionne pas
 
 - **Les termes de moins de 3 caractères** sont ignorés (`ag`, `zb`).
-- **Les mots courts très fréquents** tels que «&nbsp;und&nbsp;», «&nbsp;der&nbsp;», «&nbsp;die&nbsp;» sont exclus de l'index de recherche de la base de données (mots vides).
+- **Une petite liste de mots vides** de la base de données est ignorée. Elle est anglaise et contient entre autres `the`, `of`, `for` — et, ce qui frappe ici, `und`, `de`, `en` et `la`. `der`, `die` et `das` n'y figurent **pas** et sont interrogeables. Un nom comme *de Rougemont* ne se trouve donc que par *Rougemont*.
 - **La recherche au milieu d'un mot** n'est pas possible (voir ci-dessus).
 
 ## Recherche booléenne en texte intégral

@@ -43,6 +43,24 @@ Wildcards (`*`) sind nicht nötig — die Suche findet automatisch alle Wörter,
 |---|---|
 | `alkohol verbot` | Datensätze, in denen **beide** Begriffe vorkommen — sie können beliebig weit auseinander stehen |
 
+### ODER statt UND
+
+| Suche | Findet |
+|---|---|
+| `alkohol ODER verbot` | Datensätze, in denen **eines** von beiden vorkommt |
+
+`OR` wirkt gleich. `UND` und `AND` sind die Voreinstellung und können
+weggelassen werden. Die Operatoren werden nicht mitgesucht.
+
+### Einen Begriff ausschliessen
+
+| Suche | Findet |
+|---|---|
+| `alkohol -verbot` | Datensätze mit *alkohol*, aber **ohne** *verbot* |
+
+Das Minus steht direkt am Wort, ohne Leerzeichen. Eine Suche, die nur aus
+Ausschlüssen besteht, liefert nichts.
+
 ### Anführungszeichen für exakte Phrasen
 
 | Suche | Findet |
@@ -69,7 +87,7 @@ Begriffe mit Bindestrich (z. B. `Arp-Hagenbach`) werden automatisch wie eine Phr
 ## Was nicht funktioniert
 
 - **Begriffe unter 3 Zeichen** werden ignoriert (`ag`, `zb`).
-- **Sehr häufige kurze Wörter** wie „und", „der", „die" sind aus dem Suchindex der Datenbank ausgeschlossen (sogenannte Stopwörter).
+- **Eine kleine Stopwortliste** der Datenbank wird übergangen. Sie ist englisch und enthält unter anderem `the`, `of`, `for` — dazu, was hier auffällt, `und`, `de`, `en` und `la`. `der`, `die` und `das` stehen **nicht** darauf und sind durchsuchbar. Ein Name wie *de Rougemont* wird deshalb nur über *Rougemont* gefunden.
 - **Suche in der Wortmitte** ist nicht möglich (siehe oben).
 
 ## Boolesche Volltextsuche

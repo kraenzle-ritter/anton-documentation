@@ -43,6 +43,24 @@ I caratteri jolly (`*`) non sono necessari — la ricerca trova automaticamente 
 |---|---|
 | `alkohol verbot` | Schede in cui compaiono **entrambi** i termini — possono trovarsi a qualsiasi distanza |
 
+### O invece di E
+
+| Ricerca | Trova |
+|---|---|
+| `alcol ODER divieto` | Le schede che contengono **uno** dei due |
+
+`OR` funziona allo stesso modo. `UND` e `AND` sono l’impostazione predefinita e
+possono essere omessi. Gli operatori stessi non vengono cercati.
+
+### Escludere un termine
+
+| Ricerca | Trova |
+|---|---|
+| `alcol -divieto` | Le schede con *alcol* ma **senza** *divieto* |
+
+Il meno sta direttamente attaccato alla parola, senza spazio. Una ricerca
+composta solo da esclusioni non restituisce nulla.
+
 ### Virgolette per le espressioni esatte
 
 | Ricerca | Trova |
@@ -69,7 +87,7 @@ I termini con trattino (ad es. `Arp-Hagenbach`) vengono trattati automaticamente
 ## Che cosa non funziona
 
 - **I termini di meno di 3 caratteri** vengono ignorati (`ag`, `zb`).
-- **Le parole brevi molto frequenti** come «und», «der», «die» sono escluse dall'indice di ricerca della banca dati (le cosiddette parole vuote).
+- **Un breve elenco di parole vuote** della banca dati viene ignorato. È in inglese e contiene fra l'altro `the`, `of`, `for` — e, cosa che qui colpisce, `und`, `de`, `en` e `la`. `der`, `die` e `das` **non** vi figurano e sono ricercabili. Un nome come *de Rougemont* si trova quindi solo tramite *Rougemont*.
 - **La ricerca a metà parola** non è possibile (vedi sopra).
 
 ## Ricerca booleana del testo completo
