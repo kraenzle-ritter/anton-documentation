@@ -1202,6 +1202,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#oder-statt-und" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ODER statt UND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#einen-begriff-ausschliessen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Einen Begriff ausschliessen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#anfuhrungszeichen-fur-exakte-phrasen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4216,6 +4238,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#oder-statt-und" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ODER statt UND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#einen-begriff-ausschliessen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Einen Begriff ausschliessen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#anfuhrungszeichen-fur-exakte-phrasen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4342,7 +4386,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-08</span>
     </div>
   
   
@@ -4417,6 +4461,40 @@
 </tr>
 </tbody>
 </table>
+<h3 id="oder-statt-und">ODER statt UND<a class="headerlink" href="#oder-statt-und" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Suche</th>
+<th>Findet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alkohol ODER verbot</code></td>
+<td>Datensätze, in denen <strong>eines</strong> von beiden vorkommt</td>
+</tr>
+</tbody>
+</table>
+<p><code>OR</code> wirkt gleich. <code>UND</code> und <code>AND</code> sind die Voreinstellung und können
+weggelassen werden. Die Operatoren werden nicht mitgesucht.</p>
+<h3 id="einen-begriff-ausschliessen">Einen Begriff ausschliessen<a class="headerlink" href="#einen-begriff-ausschliessen" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Suche</th>
+<th>Findet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alkohol -verbot</code></td>
+<td>Datensätze mit <em>alkohol</em>, aber <strong>ohne</strong> <em>verbot</em></td>
+</tr>
+</tbody>
+</table>
+<p>Das Minus steht direkt am Wort, ohne Leerzeichen. Eine Suche, die nur aus
+Ausschlüssen besteht, liefert nichts.</p>
 <h3 id="anfuhrungszeichen-fur-exakte-phrasen">Anführungszeichen für exakte Phrasen<a class="headerlink" href="#anfuhrungszeichen-fur-exakte-phrasen" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4454,7 +4532,7 @@ die Administration; siehe <a href="../../admin/searchfields/">Suchfelder</a>.</p
 <h2 id="was-nicht-funktioniert">Was nicht funktioniert<a class="headerlink" href="#was-nicht-funktioniert" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Begriffe unter 3 Zeichen</strong> werden ignoriert (<code>ag</code>, <code>zb</code>).</li>
-<li><strong>Sehr häufige kurze Wörter</strong> wie „und", „der", „die" sind aus dem Suchindex der Datenbank ausgeschlossen (sogenannte Stopwörter).</li>
+<li><strong>Eine kleine Stopwortliste</strong> der Datenbank wird übergangen. Sie ist englisch und enthält unter anderem <code>the</code>, <code>of</code>, <code>for</code> — dazu, was hier auffällt, <code>und</code>, <code>de</code>, <code>en</code> und <code>la</code>. <code>der</code>, <code>die</code> und <code>das</code> stehen <strong>nicht</strong> darauf und sind durchsuchbar. Ein Name wie <em>de Rougemont</em> wird deshalb nur über <em>Rougemont</em> gefunden.</li>
 <li><strong>Suche in der Wortmitte</strong> ist nicht möglich (siehe oben).</li>
 </ul>
 <h2 id="boolesche-volltextsuche">Boolesche Volltextsuche<a class="headerlink" href="#boolesche-volltextsuche" title="Permanent link">&para;</a></h2>

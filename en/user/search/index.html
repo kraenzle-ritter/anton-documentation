@@ -1202,6 +1202,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#or-instead-of-and" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR instead of AND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluding-a-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding a term
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#quotation-marks-for-exact-phrases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4216,6 +4238,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#or-instead-of-and" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR instead of AND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excluding-a-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding a term
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#quotation-marks-for-exact-phrases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4342,7 +4386,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-08</span>
     </div>
   
   
@@ -4417,6 +4461,40 @@
 </tr>
 </tbody>
 </table>
+<h3 id="or-instead-of-and">OR instead of AND<a class="headerlink" href="#or-instead-of-and" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Search</th>
+<th>Finds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcohol OR ban</code></td>
+<td>Records containing <strong>either</strong> of the two</td>
+</tr>
+</tbody>
+</table>
+<p><code>ODER</code> works the same way. <code>AND</code> and <code>UND</code> are the default and can be left out.
+The operators themselves are not searched for.</p>
+<h3 id="excluding-a-term">Excluding a term<a class="headerlink" href="#excluding-a-term" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Search</th>
+<th>Finds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcohol -ban</code></td>
+<td>Records with <em>alcohol</em> but <strong>without</strong> <em>ban</em></td>
+</tr>
+</tbody>
+</table>
+<p>The minus sits directly against the word, with no space. A search consisting
+only of exclusions returns nothing.</p>
 <h3 id="quotation-marks-for-exact-phrases">Quotation marks for exact phrases<a class="headerlink" href="#quotation-marks-for-exact-phrases" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4454,7 +4532,7 @@ administration; see <a href="../../admin/searchfields/">search fields</a>.</p>
 <h2 id="what-does-not-work">What does not work<a class="headerlink" href="#what-does-not-work" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Terms of fewer than 3 characters</strong> are ignored (<code>ag</code>, <code>zb</code>).</li>
-<li><strong>Very frequent short words</strong> such as «und», «der», «die» are excluded from the database's search index (so-called stop words).</li>
+<li><strong>A small stopword list</strong> of the database is skipped. It is English and holds, among others, <code>the</code>, <code>of</code>, <code>for</code> — and, notably here, <code>und</code>, <code>de</code>, <code>en</code> and <code>la</code>. <code>der</code>, <code>die</code> and <code>das</code> are <strong>not</strong> on it and are searchable. A name such as <em>de Rougemont</em> is therefore only found through <em>Rougemont</em>.</li>
 <li><strong>Searching in the middle of a word</strong> is not possible (see above).</li>
 </ul>
 <h2 id="boolean-full-text-search">Boolean full-text search<a class="headerlink" href="#boolean-full-text-search" title="Permanent link">&para;</a></h2>

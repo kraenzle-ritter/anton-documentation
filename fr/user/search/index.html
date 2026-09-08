@@ -1202,6 +1202,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ou-au-lieu-de-et" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OU au lieu de ET
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclure-un-terme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclure un terme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#guillemets-pour-les-expressions-exactes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2379,6 +2401,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ou-au-lieu-de-et" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OU au lieu de ET
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclure-un-terme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exclure un terme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#guillemets-pour-les-expressions-exactes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2505,7 +2549,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/search/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-08</span>
     </div>
   
   
@@ -2580,6 +2624,40 @@
 </tr>
 </tbody>
 </table>
+<h3 id="ou-au-lieu-de-et">OU au lieu de ET<a class="headerlink" href="#ou-au-lieu-de-et" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Recherche</th>
+<th>Trouve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcool ODER interdiction</code></td>
+<td>Les notices contenant <strong>l’un</strong> des deux</td>
+</tr>
+</tbody>
+</table>
+<p><code>OR</code> fonctionne de la même manière. <code>UND</code> et <code>AND</code> sont la valeur par défaut et
+peuvent être omis. Les opérateurs eux-mêmes ne sont pas recherchés.</p>
+<h3 id="exclure-un-terme">Exclure un terme<a class="headerlink" href="#exclure-un-terme" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Recherche</th>
+<th>Trouve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcool -interdiction</code></td>
+<td>Les notices avec <em>alcool</em> mais <strong>sans</strong> <em>interdiction</em></td>
+</tr>
+</tbody>
+</table>
+<p>Le moins se place directement contre le mot, sans espace. Une recherche
+composée uniquement d’exclusions ne renvoie rien.</p>
 <h3 id="guillemets-pour-les-expressions-exactes">Guillemets pour les expressions exactes<a class="headerlink" href="#guillemets-pour-les-expressions-exactes" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2617,7 +2695,7 @@ L'administration sait si c'est le cas.</p>
 <h2 id="ce-qui-ne-fonctionne-pas">Ce qui ne fonctionne pas<a class="headerlink" href="#ce-qui-ne-fonctionne-pas" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Les termes de moins de 3 caractères</strong> sont ignorés (<code>ag</code>, <code>zb</code>).</li>
-<li><strong>Les mots courts très fréquents</strong> tels que «&nbsp;und&nbsp;», «&nbsp;der&nbsp;», «&nbsp;die&nbsp;» sont exclus de l'index de recherche de la base de données (mots vides).</li>
+<li><strong>Une petite liste de mots vides</strong> de la base de données est ignorée. Elle est anglaise et contient entre autres <code>the</code>, <code>of</code>, <code>for</code> — et, ce qui frappe ici, <code>und</code>, <code>de</code>, <code>en</code> et <code>la</code>. <code>der</code>, <code>die</code> et <code>das</code> n'y figurent <strong>pas</strong> et sont interrogeables. Un nom comme <em>de Rougemont</em> ne se trouve donc que par <em>Rougemont</em>.</li>
 <li><strong>La recherche au milieu d'un mot</strong> n'est pas possible (voir ci-dessus).</li>
 </ul>
 <h2 id="recherche-booleenne-en-texte-integral">Recherche booléenne en texte intégral<a class="headerlink" href="#recherche-booleenne-en-texte-integral" title="Permanent link">&para;</a></h2>

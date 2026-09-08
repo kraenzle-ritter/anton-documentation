@@ -1202,6 +1202,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#o-invece-di-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O invece di E
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escludere-un-termine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escludere un termine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#virgolette-per-le-espressioni-esatte" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2379,6 +2401,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#o-invece-di-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O invece di E
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escludere-un-termine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escludere un termine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#virgolette-per-le-espressioni-esatte" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2505,7 +2549,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/search/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/search/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-31</span>
+        <span class="page-meta__date">Last updated: 2026-09-08</span>
     </div>
   
   
@@ -2580,6 +2624,40 @@
 </tr>
 </tbody>
 </table>
+<h3 id="o-invece-di-e">O invece di E<a class="headerlink" href="#o-invece-di-e" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Ricerca</th>
+<th>Trova</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcol ODER divieto</code></td>
+<td>Le schede che contengono <strong>uno</strong> dei due</td>
+</tr>
+</tbody>
+</table>
+<p><code>OR</code> funziona allo stesso modo. <code>UND</code> e <code>AND</code> sono l’impostazione predefinita e
+possono essere omessi. Gli operatori stessi non vengono cercati.</p>
+<h3 id="escludere-un-termine">Escludere un termine<a class="headerlink" href="#escludere-un-termine" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Ricerca</th>
+<th>Trova</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alcol -divieto</code></td>
+<td>Le schede con <em>alcol</em> ma <strong>senza</strong> <em>divieto</em></td>
+</tr>
+</tbody>
+</table>
+<p>Il meno sta direttamente attaccato alla parola, senza spazio. Una ricerca
+composta solo da esclusioni non restituisce nulla.</p>
 <h3 id="virgolette-per-le-espressioni-esatte">Virgolette per le espressioni esatte<a class="headerlink" href="#virgolette-per-le-espressioni-esatte" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2617,7 +2695,7 @@ toccata. Se sia il caso lo sa l'amministrazione.</p>
 <h2 id="che-cosa-non-funziona">Che cosa non funziona<a class="headerlink" href="#che-cosa-non-funziona" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>I termini di meno di 3 caratteri</strong> vengono ignorati (<code>ag</code>, <code>zb</code>).</li>
-<li><strong>Le parole brevi molto frequenti</strong> come «und», «der», «die» sono escluse dall'indice di ricerca della banca dati (le cosiddette parole vuote).</li>
+<li><strong>Un breve elenco di parole vuote</strong> della banca dati viene ignorato. È in inglese e contiene fra l'altro <code>the</code>, <code>of</code>, <code>for</code> — e, cosa che qui colpisce, <code>und</code>, <code>de</code>, <code>en</code> e <code>la</code>. <code>der</code>, <code>die</code> e <code>das</code> <strong>non</strong> vi figurano e sono ricercabili. Un nome come <em>de Rougemont</em> si trova quindi solo tramite <em>Rougemont</em>.</li>
 <li><strong>La ricerca a metà parola</strong> non è possibile (vedi sopra).</li>
 </ul>
 <h2 id="ricerca-booleana-del-testo-completo">Ricerca booleana del testo completo<a class="headerlink" href="#ricerca-booleana-del-testo-completo" title="Permanent link">&para;</a></h2>
