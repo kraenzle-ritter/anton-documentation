@@ -10,6 +10,58 @@ Anton has an internal notification system with which admins can send messages to
 - Notifications can be addressed to **all users**, only to **editors & admins** or only to **admins**
 - Title and text are **multilingual** (per configured locale)
 
+## Three tiers
+
+Not every message has to announce itself. Anton distinguishes:
+
+| Tier | Where | Announces itself |
+|---|---|---|
+| **Announcement** (`announcement`) | list and badge | yes — counts as unread |
+| **Report** (`report`) | list only | no |
+| **Changelog** | `/changelog` | no — English, technical, admins only |
+
+The reason is measured: between v0.54.0 and v0.88.0 Anton sent 34 release notifications, one every 3.6 days. That many messages are no longer a channel but background noise — and the one message that really has to be read drowns in it.
+
+Since then every release produces a **report**: it sits in the list, so that what changed stays on record, but it raises no badge. What announces itself is the **digest**, which gathers several reports — written when enough has accumulated, with no fixed cadence. Alongside it, the single message that is genuinely worth it.
+
+A notification written by hand (web interface, `notification:send`) is always an announcement.
+
+## Release reports
+
+```bash
+php artisan notification:release --env=besenval
+```
+
+Reads `documentation/anton_news_v{version}.md` for the deployed version and builds the report from it: title «Anton v0.93.0 — what is new», text from the opening paragraph plus links to the release notes and the changelog.
+
+`anton:update` calls the command itself on deploy — by hand it is only needed to catch up. Where there is no news file for the version nothing is created; that is the normal case for a patch release. The minor's file is then looked up as well, so an installation that only updates at v0.94.2 does not miss the v0.94.0 report.
+
+| Option | Description |
+|---|---|
+| `--release=` | Version, default: the deployed one. Not `--version` — that one belongs to Artisan |
+| `--dry-run` | Only show what would be created |
+| `--env=` | Target installation (slug) |
+| `--all` | Across all installations |
+
+## Digest
+
+```bash
+php artisan notification:digest --intro-file=digest.md --env=besenval
+```
+
+Gathers the installation's reports newer than the last digest and creates one announcement listing them. The opening paragraph is written by hand: what a run of releases means for an archive stands in no file to assemble it from.
+
+It is built per installation from that installation's own reports — an archive that skipped releases is only told what concerns it.
+
+| Option | Description |
+|---|---|
+| `--since=` | Version to summarise from (exclusive). Default: the last digest |
+| `--intro=` / `--intro-file=` | Opening paragraph (mandatory) |
+| `--audience=` | `all` (default), `editors`, `admins` |
+| `--dry-run` | Only show what would be created |
+| `--force` | Create even when a digest already exists for this version |
+| `--env=` / `--all` | Target installation or all |
+
 ## Composing notifications (admin)
 
 Under **Admin > Info > Notifications** (or directly `/admin/notifications`), admins see a list of all notifications of the installation.
@@ -91,6 +143,6 @@ The command can be included in Ansible playbooks or as a step in `anton:update`,
 
 ## Data model
 
-- Table `notifications`: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins)
+- Table `notifications`: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins), level (announcement/report), version
 - Table `notification_user`: pivot for the read status per user (notification_id, user_id, read_at)
 - Notifications without a pivot entry for a user count as unread (lazy tracking)

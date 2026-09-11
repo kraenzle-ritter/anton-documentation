@@ -329,10 +329,12 @@ up to date with every change to the commands.
 | `media:snapshot` | Creates a Snapshot of media files with integrity-check and a git-commit if something has changed |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 
-### notification: (1)
+### notification: (3)
 
 | Command | Description |
 |---|---|
+| `notification:digest` | Summarise the quiet release reports into one announcement. |
+| `notification:release` | Create the quiet release report for a version from its German news file. |
 | `notification:send` | Create a system notification in one or all tenant databases. |
 
 ### resources: (2)
