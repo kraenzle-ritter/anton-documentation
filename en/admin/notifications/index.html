@@ -3449,6 +3449,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#three-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release reports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Digest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composing-notifications-admin" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4165,6 +4198,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#three-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release reports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Digest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composing-notifications-admin" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4308,7 +4374,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/notifications/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-11</span>
     </div>
   
   
@@ -4329,6 +4395,107 @@
 <li>Notifications can be addressed to <strong>all users</strong>, only to <strong>editors &amp; admins</strong> or only to <strong>admins</strong></li>
 <li>Title and text are <strong>multilingual</strong> (per configured locale)</li>
 </ul>
+<h2 id="three-tiers">Three tiers<a class="headerlink" href="#three-tiers" title="Permanent link">&para;</a></h2>
+<p>Not every message has to announce itself. Anton distinguishes:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Where</th>
+<th>Announces itself</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Announcement</strong> (<code>announcement</code>)</td>
+<td>list and badge</td>
+<td>yes — counts as unread</td>
+</tr>
+<tr>
+<td><strong>Report</strong> (<code>report</code>)</td>
+<td>list only</td>
+<td>no</td>
+</tr>
+<tr>
+<td><strong>Changelog</strong></td>
+<td><code>/changelog</code></td>
+<td>no — English, technical, admins only</td>
+</tr>
+</tbody>
+</table>
+<p>The reason is measured: between v0.54.0 and v0.88.0 Anton sent 34 release notifications, one every 3.6 days. That many messages are no longer a channel but background noise — and the one message that really has to be read drowns in it.</p>
+<p>Since then every release produces a <strong>report</strong>: it sits in the list, so that what changed stays on record, but it raises no badge. What announces itself is the <strong>digest</strong>, which gathers several reports — written when enough has accumulated, with no fixed cadence. Alongside it, the single message that is genuinely worth it.</p>
+<p>A notification written by hand (web interface, <code>notification:send</code>) is always an announcement.</p>
+<h2 id="release-reports">Release reports<a class="headerlink" href="#release-reports" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:release<span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p>Reads <code>documentation/anton_news_v{version}.md</code> for the deployed version and builds the report from it: title «Anton v0.93.0 — what is new», text from the opening paragraph plus links to the release notes and the changelog.</p>
+<p><code>anton:update</code> calls the command itself on deploy — by hand it is only needed to catch up. Where there is no news file for the version nothing is created; that is the normal case for a patch release. The minor's file is then looked up as well, so an installation that only updates at v0.94.2 does not miss the v0.94.0 report.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--release=</code></td>
+<td>Version, default: the deployed one. Not <code>--version</code> — that one belongs to Artisan</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>Only show what would be created</td>
+</tr>
+<tr>
+<td><code>--env=</code></td>
+<td>Target installation (slug)</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Across all installations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="digest">Digest<a class="headerlink" href="#digest" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:digest<span class="w"> </span>--intro-file<span class="o">=</span>digest.md<span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p>Gathers the installation's reports newer than the last digest and creates one announcement listing them. The opening paragraph is written by hand: what a run of releases means for an archive stands in no file to assemble it from.</p>
+<p>It is built per installation from that installation's own reports — an archive that skipped releases is only told what concerns it.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--since=</code></td>
+<td>Version to summarise from (exclusive). Default: the last digest</td>
+</tr>
+<tr>
+<td><code>--intro=</code> / <code>--intro-file=</code></td>
+<td>Opening paragraph (mandatory)</td>
+</tr>
+<tr>
+<td><code>--audience=</code></td>
+<td><code>all</code> (default), <code>editors</code>, <code>admins</code></td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>Only show what would be created</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>Create even when a digest already exists for this version</td>
+</tr>
+<tr>
+<td><code>--env=</code> / <code>--all</code></td>
+<td>Target installation or all</td>
+</tr>
+</tbody>
+</table>
 <h2 id="composing-notifications-admin">Composing notifications (admin)<a class="headerlink" href="#composing-notifications-admin" title="Permanent link">&para;</a></h2>
 <p>Under <strong>Admin &gt; Info &gt; Notifications</strong> (or directly <code>/admin/notifications</code>), admins see a list of all notifications of the installation.</p>
 <p>With <strong>New notification</strong> (<code>/admin/notifications/create</code>) a notification can be composed:</p>
@@ -4408,7 +4575,7 @@
 <p>The command can be included in Ansible playbooks or as a step in <code>anton:update</code>, in order to distribute notifications automatically on deployment.</p>
 <h2 id="data-model">Data model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Table <code>notifications</code>: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins)</li>
+<li>Table <code>notifications</code>: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins), level (announcement/report), version</li>
 <li>Table <code>notification_user</code>: pivot for the read status per user (notification_id, user_id, read_at)</li>
 <li>Notifications without a pivot entry for a user count as unread (lazy tracking)</li>
 </ul>

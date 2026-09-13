@@ -2135,6 +2135,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#drei-stufen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drei Stufen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-berichte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release-Berichte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Digest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nachrichten-verfassen-admin" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2278,7 +2311,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/notifications/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/notifications/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-11</span>
     </div>
   
   
@@ -2299,6 +2332,107 @@
 <li>Nachrichten können an <strong>alle User</strong>, nur an <strong>Editors &amp; Admins</strong> oder nur an <strong>Admins</strong> gerichtet werden</li>
 <li>Titel und Text sind <strong>mehrsprachig</strong> (pro konfigurierter Locale)</li>
 </ul>
+<h2 id="drei-stufen">Drei Stufen<a class="headerlink" href="#drei-stufen" title="Permanent link">&para;</a></h2>
+<p>Nicht jede Nachricht muss sich melden. Anton unterscheidet:</p>
+<table>
+<thead>
+<tr>
+<th>Stufe</th>
+<th>Wo</th>
+<th>Meldet sich</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mitteilung</strong> (<code>announcement</code>)</td>
+<td>Liste und Badge</td>
+<td>ja — zählt als ungelesen</td>
+</tr>
+<tr>
+<td><strong>Bericht</strong> (<code>report</code>)</td>
+<td>nur in der Liste</td>
+<td>nein</td>
+</tr>
+<tr>
+<td><strong>Changelog</strong></td>
+<td><code>/changelog</code></td>
+<td>nein — englisch, technisch, nur Admins</td>
+</tr>
+</tbody>
+</table>
+<p>Der Grund ist gemessen: zwischen v0.54.0 und v0.88.0 hat Anton 34 Release-Mitteilungen verschickt, eine alle 3,6 Tage. So viele Meldungen sind kein Nachrichtenkanal mehr, sondern Grundrauschen — und darin geht die eine Mitteilung unter, die wirklich gelesen werden muss.</p>
+<p>Seither entsteht pro Release ein <strong>Bericht</strong>: er steht in der Liste, damit nachvollziehbar bleibt, was sich geändert hat, erzeugt aber kein Badge. Was sich meldet, ist der <strong>Digest</strong>, der mehrere Berichte zusammenfasst — geschrieben, wenn genug zusammengekommen ist, ohne festen Takt. Dazu die einzelne Mitteilung, die es wirklich wert ist.</p>
+<p>Eine von Hand verfasste Nachricht (Web-Oberfläche, <code>notification:send</code>) ist immer eine Mitteilung.</p>
+<h2 id="release-berichte">Release-Berichte<a class="headerlink" href="#release-berichte" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:release<span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p>Liest <code>documentation/anton_news_v{version}.md</code> der ausgerollten Version und legt daraus den Bericht an: Titel «Anton v0.93.0 — was neu ist», Text aus dem Einleitungsabsatz plus Verweise auf die Release-Notes und das Changelog.</p>
+<p><code>anton:update</code> ruft den Befehl beim Ausrollen selbst — von Hand nötig ist er nur zum Nachholen. Gibt es keine News-Datei zur Version, entsteht nichts; das ist der Normalfall eines Patch-Releases. Gesucht wird dann noch die Datei des zugehörigen Minors, damit eine Installation, die erst bei v0.94.2 aktualisiert, den Bericht zu v0.94.0 nicht verpasst.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--release=</code></td>
+<td>Version, Vorgabe: die ausgerollte. Nicht <code>--version</code> — das gehört Artisan</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>Nur zeigen, was entstehen würde</td>
+</tr>
+<tr>
+<td><code>--env=</code></td>
+<td>Ziel-Installation (Slug)</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Über alle Installationen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="digest">Digest<a class="headerlink" href="#digest" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:digest<span class="w"> </span>--intro-file<span class="o">=</span>digest.md<span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p>Sammelt die Berichte der Installation, die neuer sind als der letzte Digest, und legt eine Mitteilung mit der Liste an. Der einleitende Absatz kommt von Hand: was eine Reihe von Releases für ein Archiv bedeutet, steht in keiner Datei, aus der man es zusammensetzen könnte.</p>
+<p>Gebaut wird pro Installation aus deren eigenen Berichten — ein Archiv, das Releases übersprungen hat, bekommt nur, was es betrifft.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--since=</code></td>
+<td>Version, ab der zusammengefasst wird (ausschliesslich). Vorgabe: der letzte Digest</td>
+</tr>
+<tr>
+<td><code>--intro=</code> / <code>--intro-file=</code></td>
+<td>Einleitender Absatz (Pflicht)</td>
+</tr>
+<tr>
+<td><code>--audience=</code></td>
+<td><code>all</code> (Default), <code>editors</code>, <code>admins</code></td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>Nur zeigen, was entstehen würde</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>Auch anlegen, wenn zu dieser Version schon ein Digest vorliegt</td>
+</tr>
+<tr>
+<td><code>--env=</code> / <code>--all</code></td>
+<td>Ziel-Installation oder alle</td>
+</tr>
+</tbody>
+</table>
 <h2 id="nachrichten-verfassen-admin">Nachrichten verfassen (Admin)<a class="headerlink" href="#nachrichten-verfassen-admin" title="Permanent link">&para;</a></h2>
 <p>Unter <strong>Admin &gt; Info &gt; Notifications</strong> (oder direkt <code>/admin/notifications</code>) sehen Admins eine Liste aller Nachrichten der Installation.</p>
 <p>Mit <strong>Neue Nachricht</strong> (<code>/admin/notifications/create</code>) kann eine Nachricht verfasst werden:</p>
@@ -2378,7 +2512,7 @@
 <p>Der Befehl kann in Ansible-Playbooks oder als Schritt in <code>anton:update</code> eingebunden werden, um Nachrichten beim Deployment automatisch zu verteilen.</p>
 <h2 id="datenmodell">Datenmodell<a class="headerlink" href="#datenmodell" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Tabelle <code>notifications</code>: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins)</li>
+<li>Tabelle <code>notifications</code>: id, title (JSON), body (JSON), sender_id, source (local/system), audience (all/editors/admins), level (announcement/report), version</li>
 <li>Tabelle <code>notification_user</code>: Pivot für Gelesen-Status pro User (notification_id, user_id, read_at)</li>
 <li>Nachrichten ohne Pivot-Eintrag für einen User gelten als ungelesen (lazy tracking)</li>
 </ul>
