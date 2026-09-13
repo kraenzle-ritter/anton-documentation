@@ -6,9 +6,18 @@ Pour plus de sécurité, l'authentification à deux facteurs peut être activée
 
 1. Se connecter à Anton
 2. Ouvrir **Profil** → **Sécurité**
-3. Cliquer sur **Activer l'authentification à deux facteurs**
-4. Scanner le code QR avec une application d'authentification
-5. Saisir le code fourni par l'application pour confirmer
+3. Saisir son propre mot de passe et cliquer sur **Activer** — les deux dans le
+   même formulaire
+4. Scanner le code QR avec l'application d'authentification. Si cela n'est pas
+   possible, la clé figure en dessous sous forme de texte et peut être saisie à
+   la main
+5. **Conserver les codes de récupération** — ils sont le moyen de revenir si le
+   téléphone est perdu
+6. Saisir un code de l'application sous **Vérifier le code**. Anton indique s'il
+   correspond; rien n'est modifié
+
+À partir de là, Anton demande ce code à six chiffres après le mot de passe lors
+de la connexion.
 
 ### Applications d'authentification prises en charge
 

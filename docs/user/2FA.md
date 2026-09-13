@@ -6,9 +6,17 @@ Für zusätzliche Sicherheit kann die Zwei-Faktor-Authentifizierung aktiviert we
 
 1. In Anton einloggen
 2. **Profil** → **Sicherheit** öffnen
-3. **Zwei-Faktor-Authentifizierung aktivieren** klicken
-4. QR-Code mit Authenticator-App scannen 
-5. Code aus der App eingeben zur Bestätigung
+3. Das eigene Passwort eingeben und **Aktivieren** klicken — beides im selben
+   Formular
+4. QR-Code mit der Authenticator-App scannen. Geht das nicht, steht der
+   Schlüssel darunter als Text und lässt sich von Hand eintippen
+5. **Wiederherstellungscodes sichern** — sie sind der Weg zurück, wenn das
+   Smartphone verloren geht
+6. Einen Code aus der App im Feld **Code prüfen** eingeben. Anton sagt, ob er
+   stimmt; geändert wird dabei nichts
+
+Von da an fragt Anton beim Anmelden nach dem Passwort zusätzlich diesen
+sechsstelligen Code.
 
 ### Unterstützte Authenticator-Apps
 
