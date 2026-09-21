@@ -237,11 +237,12 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (58)
+### anton: (59)
 
 | Command | Description |
 |---|---|
 | `anton:add-user` | Add or Update a User. With --api-token option, an api token will be issued. |
+| `anton:audit-duplicate-users` | Konten melden, die sich einen Benutzernamen oder eine Adresse teilen (#572). |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
 | `anton:audit-note-name-collisions` | Detect (name, type) collisions that would block the unify-note migration on this tenant. |
 | `anton:audit-orphans` | Report (and optionally remove) rows pointing at a record that no longer exists (#512). |
