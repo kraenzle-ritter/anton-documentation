@@ -3306,6 +3306,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrität prüfen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wenn-die-prufung-anschlagt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wenn die Prüfung anschlägt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4290,6 +4307,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrität prüfen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wenn-die-prufung-anschlagt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wenn die Prüfung anschlägt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4483,6 +4517,12 @@ Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.</p>
 <p>Davon zu unterscheiden ist <a href="../console-commands/"><code>anton:doctor</code></a>: Es prüft die
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.</p>
+<h3 id="wenn-die-prufung-anschlagt">Wenn die Prüfung anschlägt<a class="headerlink" href="#wenn-die-prufung-anschlagt" title="Permanent link">&para;</a></h3>
+<p>Weicht eine Datei von ihrer Prüfsumme ab, holen wir sie bei <strong>Anton as a
+Service</strong> von Hand aus einer Sicherungskopie zurück. Dafür liegen mehrere Stände
+bereit: tägliche Sicherungen der letzten 31 Tage, monatliche der letzten 12 Monate
+sowie jährliche. Die wiederhergestellte Datei lässt sich mit <code>media:check</code> erneut
+gegen die gespeicherte Prüfsumme prüfen.</p>
 <h2 id="redundante-speicherung">Redundante Speicherung<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
 <p>Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
 lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt

@@ -3306,6 +3306,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Checking integrity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wenn-die-prufung-anschlagt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the check reports a deviation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4290,6 +4307,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Checking integrity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wenn-die-prufung-anschlagt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the check reports a deviation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4485,6 +4519,12 @@ the job itself; the commands are available for it.</p>
 checks the <strong>consistency of the database</strong> — hierarchy, reference codes, derived
 fields — and whether the files are present. Checksums are compared by the two
 commands above.</p>
+<h3 id="wenn-die-prufung-anschlagt">If the check reports a deviation<a class="headerlink" href="#wenn-die-prufung-anschlagt" title="Permanent link">&para;</a></h3>
+<p>If a file deviates from its checksum, with <strong>Anton as a Service</strong> we restore it
+manually from a backup copy. Several versions are available for this: daily
+backups of the last 31 days, monthly ones of the last 12 months and yearly ones.
+The restored file can be checked again against the stored checksum with
+<code>media:check</code>.</p>
 <h2 id="redundante-speicherung">Redundant storage<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
 <p>Redundant storage is a matter for the infrastructure: Anton writes to a local
 store and optionally to a cloud store, and operations create the copies
