@@ -89,6 +89,14 @@ Davon zu unterscheiden ist [`anton:doctor`](console-commands.md): Es prüft die
 **Konsistenz der Datenbank** — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.
 
+### Wenn die Prüfung anschlägt
+
+Weicht eine Datei von ihrer Prüfsumme ab, holen wir sie bei **Anton as a
+Service** von Hand aus einer Sicherungskopie zurück. Dafür liegen mehrere Stände
+bereit: tägliche Sicherungen der letzten 31 Tage, monatliche der letzten 12 Monate
+sowie jährliche. Die wiederhergestellte Datei lässt sich mit `media:check` erneut
+gegen die gespeicherte Prüfsumme prüfen.
+
 ## Redundante Speicherung
 
 Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen

@@ -91,6 +91,14 @@ checks the **consistency of the database** — hierarchy, reference codes, deriv
 fields — and whether the files are present. Checksums are compared by the two
 commands above.
 
+### If the check reports a deviation {#wenn-die-prufung-anschlagt}
+
+If a file deviates from its checksum, with **Anton as a Service** we restore it
+manually from a backup copy. Several versions are available for this: daily
+backups of the last 31 days, monthly ones of the last 12 months and yearly ones.
+The restored file can be checked again against the stored checksum with
+`media:check`.
+
 ## Redundant storage {#redundante-speicherung}
 
 Redundant storage is a matter for the infrastructure: Anton writes to a local
