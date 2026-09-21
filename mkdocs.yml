@@ -75,6 +75,7 @@ nav:
       - Gewichtete Suche: user/weighted-search.md
       - Korrespondenzen: user/correspondences.md
       - Warenkorb: user/cart.md
+      - KI-Assistenten anbinden (MCP): user/mcp.md
     - Import und Export:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md
@@ -129,6 +130,7 @@ nav:
       - RDF-Export (CIDOC CRM / Memobase): admin/download-rdf.md
       - Statische Publikation und Round-Trip: admin/statische-publikation.md
       - Mastodon: admin/mastodon.md
+      - KI-Assistenten (MCP): admin/mcp.md
     - Langzeitarchivierung:
       - Überblick: admin/preservation.md
       - Export-Matrix: admin/export-matrix.md
@@ -217,6 +219,7 @@ plugins:
                 - Weighted search: user/weighted-search.md
                 - Correspondences: user/correspondences.md
                 - Cart: user/cart.md
+                - Connecting AI assistants (MCP): user/mcp.md
               - Import and export:
                 - Data import: user/import.md
                 - SIP ingest: user/sip.md
@@ -271,6 +274,7 @@ plugins:
                 - RDF export (CIDOC CRM / Memobase): admin/download-rdf.md
                 - Static publication and round trip: admin/statische-publikation.md
                 - Mastodon: admin/mastodon.md
+                - AI assistants (MCP): admin/mcp.md
               - Long-term preservation:
                 - Overview: admin/preservation.md
                 - Export matrix: admin/export-matrix.md
@@ -335,6 +339,7 @@ plugins:
                 - Recherche pondérée: user/weighted-search.md
                 - Correspondances: user/correspondences.md
                 - Panier: user/cart.md
+                - Connecter des assistants IA (MCP): user/mcp.md
               - Import et export:
                 - Import de données: user/import.md
                 - SIP Ingest: user/sip.md
@@ -400,6 +405,7 @@ plugins:
                 - Ricerca ponderata: user/weighted-search.md
                 - Corrispondenze: user/correspondences.md
                 - Carrello: user/cart.md
+                - Collegare assistenti IA (MCP): user/mcp.md
               - Importazione ed esportazione:
                 - Importazione dati: user/import.md
                 - SIP Ingest: user/sip.md
