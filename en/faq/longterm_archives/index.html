@@ -1226,6 +1226,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connecting AI assistants (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3033,6 +3061,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI assistants (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4108,7 +4164,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/faq/longterm_archives/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/faq/longterm_archives/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/longterm_archives/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-21</span>
     </div>
   
   
@@ -4120,21 +4176,21 @@
 
 
 <h1 id="anton-as-a-digital-long-term-archive">Anton as a digital long-term archive<a class="headerlink" href="#anton-as-a-digital-long-term-archive" title="Permanent link">&para;</a></h1>
-<p>Digital preservation is a highly complex and multi-layered task, for which Anton can be deployed either <a href="../anton_as_service/">as a service</a> or <a href="../anton_on_premises/">on premises</a>.</p>
-<p>So-called <em>bitstream preservation</em> – the actual storage and safeguarding of the data – is provided by the operating infrastructure, not by the application. <strong>With Anton as a Service</strong>, that is, when running on our servers, the digital data is stored on a suitable infrastructure that keeps three copies at three locations – sixfold redundancy in total.</p>
+<p>Anton ingests digital records with verification, keeps the masters unchanged and monitors their formats. This applies to Anton <a href="../anton_as_service/">as a service</a> as well as to operation <a href="../anton_on_premises/">on premises</a>.</p>
+<p>So-called <em>bitstream preservation</em>, that is the actual storage and safeguarding of the data, is provided by the operating infrastructure. <strong>With Anton as a Service</strong>, that is, when running on our servers, the digital data is stored on a suitable infrastructure that keeps three copies at three locations – sixfold redundancy in total.</p>
 <div class="admonition note">
 <p class="admonition-title">On premises</p>
 <p>Anyone running Anton on their own servers is responsible for storage, redundancy and backup themselves. The infrastructure described here is part of our operations and is not supplied with the software. We are happy to advise on setting it up.</p>
 </div>
-<p>Anton keeps a checksum for every file, so that the integrity of the data can be verified – that is, it can be determined whether data has been altered or damaged. This check is not an automatic function of the application; it is set up per installation as a recurring job. On our servers it is set up for the large archives. In installations with a connected long-term archive (DIMAG), that system is responsible for bitstream preservation. More on this under <a href="../../admin/preservation/">Digital preservation: overview</a>.</p>
+<p>Anton keeps a checksum for every file, so that the integrity of the data can be verified: a check run determines whether data has been altered or damaged and logs the result. How often it runs is set by a recurring job per installation; on our servers it runs for the large archives. In installations with a connected long-term archive (DIMAG), that system is responsible for bitstream preservation. More on this under <a href="../../admin/preservation/">Digital preservation: overview</a>.</p>
 <p>Access to the data is exclusively through Anton, which permits authorised access only. In the case of legally protected data, additional criteria such as the permissible server location may need to be clarified. Thanks to the metadata in Anton, the data is easy to locate and available quickly at all times.</p>
 <p>We are happy to support our customers in preparing the <em>transfer</em> (appraisal, ingest, pre-ingest, etc.) and with <em>preservation planning</em>.</p>
 <h2 id="preservation-planning">Preservation planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h2>
 <h3 id="format-identification">Format identification<a class="headerlink" href="#format-identification" title="Permanent link">&para;</a></h3>
 <p>Format identification based on the MIME type or the file extension is complemented in Anton by the integration of <a href="https://www.itforarchivists.com/siegfried">Siegfried</a> and/or <a href="https://github.com/openpreserve/fido">Fido</a>. Both tools identify file formats by means of <a href="https://www.nationalarchives.gov.uk/pronom/">PRONOM</a> IDs. This allows file formats to be determined precisely for digital preservation.</p>
 <h3 id="risk-assessment">Risk assessment<a class="headerlink" href="#risk-assessment" title="Permanent link">&para;</a></h3>
-<p>Using the PRONOM IDs, we can attempt to apply the risk assessment of the <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a> in Anton. This assessment can help in deciding which preservation measures are necessary.</p>
-<p>In Anton's admin area, an overview of the file formats present in the archive together with their risk assessment can be displayed.</p>
+<p>From the PRONOM ID, Anton derives the risk assessment of the <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a>. It is the basis for decisions on preservation measures, such as converting a file to another format.</p>
+<p><a href="../../admin/preservation-planning/">Preservation planning</a> in the admin area shows the file formats present in the archive together with their risk assessment.</p>
 
 
 

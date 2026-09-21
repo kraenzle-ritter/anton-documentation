@@ -1222,6 +1222,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collegare assistenti IA (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2124,6 +2152,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aufgabenteilung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aufgabenteilung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#die-kette" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2169,6 +2208,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#formatentscheide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatentscheide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#abgabe" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2196,10 +2246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sicherung-oder-publikation" class="md-nav__link">
+  <a href="#redundante-speicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sicherung oder Publikation?
+        Redundante Speicherung
       
     </span>
   </a>
@@ -2207,10 +2257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#was-anton-nicht-tut" class="md-nav__link">
+  <a href="#sicherung-oder-publikation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Was Anton nicht tut
+        Sicherung oder Publikation?
       
     </span>
   </a>
@@ -2245,7 +2295,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-21</span>
     </div>
   
   
@@ -2257,11 +2307,72 @@
 
 
 <h1 id="langzeitarchivierung-uberblick">Langzeitarchivierung: Überblick<a class="headerlink" href="#langzeitarchivierung-uberblick" title="Permanent link">&para;</a></h1>
-<p>Anton deckt Teile der digitalen Langzeitarchivierung ab und überlässt andere
-bewusst der Infrastruktur oder einem angebundenen Langzeitarchiv. Diese Seite
-ordnet ein, was wo passiert, und verweist auf die Detailseiten. Sie beantwortet
-vor allem die Frage, welches Artefakt eine <strong>Sicherung</strong> ist und welches eine
-<strong>Publikationsansicht</strong>.</p>
+<p>Anton übernimmt digitale Unterlagen geprüft, bewahrt die Master unverändert,
+erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Die
+Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei
+Installationen mit angebundenem Langzeitarchiv übernimmt dieses die
+Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und
+verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches
+Artefakt eine <strong>Sicherung</strong> ist und welches eine <strong>Publikationsansicht</strong>.</p>
+<h2 id="aufgabenteilung">Aufgabenteilung<a class="headerlink" href="#aufgabenteilung" title="Permanent link">&para;</a></h2>
+<p>Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
+die fachlichen ab, der Betrieb die Speicherung:</p>
+<table>
+<thead>
+<tr>
+<th>Aufgabe</th>
+<th>Anton</th>
+<th>Betrieb</th>
+<th>Angebundenes Langzeitarchiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prüfsummen bei der Übernahme</td>
+<td>prüft jede Datei eines SIP gegen das Paket</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Prüfsumme pro Datei</td>
+<td>berechnet beim Upload MD5 und legt sie ab</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Formaterkennung und Risiko</td>
+<td>PRONOM-ID, NARA-Bewertung, <a href="../preservation-planning/">Preservation Planning</a></td>
+<td>stellt Siegfried bzw. Fido bereit</td>
+<td></td>
+</tr>
+<tr>
+<td>Master und Zugriffskopien</td>
+<td>bewahrt den Master unverändert, erzeugt <code>web</code> und <code>thumb</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Integritätsprüfung</td>
+<td>bringt <code>media:check</code> und <code>media:snapshot</code> mit, protokolliert die Prüfungen</td>
+<td>legt den Rhythmus als Cronjob fest</td>
+<td>übernimmt die Fixity der Master</td>
+</tr>
+<tr>
+<td>Redundante Speicherung</td>
+<td></td>
+<td>Kopien an mehreren Standorten</td>
+<td>Bitstream-Sicherung</td>
+</tr>
+<tr>
+<td>Formatentscheide</td>
+<td>zeigt Formate mit Handlungsbedarf</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bei Anton as a Service</strong> ist k &amp; r der Betrieb. <strong>On Premises</strong> ist es die
+betreibende Institution.</p>
 <h2 id="die-kette">Die Kette<a class="headerlink" href="#die-kette" title="Permanent link">&para;</a></h2>
 <h3 id="ubernahme">Übernahme<a class="headerlink" href="#ubernahme" title="Permanent link">&para;</a></h3>
 <p>Beim <a href="../sip-ingest/">SIP-Ingest</a> nach eCH-0160 prüft Anton für <strong>jede Datei im
@@ -2281,16 +2392,20 @@ hält die <strong>PRONOM-ID</strong> fest; daraus leitet es die Risikobewertung 
 <a href="../console-commands/#mediaidentify"><code>media:identify</code></a> nachtragen. Ausgewertet wird das im
 <a href="../preservation-planning/">Preservation Planning</a>.</p>
 <div class="admonition note">
-<p class="admonition-title">Abhängig vom Server</p>
-<p>Die Erkennung setzt voraus, dass Siegfried oder Fido auf dem Server
-installiert sind. Fehlen beide, bleibt die PRONOM-ID leer — und ohne sie
-gibt es auch keine Risikobewertung. Der Reiter «Nicht identifizierte Medien»
-zeigt, wie vollständig die Erkennung ist.</p>
+<p class="admonition-title">Siegfried oder Fido auf dem Server</p>
+<p>Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert
+sind. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig die
+Erkennung im Bestand ist.</p>
 </div>
+<h3 id="formatentscheide">Formatentscheide<a class="headerlink" href="#formatentscheide" title="Permanent link">&para;</a></h3>
+<p>Anton migriert keine Master in Archivformate. Ob eine Datei in ein anderes
+Format überführt wird, entscheidet das Archiv. Das Preservation Planning liefert dafür
+die Grundlage: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
+ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <h3 id="abgabe">Abgabe<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="#sicherung-oder-publikation">Sicherung oder Publikation?</a> weiter unten.</p>
 <h2 id="integritat-prufen">Integrität prüfen<a class="headerlink" href="#integritat-prufen" title="Permanent link">&para;</a></h2>
-<p>Anton bringt die Werkzeuge mit, führt sie aber nicht von sich aus aus:</p>
+<p>Zwei Befehle prüfen den Bestand gegen die gespeicherten Prüfsummen:</p>
 <table>
 <thead>
 <tr>
@@ -2309,20 +2424,25 @@ zeigt, wie vollständig die Erkennung ist.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition important">
-<p class="admonition-title">Einzurichten, nicht eingebaut</p>
-<p>Anton führt <strong>keine</strong> wiederkehrende Integritätsprüfung von selbst aus — es
-gibt keinen eingebauten Zeitplan. Die Prüfung wird pro Installation als
-Cronjob eingerichtet.</p>
-<p><strong>Bei Anton as a Service</strong> ist das zurzeit für die grossen Archive
-eingerichtet; für weitere Installationen auf unseren Servern ist k &amp; r
-zuständig. <strong>On Premises</strong> richtet die betreibende Institution den Auftrag selbst ein — die
-Befehle stehen dafür bereit, ein automatischer Lauf entsteht daraus aber
-nicht von allein.</p>
+<div class="admonition note">
+<p class="admonition-title">Den Rhythmus legt der Betrieb fest</p>
+<p>Wie oft die Prüfung läuft, bestimmt ein Cronjob pro Installation. So lässt
+sich der Rhythmus der Grösse des Bestands anpassen: Ein vollständiger
+Durchlauf liest jede Datei, und bei mehreren Terabyte will das geplant sein.</p>
+<p><strong>Bei Anton as a Service</strong> richtet k &amp; r die Prüfung ein (Stand September
+2026 für die grossen Archive). <strong>On Premises</strong> richtet die betreibende
+Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.</p>
 </div>
 <p>Davon zu unterscheiden ist <a href="../console-commands/"><code>anton:doctor</code></a>: Es prüft die
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
-ob die Dateien vorhanden sind. Prüfsummen vergleicht es nicht.</p>
+ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.</p>
+<h2 id="redundante-speicherung">Redundante Speicherung<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
+<p>Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
+lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
+der Betrieb an. Bei <strong>Anton as a Service</strong> liegen die Daten in
+<a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a> (gesamthaft
+sechsfache Redundanz); <strong>on Premises</strong> verantwortet das die betreibende
+Institution.</p>
 <h2 id="sicherung-oder-publikation">Sicherung oder Publikation?<a class="headerlink" href="#sicherung-oder-publikation" title="Permanent link">&para;</a></h2>
 <p>Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:</p>
 <table>
@@ -2365,38 +2485,26 @@ den SQL-Dump.</p>
 exportiert wird: dieses Paket ist als <strong>Migrationsweg hinaus</strong> gedacht. Ein
 Rückweg wäre mit Aufwand konstruierbar, ein Werkzeug dafür gibt es nicht.</p>
 </div>
+<p>Die Provenienz einer Datei (Formaterkennung, NARA-Bewertung, Integritätsprüfungen)
+führt Anton in der Datenbank; sie reist deshalb mit dem SQL-Dump. DIP und OCFL
+sichern die Dateien über die Prüfsummen im Manifest und geben diese Provenienz
+nicht als PREMIS oder METS aus.</p>
 <p>Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
 wer welches Artefakt auslösen kann, zeigt die <a href="../export-matrix/">Export-Matrix</a>.
 Kurz: Der SQL-Dump und die Standard-Exporte gehen über die Oberfläche, der native
 Round-Trip und das Migrationspaket nur über die CLI.</p>
 <p>Für die <a href="../statische-publikation/">statische Publikation</a> eines Bestandes als
 eigenständige Website gibt es ein eigenes Bundle.</p>
-<h2 id="was-anton-nicht-tut">Was Anton nicht tut<a class="headerlink" href="#was-anton-nicht-tut" title="Permanent link">&para;</a></h2>
-<p>Damit keine falschen Erwartungen entstehen:</p>
-<ul>
-<li><strong>Keine Formatmigration.</strong> Anton erzeugt Zugriffskopien, aber normalisiert
-  nicht in Archivformate — kein TIFF nach JPEG2000, kein PDF/A, keine
-  Video-Normalisierung. Das Preservation Planning <strong>weist auf Handlungsbedarf
-  hin, handelt aber nicht</strong>.</li>
-<li><strong>Kein PREMIS, kein METS.</strong></li>
-<li><strong>Keine Speicherredundanz.</strong> Die redundante Speicherung leistet die
-  Betriebsinfrastruktur, nicht die Anwendung. Anton selbst sieht einen lokalen
-  Speicher und optional einen Cloud-Speicher und kann die Redundanz weder
-  anzeigen noch überwachen. Bei <strong>Anton as a Service</strong> liegen die Daten in
-  <a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a> (gesamthaft
-  sechsfache Redundanz); <strong>on Premises</strong> verantwortet das die betreibende Institution selbst.</li>
-</ul>
 <h2 id="mit-angebundenem-langzeitarchiv">Mit angebundenem Langzeitarchiv<a class="headerlink" href="#mit-angebundenem-langzeitarchiv" title="Permanent link">&para;</a></h2>
 <p>Bei Installationen mit <a href="../inge/">DIMAG-Anbindung</a> übergibt Anton jede
 Mediendatei beim Upload über die Middleware Inge an DIMAG und führt Buch, ob die
 Übergabe verifiziert ist — siehe <a href="../dimag-uploads/">Upload-Status</a>. Danach liegt
 die Bitstream-Sicherung des Masters bei DIMAG.</p>
 <div class="admonition note">
-<p class="admonition-title">Anton prüft dann nicht mehr selbst</p>
-<p>Auf diesen Installationen überspringt <code>media:check</code> die Integritätsprüfung
-der Master mit dem Hinweis, dass die Dateien in DIMAG liegen. Die Fixity
-verantwortet dort das Langzeitarchiv. Auf Wunsch löscht Anton nach
-verifizierter Übergabe die lokale Kopie.</p>
+<p class="admonition-title">Die Fixity liegt dann bei DIMAG</p>
+<p>Auf diesen Installationen prüft das Langzeitarchiv die Master. <code>media:check</code>
+überspringt sie deshalb mit dem Hinweis, dass die Dateien in DIMAG liegen.
+Auf Wunsch löscht Anton nach verifizierter Übergabe die lokale Kopie.</p>
 </div>
 
 

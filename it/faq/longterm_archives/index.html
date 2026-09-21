@@ -1226,6 +1226,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collegare assistenti IA (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2271,7 +2299,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/faq/longterm_archives/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/faq/longterm_archives/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/longterm_archives/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-21</span>
     </div>
   
   
@@ -2283,21 +2311,21 @@
 
 
 <h1 id="anton-come-archivio-digitale-a-lungo-termine">Anton come archivio digitale a lungo termine<a class="headerlink" href="#anton-come-archivio-digitale-a-lungo-termine" title="Permanent link">&para;</a></h1>
-<p>L'archiviazione digitale a lungo termine è un compito molto complesso e articolato, per il quale Anton può essere impiegato <a href="../anton_as_service/">come servizio</a> oppure <a href="../anton_on_premises/">on premises</a>.</p>
-<p>La cosiddetta <em>bitstream preservation</em> – ossia l'effettiva memorizzazione e messa in sicurezza dei dati – è compito dell'infrastruttura di esercizio, non dell'applicazione. <strong>Con Anton as a Service</strong>, cioè in esercizio sui nostri server, i dati digitali vengono conservati su un'infrastruttura adeguata che ne mantiene tre copie in tre ubicazioni – complessivamente una ridondanza sestupla.</p>
+<p>Anton acquisisce i documenti digitali con verifica, conserva i master senza modificarli e ne sorveglia i formati. Ciò vale per Anton <a href="../anton_as_service/">come servizio</a> come per l'esercizio <a href="../anton_on_premises/">on premises</a>.</p>
+<p>La cosiddetta <em>bitstream preservation</em>, ossia l'effettiva memorizzazione e messa in sicurezza dei dati, è compito dell'infrastruttura di esercizio. <strong>Con Anton as a Service</strong>, cioè in esercizio sui nostri server, i dati digitali vengono conservati su un'infrastruttura adeguata che ne mantiene tre copie in tre ubicazioni – complessivamente una ridondanza sestupla.</p>
 <div class="admonition note">
 <p class="admonition-title">On premises</p>
 <p>Chi gestisce Anton su server propri è responsabile in prima persona della memorizzazione, della ridondanza e del backup. L'infrastruttura descritta fa parte del nostro esercizio e non viene fornita con il software. Volentieri offriamo consulenza per la messa in opera.</p>
 </div>
-<p>Anton conserva una somma di controllo per ogni file, così da poter verificare l'integrità dei dati – ossia accertare se i dati sono stati modificati o danneggiati. Questa verifica non è un automatismo dell'applicazione, ma viene impostata per ciascuna installazione come processo ricorrente; sui nostri server è attiva per i grandi archivi. Nelle installazioni con un archivio a lungo termine collegato (DIMAG), è quest'ultimo a farsi carico della bitstream preservation. Maggiori informazioni in <a href="../../admin/preservation/">Archiviazione a lungo termine: panoramica</a>.</p>
+<p>Anton conserva una somma di controllo per ogni file, così da poter verificare l'integrità dei dati: un controllo accerta se i dati sono stati modificati o danneggiati e ne registra l'esito. La frequenza è stabilita da un processo ricorrente per ciascuna installazione; sui nostri server è attivo per i grandi archivi. Nelle installazioni con un archivio a lungo termine collegato (DIMAG), è quest'ultimo a farsi carico della bitstream preservation. Maggiori informazioni in <a href="../../admin/preservation/">Archiviazione a lungo termine: panoramica</a>.</p>
 <p>L'accesso ai dati avviene esclusivamente tramite Anton, che consente solo accessi autorizzati. Per i dati giuridicamente protetti possono rendersi necessarie ulteriori verifiche, ad esempio riguardo all'ubicazione consentita del server. Grazie ai metadati presenti in Anton, i dati restano in ogni momento facilmente reperibili e rapidamente disponibili.</p>
 <p>Volentieri sosteniamo la nostra clientela nella preparazione della <em>presa in carico</em> (valutazione, ingest, pre-ingest ecc.) e nel <em>preservation planning</em>.</p>
 <h2 id="preservation-planning">Preservation planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h2>
 <h3 id="riconoscimento-dei-formati">Riconoscimento dei formati<a class="headerlink" href="#riconoscimento-dei-formati" title="Permanent link">&para;</a></h3>
 <p>Il riconoscimento dei formati sulla base del tipo MIME o dell'estensione del file è completato in Anton dall'integrazione di <a href="https://www.itforarchivists.com/siegfried">Siegfried</a> e/o <a href="https://github.com/openpreserve/fido">Fido</a>. Entrambi gli strumenti identificano i formati di file mediante gli identificativi <a href="https://www.nationalarchives.gov.uk/pronom/">PRONOM</a>. Ciò consente di determinare con precisione i formati ai fini della conservazione digitale a lungo termine.</p>
 <h3 id="valutazione-del-rischio">Valutazione del rischio<a class="headerlink" href="#valutazione-del-rischio" title="Permanent link">&para;</a></h3>
-<p>Con gli identificativi PRONOM possiamo cercare di riprendere in Anton la valutazione del rischio del <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a>. Questa valutazione può aiutare a decidere quali misure di conservazione siano necessarie.</p>
-<p>Nell'area di amministrazione di Anton è possibile visualizzare una panoramica dei formati di file presenti nell'archivio con la relativa valutazione del rischio.</p>
+<p>Dall'identificativo PRONOM Anton ricava la valutazione del rischio del <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a>. Essa è la base per decidere le misure di conservazione, ad esempio la conversione di un file in un altro formato.</p>
+<p>Il <a href="../../admin/preservation-planning/">preservation planning</a> nell'area di amministrazione mostra i formati di file presenti nell'archivio con la relativa valutazione del rischio.</p>
 
 
 
