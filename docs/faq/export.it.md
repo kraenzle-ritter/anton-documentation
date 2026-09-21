@@ -50,4 +50,4 @@ Diversi archivi svizzeri di conservazione a lungo termine (UB Basilea, DLZA) ric
 
 ## Download DIP
 
-Pacchetti DIP conformi a OAIS (Dissemination Information Package) come ZIP BagIt per le consegne all'utenza finale. Maggiori informazioni: [documentazione DIP](../admin/download-dip.md).
+Pacchetti DIP (Dissemination Information Package nel senso di OAIS) come ZIP BagIt per le consegne all'utenza finale. Maggiori informazioni: [documentazione DIP](../admin/download-dip.md).

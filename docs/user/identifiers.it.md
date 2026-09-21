@@ -58,8 +58,8 @@ ulteriormente annidati. Ogni livello aggiuntivo è separato da un punto.
 La segnatura attribuita automaticamente può essere sovrascritta — il campo
 **segnatura** è un normale campo di inserimento.
 
-!!! warning "Le segnature non sono univoche"
-    Anton non impone segnature univoche. Se viene inserita una segnatura già
+!!! note "Segnature doppie"
+    Anton segnala le segnature doppie senza bloccarle. Se viene inserita una segnatura già
     attribuita, al salvataggio compare un avviso con il rimando alle schede
     interessate — il salvataggio avviene comunque. L'avviso non è
     deliberatamente bloccante, poiché nella pratica i doppioni esistono.

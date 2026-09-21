@@ -56,8 +56,8 @@ Dossiernummer und Einzelstücknummer können weiter verschachtelt werden. Jede w
 Die automatisch vergebene Signatur lässt sich überschreiben — das Feld
 **Signatur** ist ein gewöhnliches Eingabefeld.
 
-!!! warning "Signaturen sind nicht eindeutig"
-    Anton erzwingt keine eindeutigen Signaturen. Wird eine bereits vergebene
+!!! note "Doppelte Signaturen"
+    Anton weist auf doppelte Signaturen hin, blockiert sie aber nicht. Wird eine bereits vergebene
     Signatur eingetragen, erscheint beim Speichern ein Hinweis mit Verweis auf
     die betroffenen Datensätze — gespeichert wird trotzdem. Der Hinweis ist
     bewusst nicht blockierend, weil Dubletten in der Praxis vorkommen.

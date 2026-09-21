@@ -49,4 +49,4 @@ Several Swiss long-term archives (UB Basel, DLZA) expect OCFL (Oxford Common Fil
 
 ## DIP download
 
-OAIS-compliant DIP packages (Dissemination Information Package) as BagIt ZIP for deliveries to end users. More: [DIP documentation](../admin/download-dip.md).
+DIP packages (Dissemination Information Package in the sense of OAIS) as BagIt ZIP for deliveries to end users. More: [DIP documentation](../admin/download-dip.md).

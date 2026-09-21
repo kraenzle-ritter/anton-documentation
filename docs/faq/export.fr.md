@@ -51,4 +51,4 @@ Plusieurs archives suisses de conservation à long terme (UB Bâle, DLZA) attend
 
 ## Téléchargement DIP
 
-Paquets DIP conformes à l'OAIS (Dissemination Information Package) sous forme de ZIP BagIt pour les livraisons aux utilisateur·trice·s finaux. Plus : [documentation DIP](../admin/download-dip.md).
+Paquets DIP (Dissemination Information Package au sens de l'OAIS) sous forme de ZIP BagIt pour les livraisons aux utilisateur·trice·s finaux. Plus : [documentation DIP](../admin/download-dip.md).

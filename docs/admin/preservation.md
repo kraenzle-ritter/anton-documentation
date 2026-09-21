@@ -1,10 +1,30 @@
 # Langzeitarchivierung: Überblick
 
-Anton deckt Teile der digitalen Langzeitarchivierung ab und überlässt andere
-bewusst der Infrastruktur oder einem angebundenen Langzeitarchiv. Diese Seite
-ordnet ein, was wo passiert, und verweist auf die Detailseiten. Sie beantwortet
-vor allem die Frage, welches Artefakt eine **Sicherung** ist und welches eine
-**Publikationsansicht**.
+Anton übernimmt digitale Unterlagen geprüft, bewahrt die Master unverändert,
+erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Die
+Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei
+Installationen mit angebundenem Langzeitarchiv übernimmt dieses die
+Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und
+verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches
+Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
+
+## Aufgabenteilung
+
+Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
+die fachlichen ab, der Betrieb die Speicherung:
+
+| Aufgabe | Anton | Betrieb | Angebundenes Langzeitarchiv |
+|---|---|---|---|
+| Prüfsummen bei der Übernahme | prüft jede Datei eines SIP gegen das Paket | | |
+| Prüfsumme pro Datei | berechnet beim Upload MD5 und legt sie ab | | |
+| Formaterkennung und Risiko | PRONOM-ID, NARA-Bewertung, [Preservation Planning](preservation-planning.md) | stellt Siegfried bzw. Fido bereit | |
+| Master und Zugriffskopien | bewahrt den Master unverändert, erzeugt `web` und `thumb` | | |
+| Integritätsprüfung | bringt `media:check` und `media:snapshot` mit, protokolliert die Prüfungen | legt den Rhythmus als Cronjob fest | übernimmt die Fixity der Master |
+| Redundante Speicherung | | Kopien an mehreren Standorten | Bitstream-Sicherung |
+| Formatentscheide | zeigt Formate mit Handlungsbedarf | | |
+
+**Bei Anton as a Service** ist k & r der Betrieb. **On Premises** ist es die
+betreibende Institution.
 
 ## Die Kette
 
@@ -31,11 +51,17 @@ hält die **PRONOM-ID** fest; daraus leitet es die Risikobewertung nach dem
 [`media:identify`](console-commands.md#mediaidentify) nachtragen. Ausgewertet wird das im
 [Preservation Planning](preservation-planning.md).
 
-!!! note "Abhängig vom Server"
-    Die Erkennung setzt voraus, dass Siegfried oder Fido auf dem Server
-    installiert sind. Fehlen beide, bleibt die PRONOM-ID leer — und ohne sie
-    gibt es auch keine Risikobewertung. Der Reiter «Nicht identifizierte Medien»
-    zeigt, wie vollständig die Erkennung ist.
+!!! note "Siegfried oder Fido auf dem Server"
+    Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert
+    sind. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig die
+    Erkennung im Bestand ist.
+
+### Formatentscheide
+
+Anton migriert keine Master in Archivformate. Ob eine Datei in ein anderes
+Format überführt wird, entscheidet das Archiv. Das Preservation Planning liefert dafür
+die Grundlage: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
+ihnen zuweist und welche Handlung NARA empfiehlt.
 
 ### Abgabe
 
@@ -43,27 +69,34 @@ Siehe [Sicherung oder Publikation?](#sicherung-oder-publikation) weiter unten.
 
 ## Integrität prüfen
 
-Anton bringt die Werkzeuge mit, führt sie aber nicht von sich aus aus:
+Zwei Befehle prüfen den Bestand gegen die gespeicherten Prüfsummen:
 
 | Befehl | Was er tut |
 |---|---|
 | [`media:check --levels=4`](console-commands.md#mediacheck) | Liest jede Datei neu, berechnet die MD5 frisch und vergleicht sie mit der Datenbank. Mit `--log-integrity-check` wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie. |
 | [`media:snapshot --verify --git`](console-commands.md#mediasnapshot) | Schreibt einen Prüfsummen-Schnappschuss aller Medien, vergleicht ihn gegen die Datenbank und committet Änderungen in ein lokales Git-Repository. Damit ist nachvollziehbar, was sich zwischen zwei Läufen verändert hat. |
 
-!!! important "Einzurichten, nicht eingebaut"
-    Anton führt **keine** wiederkehrende Integritätsprüfung von selbst aus — es
-    gibt keinen eingebauten Zeitplan. Die Prüfung wird pro Installation als
-    Cronjob eingerichtet.
+!!! note "Den Rhythmus legt der Betrieb fest"
+    Wie oft die Prüfung läuft, bestimmt ein Cronjob pro Installation. So lässt
+    sich der Rhythmus der Grösse des Bestands anpassen: Ein vollständiger
+    Durchlauf liest jede Datei, und bei mehreren Terabyte will das geplant sein.
 
-    **Bei Anton as a Service** ist das zurzeit für die grossen Archive
-    eingerichtet; für weitere Installationen auf unseren Servern ist k & r
-    zuständig. **On Premises** richtet die betreibende Institution den Auftrag selbst ein — die
-    Befehle stehen dafür bereit, ein automatischer Lauf entsteht daraus aber
-    nicht von allein.
+    **Bei Anton as a Service** richtet k & r die Prüfung ein (Stand September
+    2026 für die grossen Archive). **On Premises** richtet die betreibende
+    Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.
 
 Davon zu unterscheiden ist [`anton:doctor`](console-commands.md): Es prüft die
 **Konsistenz der Datenbank** — Hierarchie, Signaturen, abgeleitete Felder — und
-ob die Dateien vorhanden sind. Prüfsummen vergleicht es nicht.
+ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.
+
+## Redundante Speicherung
+
+Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
+lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
+der Betrieb an. Bei **Anton as a Service** liegen die Daten in
+[drei Kopien an drei Standorten](../faq/longterm_archives.md) (gesamthaft
+sechsfache Redundanz); **on Premises** verantwortet das die betreibende
+Institution.
 
 ## Sicherung oder Publikation?
 
@@ -87,6 +120,11 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
     exportiert wird: dieses Paket ist als **Migrationsweg hinaus** gedacht. Ein
     Rückweg wäre mit Aufwand konstruierbar, ein Werkzeug dafür gibt es nicht.
 
+Die Provenienz einer Datei (Formaterkennung, NARA-Bewertung, Integritätsprüfungen)
+führt Anton in der Datenbank; sie reist deshalb mit dem SQL-Dump. DIP und OCFL
+sichern die Dateien über die Prüfsummen im Manifest und geben diese Provenienz
+nicht als PREMIS oder METS aus.
+
 Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
 wer welches Artefakt auslösen kann, zeigt die [Export-Matrix](export-matrix.md).
 Kurz: Der SQL-Dump und die Standard-Exporte gehen über die Oberfläche, der native
@@ -95,22 +133,6 @@ Round-Trip und das Migrationspaket nur über die CLI.
 Für die [statische Publikation](statische-publikation.md) eines Bestandes als
 eigenständige Website gibt es ein eigenes Bundle.
 
-## Was Anton nicht tut
-
-Damit keine falschen Erwartungen entstehen:
-
-- **Keine Formatmigration.** Anton erzeugt Zugriffskopien, aber normalisiert
-  nicht in Archivformate — kein TIFF nach JPEG2000, kein PDF/A, keine
-  Video-Normalisierung. Das Preservation Planning **weist auf Handlungsbedarf
-  hin, handelt aber nicht**.
-- **Kein PREMIS, kein METS.**
-- **Keine Speicherredundanz.** Die redundante Speicherung leistet die
-  Betriebsinfrastruktur, nicht die Anwendung. Anton selbst sieht einen lokalen
-  Speicher und optional einen Cloud-Speicher und kann die Redundanz weder
-  anzeigen noch überwachen. Bei **Anton as a Service** liegen die Daten in
-  [drei Kopien an drei Standorten](../faq/longterm_archives.md) (gesamthaft
-  sechsfache Redundanz); **on Premises** verantwortet das die betreibende Institution selbst.
-
 ## Mit angebundenem Langzeitarchiv
 
 Bei Installationen mit [DIMAG-Anbindung](inge.md) übergibt Anton jede
@@ -118,8 +140,7 @@ Mediendatei beim Upload über die Middleware Inge an DIMAG und führt Buch, ob d
 Übergabe verifiziert ist — siehe [Upload-Status](dimag-uploads.md). Danach liegt
 die Bitstream-Sicherung des Masters bei DIMAG.
 
-!!! note "Anton prüft dann nicht mehr selbst"
-    Auf diesen Installationen überspringt `media:check` die Integritätsprüfung
-    der Master mit dem Hinweis, dass die Dateien in DIMAG liegen. Die Fixity
-    verantwortet dort das Langzeitarchiv. Auf Wunsch löscht Anton nach
-    verifizierter Übergabe die lokale Kopie.
+!!! note "Die Fixity liegt dann bei DIMAG"
+    Auf diesen Installationen prüft das Langzeitarchiv die Master. `media:check`
+    überspringt sie deshalb mit dem Hinweis, dass die Dateien in DIMAG liegen.
+    Auf Wunsch löscht Anton nach verifizierter Übergabe die lokale Kopie.

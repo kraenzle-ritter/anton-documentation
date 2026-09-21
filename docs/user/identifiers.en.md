@@ -58,8 +58,8 @@ separated by a full stop.
 The automatically assigned reference code can be overwritten — the **reference
 code** field is an ordinary input field.
 
-!!! warning "Reference codes are not unique"
-    Anton does not enforce unique reference codes. If a reference code that has
+!!! note "Duplicate reference codes"
+    Anton points out duplicate reference codes but does not block them. If a reference code that has
     already been assigned is entered, a notice appears on saving with a
     reference to the affected records — but the record is saved nonetheless. The
     notice is deliberately non-blocking, because duplicates do occur in practice.

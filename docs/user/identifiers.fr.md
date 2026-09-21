@@ -58,8 +58,8 @@ Chaque niveau supplémentaire est séparé par un point.
 La cote attribuée automatiquement peut être remplacée — le champ **cote** est un
 champ de saisie ordinaire.
 
-!!! warning "Les cotes ne sont pas uniques"
-    Anton n'impose pas l'unicité des cotes. Si une cote déjà attribuée est
+!!! note "Cotes en double"
+    Anton signale les cotes en double sans les bloquer. Si une cote déjà attribuée est
     saisie, un avertissement apparaît lors de l'enregistrement, avec un renvoi
     aux notices concernées — l'enregistrement a néanmoins lieu. L'avertissement
     n'est délibérément pas bloquant, car les doublons existent dans la pratique.
