@@ -100,18 +100,18 @@ zurück (siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt
 Sinnvoll nur, wo diese Sicherung die Mediendateien enthält.
 
 ```
-MEDIA_REPAIR_BACKUP_ROOT=/pfad/zu/rsnapshot     # snapshot_root der lokalen Sicherung
+MEDIA_REPAIR_BACKUP_ROOT=/pfad/zur/einhaengung  # schreibgeschützte Einhängung der Stände
 # MEDIA_REPAIR_BACKUP_HOST=localhost            # Präfix der Sicherungspunkte (Vorgabe)
 # MEDIA_REPAIR_QUARANTINE=/pfad                  # Vorgabe: storage/app/quarantine
 # MEDIA_REPAIR_MAX=10                           # mehr Abweichungen in einem Lauf: nichts reparieren
 ```
 
-Die Anwendung darf die Sicherung nicht erreichen: `snapshot_root` gehört
-`root:root` mit Modus `0700`, und `media:repair` läuft aus der Crontab von root.
-Ist die Sicherung für Gruppe oder andere offen, verweigert der Befehl die
-Reparatur. Die wiederhergestellte Datei erhält Eigentümer, Gruppe und Modus der
-beschädigten; die Logdateien legt der Befehl vorab mit dem Eigentümer ihres
-Ordners an, damit der Lauf als root die Anwendung nicht aus ihnen aussperrt.
+Die Anwendung darf die Sicherung nur lesen. Bewährt hat sich: die Ebene über
+den Ständen für alle ausser root sperren (`0700`) und die Stände über eine
+zweite, **schreibgeschützte Bind-Einhängung** zugänglich machen, die nur die
+Gruppe des Anwendungsbenutzers erreicht. Ein Schreibversuch scheitert dort mit
+«Read-only file system». `media:repair` läuft als Anwendungsbenutzer und
+verweigert die Reparatur, wenn die Sicherung nicht lesbar oder beschreibbar ist.
 Ohne `MEDIA_REPAIR_BACKUP_ROOT` meldet der Befehl «keine lokale Sicherung
 eingerichtet» und tut nichts.
 

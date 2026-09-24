@@ -107,9 +107,9 @@ in eine Quarantäne kopiert; jeder Vorgang steht als Ereignis in der Historie de
 Datei.
 
 Anton ersetzt eine Datei nur durch eine, deren Inhalt nachweislich dem Original
-entspricht. Und die Anwendung selbst erreicht die Sicherung nicht: Nur root liest
-sie, `media:repair` läuft als root und verweigert die Reparatur, wenn die
-Sicherung für andere offen ist. Bei vielen Abweichungen
+entspricht. Und die Anwendung liest die Sicherung nur, über eine schreibgeschützte
+Einhängung; ist die Sicherung beschreibbar, verweigert `media:repair` die
+Reparatur. Bei vielen Abweichungen
 auf einmal repariert es nichts und schlägt Alarm, denn dann liegt die Ursache
 anderswo (Platte, Einhängung, Schadsoftware).
 
@@ -121,7 +121,7 @@ Langzeitarchiv.
 
 !!! note "Einrichtung durch den Betrieb"
     `media:repair` braucht eine lokale Sicherung, welche die Mediendateien
-    enthält, nur für root erreichbar ist und in der Konfiguration steht
+    enthält, für die Anwendung nur lesend eingehängt ist und in der Konfiguration steht
     (siehe [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung)).
     Wo das nicht eingerichtet ist, meldet der Befehl das und tut nichts.
 

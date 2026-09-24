@@ -100,18 +100,18 @@ that fail the integrity check back from a local rsnapshot backup (see
 useful where that backup contains the media files.
 
 ```
-MEDIA_REPAIR_BACKUP_ROOT=/path/to/rsnapshot     # snapshot_root of the local backup
+MEDIA_REPAIR_BACKUP_ROOT=/path/to/mount         # read-only mount of the backup versions
 # MEDIA_REPAIR_BACKUP_HOST=localhost            # prefix of the backup points (default)
 # MEDIA_REPAIR_QUARANTINE=/path                  # default: storage/app/quarantine
 # MEDIA_REPAIR_MAX=10                           # more deviations in one run: repair nothing
 ```
 
-The application must not reach the backup: `snapshot_root` belongs to
-`root:root` with mode `0700`, and `media:repair` runs from root's crontab. If
-the backup is open to group or others, the command refuses to repair. The
-restored file gets owner, group and mode of the damaged one; the command creates
-the log files beforehand, owned like their folder, so the root run does not lock
-the application out of them. Without `MEDIA_REPAIR_BACKUP_ROOT` the command
+The application may only read the backup. What works: close the level above
+the versions to everyone but root (`0700`) and make the versions reachable
+through a second, **read-only bind mount** that only the application user's
+group can reach. A write attempt there fails with «Read-only file system».
+`media:repair` runs as the application user and refuses to repair if the backup
+is not readable or is writable. Without `MEDIA_REPAIR_BACKUP_ROOT` the command
 reports «no local backup set up» and does nothing.
 
 ## Creating the MySQL database
