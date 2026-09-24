@@ -18,7 +18,12 @@ php artisan anton:command --env=besenval
 
 Anton-Befehle geben auf `stdout` nur etwas aus, wenn die Ausführlichkeit erhöht
 wird: `-v` zeigt `info`-Meldungen, `-vv` zusätzlich `debug`-Meldungen. Ohne
-Flag laufen sie still.
+Flag laufen sie still. Fehler und Warnungen gehen immer auf `stderr`
+([ottosmops/consoleoutput](https://github.com/ottosmops/consoleoutput)).
+
+Für einen Cronjob heisst das: keine Ausgabe und Rückgabewert 0 ist der
+Normalfall, nicht ein ausgebliebener Lauf. Wer einen Beleg im Protokoll
+braucht, ruft mit `-v` auf.
 
 !!! warning "Vor schreibenden Befehlen sichern"
     Befehle, die in die Datenbank schreiben — Reparaturen, Merges, Reset —

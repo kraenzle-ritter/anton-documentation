@@ -17,7 +17,12 @@ php artisan anton:command --env=besenval
 
 Anton commands only output something on `stdout` when the verbosity is
 increased: `-v` shows `info` messages, `-vv` additionally `debug` messages.
-Without a flag they run silently.
+Without a flag they run silently. Errors and warnings always go to `stderr`
+([ottosmops/consoleoutput](https://github.com/ottosmops/consoleoutput)).
+
+For a cron job this means: no output and exit code 0 is the normal case, not a
+run that did not happen. If you need evidence in the log, call the command
+with `-v`.
 
 !!! warning "Back up before writing commands"
     Commands that write to the database — repairs, merges, reset — should never
