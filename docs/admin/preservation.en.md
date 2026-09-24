@@ -107,8 +107,9 @@ matches the stored reference. The damaged version is not deleted but copied to a
 quarantine; every step is recorded as an event in the file's history.
 
 Anton only replaces a file with one whose content provably equals the original.
-And it only reads from the backup: if the backup is writable for the
-application, `media:repair` refuses to repair. With many deviations at once it
+And the application itself does not reach the backup: only root reads it,
+`media:repair` runs as root and refuses to repair if the backup is open to
+others. With many deviations at once it
 repairs nothing and raises an alarm, because the cause then lies elsewhere
 (disk, mount, malware).
 
@@ -119,7 +120,7 @@ Tenants with DIMAG are excluded: there the master lies in the long-term archive.
 
 !!! note "Set up by operations"
     `media:repair` needs a local backup that contains the media files, is
-    mounted read-only and is configured (see
+    reachable for root only and is configured (see
     [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung)).
     Where that is not set up, the command says so and does nothing.
 

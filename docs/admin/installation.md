@@ -100,16 +100,20 @@ zurück (siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt
 Sinnvoll nur, wo diese Sicherung die Mediendateien enthält.
 
 ```
-MEDIA_REPAIR_BACKUP_ROOT=/mnt/anton-backup-ro   # snapshot_root, schreibgeschützt eingehängt
+MEDIA_REPAIR_BACKUP_ROOT=/pfad/zu/rsnapshot     # snapshot_root der lokalen Sicherung
 # MEDIA_REPAIR_BACKUP_HOST=localhost            # Präfix der Sicherungspunkte (Vorgabe)
 # MEDIA_REPAIR_QUARANTINE=/pfad                  # Vorgabe: storage/app/quarantine
 # MEDIA_REPAIR_MAX=10                           # mehr Abweichungen in einem Lauf: nichts reparieren
 ```
 
-Die Sicherung muss für den Benutzer, unter dem Anton läuft, **schreibgeschützt**
-sein, am besten über eine schreibgeschützte Bind-Einhängung. Ist sie beschreibbar,
-verweigert `media:repair` die Reparatur. Ohne `MEDIA_REPAIR_BACKUP_ROOT` meldet der
-Befehl «keine lokale Sicherung eingerichtet» und tut nichts.
+Die Anwendung darf die Sicherung nicht erreichen: `snapshot_root` gehört
+`root:root` mit Modus `0700`, und `media:repair` läuft aus der Crontab von root.
+Ist die Sicherung für Gruppe oder andere offen, verweigert der Befehl die
+Reparatur. Die wiederhergestellte Datei erhält Eigentümer, Gruppe und Modus der
+beschädigten; die Logdateien legt der Befehl vorab mit dem Eigentümer ihres
+Ordners an, damit der Lauf als root die Anwendung nicht aus ihnen aussperrt.
+Ohne `MEDIA_REPAIR_BACKUP_ROOT` meldet der Befehl «keine lokale Sicherung
+eingerichtet» und tut nichts.
 
 ## Mysql-Datenbank erstellen
 

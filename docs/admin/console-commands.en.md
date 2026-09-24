@@ -106,7 +106,8 @@ php artisan media:repair --env=besenval --dry-run
 ```
 
 Exit 0: nothing to do or all repaired; 1: not repairable or threshold exceeded
-(then nothing was repaired); 2: backup missing, empty or writable. Setup see
+(then nothing was repaired); 2: backup missing, empty or reachable for the
+application. Runs from root's crontab. Setup see
 [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung),
 procedure see [long-term preservation](preservation.md#wenn-die-prufung-anschlagt).
 

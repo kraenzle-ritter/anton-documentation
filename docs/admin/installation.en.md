@@ -100,16 +100,19 @@ that fail the integrity check back from a local rsnapshot backup (see
 useful where that backup contains the media files.
 
 ```
-MEDIA_REPAIR_BACKUP_ROOT=/mnt/anton-backup-ro   # snapshot_root, mounted read-only
+MEDIA_REPAIR_BACKUP_ROOT=/path/to/rsnapshot     # snapshot_root of the local backup
 # MEDIA_REPAIR_BACKUP_HOST=localhost            # prefix of the backup points (default)
 # MEDIA_REPAIR_QUARANTINE=/path                  # default: storage/app/quarantine
 # MEDIA_REPAIR_MAX=10                           # more deviations in one run: repair nothing
 ```
 
-The backup must be **read-only** for the user Anton runs as, ideally through a
-read-only bind mount. If it is writable, `media:repair` refuses to repair.
-Without `MEDIA_REPAIR_BACKUP_ROOT` the command reports «no local backup set up»
-and does nothing.
+The application must not reach the backup: `snapshot_root` belongs to
+`root:root` with mode `0700`, and `media:repair` runs from root's crontab. If
+the backup is open to group or others, the command refuses to repair. The
+restored file gets owner, group and mode of the damaged one; the command creates
+the log files beforehand, owned like their folder, so the root run does not lock
+the application out of them. Without `MEDIA_REPAIR_BACKUP_ROOT` the command
+reports «no local backup set up» and does nothing.
 
 ## Creating the MySQL database
 

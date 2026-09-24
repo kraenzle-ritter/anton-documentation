@@ -109,7 +109,7 @@ php artisan media:repair --env=besenval --dry-run
 
 Exit 0: nichts zu tun oder alles repariert; 1: nicht reparierbar oder Schwelle
 überschritten (dann wurde nichts repariert); 2: Sicherung fehlt, ist leer oder
-beschreibbar. Einrichtung siehe
+für die Anwendung erreichbar. Läuft aus der Crontab von root. Einrichtung siehe
 [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung), Ablauf
 siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt).
 
