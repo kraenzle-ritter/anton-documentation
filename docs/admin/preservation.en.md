@@ -82,7 +82,7 @@ Two commands check the holdings against the stored checksums:
 | Command | What it does |
 |---|---|
 | [`media:check --levels=4`](console-commands.md#mediacheck) | Reads every file afresh, calculates the checksum anew (SHA-512 where available, MD5 otherwise) and compares it with the database. With `--log-integrity-check`, every check is logged as an event — producing a demonstrable history. A missing file is a finding; the check carries on. |
-| [`media:snapshot --verify --git`](console-commands.md#mediasnapshot) | Writes a checksum snapshot of all media, compares it against the database and commits changes to a local Git repository. This makes it traceable what has changed between two runs. |
+| [`media:snapshot --oldest=N --git`](console-commands.md#mediasnapshot) | Writes the reference checksums of all media into lists (SHA-512 and MD5) and commits them to a local Git repository — traceable when a reference changed. In the same pass it checks the N files checked longest ago (or all with `--verify`) and logs every check. |
 
 !!! note "Operations set the schedule"
     How often the check runs is determined by a cron job per installation. This

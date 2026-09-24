@@ -79,14 +79,32 @@ php artisan media:check --levels=1,5,6 --env=besenval -vv
 ```
 
 Level 4 verifies the **checksum** of every file against the database (SHA-512
-where available, MD5 otherwise) — the actual fixity check. On DIMAG installations it is skipped (the masters are held
+where available, MD5 otherwise) — the actual fixity check, with the same logic
+as `media:snapshot --verify`. On DIMAG installations it is skipped (the masters are held
 there). For details see [Inge and DIMAG](inge.md) and
 [long-term preservation](preservation.md#integritat-prufen).
 
-**`media:snapshot --verify --git`**{#mediasnapshot} writes a checksum snapshot
-of all media and commits changes to a local Git repository — the basis of a
-recurring integrity check. Anton does not run it by itself; it is set up per
-installation as a cron job.
+**`media:snapshot`**{#mediasnapshot} combines two jobs in one pass:
+
+- **Lists of the reference checksums** of all media from the database, without
+  reading a file: `<date>.sha512` and `<date>.md5`, checkable with
+  `sha512sum -c` or `md5sum -c`. With `--git` they go into a local Git
+  repository; its history shows when a reference changed. A switch from MD5 to
+  SHA-512 appears as `UPGRADED`, not `CHANGED`.
+- **Checking the files** against their reference, like `media:check --levels=4`:
+  all with `--verify`, or with `--oldest=N` the N checked longest ago — so a
+  nightly run walks through the whole holding over time. Every check is an
+  event [`media:repair`](#mediarepair) builds on; findings go to
+  `logs/findings_<date>.txt`, and the command then exits with 1.
+
+```bash
+php artisan media:snapshot --env=besenval --oldest=2000 --git
+```
+
+Every run leaves a line in `logs/runs.log`, even when nothing changed. A medium
+without a reference checksum is reported, not given one from today's file.
+Anton does not run the command by itself; it is set up per installation as a
+cron job.
 
 **`media:checksum`**{#mediachecksum} computes SHA-512 for media that have none
 yet (uploaded before version 0.98). Every file is read once and first checked
@@ -362,7 +380,7 @@ up to date with every change to the commands.
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
-| `media:snapshot` | Creates a Snapshot of media files with integrity-check and a git-commit if something has changed |
+| `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 
 ### notification: (3)

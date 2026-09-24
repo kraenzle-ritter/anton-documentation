@@ -80,13 +80,31 @@ php artisan media:check --levels=1,5,6 --env=besenval -vv
 ```
 
 Ebene 4 verifiziert die **Prüfsumme** jeder Datei gegen die Datenbank (SHA-512, wo
-vorhanden, sonst MD5) — die eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
+vorhanden, sonst MD5) — die eigentliche Fixity-Prüfung, mit derselben Logik wie
+`media:snapshot --verify`. Auf DIMAG-Installationen wird sie übersprungen
 (die Master liegen dort). Details siehe [Inge und DIMAG](inge.md) und
 [Langzeitarchivierung](preservation.md#integritat-prufen).
 
-**`media:snapshot --verify --git`**{#mediasnapshot} schreibt einen Prüfsummen-Schnappschuss
-aller Medien und committet Änderungen in ein lokales Git-Repository — die
-Grundlage einer wiederkehrenden Integritätsprüfung. Anton führt ihn nicht von
+**`media:snapshot`**{#mediasnapshot} vereint zwei Aufgaben in einem Durchgang:
+
+- **Listen der Referenzwerte** aller Medien aus der Datenbank, ohne eine Datei zu
+  lesen: `<datum>.sha512` und `<datum>.md5`, prüfbar mit `sha512sum -c` bzw.
+  `md5sum -c`. Mit `--git` landen sie in einem lokalen Git-Repository; dessen
+  Historie zeigt, wann sich ein Referenzwert geändert hat. Der Wechsel von MD5
+  auf SHA-512 heisst dort `UPGRADED`, nicht `CHANGED`.
+- **Prüfung der Dateien** gegen ihre Referenz, wie `media:check --levels=4`:
+  alle mit `--verify`, oder mit `--oldest=N` die N am längsten nicht geprüften —
+  so wandert ein nächtlicher Lauf mit der Zeit durch den ganzen Bestand. Jede
+  Prüfung ist ein Ereignis, auf dem [`media:repair`](#mediarepair) aufbaut;
+  Befunde stehen in `logs/findings_<datum>.txt`, der Befehl endet dann mit 1.
+
+```bash
+php artisan media:snapshot --env=besenval --oldest=2000 --git
+```
+
+Jeder Lauf hinterlässt eine Zeile in `logs/runs.log`, auch wenn sich nichts
+geändert hat. Ein Medium ohne Referenzprüfsumme wird gemeldet, nicht mit einer
+Prüfsumme aus der heutigen Datei versehen. Anton führt den Befehl nicht von
 selbst aus; er wird pro Installation als Cronjob eingerichtet.
 
 **`media:checksum`**{#mediachecksum} rechnet SHA-512 für Medien nach, die noch
@@ -362,7 +380,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
-| `media:snapshot` | Creates a Snapshot of media files with integrity-check and a git-commit if something has changed |
+| `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 
 ### notification: (3)

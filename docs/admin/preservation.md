@@ -81,7 +81,7 @@ Zwei Befehle prüfen den Bestand gegen die gespeicherten Prüfsummen:
 | Befehl | Was er tut |
 |---|---|
 | [`media:check --levels=4`](console-commands.md#mediacheck) | Liest jede Datei neu, berechnet die Prüfsumme frisch (SHA-512, wo vorhanden, sonst MD5) und vergleicht sie mit der Datenbank. Mit `--log-integrity-check` wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie. Eine fehlende Datei ist ein Befund, die Prüfung läuft weiter. |
-| [`media:snapshot --verify --git`](console-commands.md#mediasnapshot) | Schreibt einen Prüfsummen-Schnappschuss aller Medien, vergleicht ihn gegen die Datenbank und committet Änderungen in ein lokales Git-Repository. Damit ist nachvollziehbar, was sich zwischen zwei Läufen verändert hat. |
+| [`media:snapshot --oldest=N --git`](console-commands.md#mediasnapshot) | Schreibt die Referenzwerte aller Medien in Listen (SHA-512 und MD5) und committet sie in ein lokales Git-Repository — nachvollziehbar, wann sich ein Referenzwert geändert hat. Prüft im selben Durchgang die N am längsten nicht geprüften Dateien (oder mit `--verify` alle) und protokolliert jede Prüfung. |
 
 !!! note "Den Rhythmus legt der Betrieb fest"
     Wie oft die Prüfung läuft, bestimmt ein Cronjob pro Installation. So lässt
