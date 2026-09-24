@@ -1,5 +1,29 @@
 # Anmeldung
 
+## Passwörter
+
+Ein neues Passwort muss, egal auf welchem Weg es gesetzt wird (Profil,
+Benutzerverwaltung, «Passwort vergessen», `anton:add-user`, `anton:upwd`):
+
+- mindestens **8 Zeichen** lang sein,
+- höchstens **72 Bytes** lang sein; Umlaute zählen doppelt, länger kann das
+  Verfahren nicht speichern,
+- mehr enthalten als Wörter, die zu Anton oder zum Archiv gehören: «Archiv2026!»,
+  «Anton-Ritter» und Name oder Kürzel des Archivs werden abgewiesen,
+- nicht aus einem **Datenleck** bekannt sein.
+
+Die letzte Prüfung fragt bei *Have I Been Pwned* an. Dabei verlassen nur die
+ersten fünf Zeichen des Hashs die Maschine, nie das Passwort. Ist der Dienst
+nicht erreichbar, wird das Passwort angenommen. Installationen ohne
+Internetzugang schalten die Prüfung in der `.env`-Datei ab:
+
+```
+PASSWORD_CHECK_BREACHED=false
+```
+
+Bestehende Passwörter bleiben gültig. Die Regel greift erst beim nächsten
+Wechsel.
+
 ## Zwei-Faktor-Authentifizierung
 
 ### Aktivieren
@@ -23,6 +47,10 @@ user_intern, loan_admin, editor und admin — vier Rollen. Ein leerer Wert oder
     Rolle, die sie dann einrichten müsste, könnte es nicht, und die Anmeldung
     liefe im Kreis. Anton verlangt sie darum nicht, wo sie sich nicht einrichten
     lässt.
+
+Ein Code gilt bis zu 90 Sekunden: der laufende 30-Sekunden-Schritt und je
+einer davor und danach, damit ein Handy mit leicht falsch gehender Uhr nicht
+scheitert.
 
 ### 2FA für eine Person zurücksetzen
 
