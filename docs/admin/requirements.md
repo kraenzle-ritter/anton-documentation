@@ -59,11 +59,10 @@ Verarbeitungsschritte fehl — meist still. Der Reiter **Binaries** im
 |---|---|
 | [ImageMagick](https://imagemagick.org/) (`convert`, `identify`) | Bildkonversionen und Vorschaubilder |
 | [Ghostscript](https://www.ghostscript.com/) (`gs`) | PDF-Zugriffskopien |
-| [poppler-utils](https://poppler.freedesktop.org/) (`pdftotext`, `pdftoppm`) | PDF-Volltext und Seitenvorschau |
-| [ffmpeg](https://www.ffmpeg.org/) | Video- und Audiokonversionen, technische Metadaten |
+| [poppler-utils](https://poppler.freedesktop.org/) (`pdftotext`, `pdftoppm`, `pdfinfo`) | PDF-Volltext, Seitenvorschau und Seitenzahl |
+| [ffmpeg](https://www.ffmpeg.org/) (`ffmpeg`, `ffprobe`) | Video- und Audiokonversionen, technische Metadaten |
 | [Tesseract](https://github.com/tesseract-ocr/tesseract) | Texterkennung (OCR) |
-| [OCRmyPDF](https://ocrmypdf.readthedocs.io/) | OCR-Textebene in PDFs |
-| [qpdf](https://qpdf.sourceforge.io/) | PDF-Verarbeitung |
+| [Siegfried](https://www.itforarchivists.com/siegfried) (`sf`) | Formaterkennung über PRONOM und damit die Risikobewertung im [Preservation Planning](preservation-planning.md). Fehlt es, gelingt der Upload trotzdem — nur bleibt die PRONOM-ID leer, ohne dass es jemand merkt. |
 | [img2pdf](https://gitlab.mister-muffin.de/josch/img2pdf) | Bilder zu PDF zusammenfassen |
 | `mysql`, `mysqldump` | Sicherungen und Wiederherstellung |
 | `unzip` | SIP-Pakete und Importe entpacken |
@@ -76,7 +75,8 @@ eine bestimmte Funktion — Anton läuft weiter.
 
 | Software | Ohne sie fehlt |
 |---|---|
-| [Siegfried](https://www.itforarchivists.com/siegfried) (`sf`) | Die Formaterkennung über PRONOM — und damit die Risikobewertung im [Preservation Planning](preservation-planning.md). Ohne Siegfried bleibt die PRONOM-ID leer. |
+| [OCRmyPDF](https://ocrmypdf.readthedocs.io/) | Die OCR-Textebene in PDFs und Bildern |
+| [qpdf](https://qpdf.sourceforge.io/) | Die schnelle PDF-Prüfung; ohne qpdf prüft Anton über `pdftocairo`, langsamer |
 | [Fido](https://github.com/openpreserve/fido) | Alternative zur Formaterkennung; Anton nutzt, was vorhanden ist |
 | [Typesense](https://typesense.org/) | Die [schnelle Suche](typesense.md) und die Galerie V2. Die klassische Volltextsuche und Galerie funktionieren ohne. |
 

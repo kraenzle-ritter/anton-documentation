@@ -92,6 +92,25 @@ GEONAMES_USERNAME
 ```
 
 
+#### Selbstreparatur aus der lokalen Sicherung
+
+Optional. [`media:repair`](console-commands.md#mediarepair) holt Mediendateien,
+deren Integritätsprüfung fehlschlägt, aus einer lokalen rsnapshot-Sicherung
+zurück (siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt)).
+Sinnvoll nur, wo diese Sicherung die Mediendateien enthält.
+
+```
+MEDIA_REPAIR_BACKUP_ROOT=/mnt/anton-backup-ro   # snapshot_root, schreibgeschützt eingehängt
+# MEDIA_REPAIR_BACKUP_HOST=localhost            # Präfix der Sicherungspunkte (Vorgabe)
+# MEDIA_REPAIR_QUARANTINE=/pfad                  # Vorgabe: storage/app/quarantine
+# MEDIA_REPAIR_MAX=10                           # mehr Abweichungen in einem Lauf: nichts reparieren
+```
+
+Die Sicherung muss für den Benutzer, unter dem Anton läuft, **schreibgeschützt**
+sein, am besten über eine schreibgeschützte Bind-Einhängung. Ist sie beschreibbar,
+verweigert `media:repair` die Reparatur. Ohne `MEDIA_REPAIR_BACKUP_ROOT` meldet der
+Befehl «keine lokale Sicherung eingerichtet» und tut nichts.
+
 ## Mysql-Datenbank erstellen
 
 Als root anmelden:

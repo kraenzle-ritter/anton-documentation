@@ -41,12 +41,13 @@ The standard produces a **BagIt bag** (ZIP):
     │   └── meta/
     │       ├── <file>.xml           ← Dublin Core per medium
     │       └── <full_id>.docx       ← Word finding aid (cf. download-word)
+    ├── manifest-sha512.txt          ← SHA-512 checksums of all files
     ├── manifest-md5.txt             ← MD5 checksums of all files
     ├── bagit.txt
     └── bag-info.txt                 ← repository details, external identifier
 ```
 
-- Checksums: **MD5** (the BagIt default SHA-512 has deliberately been removed).
+- Checksums: **SHA-512**, as BagIt recommends, and **MD5** beside it for recipients that only check that.
 - `bag-info.txt` draws `repository_name`, `repository_address` and
   `repository_email` from the settings.
 - Files are named after the reference code, folders after the object title.

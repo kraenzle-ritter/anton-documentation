@@ -16,10 +16,10 @@ die fachlichen ab, der Betrieb die Speicherung:
 | Aufgabe | Anton | Betrieb | Angebundenes Langzeitarchiv |
 |---|---|---|---|
 | Prüfsummen bei der Übernahme | prüft jede Datei eines SIP gegen das Paket | | |
-| Prüfsumme pro Datei | berechnet beim Upload MD5 und legt sie ab | | |
+| Prüfsumme pro Datei | berechnet beim Upload MD5 und SHA-512 und legt sie ab | | |
 | Formaterkennung und Risiko | PRONOM-ID, NARA-Bewertung, [Preservation Planning](preservation-planning.md) | stellt Siegfried bzw. Fido bereit | |
 | Master und Zugriffskopien | bewahrt den Master unverändert, erzeugt `web` und `thumb` | | |
-| Integritätsprüfung | bringt `media:check` und `media:snapshot` mit, protokolliert die Prüfungen | legt den Rhythmus als Cronjob fest | übernimmt die Fixity der Master |
+| Integritätsprüfung | bringt `media:check`, `media:snapshot` und `media:repair` mit, protokolliert die Prüfungen | legt den Rhythmus als Cronjob fest, richtet die Sicherung für `media:repair` ein | übernimmt die Fixity der Master |
 | Redundante Speicherung | | Kopien an mehreren Standorten | Bitstream-Sicherung |
 | Formatentscheide | zeigt Formate mit Handlungsbedarf | | |
 
@@ -39,9 +39,14 @@ bereits eingespielte Pakete ab.
 
 ### Speicherung
 
-Für jede Mediendatei berechnet Anton beim Upload eine **MD5-Prüfsumme** und legt
-sie in der Datenbank ab. Der **Master bleibt unverändert**; die Ableitungen
-(`web`, `thumb`) sind Zugriffskopien.
+Für jede Mediendatei berechnet Anton beim Upload eine **MD5-** und eine
+**SHA-512-Prüfsumme** in einem Lesedurchgang und legt beide in der Datenbank ab.
+SHA-512 ist der Referenzwert für die Integritätsprüfung, wie ihn OCFL und BagIt
+empfehlen; MD5 bleibt für die Anbindung an DIMAG und für das Erkennen doppelter
+Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
+[`media:checksum`](console-commands.md#mediachecksum) SHA-512 nach — und prüft
+dabei jede Datei gegen ihre MD5. Der **Master bleibt unverändert**; die
+Ableitungen (`web`, `thumb`) sind Zugriffskopien.
 
 ### Formaterkennung und Risiko
 
@@ -53,8 +58,10 @@ hält die **PRONOM-ID** fest; daraus leitet es die Risikobewertung nach dem
 
 !!! note "Siegfried oder Fido auf dem Server"
     Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert
-    sind. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig die
-    Erkennung im Bestand ist.
+    sind. Fehlt das Programm, gelingt der Upload trotzdem, nur bleibt die
+    Erkennung leer. [`anton:doctor`](doctor.md) meldet ein fehlendes `sf` darum
+    als Fehler. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig
+    die Erkennung im Bestand ist.
 
 ### Formatentscheide
 
@@ -73,7 +80,7 @@ Zwei Befehle prüfen den Bestand gegen die gespeicherten Prüfsummen:
 
 | Befehl | Was er tut |
 |---|---|
-| [`media:check --levels=4`](console-commands.md#mediacheck) | Liest jede Datei neu, berechnet die MD5 frisch und vergleicht sie mit der Datenbank. Mit `--log-integrity-check` wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie. |
+| [`media:check --levels=4`](console-commands.md#mediacheck) | Liest jede Datei neu, berechnet die Prüfsumme frisch (SHA-512, wo vorhanden, sonst MD5) und vergleicht sie mit der Datenbank. Mit `--log-integrity-check` wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie. Eine fehlende Datei ist ein Befund, die Prüfung läuft weiter. |
 | [`media:snapshot --verify --git`](console-commands.md#mediasnapshot) | Schreibt einen Prüfsummen-Schnappschuss aller Medien, vergleicht ihn gegen die Datenbank und committet Änderungen in ein lokales Git-Repository. Damit ist nachvollziehbar, was sich zwischen zwei Läufen verändert hat. |
 
 !!! note "Den Rhythmus legt der Betrieb fest"
@@ -91,11 +98,31 @@ ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle ob
 
 ### Wenn die Prüfung anschlägt
 
-Weicht eine Datei von ihrer Prüfsumme ab, holen wir sie bei **Anton as a
-Service** von Hand aus einer Sicherungskopie zurück. Dafür liegen mehrere Stände
-bereit: tägliche Sicherungen der letzten 31 Tage, monatliche der letzten 12 Monate
-sowie jährliche. Die wiederhergestellte Datei lässt sich mit `media:check` erneut
-gegen die gespeicherte Prüfsumme prüfen.
+Weicht eine Datei von ihrer Prüfsumme ab, holt
+[`media:repair`](console-commands.md#mediarepair) sie aus der **lokalen Sicherung**
+zurück: Es geht die Stände vom neuesten zum ältesten durch (täglich, monatlich,
+jährlich) und nimmt den ersten, dessen Prüfsumme mit dem gespeicherten
+Referenzwert übereinstimmt. Die beschädigte Fassung wird nicht gelöscht, sondern
+in eine Quarantäne kopiert; jeder Vorgang steht als Ereignis in der Historie der
+Datei.
+
+Anton ersetzt eine Datei nur durch eine, deren Inhalt nachweislich dem Original
+entspricht. Und es liest aus der Sicherung nur: Ist sie für die Anwendung
+beschreibbar, verweigert `media:repair` die Reparatur. Bei vielen Abweichungen
+auf einmal repariert es nichts und schlägt Alarm, denn dann liegt die Ursache
+anderswo (Platte, Einhängung, Schadsoftware).
+
+Findet sich lokal kein passender Stand — etwa weil die Datei jünger ist als die
+Sicherung —, holen wir sie bei **Anton as a Service** von Hand von einem der
+externen Backupserver zurück. Die Meldung von `media:repair` nennt dafür alles
+Nötige. Mandanten mit DIMAG sind ausgenommen: Dort liegt der Master im
+Langzeitarchiv.
+
+!!! note "Einrichtung durch den Betrieb"
+    `media:repair` braucht eine lokale Sicherung, welche die Mediendateien
+    enthält, schreibgeschützt eingehängt ist und in der Konfiguration steht
+    (siehe [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung)).
+    Wo das nicht eingerichtet ist, meldet der Befehl das und tut nichts.
 
 ## Redundante Speicherung
 

@@ -74,8 +74,8 @@ php artisan media:check --levels=1,5,6 --env=besenval -vv
     --delete-from-inge      Löscht Waisen aus Inge/DIMAG (Ebene 6)
 ```
 
-Ebene 4 verifiziert die **MD5-Prüfsumme** jeder Datei gegen die Datenbank — die
-eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
+Ebene 4 verifiziert die **Prüfsumme** jeder Datei gegen die Datenbank (SHA-512, wo
+vorhanden, sonst MD5) — die eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
 (die Master liegen dort). Details siehe [Inge und DIMAG](inge.md) und
 [Langzeitarchivierung](preservation.md#integritat-prufen).
 
@@ -83,6 +83,35 @@ eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
 aller Medien und committet Änderungen in ein lokales Git-Repository — die
 Grundlage einer wiederkehrenden Integritätsprüfung. Anton führt ihn nicht von
 selbst aus; er wird pro Installation als Cronjob eingerichtet.
+
+**`media:checksum`**{#mediachecksum} rechnet SHA-512 für Medien nach, die noch
+keine haben (vor Version 0.98 hochgeladen). Jede Datei wird einmal gelesen und
+zuerst gegen ihre gespeicherte MD5 geprüft: Weicht sie ab, ist das ein
+Integritätsbefund, und aus der Datei wird keine SHA-512 gespeichert. Nur lokal
+liegende Master; ein abgebrochener Lauf macht beim nächsten Aufruf weiter.
+`--dry-run` vergleicht nur, `--limit` und `--ids` grenzen ein.
+
+**`media:repair`**{#mediarepair} holt Medien, deren Integritätsprüfung
+fehlschlug, aus der lokalen Sicherung zurück: der erste Stand, dessen Prüfsumme
+dem Referenzwert entspricht, ersetzt die Datei; die beschädigte Fassung kommt in
+die Quarantäne.
+
+```bash
+php artisan media:repair --env=besenval --dry-run
+```
+
+```
+    --from=     Sicherungswurzel (Vorgabe: MEDIA_REPAIR_BACKUP_ROOT)
+    --dry-run   Nur berichten
+    --max=      Bei mehr Befunden nichts reparieren (Vorgabe 10)
+    --ids=      Nur diese Medien
+```
+
+Exit 0: nichts zu tun oder alles repariert; 1: nicht reparierbar oder Schwelle
+überschritten (dann wurde nichts repariert); 2: Sicherung fehlt, ist leer oder
+beschreibbar. Einrichtung siehe
+[Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung), Ablauf
+siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt).
 
 **`media:identify`**{#mediaidentify} bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
@@ -312,18 +341,20 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (12)
+### media: (14)
 
 | Befehl | Beschreibung |
 |---|---|
 | `media:add` | Add a media file to an AntonObject |
 | `media:check` | Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from … |
+| `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
 | `media:delete-master` | Delete Masterfiles from local media directory (eg. if the masters are in a repository) |
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:rename` | Rename media to original name or vice versa |
+| `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Creates a Snapshot of media files with integrity-check and a git-commit if something has changed |

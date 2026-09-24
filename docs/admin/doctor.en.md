@@ -35,9 +35,12 @@ collisions among siblings, duplicate reference codes.
 directories are readable and writable.
 
 **Binaries** checks whether the external programs Anton depends on are present —
-ImageMagick, Ghostscript, ffmpeg and others. If one is missing, the
-corresponding conversions fail silently. When format identification is missing,
-this is the first place to look.
+ImageMagick, Ghostscript, ffmpeg and others, including the programs that run
+when a medium is added: `sf` (Siegfried), `ffprobe` and `pdfinfo`. If one is
+missing, the corresponding steps fail silently. For Siegfried, the program and
+signature version are shown as well; an outdated signature file identifies less
+without failing. `qpdf` and `ocrmypdf` are optional and only appear as a
+warning. When format identification is missing, this is the first place to look.
 
 **Disk** shows the disk usage.
 

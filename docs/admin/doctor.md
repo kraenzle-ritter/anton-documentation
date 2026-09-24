@@ -36,9 +36,13 @@ Positionskollisionen unter Geschwistern, doppelte Signaturen.
 Kundenverzeichnisse les- und schreibbar sind.
 
 **Binaries** prüft, ob die externen Programme vorhanden sind, auf die Anton
-angewiesen ist — ImageMagick, Ghostscript, ffmpeg und weitere. Fehlt eines,
-schlagen die zugehörigen Konversionen still fehl. Bei fehlender
-Formaterkennung lohnt hier der erste Blick.
+angewiesen ist — ImageMagick, Ghostscript, ffmpeg und weitere, darunter die
+Programme, die beim Hinzufügen eines Mediums laufen: `sf` (Siegfried), `ffprobe`
+und `pdfinfo`. Fehlt eines, schlagen die zugehörigen Schritte still fehl. Für
+Siegfried steht die Programm- und Signaturfassung dabei; eine veraltete
+Signaturdatei erkennt weniger, ohne zu scheitern. `qpdf` und `ocrmypdf` sind
+optional und erscheinen nur als Warnung. Bei fehlender Formaterkennung lohnt
+hier der erste Blick.
 
 **Disk** zeigt die Plattenbelegung.
 

@@ -92,6 +92,25 @@ GEONAMES_USERNAME
 ```
 
 
+#### Self-repair from the local backup {#selbstreparatur-aus-der-lokalen-sicherung}
+
+Optional. [`media:repair`](console-commands.md#mediarepair) brings media files
+that fail the integrity check back from a local rsnapshot backup (see
+[long-term preservation](preservation.md#wenn-die-prufung-anschlagt)). Only
+useful where that backup contains the media files.
+
+```
+MEDIA_REPAIR_BACKUP_ROOT=/mnt/anton-backup-ro   # snapshot_root, mounted read-only
+# MEDIA_REPAIR_BACKUP_HOST=localhost            # prefix of the backup points (default)
+# MEDIA_REPAIR_QUARANTINE=/path                  # default: storage/app/quarantine
+# MEDIA_REPAIR_MAX=10                           # more deviations in one run: repair nothing
+```
+
+The backup must be **read-only** for the user Anton runs as, ideally through a
+read-only bind mount. If it is writable, `media:repair` refuses to repair.
+Without `MEDIA_REPAIR_BACKUP_ROOT` the command reports «no local backup set up»
+and does nothing.
+
 ## Creating the MySQL database
 
 Log in as root:

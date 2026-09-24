@@ -16,10 +16,10 @@ ones, operations cover storage:
 | Task | Anton | Operations | Connected long-term archive |
 |---|---|---|---|
 | Checksums on transfer | verifies every file of a SIP against the package | | |
-| Checksum per file | calculates MD5 on upload and stores it | | |
+| Checksum per file | calculates MD5 and SHA-512 on upload and stores them | | |
 | Format identification and risk | PRONOM ID, NARA assessment, [preservation planning](preservation-planning.md) | provides Siegfried or Fido | |
 | Master and access copies | keeps the master unchanged, produces `web` and `thumb` | | |
-| Integrity check | provides `media:check` and `media:snapshot`, logs the checks | sets the schedule as a cron job | takes over fixity of the masters |
+| Integrity check | provides `media:check`, `media:snapshot` and `media:repair`, logs the checks | sets the schedule as a cron job, sets up the backup for `media:repair` | takes over fixity of the masters |
 | Redundant storage | | copies at several locations | bitstream preservation |
 | Format decisions | shows formats that need action | | |
 
@@ -39,9 +39,14 @@ rejects packages that have already been loaded.
 
 ### Storage {#speicherung}
 
-For every media file, Anton calculates an **MD5 checksum** on upload and stores
-it in the database. The **master remains unchanged**; the derivatives (`web`,
-`thumb`) are access copies.
+For every media file, Anton calculates an **MD5** and a **SHA-512 checksum** in
+a single read on upload and stores both in the database. SHA-512 is the
+reference for the integrity check, as OCFL and BagIt recommend; MD5 stays for
+the DIMAG connection and for recognising duplicate imports. For media from
+before version 0.98, [`media:checksum`](console-commands.md#mediachecksum)
+computes SHA-512 afterwards — checking every file against its MD5 as it goes.
+The **master remains unchanged**; the derivatives (`web`, `thumb`) are access
+copies.
 
 ### Format identification and risk {#formaterkennung-und-risiko}
 
@@ -53,8 +58,10 @@ supplied retrospectively with
 [preservation planning](preservation-planning.md).
 
 !!! note "Siegfried or Fido on the server"
-    Identification uses Siegfried or Fido installed on the server. The
-    «unidentified media» tab shows how complete the identification of the
+    Identification uses Siegfried or Fido installed on the server. If the
+    program is missing, uploads still succeed, only identification stays empty;
+    [`anton:doctor`](doctor.md) therefore reports a missing `sf` as an error.
+    The «unidentified media» tab shows how complete the identification of the
     holdings is.
 
 ### Format decisions {#formatentscheide}
@@ -74,7 +81,7 @@ Two commands check the holdings against the stored checksums:
 
 | Command | What it does |
 |---|---|
-| [`media:check --levels=4`](console-commands.md#mediacheck) | Reads every file afresh, calculates the MD5 anew and compares it with the database. With `--log-integrity-check`, every check is logged as an event — producing a demonstrable history. |
+| [`media:check --levels=4`](console-commands.md#mediacheck) | Reads every file afresh, calculates the checksum anew (SHA-512 where available, MD5 otherwise) and compares it with the database. With `--log-integrity-check`, every check is logged as an event — producing a demonstrable history. A missing file is a finding; the check carries on. |
 | [`media:snapshot --verify --git`](console-commands.md#mediasnapshot) | Writes a checksum snapshot of all media, compares it against the database and commits changes to a local Git repository. This makes it traceable what has changed between two runs. |
 
 !!! note "Operations set the schedule"
@@ -93,11 +100,28 @@ commands above.
 
 ### If the check reports a deviation {#wenn-die-prufung-anschlagt}
 
-If a file deviates from its checksum, with **Anton as a Service** we restore it
-manually from a backup copy. Several versions are available for this: daily
-backups of the last 31 days, monthly ones of the last 12 months and yearly ones.
-The restored file can be checked again against the stored checksum with
-`media:check`.
+If a file deviates from its checksum, [`media:repair`](console-commands.md#mediarepair)
+brings it back from the **local backup**: it goes through the versions from the
+newest to the oldest (daily, monthly, yearly) and takes the first whose checksum
+matches the stored reference. The damaged version is not deleted but copied to a
+quarantine; every step is recorded as an event in the file's history.
+
+Anton only replaces a file with one whose content provably equals the original.
+And it only reads from the backup: if the backup is writable for the
+application, `media:repair` refuses to repair. With many deviations at once it
+repairs nothing and raises an alarm, because the cause then lies elsewhere
+(disk, mount, malware).
+
+If no local version matches — for instance because the file is newer than the
+backup — with **Anton as a Service** we restore it manually from one of the
+external backup servers; the report of `media:repair` names everything needed.
+Tenants with DIMAG are excluded: there the master lies in the long-term archive.
+
+!!! note "Set up by operations"
+    `media:repair` needs a local backup that contains the media files, is
+    mounted read-only and is configured (see
+    [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung)).
+    Where that is not set up, the command says so and does nothing.
 
 ## Redundant storage {#redundante-speicherung}
 

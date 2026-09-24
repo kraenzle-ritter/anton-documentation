@@ -59,11 +59,10 @@ steps fail — usually silently. The **Binaries** tab in
 |---|---|
 | [ImageMagick](https://imagemagick.org/) (`convert`, `identify`) | Image conversions and preview images |
 | [Ghostscript](https://www.ghostscript.com/) (`gs`) | PDF access copies |
-| [poppler-utils](https://poppler.freedesktop.org/) (`pdftotext`, `pdftoppm`) | PDF full text and page previews |
-| [ffmpeg](https://www.ffmpeg.org/) | Video and audio conversions, technical metadata |
+| [poppler-utils](https://poppler.freedesktop.org/) (`pdftotext`, `pdftoppm`, `pdfinfo`) | PDF full text, page previews and page count |
+| [ffmpeg](https://www.ffmpeg.org/) (`ffmpeg`, `ffprobe`) | Video and audio conversions, technical metadata |
 | [Tesseract](https://github.com/tesseract-ocr/tesseract) | Text recognition (OCR) |
-| [OCRmyPDF](https://ocrmypdf.readthedocs.io/) | OCR text layer in PDFs |
-| [qpdf](https://qpdf.sourceforge.io/) | PDF processing |
+| [Siegfried](https://www.itforarchivists.com/siegfried) (`sf`) | Format identification via PRONOM and thus the risk assessment in [preservation planning](preservation-planning.md). If it is missing, uploads still succeed — only the PRONOM ID stays empty, without anyone noticing. |
 | [img2pdf](https://gitlab.mister-muffin.de/josch/img2pdf) | Combining images into a PDF |
 | `mysql`, `mysqldump` | Backups and restoration |
 | `unzip` | Unpacking SIP packages and imports |
@@ -76,7 +75,8 @@ function is missing in each case — Anton keeps running.
 
 | Software | Without it, this is missing |
 |---|---|
-| [Siegfried](https://www.itforarchivists.com/siegfried) (`sf`) | Format identification via PRONOM — and thus the risk assessment in [preservation planning](preservation-planning.md). Without Siegfried, the PRONOM ID remains empty. |
+| [OCRmyPDF](https://ocrmypdf.readthedocs.io/) | The OCR text layer in PDFs and images |
+| [qpdf](https://qpdf.sourceforge.io/) | The quick PDF check; without qpdf Anton checks via `pdftocairo`, more slowly |
 | [Fido](https://github.com/openpreserve/fido) | Alternative for format identification; Anton uses whatever is present |
 | [Typesense](https://typesense.org/) | The [instant search](typesense.md) and gallery V2. The classic full-text search and gallery work without it. |
 
