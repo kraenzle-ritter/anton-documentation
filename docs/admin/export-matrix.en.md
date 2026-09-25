@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **24 August 2026**. It is
+    This matrix reflects the state of **25 September 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -33,7 +33,7 @@ or exchange view.**
 | Excel (update table) | XLSX | Result list, **only writable fields**, re-importable | Result list → Export → Update |
 | Word / PDF | DOCX / PDF | Finding aid per object | Button on the record |
 | Paper | HTML print view | Result list (max. 1000) | Result list |
-| **SQL dump** | mysqldump (gzip) | **whole tenant database** | Admin → Export |
+| **SQL dump** | mysqldump (gzip) | **whole tenant database** — without sessions, job queues and caches, API and upload tokens empty | Admin → Export |
 
 ## Entity matrix
 

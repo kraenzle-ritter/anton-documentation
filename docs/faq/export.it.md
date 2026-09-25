@@ -10,7 +10,7 @@ I descrittori (attori e attrici, luoghi, parole chiave tematiche) possono essere
 
 ## Dump SQL
 
-L'amministrazione ha la possibilità di generare e scaricare in qualsiasi momento un dump completo della banca dati.
+L'amministrazione può generare e scaricare in qualsiasi momento un dump SQL. Contiene tutti i dati d'archivio senza perdite, ma nessun mezzo d'accesso di altre persone: sessioni, code e cache sono esclusi, i token API e di caricamento sono vuoti. I backup completi della banca dati sono visibili solo al superutente.
 
 ## Strumenti di ricerca in Word
 

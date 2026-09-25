@@ -94,8 +94,7 @@ Personen ohnehin unsichtbar. Die Administration kann jeden Kommentar löschen.
 ## Wo Kommentare nicht auftauchen
 
 * In **keinem Export** — nicht in EAD, EAD3, TEI, Dublin Core, RDF oder DIP.
-  Einzige Ausnahme ist der SQL-Dump, der definitionsgemäss ein vollständiges
-  Backup der Datenbank ist. Siehe [Export-Matrix](export-matrix.md).
+  Einzige Ausnahme ist der SQL-Dump, der alle Daten des Archivs enthält. Siehe [Export-Matrix](export-matrix.md).
 * In **keiner öffentlichen Ansicht**.
 * **Nicht im Volltext** des Datensatzes. Kommentare finden Sie über die
   Arbeitsliste, nicht über die normale Suche — sonst mischten sich

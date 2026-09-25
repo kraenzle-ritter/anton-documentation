@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **24. August 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **25. September 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -32,7 +32,7 @@ andere sind Publikations- und Austauschsichten.**
 | Excel (Update-Tabelle) | XLSX | Trefferliste, **nur beschreibbare Felder**, wieder einspielbar | Trefferliste → Export → Update |
 | Word / PDF | DOCX / PDF | Findbuch pro Objekt | Taste am Datensatz |
 | Paper | HTML-Druckansicht | Trefferliste (max. 1000) | Trefferliste |
-| **SQL-Dump** | mysqldump (gzip) | **ganze Mandanten-Datenbank** | Admin → Export |
+| **SQL-Dump** | mysqldump (gzip) | **ganze Mandanten-Datenbank** — ohne Sitzungen, Warteschlangen und Zwischenspeicher, API- und Upload-Tokens leer | Admin → Export |
 
 ## Entitäts-Matrix
 

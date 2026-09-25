@@ -10,7 +10,7 @@ Die Deskriptoren (Akteur:innen, Orte, Sachschlagworte) können als TEI (Text Enc
 
 ## SQL-Dump
 
-Für admins gibt es die Möglichkeit, jederzeit einen vollen Datenbank-Dump zu erzeugen und herunterzuladen. 
+Admins können jederzeit einen SQL-Dump erzeugen und herunterladen. Er enthält alle Archivdaten verlustfrei, aber keine Zugangsmittel anderer Personen: Sitzungen, Warteschlangen und Zwischenspeicher bleiben aussen vor, API- und Upload-Tokens sind leer. Die vollständigen Datenbanksicherungen sieht nur der Superuser.
 
 ## Word Findbücher
 

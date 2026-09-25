@@ -92,8 +92,7 @@ external persons anyway. The administration can delete any comment.
 ## Where comments do not appear
 
 * In **no export** — not in EAD, EAD3, TEI, Dublin Core, RDF or DIP. The only
-  exception is the SQL dump, which by definition is a complete backup of the
-  database. See [export matrix](export-matrix.md).
+  exception is the SQL dump, which holds all of the archive's data. See [export matrix](export-matrix.md).
 * In **no public view**.
 * **Not in the full text** of the record. You find comments via the work list,
   not via the normal search — otherwise working notes would mix in with the hits

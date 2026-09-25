@@ -10,7 +10,7 @@ The descriptors (actors, places, subject keywords) can be exported as TEI (Text 
 
 ## SQL dump
 
-Admins have the option of generating and downloading a full database dump at any time.
+Admins can generate and download an SQL dump at any time. It holds all archival data losslessly, but none of other people's means of access: sessions, job queues and caches are left out, API and upload tokens are empty. The complete database backups are visible to the superuser only.
 
 ## Word finding aids
 

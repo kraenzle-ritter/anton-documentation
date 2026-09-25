@@ -10,7 +10,7 @@ Les descripteurs (acteur·trice·s, lieux, mots-clés matière) peuvent être ex
 
 ## Dump SQL
 
-Les administrateur·trice·s ont la possibilité de générer et de télécharger à tout moment un dump complet de la base de données.
+Les administrateur·trice·s peuvent générer et télécharger à tout moment un dump SQL. Il contient toutes les données d'archives sans perte, mais aucun moyen d'accès d'autres personnes : les sessions, files d'attente et caches sont exclus, les jetons d'API et de téléversement sont vides. Les sauvegardes complètes de la base de données ne sont visibles que pour le superutilisateur.
 
 ## Instruments de recherche Word
 
