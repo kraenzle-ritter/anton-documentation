@@ -15,8 +15,10 @@ Welche Rolle was darf, steht im [Einstieg](index.md#rollen).
 
 ## Schutzfristen
 
-Unterliegt eine Verzeichnungseinheit noch einer Schutzfrist, bleibt der
-Datensatz sichtbar, die Bilder und Dokumente jedoch nicht.
+Schutzfristen sperren nur die Archivalien und Digitalisate: Unterliegt eine
+Verzeichnungseinheit noch einer Schutzfrist, bleibt der Datensatz sichtbar, die
+Bilder und Dokumente jedoch nicht. Den ganzen Datensatz sperrt das Feld
+**Datensatz gesperrt** (siehe [unten](#unbefristet-sperren)).
 
 Anton rechnet für jeden Datensatz **ein** Freigabejahr aus. Massgeblich ist:
 
@@ -48,7 +50,8 @@ zuständig.
 
 **Einzelne Medien** lassen sich in der Bearbeitungsmaske unbefristet sperren.
 
-**Ganze Datensätze** sperrt das Feld **Gesperrt**. Es wirkt auf den Datensatz,
+**Ganze Datensätze** sperrt das Feld **Datensatz gesperrt** (bis 0.99
+«Gesperrt»; ein Archiv kann es umbenannt haben). Es wirkt auf den Datensatz,
 alle untergeordneten Einheiten und deren Medien; sichtbar bleiben sie nur für
 interne Benutzer:innen, Bearbeitende und die Administration.
 
