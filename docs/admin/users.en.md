@@ -53,6 +53,10 @@ To do so, the IDs of the units of description are entered in the **released
 IDs** field as a comma-separated list. An ID always stands for the **entire
 branch** below it — the unit itself and all subordinate ones.
 
+Within that branch the account sees everything `user_intern` sees: blocked
+descriptions and drafts, media under protection period and blocked media, and
+the internal detail view. Outside the branch it sees what guests see.
+
 ## API tokens
 
 For access via the [API](../api/authentication.md), a token can be generated per

@@ -54,6 +54,10 @@ Dazu werden im Feld **Freigegebene IDs** die IDs der Verzeichnungseinheiten als
 kommagetrennte Liste eingetragen. Eine ID steht immer für den **ganzen Zweig**
 darunter — die Einheit selbst und alle untergeordneten.
 
+In diesem Zweig sieht das Konto alles, was auch `user_intern` sieht: gesperrte
+Verzeichnungen und Entwürfe, Medien unter Schutzfrist und gesperrte Medien, und
+die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.
+
 ## API-Token
 
 Für den Zugriff über die [API](../api/authentication.md) lässt sich pro Konto ein
