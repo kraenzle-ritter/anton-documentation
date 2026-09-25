@@ -3,6 +3,16 @@
 User accounts are managed on the admin page under **Users**. Creating, changing
 and deleting requires the `admin` role.
 
+## Creating an account
+
+A new account needs a username and an **e-mail address**. You do not set a
+password: the person receives an e-mail with a link and chooses their own
+password, so only they know it. The link is valid for **72 hours** and works
+once.
+
+If it has expired or the mail did not arrive, send the invitation again with
+**Send invitation** on the account's page.
+
 ## Roles
 
 Anton keeps the roles **untranslated** — in the selection list they appear
