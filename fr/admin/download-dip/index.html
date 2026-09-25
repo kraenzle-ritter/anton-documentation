@@ -2212,7 +2212,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/download-dip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-dip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -2272,12 +2272,13 @@ Akzessionsbereich liegt (<code>accessions_archives_id</code> in seinem Pfad).</p
     │   └── meta/
     │       ├── &lt;datei&gt;.xml          ← Dublin Core je Medium
     │       └── &lt;full_id&gt;.docx       ← Word-Findbuch (vgl. download-word)
+    ├── manifest-sha512.txt          ← SHA-512-Prüfsummen aller Dateien
     ├── manifest-md5.txt             ← MD5-Prüfsummen aller Dateien
     ├── bagit.txt
     └── bag-info.txt                 ← Repository-Angaben, External-Identifier
 </code></pre></div>
 <ul>
-<li>Prüfsummen: <strong>MD5</strong> (das BagIt-Default SHA-512 ist bewusst entfernt).</li>
+<li>Prüfsummen: <strong>SHA-512</strong>, wie BagIt empfiehlt, und <strong>MD5</strong> daneben für Empfänger, die nur das prüfen.</li>
 <li><code>bag-info.txt</code> zieht <code>repository_name</code>, <code>repository_address</code> und
   <code>repository_email</code> aus den Settings.</li>
 <li>Dateien sind nach der Signatur benannt, Ordner nach dem Objekt-Titel.</li>

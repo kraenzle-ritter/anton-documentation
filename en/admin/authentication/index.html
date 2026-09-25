@@ -2185,6 +2185,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passwords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#two-factor-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4133,6 +4144,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passwords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#two-factor-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4210,7 +4232,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-07</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4222,6 +4244,24 @@
 
 
 <h1 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h1>
+<h2 id="passwords">Passwords<a class="headerlink" href="#passwords" title="Permanent link">&para;</a></h2>
+<p>However it is set (profile, user management, «forgot password»,
+<code>anton:add-user</code>, <code>anton:upwd</code>), a new password must</p>
+<ul>
+<li>be at least <strong>8 characters</strong> long,</li>
+<li>be at most <strong>72 bytes</strong> long; accented letters count twice, the hashing
+  cannot store more,</li>
+<li>contain more than words belonging to Anton or the archive: «Archiv2026!»,
+  «Anton-Ritter» and the archive's name or slug are refused,</li>
+<li>not be known from a <strong>data breach</strong>.</li>
+</ul>
+<p>The last check asks <em>Have I Been Pwned</em>. Only the first five characters of the
+hash leave the machine, never the password. If the service cannot be reached,
+the password is accepted. Installations without internet access switch the
+check off in the <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>PASSWORD_CHECK_BREACHED=false
+</code></pre></div>
+<p>Existing passwords stay valid; the rule applies from the next change on.</p>
 <h2 id="two-factor-authentication">Two-factor authentication<a class="headerlink" href="#two-factor-authentication" title="Permanent link">&para;</a></h2>
 <h3 id="activate">Activate<a class="headerlink" href="#activate" title="Permanent link">&para;</a></h3>
 <p>Two-factor authentication can be enabled with an entry in the <code>.env</code> file:</p>
@@ -4239,6 +4279,8 @@ enabled there, Anton does not register the enrolment routes at all — a role
 obliged to enrol could not, and sign-in would go round in circles. Anton
 therefore does not require it where it cannot be set up.</p>
 </div>
+<p>A code is valid for up to 90 seconds: the current 30-second step and one on
+either side, so that a phone whose clock is slightly off does not fail.</p>
 <h3 id="deactivating-2fa-for-a-user">Deactivating 2FA for a user<a class="headerlink" href="#deactivating-2fa-for-a-user" title="Permanent link">&para;</a></h3>
 <p>If a user has lost their two-factor secret and has no recovery code either, it is possible to remove it from the user so that they can start over with a fresh 2FA.</p>
 <h2 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h2>

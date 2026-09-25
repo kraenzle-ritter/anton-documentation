@@ -4176,7 +4176,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/requirements/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4287,11 +4287,11 @@ steps fail — usually silently. The <strong>Binaries</strong> tab in
 <td>PDF access copies</td>
 </tr>
 <tr>
-<td><a href="https://poppler.freedesktop.org/">poppler-utils</a> (<code>pdftotext</code>, <code>pdftoppm</code>)</td>
-<td>PDF full text and page previews</td>
+<td><a href="https://poppler.freedesktop.org/">poppler-utils</a> (<code>pdftotext</code>, <code>pdftoppm</code>, <code>pdfinfo</code>)</td>
+<td>PDF full text, page previews and page count</td>
 </tr>
 <tr>
-<td><a href="https://www.ffmpeg.org/">ffmpeg</a></td>
+<td><a href="https://www.ffmpeg.org/">ffmpeg</a> (<code>ffmpeg</code>, <code>ffprobe</code>)</td>
 <td>Video and audio conversions, technical metadata</td>
 </tr>
 <tr>
@@ -4299,12 +4299,8 @@ steps fail — usually silently. The <strong>Binaries</strong> tab in
 <td>Text recognition (OCR)</td>
 </tr>
 <tr>
-<td><a href="https://ocrmypdf.readthedocs.io/">OCRmyPDF</a></td>
-<td>OCR text layer in PDFs</td>
-</tr>
-<tr>
-<td><a href="https://qpdf.sourceforge.io/">qpdf</a></td>
-<td>PDF processing</td>
+<td><a href="https://www.itforarchivists.com/siegfried">Siegfried</a> (<code>sf</code>)</td>
+<td>Format identification via PRONOM and thus the risk assessment in <a href="../preservation-planning/">preservation planning</a>. If it is missing, uploads still succeed — only the PRONOM ID stays empty, without anyone noticing.</td>
 </tr>
 <tr>
 <td><a href="https://gitlab.mister-muffin.de/josch/img2pdf">img2pdf</a></td>
@@ -4336,8 +4332,12 @@ function is missing in each case — Anton keeps running.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://www.itforarchivists.com/siegfried">Siegfried</a> (<code>sf</code>)</td>
-<td>Format identification via PRONOM — and thus the risk assessment in <a href="../preservation-planning/">preservation planning</a>. Without Siegfried, the PRONOM ID remains empty.</td>
+<td><a href="https://ocrmypdf.readthedocs.io/">OCRmyPDF</a></td>
+<td>The OCR text layer in PDFs and images</td>
+</tr>
+<tr>
+<td><a href="https://qpdf.sourceforge.io/">qpdf</a></td>
+<td>The quick PDF check; without qpdf Anton checks via <code>pdftocairo</code>, more slowly</td>
 </tr>
 <tr>
 <td><a href="https://github.com/openpreserve/fido">Fido</a></td>

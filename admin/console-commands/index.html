@@ -3610,10 +3610,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-12" class="md-nav__link">
+  <a href="#media-14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (12)
+        media: (14)
       
     </span>
   </a>
@@ -4431,10 +4431,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-12" class="md-nav__link">
+  <a href="#media-14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (12)
+        media: (14)
       
     </span>
   </a>
@@ -4518,7 +4518,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4542,7 +4542,11 @@ Kunden-Slugs:</p>
 </code></pre></div>
 <p>Anton-Befehle geben auf <code>stdout</code> nur etwas aus, wenn die Ausführlichkeit erhöht
 wird: <code>-v</code> zeigt <code>info</code>-Meldungen, <code>-vv</code> zusätzlich <code>debug</code>-Meldungen. Ohne
-Flag laufen sie still.</p>
+Flag laufen sie still. Fehler und Warnungen gehen immer auf <code>stderr</code>
+(<a href="https://github.com/ottosmops/consoleoutput">ottosmops/consoleoutput</a>).</p>
+<p>Für einen Cronjob heisst das: keine Ausgabe und Rückgabewert 0 ist der
+Normalfall, nicht ein ausgebliebener Lauf. Wer einen Beleg im Protokoll
+braucht, ruft mit <code>-v</code> auf.</p>
 <div class="admonition warning">
 <p class="admonition-title">Vor schreibenden Befehlen sichern</p>
 <p>Befehle, die in die Datenbank schreiben — Reparaturen, Merges, Reset —
@@ -4609,14 +4613,52 @@ Dateisystem, Inge und DIMAG. Sechs Prüfebenen, einzeln oder kombiniert:</p>
     --delete-from-system    Löscht Dateisystem-Einträge ohne DB-Pendant (Ebene 3)
     --delete-from-inge      Löscht Waisen aus Inge/DIMAG (Ebene 6)
 </code></pre></div>
-<p>Ebene 4 verifiziert die <strong>MD5-Prüfsumme</strong> jeder Datei gegen die Datenbank — die
-eigentliche Fixity-Prüfung. Auf DIMAG-Installationen wird sie übersprungen
+<p>Ebene 4 verifiziert die <strong>Prüfsumme</strong> jeder Datei gegen die Datenbank (SHA-512, wo
+vorhanden, sonst MD5) — die eigentliche Fixity-Prüfung, mit derselben Logik wie
+<code>media:snapshot --verify</code>. Auf DIMAG-Installationen wird sie übersprungen
 (die Master liegen dort). Details siehe <a href="../inge/">Inge und DIMAG</a> und
 <a href="../preservation/#integritat-prufen">Langzeitarchivierung</a>.</p>
-<p><strong id="mediasnapshot"><code>media:snapshot --verify --git</code></strong> schreibt einen Prüfsummen-Schnappschuss
-aller Medien und committet Änderungen in ein lokales Git-Repository — die
-Grundlage einer wiederkehrenden Integritätsprüfung. Anton führt ihn nicht von
+<p><strong id="mediasnapshot"><code>media:snapshot</code></strong> vereint zwei Aufgaben in einem Durchgang:</p>
+<ul>
+<li><strong>Listen der Referenzwerte</strong> aller Medien aus der Datenbank, ohne eine Datei zu
+  lesen: <code>&lt;datum&gt;.sha512</code> und <code>&lt;datum&gt;.md5</code>, prüfbar mit <code>sha512sum -c</code> bzw.
+  <code>md5sum -c</code>. Mit <code>--git</code> landen sie in einem lokalen Git-Repository; dessen
+  Historie zeigt, wann sich ein Referenzwert geändert hat. Der Wechsel von MD5
+  auf SHA-512 heisst dort <code>UPGRADED</code>, nicht <code>CHANGED</code>.</li>
+<li><strong>Prüfung der Dateien</strong> gegen ihre Referenz, wie <code>media:check --levels=4</code>:
+  alle mit <code>--verify</code>, oder mit <code>--oldest=N</code> die N am längsten nicht geprüften —
+  so wandert ein nächtlicher Lauf mit der Zeit durch den ganzen Bestand. Jede
+  Prüfung ist ein Ereignis, auf dem <a href="#mediarepair"><code>media:repair</code></a> aufbaut;
+  Befunde stehen in <code>logs/findings_&lt;datum&gt;.txt</code>, der Befehl endet dann mit 1.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:snapshot<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">2000</span><span class="w"> </span>--git
+</code></pre></div>
+<p>Jeder Lauf hinterlässt eine Zeile in <code>logs/runs.log</code>, auch wenn sich nichts
+geändert hat. Ein Medium ohne Referenzprüfsumme wird gemeldet, nicht mit einer
+Prüfsumme aus der heutigen Datei versehen. Anton führt den Befehl nicht von
 selbst aus; er wird pro Installation als Cronjob eingerichtet.</p>
+<p><strong id="mediachecksum"><code>media:checksum</code></strong> rechnet SHA-512 für Medien nach, die noch
+keine haben (vor Version 0.98 hochgeladen). Jede Datei wird einmal gelesen und
+zuerst gegen ihre gespeicherte MD5 geprüft: Weicht sie ab, ist das ein
+Integritätsbefund, und aus der Datei wird keine SHA-512 gespeichert. Nur lokal
+liegende Master; ein abgebrochener Lauf macht beim nächsten Aufruf weiter.
+<code>--dry-run</code> vergleicht nur, <code>--limit</code> und <code>--ids</code> grenzen ein.</p>
+<p><strong id="mediarepair"><code>media:repair</code></strong> holt Medien, deren Integritätsprüfung
+fehlschlug, aus der lokalen Sicherung zurück: der erste Stand, dessen Prüfsumme
+dem Referenzwert entspricht, ersetzt die Datei; die beschädigte Fassung kommt in
+die Quarantäne.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:repair<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--dry-run
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>    --from=     Sicherungswurzel (Vorgabe: MEDIA_REPAIR_BACKUP_ROOT)
+    --dry-run   Nur berichten
+    --max=      Bei mehr Befunden nichts reparieren (Vorgabe 10)
+    --ids=      Nur diese Medien
+</code></pre></div>
+<p>Exit 0: nichts zu tun oder alles repariert; 1: nicht reparierbar oder Schwelle
+überschritten (dann wurde nichts repariert); 2: Sicherung fehlt, ist leer oder
+beschreibbar. Einrichtung siehe
+<a href="../installation/#selbstreparatur-aus-der-lokalen-sicherung">Installation</a>, Ablauf
+siehe <a href="../preservation/#wenn-die-prufung-anschlagt">Langzeitarchivierung</a>.</p>
 <p><strong id="mediaidentify"><code>media:identify</code></strong> bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
 automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne <code>--force</code>
@@ -5087,7 +5129,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-12">media: (12)<a class="headerlink" href="#media-12" title="Permanent link">&para;</a></h3>
+<h3 id="media-14">media: (14)<a class="headerlink" href="#media-14" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5103,6 +5145,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:check</code></td>
 <td>Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from …</td>
+</tr>
+<tr>
+<td><code>media:checksum</code></td>
+<td>Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574)</td>
 </tr>
 <tr>
 <td><code>media:conversions</code></td>
@@ -5129,6 +5175,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <td>Rename media to original name or vice versa</td>
 </tr>
 <tr>
+<td><code>media:repair</code></td>
+<td>Replace media that failed the integrity check with a verified copy from the local backup (#590)</td>
+</tr>
+<tr>
 <td><code>media:set-to-private</code></td>
 <td>Set media to private</td>
 </tr>
@@ -5138,7 +5188,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 <tr>
 <td><code>media:snapshot</code></td>
-<td>Creates a Snapshot of media files with integrity-check and a git-commit if something has changed</td>
+<td>Reference checksum lists of all media (git), and the integrity check of all or the N least rec…</td>
 </tr>
 <tr>
 <td><code>media:validate-pdfs</code></td>

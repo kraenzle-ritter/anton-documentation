@@ -4188,7 +4188,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/doctor/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-07</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4228,9 +4228,12 @@ collisions among siblings, duplicate reference codes.</p>
 <p><strong>Environment</strong> checks environment variables, settings and whether the customer
 directories are readable and writable.</p>
 <p><strong>Binaries</strong> checks whether the external programs Anton depends on are present —
-ImageMagick, Ghostscript, ffmpeg and others. If one is missing, the
-corresponding conversions fail silently. When format identification is missing,
-this is the first place to look.</p>
+ImageMagick, Ghostscript, ffmpeg and others, including the programs that run
+when a medium is added: <code>sf</code> (Siegfried), <code>ffprobe</code> and <code>pdfinfo</code>. If one is
+missing, the corresponding steps fail silently. For Siegfried, the program and
+signature version are shown as well; an outdated signature file identifies less
+without failing. <code>qpdf</code> and <code>ocrmypdf</code> are optional and only appear as a
+warning. When format identification is missing, this is the first place to look.</p>
 <p><strong>Disk</strong> shows the disk usage.</p>
 <h2 id="on-the-command-line">On the command line<a class="headerlink" href="#on-the-command-line" title="Permanent link">&para;</a></h2>
 <p>The same checks run via <a href="../console-commands/#antondoctor"><code>anton:doctor</code></a>, in a

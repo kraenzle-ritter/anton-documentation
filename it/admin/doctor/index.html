@@ -2218,7 +2218,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/doctor/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/doctor/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-07</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -2259,9 +2259,13 @@ Positionskollisionen unter Geschwistern, doppelte Signaturen.</p>
 <p><strong>Environment</strong> prüft Umgebungsvariablen, Einstellungen und ob die
 Kundenverzeichnisse les- und schreibbar sind.</p>
 <p><strong>Binaries</strong> prüft, ob die externen Programme vorhanden sind, auf die Anton
-angewiesen ist — ImageMagick, Ghostscript, ffmpeg und weitere. Fehlt eines,
-schlagen die zugehörigen Konversionen still fehl. Bei fehlender
-Formaterkennung lohnt hier der erste Blick.</p>
+angewiesen ist — ImageMagick, Ghostscript, ffmpeg und weitere, darunter die
+Programme, die beim Hinzufügen eines Mediums laufen: <code>sf</code> (Siegfried), <code>ffprobe</code>
+und <code>pdfinfo</code>. Fehlt eines, schlagen die zugehörigen Schritte still fehl. Für
+Siegfried steht die Programm- und Signaturfassung dabei; eine veraltete
+Signaturdatei erkennt weniger, ohne zu scheitern. <code>qpdf</code> und <code>ocrmypdf</code> sind
+optional und erscheinen nur als Warnung. Bei fehlender Formaterkennung lohnt
+hier der erste Blick.</p>
 <p><strong>Disk</strong> zeigt die Plattenbelegung.</p>
 <h2 id="auf-der-kommandozeile">Auf der Kommandozeile<a class="headerlink" href="#auf-der-kommandozeile" title="Permanent link">&para;</a></h2>
 <p>Dieselben Prüfungen laufen über <a href="../console-commands/#antondoctor"><code>anton:doctor</code></a>,

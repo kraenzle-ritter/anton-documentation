@@ -2212,7 +2212,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/requirements/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/requirements/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -2323,11 +2323,11 @@ Verarbeitungsschritte fehl — meist still. Der Reiter <strong>Binaries</strong>
 <td>PDF-Zugriffskopien</td>
 </tr>
 <tr>
-<td><a href="https://poppler.freedesktop.org/">poppler-utils</a> (<code>pdftotext</code>, <code>pdftoppm</code>)</td>
-<td>PDF-Volltext und Seitenvorschau</td>
+<td><a href="https://poppler.freedesktop.org/">poppler-utils</a> (<code>pdftotext</code>, <code>pdftoppm</code>, <code>pdfinfo</code>)</td>
+<td>PDF-Volltext, Seitenvorschau und Seitenzahl</td>
 </tr>
 <tr>
-<td><a href="https://www.ffmpeg.org/">ffmpeg</a></td>
+<td><a href="https://www.ffmpeg.org/">ffmpeg</a> (<code>ffmpeg</code>, <code>ffprobe</code>)</td>
 <td>Video- und Audiokonversionen, technische Metadaten</td>
 </tr>
 <tr>
@@ -2335,12 +2335,8 @@ Verarbeitungsschritte fehl — meist still. Der Reiter <strong>Binaries</strong>
 <td>Texterkennung (OCR)</td>
 </tr>
 <tr>
-<td><a href="https://ocrmypdf.readthedocs.io/">OCRmyPDF</a></td>
-<td>OCR-Textebene in PDFs</td>
-</tr>
-<tr>
-<td><a href="https://qpdf.sourceforge.io/">qpdf</a></td>
-<td>PDF-Verarbeitung</td>
+<td><a href="https://www.itforarchivists.com/siegfried">Siegfried</a> (<code>sf</code>)</td>
+<td>Formaterkennung über PRONOM und damit die Risikobewertung im <a href="../preservation-planning/">Preservation Planning</a>. Fehlt es, gelingt der Upload trotzdem — nur bleibt die PRONOM-ID leer, ohne dass es jemand merkt.</td>
 </tr>
 <tr>
 <td><a href="https://gitlab.mister-muffin.de/josch/img2pdf">img2pdf</a></td>
@@ -2372,8 +2368,12 @@ eine bestimmte Funktion — Anton läuft weiter.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://www.itforarchivists.com/siegfried">Siegfried</a> (<code>sf</code>)</td>
-<td>Die Formaterkennung über PRONOM — und damit die Risikobewertung im <a href="../preservation-planning/">Preservation Planning</a>. Ohne Siegfried bleibt die PRONOM-ID leer.</td>
+<td><a href="https://ocrmypdf.readthedocs.io/">OCRmyPDF</a></td>
+<td>Die OCR-Textebene in PDFs und Bildern</td>
+</tr>
+<tr>
+<td><a href="https://qpdf.sourceforge.io/">qpdf</a></td>
+<td>Die schnelle PDF-Prüfung; ohne qpdf prüft Anton über <code>pdftocairo</code>, langsamer</td>
 </tr>
 <tr>
 <td><a href="https://github.com/openpreserve/fido">Fido</a></td>

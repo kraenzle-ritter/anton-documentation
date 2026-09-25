@@ -4176,7 +4176,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-dip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4234,12 +4234,13 @@ appears <strong>only</strong> for levels of description that are listed in the s
     │   └── meta/
     │       ├── &lt;file&gt;.xml           ← Dublin Core per medium
     │       └── &lt;full_id&gt;.docx       ← Word finding aid (cf. download-word)
+    ├── manifest-sha512.txt          ← SHA-512 checksums of all files
     ├── manifest-md5.txt             ← MD5 checksums of all files
     ├── bagit.txt
     └── bag-info.txt                 ← repository details, external identifier
 </code></pre></div>
 <ul>
-<li>Checksums: <strong>MD5</strong> (the BagIt default SHA-512 has deliberately been removed).</li>
+<li>Checksums: <strong>SHA-512</strong>, as BagIt recommends, and <strong>MD5</strong> beside it for recipients that only check that.</li>
 <li><code>bag-info.txt</code> draws <code>repository_name</code>, <code>repository_address</code> and
   <code>repository_email</code> from the settings.</li>
 <li>Files are named after the reference code, folders after the object title.</li>

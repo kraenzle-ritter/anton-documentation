@@ -3610,10 +3610,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-12" class="md-nav__link">
+  <a href="#media-14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (12)
+        media: (14)
       
     </span>
   </a>
@@ -4431,10 +4431,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-12" class="md-nav__link">
+  <a href="#media-14" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (12)
+        media: (14)
       
     </span>
   </a>
@@ -4518,7 +4518,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4541,7 +4541,11 @@ called via <code>artisan</code>.</p>
 </code></pre></div>
 <p>Anton commands only output something on <code>stdout</code> when the verbosity is
 increased: <code>-v</code> shows <code>info</code> messages, <code>-vv</code> additionally <code>debug</code> messages.
-Without a flag they run silently.</p>
+Without a flag they run silently. Errors and warnings always go to <code>stderr</code>
+(<a href="https://github.com/ottosmops/consoleoutput">ottosmops/consoleoutput</a>).</p>
+<p>For a cron job this means: no output and exit code 0 is the normal case, not a
+run that did not happen. If you need evidence in the log, call the command
+with <code>-v</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Back up before writing commands</p>
 <p>Commands that write to the database — repairs, merges, reset — should never
@@ -4608,14 +4612,50 @@ or combined:</p>
     --delete-from-system    Deletes file system entries without a DB counterpart (level 3)
     --delete-from-inge      Deletes orphans from Inge/DIMAG (level 6)
 </code></pre></div>
-<p>Level 4 verifies the <strong>MD5 checksum</strong> of every file against the database — the
-actual fixity check. On DIMAG installations it is skipped (the masters are held
+<p>Level 4 verifies the <strong>checksum</strong> of every file against the database (SHA-512
+where available, MD5 otherwise) — the actual fixity check, with the same logic
+as <code>media:snapshot --verify</code>. On DIMAG installations it is skipped (the masters are held
 there). For details see <a href="../inge/">Inge and DIMAG</a> and
 <a href="../preservation/#integritat-prufen">long-term preservation</a>.</p>
-<p><strong id="mediasnapshot"><code>media:snapshot --verify --git</code></strong> writes a checksum snapshot
-of all media and commits changes to a local Git repository — the basis of a
-recurring integrity check. Anton does not run it by itself; it is set up per
-installation as a cron job.</p>
+<p><strong id="mediasnapshot"><code>media:snapshot</code></strong> combines two jobs in one pass:</p>
+<ul>
+<li><strong>Lists of the reference checksums</strong> of all media from the database, without
+  reading a file: <code>&lt;date&gt;.sha512</code> and <code>&lt;date&gt;.md5</code>, checkable with
+  <code>sha512sum -c</code> or <code>md5sum -c</code>. With <code>--git</code> they go into a local Git
+  repository; its history shows when a reference changed. A switch from MD5 to
+  SHA-512 appears as <code>UPGRADED</code>, not <code>CHANGED</code>.</li>
+<li><strong>Checking the files</strong> against their reference, like <code>media:check --levels=4</code>:
+  all with <code>--verify</code>, or with <code>--oldest=N</code> the N checked longest ago — so a
+  nightly run walks through the whole holding over time. Every check is an
+  event <a href="#mediarepair"><code>media:repair</code></a> builds on; findings go to
+  <code>logs/findings_&lt;date&gt;.txt</code>, and the command then exits with 1.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:snapshot<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">2000</span><span class="w"> </span>--git
+</code></pre></div>
+<p>Every run leaves a line in <code>logs/runs.log</code>, even when nothing changed. A medium
+without a reference checksum is reported, not given one from today's file.
+Anton does not run the command by itself; it is set up per installation as a
+cron job.</p>
+<p><strong id="mediachecksum"><code>media:checksum</code></strong> computes SHA-512 for media that have none
+yet (uploaded before version 0.98). Every file is read once and first checked
+against its stored MD5: if it deviates, that is an integrity finding and no
+SHA-512 is stored from the file. Local masters only; an interrupted run carries
+on at the next call. <code>--dry-run</code> only compares, <code>--limit</code> and <code>--ids</code> narrow it
+down.</p>
+<p><strong id="mediarepair"><code>media:repair</code></strong> brings media whose integrity check failed back
+from the local backup: the first version whose checksum matches the reference
+replaces the file; the damaged version goes to quarantine.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:repair<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--dry-run
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>    --from=     Backup root (default: MEDIA_REPAIR_BACKUP_ROOT)
+    --dry-run   Only report
+    --max=      Repair nothing if there are more findings (default 10)
+    --ids=      Only these media
+</code></pre></div>
+<p>Exit 0: nothing to do or all repaired; 1: not repairable or threshold exceeded
+(then nothing was repaired); 2: backup missing, empty or writable. Setup see
+<a href="../installation/#selbstreparatur-aus-der-lokalen-sicherung">Installation</a>,
+procedure see <a href="../preservation/#wenn-die-prufung-anschlagt">long-term preservation</a>.</p>
 <p><strong id="mediaidentify"><code>media:identify</code></strong> determines the file format
 (Siegfried/Fido → PRONOM ID) and derives the NARA risk assessment from it. With
 new uploads this runs automatically; the command serves to supply the data
@@ -5087,7 +5127,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="media-12">media: (12)<a class="headerlink" href="#media-12" title="Permanent link">&para;</a></h3>
+<h3 id="media-14">media: (14)<a class="headerlink" href="#media-14" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5103,6 +5143,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>media:check</code></td>
 <td>Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from …</td>
+</tr>
+<tr>
+<td><code>media:checksum</code></td>
+<td>Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574)</td>
 </tr>
 <tr>
 <td><code>media:conversions</code></td>
@@ -5129,6 +5173,10 @@ up to date with every change to the commands.</p>
 <td>Rename media to original name or vice versa</td>
 </tr>
 <tr>
+<td><code>media:repair</code></td>
+<td>Replace media that failed the integrity check with a verified copy from the local backup (#590)</td>
+</tr>
+<tr>
 <td><code>media:set-to-private</code></td>
 <td>Set media to private</td>
 </tr>
@@ -5138,7 +5186,7 @@ up to date with every change to the commands.</p>
 </tr>
 <tr>
 <td><code>media:snapshot</code></td>
-<td>Creates a Snapshot of media files with integrity-check and a git-commit if something has changed</td>
+<td>Reference checksum lists of all media (git), and the integrity check of all or the N least rec…</td>
 </tr>
 <tr>
 <td><code>media:validate-pdfs</code></td>

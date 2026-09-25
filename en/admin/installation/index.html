@@ -4354,7 +4354,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/installation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-07</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -4424,6 +4424,23 @@ MAIL_NAME
 <div class="highlight"><pre><span></span><code>GOOGLE_API_KEY
 GEONAMES_USERNAME
 </code></pre></div>
+<h4 id="selbstreparatur-aus-der-lokalen-sicherung">Self-repair from the local backup<a class="headerlink" href="#selbstreparatur-aus-der-lokalen-sicherung" title="Permanent link">&para;</a></h4>
+<p>Optional. <a href="../console-commands/#mediarepair"><code>media:repair</code></a> brings media files
+that fail the integrity check back from a local rsnapshot backup (see
+<a href="../preservation/#wenn-die-prufung-anschlagt">long-term preservation</a>). Only
+useful where that backup contains the media files.</p>
+<div class="highlight"><pre><span></span><code>MEDIA_REPAIR_BACKUP_ROOT=/path/to/mount         # read-only mount of the backup versions
+# MEDIA_REPAIR_BACKUP_HOST=localhost            # prefix of the backup points (default)
+# MEDIA_REPAIR_QUARANTINE=/path                  # default: storage/app/quarantine
+# MEDIA_REPAIR_MAX=10                           # more deviations in one run: repair nothing
+</code></pre></div>
+<p>The application may only read the backup. What works: close the level above
+the versions to everyone but root (<code>0700</code>) and make the versions reachable
+through a second, <strong>read-only bind mount</strong> that only the application user's
+group can reach. A write attempt there fails with «Read-only file system».
+<code>media:repair</code> runs as the application user and refuses to repair if the backup
+is not readable or is writable. Without <code>MEDIA_REPAIR_BACKUP_ROOT</code> the command
+reports «no local backup set up» and does nothing.</p>
 <h2 id="creating-the-mysql-database">Creating the MySQL database<a class="headerlink" href="#creating-the-mysql-database" title="Permanent link">&para;</a></h2>
 <p>Log in as root:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">p</span>

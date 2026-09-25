@@ -2301,7 +2301,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/installation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/installation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-07</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -2371,6 +2371,24 @@ MAIL_NAME
 <div class="highlight"><pre><span></span><code>GOOGLE_API_KEY
 GEONAMES_USERNAME
 </code></pre></div>
+<h4 id="selbstreparatur-aus-der-lokalen-sicherung">Selbstreparatur aus der lokalen Sicherung<a class="headerlink" href="#selbstreparatur-aus-der-lokalen-sicherung" title="Permanent link">&para;</a></h4>
+<p>Optional. <a href="../console-commands/#mediarepair"><code>media:repair</code></a> holt Mediendateien,
+deren Integritätsprüfung fehlschlägt, aus einer lokalen rsnapshot-Sicherung
+zurück (siehe <a href="../preservation/#wenn-die-prufung-anschlagt">Langzeitarchivierung</a>).
+Sinnvoll nur, wo diese Sicherung die Mediendateien enthält.</p>
+<div class="highlight"><pre><span></span><code>MEDIA_REPAIR_BACKUP_ROOT=/pfad/zur/einhaengung  # schreibgeschützte Einhängung der Stände
+# MEDIA_REPAIR_BACKUP_HOST=localhost            # Präfix der Sicherungspunkte (Vorgabe)
+# MEDIA_REPAIR_QUARANTINE=/pfad                  # Vorgabe: storage/app/quarantine
+# MEDIA_REPAIR_MAX=10                           # mehr Abweichungen in einem Lauf: nichts reparieren
+</code></pre></div>
+<p>Die Anwendung darf die Sicherung nur lesen. Bewährt hat sich: die Ebene über
+den Ständen für alle ausser root sperren (<code>0700</code>) und die Stände über eine
+zweite, <strong>schreibgeschützte Bind-Einhängung</strong> zugänglich machen, die nur die
+Gruppe des Anwendungsbenutzers erreicht. Ein Schreibversuch scheitert dort mit
+«Read-only file system». <code>media:repair</code> läuft als Anwendungsbenutzer und
+verweigert die Reparatur, wenn die Sicherung nicht lesbar oder beschreibbar ist.
+Ohne <code>MEDIA_REPAIR_BACKUP_ROOT</code> meldet der Befehl «keine lokale Sicherung
+eingerichtet» und tut nichts.</p>
 <h2 id="mysql-datenbank-erstellen">Mysql-Datenbank erstellen<a class="headerlink" href="#mysql-datenbank-erstellen" title="Permanent link">&para;</a></h2>
 <p>Als root anmelden:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">p</span>

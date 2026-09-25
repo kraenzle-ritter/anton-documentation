@@ -2312,7 +2312,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-09-24</span>
     </div>
   
   
@@ -2352,7 +2352,7 @@ die fachlichen ab, der Betrieb die Speicherung:</p>
 </tr>
 <tr>
 <td>Prüfsumme pro Datei</td>
-<td>berechnet beim Upload MD5 und legt sie ab</td>
+<td>berechnet beim Upload MD5 und SHA-512 und legt sie ab</td>
 <td></td>
 <td></td>
 </tr>
@@ -2370,8 +2370,8 @@ die fachlichen ab, der Betrieb die Speicherung:</p>
 </tr>
 <tr>
 <td>Integritätsprüfung</td>
-<td>bringt <code>media:check</code> und <code>media:snapshot</code> mit, protokolliert die Prüfungen</td>
-<td>legt den Rhythmus als Cronjob fest</td>
+<td>bringt <code>media:check</code>, <code>media:snapshot</code> und <code>media:repair</code> mit, protokolliert die Prüfungen</td>
+<td>legt den Rhythmus als Cronjob fest, richtet die Sicherung für <code>media:repair</code> ein</td>
 <td>übernimmt die Fixity der Master</td>
 </tr>
 <tr>
@@ -2399,9 +2399,14 @@ Validierung fehl. Der Algorithmus stammt aus dem Paket selbst, ist also nicht au
 MD5 festgelegt. Zusätzlich merkt sich Anton die Prüfsumme des SIP-ZIPs und weist
 bereits eingespielte Pakete ab.</p>
 <h3 id="speicherung">Speicherung<a class="headerlink" href="#speicherung" title="Permanent link">&para;</a></h3>
-<p>Für jede Mediendatei berechnet Anton beim Upload eine <strong>MD5-Prüfsumme</strong> und legt
-sie in der Datenbank ab. Der <strong>Master bleibt unverändert</strong>; die Ableitungen
-(<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
+<p>Für jede Mediendatei berechnet Anton beim Upload eine <strong>MD5-</strong> und eine
+<strong>SHA-512-Prüfsumme</strong> in einem Lesedurchgang und legt beide in der Datenbank ab.
+SHA-512 ist der Referenzwert für die Integritätsprüfung, wie ihn OCFL und BagIt
+empfehlen; MD5 bleibt für die Anbindung an DIMAG und für das Erkennen doppelter
+Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
+<a href="../console-commands/#mediachecksum"><code>media:checksum</code></a> SHA-512 nach — und prüft
+dabei jede Datei gegen ihre MD5. Der <strong>Master bleibt unverändert</strong>; die
+Ableitungen (<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
 <h3 id="formaterkennung-und-risiko">Formaterkennung und Risiko<a class="headerlink" href="#formaterkennung-und-risiko" title="Permanent link">&para;</a></h3>
 <p>Beim Upload identifiziert Anton das Format über <strong>Siegfried</strong> bzw. <strong>Fido</strong> und
 hält die <strong>PRONOM-ID</strong> fest; daraus leitet es die Risikobewertung nach dem
@@ -2411,8 +2416,10 @@ hält die <strong>PRONOM-ID</strong> fest; daraus leitet es die Risikobewertung 
 <div class="admonition note">
 <p class="admonition-title">Siegfried oder Fido auf dem Server</p>
 <p>Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert
-sind. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig die
-Erkennung im Bestand ist.</p>
+sind. Fehlt das Programm, gelingt der Upload trotzdem, nur bleibt die
+Erkennung leer. <a href="../doctor/"><code>anton:doctor</code></a> meldet ein fehlendes <code>sf</code> darum
+als Fehler. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig
+die Erkennung im Bestand ist.</p>
 </div>
 <h3 id="formatentscheide">Formatentscheide<a class="headerlink" href="#formatentscheide" title="Permanent link">&para;</a></h3>
 <p>Anton migriert keine Master in Archivformate. Ob eine Datei in ein anderes
@@ -2433,11 +2440,11 @@ ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <tbody>
 <tr>
 <td><a href="../console-commands/#mediacheck"><code>media:check --levels=4</code></a></td>
-<td>Liest jede Datei neu, berechnet die MD5 frisch und vergleicht sie mit der Datenbank. Mit <code>--log-integrity-check</code> wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie.</td>
+<td>Liest jede Datei neu, berechnet die Prüfsumme frisch (SHA-512, wo vorhanden, sonst MD5) und vergleicht sie mit der Datenbank. Mit <code>--log-integrity-check</code> wird jede Prüfung als Ereignis protokolliert — so entsteht eine nachweisbare Historie. Eine fehlende Datei ist ein Befund, die Prüfung läuft weiter.</td>
 </tr>
 <tr>
-<td><a href="../console-commands/#mediasnapshot"><code>media:snapshot --verify --git</code></a></td>
-<td>Schreibt einen Prüfsummen-Schnappschuss aller Medien, vergleicht ihn gegen die Datenbank und committet Änderungen in ein lokales Git-Repository. Damit ist nachvollziehbar, was sich zwischen zwei Läufen verändert hat.</td>
+<td><a href="../console-commands/#mediasnapshot"><code>media:snapshot --oldest=N --git</code></a></td>
+<td>Schreibt die Referenzwerte aller Medien in Listen (SHA-512 und MD5) und committet sie in ein lokales Git-Repository — nachvollziehbar, wann sich ein Referenzwert geändert hat. Prüft im selben Durchgang die N am längsten nicht geprüften Dateien (oder mit <code>--verify</code> alle) und protokolliert jede Prüfung.</td>
 </tr>
 </tbody>
 </table>
@@ -2454,11 +2461,31 @@ Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.</p>
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.</p>
 <h3 id="wenn-die-prufung-anschlagt">Wenn die Prüfung anschlägt<a class="headerlink" href="#wenn-die-prufung-anschlagt" title="Permanent link">&para;</a></h3>
-<p>Weicht eine Datei von ihrer Prüfsumme ab, holen wir sie bei <strong>Anton as a
-Service</strong> von Hand aus einer Sicherungskopie zurück. Dafür liegen mehrere Stände
-bereit: tägliche Sicherungen der letzten 31 Tage, monatliche der letzten 12 Monate
-sowie jährliche. Die wiederhergestellte Datei lässt sich mit <code>media:check</code> erneut
-gegen die gespeicherte Prüfsumme prüfen.</p>
+<p>Weicht eine Datei von ihrer Prüfsumme ab, holt
+<a href="../console-commands/#mediarepair"><code>media:repair</code></a> sie aus der <strong>lokalen Sicherung</strong>
+zurück: Es geht die Stände vom neuesten zum ältesten durch (täglich, monatlich,
+jährlich) und nimmt den ersten, dessen Prüfsumme mit dem gespeicherten
+Referenzwert übereinstimmt. Die beschädigte Fassung wird nicht gelöscht, sondern
+in eine Quarantäne kopiert; jeder Vorgang steht als Ereignis in der Historie der
+Datei.</p>
+<p>Anton ersetzt eine Datei nur durch eine, deren Inhalt nachweislich dem Original
+entspricht. Und die Anwendung liest die Sicherung nur, über eine schreibgeschützte
+Einhängung; ist die Sicherung beschreibbar, verweigert <code>media:repair</code> die
+Reparatur. Bei vielen Abweichungen
+auf einmal repariert es nichts und schlägt Alarm, denn dann liegt die Ursache
+anderswo (Platte, Einhängung, Schadsoftware).</p>
+<p>Findet sich lokal kein passender Stand — etwa weil die Datei jünger ist als die
+Sicherung —, holen wir sie bei <strong>Anton as a Service</strong> von Hand von einem der
+externen Backupserver zurück. Die Meldung von <code>media:repair</code> nennt dafür alles
+Nötige. Mandanten mit DIMAG sind ausgenommen: Dort liegt der Master im
+Langzeitarchiv.</p>
+<div class="admonition note">
+<p class="admonition-title">Einrichtung durch den Betrieb</p>
+<p><code>media:repair</code> braucht eine lokale Sicherung, welche die Mediendateien
+enthält, für die Anwendung nur lesend eingehängt ist und in der Konfiguration steht
+(siehe <a href="../installation/#selbstreparatur-aus-der-lokalen-sicherung">Installation</a>).
+Wo das nicht eingerichtet ist, meldet der Befehl das und tut nichts.</p>
+</div>
 <h2 id="redundante-speicherung">Redundante Speicherung<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
 <p>Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
 lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
