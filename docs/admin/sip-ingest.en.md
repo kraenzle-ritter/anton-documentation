@@ -22,3 +22,8 @@ On the standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ec
 
 !!! note "Example for identifier-prefix"
     The parent element (`<ordnungssystemposition>`) of the `<dossier>` corresponds to the `parent` in Anton. The `parent` in Anton is determined on the basis of the content of the `<nummer>` element in the SIP. If, for example, this number is "0.6.6" but the archival reference code is "A.1.4.0.6.6", the prefix has to be filled in accordingly with "A.1.4.".
+
+### Process
+
+1. **Validate:** Anton checks schema, files and checksums, the parent elements and the import data. The stored validation report lists errors and warnings in full and successfully checked files as one count. The line per file is shown by `php artisan sip:check --path=<file> --validate --env=<slug>`.
+2. **Import:** The import runs in the background as a run in the [import log](../user/import.md#import-protokoll). Anton shows the run with its progress; if it fails, the reason is shown there.

@@ -16,6 +16,7 @@ Le passkey sono più sicure delle password perché non possono essere rubate, in
 - Il proprio archivio deve avere attivato la funzione passkey
 - Un browser aggiornato (Chrome, Safari, Firefox, Edge)
 - Un dispositivo con autenticazione biometrica o una chiave di sicurezza
+- Il dispositivo deve poter essere sbloccato: a ogni accesso Anton chiede impronta digitale, volto o PIN. Una chiave di sicurezza deve quindi avere un PIN impostato.
 
 ## Configurare una passkey
 

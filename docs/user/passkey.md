@@ -16,6 +16,7 @@ Passkeys sind sicherer als Passwörter, da sie nicht gestohlen, erraten oder dur
 - Ihr Archiv muss die Passkey-Funktion aktiviert haben
 - Ein moderner Browser (Chrome, Safari, Firefox, Edge)
 - Ein Gerät mit biometrischer Authentifizierung oder Sicherheitsschlüssel
+- Das Gerät muss sich entsperren lassen: Anton verlangt bei jeder Anmeldung Fingerabdruck, Gesicht oder PIN. Ein Sicherheitsschlüssel braucht deshalb eine eingerichtete PIN.
 
 ## Passkey einrichten
 
