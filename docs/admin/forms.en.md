@@ -123,3 +123,40 @@ most one column per form applies: choosing a new one removes the previous one.
 Without a choice the built-in default applies: the date of the event for the
 objects under events, the creation date for the objects under descriptors. For
 the embedded tables, the form has to be created with **Configure** first.
+
+## Search forms of the registers {#suchformulare-der-register}
+
+Which fields a search in the registers of actors, places and keywords covers
+is set per register in a **search form**. What a detail form shows is therefore
+not searched automatically: sources, for instance, can be shown without a
+search hitting them.
+
+A search reaches a register in three ways:
+
+| Way | Where |
+|---|---|
+| **List in the browser** | the search field above the register list |
+| **Selection fields while cataloguing** | the suggestions when linking an actor, place or keyword |
+| **API** | `/api/actors`, `/api/places`, `/api/keywords` |
+
+Under **Admin → Forms**, section **Search forms of the registers**:
+
+- **Search form → Configure** creates the register's search form. It applies
+  to all three ways. As long as it is missing, the built-in default applies:
+  ID, name, type, alternative names, variants, abbreviations and description
+  (for places also city, state, country and address; for keywords ID, name and
+  description).
+- **List in the browser**, **Selection fields while cataloguing** and **API** →
+  **Add** creates a form for that way only. It starts with the fields of the
+  search form and then replaces it for that way. **Remove** returns the way to
+  the search form.
+
+Only the fields in the form that can be searched are searched; the editor lists
+them. Anton searches the **comment** for internal roles only, even if it is in
+the form.
+
+The **Default sort** column sets the order when the request specifies none:
+**ascending**, **descending** or **relevance**. Relevance puts the best matches
+first when searching (see [Weighted search](weighted-search.md)) and sorts by
+the column without a search term. A sort in the request (`sortField`,
+`weighted=1`) takes precedence.
