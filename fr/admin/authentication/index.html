@@ -2223,6 +2223,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dienstkonten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dienstkonten
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2240,7 +2251,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-26</span>
     </div>
   
   
@@ -2302,6 +2313,16 @@ scheitert.</p>
 <p>Für Passkeys genügt es, die Einstellung <code>passkeys_enabled</code> auf true zu setzen. Bei Betrieb unter Subdomains ist zusätzlich <code>WEBAUTHN_ID</code> in der <code>.env</code>-Datei zu setzen, zum Beispiel:</p>
 <div class="highlight"><pre><span></span><code>WEBAUTHN_ID=kba.anton.ch
 </code></pre></div>
+<h2 id="dienstkonten">Dienstkonten<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
+<p>Das Konto <code>anton</code> gibt es auf jeder Installation. Es trägt den API-Token von
+Skripten und ist für keine Person gedacht. Anton lässt es deshalb <strong>im Browser
+nicht anmelden</strong>: weder mit Passwort noch mit Passkey, und eine Sitzung, die
+noch besteht, endet beim nächsten Aufruf. Die abgewiesenen Versuche stehen im
+Sicherheitsprotokoll. Der <strong>API-Token</strong> und die Kommandozeile funktionieren
+weiter.</p>
+<p>Welche Konten Dienstkonten sind, legt <code>AUTH_SERVICE_ACCOUNTS</code> in der <code>.env</code>
+fest (kommagetrennt, Vorgabe <code>anton</code>, leer für keines, etwa auf einer
+Demo-Installation, die sich als <code>anton</code> anmeldet).</p>
 
 
 

@@ -2256,6 +2256,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dienstkonten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service accounts
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4215,6 +4226,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dienstkonten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service accounts
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4232,7 +4254,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-26</span>
     </div>
   
   
@@ -4291,6 +4313,15 @@ either side, so that a phone whose clock is slightly off does not fail.</p>
 <p>To enable passkeys, simply set the setting <code>passkeys_enabled</code> to true. When using subdomains, set <code>WEBAUTHN_ID</code> in the <code>.env</code> file. For example:</p>
 <div class="highlight"><pre><span></span><code>WEBAUTHN_ID=kba.anton.ch
 </code></pre></div>
+<h2 id="dienstkonten">Service accounts<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
+<p>The account <code>anton</code> exists on every installation. It holds the API token of
+scripts and is meant for no person. Anton therefore <strong>does not let it sign in
+in the browser</strong>: neither with a password nor with a passkey, and a session it
+still holds ends on its next request. Refused attempts are in the security log.
+The <strong>API token</strong> and the command line keep working.</p>
+<p>Which accounts are service accounts is set by <code>AUTH_SERVICE_ACCOUNTS</code> in the
+<code>.env</code> (comma separated, default <code>anton</code>, empty for none, for example on a demo
+installation that signs in as <code>anton</code>).</p>
 
 
 
