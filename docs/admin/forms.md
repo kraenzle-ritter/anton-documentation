@@ -114,3 +114,16 @@ die die eingebaute Vorgabe in ein editierbares Formular überführt und an den
 normalen Spalten-Editor übergibt. Ab da lassen sich Spalten und Beschriftungen
 wie bei jedem anderen Formular ändern. Blosses Ansehen ändert nichts — erst
 **Konfigurieren** legt das editierbare Formular an.
+
+## Standard-Sortierung
+
+In Listenformularen, also den Objektlisten und den eingebetteten Tabellen, hat
+der Spalten-Editor eine Spalte **Standard-Sortierung**. Wählen Sie dort bei
+einer Spalte **aufsteigend** oder **absteigend**, zeigt die Tabelle ihre
+Einträge in dieser Reihenfolge, bis jemand anders sortiert. Es gilt höchstens
+eine Spalte je Formular: Wählen Sie eine neue, entfällt die bisherige.
+
+Ohne Auswahl gilt die eingebaute Vorgabe, bei den Objekten unter Ereignissen
+das Datum des Ereignisses, bei den Objekten unter Deskriptoren das
+Entstehungsdatum. Für die eingebetteten Tabellen muss das Formular zuerst mit
+**Konfigurieren** angelegt sein.
