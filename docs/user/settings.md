@@ -15,6 +15,20 @@ Die Einstellungen werden bei der Installation gesetzt.
 
 ## Theme
 ### custom_css
+
+Eigene CSS-Regeln für das ganze Archiv. Für eine Hausschrift braucht es keinen
+Link zu Google Fonts: Die freien Schriften, die mit Anton ausgeliefert werden
+(Archivo, DejaVu Sans, Fira Sans, Lato, Libre Franklin, Lora, Merriweather,
+Oswald, Roboto), bindet eine Zeile ein:
+
+```css
+@import url('/fonts/local-fonts.css');
+
+body { font-family: 'Lora', Georgia, serif; }
+```
+
+Die Schrift kommt dann vom eigenen Server; die Adressen der Besucher:innen
+gehen an niemanden sonst.
 ### theme
 
 ## Persönliche Einstellungen

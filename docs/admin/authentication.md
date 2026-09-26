@@ -71,3 +71,16 @@ Für Passkeys genügt es, die Einstellung `passkeys_enabled` auf true zu setzen.
 ```
 WEBAUTHN_ID=kba.anton.ch
 ```
+
+## Dienstkonten
+
+Das Konto `anton` gibt es auf jeder Installation. Es trägt den API-Token von
+Skripten und ist für keine Person gedacht. Anton lässt es deshalb **im Browser
+nicht anmelden**: weder mit Passwort noch mit Passkey, und eine Sitzung, die
+noch besteht, endet beim nächsten Aufruf. Die abgewiesenen Versuche stehen im
+Sicherheitsprotokoll. Der **API-Token** und die Kommandozeile funktionieren
+weiter.
+
+Welche Konten Dienstkonten sind, legt `AUTH_SERVICE_ACCOUNTS` in der `.env`
+fest (kommagetrennt, Vorgabe `anton`, leer für keines, etwa auf einer
+Demo-Installation, die sich als `anton` anmeldet).

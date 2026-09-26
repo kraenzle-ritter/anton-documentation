@@ -68,3 +68,15 @@ To enable passkeys, simply set the setting `passkeys_enabled` to true. When usin
 ```
 WEBAUTHN_ID=kba.anton.ch
 ```
+
+## Service accounts {#dienstkonten}
+
+The account `anton` exists on every installation. It holds the API token of
+scripts and is meant for no person. Anton therefore **does not let it sign in
+in the browser**: neither with a password nor with a passkey, and a session it
+still holds ends on its next request. Refused attempts are in the security log.
+The **API token** and the command line keep working.
+
+Which accounts are service accounts is set by `AUTH_SERVICE_ACCOUNTS` in the
+`.env` (comma separated, default `anton`, empty for none, for example on a demo
+installation that signs in as `anton`).
