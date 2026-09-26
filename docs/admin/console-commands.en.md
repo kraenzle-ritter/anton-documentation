@@ -291,7 +291,7 @@ up to date with every change to the commands.
 
 | Command | Description |
 |---|---|
-| `anton:add-user` | Add or Update a User. With --api-token option, an api token will be issued. |
+| `anton:add-user` | Add or update a user; a new one without --password gets an invitation to set its own password.… |
 | `anton:audit-duplicate-users` | Konten melden, die sich einen Benutzernamen oder eine Adresse teilen (#572). |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
 | `anton:audit-note-name-collisions` | Detect (name, type) collisions that would block the unify-note migration on this tenant. |
@@ -349,7 +349,7 @@ up to date with every change to the commands.
 | `anton:update-loans` | Refresh or update the loans (users_objects table) for descendants |
 | `anton:update-path` | Fill path attribute of objects.table |
 | `anton:update-release-year` | Materialize release_year_calculated (the single effective release year) for all objects (#256). |
-| `anton:upwd` | Update password for specified user (by default resets admin password). |
+| `anton:upwd` | Set the password of an account; without the password argument it is asked for hidden. |
 
 ### inge: (1)
 

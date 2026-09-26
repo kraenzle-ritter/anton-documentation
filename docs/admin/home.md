@@ -26,7 +26,7 @@ sie anbieten will, hängt sie über die zusätzliche Navigation selbst ein:
 !!! warning "Nicht verlinkt heisst nicht geschützt"
     Ein fehlender Menüeintrag verbirgt einen Bereich nicht — die Adresse ist
     erreichbar, wer sie kennt. Was nicht öffentlich sein soll, gehört über
-    [Schutzfristen](protection-periods.md) und das Kennzeichen «Gesperrt»
+    [Schutzfristen](protection-periods.md) und das Feld «Datensatz gesperrt»
     geschützt, nicht über das Weglassen eines Links.
 
 ## Mehrsprachigkeit

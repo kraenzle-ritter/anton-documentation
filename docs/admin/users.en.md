@@ -3,6 +3,16 @@
 User accounts are managed on the admin page under **Users**. Creating, changing
 and deleting requires the `admin` role.
 
+## Creating an account
+
+A new account needs a username and an **e-mail address**. You do not set a
+password: the person receives an e-mail with a link and chooses their own
+password, so only they know it. The link is valid for **72 hours** and works
+once.
+
+If it has expired or the mail did not arrive, send the invitation again with
+**Send invitation** on the account's page.
+
 ## Roles
 
 Anton keeps the roles **untranslated** — in the selection list they appear
@@ -42,6 +52,10 @@ for researchers who may work on a blocked holding without seeing everything.
 To do so, the IDs of the units of description are entered in the **released
 IDs** field as a comma-separated list. An ID always stands for the **entire
 branch** below it — the unit itself and all subordinate ones.
+
+Within that branch the account sees everything `user_intern` sees: blocked
+descriptions and drafts, media under protection period and blocked media, and
+the internal detail view. Outside the branch it sees what guests see.
 
 ## API tokens
 

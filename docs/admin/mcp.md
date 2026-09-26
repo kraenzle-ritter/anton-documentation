@@ -41,7 +41,7 @@ Die Schnittstelle ist **anonym** und zeigt ausschliesslich die öffentliche
 Sicht — dieselbe Regel wie für Gäste im Browser, ohne eigene Rechteprüfung
 daneben:
 
-- Verzeichnungen im Status «Final» (oder ohne Status), deren Feld **Gesperrt**
+- Verzeichnungen im Status «Final» (oder ohne Status), deren Feld **Datensatz gesperrt**
   nicht gesetzt ist. Bei untergeordneten Datensätzen und Zählungen fehlen die
   gesperrten spurlos.
 - Die Felder des **externen Detailformulars** — was die öffentliche Detailseite

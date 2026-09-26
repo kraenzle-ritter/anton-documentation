@@ -16,6 +16,7 @@ Passkeys are more secure than passwords because they cannot be stolen, guessed o
 - Your archive must have the passkey function activated
 - A modern browser (Chrome, Safari, Firefox, Edge)
 - A device with biometric authentication or a security key
+- The device must be unlockable: Anton asks for a fingerprint, face or PIN at every sign-in. A security key therefore needs a PIN set up.
 
 ## Setting up a passkey
 

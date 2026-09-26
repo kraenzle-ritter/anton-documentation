@@ -3,6 +3,16 @@
 Benutzerkonten werden über die Admin-Seite unter **Benutzer:innen**
 verwaltet. Anlegen, Ändern und Löschen setzt die Rolle `admin` voraus.
 
+## Ein Konto anlegen
+
+Ein neues Konto braucht einen Benutzernamen und eine **E-Mail-Adresse**. Ein
+Passwort setzen Sie nicht: Die Person erhält eine E-Mail mit einem Link und
+wählt ihr Passwort selbst. So kennt es nur sie. Der Link gilt **72 Stunden**
+und nur einmal.
+
+Ist er abgelaufen oder kam die Mail nicht an, schicken Sie die Einladung auf
+der Seite des Kontos mit **Einladung senden** erneut.
+
 ## Rollen
 
 Anton führt die Rollen **unübersetzt** — in der Auswahlliste stehen sie genau
@@ -43,6 +53,10 @@ alles zu sehen.
 Dazu werden im Feld **Freigegebene IDs** die IDs der Verzeichnungseinheiten als
 kommagetrennte Liste eingetragen. Eine ID steht immer für den **ganzen Zweig**
 darunter — die Einheit selbst und alle untergeordneten.
+
+In diesem Zweig sieht das Konto alles, was auch `user_intern` sieht: gesperrte
+Verzeichnungen und Entwürfe, Medien unter Schutzfrist und gesperrte Medien, und
+die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.
 
 ## API-Token
 

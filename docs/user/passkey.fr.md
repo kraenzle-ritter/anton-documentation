@@ -16,6 +16,7 @@ Les passkeys sont plus sûrs que les mots de passe, car ils ne peuvent être ni 
 - Votre service d'archives doit avoir activé la fonction passkey
 - Un navigateur récent (Chrome, Safari, Firefox, Edge)
 - Un appareil doté d'une authentification biométrique ou d'une clé de sécurité
+- L'appareil doit pouvoir être déverrouillé : Anton demande à chaque connexion une empreinte, le visage ou un code PIN. Une clé de sécurité doit donc avoir un code PIN configuré.
 
 ## Configurer un passkey
 

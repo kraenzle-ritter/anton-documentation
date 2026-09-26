@@ -36,7 +36,7 @@ erscheint nur, wenn es im jeweiligen Formular steht.**
 !!! warning "Kein Ersatz für Schutzfristen"
     Ein Feld aus dem externen Formular zu nehmen, verbirgt es in der Anzeige —
     es ist keine Zugangskontrolle. Für Schützenswertes sind
-    [Schutzfristen](protection-periods.md) und das Kennzeichen «Gesperrt» das
+    [Schutzfristen](protection-periods.md) und das Feld «Datensatz gesperrt» das
     richtige Mittel.
 
 !!! note "Standort standardmässig nicht öffentlich"

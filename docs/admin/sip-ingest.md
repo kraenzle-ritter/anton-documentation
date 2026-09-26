@@ -22,3 +22,8 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 
 !!! note "Beispiel zum identifier-prefix"
     Das Elternelement (`<ordnungssystemposition>`) des `<dossier>` entspricht dem `parent` in Anton. Der `parent` in Anton wird anhand des Inhalts des Elements `<nummer>` im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.
+
+### Ablauf
+
+1. **Validieren:** Anton prüft Schema, Dateien und Prüfsummen, die Elternelemente und die Importdaten. Der gespeicherte Prüfbericht führt Fehler und Warnungen vollständig auf, erfolgreich geprüfte Dateien als eine Zahl. Die Zeile je Datei zeigt `php artisan sip:check --path=<datei> --validate --env=<slug>`.
+2. **Importieren:** Der Import läuft im Hintergrund als Lauf im [Importprotokoll](../user/import.md#import-protokoll). Anton zeigt den Lauf mit seinem Fortschritt; scheitert er, steht der Grund dort.
