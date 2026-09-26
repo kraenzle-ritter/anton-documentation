@@ -4203,8 +4203,8 @@
 <p>Watermarks can be added to all images "on the fly". The corresponding configuration is stored in the setting "watermark".</p>
 <h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h2>
 <p>If a "watermark" setting exists, watermarks are always displayed for users who are not logged in. In addition, roles for which watermarks are to be displayed can be defined in an array.<br />
-<div class="highlight"><pre><span></span><code>&quot;roles&quot;: [  
-    &quot;user&quot;, &quot;user_intern&quot;  
+<div class="highlight"><pre><span></span><code>"roles": [  
+    "user", "user_intern"  
 ],  
 </code></pre></div></p>
 <h2 id="watermarks_1">Watermarks<a class="headerlink" href="#watermarks_1" title="Permanent link">&para;</a></h2>
@@ -4214,57 +4214,57 @@
 Depending on the type, different configuration options are available.</p>
 <h4 id="text">Text<a class="headerlink" href="#text" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>{
-    &quot;type&quot;: &quot;text&quot;, // type of watermark: text|image
-    &quot;text&quot;: {
-        &quot;de&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;, // german version, required, default, allowed placeholders: &lt;identifier&gt;, &lt;permalink&gt;
-        &quot;en&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;, // additional languages optional
+    "type": "text", // type of watermark: text|image
+    "text": {
+        "de": "© K&amp;R | &lt;identifier&gt;", // german version, required, default, allowed placeholders: &lt;identifier&gt;, &lt;permalink&gt;
+        "en": "© K&amp;R | &lt;identifier&gt;", // additional languages optional
     },
-    &quot;fontfile&quot;: &quot;Oswald-Medium.ttf&quot;, // in customer_folder, subfolder &quot;fonts&quot;
-    &quot;fontsize&quot;: 18, //optional, default 18
-    &quot;color&quot;: &quot;#fff&quot;, //optional, default #000
-    &quot;angle&quot;: 0, //optional, default 0
-    &quot;position&quot;: &quot;bottom-left&quot;, // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
-    &quot;hmargin&quot;: 20, // horizontal margin, optional, default 10
-    &quot;vmargin&quot;: 20, // vertical margin, optional, default 10
-    &quot;background-color&quot;: &quot;rgba(0, 0, 0, 0.5)&quot; // optional, default none, use rgba for opacity setting
+    "fontfile": "Oswald-Medium.ttf", // in customer_folder, subfolder "fonts"
+    "fontsize": 18, //optional, default 18
+    "color": "#fff", //optional, default #000
+    "angle": 0, //optional, default 0
+    "position": "bottom-left", // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
+    "hmargin": 20, // horizontal margin, optional, default 10
+    "vmargin": 20, // vertical margin, optional, default 10
+    "background-color": "rgba(0, 0, 0, 0.5)" // optional, default none, use rgba for opacity setting
     }
 </code></pre></div>
 <h4 id="image">Image<a class="headerlink" href="#image" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>{
-    &quot;type&quot;: &quot;image&quot;, // type of watermark: text|image
-    &quot;imagefile&quot;: &quot;logo.png&quot;, // in customer_folder, subfolder &quot;img&quot;
-    &quot;position&quot;: &quot;top-left&quot;, // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
-    &quot;hmargin&quot;: 10, // horizontal margin, optional, default 0
-    &quot;vmargin&quot;: 10 // vertical margin, optional, default 0
+    "type": "image", // type of watermark: text|image
+    "imagefile": "logo.png", // in customer_folder, subfolder "img"
+    "position": "top-left", // top-left|top|top-right|left|center|right|bottom-left|bottom|bottom-right, optional, default top-left
+    "hmargin": 10, // horizontal margin, optional, default 0
+    "vmargin": 10 // vertical margin, optional, default 0
     }
 </code></pre></div>
 <h2 id="example-configuration">Example configuration<a class="headerlink" href="#example-configuration" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>{
-  &quot;roles&quot;: [
-    &quot;user&quot;,
-    &quot;user_intern&quot;
+  "roles": [
+    "user",
+    "user_intern"
   ],
-  &quot;watermarks&quot;: [
+  "watermarks": [
     {
-      &quot;type&quot;: &quot;text&quot;,
-      &quot;text&quot;: {
-        &quot;de&quot;: &quot;© K&amp;R | &lt;identifier&gt;&quot;
+      "type": "text",
+      "text": {
+        "de": "© K&amp;R | &lt;identifier&gt;"
       },
-      &quot;fontfile&quot;: &quot;Oswald-Medium.ttf&quot;,
-      &quot;fontsize&quot;: 18,
-      &quot;color&quot;: &quot;#fff&quot;,
-      &quot;angle&quot;: 0,
-      &quot;position&quot;: &quot;bottom-left&quot;,
-      &quot;hmargin&quot;: 10,
-      &quot;vmargin&quot;: 10,
-      &quot;background-color&quot;: &quot;rgba(0, 0, 0, 0.5)&quot;
+      "fontfile": "Oswald-Medium.ttf",
+      "fontsize": 18,
+      "color": "#fff",
+      "angle": 0,
+      "position": "bottom-left",
+      "hmargin": 10,
+      "vmargin": 10,
+      "background-color": "rgba(0, 0, 0, 0.5)"
     },
     {
-      &quot;type&quot;: &quot;image&quot;,
-      &quot;imagefile&quot;: &quot;logo.png&quot;,
-      &quot;position&quot;: &quot;top-left&quot;,
-      &quot;hmargin&quot;: 10,
-      &quot;vmargin&quot;: 10
+      "type": "image",
+      "imagefile": "logo.png",
+      "position": "top-left",
+      "hmargin": 10,
+      "vmargin": 10
     }
   ]
 }

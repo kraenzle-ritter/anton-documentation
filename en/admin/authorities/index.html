@@ -4372,7 +4372,7 @@ crontab entry</strong> – provisioned on the k &amp; r servers via <strong>anto
 <code>app/Console/Kernel.php</code>.</p>
 <p>An entry calls the command directly with the environment slug, for example for
 a nightly run:</p>
-<div class="highlight"><pre><span></span><code># Authority data synchronisation for the installation &quot;besenval&quot;, daily 02:30
+<div class="highlight"><pre><span></span><code># Authority data synchronisation for the installation "besenval", daily 02:30
 30 2 * * *  cd /var/www/anton &amp;&amp; php artisan resources:sync --env=besenval --delete-duplicates --mail=admin@example.org &gt;&gt; storage/logs/resources-sync.log 2&gt;&amp;1
 </code></pre></div>
 <ul>

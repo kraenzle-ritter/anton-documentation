@@ -4832,8 +4832,8 @@ anything.</p>
 <h2 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h2>
 <p><strong><code>notification:send</code></strong> creates a <a href="../notifications/">system notification</a> in one
 or all installations:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartung&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Details.&quot;</span><span class="w"> </span>--env<span class="o">=</span>besenval
-php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Update&quot;</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details."</span><span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update"</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
 </code></pre></div>
 <p><code>--title</code> (mandatory) and <code>--body</code> accept a string or JSON for several
 languages; <code>--audience</code> restricts to <code>editors</code> or <code>admins</code>.</p>

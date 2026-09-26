@@ -4349,8 +4349,8 @@
 <h3 id="global-activation">Global activation<a class="headerlink" href="#global-activation" title="Permanent link">&para;</a></h3>
 <p>The weighted search can be activated globally for the API:</p>
 <div class="highlight"><pre><span></span><code><span class="x">// In Tinker or a seeder</span>
-<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, true);  // activate</span>
-<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, false); // deactivate (default)</span>
+<span class="x">Setting::setValue('search_weighted_enabled', true);  // activate</span>
+<span class="x">Setting::setValue('search_weighted_enabled', false); // deactivate (default)</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">User settings</p>
@@ -4519,15 +4519,15 @@ GET /api/keywords?search=Archiv&amp;weighted=1
 </table>
 <h3 id="adapting-the-weightings">Adapting the weightings<a class="headerlink" href="#adapting-the-weightings" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="x">// Example: adapting the weightings for actors</span>
-<span class="x">Setting::setValue(&#39;search_weight_actors&#39;, [</span>
-<span class="x">    &#39;name&#39; =&gt; 15,              // increase name strongly</span>
-<span class="x">    &#39;alternative_names&#39; =&gt; 10, // alternative names more important</span>
-<span class="x">    &#39;variants&#39; =&gt; 5,</span>
-<span class="x">    &#39;abbreviations&#39; =&gt; 5,</span>
-<span class="x">    &#39;type_label&#39; =&gt; 3,</span>
-<span class="x">    &#39;description&#39; =&gt; 2,</span>
-<span class="x">    &#39;sources&#39; =&gt; 1,</span>
-<span class="x">    &#39;comment&#39; =&gt; 1,</span>
+<span class="x">Setting::setValue('search_weight_actors', [</span>
+<span class="x">    'name' =&gt; 15,              // increase name strongly</span>
+<span class="x">    'alternative_names' =&gt; 10, // alternative names more important</span>
+<span class="x">    'variants' =&gt; 5,</span>
+<span class="x">    'abbreviations' =&gt; 5,</span>
+<span class="x">    'type_label' =&gt; 3,</span>
+<span class="x">    'description' =&gt; 2,</span>
+<span class="x">    'sources' =&gt; 1,</span>
+<span class="x">    'comment' =&gt; 1,</span>
 <span class="x">]);</span>
 </code></pre></div>
 <h2 id="relevance-calculation">Relevance calculation<a class="headerlink" href="#relevance-calculation" title="Permanent link">&para;</a></h2>
