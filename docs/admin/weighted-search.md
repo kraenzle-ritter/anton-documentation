@@ -37,6 +37,10 @@ Der API-Parameter hat die höchste Priorität und überschreibt sowohl Benutzer-
 
 Die Relevanz-Berechnung basiert auf konfigurierbaren Feldgewichtungen. Höhere Werte bedeuten höhere Relevanz.
 
+!!! note "Welche Felder zählen"
+    Gewichtet werden nur die Felder, die das Suchformular des Registers
+    durchsucht ([Suchformulare der Register](forms.md#suchformulare-der-register)).
+
 ### Standard-Gewichtungen
 
 #### Akteur:innen (`search_weight_actors`)

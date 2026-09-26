@@ -37,6 +37,10 @@ The API parameter has the highest priority and overrides both the user setting a
 
 The relevance calculation is based on configurable field weightings. Higher values mean higher relevance.
 
+!!! note "Which fields count"
+    Only the fields the register's search form covers are weighted
+    ([Search forms of the registers](forms.md#suchformulare-der-register)).
+
 ### Default weightings
 
 #### Actors (`search_weight_actors`)

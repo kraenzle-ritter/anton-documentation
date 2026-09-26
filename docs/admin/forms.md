@@ -127,3 +127,40 @@ Ohne Auswahl gilt die eingebaute Vorgabe, bei den Objekten unter Ereignissen
 das Datum des Ereignisses, bei den Objekten unter Deskriptoren das
 Entstehungsdatum. Für die eingebetteten Tabellen muss das Formular zuerst mit
 **Konfigurieren** angelegt sein.
+
+## Suchformulare der Register
+
+Welche Felder die Suche in den Registern der Akteur:innen, Orte und
+Schlagwörter durchsucht, legt je Register ein **Suchformular** fest. Was ein
+Detailformular anzeigt, wird damit nicht automatisch durchsucht: Die Quellen
+etwa lassen sich anzeigen, ohne dass eine Suche sie trifft.
+
+Eine Suche erreicht ein Register auf drei Wegen:
+
+| Weg | Wo |
+|---|---|
+| **Liste im Browser** | das Suchfeld über der Registerliste |
+| **Auswahlfelder beim Erschliessen** | die Vorschläge beim Verknüpfen einer Person, eines Orts oder Schlagworts |
+| **API** | `/api/actors`, `/api/places`, `/api/keywords` |
+
+Unter **Admin → Formulare**, Abschnitt **Suchformulare der Register**:
+
+- **Suchformular → Konfigurieren** legt das Suchformular des Registers an. Es
+  gilt für alle drei Wege. Solange es fehlt, gilt die eingebaute Vorgabe:
+  ID, Name, Typ, weitere Namen, Varianten, Abkürzungen und Beschreibung (bei
+  Orten dazu Ort, Kanton/Bundesland, Land und Adresse; bei Schlagwörtern ID,
+  Name und Beschreibung).
+- **Liste im Browser**, **Auswahlfelder beim Erschliessen** und **API** →
+  **Hinzufügen** legt ein eigenes Formular nur für diesen Weg an. Es übernimmt
+  zunächst die Felder des Suchformulars und ersetzt es dann für diesen Weg.
+  **Entfernen** stellt den Weg wieder auf das Suchformular zurück.
+
+Durchsucht werden nur die Felder im Formular, die sich durchsuchen lassen; der
+Editor nennt sie. Den **Kommentar** durchsucht Anton nur für interne Rollen,
+auch wenn er im Formular steht.
+
+Die Spalte **Standard-Sortierung** bestimmt die Reihenfolge, wenn die Anfrage
+keine angibt: **aufsteigend**, **absteigend** oder **Relevanz**. Relevanz stellt
+bei einer Suche die besten Treffer nach oben (siehe
+[Gewichtete Suche](weighted-search.md)) und sortiert ohne Suchbegriff nach der
+Spalte. Eine Sortierung in der Anfrage (`sortField`, `weighted=1`) geht vor.
