@@ -4834,8 +4834,8 @@ Kontingents), <strong><code>anton:db-info</code></strong> (aktiver Treiber und V
 <h2 id="nachrichten">Nachrichten<a class="headerlink" href="#nachrichten" title="Permanent link">&para;</a></h2>
 <p><strong><code>notification:send</code></strong> legt eine <a href="../notifications/">System-Nachricht</a> in einer
 oder allen Installationen an:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details."</span><span class="w"> </span>--env<span class="o">=</span>besenval
-php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update"</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartung&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Details.&quot;</span><span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Update&quot;</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
 </code></pre></div>
 <p><code>--title</code> (Pflicht) und <code>--body</code> akzeptieren einen String oder JSON für
 mehrere Sprachen; <code>--audience</code> schränkt auf <code>editors</code> oder <code>admins</code> ein.</p>

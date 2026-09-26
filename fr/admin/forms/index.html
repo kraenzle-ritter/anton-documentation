@@ -2250,6 +2250,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#suchformulare-der-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suchformulare der Register
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2425,6 +2436,54 @@ eine Spalte je Formular: Wählen Sie eine neue, entfällt die bisherige.</p>
 das Datum des Ereignisses, bei den Objekten unter Deskriptoren das
 Entstehungsdatum. Für die eingebetteten Tabellen muss das Formular zuerst mit
 <strong>Konfigurieren</strong> angelegt sein.</p>
+<h2 id="suchformulare-der-register">Suchformulare der Register<a class="headerlink" href="#suchformulare-der-register" title="Permanent link">&para;</a></h2>
+<p>Welche Felder die Suche in den Registern der Akteur:innen, Orte und
+Schlagwörter durchsucht, legt je Register ein <strong>Suchformular</strong> fest. Was ein
+Detailformular anzeigt, wird damit nicht automatisch durchsucht: Die Quellen
+etwa lassen sich anzeigen, ohne dass eine Suche sie trifft.</p>
+<p>Eine Suche erreicht ein Register auf drei Wegen:</p>
+<table>
+<thead>
+<tr>
+<th>Weg</th>
+<th>Wo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Liste im Browser</strong></td>
+<td>das Suchfeld über der Registerliste</td>
+</tr>
+<tr>
+<td><strong>Auswahlfelder beim Erschliessen</strong></td>
+<td>die Vorschläge beim Verknüpfen einer Person, eines Orts oder Schlagworts</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td><code>/api/actors</code>, <code>/api/places</code>, <code>/api/keywords</code></td>
+</tr>
+</tbody>
+</table>
+<p>Unter <strong>Admin → Formulare</strong>, Abschnitt <strong>Suchformulare der Register</strong>:</p>
+<ul>
+<li><strong>Suchformular → Konfigurieren</strong> legt das Suchformular des Registers an. Es
+  gilt für alle drei Wege. Solange es fehlt, gilt die eingebaute Vorgabe:
+  ID, Name, Typ, weitere Namen, Varianten, Abkürzungen und Beschreibung (bei
+  Orten dazu Ort, Kanton/Bundesland, Land und Adresse; bei Schlagwörtern ID,
+  Name und Beschreibung).</li>
+<li><strong>Liste im Browser</strong>, <strong>Auswahlfelder beim Erschliessen</strong> und <strong>API</strong> →
+  <strong>Hinzufügen</strong> legt ein eigenes Formular nur für diesen Weg an. Es übernimmt
+  zunächst die Felder des Suchformulars und ersetzt es dann für diesen Weg.
+  <strong>Entfernen</strong> stellt den Weg wieder auf das Suchformular zurück.</li>
+</ul>
+<p>Durchsucht werden nur die Felder im Formular, die sich durchsuchen lassen; der
+Editor nennt sie. Den <strong>Kommentar</strong> durchsucht Anton nur für interne Rollen,
+auch wenn er im Formular steht.</p>
+<p>Die Spalte <strong>Standard-Sortierung</strong> bestimmt die Reihenfolge, wenn die Anfrage
+keine angibt: <strong>aufsteigend</strong>, <strong>absteigend</strong> oder <strong>Relevanz</strong>. Relevanz stellt
+bei einer Suche die besten Treffer nach oben (siehe
+<a href="../weighted-search/">Gewichtete Suche</a>) und sortiert ohne Suchbegriff nach der
+Spalte. Eine Sortierung in der Anfrage (<code>sortField</code>, <code>weighted=1</code>) geht vor.</p>
 
 
 

@@ -4221,7 +4221,7 @@ appears <strong>only</strong> for levels of description that are listed in the s
 <p>Level-of-description IDs: <code>1</code> collection, <code>2</code> recordgroup, <code>3</code> fonds, <code>4</code> class,
 <code>5</code> file (dossier), <code>6</code> item, <code>700</code> series.</p>
 <p>Neither setting is editable via <code>/settings</code> — they are set by seeder or Tinker:</p>
-<div class="highlight"><pre><span></span><code><span class="x">\Ottosmops\Settings\Setting::setValue('level_of_description_ids_for_dip_download', [3,4,5,6]);</span>
+<div class="highlight"><pre><span></span><code><span class="x">\Ottosmops\Settings\Setting::setValue(&#39;level_of_description_ids_for_dip_download&#39;, [3,4,5,6]);</span>
 </code></pre></div>
 <p>The button is suppressed automatically if the object lies in the accession area
 (<code>accessions_archives_id</code> in its path).</p>

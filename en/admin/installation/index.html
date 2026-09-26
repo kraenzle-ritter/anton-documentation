@@ -4371,7 +4371,7 @@
 <p>Setting up a new <code>customer</code> requires command-line access.</p>
 <h3 id="creating-configphp-in-bootstrap">Creating config.php in bootstrap/<a class="headerlink" href="#creating-configphp-in-bootstrap" title="Permanent link">&para;</a></h3>
 <p>If the environment does not correspond to the subdomain, a <code>config.php</code> file has to be created that defines an array <code>$slugArray</code>. This maps the URL of the Anton installation to a <code>customer</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$slugArray = ['besenval.anton' =&gt; 'besenval'];</span>
+<div class="highlight"><pre><span></span><code><span class="x">$slugArray = [&#39;besenval.anton&#39; =&gt; &#39;besenval&#39;];</span>
 </code></pre></div>
 <p>Here the <code>key</code> consists of the subdomain and domain, and the <code>value</code> contains the <code>customer-slug</code>, that is, the suffix of the <code>.env</code> file — in this case <code>.env.besenval</code>.</p>
 <h3 id="adapting-the-environment-env">Adapting the environment (.env)<a class="headerlink" href="#adapting-the-environment-env" title="Permanent link">&para;</a></h3>
@@ -4415,7 +4415,7 @@ MAIL_FROM
 MAIL_NAME
 </code></pre></div>
 <p>Testing email dispatch is straightforward:
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">'kraenzle@k-r.ch'</span>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--all<span class="w"> </span>--env<span class="w"> </span>kr<span class="w"> </span>--mail<span class="w"> </span><span class="s1">&#39;kraenzle@k-r.ch&#39;</span>
 </code></pre></div></p>
 <h4 id="customers-path">Customers path<a class="headerlink" href="#customers-path" title="Permanent link">&para;</a></h4>
 <p>The variable <code>CUSTOMER_PATH</code> can also be set (it has to contain an absolute path). If <code>CUSTOMER_PATH</code> is not set, a <code>customers</code> folder is created in the Anton folder and used.</p>
@@ -4449,12 +4449,12 @@ reports «no local backup set up» and does nothing.</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">anton_besenval</span><span class="p">;</span>
 </code></pre></div>
 <p>Create a dedicated DB user:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'user_password'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;user_password&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Replace <code>user_password</code> with the password.</p>
 <p>Grant all rights to this user:</p>
-<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">'anton_besenval'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">database_name</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;anton_besenval&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="basic-installation">Basic installation<a class="headerlink" href="#basic-installation" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:install<span class="w"> </span>-vv<span class="w"> </span>--env<span class="o">=</span>besenval

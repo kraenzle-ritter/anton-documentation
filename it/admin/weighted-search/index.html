@@ -2290,7 +2290,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/weighted-search/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/weighted-search/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-09-26</span>
     </div>
   
   
@@ -2307,8 +2307,8 @@
 <h3 id="globale-aktivierung">Globale Aktivierung<a class="headerlink" href="#globale-aktivierung" title="Permanent link">&para;</a></h3>
 <p>Die gewichtete Suche kann global für die API aktiviert werden:</p>
 <div class="highlight"><pre><span></span><code><span class="x">// In Tinker oder Seeder</span>
-<span class="x">Setting::setValue('search_weighted_enabled', true);  // Aktivieren</span>
-<span class="x">Setting::setValue('search_weighted_enabled', false); // Deaktivieren (Standard)</span>
+<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, true);  // Aktivieren</span>
+<span class="x">Setting::setValue(&#39;search_weighted_enabled&#39;, false); // Deaktivieren (Standard)</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Benutzereinstellungen</p>
@@ -2328,6 +2328,11 @@ GET /api/keywords?search=Archiv&amp;weighted=1
 <p>Der API-Parameter hat die höchste Priorität und überschreibt sowohl Benutzer- als auch globale Einstellungen.</p>
 <h2 id="feldgewichtungen">Feldgewichtungen<a class="headerlink" href="#feldgewichtungen" title="Permanent link">&para;</a></h2>
 <p>Die Relevanz-Berechnung basiert auf konfigurierbaren Feldgewichtungen. Höhere Werte bedeuten höhere Relevanz.</p>
+<div class="admonition note">
+<p class="admonition-title">Welche Felder zählen</p>
+<p>Gewichtet werden nur die Felder, die das Suchformular des Registers
+durchsucht (<a href="../forms/#suchformulare-der-register">Suchformulare der Register</a>).</p>
+</div>
 <h3 id="standard-gewichtungen">Standard-Gewichtungen<a class="headerlink" href="#standard-gewichtungen" title="Permanent link">&para;</a></h3>
 <h4 id="akteurinnen-search_weight_actors">Akteur:innen (<code>search_weight_actors</code>)<a class="headerlink" href="#akteurinnen-search_weight_actors" title="Permanent link">&para;</a></h4>
 <table>
@@ -2472,15 +2477,15 @@ GET /api/keywords?search=Archiv&amp;weighted=1
 </table>
 <h3 id="gewichtungen-anpassen">Gewichtungen anpassen<a class="headerlink" href="#gewichtungen-anpassen" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="x">// Beispiel: Gewichtungen für Akteur:innen anpassen</span>
-<span class="x">Setting::setValue('search_weight_actors', [</span>
-<span class="x">    'name' =&gt; 15,              // Name stark erhöhen</span>
-<span class="x">    'alternative_names' =&gt; 10, // Alternative Namen wichtiger</span>
-<span class="x">    'variants' =&gt; 5,</span>
-<span class="x">    'abbreviations' =&gt; 5,</span>
-<span class="x">    'type_label' =&gt; 3,</span>
-<span class="x">    'description' =&gt; 2,</span>
-<span class="x">    'sources' =&gt; 1,</span>
-<span class="x">    'comment' =&gt; 1,</span>
+<span class="x">Setting::setValue(&#39;search_weight_actors&#39;, [</span>
+<span class="x">    &#39;name&#39; =&gt; 15,              // Name stark erhöhen</span>
+<span class="x">    &#39;alternative_names&#39; =&gt; 10, // Alternative Namen wichtiger</span>
+<span class="x">    &#39;variants&#39; =&gt; 5,</span>
+<span class="x">    &#39;abbreviations&#39; =&gt; 5,</span>
+<span class="x">    &#39;type_label&#39; =&gt; 3,</span>
+<span class="x">    &#39;description&#39; =&gt; 2,</span>
+<span class="x">    &#39;sources&#39; =&gt; 1,</span>
+<span class="x">    &#39;comment&#39; =&gt; 1,</span>
 <span class="x">]);</span>
 </code></pre></div>
 <h2 id="relevanz-berechnung">Relevanz-Berechnung<a class="headerlink" href="#relevanz-berechnung" title="Permanent link">&para;</a></h2>

@@ -5377,7 +5377,7 @@ Form und Inhalt (note.scopecontent)
 <h2 id="import-uber-die-kommandozeile">Import über die Kommandozeile<a class="headerlink" href="#import-uber-die-kommandozeile" title="Permanent link">&para;</a></h2>
 <h3 id="einfacher-import">Einfacher Import<a class="headerlink" href="#einfacher-import" title="Permanent link">&para;</a></h3>
 <p>Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">"test.xlsx"</span><span class="w"> </span>--import
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="w"> </span>--import
 </code></pre></div>
 <p>Dabei wird davon ausgegangen, dass <code>test.xlsx</code> im Ordner <code>customers/besenval/metadata_to_import/</code> liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner <code>customers/besenval/assets_to_import/</code> befinden.</p>
 <p>Ohne die Option <code>--import</code> wird das file nur validiert.</p>

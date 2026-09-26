@@ -2366,6 +2366,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#suchformulare-der-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search forms of the registers
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4269,6 +4280,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#suchformulare-der-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search forms of the registers
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4440,6 +4462,54 @@ most one column per form applies: choosing a new one removes the previous one.</
 <p>Without a choice the built-in default applies: the date of the event for the
 objects under events, the creation date for the objects under descriptors. For
 the embedded tables, the form has to be created with <strong>Configure</strong> first.</p>
+<h2 id="suchformulare-der-register">Search forms of the registers<a class="headerlink" href="#suchformulare-der-register" title="Permanent link">&para;</a></h2>
+<p>Which fields a search in the registers of actors, places and keywords covers
+is set per register in a <strong>search form</strong>. What a detail form shows is therefore
+not searched automatically: sources, for instance, can be shown without a
+search hitting them.</p>
+<p>A search reaches a register in three ways:</p>
+<table>
+<thead>
+<tr>
+<th>Way</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>List in the browser</strong></td>
+<td>the search field above the register list</td>
+</tr>
+<tr>
+<td><strong>Selection fields while cataloguing</strong></td>
+<td>the suggestions when linking an actor, place or keyword</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td><code>/api/actors</code>, <code>/api/places</code>, <code>/api/keywords</code></td>
+</tr>
+</tbody>
+</table>
+<p>Under <strong>Admin → Forms</strong>, section <strong>Search forms of the registers</strong>:</p>
+<ul>
+<li><strong>Search form → Configure</strong> creates the register's search form. It applies
+  to all three ways. As long as it is missing, the built-in default applies:
+  ID, name, type, alternative names, variants, abbreviations and description
+  (for places also city, state, country and address; for keywords ID, name and
+  description).</li>
+<li><strong>List in the browser</strong>, <strong>Selection fields while cataloguing</strong> and <strong>API</strong> →
+  <strong>Add</strong> creates a form for that way only. It starts with the fields of the
+  search form and then replaces it for that way. <strong>Remove</strong> returns the way to
+  the search form.</li>
+</ul>
+<p>Only the fields in the form that can be searched are searched; the editor lists
+them. Anton searches the <strong>comment</strong> for internal roles only, even if it is in
+the form.</p>
+<p>The <strong>Default sort</strong> column sets the order when the request specifies none:
+<strong>ascending</strong>, <strong>descending</strong> or <strong>relevance</strong>. Relevance puts the best matches
+first when searching (see <a href="../weighted-search/">Weighted search</a>) and sorts by
+the column without a search term. A sort in the request (<code>sortField</code>,
+<code>weighted=1</code>) takes precedence.</p>
 
 
 

@@ -4485,28 +4485,28 @@ deleted directly.</p>
 <p>On demand, without file caching. Authentication via api_token as with all other
 Anton API calls.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># A+ (default Turtle)</span>
-curl<span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm"</span>
+curl<span class="w"> </span><span class="s2">&quot;https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm&quot;</span>
 
 <span class="c1"># A+ as JSON-LD</span>
-curl<span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm&amp;serialization=jsonld"</span>
+curl<span class="w"> </span><span class="s2">&quot;https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm&amp;serialization=jsonld&quot;</span>
 
 <span class="c1"># A+ as RDF/XML or N-Triples</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=cidoc-crm&amp;serialization=rdfxml"</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=cidoc-crm&amp;serialization=ntriples"</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=cidoc-crm&amp;serialization=rdfxml&quot;</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=cidoc-crm&amp;serialization=ntriples&quot;</span>
 
 <span class="c1"># Memobase (default JSON-LD)</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=memobase"</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=memobase&quot;</span>
 
 <span class="c1"># Memobase as Turtle (debug)</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=memobase&amp;serialization=turtle"</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=memobase&amp;serialization=turtle&quot;</span>
 
 <span class="c1"># Pure RiC-O (default JSON-LD)</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=ric"</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=ric&quot;</span>
 
 <span class="c1"># Pure RiC-O as Turtle / RDF-XML / N-Triples</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=ric&amp;serialization=turtle"</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=ric&amp;serialization=rdfxml"</span>
-curl<span class="w"> </span><span class="s2">"...&amp;format=ric&amp;serialization=ntriples"</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=ric&amp;serialization=turtle&quot;</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=ric&amp;serialization=rdfxml&quot;</span>
+curl<span class="w"> </span><span class="s2">&quot;...&amp;format=ric&amp;serialization=ntriples&quot;</span>
 </code></pre></div>
 <p>Accepted <code>format</code> values for the A+ profile: <code>cidoc-crm</code>, <code>cidoc</code>, <code>rdf</code>
 (aliases). For the RiC-O profile: <code>ric</code>, <code>rico</code> (aliases). Accepted
@@ -4861,12 +4861,12 @@ appear is controlled per format by its own setting:</p>
 everywhere — in a fresh installation, the user sees <strong>no</strong> new button until an
 admin enters the LoDs via <code>/settings</code> (or Tinker).</p>
 <p>Example: activating all four new buttons on fonds/series/file/item:</p>
-<div class="highlight"><pre><span></span><code>ddev<span class="w"> </span>artisan<span class="w"> </span>tinker<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--execute<span class="o">=</span><span class="s1">'</span>
+<div class="highlight"><pre><span></span><code>ddev<span class="w"> </span>artisan<span class="w"> </span>tinker<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--execute<span class="o">=</span><span class="s1">&#39;</span>
 <span class="s1">use Ottosmops\Settings\Setting;</span>
-<span class="s1">foreach (["ead", "cidoc", "ric", "memobase"] as $k) {</span>
-<span class="s1">    Setting::setValue("level_of_description_ids_for_".$k."_download", [3, 4, 5, 6]);</span>
+<span class="s1">foreach ([&quot;ead&quot;, &quot;cidoc&quot;, &quot;ric&quot;, &quot;memobase&quot;] as $k) {</span>
+<span class="s1">    Setting::setValue(&quot;level_of_description_ids_for_&quot;.$k.&quot;_download&quot;, [3, 4, 5, 6]);</span>
 <span class="s1">}</span>
-<span class="s1">'</span>
+<span class="s1">&#39;</span>
 </code></pre></div>
 <p>The buttons all hang off synchronous inline download routes
 (<code>/objects/{id}/download/{format}</code> with format <code>ead|cidoc-crm|ric|memobase</code>) and
