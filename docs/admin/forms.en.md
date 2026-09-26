@@ -112,3 +112,14 @@ the built-in specification into an editable form and hands it over to the normal
 column editor. From then on, columns and labels can be changed as in any other
 form. Merely looking changes nothing — only **Configure** creates the editable
 form.
+
+## Default sort {#standard-sortierung}
+
+In list forms — the object lists and the embedded tables — the column editor has
+a column **Default sort**. Choose **ascending** or **descending** for a column,
+and the table shows its entries in that order until someone sorts otherwise. At
+most one column per form applies: choosing a new one removes the previous one.
+
+Without a choice the built-in default applies: the date of the event for the
+objects under events, the creation date for the objects under descriptors. For
+the embedded tables, the form has to be created with **Configure** first.
