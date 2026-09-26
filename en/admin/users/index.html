@@ -2442,6 +2442,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#creating-an-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating an account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4125,6 +4136,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#creating-an-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating an account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#roles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4196,7 +4218,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-25</span>
     </div>
   
   
@@ -4210,6 +4232,13 @@
 <h1 id="user-administration">User administration<a class="headerlink" href="#user-administration" title="Permanent link">&para;</a></h1>
 <p>User accounts are managed on the admin page under <strong>Users</strong>. Creating, changing
 and deleting requires the <code>admin</code> role.</p>
+<h2 id="creating-an-account">Creating an account<a class="headerlink" href="#creating-an-account" title="Permanent link">&para;</a></h2>
+<p>A new account needs a username and an <strong>e-mail address</strong>. You do not set a
+password: the person receives an e-mail with a link and chooses their own
+password, so only they know it. The link is valid for <strong>72 hours</strong> and works
+once.</p>
+<p>If it has expired or the mail did not arrive, send the invitation again with
+<strong>Send invitation</strong> on the account's page.</p>
 <h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h2>
 <p>Anton keeps the roles <strong>untranslated</strong> — in the selection list they appear
 exactly like this:</p>
@@ -4267,6 +4296,9 @@ for researchers who may work on a blocked holding without seeing everything.</p>
 <p>To do so, the IDs of the units of description are entered in the <strong>released
 IDs</strong> field as a comma-separated list. An ID always stands for the <strong>entire
 branch</strong> below it — the unit itself and all subordinate ones.</p>
+<p>Within that branch the account sees everything <code>user_intern</code> sees: blocked
+descriptions and drafts, media under protection period and blocked media, and
+the internal detail view. Outside the branch it sees what guests see.</p>
 <h2 id="api-tokens">API tokens<a class="headerlink" href="#api-tokens" title="Permanent link">&para;</a></h2>
 <p>For access via the <a href="../../api/authentication/">API</a>, a token can be generated per
 account. It receives the rights of the account; a token for read access

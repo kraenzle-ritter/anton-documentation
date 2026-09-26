@@ -2162,6 +2162,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ablauf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ablauf
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2179,7 +2190,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/sip-ingest/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-26</span>
     </div>
   
   
@@ -2217,6 +2228,11 @@
 <p class="admonition-title">Beispiel zum identifier-prefix</p>
 <p>Das Elternelement (<code>&lt;ordnungssystemposition&gt;</code>) des <code>&lt;dossier&gt;</code> entspricht dem <code>parent</code> in Anton. Der <code>parent</code> in Anton wird anhand des Inhalts des Elements <code>&lt;nummer&gt;</code> im SIP bestimmt. Wenn also zum Beispiel diese Nummer "0.6.6" lautet, die Archivsignatur aber "A.1.4.0.6.6" ist, ist entsprechend das Prefix mit "A.1.4." auszufüllen.</p>
 </div>
+<h3 id="ablauf">Ablauf<a class="headerlink" href="#ablauf" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Validieren:</strong> Anton prüft Schema, Dateien und Prüfsummen, die Elternelemente und die Importdaten. Der gespeicherte Prüfbericht führt Fehler und Warnungen vollständig auf, erfolgreich geprüfte Dateien als eine Zahl. Die Zeile je Datei zeigt <code>php artisan sip:check --path=&lt;datei&gt; --validate --env=&lt;slug&gt;</code>.</li>
+<li><strong>Importieren:</strong> Der Import läuft im Hintergrund als Lauf im <a href="../../user/import/#import-protokoll">Importprotokoll</a>. Anton zeigt den Lauf mit seinem Fortschritt; scheitert er, steht der Grund dort.</li>
+</ol>
 
 
 

@@ -2152,6 +2152,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ein-konto-anlegen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ein Konto anlegen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rollen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2223,7 +2234,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/users/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-19</span>
+        <span class="page-meta__date">Last updated: 2026-09-25</span>
     </div>
   
   
@@ -2237,6 +2248,13 @@
 <h1 id="benutzerverwaltung">Benutzerverwaltung<a class="headerlink" href="#benutzerverwaltung" title="Permanent link">&para;</a></h1>
 <p>Benutzerkonten werden über die Admin-Seite unter <strong>Benutzer:innen</strong>
 verwaltet. Anlegen, Ändern und Löschen setzt die Rolle <code>admin</code> voraus.</p>
+<h2 id="ein-konto-anlegen">Ein Konto anlegen<a class="headerlink" href="#ein-konto-anlegen" title="Permanent link">&para;</a></h2>
+<p>Ein neues Konto braucht einen Benutzernamen und eine <strong>E-Mail-Adresse</strong>. Ein
+Passwort setzen Sie nicht: Die Person erhält eine E-Mail mit einem Link und
+wählt ihr Passwort selbst. So kennt es nur sie. Der Link gilt <strong>72 Stunden</strong>
+und nur einmal.</p>
+<p>Ist er abgelaufen oder kam die Mail nicht an, schicken Sie die Einladung auf
+der Seite des Kontos mit <strong>Einladung senden</strong> erneut.</p>
 <h2 id="rollen">Rollen<a class="headerlink" href="#rollen" title="Permanent link">&para;</a></h2>
 <p>Anton führt die Rollen <strong>unübersetzt</strong> — in der Auswahlliste stehen sie genau
 so:</p>
@@ -2295,6 +2313,9 @@ alles zu sehen.</p>
 <p>Dazu werden im Feld <strong>Freigegebene IDs</strong> die IDs der Verzeichnungseinheiten als
 kommagetrennte Liste eingetragen. Eine ID steht immer für den <strong>ganzen Zweig</strong>
 darunter — die Einheit selbst und alle untergeordneten.</p>
+<p>In diesem Zweig sieht das Konto alles, was auch <code>user_intern</code> sieht: gesperrte
+Verzeichnungen und Entwürfe, Medien unter Schutzfrist und gesperrte Medien, und
+die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.</p>
 <h2 id="api-token">API-Token<a class="headerlink" href="#api-token" title="Permanent link">&para;</a></h2>
 <p>Für den Zugriff über die <a href="../../api/authentication/">API</a> lässt sich pro Konto ein
 Token erzeugen. Es erhält die Rechte des Kontos; ein Token für einen

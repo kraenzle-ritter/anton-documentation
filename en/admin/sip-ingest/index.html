@@ -2835,6 +2835,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4093,6 +4104,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4110,7 +4132,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-26</span>
     </div>
   
   
@@ -4148,6 +4170,11 @@
 <p class="admonition-title">Example for identifier-prefix</p>
 <p>The parent element (<code>&lt;ordnungssystemposition&gt;</code>) of the <code>&lt;dossier&gt;</code> corresponds to the <code>parent</code> in Anton. The <code>parent</code> in Anton is determined on the basis of the content of the <code>&lt;nummer&gt;</code> element in the SIP. If, for example, this number is "0.6.6" but the archival reference code is "A.1.4.0.6.6", the prefix has to be filled in accordingly with "A.1.4.".</p>
 </div>
+<h3 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Validate:</strong> Anton checks schema, files and checksums, the parent elements and the import data. The stored validation report lists errors and warnings in full and successfully checked files as one count. The line per file is shown by <code>php artisan sip:check --path=&lt;file&gt; --validate --env=&lt;slug&gt;</code>.</li>
+<li><strong>Import:</strong> The import runs in the background as a run in the <a href="../../user/import/#import-protokoll">import log</a>. Anton shows the run with its progress; if it fails, the reason is shown there.</li>
+</ol>
 
 
 
