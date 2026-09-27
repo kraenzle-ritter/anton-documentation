@@ -69,6 +69,23 @@ To enable passkeys, simply set the setting `passkeys_enabled` to true. When usin
 WEBAUTHN_ID=kba.anton.ch
 ```
 
+## Sessions {#sitzungen}
+
+In the profile, the **Security** tab shows under **Sessions** where the account
+is signed in in the browser: device, IP address and last activity, with the
+current session marked. **End all other sessions** signs out every other
+device, including those with «remember me»; Anton asks for the password first.
+If you do not recognise a device, end the other sessions and change your
+password.
+
+In the **user administration**, administrators see the same list for every
+account and can end all of an account's sessions with **End all sessions**, for
+instance on suspected misuse or when someone leaves.
+
+A session ends after 120 minutes without activity (`SESSION_LIFETIME`). There is
+deliberately no fixed maximum duration: people cataloguing often work in the
+form all day.
+
 ## Service accounts {#dienstkonten}
 
 The account `anton` exists on every installation. It holds the API token of

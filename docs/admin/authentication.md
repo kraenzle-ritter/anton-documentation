@@ -72,6 +72,23 @@ Für Passkeys genügt es, die Einstellung `passkeys_enabled` auf true zu setzen.
 WEBAUTHN_ID=kba.anton.ch
 ```
 
+## Sitzungen
+
+Im Profil zeigt der Reiter **Sicherheit** unter **Sitzungen**, wo das Konto im
+Browser angemeldet ist: Gerät, IP-Adresse und letzte Aktivität, die eigene
+Sitzung markiert. **Alle anderen Sitzungen beenden** meldet alle übrigen Geräte
+ab, auch solche mit «Angemeldet bleiben»; dafür fragt Anton nach dem Passwort.
+Wer ein Gerät nicht kennt, beendet die anderen Sitzungen und ändert das
+Passwort.
+
+In der **Benutzerverwaltung** sehen Administrator:innen dieselbe Liste für jedes
+Konto und können mit **Alle Sitzungen beenden** alle Sitzungen eines Kontos
+beenden, etwa bei Verdacht auf Missbrauch oder beim Ausscheiden einer Person.
+
+Eine Sitzung endet nach 120 Minuten ohne Aktivität (`SESSION_LIFETIME`). Eine
+feste Höchstdauer gibt es bewusst nicht: Wer erschliesst, arbeitet oft den
+ganzen Tag im Formular.
+
 ## Dienstkonten
 
 Das Konto `anton` gibt es auf jeder Installation. Es trägt den API-Token von
