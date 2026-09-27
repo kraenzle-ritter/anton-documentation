@@ -2257,6 +2257,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sitzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dienstkonten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4227,6 +4238,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sitzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dienstkonten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4313,6 +4335,19 @@ either side, so that a phone whose clock is slightly off does not fail.</p>
 <p>To enable passkeys, simply set the setting <code>passkeys_enabled</code> to true. When using subdomains, set <code>WEBAUTHN_ID</code> in the <code>.env</code> file. For example:</p>
 <div class="highlight"><pre><span></span><code>WEBAUTHN_ID=kba.anton.ch
 </code></pre></div>
+<h2 id="sitzungen">Sessions<a class="headerlink" href="#sitzungen" title="Permanent link">&para;</a></h2>
+<p>In the profile, the <strong>Security</strong> tab shows under <strong>Sessions</strong> where the account
+is signed in in the browser: device, IP address and last activity, with the
+current session marked. <strong>End all other sessions</strong> signs out every other
+device, including those with «remember me»; Anton asks for the password first.
+If you do not recognise a device, end the other sessions and change your
+password.</p>
+<p>In the <strong>user administration</strong>, administrators see the same list for every
+account and can end all of an account's sessions with <strong>End all sessions</strong>, for
+instance on suspected misuse or when someone leaves.</p>
+<p>A session ends after 120 minutes without activity (<code>SESSION_LIFETIME</code>). There is
+deliberately no fixed maximum duration: people cataloguing often work in the
+form all day.</p>
 <h2 id="dienstkonten">Service accounts<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
 <p>The account <code>anton</code> exists on every installation. It holds the API token of
 scripts and is meant for no person. Anton therefore <strong>does not let it sign in

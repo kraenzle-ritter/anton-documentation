@@ -2257,6 +2257,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sitzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sitzungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dienstkonten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4227,6 +4238,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sitzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sitzungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dienstkonten" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4316,6 +4338,19 @@ scheitert.</p>
 <p>Für Passkeys genügt es, die Einstellung <code>passkeys_enabled</code> auf true zu setzen. Bei Betrieb unter Subdomains ist zusätzlich <code>WEBAUTHN_ID</code> in der <code>.env</code>-Datei zu setzen, zum Beispiel:</p>
 <div class="highlight"><pre><span></span><code>WEBAUTHN_ID=kba.anton.ch
 </code></pre></div>
+<h2 id="sitzungen">Sitzungen<a class="headerlink" href="#sitzungen" title="Permanent link">&para;</a></h2>
+<p>Im Profil zeigt der Reiter <strong>Sicherheit</strong> unter <strong>Sitzungen</strong>, wo das Konto im
+Browser angemeldet ist: Gerät, IP-Adresse und letzte Aktivität, die eigene
+Sitzung markiert. <strong>Alle anderen Sitzungen beenden</strong> meldet alle übrigen Geräte
+ab, auch solche mit «Angemeldet bleiben»; dafür fragt Anton nach dem Passwort.
+Wer ein Gerät nicht kennt, beendet die anderen Sitzungen und ändert das
+Passwort.</p>
+<p>In der <strong>Benutzerverwaltung</strong> sehen Administrator:innen dieselbe Liste für jedes
+Konto und können mit <strong>Alle Sitzungen beenden</strong> alle Sitzungen eines Kontos
+beenden, etwa bei Verdacht auf Missbrauch oder beim Ausscheiden einer Person.</p>
+<p>Eine Sitzung endet nach 120 Minuten ohne Aktivität (<code>SESSION_LIFETIME</code>). Eine
+feste Höchstdauer gibt es bewusst nicht: Wer erschliesst, arbeitet oft den
+ganzen Tag im Formular.</p>
 <h2 id="dienstkonten">Dienstkonten<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
 <p>Das Konto <code>anton</code> gibt es auf jeder Installation. Es trägt den API-Token von
 Skripten und ist für keine Person gedacht. Anton lässt es deshalb <strong>im Browser
