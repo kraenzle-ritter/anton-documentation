@@ -59,10 +59,12 @@ the internal detail view. Outside the branch it sees what guests see.
 
 ## API tokens
 
-For access via the [API](../api/authentication.md), a token can be generated per
-account. It receives the rights of the account; a token for read access
-therefore belongs to an account with a correspondingly restricted role, not to
-an administration account.
+For access via the [API](../api/authentication.md), tokens can be generated per
+account, each with a name and, if needed, an expiry date. A token is shown only
+once, right after it was created; the detail page then lists name, last use and
+expiry and lets you revoke single tokens. A token receives the rights of the
+account; a token for read access therefore belongs to an account with a
+correspondingly restricted role, not to an administration account.
 
 ## Login procedures
 

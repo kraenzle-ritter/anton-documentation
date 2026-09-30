@@ -60,8 +60,11 @@ die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.
 
 ## API-Token
 
-Für den Zugriff über die [API](../api/authentication.md) lässt sich pro Konto ein
-Token erzeugen. Es erhält die Rechte des Kontos; ein Token für einen
+Für den Zugriff über die [API](../api/authentication.md) lassen sich pro Konto
+Tokens erzeugen, jeder mit Bezeichnung und bei Bedarf einem Ablaufdatum. Ein
+Token wird nur einmal angezeigt, direkt nach dem Erstellen; die Detailseite
+listet danach Bezeichnung, letzte Nutzung und Ablauf und erlaubt, einzelne
+Tokens zu widerrufen. Ein Token erhält die Rechte des Kontos; ein Token für einen
 Lesezugriff gehört deshalb an ein Konto mit entsprechend knapper Rolle, nicht an
 ein Administrationskonto.
 
