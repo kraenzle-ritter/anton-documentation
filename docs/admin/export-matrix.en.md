@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **25 September 2026**. It is
+    This matrix reflects the state of **30 September 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -219,6 +219,12 @@ definitions and the AI data.
 
 RDF, TEI and EAD filter out private objects, actors and media as well as private
 text field types (internal archival remarks, cataloguer's information, comment).
+
+**EAD** always shows the public view, whoever generates the file: no locked
+descriptions or drafts, with everything below them, and no locked actors, not
+even as creators. Anton serves the file of a public fonds to anybody through
+OAI-PMH. Up to v0.100.0 it contained what the person generating it could see,
+and always the locked creators (anton#616).
 
 !!! warning "Plain flag logic"
     The filter evaluates the `private` flag — it is **not a role check**. Apart
