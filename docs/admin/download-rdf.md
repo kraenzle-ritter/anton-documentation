@@ -44,15 +44,16 @@ sich direkt herunterladen oder löschen.
 
 ### 2. API — `/api/v1/objects/{id}?format=…`
 
-On-demand, ohne Datei-Caching. Authentifizierung via api_token wie bei
-allen anderen Anton-API-Calls.
+On-demand, ohne Datei-Caching. Authentifizierung mit dem API-Token im Header
+wie bei allen anderen Anton-API-Calls (siehe
+[API-Authentifizierung](../api/authentication.md)).
 
 ```bash
 # A+ (default Turtle)
-curl "https://archiv.example/api/objects/42?api_token=TOKEN&format=cidoc-crm"
+curl -H "Authorization: Bearer TOKEN" "https://archiv.example/api/objects/42?format=cidoc-crm"
 
 # A+ als JSON-LD
-curl "https://archiv.example/api/objects/42?api_token=TOKEN&format=cidoc-crm&serialization=jsonld"
+curl -H "Authorization: Bearer TOKEN" "https://archiv.example/api/objects/42?format=cidoc-crm&serialization=jsonld"
 
 # A+ als RDF/XML oder N-Triples
 curl "...&format=cidoc-crm&serialization=rdfxml"
