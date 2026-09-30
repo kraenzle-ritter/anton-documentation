@@ -128,3 +128,5 @@ data = response.json()
 ## Public API
 
 If the setting `public_api` is activated, certain endpoints can be queried without a token. The protected endpoints continue to require authentication.
+
+The authority endpoints `/api/actors`, `/api/places` and `/api/keywords` (lists, selection, TEI, Beacon, reconciliation) answer without a token as long as the archive is public (`public_access`). When it is closed, they too require a token or a login; without one they answer `401`.

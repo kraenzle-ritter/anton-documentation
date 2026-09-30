@@ -129,3 +129,5 @@ data = response.json()
 ## Öffentliche API
 
 Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden. Die geschützten Endpunkte erfordern weiterhin Authentifizierung.
+
+Die Normdaten-Endpunkte `/api/actors`, `/api/places` und `/api/keywords` (Listen, Auswahl, TEI, Beacon, Abgleich) beantworten Anfragen ohne Token, solange das Archiv öffentlich ist (`public_access`). Ist es geschlossen, verlangen auch sie einen Token oder eine Anmeldung; ohne antworten sie mit `401`.

@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **25. September 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **30. September 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -220,6 +220,13 @@ Formulardefinitionen und die KI-Daten.
 RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
 Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.
+
+**EAD** zeigt immer die öffentliche Sicht, wer die Datei auch erzeugt: keine
+gesperrten Verzeichnungen und Entwürfe samt allem, was darunter liegt, keine
+gesperrten Akteur:innen, auch nicht als Urheber:in. Die Datei eines öffentlichen
+Bestands liefert Anton über OAI-PMH an alle aus. Bis v0.100.0 enthielt sie, was
+die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
+(anton#616).
 
 !!! warning "Reine Flag-Logik"
     Der Filter wertet das `private`-Kennzeichen aus — er ist **keine
