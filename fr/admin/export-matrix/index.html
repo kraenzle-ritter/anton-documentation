@@ -2278,7 +2278,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-25</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -2297,7 +2297,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>25. September 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>30. September 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2911,6 +2911,12 @@ Formulardefinitionen und die KI-Daten.</p>
 <p>RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
 Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.</p>
+<p><strong>EAD</strong> zeigt immer die öffentliche Sicht, wer die Datei auch erzeugt: keine
+gesperrten Verzeichnungen und Entwürfe samt allem, was darunter liegt, keine
+gesperrten Akteur:innen, auch nicht als Urheber:in. Die Datei eines öffentlichen
+Bestands liefert Anton über OAI-PMH an alle aus. Bis v0.100.0 enthielt sie, was
+die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
+(anton#616).</p>
 <div class="admonition warning">
 <p class="admonition-title">Reine Flag-Logik</p>
 <p>Der Filter wertet das <code>private</code>-Kennzeichen aus — er ist <strong>keine

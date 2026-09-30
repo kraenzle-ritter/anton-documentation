@@ -4308,7 +4308,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-25</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -4328,7 +4328,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>25 September 2026</strong>. It is
+<p>This matrix reflects the state of <strong>30 September 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4940,6 +4940,11 @@ definitions and the AI data.</p>
 <h2 id="privacy-filter">Privacy filter<a class="headerlink" href="#privacy-filter" title="Permanent link">&para;</a></h2>
 <p>RDF, TEI and EAD filter out private objects, actors and media as well as private
 text field types (internal archival remarks, cataloguer's information, comment).</p>
+<p><strong>EAD</strong> always shows the public view, whoever generates the file: no locked
+descriptions or drafts, with everything below them, and no locked actors, not
+even as creators. Anton serves the file of a public fonds to anybody through
+OAI-PMH. Up to v0.100.0 it contained what the person generating it could see,
+and always the locked creators (anton#616).</p>
 <div class="admonition warning">
 <p class="admonition-title">Plain flag logic</p>
 <p>The filter evaluates the <code>private</code> flag — it is <strong>not a role check</strong>. Apart

@@ -2432,6 +2432,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 </table>
 <h2 id="offentliche-api">Öffentliche API<a class="headerlink" href="#offentliche-api" title="Permanent link">&para;</a></h2>
 <p>Falls das Setting <code>public_api</code> aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden. Die geschützten Endpunkte erfordern weiterhin Authentifizierung.</p>
+<p>Die Normdaten-Endpunkte <code>/api/actors</code>, <code>/api/places</code> und <code>/api/keywords</code> (Listen, Auswahl, TEI, Beacon, Abgleich) beantworten Anfragen ohne Token, solange das Archiv öffentlich ist (<code>public_access</code>). Ist es geschlossen, verlangen auch sie einen Token oder eine Anmeldung; ohne antworten sie mit <code>401</code>.</p>
 
 
 

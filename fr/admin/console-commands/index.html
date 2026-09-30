@@ -2263,10 +2263,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-59" class="md-nav__link">
+  <a href="#anton-60" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (59)
+        anton: (60)
       
     </span>
   </a>
@@ -2383,7 +2383,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-25</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -2597,6 +2597,10 @@ nach grösseren Datenänderungen wird er neu aufgebaut:</p>
 <td><code>resources:sync</code></td>
 <td><a href="../authorities/">Normdaten-Abgleich</a> mit GND, Wikidata, Metagrid</td>
 </tr>
+<tr>
+<td><code>anton:sips-prune</code></td>
+<td>Entpackte SIPs wegräumen, die kein Import mehr braucht (als Cron; zuerst <code>--dry-run</code>)</td>
+</tr>
 </tbody>
 </table>
 <p><strong><code>anton:export-rdf</code></strong> exportiert einen Bestand — oder den ganzen Mandanten,
@@ -2717,7 +2721,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-59">anton: (59)<a class="headerlink" href="#anton-59" title="Permanent link">&para;</a></h3>
+<h3 id="anton-60">anton: (60)<a class="headerlink" href="#anton-60" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2921,6 +2925,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:shrink-to-public</code></td>
 <td>Create a public anton from a production anton.</td>
+</tr>
+<tr>
+<td><code>anton:sips-prune</code></td>
+<td>Remove SIP extractions no import needs any more (#624)</td>
 </tr>
 <tr>
 <td><code>anton:sitemap</code></td>
