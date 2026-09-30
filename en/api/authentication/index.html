@@ -3685,33 +3685,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Creating an API token">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#generating-a-token-for-a-user" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Generating a token for a user
+        Managing tokens
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#displaying-the-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Displaying the token
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4233,33 +4216,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Creating an API token">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#generating-a-token-for-a-user" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Generating a token for a user
+        Managing tokens
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#displaying-the-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Displaying the token
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4374,7 +4340,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/api/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -4389,16 +4355,33 @@
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Anton uses <strong>API tokens</strong> to authenticate external requests. This allows other systems to access the Anton API securely.</p>
 <h2 id="creating-an-api-token">Creating an API token<a class="headerlink" href="#creating-an-api-token" title="Permanent link">&para;</a></h2>
-<h3 id="generating-a-token-for-a-user">Generating a token for a user<a class="headerlink" href="#generating-a-token-for-a-user" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Log in as an admin</li>
 <li>Open the <strong>user administration</strong></li>
 <li>Select the user → <strong>Show</strong></li>
-<li>Click the <strong>"Set api token"</strong> button</li>
-<li>The token is generated automatically (60 characters)</li>
+<li>In the <strong>API tokens</strong> section, enter a <strong>name</strong> that says what the token is
+   for (e.g. "nightly export script"), and an <strong>expiry date</strong> if needed</li>
+<li>Click <strong>Create API token</strong></li>
 </ol>
-<h3 id="displaying-the-token">Displaying the token<a class="headerlink" href="#displaying-the-token" title="Permanent link">&para;</a></h3>
-<p>The generated token is visible in the <code>api_token</code> field in the user detail view.</p>
+<p>The token is shown <strong>once</strong>, right after it was created. Copy it then. Anton
+stores only a hash and cannot show the token again later. If it is lost, create
+a new one and revoke the old one.</p>
+<p>An account can have several tokens, for instance one per script or system. Each
+token has the rights of its account.</p>
+<h2 id="managing-tokens">Managing tokens<a class="headerlink" href="#managing-tokens" title="Permanent link">&para;</a></h2>
+<p>The account's detail page lists its tokens with name, "Last used" and expiry
+date. <strong>Revoke</strong> invalidates a token immediately. An expired token is marked
+"expired" and refused.</p>
+<ul>
+<li><strong>Legacy API token:</strong> A token created before Anton v0.100.0 keeps working
+  unchanged. It appears in the list as "Legacy API token" and can be revoked,
+  but no longer displayed.</li>
+<li><strong>agate-handoff:</strong> A click on "Open in agate" creates a token of its own for
+  that handoff, valid for 12 hours. Anton removes expired handoff tokens at the
+  next handoff.</li>
+<li>Only a superuser creates and revokes the tokens of a superuser account.</li>
+<li>The account itself sees its tokens but cannot create or revoke any.</li>
+</ul>
 <h2 id="api-request-with-a-token">API request with a token<a class="headerlink" href="#api-request-with-a-token" title="Permanent link">&para;</a></h2>
 <h3 id="bearer-token">Bearer token<a class="headerlink" href="#bearer-token" title="Permanent link">&para;</a></h3>
 <p>The token is passed as a <strong>bearer token</strong> in the <code>Authorization</code> header:</p>
@@ -4411,7 +4394,7 @@
 <p class="admonition-title">Deprecated</p>
 <p>The query parameter <code>?api_token=</code> will be removed from Anton. Please switch existing integrations to the bearer header. Anton logs every call using <code>?api_token=</code> as a deprecation notice (without the token content). Anyone still accessing Anton this way should get in touch so that we can accompany the migration.</p>
 </div>
-<p>For backwards compatibility, the token is currently also accepted as a query parameter <code>api_token</code>:</p>
+<p>For backwards compatibility, the <strong>legacy</strong> API token (created before Anton v0.100.0) is currently also accepted as a query parameter <code>api_token</code>. New tokens are accepted in the header only:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — please switch to the bearer header</span>
 curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://your-anton-instance.ch/api/objects?api_token=YOUR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
@@ -4478,8 +4461,12 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <td>Always send API requests over encrypted connections</td>
 </tr>
 <tr>
-<td><strong>Renew tokens regularly</strong></td>
-<td>Generate a new token if compromise is suspected</td>
+<td><strong>One token per purpose</strong></td>
+<td>A token of its own per script or system, so that one can be revoked alone</td>
+</tr>
+<tr>
+<td><strong>Set an expiry date</strong></td>
+<td>For temporary access; revoke the token immediately if compromise is suspected</td>
 </tr>
 <tr>
 <td><strong>Minimal rights</strong></td>

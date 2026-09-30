@@ -3685,33 +3685,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API-Token erstellen">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#token-fur-benutzerinnen-generieren" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-verwalten" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Token für Benutzer:innen generieren
+        Tokens verwalten
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#token-anzeigen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Token anzeigen
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4233,33 +4216,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API-Token erstellen">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#token-fur-benutzerinnen-generieren" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-verwalten" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Token für Benutzer:innen generieren
+        Tokens verwalten
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#token-anzeigen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Token anzeigen
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4374,7 +4340,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/api/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -4389,16 +4355,34 @@
 <h2 id="ubersicht">Übersicht<a class="headerlink" href="#ubersicht" title="Permanent link">&para;</a></h2>
 <p>Anton verwendet <strong>API-Tokens</strong> für die Authentifizierung von externen Anfragen. Dies ermöglicht es anderen Systemen, sicher auf die Anton-API zuzugreifen.</p>
 <h2 id="api-token-erstellen">API-Token erstellen<a class="headerlink" href="#api-token-erstellen" title="Permanent link">&para;</a></h2>
-<h3 id="token-fur-benutzerinnen-generieren">Token für Benutzer:innen generieren<a class="headerlink" href="#token-fur-benutzerinnen-generieren" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Als Admin einloggen</li>
 <li><strong>Benutzerverwaltung</strong> öffnen</li>
 <li>Benutzer:in auswählen → <strong>Anzeigen</strong></li>
-<li>Button <strong>"Set api token"</strong> klicken</li>
-<li>Der Token wird automatisch generiert (60 Zeichen)</li>
+<li>Im Abschnitt <strong>API-Tokens</strong> eine <strong>Bezeichnung</strong> eingeben, die sagt, wofür der
+   Token ist (z. B. «Skript Nachtexport»), bei Bedarf ein <strong>Ablaufdatum</strong></li>
+<li><strong>API-Token erstellen</strong> klicken</li>
 </ol>
-<h3 id="token-anzeigen">Token anzeigen<a class="headerlink" href="#token-anzeigen" title="Permanent link">&para;</a></h3>
-<p>Der generierte Token ist im Feld <code>api_token</code> in der Benutzerdetailansicht sichtbar.</p>
+<p>Der Token wird <strong>einmal</strong> angezeigt, direkt nach dem Erstellen. Kopieren Sie ihn
+dann. Anton speichert nur einen Hash und kann den Token später nicht mehr
+zeigen. Geht er verloren, erstellen Sie einen neuen und widerrufen den alten.</p>
+<p>Ein Konto kann mehrere Tokens haben, etwa einen pro Skript oder System. Jeder
+Token hat die Rechte seines Kontos.</p>
+<h2 id="tokens-verwalten">Tokens verwalten<a class="headerlink" href="#tokens-verwalten" title="Permanent link">&para;</a></h2>
+<p>Die Detailseite des Kontos listet seine Tokens mit Bezeichnung, «Zuletzt benutzt»
+und Ablaufdatum. <strong>Widerrufen</strong> macht einen Token sofort ungültig. Ein
+abgelaufener Token ist als «abgelaufen» markiert und wird abgewiesen.</p>
+<ul>
+<li><strong>Bisheriger API-Token:</strong> Ein Token, der vor Anton v0.100.0 erstellt wurde,
+  funktioniert unverändert weiter. Er erscheint in der Liste als «Bisheriger
+  API-Token» und lässt sich widerrufen, aber nicht mehr anzeigen.</li>
+<li><strong>agate-handoff:</strong> Ein Klick auf «In agate öffnen» erzeugt einen eigenen Token
+  für diese Übergabe, 12 Stunden gültig. Abgelaufene Übergabe-Tokens räumt Anton
+  bei der nächsten Übergabe weg.</li>
+<li>Tokens eines Superuser-Kontos erstellt und widerruft nur ein Superuser.</li>
+<li>Das Konto selbst sieht seine Tokens, kann aber keine erstellen oder
+  widerrufen.</li>
+</ul>
 <h2 id="api-anfrage-mit-token">API-Anfrage mit Token<a class="headerlink" href="#api-anfrage-mit-token" title="Permanent link">&para;</a></h2>
 <h3 id="bearer-token">Bearer-Token<a class="headerlink" href="#bearer-token" title="Permanent link">&para;</a></h3>
 <p>Der Token wird als <strong>Bearer-Token</strong> im <code>Authorization</code>-Header übergeben:</p>
@@ -4411,7 +4395,7 @@
 <p class="admonition-title">Veraltet</p>
 <p>Der Query-Parameter <code>?api_token=</code> wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt jeden Aufruf mit <code>?api_token=</code> als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.</p>
 </div>
-<p>Aus Rückwärtskompatibilität wird der Token derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert:</p>
+<p>Aus Rückwärtskompatibilität wird der <strong>bisherige</strong> API-Token (vor Anton v0.100.0 erstellt) derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert. Neue Tokens gelten nur im Header:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — bitte auf Bearer-Header umstellen</span>
 curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
@@ -4478,8 +4462,12 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <td>API-Anfragen immer über verschlüsselte Verbindungen senden</td>
 </tr>
 <tr>
-<td><strong>Token regelmässig erneuern</strong></td>
-<td>Bei Verdacht auf Kompromittierung neuen Token generieren</td>
+<td><strong>Ein Token pro Zweck</strong></td>
+<td>Pro Skript oder System ein eigener Token, damit sich einer allein widerrufen lässt</td>
+</tr>
+<tr>
+<td><strong>Ablaufdatum setzen</strong></td>
+<td>Für befristete Zugänge; bei Verdacht auf Kompromittierung den Token sofort widerrufen</td>
 </tr>
 <tr>
 <td><strong>Minimale Rechte</strong></td>

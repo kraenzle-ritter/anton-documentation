@@ -4408,7 +4408,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-09-30</span>
     </div>
   
   
@@ -4482,13 +4482,14 @@ responsively to one column below the <code>md</code> breakpoint):</p>
 <p>The generated files appear in the file table below and can be downloaded or
 deleted directly.</p>
 <h3 id="2-api-apiv1objectsidformat">2. API — <code>/api/v1/objects/{id}?format=…</code><a class="headerlink" href="#2-api-apiv1objectsidformat" title="Permanent link">&para;</a></h3>
-<p>On demand, without file caching. Authentication via api_token as with all other
-Anton API calls.</p>
+<p>On demand, without file caching. Authentication with the API token in the header
+as with all other Anton API calls (see
+<a href="../../api/authentication/">API authentication</a>).</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># A+ (default Turtle)</span>
-curl<span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm"</span>
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer TOKEN"</span><span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?format=cidoc-crm"</span>
 
 <span class="c1"># A+ as JSON-LD</span>
-curl<span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?api_token=TOKEN&amp;format=cidoc-crm&amp;serialization=jsonld"</span>
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer TOKEN"</span><span class="w"> </span><span class="s2">"https://archiv.example/api/objects/42?format=cidoc-crm&amp;serialization=jsonld"</span>
 
 <span class="c1"># A+ as RDF/XML or N-Triples</span>
 curl<span class="w"> </span><span class="s2">"...&amp;format=cidoc-crm&amp;serialization=rdfxml"</span>
