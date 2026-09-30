@@ -178,6 +178,7 @@ nach grösseren Datenänderungen wird er neu aufgebaut:
 | `anton:export` | EAD/EAD3-Export |
 | `anton:export-rdf` | RDF-Export in drei Profilen (siehe unten) |
 | `resources:sync` | [Normdaten-Abgleich](authorities.md) mit GND, Wikidata, Metagrid |
+| `anton:sips-prune` | Entpackte SIPs wegräumen, die kein Import mehr braucht (als Cron; zuerst `--dry-run`) |
 
 **`anton:export-rdf`** exportiert einen Bestand — oder den ganzen Mandanten,
 wenn `--root=` fehlt — als RDF:
@@ -288,7 +289,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (59)
+### anton: (60)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -341,6 +342,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:setting` | Get or set a setting. Admin users can edit "editable" settings, superusers can edit all settin… |
 | `anton:setup-import-audit` | Migrate this tenant from accessions_archives_id (legacy) to import_audit_archives_id (new) — s… |
 | `anton:shrink-to-public` | Create a public anton from a production anton. |
+| `anton:sips-prune` | Remove SIP extractions no import needs any more (#624) |
 | `anton:sitemap` | Generate sitemap.xml for this tenant (#383) |
 | `anton:update` | Update Anton to the last stable Version. |
 | `anton:update-all-dates` | Fast update all dates in the objects table. |
