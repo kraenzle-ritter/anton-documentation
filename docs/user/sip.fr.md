@@ -6,48 +6,62 @@ toc_depth: 2
 
 ## Vue d'ensemble
 
-L'import SIP permet d'importer automatiquement dans Anton des paquets d'archives (SIP – Submission Information Packages). Tous les documents, les métadonnées et l'arborescence des dossiers sont repris et enregistrés de manière sûre dans le cloud INGE.
+L’importation SIP reprend dans Anton des paquets d’archives selon eCH-0160 (SIP, Submission Information Packages) : documents, métadonnées et structure de dossiers. Elle comporte quatre onglets :
 
-Le processus d'import se divise en trois phases principales, correspondant aux onglets de l'interface d'Anton :
+1. **Téléverser** – déposer des fichiers SIP
+2. **Vérifier et importer** – vérifier ou importer chaque SIP téléversé, avec tous les événements en dessous
+3. **SIP importés** – les SIP déjà importés
+4. **Documentation**
 
-1. **Téléversement** – téléverser le fichier SIP
-2. **Validation** – contrôler et valider le fichier  
-3. **Ingest** – effectuer l'import et traiter les documents
-
-!!! note "Un hub d'import commun"
-    Toutes les voies d'import (SIP, Excel, répertoire, agate) sont regroupées sous `/import` — les onglets SIP sont désormais intégrés au hub d'import sous l'onglet **«&nbsp;SIP&nbsp;»**. Les anciens signets continuent de fonctionner (redirection transparente).
-    Voir [import.md](import.md).
+!!! note "Un hub d’importation commun"
+    Tous les chemins d’importation (SIP, Excel, répertoire, agate) sont réunis sous `/import`. Voir [import.md](import.md).
 
 ## Téléversement
 
-- La taille maximale des fichiers dépend de la configuration du système. Merci de signaler tout problème à l'administration.
+- Les SIP peuvent être téléversés au format ZIP, TAR ou TAR.GZ, plusieurs à la fois. La taille maximale dépend de la configuration du système ; merci de signaler tout problème à l’administration.
+- Si un fichier du même nom existe déjà, ou si le même contenu est déjà présent ou déjà importé, Anton ne dépose pas le fichier tout de suite mais demande d’abord :
 
-## Validation
+| Constat | Choix |
+|---|---|
+| même nom, même contenu (« déjà présent, inchangé ») | Rejeter |
+| même nom, autre contenu (« remplace … ») | Remplacer ou Rejeter |
+| même contenu sous un autre nom | Déposer quand même ou Rejeter |
+| même contenu déjà importé (avec date et cote) | Déposer quand même ou Rejeter |
 
-### Contrôle automatique du fichier
+Les fichiers sans constat sont déposés immédiatement.
 
-#### Ce que le système contrôle
+## Vérifier et importer
 
-- L'intégralité du fichier ZIP  
-- La présence du metadata.xml conforme à la norme eCH-0160  
-- L'intégrité de tous les fichiers de documents (sommes de contrôle MD5)  
-- L'exactitude de l'arborescence et de la hiérarchie (en particulier la possibilité de rattacher les dossiers racine du SIP à la structure archivistique existante)  
-- L'unicité (les SIP déjà importés sont détectés)
+Le tableau affiche chaque SIP téléversé, le plus récent en haut, avec sa taille, sa date et son dernier contrôle. Le contrôle se rapporte au contenu du fichier, non à son nom : si un autre SIP est téléversé sous le même nom, la colonne affiche à nouveau « – ».
 
-#### Ce que vous voyez
+- **Vérifier** affiche tous les constats sans rien importer.
+- **Importer** lance l’importation. L’importation vérifie de toute façon le SIP elle-même ; un contrôle préalable n’est pas une condition.
+- Un SIP en cours de vérification ou d’importation ne peut être supprimé qu’ensuite.
 
-- Un rapport de validation détaillé  
-- Des coches vertes pour les contrôles réussis  
-- Des messages d'erreur rouges assortis d'indications concrètes  
-- Le statut «&nbsp;validation réussie&nbsp;» ou «&nbsp;validation échouée&nbsp;»
+### Le contrôle
 
-#### Problèmes possibles
+La page du contrôle affiche toutes les étapes avec leur état ; l’étape en cours a une barre de progression :
 
-- Le parent des dossiers racine est introuvable
-- Fichier ZIP endommagé ou incomplet  
-- metadata.xml manquant ou non valide  
-- Fichiers de documents défectueux  
-- Fichier SIP déjà importé
+1. Décompresser le SIP
+2. Contrôler la structure du SIP (aussi : déjà importé ?)
+3. Contrôler les métadonnées par rapport au schéma
+4. Contrôler le statut d’accès public
+5. Contrôler les fichiers et les sommes de contrôle
+6. Contrôler les points d’ancrage des dossiers (les dossiers racines peuvent-ils être rattachés à la structure existante ?)
+7. Contrôler la hiérarchie
+8. Contrôler les données
+
+Une erreur aux étapes 1 à 3 met fin au contrôle ; les étapes suivantes affichent alors « non atteint ». À la fin, les constats sont listés par type, avec explication et recommandation. Si le SIP est valide, il peut être importé depuis cette page.
+
+Un contrôle qui dépasse sa durée maximale est considéré comme « interrompu » et doit être relancé.
+
+### Événements
+
+Sous le tableau figurent tous les événements des SIP : téléversement (y compris remplacé ou rejeté), contrôle, importation, déplacement après l’importation et suppression – avec moment, fichier, résultat et utilisateur·rice. Un contrôle mène à sa page de contrôle, une importation à son déroulement.
+
+## SIP importés
+
+Après une importation réussie, Anton range le SIP ici, avec la cote de l’importation devant le nom de fichier. Il reste téléchargeable ; seuls les administrateurs peuvent le supprimer.
 
 ## Ingest
 
@@ -145,4 +159,4 @@ La phase 2 s'exécute de manière asynchrone, mais reste encore invisible dans l
 Ensuite, il est possible de suivre le traitement de la phase 3 par le système.
 
 
-*Dernière mise à jour : 2025-08-05*
+*Dernière mise à jour : 2026-10-01*

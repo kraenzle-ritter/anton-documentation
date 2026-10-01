@@ -6,48 +6,62 @@ toc_depth: 2
 
 ## Panoramica
 
-L'importazione SIP consente di importare automaticamente in Anton pacchetti archivistici (SIP – Submission Information Packages). Tutti i documenti, i metadati e la struttura delle cartelle vengono ripresi e conservati in modo sicuro nel cloud INGE.
+L’importazione SIP porta in Anton pacchetti d’archivio secondo eCH-0160 (SIP, Submission Information Packages): documenti, metadati e struttura delle cartelle. Ha quattro schede:
 
-Il processo di importazione si articola in tre fasi principali, corrispondenti alle schede dell'interfaccia di Anton:
-
-1. **Caricamento** – caricare il file SIP
-2. **Validazione** – verificare e validare il file  
-3. **Ingest** – eseguire l'importazione ed elaborare i documenti
+1. **Caricare** – depositare file SIP
+2. **Verificare e importare** – verificare o importare ogni SIP caricato, con tutti gli eventi sotto
+3. **SIP importati** – i SIP già importati
+4. **Documentazione**
 
 !!! note "Un hub di importazione comune"
-    Tutte le vie di importazione (SIP, Excel, directory, agate) sono raccolte sotto `/import` — le schede SIP sono ora integrate nell'hub di importazione come scheda **«SIP»**. I vecchi segnalibri continuano a funzionare (reindirizzamento trasparente).
-    Vedi [import.md](import.md).
+    Tutti i percorsi di importazione (SIP, Excel, directory, agate) sono riuniti sotto `/import`. Vedi [import.md](import.md).
 
 ## Caricamento
 
-- La dimensione massima dei file dipende dalla configurazione di sistema. Si prega di segnalare eventuali problemi all'amministrazione.
+- I SIP possono essere caricati come ZIP, TAR o TAR.GZ, anche più alla volta. La dimensione massima dipende dalla configurazione del sistema; si prega di segnalare eventuali problemi all’amministrazione.
+- Se esiste già un file con lo stesso nome, o lo stesso contenuto è già presente o già importato, Anton non deposita subito il file ma chiede prima:
 
-## Validazione
+| Constatazione | Scelta |
+|---|---|
+| stesso nome, stesso contenuto («già presente, invariato») | Scartare |
+| stesso nome, altro contenuto («sostituisce …») | Sostituire o Scartare |
+| stesso contenuto con un altro nome | Depositare comunque o Scartare |
+| stesso contenuto già importato (con data e segnatura) | Depositare comunque o Scartare |
 
-### Verifica automatica del file
+I file senza constatazioni vengono depositati subito.
 
-#### Che cosa verifica il sistema
+## Verificare e importare
 
-- La completezza del file ZIP  
-- La presenza del metadata.xml secondo lo standard eCH-0160  
-- L'integrità di tutti i file di documento (somme di controllo MD5)  
-- La correttezza della struttura di cartelle e della gerarchia (in particolare se le unità radice del SIP possano essere agganciate alla struttura archivistica esistente)  
-- L'univocità (i SIP già importati vengono riconosciuti)
+La tabella mostra ogni SIP caricato, il più recente in alto, con dimensione, data e ultimo controllo. Il controllo si riferisce al contenuto del file, non al suo nome: se con lo stesso nome viene caricato un altro SIP, la colonna mostra di nuovo «–».
 
-#### Che cosa si vede
+- **Verificare** mostra tutte le constatazioni senza importare nulla.
+- **Importare** avvia l’importazione. L’importazione verifica comunque da sé il SIP; un controllo preliminare non è una condizione.
+- Un SIP in fase di verifica o di importazione può essere eliminato solo dopo.
 
-- Un rapporto di validazione dettagliato  
-- Segni di spunta verdi per le verifiche riuscite  
-- Messaggi di errore rossi con indicazioni concrete  
-- Lo stato «validazione superata» oppure «validazione fallita»
+### Il controllo
 
-#### Possibili problemi
+La pagina del controllo mostra tutti i passi con il loro stato; il passo in corso ha una barra di avanzamento:
 
-- Non è possibile trovare il livello superiore per le unità radice
-- File ZIP danneggiato o incompleto  
-- metadata.xml mancante o non valido  
-- File di documento difettosi  
-- File SIP già importato
+1. Decomprimere il SIP
+2. Controllare la struttura del SIP (anche: già importato?)
+3. Controllare i metadati rispetto allo schema
+4. Controllare lo stato di accesso pubblico
+5. Controllare file e somme di controllo
+6. Controllare i punti di aggancio dei dossier (i dossier radice possono essere agganciati alla struttura esistente?)
+7. Controllare la gerarchia
+8. Controllare i dati
+
+Un errore nei passi da 1 a 3 termina il controllo; i passi successivi mostrano allora «non raggiunto». Alla fine le constatazioni sono elencate per tipo, con spiegazione e raccomandazione. Se il SIP è valido, può essere importato da lì.
+
+Un controllo che supera il suo limite di tempo è considerato «interrotto» e va riavviato.
+
+### Eventi
+
+Sotto la tabella si trovano tutti gli eventi dei SIP: caricamento (anche sostituito o scartato), controllo, importazione, spostamento dopo l’importazione ed eliminazione – con momento, file, risultato e utente. Un controllo porta alla sua pagina, un’importazione al suo svolgimento.
+
+## SIP importati
+
+Dopo un’importazione riuscita, Anton archivia qui il SIP, con la segnatura dell’importazione davanti al nome del file. Resta scaricabile; solo gli amministratori possono eliminarlo.
 
 ## Ingest
 
@@ -145,4 +159,4 @@ La fase 2 si svolge in modo asincrono, ma nel browser non è ancora percepibile 
 Successivamente è possibile seguire l'avanzamento della fase 3 da parte del sistema.
 
 
-*Ultimo aggiornamento: 2025-08-05*
+*Ultimo aggiornamento: 2026-10-01*
