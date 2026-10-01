@@ -177,7 +177,7 @@ or after larger data changes, it is rebuilt:
 | `anton:export` | EAD/EAD3 export |
 | `anton:export-rdf` | RDF export in three profiles (see below) |
 | `resources:sync` | [Authority data synchronisation](authorities.md) with GND, Wikidata, Metagrid |
-| `anton:sips-prune` | Clear away unpacked SIPs no import needs any more (as a cron; `--dry-run` first) |
+| `anton:sips-prune` | Clear away unpacked SIPs no import needs any more; mark hung checks as broken off; delete uploads abandoned in `limbo/` after `--limbo-days` (2) (as a cron; `--dry-run` first) |
 
 **`anton:export-rdf`** exports a fonds — or the whole tenant if `--root=` is
 missing — as RDF:
@@ -341,7 +341,7 @@ up to date with every change to the commands.
 | `anton:setting` | Get or set a setting. Admin users can edit "editable" settings, superusers can edit all settin… |
 | `anton:setup-import-audit` | Migrate this tenant from accessions_archives_id (legacy) to import_audit_archives_id (new) — s… |
 | `anton:shrink-to-public` | Create a public anton from a production anton. |
-| `anton:sips-prune` | Remove SIP extractions no import needs any more (#624) |
+| `anton:sips-prune` | Remove SIP extractions no import needs any more, mark hung checks as failed, clear abandoned u… |
 | `anton:sitemap` | Generate sitemap.xml for this tenant (#383) |
 | `anton:update` | Update Anton to the last stable Version. |
 | `anton:update-all-dates` | Fast update all dates in the objects table. |

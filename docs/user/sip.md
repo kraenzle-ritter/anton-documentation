@@ -6,48 +6,62 @@ toc_depth: 2
 
 ## Übersicht
 
-Der SIP-Import ermöglicht es, Archivpakete (SIPs - Submission Information Packages) automatisch in Anton zu importieren. Dabei werden alle Dokumente, Metadaten und die Ordnerstruktur übernommen und sicher in der INGE-Cloud gespeichert.
+Der SIP-Import übernimmt Archivpakete nach eCH-0160 (SIPs, Submission Information Packages) in Anton: Dokumente, Metadaten und Ordnerstruktur. Er hat vier Reiter:
 
-Der Import-Prozess ist in drei Hauptphasen unterteilt, die den Tabs in der Anton-Oberfläche entsprechen:
-
-1. **Upload** - SIP-Datei hochladen
-2. **Validierung** - Datei prüfen und validieren  
-3. **Ingest** - Import durchführen und Dokumente verarbeiten
+1. **Hochladen** – SIP-Dateien ablegen
+2. **Prüfen und importieren** – jedes hochgeladene SIP prüfen oder importieren, darunter alle Ereignisse
+3. **Importierte SIPs** – die SIPs, die schon importiert sind
+4. **Dokumentation**
 
 !!! note "Gemeinsamer Import-Hub"
-    Alle Import-Pfade (SIP, Excel, Verzeichnis, agate) sind unter `/import` zusammengefasst — die SIP-Tabs sind jetzt im Import-Hub als **„SIP"**-Tab integriert. Alte Lesezeichen funktionieren weiterhin (transparente Weiterleitung).
-    Siehe [import.md](import.md).
+    Alle Import-Pfade (SIP, Excel, Verzeichnis, agate) sind unter `/import` zusammengefasst. Siehe [import.md](import.md).
 
-## Upload
+## Hochladen
 
-- Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte der Administration melden.
+- SIPs können als ZIP, TAR oder TAR.GZ hochgeladen werden, auch mehrere auf einmal. Die maximale Dateigrösse hängt von der Systemkonfiguration ab; Probleme bitte der Administration melden.
+- Liegt schon eine Datei mit demselben Namen vor, oder ist derselbe Inhalt schon vorhanden oder bereits importiert, legt Anton die Datei nicht sofort ab, sondern fragt nach:
 
-## Validierung
+| Befund | Wahl |
+|---|---|
+| gleicher Name, gleicher Inhalt («liegt schon unverändert vor») | Verwerfen |
+| gleicher Name, anderer Inhalt («ersetzt …») | Ersetzen oder Verwerfen |
+| gleicher Inhalt unter anderem Namen | Trotzdem ablegen oder Verwerfen |
+| gleicher Inhalt schon importiert (mit Datum und Signatur) | Trotzdem ablegen oder Verwerfen |
 
-### Automatische Dateiprüfung
+Dateien ohne Befund werden sofort abgelegt.
 
-#### Was das System prüft
+## Prüfen und importieren
 
-- Vollständigkeit der ZIP-Datei  
-- Vorhandensein der metadata.xml nach eCH-0160 Standard  
-- Integrität aller Dokumentdateien (MD5-Checksummen)  
-- Korrekte Ordnerstruktur und Hierarchie (insbesondere, ob die Root-Dossiers des SIPs in die bestehende Archivstruktur eingehängt werden können)  
-- Eindeutigkeit (bereits importierte SIPs werden erkannt)
+Die Tabelle zeigt jedes hochgeladene SIP, das neueste zuoberst, mit Grösse, Datum und der letzten Prüfung. Die Prüfung gehört zum Inhalt der Datei, nicht zu ihrem Namen: Wird unter demselben Namen ein anderes SIP hochgeladen, steht dort wieder «–».
 
-#### Was Sie sehen
+- **Prüfen** zeigt alle Befunde, ohne etwas zu importieren.
+- **Importieren** startet den Import. Der Import prüft das SIP ohnehin selbst; eine Prüfung vorher ist keine Bedingung.
+- Ein SIP, das gerade geprüft oder importiert wird, lässt sich erst danach löschen.
 
-- Detaillierter Validierungsbericht  
-- Grüne Häkchen für erfolgreiche Prüfungen  
-- Rote Fehlermeldungen mit konkreten Hinweisen  
-- Status «Validierung bestanden» oder «Validierung fehlgeschlagen»
+### Die Prüfung
 
-#### Mögliche Probleme
+Die Prüfseite zeigt alle Schritte der Prüfung mit ihrem Zustand; der laufende Schritt hat einen Balken:
 
-- Parent für Root-Dossiers können nicht gefunden werden
-- Beschädigte oder unvollständige ZIP-Datei  
-- Fehlende oder ungültige metadata.xml  
-- Defekte Dokumentdateien  
-- Bereits importierte SIP-Datei
+1. SIP entpacken
+2. Aufbau des SIP prüfen (auch: schon importiert?)
+3. Metadaten gegen das Schema prüfen
+4. Öffentlichkeitsstatus prüfen
+5. Dateien und Prüfsummen prüfen
+6. Einhängepunkte der Dossiers prüfen (können die Root-Dossiers in die bestehende Archivstruktur eingehängt werden?)
+7. Hierarchie prüfen
+8. Angaben prüfen
+
+Ein Fehler in Schritt 1 bis 3 beendet die Prüfung; die folgenden Schritte stehen dann auf «nicht erreicht». Am Ende stehen die Befunde je Art mit Erklärung und Empfehlung. Ist das SIP gültig, lässt es sich von dort aus importieren.
+
+Eine Prüfung, die länger als ihre Zeitgrenze läuft, gilt als «abgebrochen» und muss neu gestartet werden.
+
+### Ereignisse
+
+Unter der Tabelle stehen alle Ereignisse der SIPs: Hochladen (auch ersetzt oder verworfen), Prüfung, Import, Verschieben nach dem Import und Löschen – mit Zeitpunkt, Datei, Ergebnis und Benutzer:in. Eine Prüfung führt zu ihrer Prüfseite, ein Import zu seinem Lauf.
+
+## Importierte SIPs
+
+Nach einem erfolgreichen Import legt Anton das SIP hier ab, mit der Signatur des Imports vor dem Dateinamen. Es lässt sich weiterhin herunterladen; löschen können nur Admins.
 
 ## Ingest
 
@@ -145,4 +159,4 @@ Phase 2 läuft asynchron, aber im Browser ist immer noch nicht zu erkennen (noch
 Anschliessend lässt sich verfolgen, wie das System Phase 3 abarbeitet. 
 
 
-*Letzte Aktualisierung: 2025-08-05*
+*Letzte Aktualisierung: 2026-10-01*

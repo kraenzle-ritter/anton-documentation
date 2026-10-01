@@ -6,48 +6,62 @@ toc_depth: 2
 
 ## Overview
 
-The SIP import makes it possible to import archival packages (SIPs – Submission Information Packages) into Anton automatically. All documents, metadata and the folder structure are adopted and stored securely in the INGE cloud.
+The SIP import takes archival packages following eCH-0160 (SIPs, Submission Information Packages) into Anton: documents, metadata and folder structure. It has four tabs:
 
-The import process is divided into three main phases, corresponding to the tabs in the Anton interface:
-
-1. **Upload** – upload the SIP file
-2. **Validation** – check and validate the file  
-3. **Ingest** – carry out the import and process the documents
+1. **Upload** – store SIP files
+2. **Check and import** – check or import each uploaded SIP, with all events below
+3. **Imported SIPs** – the SIPs that have already been imported
+4. **Documentation**
 
 !!! note "A shared import hub"
-    All import paths (SIP, Excel, directory, agate) are brought together under `/import` — the SIP tabs are now integrated into the import hub as the **«SIP»** tab. Old bookmarks continue to work (transparent redirect).
-    See [import.md](import.md).
+    All import paths (SIP, Excel, directory, agate) are brought together under `/import`. See [import.md](import.md).
 
 ## Upload
 
-- The maximum file size depends on the system configuration. Please report any problems to the administration.
+- SIPs can be uploaded as ZIP, TAR or TAR.GZ, several at once. The maximum file size depends on the system configuration; please report problems to the administration.
+- If a file with the same name is already there, or the same content is already present or already imported, Anton does not store the file at once but asks first:
 
-## Validation
+| Finding | Choice |
+|---|---|
+| same name, same content («already present, unchanged») | Discard |
+| same name, other content («replaces …») | Replace or Discard |
+| same content under another name | Store anyway or Discard |
+| same content already imported (with date and identifier) | Store anyway or Discard |
 
-### Automatic file check
+Files without a finding are stored at once.
 
-#### What the system checks
+## Check and import
 
-- Completeness of the ZIP file  
-- Presence of the metadata.xml according to the eCH-0160 standard  
-- Integrity of all document files (MD5 checksums)  
-- Correct folder structure and hierarchy (in particular whether the root files of the SIP can be attached to the existing archival structure)  
-- Uniqueness (SIPs already imported are recognised)
+The table shows every uploaded SIP, the newest at the top, with size, date and its last check. The check belongs to the content of the file, not to its name: if another SIP is uploaded under the same name, the column shows «–» again.
 
-#### What you see
+- **Check** shows all findings without importing anything.
+- **Import** starts the import. The import checks the SIP itself anyway; a check beforehand is not required.
+- A SIP that is being checked or imported can only be deleted afterwards.
 
-- A detailed validation report  
-- Green ticks for successful checks  
-- Red error messages with concrete pointers  
-- Status «validation passed» or «validation failed»
+### The check
 
-#### Possible problems
+The check page shows every step of the check with its state; the running step has a progress bar:
 
-- The parent for the root files cannot be found
-- Damaged or incomplete ZIP file  
-- Missing or invalid metadata.xml  
-- Defective document files  
-- SIP file already imported
+1. Unpack the SIP
+2. Check the structure of the SIP (also: already imported?)
+3. Check the metadata against the schema
+4. Check the public access status
+5. Check files and checksums
+6. Check where the dossiers attach (can the root dossiers be attached to the existing archival structure?)
+7. Check the hierarchy
+8. Check the data
+
+An error in steps 1 to 3 ends the check; the following steps then show «not reached». At the end, the findings are listed by kind with an explanation and advice. If the SIP is valid, it can be imported from there.
+
+A check that runs longer than its time limit counts as «broken off» and has to be started again.
+
+### Events
+
+Below the table are all events of the SIPs: upload (also replaced or discarded), check, import, move after the import and deletion – with time, file, result and user. A check leads to its check page, an import to its run.
+
+## Imported SIPs
+
+After a successful import, Anton files the SIP here, with the identifier of the import before the file name. It can still be downloaded; only admins can delete it.
 
 ## Ingest
 
@@ -145,4 +159,4 @@ Phase 2 runs asynchronously, but is still not visible in the browser (another 2 
 After that, it is possible to follow how the system works through phase 3.
 
 
-*Last updated: 2025-08-05*
+*Last updated: 2026-10-01*
