@@ -4518,7 +4518,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-01</span>
     </div>
   
   
@@ -4734,7 +4734,7 @@ nach grösseren Datenänderungen wird er neu aufgebaut:</p>
 </tr>
 <tr>
 <td><code>anton:sips-prune</code></td>
-<td>Entpackte SIPs wegräumen, die kein Import mehr braucht (als Cron; zuerst <code>--dry-run</code>)</td>
+<td>Entpackte SIPs wegräumen, die kein Import mehr braucht; hängende Prüfungen als abgebrochen markieren; verlassene Uploads in <code>limbo/</code> nach <code>--limbo-days</code> (2) löschen (als Cron; zuerst <code>--dry-run</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -4838,8 +4838,8 @@ Kontingents), <strong><code>anton:db-info</code></strong> (aktiver Treiber und V
 <h2 id="nachrichten">Nachrichten<a class="headerlink" href="#nachrichten" title="Permanent link">&para;</a></h2>
 <p><strong><code>notification:send</code></strong> legt eine <a href="../notifications/">System-Nachricht</a> in einer
 oder allen Installationen an:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Wartung"</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">"Details."</span><span class="w"> </span>--env<span class="o">=</span>besenval
-php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">"Update"</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Wartung&quot;</span><span class="w"> </span>--body<span class="o">=</span><span class="s2">&quot;Details.&quot;</span><span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>notification:send<span class="w"> </span>--title<span class="o">=</span><span class="s2">&quot;Update&quot;</span><span class="w"> </span>--all<span class="w"> </span>--audience<span class="o">=</span>editors
 </code></pre></div>
 <p><code>--title</code> (Pflicht) und <code>--body</code> akzeptieren einen String oder JSON für
 mehrere Sprachen; <code>--audience</code> schränkt auf <code>editors</code> oder <code>admins</code> ein.</p>
@@ -5063,7 +5063,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 <tr>
 <td><code>anton:sips-prune</code></td>
-<td>Remove SIP extractions no import needs any more (#624)</td>
+<td>Remove SIP extractions no import needs any more, mark hung checks as failed, clear abandoned u…</td>
 </tr>
 <tr>
 <td><code>anton:sitemap</code></td>

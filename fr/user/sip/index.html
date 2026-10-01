@@ -681,26 +681,44 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validation">
+<a class="md-nav__link" href="#verifier-et-importer">
 <span class="md-ellipsis">
       
-        Validation
+        Vérifier et importer
       
     </span>
 </a>
-<nav aria-label="Validation" class="md-nav">
+<nav aria-label="Vérifier et importer" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#controle-automatique-du-fichier">
+<a class="md-nav__link" href="#le-controle">
 <span class="md-ellipsis">
       
-        Contrôle automatique du fichier
+        Le contrôle
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evenements">
+<span class="md-ellipsis">
+      
+        Événements
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sip-importes">
+<span class="md-ellipsis">
+      
+        SIP importés
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -1114,26 +1132,44 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validation">
+<a class="md-nav__link" href="#verifier-et-importer">
 <span class="md-ellipsis">
       
-        Validation
+        Vérifier et importer
       
     </span>
 </a>
-<nav aria-label="Validation" class="md-nav">
+<nav aria-label="Vérifier et importer" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#controle-automatique-du-fichier">
+<a class="md-nav__link" href="#le-controle">
 <span class="md-ellipsis">
       
-        Contrôle automatique du fichier
+        Le contrôle
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evenements">
+<span class="md-ellipsis">
+      
+        Événements
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sip-importes">
+<span class="md-ellipsis">
+      
+        SIP importés
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -1185,51 +1221,78 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/sip/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/sip/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-08-24</span>
+<span class="page-meta__date">Last updated: 2026-10-01</span>
 </div>
 <h1 id="import-sip-dans-anton">Import SIP dans Anton<a class="headerlink" href="#import-sip-dans-anton" title="Permanent link">¶</a></h1>
 <h2 id="vue-densemble">Vue d'ensemble<a class="headerlink" href="#vue-densemble" title="Permanent link">¶</a></h2>
-<p>L'import SIP permet d'importer automatiquement dans Anton des paquets d'archives (SIP – Submission Information Packages). Tous les documents, les métadonnées et l'arborescence des dossiers sont repris et enregistrés de manière sûre dans le cloud INGE.</p>
-<p>Le processus d'import se divise en trois phases principales, correspondant aux onglets de l'interface d'Anton :</p>
+<p>L’importation SIP reprend dans Anton des paquets d’archives selon eCH-0160 (SIP, Submission Information Packages) : documents, métadonnées et structure de dossiers. Elle comporte quatre onglets :</p>
 <ol>
-<li><strong>Téléversement</strong> – téléverser le fichier SIP</li>
-<li><strong>Validation</strong> – contrôler et valider le fichier  </li>
-<li><strong>Ingest</strong> – effectuer l'import et traiter les documents</li>
+<li><strong>Téléverser</strong> – déposer des fichiers SIP</li>
+<li><strong>Vérifier et importer</strong> – vérifier ou importer chaque SIP téléversé, avec tous les événements en dessous</li>
+<li><strong>SIP importés</strong> – les SIP déjà importés</li>
+<li><strong>Documentation</strong></li>
 </ol>
 <div class="admonition note">
-<p class="admonition-title">Un hub d'import commun</p>
-<p>Toutes les voies d'import (SIP, Excel, répertoire, agate) sont regroupées sous <code>/import</code> — les onglets SIP sont désormais intégrés au hub d'import sous l'onglet <strong>« SIP »</strong>. Les anciens signets continuent de fonctionner (redirection transparente).
-Voir <a href="../import/">import.md</a>.</p>
+<p class="admonition-title">Un hub d’importation commun</p>
+<p>Tous les chemins d’importation (SIP, Excel, répertoire, agate) sont réunis sous <code>/import</code>. Voir <a href="../import/">import.md</a>.</p>
 </div>
 <h2 id="televersement">Téléversement<a class="headerlink" href="#televersement" title="Permanent link">¶</a></h2>
 <ul>
-<li>La taille maximale des fichiers dépend de la configuration du système. Merci de signaler tout problème à l'administration.</li>
+<li>Les SIP peuvent être téléversés au format ZIP, TAR ou TAR.GZ, plusieurs à la fois. La taille maximale dépend de la configuration du système ; merci de signaler tout problème à l’administration.</li>
+<li>Si un fichier du même nom existe déjà, ou si le même contenu est déjà présent ou déjà importé, Anton ne dépose pas le fichier tout de suite mais demande d’abord :</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">¶</a></h2>
-<h3 id="controle-automatique-du-fichier">Contrôle automatique du fichier<a class="headerlink" href="#controle-automatique-du-fichier" title="Permanent link">¶</a></h3>
-<h4 id="ce-que-le-systeme-controle">Ce que le système contrôle<a class="headerlink" href="#ce-que-le-systeme-controle" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Constat</th>
+<th>Choix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>même nom, même contenu (« déjà présent, inchangé »)</td>
+<td>Rejeter</td>
+</tr>
+<tr>
+<td>même nom, autre contenu (« remplace … »)</td>
+<td>Remplacer ou Rejeter</td>
+</tr>
+<tr>
+<td>même contenu sous un autre nom</td>
+<td>Déposer quand même ou Rejeter</td>
+</tr>
+<tr>
+<td>même contenu déjà importé (avec date et cote)</td>
+<td>Déposer quand même ou Rejeter</td>
+</tr>
+</tbody>
+</table>
+<p>Les fichiers sans constat sont déposés immédiatement.</p>
+<h2 id="verifier-et-importer">Vérifier et importer<a class="headerlink" href="#verifier-et-importer" title="Permanent link">¶</a></h2>
+<p>Le tableau affiche chaque SIP téléversé, le plus récent en haut, avec sa taille, sa date et son dernier contrôle. Le contrôle se rapporte au contenu du fichier, non à son nom : si un autre SIP est téléversé sous le même nom, la colonne affiche à nouveau « – ».</p>
 <ul>
-<li>L'intégralité du fichier ZIP  </li>
-<li>La présence du metadata.xml conforme à la norme eCH-0160  </li>
-<li>L'intégrité de tous les fichiers de documents (sommes de contrôle MD5)  </li>
-<li>L'exactitude de l'arborescence et de la hiérarchie (en particulier la possibilité de rattacher les dossiers racine du SIP à la structure archivistique existante)  </li>
-<li>L'unicité (les SIP déjà importés sont détectés)</li>
+<li><strong>Vérifier</strong> affiche tous les constats sans rien importer.</li>
+<li><strong>Importer</strong> lance l’importation. L’importation vérifie de toute façon le SIP elle-même ; un contrôle préalable n’est pas une condition.</li>
+<li>Un SIP en cours de vérification ou d’importation ne peut être supprimé qu’ensuite.</li>
 </ul>
-<h4 id="ce-que-vous-voyez">Ce que vous voyez<a class="headerlink" href="#ce-que-vous-voyez" title="Permanent link">¶</a></h4>
-<ul>
-<li>Un rapport de validation détaillé  </li>
-<li>Des coches vertes pour les contrôles réussis  </li>
-<li>Des messages d'erreur rouges assortis d'indications concrètes  </li>
-<li>Le statut « validation réussie » ou « validation échouée »</li>
-</ul>
-<h4 id="problemes-possibles">Problèmes possibles<a class="headerlink" href="#problemes-possibles" title="Permanent link">¶</a></h4>
-<ul>
-<li>Le parent des dossiers racine est introuvable</li>
-<li>Fichier ZIP endommagé ou incomplet  </li>
-<li>metadata.xml manquant ou non valide  </li>
-<li>Fichiers de documents défectueux  </li>
-<li>Fichier SIP déjà importé</li>
-</ul>
+<h3 id="le-controle">Le contrôle<a class="headerlink" href="#le-controle" title="Permanent link">¶</a></h3>
+<p>La page du contrôle affiche toutes les étapes avec leur état ; l’étape en cours a une barre de progression :</p>
+<ol>
+<li>Décompresser le SIP</li>
+<li>Contrôler la structure du SIP (aussi : déjà importé ?)</li>
+<li>Contrôler les métadonnées par rapport au schéma</li>
+<li>Contrôler le statut d’accès public</li>
+<li>Contrôler les fichiers et les sommes de contrôle</li>
+<li>Contrôler les points d’ancrage des dossiers (les dossiers racines peuvent-ils être rattachés à la structure existante ?)</li>
+<li>Contrôler la hiérarchie</li>
+<li>Contrôler les données</li>
+</ol>
+<p>Une erreur aux étapes 1 à 3 met fin au contrôle ; les étapes suivantes affichent alors « non atteint ». À la fin, les constats sont listés par type, avec explication et recommandation. Si le SIP est valide, il peut être importé depuis cette page.</p>
+<p>Un contrôle qui dépasse sa durée maximale est considéré comme « interrompu » et doit être relancé.</p>
+<h3 id="evenements">Événements<a class="headerlink" href="#evenements" title="Permanent link">¶</a></h3>
+<p>Sous le tableau figurent tous les événements des SIP : téléversement (y compris remplacé ou rejeté), contrôle, importation, déplacement après l’importation et suppression – avec moment, fichier, résultat et utilisateur·rice. Un contrôle mène à sa page de contrôle, une importation à son déroulement.</p>
+<h2 id="sip-importes">SIP importés<a class="headerlink" href="#sip-importes" title="Permanent link">¶</a></h2>
+<p>Après une importation réussie, Anton range le SIP ici, avec la cote de l’importation devant le nom de fichier. Il reste téléchargeable ; seuls les administrateurs peuvent le supprimer.</p>
 <h2 id="ingest">Ingest<a class="headerlink" href="#ingest" title="Permanent link">¶</a></h2>
 <h3 id="deroulement-de-limport-sip">Déroulement de l'import SIP<a class="headerlink" href="#deroulement-de-limport-sip" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
@@ -1312,7 +1375,7 @@ Voir <a href="../import/">import.md</a>.</p>
 <p>Pendant la phase 1, la page ne répond pas et le navigateur ne doit pas être fermé. Dans l'exemple, cette phase dure environ 2 minutes.</p>
 <p>La phase 2 s'exécute de manière asynchrone, mais reste encore invisible dans le navigateur (2 minutes de plus).</p>
 <p>Ensuite, il est possible de suivre le traitement de la phase 3 par le système.</p>
-<p><em>Dernière mise à jour : 2025-08-05</em></p>
+<p><em>Dernière mise à jour : 2026-10-01</em></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

@@ -4244,8 +4244,8 @@ own. This page lists the most important ones.</p>
 (<code>standard</code>, <code>recordgroup_as_base</code>, <code>id_identifier</code>, <code>manual_identifiers</code>) or the
 <strong>fully qualified class name</strong> of a custom generator. Anton instantiates it and
 calls <code>getNewIdentifier(...)</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$generator = setting('identifier_generator');</span>
-<span class="x">// e.g. 'Anton\Models\IdentifierGenerators\KaeNewIdentifier'</span>
+<div class="highlight"><pre><span></span><code><span class="x">$generator = setting(&#39;identifier_generator&#39;);</span>
+<span class="x">// e.g. &#39;Anton\Models\IdentifierGenerators\KaeNewIdentifier&#39;</span>
 <span class="x">return (new $generator($this))-&gt;getNewIdentifier($level_of_description_id, …);</span>
 </code></pre></div>
 <p>Custom generators are located under <code>app/Models/IdentifierGenerators/</code>

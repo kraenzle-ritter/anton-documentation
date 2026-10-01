@@ -4330,7 +4330,7 @@ configurable filter layout.</p>
 <li><code>gallery_show_keywords_select</code>: shows/hides the keyword dropdown</li>
 <li><code>gallery_show_media_type_filter</code>: shows/hides the media type dropdown</li>
 <li><code>gallery_media_types</code>: which media types can be selected, e.g.
-  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"image/"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bilder"</span><span class="p">,</span><span class="w"> </span><span class="nt">"application/pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dokumente"</span><span class="p">}</span>
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;image/&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bilder&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;application/pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dokumente&quot;</span><span class="p">}</span>
 </code></pre></div>
   This restriction applies even when the dropdown is hidden.</li>
 <li><strong>Period filter (from / to)</strong> with flexible date entry — configured via
@@ -4349,13 +4349,13 @@ configurable filter layout.</p>
 <p>The filter bar layout is configurable per tenant via the setting
 <code>gallery_filter_fields</code>. This allows the order, width and visibility of the
 filters to be controlled. Example:</p>
-<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('gallery_filter_fields', [</span>
-<span class="x">    ['name' =&gt; 'search',     'width' =&gt; 4, 'visible' =&gt; true],</span>
-<span class="x">    ['name' =&gt; 'fonds',      'width' =&gt; 3, 'visible' =&gt; true],</span>
-<span class="x">    ['name' =&gt; 'media_type', 'width' =&gt; 2, 'visible' =&gt; true],</span>
-<span class="x">    ['name' =&gt; 'date_from',  'width' =&gt; 2, 'visible' =&gt; true],</span>
-<span class="x">    ['name' =&gt; 'date_to',    'width' =&gt; 2, 'visible' =&gt; true],</span>
-<span class="x">    ['name' =&gt; 'keywords',   'width' =&gt; 3, 'visible' =&gt; false],</span>
+<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue(&#39;gallery_filter_fields&#39;, [</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;search&#39;,     &#39;width&#39; =&gt; 4, &#39;visible&#39; =&gt; true],</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;fonds&#39;,      &#39;width&#39; =&gt; 3, &#39;visible&#39; =&gt; true],</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;media_type&#39;, &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;date_from&#39;,  &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;date_to&#39;,    &#39;width&#39; =&gt; 2, &#39;visible&#39; =&gt; true],</span>
+<span class="x">    [&#39;name&#39; =&gt; &#39;keywords&#39;,   &#39;width&#39; =&gt; 3, &#39;visible&#39; =&gt; false],</span>
 <span class="x">]);</span>
 </code></pre></div>
 <p>Widths are Bootstrap columns (1–12). The reset button is always visible.</p>

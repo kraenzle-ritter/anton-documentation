@@ -672,35 +672,53 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upload">
+<a class="md-nav__link" href="#hochladen">
 <span class="md-ellipsis">
       
-        Upload
+        Hochladen
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validierung">
+<a class="md-nav__link" href="#prufen-und-importieren">
 <span class="md-ellipsis">
       
-        Validierung
+        Prüfen und importieren
       
     </span>
 </a>
-<nav aria-label="Validierung" class="md-nav">
+<nav aria-label="Prüfen und importieren" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#automatische-dateiprufung">
+<a class="md-nav__link" href="#die-prufung">
 <span class="md-ellipsis">
       
-        Automatische Dateiprüfung
+        Die Prüfung
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ereignisse">
+<span class="md-ellipsis">
+      
+        Ereignisse
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#importierte-sips">
+<span class="md-ellipsis">
+      
+        Importierte SIPs
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -1931,35 +1949,53 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upload">
+<a class="md-nav__link" href="#hochladen">
 <span class="md-ellipsis">
       
-        Upload
+        Hochladen
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validierung">
+<a class="md-nav__link" href="#prufen-und-importieren">
 <span class="md-ellipsis">
       
-        Validierung
+        Prüfen und importieren
       
     </span>
 </a>
-<nav aria-label="Validierung" class="md-nav">
+<nav aria-label="Prüfen und importieren" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#automatische-dateiprufung">
+<a class="md-nav__link" href="#die-prufung">
 <span class="md-ellipsis">
       
-        Automatische Dateiprüfung
+        Die Prüfung
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ereignisse">
+<span class="md-ellipsis">
+      
+        Ereignisse
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#importierte-sips">
+<span class="md-ellipsis">
+      
+        Importierte SIPs
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -2011,51 +2047,78 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/sip/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/sip/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/sip/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-08-24</span>
+<span class="page-meta__date">Last updated: 2026-10-01</span>
 </div>
 <h1 id="sip-import-in-anton">SIP-Import in Anton<a class="headerlink" href="#sip-import-in-anton" title="Permanent link">¶</a></h1>
 <h2 id="ubersicht">Übersicht<a class="headerlink" href="#ubersicht" title="Permanent link">¶</a></h2>
-<p>Der SIP-Import ermöglicht es, Archivpakete (SIPs - Submission Information Packages) automatisch in Anton zu importieren. Dabei werden alle Dokumente, Metadaten und die Ordnerstruktur übernommen und sicher in der INGE-Cloud gespeichert.</p>
-<p>Der Import-Prozess ist in drei Hauptphasen unterteilt, die den Tabs in der Anton-Oberfläche entsprechen:</p>
+<p>Der SIP-Import übernimmt Archivpakete nach eCH-0160 (SIPs, Submission Information Packages) in Anton: Dokumente, Metadaten und Ordnerstruktur. Er hat vier Reiter:</p>
 <ol>
-<li><strong>Upload</strong> - SIP-Datei hochladen</li>
-<li><strong>Validierung</strong> - Datei prüfen und validieren  </li>
-<li><strong>Ingest</strong> - Import durchführen und Dokumente verarbeiten</li>
+<li><strong>Hochladen</strong> – SIP-Dateien ablegen</li>
+<li><strong>Prüfen und importieren</strong> – jedes hochgeladene SIP prüfen oder importieren, darunter alle Ereignisse</li>
+<li><strong>Importierte SIPs</strong> – die SIPs, die schon importiert sind</li>
+<li><strong>Dokumentation</strong></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Gemeinsamer Import-Hub</p>
-<p>Alle Import-Pfade (SIP, Excel, Verzeichnis, agate) sind unter <code>/import</code> zusammengefasst — die SIP-Tabs sind jetzt im Import-Hub als <strong>„SIP"</strong>-Tab integriert. Alte Lesezeichen funktionieren weiterhin (transparente Weiterleitung).
-Siehe <a href="../import/">import.md</a>.</p>
+<p>Alle Import-Pfade (SIP, Excel, Verzeichnis, agate) sind unter <code>/import</code> zusammengefasst. Siehe <a href="../import/">import.md</a>.</p>
 </div>
-<h2 id="upload">Upload<a class="headerlink" href="#upload" title="Permanent link">¶</a></h2>
+<h2 id="hochladen">Hochladen<a class="headerlink" href="#hochladen" title="Permanent link">¶</a></h2>
 <ul>
-<li>Die maximale Dateigrösse ist von der Systemkonfiguration abhängig. Probleme bitte der Administration melden.</li>
+<li>SIPs können als ZIP, TAR oder TAR.GZ hochgeladen werden, auch mehrere auf einmal. Die maximale Dateigrösse hängt von der Systemkonfiguration ab; Probleme bitte der Administration melden.</li>
+<li>Liegt schon eine Datei mit demselben Namen vor, oder ist derselbe Inhalt schon vorhanden oder bereits importiert, legt Anton die Datei nicht sofort ab, sondern fragt nach:</li>
 </ul>
-<h2 id="validierung">Validierung<a class="headerlink" href="#validierung" title="Permanent link">¶</a></h2>
-<h3 id="automatische-dateiprufung">Automatische Dateiprüfung<a class="headerlink" href="#automatische-dateiprufung" title="Permanent link">¶</a></h3>
-<h4 id="was-das-system-pruft">Was das System prüft<a class="headerlink" href="#was-das-system-pruft" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Befund</th>
+<th>Wahl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gleicher Name, gleicher Inhalt («liegt schon unverändert vor»)</td>
+<td>Verwerfen</td>
+</tr>
+<tr>
+<td>gleicher Name, anderer Inhalt («ersetzt …»)</td>
+<td>Ersetzen oder Verwerfen</td>
+</tr>
+<tr>
+<td>gleicher Inhalt unter anderem Namen</td>
+<td>Trotzdem ablegen oder Verwerfen</td>
+</tr>
+<tr>
+<td>gleicher Inhalt schon importiert (mit Datum und Signatur)</td>
+<td>Trotzdem ablegen oder Verwerfen</td>
+</tr>
+</tbody>
+</table>
+<p>Dateien ohne Befund werden sofort abgelegt.</p>
+<h2 id="prufen-und-importieren">Prüfen und importieren<a class="headerlink" href="#prufen-und-importieren" title="Permanent link">¶</a></h2>
+<p>Die Tabelle zeigt jedes hochgeladene SIP, das neueste zuoberst, mit Grösse, Datum und der letzten Prüfung. Die Prüfung gehört zum Inhalt der Datei, nicht zu ihrem Namen: Wird unter demselben Namen ein anderes SIP hochgeladen, steht dort wieder «–».</p>
 <ul>
-<li>Vollständigkeit der ZIP-Datei  </li>
-<li>Vorhandensein der metadata.xml nach eCH-0160 Standard  </li>
-<li>Integrität aller Dokumentdateien (MD5-Checksummen)  </li>
-<li>Korrekte Ordnerstruktur und Hierarchie (insbesondere, ob die Root-Dossiers des SIPs in die bestehende Archivstruktur eingehängt werden können)  </li>
-<li>Eindeutigkeit (bereits importierte SIPs werden erkannt)</li>
+<li><strong>Prüfen</strong> zeigt alle Befunde, ohne etwas zu importieren.</li>
+<li><strong>Importieren</strong> startet den Import. Der Import prüft das SIP ohnehin selbst; eine Prüfung vorher ist keine Bedingung.</li>
+<li>Ein SIP, das gerade geprüft oder importiert wird, lässt sich erst danach löschen.</li>
 </ul>
-<h4 id="was-sie-sehen">Was Sie sehen<a class="headerlink" href="#was-sie-sehen" title="Permanent link">¶</a></h4>
-<ul>
-<li>Detaillierter Validierungsbericht  </li>
-<li>Grüne Häkchen für erfolgreiche Prüfungen  </li>
-<li>Rote Fehlermeldungen mit konkreten Hinweisen  </li>
-<li>Status «Validierung bestanden» oder «Validierung fehlgeschlagen»</li>
-</ul>
-<h4 id="mogliche-probleme">Mögliche Probleme<a class="headerlink" href="#mogliche-probleme" title="Permanent link">¶</a></h4>
-<ul>
-<li>Parent für Root-Dossiers können nicht gefunden werden</li>
-<li>Beschädigte oder unvollständige ZIP-Datei  </li>
-<li>Fehlende oder ungültige metadata.xml  </li>
-<li>Defekte Dokumentdateien  </li>
-<li>Bereits importierte SIP-Datei</li>
-</ul>
+<h3 id="die-prufung">Die Prüfung<a class="headerlink" href="#die-prufung" title="Permanent link">¶</a></h3>
+<p>Die Prüfseite zeigt alle Schritte der Prüfung mit ihrem Zustand; der laufende Schritt hat einen Balken:</p>
+<ol>
+<li>SIP entpacken</li>
+<li>Aufbau des SIP prüfen (auch: schon importiert?)</li>
+<li>Metadaten gegen das Schema prüfen</li>
+<li>Öffentlichkeitsstatus prüfen</li>
+<li>Dateien und Prüfsummen prüfen</li>
+<li>Einhängepunkte der Dossiers prüfen (können die Root-Dossiers in die bestehende Archivstruktur eingehängt werden?)</li>
+<li>Hierarchie prüfen</li>
+<li>Angaben prüfen</li>
+</ol>
+<p>Ein Fehler in Schritt 1 bis 3 beendet die Prüfung; die folgenden Schritte stehen dann auf «nicht erreicht». Am Ende stehen die Befunde je Art mit Erklärung und Empfehlung. Ist das SIP gültig, lässt es sich von dort aus importieren.</p>
+<p>Eine Prüfung, die länger als ihre Zeitgrenze läuft, gilt als «abgebrochen» und muss neu gestartet werden.</p>
+<h3 id="ereignisse">Ereignisse<a class="headerlink" href="#ereignisse" title="Permanent link">¶</a></h3>
+<p>Unter der Tabelle stehen alle Ereignisse der SIPs: Hochladen (auch ersetzt oder verworfen), Prüfung, Import, Verschieben nach dem Import und Löschen – mit Zeitpunkt, Datei, Ergebnis und Benutzer:in. Eine Prüfung führt zu ihrer Prüfseite, ein Import zu seinem Lauf.</p>
+<h2 id="importierte-sips">Importierte SIPs<a class="headerlink" href="#importierte-sips" title="Permanent link">¶</a></h2>
+<p>Nach einem erfolgreichen Import legt Anton das SIP hier ab, mit der Signatur des Imports vor dem Dateinamen. Es lässt sich weiterhin herunterladen; löschen können nur Admins.</p>
 <h2 id="ingest">Ingest<a class="headerlink" href="#ingest" title="Permanent link">¶</a></h2>
 <h3 id="sip-import-workflow">SIP-Import Workflow<a class="headerlink" href="#sip-import-workflow" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
@@ -2138,7 +2201,7 @@ Siehe <a href="../import/">import.md</a>.</p>
 <p>Während Phase 1 reagiert die Seite nicht und der Browser darf nicht geschlossen werden. Diese Phase dauert im Beispiel ca. 2 Minuten.</p>
 <p>Phase 2 läuft asynchron, aber im Browser ist immer noch nicht zu erkennen (nochmal 2 Minuten).</p>
 <p>Anschliessend lässt sich verfolgen, wie das System Phase 3 abarbeitet. </p>
-<p><em>Letzte Aktualisierung: 2025-08-05</em></p>
+<p><em>Letzte Aktualisierung: 2026-10-01</em></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

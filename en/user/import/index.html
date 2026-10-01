@@ -5376,7 +5376,7 @@ Form und Inhalt (note.scopecontent)
 <h2 id="import-from-the-command-line">Import from the command line<a class="headerlink" href="#import-from-the-command-line" title="Permanent link">&para;</a></h2>
 <h3 id="simple-import">Simple import<a class="headerlink" href="#simple-import" title="Permanent link">&para;</a></h3>
 <p>For the customer (slug) "besenval" and the Excel file "test.xlsx", the import command is:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">"test.xlsx"</span><span class="w"> </span>--import
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="w"> </span>--import
 </code></pre></div>
 <p>It is assumed that <code>test.xlsx</code> is located in the folder <code>customers/besenval/metadata_to_import/</code>. Files to be imported with it (media) must be located in the folder <code>customers/besenval/assets_to_import/</code>.</p>
 <p>Without the <code>--import</code> option, the file is only validated.</p>

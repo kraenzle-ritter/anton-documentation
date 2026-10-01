@@ -681,26 +681,44 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validation">
+<a class="md-nav__link" href="#check-and-import">
 <span class="md-ellipsis">
       
-        Validation
+        Check and import
       
     </span>
 </a>
-<nav aria-label="Validation" class="md-nav">
+<nav aria-label="Check and import" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#automatic-file-check">
+<a class="md-nav__link" href="#the-check">
 <span class="md-ellipsis">
       
-        Automatic file check
+        The check
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#events">
+<span class="md-ellipsis">
+      
+        Events
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#imported-sips">
+<span class="md-ellipsis">
+      
+        Imported SIPs
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -1940,26 +1958,44 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validation">
+<a class="md-nav__link" href="#check-and-import">
 <span class="md-ellipsis">
       
-        Validation
+        Check and import
       
     </span>
 </a>
-<nav aria-label="Validation" class="md-nav">
+<nav aria-label="Check and import" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#automatic-file-check">
+<a class="md-nav__link" href="#the-check">
 <span class="md-ellipsis">
       
-        Automatic file check
+        The check
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#events">
+<span class="md-ellipsis">
+      
+        Events
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#imported-sips">
+<span class="md-ellipsis">
+      
+        Imported SIPs
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ingest">
@@ -2011,51 +2047,78 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/sip/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/sip/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-08-24</span>
+<span class="page-meta__date">Last updated: 2026-10-01</span>
 </div>
 <h1 id="sip-import-in-anton">SIP import in Anton<a class="headerlink" href="#sip-import-in-anton" title="Permanent link">¶</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
-<p>The SIP import makes it possible to import archival packages (SIPs – Submission Information Packages) into Anton automatically. All documents, metadata and the folder structure are adopted and stored securely in the INGE cloud.</p>
-<p>The import process is divided into three main phases, corresponding to the tabs in the Anton interface:</p>
+<p>The SIP import takes archival packages following eCH-0160 (SIPs, Submission Information Packages) into Anton: documents, metadata and folder structure. It has four tabs:</p>
 <ol>
-<li><strong>Upload</strong> – upload the SIP file</li>
-<li><strong>Validation</strong> – check and validate the file  </li>
-<li><strong>Ingest</strong> – carry out the import and process the documents</li>
+<li><strong>Upload</strong> – store SIP files</li>
+<li><strong>Check and import</strong> – check or import each uploaded SIP, with all events below</li>
+<li><strong>Imported SIPs</strong> – the SIPs that have already been imported</li>
+<li><strong>Documentation</strong></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">A shared import hub</p>
-<p>All import paths (SIP, Excel, directory, agate) are brought together under <code>/import</code> — the SIP tabs are now integrated into the import hub as the <strong>«SIP»</strong> tab. Old bookmarks continue to work (transparent redirect).
-See <a href="../import/">import.md</a>.</p>
+<p>All import paths (SIP, Excel, directory, agate) are brought together under <code>/import</code>. See <a href="../import/">import.md</a>.</p>
 </div>
 <h2 id="upload">Upload<a class="headerlink" href="#upload" title="Permanent link">¶</a></h2>
 <ul>
-<li>The maximum file size depends on the system configuration. Please report any problems to the administration.</li>
+<li>SIPs can be uploaded as ZIP, TAR or TAR.GZ, several at once. The maximum file size depends on the system configuration; please report problems to the administration.</li>
+<li>If a file with the same name is already there, or the same content is already present or already imported, Anton does not store the file at once but asks first:</li>
 </ul>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">¶</a></h2>
-<h3 id="automatic-file-check">Automatic file check<a class="headerlink" href="#automatic-file-check" title="Permanent link">¶</a></h3>
-<h4 id="what-the-system-checks">What the system checks<a class="headerlink" href="#what-the-system-checks" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>same name, same content («already present, unchanged»)</td>
+<td>Discard</td>
+</tr>
+<tr>
+<td>same name, other content («replaces …»)</td>
+<td>Replace or Discard</td>
+</tr>
+<tr>
+<td>same content under another name</td>
+<td>Store anyway or Discard</td>
+</tr>
+<tr>
+<td>same content already imported (with date and identifier)</td>
+<td>Store anyway or Discard</td>
+</tr>
+</tbody>
+</table>
+<p>Files without a finding are stored at once.</p>
+<h2 id="check-and-import">Check and import<a class="headerlink" href="#check-and-import" title="Permanent link">¶</a></h2>
+<p>The table shows every uploaded SIP, the newest at the top, with size, date and its last check. The check belongs to the content of the file, not to its name: if another SIP is uploaded under the same name, the column shows «–» again.</p>
 <ul>
-<li>Completeness of the ZIP file  </li>
-<li>Presence of the metadata.xml according to the eCH-0160 standard  </li>
-<li>Integrity of all document files (MD5 checksums)  </li>
-<li>Correct folder structure and hierarchy (in particular whether the root files of the SIP can be attached to the existing archival structure)  </li>
-<li>Uniqueness (SIPs already imported are recognised)</li>
+<li><strong>Check</strong> shows all findings without importing anything.</li>
+<li><strong>Import</strong> starts the import. The import checks the SIP itself anyway; a check beforehand is not required.</li>
+<li>A SIP that is being checked or imported can only be deleted afterwards.</li>
 </ul>
-<h4 id="what-you-see">What you see<a class="headerlink" href="#what-you-see" title="Permanent link">¶</a></h4>
-<ul>
-<li>A detailed validation report  </li>
-<li>Green ticks for successful checks  </li>
-<li>Red error messages with concrete pointers  </li>
-<li>Status «validation passed» or «validation failed»</li>
-</ul>
-<h4 id="possible-problems">Possible problems<a class="headerlink" href="#possible-problems" title="Permanent link">¶</a></h4>
-<ul>
-<li>The parent for the root files cannot be found</li>
-<li>Damaged or incomplete ZIP file  </li>
-<li>Missing or invalid metadata.xml  </li>
-<li>Defective document files  </li>
-<li>SIP file already imported</li>
-</ul>
+<h3 id="the-check">The check<a class="headerlink" href="#the-check" title="Permanent link">¶</a></h3>
+<p>The check page shows every step of the check with its state; the running step has a progress bar:</p>
+<ol>
+<li>Unpack the SIP</li>
+<li>Check the structure of the SIP (also: already imported?)</li>
+<li>Check the metadata against the schema</li>
+<li>Check the public access status</li>
+<li>Check files and checksums</li>
+<li>Check where the dossiers attach (can the root dossiers be attached to the existing archival structure?)</li>
+<li>Check the hierarchy</li>
+<li>Check the data</li>
+</ol>
+<p>An error in steps 1 to 3 ends the check; the following steps then show «not reached». At the end, the findings are listed by kind with an explanation and advice. If the SIP is valid, it can be imported from there.</p>
+<p>A check that runs longer than its time limit counts as «broken off» and has to be started again.</p>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">¶</a></h3>
+<p>Below the table are all events of the SIPs: upload (also replaced or discarded), check, import, move after the import and deletion – with time, file, result and user. A check leads to its check page, an import to its run.</p>
+<h2 id="imported-sips">Imported SIPs<a class="headerlink" href="#imported-sips" title="Permanent link">¶</a></h2>
+<p>After a successful import, Anton files the SIP here, with the identifier of the import before the file name. It can still be downloaded; only admins can delete it.</p>
 <h2 id="ingest">Ingest<a class="headerlink" href="#ingest" title="Permanent link">¶</a></h2>
 <h3 id="sip-import-workflow">SIP import workflow<a class="headerlink" href="#sip-import-workflow" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
@@ -2138,7 +2201,7 @@ See <a href="../import/">import.md</a>.</p>
 <p>During phase 1 the page does not respond and the browser must not be closed. In the example, this phase takes around 2 minutes.</p>
 <p>Phase 2 runs asynchronously, but is still not visible in the browser (another 2 minutes).</p>
 <p>After that, it is possible to follow how the system works through phase 3.</p>
-<p><em>Last updated: 2025-08-05</em></p>
+<p><em>Last updated: 2026-10-01</em></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
