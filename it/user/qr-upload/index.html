@@ -2452,7 +2452,7 @@
 <p>Queste impostazioni vengono salvate e valgono per tutti i caricamenti.</p>
 <h3 id="dettagli-della-pipeline-per-lamministrazione">Dettagli della pipeline (per l'amministrazione)<a class="headerlink" href="#dettagli-della-pipeline-per-lamministrazione" title="Permanent link">&para;</a></h3>
 <p>La pipeline si svolge in questo ordine:</p>
-<div class="highlight"><pre><span></span><code>1. PRIMA DELL&#39;IMPORTAZIONE (sincrono)
+<div class="highlight"><pre><span></span><code>1. PRIMA DELL'IMPORTAZIONE (sincrono)
    HEIC → heif-convert → JPG
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF con livello di testo OCR (master)
@@ -2460,7 +2460,7 @@
 2. IMPORTAZIONE
    addAntonMedium() → evento MediumAdded
 
-3. DOPO L&#39;IMPORTAZIONE (asincrono, coda)
+3. DOPO L'IMPORTAZIONE (asincrono, coda)
    MediumIdentifyAndConvert
    ├─ identificazione PRONOM
    ├─ sincronizzazione cloud (se configurata)
@@ -2472,7 +2472,7 @@
 <code>image-upload-processing</code> (array). Valori possibili: <code>heic2jpg</code>, <code>images2pdf</code>,
 <code>ocr</code>.</p>
 <p>Esempio con tutti e tre i passaggi attivati:</p>
-<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue(&#39;image-upload-processing&#39;, [&#39;heic2jpg&#39;, &#39;images2pdf&#39;, &#39;ocr&#39;]);</span>
+<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('image-upload-processing', ['heic2jpg', 'images2pdf', 'ocr']);</span>
 </code></pre></div>
 <p>Prerequisiti sul server:</p>
 <ul>

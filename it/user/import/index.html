@@ -3512,7 +3512,7 @@ Form und Inhalt (note.scopecontent)
 <h2 id="importazione-da-riga-di-comando">Importazione da riga di comando<a class="headerlink" href="#importazione-da-riga-di-comando" title="Permanent link">&para;</a></h2>
 <h3 id="importazione-semplice">Importazione semplice<a class="headerlink" href="#importazione-semplice" title="Permanent link">&para;</a></h3>
 <p>Per il cliente (slug) «besenval» e il file Excel «test.xlsx» il comando di importazione è:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">&quot;test.xlsx&quot;</span><span class="w"> </span>--import
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--file<span class="o">=</span><span class="s2">"test.xlsx"</span><span class="w"> </span>--import
 </code></pre></div>
 <p>Si presuppone che <code>test.xlsx</code> si trovi nella cartella <code>customers/besenval/metadata_to_import/</code>. I file da importare con esso (media) devono trovarsi nella cartella <code>customers/besenval/assets_to_import/</code>.</p>
 <p>Senza l'opzione <code>--import</code> il file viene soltanto validato.</p>

@@ -2452,7 +2452,7 @@
 <p>Ces réglages sont enregistrés et s'appliquent à tous les téléversements.</p>
 <h3 id="details-de-la-chaine-de-traitement-pour-ladministration">Détails de la chaîne de traitement (pour l'administration)<a class="headerlink" href="#details-de-la-chaine-de-traitement-pour-ladministration" title="Permanent link">&para;</a></h3>
 <p>La chaîne s'exécute dans cet ordre :</p>
-<div class="highlight"><pre><span></span><code>1. AVANT L&#39;IMPORT (synchrone)
+<div class="highlight"><pre><span></span><code>1. AVANT L'IMPORT (synchrone)
    HEIC → heif-convert → JPG
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF avec couche de texte OCR (master)
@@ -2460,7 +2460,7 @@
 2. IMPORT
    addAntonMedium() → événement MediumAdded
 
-3. APRÈS L&#39;IMPORT (asynchrone, file d&#39;attente)
+3. APRÈS L'IMPORT (asynchrone, file d'attente)
    MediumIdentifyAndConvert
    ├─ identification PRONOM
    ├─ synchronisation cloud (si configurée)
@@ -2472,7 +2472,7 @@
 <code>image-upload-processing</code> (tableau). Valeurs possibles : <code>heic2jpg</code>,
 <code>images2pdf</code>, <code>ocr</code>.</p>
 <p>Exemple avec les trois étapes activées :</p>
-<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue(&#39;image-upload-processing&#39;, [&#39;heic2jpg&#39;, &#39;images2pdf&#39;, &#39;ocr&#39;]);</span>
+<div class="highlight"><pre><span></span><code><span class="x">Setting::setValue('image-upload-processing', ['heic2jpg', 'images2pdf', 'ocr']);</span>
 </code></pre></div>
 <p>Prérequis sur le serveur :</p>
 <ul>
