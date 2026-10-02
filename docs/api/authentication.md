@@ -11,6 +11,7 @@ Anton verwendet **API-Tokens** für die Authentifizierung von externen Anfragen.
 3. Benutzer:in auswählen → **Anzeigen**
 4. Im Abschnitt **API-Tokens** eine **Bezeichnung** eingeben, die sagt, wofür der
    Token ist (z. B. «Skript Nachtexport»), bei Bedarf ein **Ablaufdatum**
+   (leer lassen für einen unbefristeten Token; höchstens 18.01.2038)
 5. **API-Token erstellen** klicken
 
 Der Token wird **einmal** angezeigt, direkt nach dem Erstellen. Kopieren Sie ihn
