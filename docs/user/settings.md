@@ -14,6 +14,12 @@ Die Einstellungen werden bei der Installation gesetzt.
 ### recordgroups_for_identifier_base
 
 ## Theme
+### archive_plan_modal
+
+Zeigt neben dem Pfad einen Knopf, der den [Archivplan als Baum](hierarchy.md#archivplan-als-baum)
+öffnet. Im Standard aus; wird pro Archiv eingeschaltet. Ist es aus, gibt es
+weder Knopf noch Baum.
+
 ### custom_css
 
 Eigene CSS-Regeln für das ganze Archiv. Für eine Hausschrift braucht es keinen
@@ -36,4 +42,6 @@ gehen an niemanden sonst.
 Neben den instanzweiten Einstellungen hat jede Person im eigenen Profil einige
 persönliche Voreinstellungen. Dazu gehört das Anzeigen der
 [Feld-Hilfetexte](forms.md#hilfetexte-zu-feldern) direkt in der
-Bearbeitungsmaske (im Standard aus).
+Bearbeitungsmaske (im Standard aus). Wo der [Archivplan als
+Baum](hierarchy.md#archivplan-als-baum) eingeschaltet ist, lässt sich dort sein
+Knopf neben dem Pfad für sich ausblenden.

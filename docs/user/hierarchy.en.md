@@ -22,12 +22,31 @@ Fonds within fonds are not permitted and are rejected by Anton.
 
 ## Navigating the tree
 
-Anton does not present the arrangement as an expandable tree, but in two parts:
+Anton presents the arrangement in two parts, and where the archive has switched it on also [as a tree](#archive-plan-as-a-tree):
 
 - Above every record stands the **path** — the chain of parent units, indented
   in steps and hyperlinked.
 - Below the detail view stands the **contents** section with the list of
   subordinate units.
+
+### Archive plan as a tree
+
+Where the archive has switched it on (`archive_plan_modal`, see
+[Settings](settings.md)), a button named after the archive plan stands beside
+the path — on the detail page and in the archive plan list. It opens the
+arrangement as a tree in a window of its own:
+
+- The tree is expanded down to the current record, which is highlighted and
+  centred. **Locate** takes you back there.
+- Each line shows reference code, title and level of description in brackets,
+  like the path. The chevron expands and collapses a level; the title opens the
+  record.
+- Levels with many entries come in blocks of a hundred: **open the next 100
+  entries**, and for a record far down a level also **open the previous 100
+  entries**.
+- Records you may not see appear neither as a line nor in the count.
+
+If you do not need the button, hide it in your own profile under **Settings**.
 
 ## Moving records
 
