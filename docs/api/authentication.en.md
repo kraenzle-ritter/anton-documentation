@@ -122,6 +122,10 @@ data = response.json()
 
 ## Public API
 
-If the setting `public_api` is activated, certain endpoints can be queried without a token. The protected endpoints continue to require authentication.
+If the setting `public_api` is activated, certain endpoints can be queried without a token — **for reading only** (`GET`, `HEAD`). The protected endpoints continue to require authentication.
+
+**Writing always takes the token of an account with the editor role or higher**, public API or not: creating and changing persons and organisations (`POST /api/actors`, `PUT /api/actors/{id}`), places (`POST /api/places`, `POST /api/places/{id}`), SIP submissions (`POST /api/sips/import`), ingest callbacks (`POST /api/ingest/confirm|failed/{id}`) and `POST /api/ai-cataloging/usage`. Without a token they answer `401`, with the token of an account lacking that role `403`.
+
+Regenerating the TEI exports (`GET /api/tei/refresh`, `?ids=` on `/api/tei/actors|places|keywords`) takes a token of any role; without one they answer `401`.
 
 The authority endpoints `/api/actors`, `/api/places` and `/api/keywords` (lists, selection, TEI, Beacon, reconciliation) answer without a token as long as the archive is public (`public_access`). When it is closed, they too require a token or a login; without one they answer `401`.
