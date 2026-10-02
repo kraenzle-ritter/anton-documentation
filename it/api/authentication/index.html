@@ -2208,10 +2208,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" class="md-nav__link">
+  <a href="#kein-token-in-der-url" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
+        Kein Token in der URL
       
     </span>
   </a>
@@ -2295,7 +2295,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/api/authentication/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/api/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-02</span>
     </div>
   
   
@@ -2345,17 +2345,11 @@ abgelaufener Token ist als «abgelaufen» markiert und wird abgewiesen.</p>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer IHR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
 </code></pre></div>
-<h3 id="query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt">Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)<a class="headerlink" href="#query-parameter-deprecated-wird-in-einer-kunftigen-anton-version-entfernt" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Veraltet</p>
-<p>Der Query-Parameter <code>?api_token=</code> wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt jeden Aufruf mit <code>?api_token=</code> als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.</p>
-</div>
-<p>Aus Rückwärtskompatibilität wird der <strong>bisherige</strong> API-Token (vor Anton v0.100.0 erstellt) derzeit zusätzlich als Query-Parameter <code>api_token</code> akzeptiert. Neue Tokens gelten nur im Header:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — bitte auf Bearer-Header umstellen</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
+<h3 id="kein-token-in-der-url">Kein Token in der URL<a class="headerlink" href="#kein-token-in-der-url" title="Permanent link">&para;</a></h3>
+<p>Der Query-Parameter <code>?api_token=</code> wird nicht mehr angenommen. Eine Anfrage, die <code>api_token</code> in der URL oder im Formular mitschickt, erhält <strong>401</strong> mit dem Hinweis, den Token im Header zu senden — auch wenn sie zusätzlich einen gültigen Header trägt:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The api_token parameter is no longer accepted. Send the token in the header: Authorization: Bearer &lt;token&gt;"</span><span class="p">}</span>
 </code></pre></div>
-<p>Warum weg? Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern — der Bearer-Header hat keines dieser Probleme.</p>
+<p>Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern; der Bearer-Header hat keines dieser Probleme. Anton protokolliert jede solche Anfrage (ohne Token-Inhalt), damit eine übersehene Integration auffällt.</p>
 <h3 id="beispiele">Beispiele<a class="headerlink" href="#beispiele" title="Permanent link">&para;</a></h3>
 <p><strong>Objekte abrufen (Bearer):</strong>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://ihre-anton-instanz.ch/api/objects"</span><span class="w"> </span><span class="se">\</span>
@@ -2405,8 +2399,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 </thead>
 <tbody>
 <tr>
-<td><strong>Bearer-Token verwenden</strong></td>
-<td>Bearer-Token im Header ist sicherer als Query-Parameter</td>
+<td><strong>Token nur im Header</strong></td>
+<td>Ein Token in der URL wird abgewiesen (401)</td>
 </tr>
 <tr>
 <td><strong>Token geheim halten</strong></td>

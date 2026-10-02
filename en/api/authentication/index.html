@@ -3722,10 +3722,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#query-parameter-deprecated-will-be-removed-in-a-future-anton-version" class="md-nav__link">
+  <a href="#no-token-in-the-url" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query parameter (deprecated — will be removed in a future Anton version)
+        No token in the URL
       
     </span>
   </a>
@@ -4253,10 +4253,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#query-parameter-deprecated-will-be-removed-in-a-future-anton-version" class="md-nav__link">
+  <a href="#no-token-in-the-url" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query parameter (deprecated — will be removed in a future Anton version)
+        No token in the URL
       
     </span>
   </a>
@@ -4340,7 +4340,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/api/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-02</span>
     </div>
   
   
@@ -4389,17 +4389,11 @@ date. <strong>Revoke</strong> invalidates a token immediately. An expired token 
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer YOUR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
 </code></pre></div>
-<h3 id="query-parameter-deprecated-will-be-removed-in-a-future-anton-version">Query parameter (deprecated — will be removed in a future Anton version)<a class="headerlink" href="#query-parameter-deprecated-will-be-removed-in-a-future-anton-version" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Deprecated</p>
-<p>The query parameter <code>?api_token=</code> will be removed from Anton. Please switch existing integrations to the bearer header. Anton logs every call using <code>?api_token=</code> as a deprecation notice (without the token content). Anyone still accessing Anton this way should get in touch so that we can accompany the migration.</p>
-</div>
-<p>For backwards compatibility, the <strong>legacy</strong> API token (created before Anton v0.100.0) is currently also accepted as a query parameter <code>api_token</code>. New tokens are accepted in the header only:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># DEPRECATED — please switch to the bearer header</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">"https://your-anton-instance.ch/api/objects?api_token=YOUR_API_TOKEN"</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Accept: application/json"</span>
+<h3 id="no-token-in-the-url">No token in the URL<a class="headerlink" href="#no-token-in-the-url" title="Permanent link">&para;</a></h3>
+<p>The query parameter <code>?api_token=</code> is no longer accepted. A request that sends <code>api_token</code> in the URL or in a form receives <strong>401</strong> with a note to send the token in the header — even if it also carries a valid header:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The api_token parameter is no longer accepted. Send the token in the header: Authorization: Bearer &lt;token&gt;"</span><span class="p">}</span>
 </code></pre></div>
-<p>Why remove it? Tokens in the URL end up in web server access logs, in the browser history and in referer headers — the bearer header has none of these problems.</p>
+<p>Tokens in the URL end up in web server access logs, in browser histories and in referer headers; the bearer header has none of these problems. Anton logs every such request (without the token content), so that an integration that was missed shows up.</p>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p><strong>Retrieving objects (bearer):</strong>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"https://your-anton-instance.ch/api/objects"</span><span class="w"> </span><span class="se">\</span>
@@ -4449,8 +4443,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 </thead>
 <tbody>
 <tr>
-<td><strong>Use bearer tokens</strong></td>
-<td>A bearer token in the header is more secure than a query parameter</td>
+<td><strong>Token in the header only</strong></td>
+<td>A token in the URL is refused (401)</td>
 </tr>
 <tr>
 <td><strong>Keep tokens secret</strong></td>

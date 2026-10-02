@@ -4,10 +4,9 @@ info:
   description: >
     API documentation of Anton. Read endpoints for authority data
     (actors, places, keywords) and the valuelists are public; endpoints
-    marked with a lock require an API token. The token is passed as the
-    `api_token` query parameter (`ApiKeyAuth`); the AI-cataloging
-    endpoints use a Bearer token (`BearerAuth`). Do not use this in
-    production yet.
+    marked with a lock require an API token, passed as a Bearer token in
+    the `Authorization` header (`BearerAuth`). The `api_token` query
+    parameter is no longer accepted. Do not use this in production yet.
   # contact:
   # email: info@anton.ch
   version: 0.0.1
@@ -88,7 +87,7 @@ paths:
         - actors
       summary: Create an actor
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -106,7 +105,7 @@ paths:
        - actors
       summary: Get an existing actor by its ID
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -119,7 +118,7 @@ paths:
         - actors
       summary: Update an existing actor
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       requestBody:
@@ -187,7 +186,7 @@ paths:
         - locations
       summary: Get a list of existing locations of archival storages
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - $ref: '#/components/parameters/perPageParam'
@@ -210,7 +209,7 @@ paths:
        - locations
       summary: Get an existing location (archival storage) by its ID
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -252,7 +251,7 @@ paths:
         Example —
         `/objects?fields[]=object.title&operators[]=contains&values[]=Brief&fields[]=creation_min&operators[]=>=&values[]=1900`
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
         - in: query
@@ -307,7 +306,7 @@ paths:
        - objects
       summary: Get an AntonObject by its ID — JSON, TEI XML or RDF (three profiles, four serialisations)
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       description: >
         Default returns the AntonObject as JSON (Eloquent API Resource).
         With `format=tei` the response is a TEI Header XML.
@@ -366,7 +365,7 @@ paths:
        - objects
       summary: Get the first AntonObject by the search parameters, usually used with an identifier
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
       responses:
@@ -409,7 +408,7 @@ paths:
         - places
       summary: Create a place
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       requestBody:
         required: true
         content:
@@ -438,7 +437,7 @@ paths:
         - places
       summary: Update an existing place
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       requestBody:
@@ -462,7 +461,7 @@ paths:
       tags:
         - users
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       summary: Get a list of existing users
       parameters:
         - $ref: '#/components/parameters/searchParam'
@@ -486,7 +485,7 @@ paths:
        - users
       summary: Get an existing user by its ID
       security:
-       - ApiKeyAuth: []
+       - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -654,7 +653,7 @@ paths:
   /sips/{sip_id}:
     get:
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       tags:
       - sip
       summary: show a sip with its file list 
@@ -667,7 +666,7 @@ paths:
   /sips/{sip_id}/confirm:
     post:
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       tags:
       - sip
       summary: confirm a sip ingest and finalize the entry in anton 
@@ -679,7 +678,7 @@ paths:
   /sips/{sip_id}/revert:
     post:
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       tags:
       - sip
       summary: revert a sip ingest and restore anton from the current backup
@@ -815,7 +814,7 @@ paths:
         - objects
       summary: Map of object id → version string (for change detection)
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: OK
@@ -825,7 +824,7 @@ paths:
         - objects
       summary: Get the first AntonObject matching the search (typically by identifier)
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/searchParam'
       responses:
@@ -840,7 +839,7 @@ paths:
       summary: Stream the first media file of an object
       description: Returns the binary media file (Content-Type per mime type), with cloud/Inge fallback when the local file is missing.
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - name: object_id
           in: path
@@ -863,7 +862,7 @@ paths:
       summary: Events (antonevents) linked to a place
       description: Default JSON; `format=kml` returns a KML document with placemarks (address, coordinates, timestamp).
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
         - in: query
@@ -901,7 +900,7 @@ paths:
         - users
       summary: The authenticated user (resolved from the API token)
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: OK
@@ -936,7 +935,7 @@ paths:
       summary: AI archival-description JSON schema
       description: The JSON schema describing the fields an AI cataloging producer may fill.
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: OK
@@ -1032,7 +1031,7 @@ paths:
       summary: Import an eCH-0160 SIP (machine-to-machine, e.g. agate)
       description: Starts a SIP import. The id used by /sips/{sip_id}/status is an importevents id (distinct from the antonobjects id used by /sips/{sip_id}/confirm and /revert).
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       responses:
         200:
           description: OK
@@ -1042,7 +1041,7 @@ paths:
         - sip
       summary: Status of a SIP import job
       security:
-        - ApiKeyAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
@@ -1349,12 +1348,8 @@ components:
           type: string
           enum: [ok, soft_warn, hard_block]
   securitySchemes:
-    # This section configures basic authentication with an API key.
-    ApiKeyAuth:
-      type: apiKey
-      in: query
-      name: api_token
-    # Bearer token (users.api_token) — preferred for AI-cataloging endpoints.
+    # Bearer token in the Authorization header — the only way a token is
+    # accepted (anton#195).
     BearerAuth:
       type: http
       scheme: bearer
