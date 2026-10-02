@@ -24,22 +24,26 @@ Un fonds à l'intérieur d'un fonds n'est pas admis et est refusé par Anton.
 ## Navigation dans l'arborescence
 
 Anton représente le plan de classement en deux parties et, là où l'archive l'a
-activé, aussi [en arborescence](#archivplan-als-baum) :
+activé, aussi en [arborescence](#archivbaum) :
 
 - Au-dessus de chaque notice figure le **chemin** — la chaîne des unités
   supérieures, indentée en escalier et cliquable.
 - Sous la vue de détail figure la section **contenu** avec la liste des unités
   subordonnées.
 
-### Plan de classement en arborescence {#archivplan-als-baum}
+### Arborescence {#archivbaum}
 
 Là où l'archive l'a activé (`archive_plan_modal`, voir
-[Paramètres](settings.md)), un bouton portant le nom du plan de classement se
-trouve à côté du chemin — sur la page de détail et dans la liste du plan de
-classement. Il ouvre l'arborescence dans une fenêtre à part :
+[Paramètres](settings.md)), le bouton **Arborescence** se trouve à côté de
+**Liste** sur la page de détail, et à côté du chemin dans la liste du plan de
+classement. Il ouvre
+l'arborescence dans une fenêtre à part. Le libellé peut être adapté par archive
+et par langue ([Page d'accueil et navigation](../admin/home.md)).
 
 - L'arborescence est dépliée jusqu'à la notice courante, mise en évidence et
-  centrée. **Localiser** y ramène.
+  centrée. Au niveau supérieur, le premier niveau en dessous est déjà déplié.
+- Dès que la notice sort du champ, **Localiser** apparaît et y ramène ; les
+  branches ouvertes restent ouvertes.
 - Chaque ligne affiche cote, titre et niveau de description entre parenthèses,
   comme le chemin. Le chevron déplie et replie un niveau ; le titre ouvre la
   notice.
