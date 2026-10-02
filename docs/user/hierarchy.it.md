@@ -40,8 +40,10 @@ archivistico**. Apre la struttura come albero in una finestra propria. La
 denominazione si può adattare per archivio e lingua
 ([Pagina iniziale e navigazione](../admin/home.md)).
 
-- L'albero è espanso fino alla scheda corrente, evidenziata e al centro.
-  **Localizza** riporta lì.
+- L'albero è espanso fino alla scheda corrente, evidenziata e al centro. Al
+  livello superiore, il primo livello sottostante è già espanso.
+- Quando la scheda esce dalla vista compare **Localizza**, che riporta lì; i
+  rami aperti restano aperti.
 - Ogni riga mostra segnatura, titolo e livello di descrizione tra parentesi,
   come il percorso. La freccia espande e comprime un livello; il titolo apre la
   scheda.

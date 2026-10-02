@@ -38,7 +38,9 @@ tree in a window of its own. The label can be adjusted per archive and
 language ([Home page and navigation](../admin/home.md)).
 
 - The tree is expanded down to the current record, which is highlighted and
-  centred. **Locate** takes you back there.
+  centred. At the top level, the first level below is already expanded.
+- Once the record is scrolled out of sight, **Locate** appears and takes you
+  back to it; opened branches stay open.
 - Each line shows reference code, title and level of description in brackets,
   like the path. The chevron expands and collapses a level; the title opens the
   record.

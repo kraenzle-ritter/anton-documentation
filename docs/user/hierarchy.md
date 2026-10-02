@@ -40,7 +40,10 @@ in einem eigenen Fenster. Die Bezeichnung lässt sich je Archiv und Sprache
 anpassen ([Startseite und Navigation](../admin/home.md)).
 
 - Der Baum ist bis zum aktuellen Datensatz aufgeklappt; der Datensatz ist
-  hervorgehoben und steht in der Mitte. **Lokalisieren** führt dorthin zurück.
+  hervorgehoben und steht in der Mitte. Auf der obersten Ebene ist die erste
+  Ebene darunter schon aufgeklappt.
+- Ist der Datensatz aus dem Blick gescrollt, erscheint **Lokalisieren** und
+  führt zu ihm zurück; geöffnete Äste bleiben offen.
 - Jede Zeile zeigt Signatur, Titel und Verzeichnungsstufe in Klammern, wie der
   Pfad. Die Spitzklammer klappt eine Ebene auf und zu, der Titel öffnet den
   Datensatz.

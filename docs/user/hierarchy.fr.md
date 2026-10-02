@@ -40,7 +40,9 @@ l'arborescence dans une fenêtre à part. Le libellé peut être adapté par arc
 et par langue ([Page d'accueil et navigation](../admin/home.md)).
 
 - L'arborescence est dépliée jusqu'à la notice courante, mise en évidence et
-  centrée. **Localiser** y ramène.
+  centrée. Au niveau supérieur, le premier niveau en dessous est déjà déplié.
+- Dès que la notice sort du champ, **Localiser** apparaît et y ramène ; les
+  branches ouvertes restent ouvertes.
 - Chaque ligne affiche cote, titre et niveau de description entre parenthèses,
   comme le chemin. Le chevron déplie et replie un niveau ; le titre ouvre la
   notice.
