@@ -24,20 +24,21 @@ Un fondo all'interno di un fondo non è ammesso e viene rifiutato da Anton.
 ## Navigare nell'albero
 
 Anton rappresenta la struttura archivistica in due parti e, dove l'archivio l'ha
-attivato, anche [come albero](#archivplan-als-baum):
+attivato, anche come [albero archivistico](#archivbaum):
 
 - Sopra ogni scheda si trova il **percorso** — la catena delle unità superiori,
   rientrata a gradini e collegata.
 - Sotto la vista di dettaglio si trova la sezione **contenuto** con l'elenco
   delle unità subordinate.
 
-### Piano di classificazione ad albero {#archivplan-als-baum}
+### Albero archivistico {#archivbaum}
 
 Dove l'archivio l'ha attivato (`archive_plan_modal`, vedi
 [Impostazioni](settings.md)), accanto al percorso — nella pagina di dettaglio e
-nell'elenco del piano di classificazione — si trova un pulsante con il nome del
-piano di classificazione. Apre la struttura come albero in una finestra
-propria:
+nell'elenco del piano di classificazione — si trova il pulsante **Albero
+archivistico**. Apre la struttura come albero in una finestra propria. La
+denominazione si può adattare per archivio e lingua
+([Pagina iniziale e navigazione](../admin/home.md)).
 
 - L'albero è espanso fino alla scheda corrente, evidenziata e al centro.
   **Localizza** riporta lì.

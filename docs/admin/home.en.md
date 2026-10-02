@@ -11,6 +11,7 @@ They are maintained on the admin page under **Settings**.
 | **Additional navigation** | A freely designable block for further menu entries |
 | **Home page text** | The text on the home page |
 | **Title of the root entry** | The heading above the archival arrangement |
+| **Archive tree** (`objects.tree.title`) | The label of the button beside the path and of the window it opens ([archive tree](../user/hierarchy.md#archivbaum)). Empty: «Archive tree» and its translations. Deliberately not the same name as the navigation title: the name should say whether a button leads to the list or to the tree. |
 
 Added to this are [logo and favicons](logo.md).
 

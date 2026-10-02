@@ -11,6 +11,7 @@ Gepflegt werden sie über die Admin-Seite unter **Einstellungen**.
 | **Zusätzliche Navigation** | Ein frei gestaltbarer Block für weitere Menüeinträge |
 | **Startseitentext** | Der Text auf der Startseite |
 | **Titel des Wurzeleintrags** | Die Überschrift über der Tektonik |
+| **Archivbaum** (`objects.tree.title`) | Die Bezeichnung des Knopfs neben dem Pfad und des Fensters, das er öffnet ([Archivbaum](../user/hierarchy.md#archivbaum)). Ohne Wert: «Archivbaum» und seine Übersetzungen. Bewusst nicht derselbe Name wie der Navigationstitel: Am Namen soll erkennbar sein, ob ein Knopf zur Liste oder zum Baum führt. |
 
 Dazu kommen [Logo und Favicons](logo.md).
 
