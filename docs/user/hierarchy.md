@@ -31,7 +31,7 @@ Anton stellt die Tektonik zweiteilig dar, wo das Archiv es eingeschaltet hat zus
 - Unter der Detailansicht steht der Abschnitt **Inhalt** mit der Liste der
   untergeordneten Einheiten.
 
-### Archivplan als Baum
+### Archivplan als Baum {#archivplan-als-baum}
 
 Wo das Archiv es eingeschaltet hat (`archive_plan_modal`, siehe
 [Einstellungen](settings.md)), steht neben dem Pfad — auf der Detailseite und in
