@@ -2425,7 +2425,9 @@ abgelaufener Token ist als «abgelaufen» markiert und wird abgewiesen.</p>
 </tbody>
 </table>
 <h2 id="offentliche-api">Öffentliche API<a class="headerlink" href="#offentliche-api" title="Permanent link">&para;</a></h2>
-<p>Falls das Setting <code>public_api</code> aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden. Die geschützten Endpunkte erfordern weiterhin Authentifizierung.</p>
+<p>Falls das Setting <code>public_api</code> aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden — <strong>nur lesend</strong> (<code>GET</code>, <code>HEAD</code>). Die geschützten Endpunkte erfordern weiterhin Authentifizierung.</p>
+<p><strong>Schreiben verlangt immer ein Token mit Rolle Redaktor:in oder höher</strong>, auch bei aktivierter öffentlicher API: Personen und Organisationen anlegen und ändern (<code>POST /api/actors</code>, <code>PUT /api/actors/{id}</code>), Orte (<code>POST /api/places</code>, <code>POST /api/places/{id}</code>), SIP-Ablieferungen (<code>POST /api/sips/import</code>), Ingest-Rückmeldungen (<code>POST /api/ingest/confirm|failed/{id}</code>) und <code>POST /api/ai-cataloging/usage</code>. Ohne Token antworten sie mit <code>401</code>, mit dem Token eines Kontos ohne diese Rolle mit <code>403</code>.</p>
+<p>TEI-Exporte neu erzeugen (<code>GET /api/tei/refresh</code>, <code>?ids=</code> an <code>/api/tei/actors|places|keywords</code>) verlangt ein Token, gleich welcher Rolle; ohne antworten sie mit <code>401</code>.</p>
 <p>Die Normdaten-Endpunkte <code>/api/actors</code>, <code>/api/places</code> und <code>/api/keywords</code> (Listen, Auswahl, TEI, Beacon, Abgleich) beantworten Anfragen ohne Token, solange das Archiv öffentlich ist (<code>public_access</code>). Ist es geschlossen, verlangen auch sie einen Token oder eine Anmeldung; ohne antworten sie mit <code>401</code>.</p>
 
 

@@ -4469,7 +4469,9 @@ date. <strong>Revoke</strong> invalidates a token immediately. An expired token 
 </tbody>
 </table>
 <h2 id="public-api">Public API<a class="headerlink" href="#public-api" title="Permanent link">&para;</a></h2>
-<p>If the setting <code>public_api</code> is activated, certain endpoints can be queried without a token. The protected endpoints continue to require authentication.</p>
+<p>If the setting <code>public_api</code> is activated, certain endpoints can be queried without a token — <strong>for reading only</strong> (<code>GET</code>, <code>HEAD</code>). The protected endpoints continue to require authentication.</p>
+<p><strong>Writing always takes the token of an account with the editor role or higher</strong>, public API or not: creating and changing persons and organisations (<code>POST /api/actors</code>, <code>PUT /api/actors/{id}</code>), places (<code>POST /api/places</code>, <code>POST /api/places/{id}</code>), SIP submissions (<code>POST /api/sips/import</code>), ingest callbacks (<code>POST /api/ingest/confirm|failed/{id}</code>) and <code>POST /api/ai-cataloging/usage</code>. Without a token they answer <code>401</code>, with the token of an account lacking that role <code>403</code>.</p>
+<p>Regenerating the TEI exports (<code>GET /api/tei/refresh</code>, <code>?ids=</code> on <code>/api/tei/actors|places|keywords</code>) takes a token of any role; without one they answer <code>401</code>.</p>
 <p>The authority endpoints <code>/api/actors</code>, <code>/api/places</code> and <code>/api/keywords</code> (lists, selection, TEI, Beacon, reconciliation) answer without a token as long as the archive is public (<code>public_access</code>). When it is closed, they too require a token or a login; without one they answer <code>401</code>.</p>
 
 
