@@ -123,6 +123,10 @@ data = response.json()
 
 ## Öffentliche API
 
-Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden. Die geschützten Endpunkte erfordern weiterhin Authentifizierung.
+Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden — **nur lesend** (`GET`, `HEAD`). Die geschützten Endpunkte erfordern weiterhin Authentifizierung.
+
+**Schreiben verlangt immer ein Token mit Rolle Redaktor:in oder höher**, auch bei aktivierter öffentlicher API: Personen und Organisationen anlegen und ändern (`POST /api/actors`, `PUT /api/actors/{id}`), Orte (`POST /api/places`, `POST /api/places/{id}`), SIP-Ablieferungen (`POST /api/sips/import`), Ingest-Rückmeldungen (`POST /api/ingest/confirm|failed/{id}`) und `POST /api/ai-cataloging/usage`. Ohne Token antworten sie mit `401`, mit dem Token eines Kontos ohne diese Rolle mit `403`.
+
+TEI-Exporte neu erzeugen (`GET /api/tei/refresh`, `?ids=` an `/api/tei/actors|places|keywords`) verlangt ein Token, gleich welcher Rolle; ohne antworten sie mit `401`.
 
 Die Normdaten-Endpunkte `/api/actors`, `/api/places` und `/api/keywords` (Listen, Auswahl, TEI, Beacon, Abgleich) beantworten Anfragen ohne Token, solange das Archiv öffentlich ist (`public_access`). Ist es geschlossen, verlangen auch sie einen Token oder eine Anmeldung; ohne antworten sie mit `401`.
