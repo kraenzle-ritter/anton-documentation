@@ -34,9 +34,9 @@ attivato, anche come [albero archivistico](#archivbaum):
 ### Albero archivistico {#archivbaum}
 
 Dove l'archivio l'ha attivato (`archive_plan_modal`, vedi
-[Impostazioni](settings.md)), accanto al percorso — nella pagina di dettaglio e
-nell'elenco del piano di classificazione — si trova il pulsante **Albero
-archivistico**. Apre la struttura come albero in una finestra propria. La
+[Impostazioni](settings.md)), il pulsante **Albero archivistico** si trova
+accanto a **Lista** nella pagina di dettaglio e accanto al percorso
+nell'elenco del piano di classificazione. Apre la struttura come albero in una finestra propria. La
 denominazione si può adattare per archivio e lingua
 ([Pagina iniziale e navigazione](../admin/home.md)).
 

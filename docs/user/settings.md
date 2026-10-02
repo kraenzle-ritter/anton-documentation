@@ -16,8 +16,8 @@ Die Einstellungen werden bei der Installation gesetzt.
 ## Theme
 ### archive_plan_modal
 
-Zeigt neben dem Pfad den Knopf [Archivbaum](hierarchy.md#archivbaum), der die
-Tektonik als Baum öffnet. Im Standard aus; wird pro Archiv eingeschaltet. Ist es aus, gibt es
+Zeigt den Knopf [Archivbaum](hierarchy.md#archivbaum), der die Tektonik als
+Baum öffnet. Im Standard aus; wird pro Archiv eingeschaltet. Ist es aus, gibt es
 weder Knopf noch Baum.
 
 ### custom_css
@@ -44,4 +44,4 @@ persönliche Voreinstellungen. Dazu gehört das Anzeigen der
 [Feld-Hilfetexte](forms.md#hilfetexte-zu-feldern) direkt in der
 Bearbeitungsmaske (im Standard aus). Wo der
 [Archivbaum](hierarchy.md#archivbaum) eingeschaltet ist, lässt sich dort sein
-Knopf neben dem Pfad für sich ausblenden.
+Knopf für sich ausblenden.

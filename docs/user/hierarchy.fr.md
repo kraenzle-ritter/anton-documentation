@@ -34,8 +34,9 @@ activé, aussi en [arborescence](#archivbaum) :
 ### Arborescence {#archivbaum}
 
 Là où l'archive l'a activé (`archive_plan_modal`, voir
-[Paramètres](settings.md)), le bouton **Arborescence** se trouve à côté du
-chemin — sur la page de détail et dans la liste du plan de classement. Il ouvre
+[Paramètres](settings.md)), le bouton **Arborescence** se trouve à côté de
+**Liste** sur la page de détail, et à côté du chemin dans la liste du plan de
+classement. Il ouvre
 l'arborescence dans une fenêtre à part. Le libellé peut être adapté par archive
 et par langue ([Page d'accueil et navigation](../admin/home.md)).
 

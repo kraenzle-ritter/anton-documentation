@@ -34,8 +34,8 @@ Anton stellt die Tektonik zweiteilig dar, wo das Archiv es eingeschaltet hat zus
 ### Archivbaum {#archivbaum}
 
 Wo das Archiv es eingeschaltet hat (`archive_plan_modal`, siehe
-[Einstellungen](settings.md)), steht neben dem Pfad — auf der Detailseite und in
-der Archivplan-Liste — der Knopf **Archivbaum**. Er öffnet die Tektonik als Baum
+[Einstellungen](settings.md)), steht der Knopf **Archivbaum** auf der
+Detailseite neben **Liste**, in der Archivplan-Liste neben dem Pfad. Er öffnet die Tektonik als Baum
 in einem eigenen Fenster. Die Bezeichnung lässt sich je Archiv und Sprache
 anpassen ([Startseite und Navigation](../admin/home.md)).
 

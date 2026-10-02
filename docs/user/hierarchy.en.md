@@ -32,8 +32,8 @@ Anton presents the arrangement in two parts, and where the archive has switched 
 ### Archive tree {#archivbaum}
 
 Where the archive has switched it on (`archive_plan_modal`, see
-[Settings](settings.md)), the **Archive tree** button stands beside the path —
-on the detail page and in the archive plan list. It opens the arrangement as a
+[Settings](settings.md)), the **Archive tree** button stands next to **List**
+on the detail page and beside the path in the archive plan list. It opens the arrangement as a
 tree in a window of its own. The label can be adjusted per archive and
 language ([Home page and navigation](../admin/home.md)).
 
