@@ -24,14 +24,14 @@ Un fonds à l'intérieur d'un fonds n'est pas admis et est refusé par Anton.
 ## Navigation dans l'arborescence
 
 Anton représente le plan de classement en deux parties et, là où l'archive l'a
-activé, aussi [en arborescence](#plan-de-classement-en-arborescence) :
+activé, aussi [en arborescence](#archivplan-als-baum) :
 
 - Au-dessus de chaque notice figure le **chemin** — la chaîne des unités
   supérieures, indentée en escalier et cliquable.
 - Sous la vue de détail figure la section **contenu** avec la liste des unités
   subordonnées.
 
-### Plan de classement en arborescence
+### Plan de classement en arborescence {#archivplan-als-baum}
 
 Là où l'archive l'a activé (`archive_plan_modal`, voir
 [Paramètres](settings.md)), un bouton portant le nom du plan de classement se

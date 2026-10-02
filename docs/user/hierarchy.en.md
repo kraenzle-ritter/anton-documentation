@@ -22,14 +22,14 @@ Fonds within fonds are not permitted and are rejected by Anton.
 
 ## Navigating the tree
 
-Anton presents the arrangement in two parts, and where the archive has switched it on also [as a tree](#archive-plan-as-a-tree):
+Anton presents the arrangement in two parts, and where the archive has switched it on also [as a tree](#archivplan-als-baum):
 
 - Above every record stands the **path** — the chain of parent units, indented
   in steps and hyperlinked.
 - Below the detail view stands the **contents** section with the list of
   subordinate units.
 
-### Archive plan as a tree
+### Archive plan as a tree {#archivplan-als-baum}
 
 Where the archive has switched it on (`archive_plan_modal`, see
 [Settings](settings.md)), a button named after the archive plan stands beside
