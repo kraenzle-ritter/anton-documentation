@@ -47,20 +47,15 @@ curl -X GET "https://your-anton-instance.ch/api/objects" \
   -H "Accept: application/json"
 ```
 
-### Query parameter (deprecated — will be removed in a future Anton version)
+### No token in the URL
 
-!!! warning "Deprecated"
-    The query parameter `?api_token=` will be removed from Anton. Please switch existing integrations to the bearer header. Anton logs every call using `?api_token=` as a deprecation notice (without the token content). Anyone still accessing Anton this way should get in touch so that we can accompany the migration.
+The query parameter `?api_token=` is no longer accepted. A request that sends `api_token` in the URL or in a form receives **401** with a note to send the token in the header — even if it also carries a valid header:
 
-For backwards compatibility, the **legacy** API token (created before Anton v0.100.0) is currently also accepted as a query parameter `api_token`. New tokens are accepted in the header only:
-
-```bash
-# DEPRECATED — please switch to the bearer header
-curl -X GET "https://your-anton-instance.ch/api/objects?api_token=YOUR_API_TOKEN" \
-  -H "Accept: application/json"
+```json
+{"error": "The api_token parameter is no longer accepted. Send the token in the header: Authorization: Bearer <token>"}
 ```
 
-Why remove it? Tokens in the URL end up in web server access logs, in the browser history and in referer headers — the bearer header has none of these problems.
+Tokens in the URL end up in web server access logs, in browser histories and in referer headers; the bearer header has none of these problems. Anton logs every such request (without the token content), so that an integration that was missed shows up.
 
 ### Examples
 
@@ -118,7 +113,7 @@ data = response.json()
 
 | Recommendation | Description |
 |------------|--------------|
-| **Use bearer tokens** | A bearer token in the header is more secure than a query parameter |
+| **Token in the header only** | A token in the URL is refused (401) |
 | **Keep tokens secret** | Never store tokens in public code or repositories |
 | **Use HTTPS** | Always send API requests over encrypted connections |
 | **One token per purpose** | A token of its own per script or system, so that one can be revoked alone |

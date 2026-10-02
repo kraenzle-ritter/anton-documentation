@@ -48,20 +48,15 @@ curl -X GET "https://ihre-anton-instanz.ch/api/objects" \
   -H "Accept: application/json"
 ```
 
-### Query-Parameter (deprecated — wird in einer künftigen Anton-Version entfernt)
+### Kein Token in der URL
 
-!!! warning "Veraltet"
-    Der Query-Parameter `?api_token=` wird aus Anton entfernt werden. Stellen Sie bestehende Integrationen auf Bearer-Header um. Anton loggt jeden Aufruf mit `?api_token=` als Deprecation-Hinweis (ohne Token-Inhalt). Wer noch über diesen Weg zugreift, sollte sich melden, damit wir die Migration begleiten können.
+Der Query-Parameter `?api_token=` wird nicht mehr angenommen. Eine Anfrage, die `api_token` in der URL oder im Formular mitschickt, erhält **401** mit dem Hinweis, den Token im Header zu senden — auch wenn sie zusätzlich einen gültigen Header trägt:
 
-Aus Rückwärtskompatibilität wird der **bisherige** API-Token (vor Anton v0.100.0 erstellt) derzeit zusätzlich als Query-Parameter `api_token` akzeptiert. Neue Tokens gelten nur im Header:
-
-```bash
-# DEPRECATED — bitte auf Bearer-Header umstellen
-curl -X GET "https://ihre-anton-instanz.ch/api/objects?api_token=IHR_API_TOKEN" \
-  -H "Accept: application/json"
+```json
+{"error": "The api_token parameter is no longer accepted. Send the token in the header: Authorization: Bearer <token>"}
 ```
 
-Warum weg? Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern — der Bearer-Header hat keines dieser Probleme.
+Tokens in der URL landen in Web-Server-Access-Logs, im Browser-Verlauf und in Referer-Headern; der Bearer-Header hat keines dieser Probleme. Anton protokolliert jede solche Anfrage (ohne Token-Inhalt), damit eine übersehene Integration auffällt.
 
 ### Beispiele
 
@@ -119,7 +114,7 @@ data = response.json()
 
 | Empfehlung | Beschreibung |
 |------------|--------------|
-| **Bearer-Token verwenden** | Bearer-Token im Header ist sicherer als Query-Parameter |
+| **Token nur im Header** | Ein Token in der URL wird abgewiesen (401) |
 | **Token geheim halten** | Tokens niemals in öffentlichem Code oder Repositories speichern |
 | **HTTPS verwenden** | API-Anfragen immer über verschlüsselte Verbindungen senden |
 | **Ein Token pro Zweck** | Pro Skript oder System ein eigener Token, damit sich einer allein widerrufen lässt |
