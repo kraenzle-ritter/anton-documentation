@@ -11,6 +11,7 @@ Anton uses **API tokens** to authenticate external requests. This allows other s
 3. Select the user → **Show**
 4. In the **API tokens** section, enter a **name** that says what the token is
    for (e.g. "nightly export script"), and an **expiry date** if needed
+   (leave it empty for a token without expiry; 18 January 2038 at the latest)
 5. Click **Create API token**
 
 The token is shown **once**, right after it was created. Copy it then. Anton
