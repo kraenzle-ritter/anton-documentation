@@ -23,13 +23,34 @@ Un fondo all'interno di un fondo non è ammesso e viene rifiutato da Anton.
 
 ## Navigare nell'albero
 
-Anton non rappresenta la struttura archivistica come un albero espandibile, ma
-in due parti:
+Anton rappresenta la struttura archivistica in due parti e, dove l'archivio l'ha
+attivato, anche [come albero](#piano-di-classificazione-ad-albero):
 
 - Sopra ogni scheda si trova il **percorso** — la catena delle unità superiori,
   rientrata a gradini e collegata.
 - Sotto la vista di dettaglio si trova la sezione **contenuto** con l'elenco
   delle unità subordinate.
+
+### Piano di classificazione ad albero
+
+Dove l'archivio l'ha attivato (`archive_plan_modal`, vedi
+[Impostazioni](settings.md)), accanto al percorso — nella pagina di dettaglio e
+nell'elenco del piano di classificazione — si trova un pulsante con il nome del
+piano di classificazione. Apre la struttura come albero in una finestra
+propria:
+
+- L'albero è espanso fino alla scheda corrente, evidenziata e al centro.
+  **Localizza** riporta lì.
+- Ogni riga mostra segnatura, titolo e livello di descrizione tra parentesi,
+  come il percorso. La freccia espande e comprime un livello; il titolo apre la
+  scheda.
+- I livelli con molte voci arrivano a blocchi di cento: **apri le 100 voci
+  successive** e, per una scheda in fondo al livello, anche **apri le 100 voci
+  precedenti**.
+- Le schede che non potete vedere non compaiono né come riga né nel conteggio.
+
+Chi non ha bisogno del pulsante lo nasconde nel proprio profilo sotto
+**Impostazioni**.
 
 ## Spostare le schede
 

@@ -23,13 +23,34 @@ Un fonds à l'intérieur d'un fonds n'est pas admis et est refusé par Anton.
 
 ## Navigation dans l'arborescence
 
-Anton ne représente pas le plan de classement sous forme d'arborescence
-dépliable, mais en deux parties :
+Anton représente le plan de classement en deux parties et, là où l'archive l'a
+activé, aussi [en arborescence](#plan-de-classement-en-arborescence) :
 
 - Au-dessus de chaque notice figure le **chemin** — la chaîne des unités
   supérieures, indentée en escalier et cliquable.
 - Sous la vue de détail figure la section **contenu** avec la liste des unités
   subordonnées.
+
+### Plan de classement en arborescence
+
+Là où l'archive l'a activé (`archive_plan_modal`, voir
+[Paramètres](settings.md)), un bouton portant le nom du plan de classement se
+trouve à côté du chemin — sur la page de détail et dans la liste du plan de
+classement. Il ouvre l'arborescence dans une fenêtre à part :
+
+- L'arborescence est dépliée jusqu'à la notice courante, mise en évidence et
+  centrée. **Localiser** y ramène.
+- Chaque ligne affiche cote, titre et niveau de description entre parenthèses,
+  comme le chemin. Le chevron déplie et replie un niveau ; le titre ouvre la
+  notice.
+- Les niveaux comptant beaucoup d'entrées arrivent par blocs de cent :
+  **ouvrir les 100 entrées suivantes**, et pour une notice loin dans le niveau
+  aussi **ouvrir les 100 entrées précédentes**.
+- Les notices que vous ne pouvez pas voir n'apparaissent ni comme ligne ni dans
+  le décompte.
+
+Si vous n'avez pas besoin du bouton, masquez-le dans votre profil sous
+**Paramètres**.
 
 ## Déplacer des notices
 

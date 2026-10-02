@@ -24,12 +24,32 @@ abgewiesen.
 
 ## Navigation im Baum
 
-Anton stellt die Tektonik nicht als aufklappbaren Baum dar, sondern zweiteilig:
+Anton stellt die Tektonik zweiteilig dar, wo das Archiv es eingeschaltet hat zusätzlich [als Baum](#archivplan-als-baum):
 
 - Über jedem Datensatz steht der **Pfad** — die Kette der übergeordneten
   Einheiten, treppenartig eingerückt und verlinkt.
 - Unter der Detailansicht steht der Abschnitt **Inhalt** mit der Liste der
   untergeordneten Einheiten.
+
+### Archivplan als Baum
+
+Wo das Archiv es eingeschaltet hat (`archive_plan_modal`, siehe
+[Einstellungen](settings.md)), steht neben dem Pfad — auf der Detailseite und in
+der Archivplan-Liste — ein Knopf mit dem Namen des Archivplans. Er öffnet die
+Tektonik als Baum in einem eigenen Fenster:
+
+- Der Baum ist bis zum aktuellen Datensatz aufgeklappt; der Datensatz ist
+  hervorgehoben und steht in der Mitte. **Lokalisieren** führt dorthin zurück.
+- Jede Zeile zeigt Signatur, Titel und Verzeichnungsstufe in Klammern, wie der
+  Pfad. Die Spitzklammer klappt eine Ebene auf und zu, der Titel öffnet den
+  Datensatz.
+- Ebenen mit vielen Einträgen kommen in Hunderterblöcken: **die nächsten 100
+  Einträge öffnen**, bei einem Datensatz weit unten in der Ebene auch **die
+  vorherigen 100 Einträge öffnen**.
+- Gesperrte Datensätze erscheinen weder als Zeile noch in der Zählung.
+
+Wer den Knopf nicht braucht, blendet ihn im eigenen Profil unter
+**Einstellungen** aus.
 
 ## Datensätze verschieben
 
