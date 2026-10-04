@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **30 September 2026**. It is
+    This matrix reflects the state of **4 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -95,6 +95,12 @@ authority lists** with all name forms, life dates, coordinates, description,
 sources and external links. Two restrictions: only **free** authority records not
 bound to objects are output, and actors or places without a type are skipped.
 Otherwise authority data appears only embedded in object exports.
+
+**Dates** of actors go out as precisely as they were recorded: a year as a year,
+a month as a month. TEI carries a circa date as `cert="medium"`, CIDOC CRM through
+the inner bounds (P81), RiC-O in the readable `expressedDate`. The native round
+trip and the actors spreadsheet keep it. CIDOC CRM gives the formation and
+dissolution of corporate bodies (from Anton v0.103.0).
 
 ## Only in the SQL dump
 
