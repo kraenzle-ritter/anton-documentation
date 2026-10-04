@@ -2278,7 +2278,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-04</span>
     </div>
   
   
@@ -2297,7 +2297,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>30. September 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>4. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2777,6 +2777,12 @@ Beschreibung, Quellen und externen Links. Zwei Einschränkungen: Nur <strong>fre
 nicht an Objekte gebundene Normdatensätze werden ausgegeben, und Akteur:innen oder
 Orte ohne Typ werden übersprungen. Sonst erscheinen Normdaten nur eingebettet in
 Objektexporten.</p>
+<p><strong>Datierungen</strong> von Akteur:innen gehen so genau hinaus, wie sie erfasst sind: ein
+Jahr als Jahr, ein Monat als Monat. Eine Zirka-Angabe trägt TEI als
+<code>cert="medium"</code>, CIDOC CRM über die inneren Grenzen (P81), RiC-O im lesbaren
+<code>expressedDate</code>. Der native Round-Trip und die Excel-Tabelle der Akteur:innen
+nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
+(ab Anton v0.103.0).</p>
 <h2 id="nur-im-sql-dump">Nur im SQL-Dump<a class="headerlink" href="#nur-im-sql-dump" title="Permanent link">&para;</a></h2>
 <p>Diese Daten überleben <strong>keinen</strong> Formatexport:</p>
 <ul>

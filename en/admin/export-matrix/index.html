@@ -4308,7 +4308,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-04</span>
     </div>
   
   
@@ -4328,7 +4328,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>30 September 2026</strong>. It is
+<p>This matrix reflects the state of <strong>4 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4808,6 +4808,11 @@ authority lists</strong> with all name forms, life dates, coordinates, descripti
 sources and external links. Two restrictions: only <strong>free</strong> authority records not
 bound to objects are output, and actors or places without a type are skipped.
 Otherwise authority data appears only embedded in object exports.</p>
+<p><strong>Dates</strong> of actors go out as precisely as they were recorded: a year as a year,
+a month as a month. TEI carries a circa date as <code>cert="medium"</code>, CIDOC CRM through
+the inner bounds (P81), RiC-O in the readable <code>expressedDate</code>. The native round
+trip and the actors spreadsheet keep it. CIDOC CRM gives the formation and
+dissolution of corporate bodies (from Anton v0.103.0).</p>
 <h2 id="only-in-the-sql-dump">Only in the SQL dump<a class="headerlink" href="#only-in-the-sql-dump" title="Permanent link">&para;</a></h2>
 <p>This data survives <strong>no</strong> format export:</p>
 <ul>
