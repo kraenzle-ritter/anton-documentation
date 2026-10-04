@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **30. September 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **4. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -94,6 +94,13 @@ Beschreibung, Quellen und externen Links. Zwei Einschränkungen: Nur **freie**,
 nicht an Objekte gebundene Normdatensätze werden ausgegeben, und Akteur:innen oder
 Orte ohne Typ werden übersprungen. Sonst erscheinen Normdaten nur eingebettet in
 Objektexporten.
+
+**Datierungen** von Akteur:innen gehen so genau hinaus, wie sie erfasst sind: ein
+Jahr als Jahr, ein Monat als Monat. Eine Zirka-Angabe trägt TEI als
+`cert="medium"`, CIDOC CRM über die inneren Grenzen (P81), RiC-O im lesbaren
+`expressedDate`. Der native Round-Trip und die Excel-Tabelle der Akteur:innen
+nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
+(ab Anton v0.103.0).
 
 ## Nur im SQL-Dump
 
