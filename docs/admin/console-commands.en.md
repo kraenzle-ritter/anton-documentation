@@ -288,7 +288,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (60)
+### anton: (61)
 
 | Command | Description |
 |---|---|
@@ -334,6 +334,7 @@ up to date with every change to the commands.
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
 | `anton:repair-content-locale` | Move objects.title and notes from a wrongly written language into the archive's own (#506). |
 | `anton:repair-edit-metadata` | Restore updated_at/updated_by from the history column on records a mass run restamped (#421). |
+| `anton:repair-unicode` | Compose decomposed umlauts and accents (NFD, from macOS file names) in titles, names and text … |
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
 | `anton:restore` | Restore Database from the last Backup (by default) |
 | `anton:restore-positions` | Restore object positions from an anton:reorder-positions snapshot TSV. |
