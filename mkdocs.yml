@@ -62,6 +62,7 @@ nav:
       - Schlagwörter: user/keywords.md
       - Standorte: user/locations.md
       - Normdatenabgleich: user/authorities.md
+      - Normdaten im XML-Editor: user/editor-plugins.md
     - Medien:
       - Medien: user/media.md
       - Mediengalerie: user/gallery.md
@@ -206,6 +207,7 @@ plugins:
                 - Keywords: user/keywords.md
                 - Locations: user/locations.md
                 - Authority data synchronisation: user/authorities.md
+                - Authority data in the XML editor: user/editor-plugins.md
               - Media:
                 - Media: user/media.md
                 - Media gallery: user/gallery.md
@@ -326,6 +328,7 @@ plugins:
                 - Mots-clés: user/keywords.md
                 - Lieux de conservation: user/locations.md
                 - Synchronisation des données d'autorité: user/authorities.md
+                - Données d'autorité dans l'éditeur XML: user/editor-plugins.md
               - Médias:
                 - Médias: user/media.md
                 - Galerie de médias: user/gallery.md
@@ -392,6 +395,7 @@ plugins:
                 - Parole chiave: user/keywords.md
                 - Collocazioni: user/locations.md
                 - Allineamento dei dati di autorità: user/authorities.md
+                - Dati di autorità nell'editor XML: user/editor-plugins.md
               - Media:
                 - Media: user/media.md
                 - Galleria dei media: user/gallery.md
