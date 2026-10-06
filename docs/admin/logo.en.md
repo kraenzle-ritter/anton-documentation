@@ -6,4 +6,4 @@ Under Admin > Upload logo and images, upload the logo and then click "Create log
 
 ## SVG 
 
-Under Admin > Upload logo and images, upload the SVG logo and then enter the file name under Admin > Home > Logo.
+The upload does not accept SVG logos: an SVG can contain scripts the browser runs. Send us the file and we will put it in place. Then enter the file name under Admin > Home > Logo.
