@@ -804,6 +804,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/editor-plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Données d'autorité dans l'éditeur XML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2278,7 +2306,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-04</span>
+        <span class="page-meta__date">Last updated: 2026-10-06</span>
     </div>
   
   
@@ -2297,7 +2325,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>4. Oktober 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>6. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2861,7 +2889,10 @@ Datierung, Urheber:innen und Schlagwörter.</p>
 Knoten.</p>
 <p><strong>Memobase-RDF</strong> ist bewusst verlustbehaftet: keine Akteur:innen, Orte, Schlagwörter
 oder Ereignisse — nur Institution, Objekte, Instantiations und rund acht
-Textfeldtypen.</p>
+Textfeldtypen. Eine Instantiation beschreibt die <strong>Zugangskopie</strong> (Link, Dateityp,
+Grösse, Bildmasse), nicht den Master: keine Prüfsumme des Originals, und ohne
+Zugangskopie kein Link. Ein Export ab einem Teilbaum liefert die übergeordneten
+RecordSets mit.</p>
 <p><strong>TEI pro Objekt</strong> kennt keinen Gesamtexport, keine Hierarchie und kaum Medien.</p>
 <p><strong>DIP und OCFL</strong> führen kein PREMIS und kein METS; die Preservation-Metadaten
 beschränken sich auf das OCFL-Inventory. Die ZH-Variante des DIP enthält nur
