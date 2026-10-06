@@ -6,4 +6,4 @@ Unter Admin > Upload Logo und Bilder Logo hochladen und anschliessend in der Tab
 
 ## SVG 
 
-Unter Admin > Upload Logo und Bilder SVG-Logo hochladen und anschliessend unter Admin > Home > Logo Dateinamen angeben.
+Ein SVG-Logo nimmt der Upload nicht an: Ein SVG kann Skripte enthalten, die der Browser ausführt. Schicken Sie uns die Datei, wir legen sie ein. Danach unter Admin > Home > Logo den Dateinamen angeben.
