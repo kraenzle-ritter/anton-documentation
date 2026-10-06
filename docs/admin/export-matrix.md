@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **4. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **6. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -159,7 +159,10 @@ Knoten.
 
 **Memobase-RDF** ist bewusst verlustbehaftet: keine Akteur:innen, Orte, Schlagwörter
 oder Ereignisse — nur Institution, Objekte, Instantiations und rund acht
-Textfeldtypen.
+Textfeldtypen. Eine Instantiation beschreibt die **Zugangskopie** (Link, Dateityp,
+Grösse, Bildmasse), nicht den Master: keine Prüfsumme des Originals, und ohne
+Zugangskopie kein Link. Ein Export ab einem Teilbaum liefert die übergeordneten
+RecordSets mit.
 
 **TEI pro Objekt** kennt keinen Gesamtexport, keine Hierarchie und kaum Medien.
 
