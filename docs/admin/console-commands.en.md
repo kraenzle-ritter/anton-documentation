@@ -156,6 +156,19 @@ php artisan media:add file.jpg --env=besenval --id=123
 **`storage:audit`** checks local master files and SIP directories;
 `--clean-sips` and `--clean-masters` tidy up.
 
+**`format-policy:list`**{#format-policylist} shows the format rules Anton
+applies when a file comes in: the default, this archive's switch, whether the
+rule is in force and whether its tools are present on the server.
+**`format-policy:enable`** and **`format-policy:disable`** switch a rule on or
+off for one archive, regardless of its default:
+
+```bash
+php artisan format-policy:enable tiff_zip --env=gosteli
+```
+
+The first rule, `tiff_zip`, repacks TIFF files losslessly as Deflate with
+predictor 2; it is off everywhere and does not apply to SIPs.
+
 ## Search (Typesense)
 
 The [instant search](typesense.md) maintains its own index. In case of problems
@@ -353,6 +366,14 @@ up to date with every change to the commands.
 | `anton:update-path` | Fill path attribute of objects.table |
 | `anton:update-release-year` | Materialize release_year_calculated (the single effective release year) for all objects (#256). |
 | `anton:upwd` | Set the password of an account; without the password argument it is asked for hidden. |
+
+### format-policy: (3)
+
+| Command | Description |
+|---|---|
+| `format-policy:disable` | Switch a format rule off for this archive (over its default) |
+| `format-policy:enable` | Switch a format rule on for this archive (over its default) |
+| `format-policy:list` | List the format rules (preingest): default, this archive's switch, whether in force, and wheth… |
 
 ### inge: (1)
 
