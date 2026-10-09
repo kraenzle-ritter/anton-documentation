@@ -2302,6 +2302,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#format-policy-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format-policy: (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#inge-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2411,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-05</span>
+        <span class="page-meta__date">Last updated: 2026-10-09</span>
     </div>
   
   
@@ -2567,6 +2578,15 @@ nützlich, wenn eine Datei zu gross für den Browser-Upload ist:</p>
 </code></pre></div>
 <p><strong><code>storage:audit</code></strong> prüft lokale Masterdateien und SIP-Verzeichnisse;
 <code>--clean-sips</code> und <code>--clean-masters</code> räumen auf.</p>
+<p><strong id="format-policylist"><code>format-policy:list</code></strong> zeigt die Format-Regeln, die Anton
+beim Einliefern anwendet: Vorgabe, Schalter dieses Archivs, ob die Regel wirkt
+und ob ihre Werkzeuge auf dem Server vorhanden sind. <strong><code>format-policy:enable</code></strong>
+und <strong><code>format-policy:disable</code></strong> schalten eine Regel für ein Archiv ein oder aus,
+unabhängig von ihrer Vorgabe:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>format-policy:enable<span class="w"> </span>tiff_zip<span class="w"> </span>--env<span class="o">=</span>gosteli
+</code></pre></div>
+<p>Die erste Regel, <code>tiff_zip</code>, packt TIFF-Dateien verlustfrei nach Deflate mit
+Predictor 2 um; sie ist überall aus und gilt nicht für SIPs.</p>
 <h2 id="suche-typesense">Suche (Typesense)<a class="headerlink" href="#suche-typesense" title="Permanent link">&para;</a></h2>
 <p>Die <a href="../typesense/">schnelle Suche</a> hält einen eigenen Index. Bei Störungen oder
 nach grösseren Datenänderungen wird er neu aufgebaut:</p>
@@ -3001,6 +3021,29 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:upwd</code></td>
 <td>Set the password of an account; without the password argument it is asked for hidden.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="format-policy-3">format-policy: (3)<a class="headerlink" href="#format-policy-3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format-policy:disable</code></td>
+<td>Switch a format rule off for this archive (over its default)</td>
+</tr>
+<tr>
+<td><code>format-policy:enable</code></td>
+<td>Switch a format rule on for this archive (over its default)</td>
+</tr>
+<tr>
+<td><code>format-policy:list</code></td>
+<td>List the format rules (preingest): default, this archive's switch, whether in force, and wheth…</td>
 </tr>
 </tbody>
 </table>

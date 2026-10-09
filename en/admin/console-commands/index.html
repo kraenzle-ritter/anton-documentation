@@ -3616,6 +3616,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#format-policy-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format-policy: (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#inge-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4437,6 +4448,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#format-policy-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format-policy: (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#inge-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4546,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-05</span>
+        <span class="page-meta__date">Last updated: 2026-10-09</span>
     </div>
   
   
@@ -4701,6 +4723,15 @@ when a file is too large for the browser upload:</p>
 </code></pre></div>
 <p><strong><code>storage:audit</code></strong> checks local master files and SIP directories;
 <code>--clean-sips</code> and <code>--clean-masters</code> tidy up.</p>
+<p><strong id="format-policylist"><code>format-policy:list</code></strong> shows the format rules Anton
+applies when a file comes in: the default, this archive's switch, whether the
+rule is in force and whether its tools are present on the server.
+<strong><code>format-policy:enable</code></strong> and <strong><code>format-policy:disable</code></strong> switch a rule on or
+off for one archive, regardless of its default:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>format-policy:enable<span class="w"> </span>tiff_zip<span class="w"> </span>--env<span class="o">=</span>gosteli
+</code></pre></div>
+<p>The first rule, <code>tiff_zip</code>, repacks TIFF files losslessly as Deflate with
+predictor 2; it is off everywhere and does not apply to SIPs.</p>
 <h2 id="search-typesense">Search (Typesense)<a class="headerlink" href="#search-typesense" title="Permanent link">&para;</a></h2>
 <p>The <a href="../typesense/">instant search</a> maintains its own index. In case of problems
 or after larger data changes, it is rebuilt:</p>
@@ -5134,6 +5165,29 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>anton:upwd</code></td>
 <td>Set the password of an account; without the password argument it is asked for hidden.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="format-policy-3">format-policy: (3)<a class="headerlink" href="#format-policy-3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format-policy:disable</code></td>
+<td>Switch a format rule off for this archive (over its default)</td>
+</tr>
+<tr>
+<td><code>format-policy:enable</code></td>
+<td>Switch a format rule on for this archive (over its default)</td>
+</tr>
+<tr>
+<td><code>format-policy:list</code></td>
+<td>List the format rules (preingest): default, this archive's switch, whether in force, and wheth…</td>
 </tr>
 </tbody>
 </table>
