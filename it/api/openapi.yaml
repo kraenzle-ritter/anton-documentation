@@ -45,6 +45,8 @@ tags:
     description: SIP ingest (eCH-0160) — machine-to-machine
   - name: ai-cataloging
     description: AI-cataloging control plane (consumed by external producers, e.g. agate)
+  - name: format-policy
+    description: Format rules applied before ingest (consumed by agate)
   - name: system
     description: System / counts / authenticated user
 
@@ -1047,6 +1049,44 @@ paths:
       responses:
         200:
           description: OK
+
+# -------------
+# format-policy
+# -------------
+  /format-policy/switches:
+    get:
+      tags:
+        - format-policy
+      summary: Which format rules are in force for this archive
+      description: >
+        The archive's switches for the rules of `kraenzle-ritter/format-policy`
+        (e.g. `tiff_zip`). agate applies these rules before it closes a SIP and
+        asks Anton which of them hold, so the switches are kept in one place.
+        `overrides` holds only the rules the archive has switched over their
+        default; a rule not listed follows `enabled_by_default`. `rules` shows
+        what Anton made of each rule. `policy_version` is the package version
+        Anton runs. Tenant resolution is implicit from the hit domain + token.
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              example:
+                policy_version: v0.1.0
+                overrides:
+                  tiff_zip: true
+                rules:
+                  tiff_zip:
+                    phase: preingest
+                    enabled_by_default: false
+                    override: true
+                    in_force: true
+                    optional: true
+                    retired: false
+        401:
+          description: invalid token
 
 components:
   parameters:
