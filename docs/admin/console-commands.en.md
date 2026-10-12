@@ -169,6 +169,47 @@ php artisan format-policy:enable tiff_zip --env=gosteli
 The first rule, `tiff_zip`, repacks TIFF files losslessly as Deflate with
 predictor 2; it is off everywhere and does not apply to SIPs.
 
+**`media:migrate`**{#mediamigrate} applies one of these rules to media already
+in Anton — TIFF masters ingested as LZW before the rule existed, say. The rule
+applies whether or not it is switched on for new files; repacking and
+verification are exactly as at ingest.
+
+```bash
+php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image
+php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --write --limit=50
+```
+
+```
+    --rule=              The rule (required)
+    --ids=               Only these media
+    --collection=        Only media of this collection
+    --filename-pattern=  Only file names like this pattern, e.g. %.tif
+    --limit=             At most this many media
+    --write              Repack (without: report only)
+```
+
+Without `--write` the command only says how many media the rule would touch.
+With `--write` it puts the result next to the master, verifies it, and swaps
+file and checksums in one step; if anything fails, the old master stays. Every
+repacked medium gets a `format-normalization` event (category `migration`) with
+the tool versions and the checksums before and after. **The original is
+discarded.** It remains only in the local [backup](#sicherung-und-wiederherstellung)
+until its yearly snapshots rotate.
+
+Consequences worth knowing:
+
+- While a `--write` run lasts, [`media:check --check-integrity`](#mediasnapshot)
+  and [`media:repair`](#mediarepair) skip their runs for this archive; the other
+  way round, `media:migrate --write` does not start while either is running.
+- The next [`media:snapshot`](#mediasnapshot) reports the repacked media as
+  CHANGED; the event on the medium records why.
+- Until the next backup run, no backup snapshot matches the new checksum;
+  `media:repair` would have no replacement for these media until then.
+
+Recommended sequence: dry run, then `--write --limit=50`, spot checks in the viewer
+and with `media:check --check-integrity --ids=…`, then the rest. Archives on
+DIMAG or S3 are excluded.
+
 ## Search (Typesense)
 
 The [instant search](typesense.md) maintains its own index. In case of problems
@@ -222,6 +263,7 @@ materialised fields in a closure table — is explained by
 | `anton:merge <type> <target_id>` | Merge actors, places or keywords |
 | `anton:repair-content-locale --from=<language>` | Move titles and text fields an import filed under the wrong language into the archive's content language |
 | `anton:audit-orphans` | Report rows whose record no longer exists, and remove them on request |
+| `media:audit-orphan-folders` | Report media folders no media row owns, and remove them on request |
 
 `anton:repair-content-locale` concerns archives that imported **before 15 August
 2026**: until then an import wrote the application's default language rather than
@@ -244,6 +286,17 @@ Without `--write` it only reports. `--only=` narrows it to one place, and every
 finding comes with the first few ids so you can look before deciding. **Media is
 reported and never removed**: a media row is the registration of a file on disk,
 and dropping the row loses the trail to the file rather than the file.
+
+`media:audit-orphan-folders` looks for the opposite: media folders that no media
+row owns any more. Up to Anton 0.104.2, deleting a record left them behind with
+the view images, some with the original as well. The report groups them by
+content (empty, view images only, original).
+
+Without `--write` it only reports; `--ids=` narrows it to single media. A folder
+changed within the last day is not removed — it may belong to a medium being
+written. On archives with DIMAG the command asks Inge first: if DIMAG still
+holds the medium, the folder stays and the report names the AID, which then has
+to be deleted in DIMAG first. If Inge cannot be reached, the folder stays too.
 
 ## Diagnosis
 
@@ -387,11 +440,12 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (14)
+### media: (16)
 
 | Command | Description |
 |---|---|
 | `media:add` | Add a media file to an AntonObject |
+| `media:audit-orphan-folders` | Report (and optionally remove) media folders that no media row owns (#648). |
 | `media:check` | Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from … |
 | `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
@@ -399,6 +453,7 @@ up to date with every change to the commands.
 | `media:delete-master` | Delete Masterfiles from local media directory (eg. if the masters are in a repository) |
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
+| `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
 | `media:rename` | Rename media to original name or vice versa |
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
