@@ -169,6 +169,47 @@ php artisan format-policy:enable tiff_zip --env=gosteli
 The first rule, `tiff_zip`, repacks TIFF files losslessly as Deflate with
 predictor 2; it is off everywhere and does not apply to SIPs.
 
+**`media:migrate`**{#mediamigrate} applies one of these rules to media already
+in Anton — TIFF masters ingested as LZW before the rule existed, say. The rule
+applies whether or not it is switched on for new files; repacking and
+verification are exactly as at ingest.
+
+```bash
+php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image
+php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --write --limit=50
+```
+
+```
+    --rule=              The rule (required)
+    --ids=               Only these media
+    --collection=        Only media of this collection
+    --filename-pattern=  Only file names like this pattern, e.g. %.tif
+    --limit=             At most this many media
+    --write              Repack (without: report only)
+```
+
+Without `--write` the command only says how many media the rule would touch.
+With `--write` it puts the result next to the master, verifies it, and swaps
+file and checksums in one step; if anything fails, the old master stays. Every
+repacked medium gets a `format-normalization` event (category `migration`) with
+the tool versions and the checksums before and after. **The original is
+discarded.** It remains only in the local [backup](#sicherung-und-wiederherstellung)
+until its yearly snapshots rotate.
+
+Consequences worth knowing:
+
+- While a `--write` run lasts, [`media:check --check-integrity`](#mediasnapshot)
+  and [`media:repair`](#mediarepair) skip their runs for this archive; the other
+  way round, `media:migrate --write` does not start while either is running.
+- The next [`media:snapshot`](#mediasnapshot) reports the repacked media as
+  CHANGED; the event on the medium records why.
+- Until the next backup run, no backup snapshot matches the new checksum;
+  `media:repair` would have no replacement for these media until then.
+
+Recommended sequence: dry run, then `--write --limit=50`, spot checks in the viewer
+and with `media:check --check-integrity --ids=…`, then the rest. Archives on
+DIMAG or S3 are excluded.
+
 ## Search (Typesense)
 
 The [instant search](typesense.md) maintains its own index. In case of problems
@@ -399,7 +440,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (15)
+### media: (16)
 
 | Command | Description |
 |---|---|
@@ -412,6 +453,7 @@ up to date with every change to the commands.
 | `media:delete-master` | Delete Masterfiles from local media directory (eg. if the masters are in a repository) |
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
+| `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
 | `media:rename` | Rename media to original name or vice versa |
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
