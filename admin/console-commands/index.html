@@ -3649,10 +3649,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-14" class="md-nav__link">
+  <a href="#media-16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (14)
+        media: (16)
       
     </span>
   </a>
@@ -4481,10 +4481,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-14" class="md-nav__link">
+  <a href="#media-16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (14)
+        media: (16)
       
     </span>
   </a>
@@ -4568,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-09</span>
+        <span class="page-meta__date">Last updated: 2026-10-12</span>
     </div>
   
   
@@ -4733,6 +4733,40 @@ unabhängig von ihrer Vorgabe:</p>
 </code></pre></div>
 <p>Die erste Regel, <code>tiff_zip</code>, packt TIFF-Dateien verlustfrei nach Deflate mit
 Predictor 2 um; sie ist überall aus und gilt nicht für SIPs.</p>
+<p><strong id="mediamigrate"><code>media:migrate</code></strong> wendet eine dieser Regeln auf Medien an, die
+schon in Anton liegen — etwa TIFF-Master, die vor der Regel als LZW eingeliefert
+wurden. Die Regel gilt dabei unabhängig davon, ob sie für neue Dateien
+eingeschaltet ist; umgepackt und geprüft wird genau wie beim Einliefern.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>gosteli<span class="w"> </span>--rule<span class="o">=</span>tiff_zip<span class="w"> </span>--collection<span class="o">=</span>image
+php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>gosteli<span class="w"> </span>--rule<span class="o">=</span>tiff_zip<span class="w"> </span>--collection<span class="o">=</span>image<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">50</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>    --rule=              Die Regel (Pflicht)
+    --ids=               Nur diese Medien
+    --collection=        Nur Medien dieser Sammlung
+    --filename-pattern=  Nur Dateinamen wie dieses Muster, z. B. %.tif
+    --limit=             Höchstens so viele Medien
+    --write              Umpacken (ohne: nur berichten)
+</code></pre></div>
+<p>Ohne <code>--write</code> sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
+<code>--write</code> legt er das Ergebnis neben den Master, prüft es und tauscht Datei und
+Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
+umgepackte Medium bekommt ein Ereignis <code>format-normalization</code> (Kategorie
+<code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
+<strong>Das Original wird verworfen.</strong> Es bleibt nur in der lokalen
+<a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren Jahresstände rotieren.</p>
+<p>Folgen, die man kennen sollte:</p>
+<ul>
+<li>Während ein <code>--write</code>-Lauf dauert, lassen <a href="#mediasnapshot"><code>media:check --check-integrity</code></a>
+  und <a href="#mediarepair"><code>media:repair</code></a> für dieses Archiv ihren Lauf aus; umgekehrt
+  startet <code>media:migrate --write</code> nicht, solange einer der beiden läuft.</li>
+<li>Der nächste <a href="#mediasnapshot"><code>media:snapshot</code></a> meldet die umgepackten Medien
+  als CHANGED; das Ereignis am Medium belegt den Grund.</li>
+<li>Bis zum nächsten Sicherungslauf passt kein Sicherungsstand zur neuen
+  Prüfsumme; <code>media:repair</code> hätte für diese Medien bis dahin keinen Ersatz.</li>
+</ul>
+<p>Empfohlener Ablauf: Probelauf, dann <code>--write --limit=50</code>, Stichprobe in der
+Ansicht und mit <code>media:check --check-integrity --ids=…</code>, dann der Rest.
+Archive mit DIMAG oder S3 sind ausgenommen.</p>
 <h2 id="suche-typesense">Suche (Typesense)<a class="headerlink" href="#suche-typesense" title="Permanent link">&para;</a></h2>
 <p>Die <a href="../typesense/">schnelle Suche</a> hält einen eigenen Index. Bei Störungen oder
 nach grösseren Datenänderungen wird er neu aufgebaut:</p>
@@ -4851,6 +4885,10 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 <td><code>anton:audit-orphans</code></td>
 <td>Zeilen melden, deren Datensatz nicht mehr existiert, und sie auf Wunsch entfernen</td>
 </tr>
+<tr>
+<td><code>media:audit-orphan-folders</code></td>
+<td>Medienordner melden, zu denen es keine Medienzeile gibt, und sie auf Wunsch entfernen</td>
+</tr>
 </tbody>
 </table>
 <p><code>anton:repair-content-locale</code> betrifft Archive, die <strong>vor dem 15. August 2026</strong>
@@ -4873,6 +4911,16 @@ jeder Fund bringt die ersten Ids mit, damit man hinsehen kann, bevor man
 entscheidet. <strong>Medien werden gemeldet und nie entfernt</strong>: eine Medienzeile ist
 die Anmeldung einer Datei auf der Platte, und die Zeile zu löschen verliert die
 Spur zur Datei, nicht die Datei.</p>
+<p><code>media:audit-orphan-folders</code> sucht das Gegenstück: Medienordner, zu denen es
+keine Medienzeile mehr gibt. Bis Anton 0.104.2 blieben sie beim Löschen eines
+Datensatzes liegen, mit den Ansichtsbildern, teils auch mit dem Original. Der
+Bericht ordnet sie nach Inhalt (leer, nur Ansichtsbilder, Original).</p>
+<p>Ohne <code>--write</code> wird nur berichtet, <code>--ids=</code> grenzt auf einzelne Medien ein.
+Nicht entfernt wird ein Ordner, der am letzten Tag geändert wurde — er kann zu
+einem Medium gehören, das gerade entsteht. Bei Archiven mit DIMAG fragt der
+Befehl zuerst bei Inge nach: Hält DIMAG das Medium noch, bleibt der Ordner, und
+der Bericht nennt die AID. Das Medium muss dann zuerst in DIMAG gelöscht werden.
+Ist Inge nicht erreichbar, bleibt der Ordner ebenfalls.</p>
 <h2 id="diagnose">Diagnose<a class="headerlink" href="#diagnose" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> prüft eine Installation auf Konsistenz — dieselben Prüfungen
 wie die Oberfläche unter <a href="../doctor/">Anton Doctor</a>, nur skriptfähig:</p>
@@ -5223,7 +5271,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-14">media: (14)<a class="headerlink" href="#media-14" title="Permanent link">&para;</a></h3>
+<h3 id="media-16">media: (16)<a class="headerlink" href="#media-16" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5235,6 +5283,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:add</code></td>
 <td>Add a media file to an AntonObject</td>
+</tr>
+<tr>
+<td><code>media:audit-orphan-folders</code></td>
+<td>Report (and optionally remove) media folders that no media row owns (#648).</td>
 </tr>
 <tr>
 <td><code>media:check</code></td>
@@ -5263,6 +5315,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:identify</code></td>
 <td>Process media files for format identification and NARA risk assessment</td>
+</tr>
+<tr>
+<td><code>media:migrate</code></td>
+<td>Repack or migrate media already in Anton with a format policy rule, keeping references and evi…</td>
 </tr>
 <tr>
 <td><code>media:rename</code></td>
