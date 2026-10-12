@@ -222,6 +222,7 @@ materialised fields in a closure table — is explained by
 | `anton:merge <type> <target_id>` | Merge actors, places or keywords |
 | `anton:repair-content-locale --from=<language>` | Move titles and text fields an import filed under the wrong language into the archive's content language |
 | `anton:audit-orphans` | Report rows whose record no longer exists, and remove them on request |
+| `media:audit-orphan-folders` | Report media folders no media row owns, and remove them on request |
 
 `anton:repair-content-locale` concerns archives that imported **before 15 August
 2026**: until then an import wrote the application's default language rather than
@@ -244,6 +245,17 @@ Without `--write` it only reports. `--only=` narrows it to one place, and every
 finding comes with the first few ids so you can look before deciding. **Media is
 reported and never removed**: a media row is the registration of a file on disk,
 and dropping the row loses the trail to the file rather than the file.
+
+`media:audit-orphan-folders` looks for the opposite: media folders that no media
+row owns any more. Up to Anton 0.104.2, deleting a record left them behind with
+the view images, some with the original as well. The report groups them by
+content (empty, view images only, original).
+
+Without `--write` it only reports; `--ids=` narrows it to single media. A folder
+changed within the last day is not removed — it may belong to a medium being
+written. On archives with DIMAG the command asks Inge first: if DIMAG still
+holds the medium, the folder stays and the report names the AID, which then has
+to be deleted in DIMAG first. If Inge cannot be reached, the folder stays too.
 
 ## Diagnosis
 
@@ -387,11 +399,12 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (14)
+### media: (15)
 
 | Command | Description |
 |---|---|
 | `media:add` | Add a media file to an AntonObject |
+| `media:audit-orphan-folders` | Report (and optionally remove) media folders that no media row owns (#648). |
 | `media:check` | Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from … |
 | `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |

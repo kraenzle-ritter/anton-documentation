@@ -222,6 +222,7 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
 | `anton:repair-content-locale --from=<sprache>` | Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben |
 | `anton:audit-orphans` | Zeilen melden, deren Datensatz nicht mehr existiert, und sie auf Wunsch entfernen |
+| `media:audit-orphan-folders` | Medienordner melden, zu denen es keine Medienzeile gibt, und sie auf Wunsch entfernen |
 
 `anton:repair-content-locale` betrifft Archive, die **vor dem 15. August 2026**
 importiert haben: bis dahin schrieb ein Import die Standardsprache der Anwendung
@@ -246,6 +247,18 @@ jeder Fund bringt die ersten Ids mit, damit man hinsehen kann, bevor man
 entscheidet. **Medien werden gemeldet und nie entfernt**: eine Medienzeile ist
 die Anmeldung einer Datei auf der Platte, und die Zeile zu löschen verliert die
 Spur zur Datei, nicht die Datei.
+
+`media:audit-orphan-folders` sucht das Gegenstück: Medienordner, zu denen es
+keine Medienzeile mehr gibt. Bis Anton 0.104.2 blieben sie beim Löschen eines
+Datensatzes liegen, mit den Ansichtsbildern, teils auch mit dem Original. Der
+Bericht ordnet sie nach Inhalt (leer, nur Ansichtsbilder, Original).
+
+Ohne `--write` wird nur berichtet, `--ids=` grenzt auf einzelne Medien ein.
+Nicht entfernt wird ein Ordner, der am letzten Tag geändert wurde — er kann zu
+einem Medium gehören, das gerade entsteht. Bei Archiven mit DIMAG fragt der
+Befehl zuerst bei Inge nach: Hält DIMAG das Medium noch, bleibt der Ordner, und
+der Bericht nennt die AID. Das Medium muss dann zuerst in DIMAG gelöscht werden.
+Ist Inge nicht erreichbar, bleibt der Ordner ebenfalls.
 
 ## Diagnose
 
@@ -388,11 +401,12 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (14)
+### media: (15)
 
 | Befehl | Beschreibung |
 |---|---|
 | `media:add` | Add a media file to an AntonObject |
+| `media:audit-orphan-folders` | Report (and optionally remove) media folders that no media row owns (#648). |
 | `media:check` | Check Media. level 1: Mediacount. Count media in Database and Filesystem. level 2: Media from … |
 | `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
