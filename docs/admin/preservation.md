@@ -48,6 +48,27 @@ Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 dabei jede Datei gegen ihre MD5. Der **Master bleibt unverändert**; die
 Ableitungen (`web`, `thumb`) sind Zugriffskopien.
 
+### Behaltene Originale {#behaltene-originale}
+
+Neben manchen Mastern liegt das Original, wie es geliefert wurde, im Ordner
+`original/` des Mediums: wenn beim Upload per QR-Code mehrere Bilder zu einem
+PDF zusammengefasst werden, wenn eine Format-Regel das Original behält, und
+wenn [`media:migrate --keep-original`](console-commands.md#mediamigrate) einen
+Master umpackt. Seit Version 0.105 führt Anton jedes solche Original als
+**Fassung** des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
+Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
+Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.
+
+Originale aus der Zeit davor trägt
+[`media:register-originals`](console-commands.md#mediaregister-originals) nach.
+Ihre Prüfsumme ist dann die vom Tag der Erfassung, und das Ereignis hält das
+fest: Ob die Datei seit dem Upload unverändert ist, lässt sich nicht mehr
+belegen.
+
+Bei Mandanten mit DIMAG können die Originale lokal bleiben oder wie die Master
+ins Langzeitarchiv gehen; das legt der Betrieb je Installation fest (siehe
+[Inge und Dimag](inge.md#originale-in-dimag)).
+
 ### Formaterkennung und Risiko
 
 Beim Upload identifiziert Anton das Format über **Siegfried** bzw. **Fido** und
@@ -92,6 +113,10 @@ Zwei Befehle prüfen den Bestand gegen die gespeicherten Prüfsummen:
     2026 für die grossen Archive). **On Premises** richtet die betreibende
     Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.
 
+Beide Befehle prüfen auch die lokalen [behaltenen Originale](#behaltene-originale),
+je mit eigenem Pfad in den Listen. Ein beschädigtes Original macht das Medium
+selbst nicht zum Befund.
+
 Davon zu unterscheiden ist [`anton:doctor`](console-commands.md): Es prüft die
 **Konsistenz der Datenbank** — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.
@@ -118,6 +143,10 @@ Sicherung —, holen wir sie bei **Anton as a Service** von Hand von einem der
 externen Backupserver zurück. Die Meldung von `media:repair` nennt dafür alles
 Nötige. Mandanten mit DIMAG sind ausgenommen: Dort liegt der Master im
 Langzeitarchiv.
+
+Ein lokales [behaltenes Original](#behaltene-originale) repariert `media:repair`
+auf dieselbe Weise; die Schwelle für zu viele Abweichungen zählt Master und
+Originale zusammen.
 
 !!! note "Einrichtung durch den Betrieb"
     `media:repair` braucht eine lokale Sicherung, welche die Mediendateien

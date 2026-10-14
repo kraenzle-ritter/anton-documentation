@@ -186,6 +186,7 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --collection=        Nur Medien dieser Sammlung
     --filename-pattern=  Nur Dateinamen wie dieses Muster, z. B. %.tif
     --limit=             Höchstens so viele Medien
+    --keep-original      Original in original/ behalten statt verwerfen
     --write              Umpacken (ohne: nur berichten)
 ```
 
@@ -194,8 +195,11 @@ Ohne `--write` sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis `format-normalization` (Kategorie
 `migration`) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
-**Das Original wird verworfen.** Es bleibt nur in der lokalen
-[Sicherung](#sicherung-und-wiederherstellung), bis deren Jahresstände rotieren.
+**Ohne `--keep-original` wird das Original verworfen.** Es bleibt dann nur in
+der lokalen [Sicherung](#sicherung-und-wiederherstellung), bis deren
+Jahresstände rotieren. Mit `--keep-original` (und bei einer Regel, die das
+Original behält) wandert es in den Ordner `original/` des Mediums und wird als
+[behaltenes Original](preservation.md#behaltene-originale) geführt und geprüft.
 
 Folgen, die man kennen sollte:
 
@@ -206,6 +210,14 @@ Folgen, die man kennen sollte:
   als CHANGED; das Ereignis am Medium belegt den Grund.
 - Bis zum nächsten Sicherungslauf passt kein Sicherungsstand zur neuen
   Prüfsumme; `media:repair` hätte für diese Medien bis dahin keinen Ersatz.
+
+**`media:register-originals`**{#mediaregister-originals} trägt Originale nach,
+die schon vor Version 0.105 in den Ordnern `original/` lagen, und führt sie als
+[behaltene Originale](preservation.md#behaltene-originale). Ohne `--write` nennt
+er nur die Zahl; die Prüfsumme ist die vom Tag der Erfassung.
+**`media:versions-to-cloud`**{#mediaversions-to-cloud} übergibt behaltene
+Originale an DIMAG, wenn die Installation das vorsieht (siehe
+[Inge und Dimag](inge.md#originale-in-dimag)).
 
 Empfohlener Ablauf: Probelauf, dann `--write --limit=50`, Stichprobe in der
 Ansicht und mit `media:check --check-integrity --ids=…`, dann der Rest.
@@ -442,7 +454,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (16)
+### media: (18)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -456,12 +468,14 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
+| `media:register-originals` | Register the copies in the media folders' original/ as kept versions (#565). |
 | `media:rename` | Rename media to original name or vice versa |
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
+| `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 
 ### notification: (3)
 

@@ -48,6 +48,26 @@ computes SHA-512 afterwards — checking every file against its MD5 as it goes.
 The **master remains unchanged**; the derivatives (`web`, `thumb`) are access
 copies.
 
+### Kept originals {#behaltene-originale}
+
+Next to some masters lies the original as delivered, in the medium's
+`original/` folder: when an upload by QR code combines several images into one
+PDF, when a format rule keeps the original, and when
+[`media:migrate --keep-original`](console-commands.md#mediamigrate) repacks a
+master. Since version 0.105 Anton keeps every such original as a **version** of
+the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
+records where it came from. Versions appear nowhere in the interface; lists,
+gallery, download and export show the current version.
+
+Originals from before that are registered by
+[`media:register-originals`](console-commands.md#mediaregister-originals). Their
+checksum is then the one taken on the day of registration, and the event says
+so: whether the file is unchanged since the upload can no longer be shown.
+
+On tenants with DIMAG, originals can stay local or go to the long-term archive
+like the masters; operations decide this per installation (see
+[Inge and Dimag](inge.md#originale-in-dimag)).
+
 ### Format identification and risk {#formaterkennung-und-risiko}
 
 On upload, Anton identifies the format via **Siegfried** or **Fido** and records
@@ -84,6 +104,10 @@ Two commands check the holdings against the stored checksums:
 | [`media:check --levels=4`](console-commands.md#mediacheck) | Reads every file afresh, calculates the checksum anew (SHA-512 where available, MD5 otherwise) and compares it with the database. With `--log-integrity-check`, every check is logged as an event — producing a demonstrable history. A missing file is a finding; the check carries on. |
 | [`media:snapshot --oldest=N --git`](console-commands.md#mediasnapshot) | Writes the reference checksums of all media into lists (SHA-512 and MD5) and commits them to a local Git repository — traceable when a reference changed. In the same pass it checks the N files checked longest ago (or all with `--verify`) and logs every check. |
 
+Both commands also check the local [kept originals](#behaltene-originale), each
+under its own path in the lists. A damaged original does not make its medium a
+finding.
+
 !!! note "Operations set the schedule"
     How often the check runs is determined by a cron job per installation. This
     allows the schedule to match the size of the holdings: a full run reads
@@ -116,6 +140,10 @@ If no local version matches — for instance because the file is newer than the
 backup — with **Anton as a Service** we restore it manually from one of the
 external backup servers; the report of `media:repair` names everything needed.
 Tenants with DIMAG are excluded: there the master lies in the long-term archive.
+
+`media:repair` repairs a local [kept original](#behaltene-originale) the same
+way; the threshold for too many deviations counts masters and originals
+together.
 
 !!! note "Set up by operations"
     `media:repair` needs a local backup that contains the media files, is

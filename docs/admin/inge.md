@@ -116,10 +116,35 @@ php artisan media:check --levels=6 --delete-from-inge --env={slug} -vv
 | 2 | DB → Filesystem (übersprungen bei cloud=inge) |
 | 3 | Filesystem → DB. Mit `--delete-from-system` werden verwaiste Verzeichnisse gelöscht. |
 | 4 | Integritätsprüfung (Checksummen, übersprungen bei cloud=inge) |
-| 5 | DB → Inge: Prüft ob alle Medien in Inge mit status=20 vorhanden sind. `--fix-cloud-status` repariert die DB, `--delete-local-masters` löscht lokale Masterdateien nach Verifikation. |
-| 6 | Inge/Dimag → DB: Findet Waisen in Inge oder Dimag die nicht in Anton sind. `--delete-from-inge` löscht sie. Erkennt auch Medien die nur in Inge stecken (nie bis Dimag gelangt). |
+| 5 | DB → Inge: Prüft ob alle Medien in Inge mit status=20 vorhanden sind, ebenso die [Originale in DIMAG](#originale-in-dimag). `--fix-cloud-status` repariert die DB, `--delete-local-masters` löscht lokale Masterdateien nach Verifikation. |
+| 6 | Inge/Dimag → DB: Findet Waisen in Inge oder Dimag die nicht in Anton sind. `--delete-from-inge` löscht verwaiste Medien-AIDs (`<slug>-media-<id>`). AIDs von Originalen ohne Eintrag in Anton werden nur gemeldet, fremde AIDs bleiben unberührt (seit 0.105; vorher hätte `--delete-from-inge` sie als Medien-Waisen behandelt). Erkennt auch Medien die nur in Inge stecken (nie bis Dimag gelangt). |
 
 Am Ende wird eine Summary-Tabelle mit allen Counts und dem Status jedes Levels ausgegeben.
+
+### Originale in DIMAG {#originale-in-dimag}
+
+[Behaltene Originale](preservation.md#behaltene-originale) liegen zunächst lokal
+im Ordner `original/` des Mediums. Ob sie bei Mandanten mit DIMAG dort bleiben
+oder ins Langzeitarchiv gehen, legt der Betrieb je Installation fest, mit
+`MEDIA_ORIGINALS_LOCATION` in der `.env` (in anton-ansible: `media_originals_location`
+im Kundeneintrag):
+
+| Wert | Wirkung |
+|---|---|
+| `local` (Vorgabe) | Originale bleiben lokal, geprüft und reparierbar wie lokale Master. Braucht lokalen Platz und eine lokale Sicherung. |
+| `cloud` | [`media:versions-to-cloud`](console-commands.md#mediaversions-to-cloud) übergibt jedes Original mit eigener AID `<slug>-media_versions-<id>` an Inge und entfernt die lokale Kopie erst, wenn Inge die MD5 unter dieser AID bestätigt. |
+
+Inge bestätigt eine MD5 oft erst einige Zeit nach dem Ingest. Bis dahin bleibt
+die lokale Kopie, und der nächste Lauf fragt erneut; der Befehl eignet sich
+darum für den Cron. Beim Löschen eines Mediums löscht Anton seine Originale in
+DIMAG vor dem Master; schlägt das fehl, bleibt alles erhalten.
+`anton:doctor --media` meldet, wenn `cloud` gesetzt ist, aber nicht wirken kann
+(ohne DIMAG, auch bei S3).
+
+```bash
+php artisan media:versions-to-cloud --env={slug}          # Probelauf
+php artisan media:versions-to-cloud --env={slug} --write
+```
 
 ### Storage Audit (Masterfiles und SIP-Verzeichnis)
 
