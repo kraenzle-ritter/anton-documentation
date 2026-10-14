@@ -2335,10 +2335,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-16" class="md-nav__link">
+  <a href="#media-18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (16)
+        media: (18)
       
     </span>
   </a>
@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-12</span>
+        <span class="page-meta__date">Last updated: 2026-10-13</span>
     </div>
   
   
@@ -2599,6 +2599,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --collection=        Nur Medien dieser Sammlung
     --filename-pattern=  Nur Dateinamen wie dieses Muster, z. B. %.tif
     --limit=             Höchstens so viele Medien
+    --keep-original      Original in original/ behalten statt verwerfen
     --write              Umpacken (ohne: nur berichten)
 </code></pre></div>
 <p>Ohne <code>--write</code> sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
@@ -2606,8 +2607,11 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis <code>format-normalization</code> (Kategorie
 <code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
-<strong>Das Original wird verworfen.</strong> Es bleibt nur in der lokalen
-<a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren Jahresstände rotieren.</p>
+<strong>Ohne <code>--keep-original</code> wird das Original verworfen.</strong> Es bleibt dann nur in
+der lokalen <a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren
+Jahresstände rotieren. Mit <code>--keep-original</code> (und bei einer Regel, die das
+Original behält) wandert es in den Ordner <code>original/</code> des Mediums und wird als
+<a href="../preservation/#behaltene-originale">behaltenes Original</a> geführt und geprüft.</p>
 <p>Folgen, die man kennen sollte:</p>
 <ul>
 <li>Während ein <code>--write</code>-Lauf dauert, lassen <a href="#mediasnapshot"><code>media:check --check-integrity</code></a>
@@ -2618,6 +2622,13 @@ umgepackte Medium bekommt ein Ereignis <code>format-normalization</code> (Katego
 <li>Bis zum nächsten Sicherungslauf passt kein Sicherungsstand zur neuen
   Prüfsumme; <code>media:repair</code> hätte für diese Medien bis dahin keinen Ersatz.</li>
 </ul>
+<p><strong id="mediaregister-originals"><code>media:register-originals</code></strong> trägt Originale nach,
+die schon vor Version 0.105 in den Ordnern <code>original/</code> lagen, und führt sie als
+<a href="../preservation/#behaltene-originale">behaltene Originale</a>. Ohne <code>--write</code> nennt
+er nur die Zahl; die Prüfsumme ist die vom Tag der Erfassung.
+<strong id="mediaversions-to-cloud"><code>media:versions-to-cloud</code></strong> übergibt behaltene
+Originale an DIMAG, wenn die Installation das vorsieht (siehe
+<a href="../inge/#originale-in-dimag">Inge und Dimag</a>).</p>
 <p>Empfohlener Ablauf: Probelauf, dann <code>--write --limit=50</code>, Stichprobe in der
 Ansicht und mit <code>media:check --check-integrity --ids=…</code>, dann der Rest.
 Archive mit DIMAG oder S3 sind ausgenommen.</p>
@@ -3125,7 +3136,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-16">media: (16)<a class="headerlink" href="#media-16" title="Permanent link">&para;</a></h3>
+<h3 id="media-18">media: (18)<a class="headerlink" href="#media-18" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3175,6 +3186,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <td>Repack or migrate media already in Anton with a format policy rule, keeping references and evi…</td>
 </tr>
 <tr>
+<td><code>media:register-originals</code></td>
+<td>Register the copies in the media folders' original/ as kept versions (#565).</td>
+</tr>
+<tr>
 <td><code>media:rename</code></td>
 <td>Rename media to original name or vice versa</td>
 </tr>
@@ -3197,6 +3212,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:validate-pdfs</code></td>
 <td>Validate PDF media (master + web conversion). Records results in media.custom_properties.event…</td>
+</tr>
+<tr>
+<td><code>media:versions-to-cloud</code></td>
+<td>Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (…</td>
 </tr>
 </tbody>
 </table>

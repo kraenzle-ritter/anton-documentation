@@ -3288,6 +3288,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#behaltene-originale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaltene Originale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#formaterkennung-und-risiko" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4289,6 +4300,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#behaltene-originale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaltene Originale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#formaterkennung-und-risiko" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4404,7 +4426,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-13</span>
     </div>
   
   
@@ -4499,6 +4521,23 @@ Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 <a href="../console-commands/#mediachecksum"><code>media:checksum</code></a> SHA-512 nach — und prüft
 dabei jede Datei gegen ihre MD5. Der <strong>Master bleibt unverändert</strong>; die
 Ableitungen (<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
+<h3 id="behaltene-originale">Behaltene Originale<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
+<p>Neben manchen Mastern liegt das Original, wie es geliefert wurde, im Ordner
+<code>original/</code> des Mediums: wenn beim Upload per QR-Code mehrere Bilder zu einem
+PDF zusammengefasst werden, wenn eine Format-Regel das Original behält, und
+wenn <a href="../console-commands/#mediamigrate"><code>media:migrate --keep-original</code></a> einen
+Master umpackt. Seit Version 0.105 führt Anton jedes solche Original als
+<strong>Fassung</strong> des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
+Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
+Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.</p>
+<p>Originale aus der Zeit davor trägt
+<a href="../console-commands/#mediaregister-originals"><code>media:register-originals</code></a> nach.
+Ihre Prüfsumme ist dann die vom Tag der Erfassung, und das Ereignis hält das
+fest: Ob die Datei seit dem Upload unverändert ist, lässt sich nicht mehr
+belegen.</p>
+<p>Bei Mandanten mit DIMAG können die Originale lokal bleiben oder wie die Master
+ins Langzeitarchiv gehen; das legt der Betrieb je Installation fest (siehe
+<a href="../inge/#originale-in-dimag">Inge und Dimag</a>).</p>
 <h3 id="formaterkennung-und-risiko">Formaterkennung und Risiko<a class="headerlink" href="#formaterkennung-und-risiko" title="Permanent link">&para;</a></h3>
 <p>Beim Upload identifiziert Anton das Format über <strong>Siegfried</strong> bzw. <strong>Fido</strong> und
 hält die <strong>PRONOM-ID</strong> fest; daraus leitet es die Risikobewertung nach dem
@@ -4549,6 +4588,9 @@ Durchlauf liest jede Datei, und bei mehreren Terabyte will das geplant sein.</p>
 2026 für die grossen Archive). <strong>On Premises</strong> richtet die betreibende
 Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.</p>
 </div>
+<p>Beide Befehle prüfen auch die lokalen <a href="#behaltene-originale">behaltenen Originale</a>,
+je mit eigenem Pfad in den Listen. Ein beschädigtes Original macht das Medium
+selbst nicht zum Befund.</p>
 <p>Davon zu unterscheiden ist <a href="../console-commands/"><code>anton:doctor</code></a>: Es prüft die
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.</p>
@@ -4571,6 +4613,9 @@ Sicherung —, holen wir sie bei <strong>Anton as a Service</strong> von Hand vo
 externen Backupserver zurück. Die Meldung von <code>media:repair</code> nennt dafür alles
 Nötige. Mandanten mit DIMAG sind ausgenommen: Dort liegt der Master im
 Langzeitarchiv.</p>
+<p>Ein lokales <a href="#behaltene-originale">behaltenes Original</a> repariert <code>media:repair</code>
+auf dieselbe Weise; die Schwelle für zu viele Abweichungen zählt Master und
+Originale zusammen.</p>
 <div class="admonition note">
 <p class="admonition-title">Einrichtung durch den Betrieb</p>
 <p><code>media:repair</code> braucht eine lokale Sicherung, welche die Mediendateien

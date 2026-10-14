@@ -3400,6 +3400,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#originale-in-dimag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Originals in DIMAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#storage-audit-master-files-and-sip-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4273,6 +4284,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#originale-in-dimag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Originals in DIMAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#storage-audit-master-files-and-sip-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4316,7 +4338,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/inge/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-13</span>
     </div>
   
   
@@ -4451,15 +4473,47 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:check<span class
 </tr>
 <tr>
 <td>5</td>
-<td>DB → Inge: checks whether all media are present in Inge with status=20. <code>--fix-cloud-status</code> repairs the DB, <code>--delete-local-masters</code> deletes local master files after verification.</td>
+<td>DB → Inge: checks whether all media are present in Inge with status=20, and the <a href="#originale-in-dimag">originals in DIMAG</a> too. <code>--fix-cloud-status</code> repairs the DB, <code>--delete-local-masters</code> deletes local master files after verification.</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Inge/Dimag → DB: finds orphans in Inge or Dimag that are not in Anton. <code>--delete-from-inge</code> deletes them. Also detects media that are stuck in Inge (never reached Dimag).</td>
+<td>Inge/Dimag → DB: finds orphans in Inge or Dimag that are not in Anton. <code>--delete-from-inge</code> deletes orphaned media AIDs (<code>&lt;slug&gt;-media-&lt;id&gt;</code>). AIDs of originals without a row in Anton are only reported, foreign AIDs are left alone (since 0.105; before, <code>--delete-from-inge</code> would have treated them as orphaned media). Also detects media that are stuck in Inge (never reached Dimag).</td>
 </tr>
 </tbody>
 </table>
 <p>At the end, a summary table with all counts and the status of each level is output.</p>
+<h3 id="originale-in-dimag">Originals in DIMAG<a class="headerlink" href="#originale-in-dimag" title="Permanent link">&para;</a></h3>
+<p><a href="../preservation/#behaltene-originale">Kept originals</a> first lie locally in the
+medium's <code>original/</code> folder. Whether they stay there on tenants with DIMAG or go
+to the long-term archive is decided by operations per installation, with
+<code>MEDIA_ORIGINALS_LOCATION</code> in the <code>.env</code> (in anton-ansible:
+<code>media_originals_location</code> in the customer entry):</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>local</code> (default)</td>
+<td>Originals stay local, checked and repairable like local masters. Needs local space and a local backup.</td>
+</tr>
+<tr>
+<td><code>cloud</code></td>
+<td><a href="../console-commands/#mediaversions-to-cloud"><code>media:versions-to-cloud</code></a> hands each original to Inge under its own AID <code>&lt;slug&gt;-media_versions-&lt;id&gt;</code> and removes the local copy only once Inge confirms the MD5 under that AID.</td>
+</tr>
+</tbody>
+</table>
+<p>Inge often confirms an MD5 only some time after the ingest. Until then the
+local copy stays and the next run asks again, which makes the command fit for
+the cron. When a medium is deleted, Anton deletes its originals in DIMAG before
+the master; if that fails, everything is kept. <code>anton:doctor --media</code> reports
+when <code>cloud</code> is set but cannot apply (without DIMAG, S3 included).</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:versions-to-cloud<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w">          </span><span class="c1"># dry run</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:versions-to-cloud<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>--write
+</code></pre></div>
 <h3 id="storage-audit-master-files-and-sip-directory">Storage audit (master files and SIP directory)<a class="headerlink" href="#storage-audit-master-files-and-sip-directory" title="Permanent link">&para;</a></h3>
 <p><code>storage:audit</code> checks whether local master files and unpacked SIP directories have been cleaned up.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># overview: how many master files are still held locally? How many SIPs are unpacked?</span>

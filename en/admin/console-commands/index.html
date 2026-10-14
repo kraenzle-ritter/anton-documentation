@@ -3649,10 +3649,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-16" class="md-nav__link">
+  <a href="#media-18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (16)
+        media: (18)
       
     </span>
   </a>
@@ -4481,10 +4481,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-16" class="md-nav__link">
+  <a href="#media-18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (16)
+        media: (18)
       
     </span>
   </a>
@@ -4568,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-12</span>
+        <span class="page-meta__date">Last updated: 2026-10-13</span>
     </div>
   
   
@@ -4744,15 +4744,19 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --collection=        Only media of this collection
     --filename-pattern=  Only file names like this pattern, e.g. %.tif
     --limit=             At most this many media
+    --keep-original      Keep the original in original/ instead of discarding it
     --write              Repack (without: report only)
 </code></pre></div>
 <p>Without <code>--write</code> the command only says how many media the rule would touch.
 With <code>--write</code> it puts the result next to the master, verifies it, and swaps
 file and checksums in one step; if anything fails, the old master stays. Every
 repacked medium gets a <code>format-normalization</code> event (category <code>migration</code>) with
-the tool versions and the checksums before and after. <strong>The original is
-discarded.</strong> It remains only in the local <a href="#sicherung-und-wiederherstellung">backup</a>
-until its yearly snapshots rotate.</p>
+the tool versions and the checksums before and after. <strong>Without
+<code>--keep-original</code> the original is discarded.</strong> It then remains only in the
+local <a href="#sicherung-und-wiederherstellung">backup</a> until its yearly snapshots
+rotate. With <code>--keep-original</code> (and with a rule that keeps the original) it
+moves to the medium's <code>original/</code> folder and is kept and checked as a
+<a href="../preservation/#behaltene-originale">kept original</a>.</p>
 <p>Consequences worth knowing:</p>
 <ul>
 <li>While a <code>--write</code> run lasts, <a href="#mediasnapshot"><code>media:check --check-integrity</code></a>
@@ -4763,6 +4767,13 @@ until its yearly snapshots rotate.</p>
 <li>Until the next backup run, no backup snapshot matches the new checksum;
   <code>media:repair</code> would have no replacement for these media until then.</li>
 </ul>
+<p><strong id="mediaregister-originals"><code>media:register-originals</code></strong> registers originals
+that already lay in <code>original/</code> folders before version 0.105, as
+<a href="../preservation/#behaltene-originale">kept originals</a>. Without <code>--write</code> it only
+gives the count; the checksum is the one taken on the day of registration.
+<strong id="mediaversions-to-cloud"><code>media:versions-to-cloud</code></strong> hands kept originals to
+DIMAG where the installation provides for it (see
+<a href="../inge/#originale-in-dimag">Inge and Dimag</a>).</p>
 <p>Recommended sequence: dry run, then <code>--write --limit=50</code>, spot checks in the viewer
 and with <code>media:check --check-integrity --ids=…</code>, then the rest. Archives on
 DIMAG or S3 are excluded.</p>
@@ -5268,7 +5279,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="media-16">media: (16)<a class="headerlink" href="#media-16" title="Permanent link">&para;</a></h3>
+<h3 id="media-18">media: (18)<a class="headerlink" href="#media-18" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5318,6 +5329,10 @@ up to date with every change to the commands.</p>
 <td>Repack or migrate media already in Anton with a format policy rule, keeping references and evi…</td>
 </tr>
 <tr>
+<td><code>media:register-originals</code></td>
+<td>Register the copies in the media folders' original/ as kept versions (#565).</td>
+</tr>
+<tr>
 <td><code>media:rename</code></td>
 <td>Rename media to original name or vice versa</td>
 </tr>
@@ -5340,6 +5355,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>media:validate-pdfs</code></td>
 <td>Validate PDF media (master + web conversion). Records results in media.custom_properties.event…</td>
+</tr>
+<tr>
+<td><code>media:versions-to-cloud</code></td>
+<td>Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (…</td>
 </tr>
 </tbody>
 </table>
