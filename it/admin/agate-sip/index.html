@@ -2252,6 +2252,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formatumwandlung-in-agate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatumwandlung in agate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#konfigurations-checkliste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2301,7 +2312,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -2398,6 +2409,17 @@ kann später von Hand vergeben werden.</p>
 <code>IMPORT-{jjjj}-{NNN}</code>, Dateiname, Prüfsumme, Zeitpunkt, Ergebnis und den
 angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
 auditierbar; ein Akzessions-Archiv braucht es dafür nicht.</p>
+<h2 id="formatumwandlung-in-agate">Formatumwandlung in agate<a class="headerlink" href="#formatumwandlung-in-agate" title="Permanent link">&para;</a></h2>
+<p>Anton wendet auf SIPs keine Format-Regel an: Die Prüfsummen eines SIP
+belegen, dass die gelieferten Dateien unverändert angekommen sind. agate
+wendet die Format-Regeln des Archivs deshalb selbst an, bevor es ein SIP
+abschliesst; die Schalter liest es über die API aus Anton.</p>
+<p>Was agate mit einer Datei getan hat, steht in <code>metadata.json</code> beim
+Dateieintrag (<code>format_normalization</code>). Anton legt dafür am Medium je Regel ein
+Ereignis <code>format-normalization</code> an, wie bei einer Umwandlung in Anton selbst.
+Es nennt die Regel, die Werkzeugversionen und die Prüfsummen vor und nach der
+Umwandlung. Die Prüfsumme der Datei, wie sie bei agate ankam, bleibt damit
+erhalten.</p>
 <h2 id="konfigurations-checkliste">Konfigurations-Checkliste<a class="headerlink" href="#konfigurations-checkliste" title="Permanent link">&para;</a></h2>
 <p>Damit agate-Imports funktionieren:</p>
 <ol>

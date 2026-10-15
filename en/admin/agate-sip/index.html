@@ -2953,6 +2953,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#format-conversion-in-agate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format conversion in agate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4277,6 +4288,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#format-conversion-in-agate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format conversion in agate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4326,7 +4348,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -4421,6 +4443,16 @@ later.</p>
 <code>IMPORT-{yyyy}-{NNN}</code>, file name, checksum, time, outcome and the records it
 created. The import path is thereby auditable after the fact as well; no
 accession archive is needed for it.</p>
+<h2 id="format-conversion-in-agate">Format conversion in agate<a class="headerlink" href="#format-conversion-in-agate" title="Permanent link">&para;</a></h2>
+<p>Anton applies no format rule to a SIP: its checksums prove that the delivered
+files arrived unchanged. agate therefore applies the archive's format rules
+itself before it closes a SIP; it reads the switches from Anton through the
+API.</p>
+<p>What agate did to a file is recorded in <code>metadata.json</code> on the file entry
+(<code>format_normalization</code>). For each rule Anton records a <code>format-normalization</code>
+event on the medium, as for a conversion in Anton itself. The event names the
+rule, the tool versions and the checksums before and after the conversion, so
+the checksum of the file as agate received it stays on record.</p>
 <h2 id="configuration-checklist">Configuration checklist<a class="headerlink" href="#configuration-checklist" title="Permanent link">&para;</a></h2>
 <p>For agate imports to work:</p>
 <ol>

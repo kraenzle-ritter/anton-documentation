@@ -4336,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-04</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -4356,7 +4356,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>4 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>15 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4426,7 +4426,7 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td><strong>Native round trip</strong></td>
-<td><code>anton-import-format</code> v0.4 (JSON) <strong>+ master media</strong> as a ZIP</td>
+<td><code>anton-import-format</code> v0.5 (JSON) <strong>+ master media</strong> as a ZIP</td>
 <td>Object tree, <strong>losslessly re-importable</strong></td>
 <td><code>anton:export-native</code> / <code>anton:import-native</code></td>
 </tr>
@@ -4951,7 +4951,7 @@ reconstructed from the bundle alone: the UUIDs, the form set, the raw values and
 the protection periods are missing.</p>
 <p>For the lossless route there is the <strong>native round trip</strong>
 (<code>anton:export-native</code> → <code>anton:import-native</code>): a package in the
-<code>anton-import-format</code> v0.4 together with master media, which Anton reads back in.
+<code>anton-import-format</code> v0.5 together with master media, which Anton reads back in.
 Anchored via UUIDs (unknown → create new, known → skip, update with <code>--update</code>),
 hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of <strong>all</strong> carriers including private ones, termselect values, form set
