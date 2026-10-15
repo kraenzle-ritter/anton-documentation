@@ -48,7 +48,12 @@ SIPs are left alone, because their own checksums prove an untouched delivery.
 
 Which rules hold is set by admins under **Admin → Settings → Rules for
 files**, once for the whole archive. No rule can be left out when uploading or
-importing. Every change is recorded with user and time in the security log.
+importing. The page shows each rule as «if … except … then …»: the formats it
+applies to, when it leaves a file alone, the steps it runs and what becomes of
+the original; the commands with tool and version are in a collapsed section
+below. Where several rules match a file, they run one after the other in the
+order shown, each on the result of the one before. Every change is recorded
+with user and time in the security log.
 agate reads the same settings and applies the rules before it closes a SIP.
 
 What the rules would do to the files of a table import is shown by the
