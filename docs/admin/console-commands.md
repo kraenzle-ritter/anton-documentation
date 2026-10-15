@@ -168,7 +168,9 @@ php artisan format-policy:enable tiff_zip --env=gosteli
 ```
 
 Die erste Regel, `tiff_zip`, packt TIFF-Dateien verlustfrei nach Deflate mit
-Predictor 2 um; sie ist überall aus und gilt nicht für SIPs.
+Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Admins schalten
+die Regeln auch in der Oberfläche, unter
+[Regeln für Dateien](preservation.md#regeln-fuer-dateien).
 
 **`media:migrate`**{#mediamigrate} wendet eine dieser Regeln auf Medien an, die
 schon in Anton liegen — etwa TIFF-Master, die vor der Regel als LZW eingeliefert
