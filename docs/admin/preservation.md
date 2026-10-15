@@ -37,6 +37,28 @@ Validierung fehl. Der Algorithmus stammt aus dem Paket selbst, ist also nicht au
 MD5 festgelegt. Zusätzlich merkt sich Anton die Prüfsumme des SIP-ZIPs und weist
 bereits eingespielte Pakete ab.
 
+### Regeln für Dateien {#regeln-fuer-dateien}
+
+Bevor eine Datei als Medium abgelegt wird, wendet Anton die Format-Regeln an,
+die das Archiv eingeschaltet hat. Die erste Regel, `tiff_zip`, packt
+unkomprimierte TIFF und LZW ohne Predictor verlustfrei nach Deflate mit
+Predictor 2 um. Vor dem Ersetzen prüft Anton, dass alle Pixel gleich geblieben
+sind; die Prüfsummen der gelieferten Datei stehen danach im Ereignis am Medium.
+SIPs bleiben unberührt, weil ihre eigenen Prüfsummen die unveränderte
+Ablieferung belegen.
+
+Welche Regeln gelten, legen Admins unter **Admin → Einstellungen → Regeln für
+Dateien** fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
+lässt sich keine Regel abwählen. Jede Änderung steht mit Benutzer:in und
+Zeitpunkt im Sicherheitsprotokoll. agate liest dieselben Einstellungen und
+wendet die Regeln an, bevor es ein SIP abschliesst.
+
+Was die Regeln mit den Dateien eines Tabellen-Imports täten, zeigt die
+Inspektion vor dem Import. Der **Probelauf** bestimmt jede verknüpfte Datei,
+nennt ihre technischen Merkmale und sagt je Regel, ob sie greift oder warum
+nicht, etwa «ausgenommen bei Kompression Deflate, Predictor 2». Er verändert
+nichts. Die Grösse nach dem Umpacken rechnet er auf Wunsch je Datei aus.
+
 ### Speicherung
 
 Für jede Mediendatei berechnet Anton beim Upload eine **MD5-** und eine
