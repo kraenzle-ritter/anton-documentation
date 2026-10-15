@@ -49,8 +49,13 @@ Ablieferung belegen.
 
 Welche Regeln gelten, legen Admins unter **Admin → Einstellungen → Regeln für
 Dateien** fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
-lässt sich keine Regel abwählen. Jede Änderung steht mit Benutzer:in und
-Zeitpunkt im Sicherheitsprotokoll. agate liest dieselben Einstellungen und
+lässt sich keine Regel abwählen. Die Seite zeigt jede Regel als «Wenn …
+ausser … dann …»: für welche Formate sie gilt, wann sie eine Datei auslässt,
+welche Schritte sie ausführt und was mit dem Original geschieht; die Befehle
+mit Werkzeug und Version stehen aufklappbar darunter. Passen mehrere Regeln auf
+eine Datei, laufen sie in der angezeigten Reihenfolge nacheinander, jede mit
+dem Ergebnis der vorherigen. Jede Änderung steht mit Benutzer:in und Zeitpunkt
+im Sicherheitsprotokoll. agate liest dieselben Einstellungen und
 wendet die Regeln an, bevor es ein SIP abschliesst.
 
 Was die Regeln mit den Dateien eines Tabellen-Imports täten, zeigt die
