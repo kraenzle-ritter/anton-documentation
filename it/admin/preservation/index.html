@@ -2214,6 +2214,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#regeln-fuer-dateien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeln für Dateien
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#speicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2351,7 +2362,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -2437,6 +2448,24 @@ die tatsächliche Datei neu berechnet und verglichen. Weicht er ab, schlägt die
 Validierung fehl. Der Algorithmus stammt aus dem Paket selbst, ist also nicht auf
 MD5 festgelegt. Zusätzlich merkt sich Anton die Prüfsumme des SIP-ZIPs und weist
 bereits eingespielte Pakete ab.</p>
+<h3 id="regeln-fuer-dateien">Regeln für Dateien<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
+<p>Bevor eine Datei als Medium abgelegt wird, wendet Anton die Format-Regeln an,
+die das Archiv eingeschaltet hat. Die erste Regel, <code>tiff_zip</code>, packt
+unkomprimierte TIFF und LZW ohne Predictor verlustfrei nach Deflate mit
+Predictor 2 um. Vor dem Ersetzen prüft Anton, dass alle Pixel gleich geblieben
+sind; die Prüfsummen der gelieferten Datei stehen danach im Ereignis am Medium.
+SIPs bleiben unberührt, weil ihre eigenen Prüfsummen die unveränderte
+Ablieferung belegen.</p>
+<p>Welche Regeln gelten, legen Admins unter <strong>Admin → Einstellungen → Regeln für
+Dateien</strong> fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
+lässt sich keine Regel abwählen. Jede Änderung steht mit Benutzer:in und
+Zeitpunkt im Sicherheitsprotokoll. agate liest dieselben Einstellungen und
+wendet die Regeln an, bevor es ein SIP abschliesst.</p>
+<p>Was die Regeln mit den Dateien eines Tabellen-Imports täten, zeigt die
+Inspektion vor dem Import. Der <strong>Probelauf</strong> bestimmt jede verknüpfte Datei,
+nennt ihre technischen Merkmale und sagt je Regel, ob sie greift oder warum
+nicht, etwa «ausgenommen bei Kompression Deflate, Predictor 2». Er verändert
+nichts. Die Grösse nach dem Umpacken rechnet er auf Wunsch je Datei aus.</p>
 <h3 id="speicherung">Speicherung<a class="headerlink" href="#speicherung" title="Permanent link">&para;</a></h3>
 <p>Für jede Mediendatei berechnet Anton beim Upload eine <strong>MD5-</strong> und eine
 <strong>SHA-512-Prüfsumme</strong> in einem Lesedurchgang und legt beide in der Datenbank ab.

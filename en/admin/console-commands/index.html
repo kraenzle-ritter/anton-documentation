@@ -4568,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -4731,7 +4731,9 @@ off for one archive, regardless of its default:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>format-policy:enable<span class="w"> </span>tiff_zip<span class="w"> </span>--env<span class="o">=</span>gosteli
 </code></pre></div>
 <p>The first rule, <code>tiff_zip</code>, repacks TIFF files losslessly as Deflate with
-predictor 2; it is off everywhere and does not apply to SIPs.</p>
+predictor 2; it is off everywhere and does not apply to SIPs. Admins can also
+switch the rules in the interface, under
+<a href="../preservation/#regeln-fuer-dateien">Rules for files</a>.</p>
 <p><strong id="mediamigrate"><code>media:migrate</code></strong> applies one of these rules to media already
 in Anton — TIFF masters ingested as LZW before the rule existed, say. The rule
 applies whether or not it is switched on for new files; repacking and

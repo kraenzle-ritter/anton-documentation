@@ -1065,7 +1065,9 @@ paths:
         `overrides` holds only the rules the archive has switched over their
         default; a rule not listed follows `enabled_by_default`. `rules` shows
         what Anton made of each rule. `policy_version` is the package version
-        Anton runs. Tenant resolution is implicit from the hit domain + token.
+        Anton runs. The archive sets the switches on its settings page «Regeln
+        für Dateien»; a delivery cannot leave a rule out. Tenant resolution is
+        implicit from the hit domain + token.
       security:
         - BearerAuth: []
       responses:
@@ -1074,7 +1076,7 @@ paths:
           content:
             application/json:
               example:
-                policy_version: v0.1.0
+                policy_version: v0.2.0
                 overrides:
                   tiff_zip: true
                 rules:
@@ -1083,7 +1085,6 @@ paths:
                     enabled_by_default: false
                     override: true
                     in_force: true
-                    optional: true
                     retired: false
         401:
           description: invalid token

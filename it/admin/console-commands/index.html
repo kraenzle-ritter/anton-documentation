@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -2586,7 +2586,9 @@ unabhängig von ihrer Vorgabe:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>format-policy:enable<span class="w"> </span>tiff_zip<span class="w"> </span>--env<span class="o">=</span>gosteli
 </code></pre></div>
 <p>Die erste Regel, <code>tiff_zip</code>, packt TIFF-Dateien verlustfrei nach Deflate mit
-Predictor 2 um; sie ist überall aus und gilt nicht für SIPs.</p>
+Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Admins schalten
+die Regeln auch in der Oberfläche, unter
+<a href="../preservation/#regeln-fuer-dateien">Regeln für Dateien</a>.</p>
 <p><strong id="mediamigrate"><code>media:migrate</code></strong> wendet eine dieser Regeln auf Medien an, die
 schon in Anton liegen — etwa TIFF-Master, die vor der Regel als LZW eingeliefert
 wurden. Die Regel gilt dabei unabhängig davon, ob sie für neue Dateien

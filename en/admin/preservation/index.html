@@ -3277,6 +3277,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#regeln-fuer-dateien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules for files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#speicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4289,6 +4300,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#regeln-fuer-dateien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules for files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#speicherung" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4426,7 +4448,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-15</span>
     </div>
   
   
@@ -4512,6 +4534,23 @@ hash is recalculated over the actual file and compared. If it deviates,
 validation fails. The algorithm comes from the package itself, so it is not
 fixed to MD5. In addition, Anton remembers the checksum of the SIP ZIP and
 rejects packages that have already been loaded.</p>
+<h3 id="regeln-fuer-dateien">Rules for files<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
+<p>Before a file is stored as a medium, Anton applies the format rules the
+archive has switched on. The first rule, <code>tiff_zip</code>, repacks uncompressed TIFF
+and LZW without a predictor losslessly as Deflate with predictor 2. Before
+replacing the file, Anton checks that every pixel stayed the same; the
+checksums of the delivered file are then kept in the event on the medium.
+SIPs are left alone, because their own checksums prove an untouched delivery.</p>
+<p>Which rules hold is set by admins under <strong>Admin → Settings → Rules for
+files</strong>, once for the whole archive. No rule can be left out when uploading or
+importing. Every change is recorded with user and time in the security log.
+agate reads the same settings and applies the rules before it closes a SIP.</p>
+<p>What the rules would do to the files of a table import is shown by the
+inspection before the import. The <strong>dry run</strong> identifies every linked file,
+names its technical characteristics and says per rule whether it applies or
+why not, for instance «exempt for compression Deflate, predictor 2». It
+changes nothing. On request it computes the size after repacking, file by
+file.</p>
 <h3 id="speicherung">Storage<a class="headerlink" href="#speicherung" title="Permanent link">&para;</a></h3>
 <p>For every media file, Anton calculates an <strong>MD5</strong> and a <strong>SHA-512 checksum</strong> in
 a single read on upload and stores both in the database. SHA-512 is the
