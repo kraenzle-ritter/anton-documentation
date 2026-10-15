@@ -102,6 +102,19 @@ Every agate SIP import is a run in the import log — with reference code
 created. The import path is thereby auditable after the fact as well; no
 accession archive is needed for it.
 
+## Format conversion in agate
+
+Anton applies no format rule to a SIP: its checksums prove that the delivered
+files arrived unchanged. agate therefore applies the archive's format rules
+itself before it closes a SIP; it reads the switches from Anton through the
+API.
+
+What agate did to a file is recorded in `metadata.json` on the file entry
+(`format_normalization`). For each rule Anton records a `format-normalization`
+event on the medium, as for a conversion in Anton itself. The event names the
+rule, the tool versions and the checksums before and after the conversion, so
+the checksum of the file as agate received it stays on record.
+
 ## Configuration checklist
 
 For agate imports to work:

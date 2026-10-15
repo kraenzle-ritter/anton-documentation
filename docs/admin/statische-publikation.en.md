@@ -75,7 +75,7 @@ Anton can **read back in**.
 
 ```
 package.zip
-├── metadata.json        ← anton-import-format v0.4 (JSON)
+├── metadata.json        ← anton-import-format v0.5 (JSON)
 └── media/{id}/…         ← master files (originals)
 ```
 
@@ -131,7 +131,7 @@ re-importable, simple).
 | | **anton format** (native round trip) | **CIDOC A+ bundle** |
 |---|---|---|
 | **Purpose** | Backup · restore · migration between Anton instances | Publication · interop · static display |
-| **Basis** | `anton-import-format` v0.4 (JSON) | CIDOC CRM 7.1 + RiC-O 1.1 (JSON-LD) |
+| **Basis** | `anton-import-format` v0.5 (JSON) | CIDOC CRM 7.1 + RiC-O 1.1 (JSON-LD) |
 | **Standardised** | No (Anton's own schema) | Yes (international ontologies) |
 | **Lossless** | **Yes** — `uuid`, `formset_id`, all locales, all notes, termselect, raw values | No — discovery view; no `formset_id`, no raw values |
 | **Re-importable** | **Yes** (`anton:import-native`, uuid-anchored) | No |

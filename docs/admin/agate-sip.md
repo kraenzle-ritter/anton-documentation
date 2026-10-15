@@ -104,6 +104,20 @@ Jeder agate-SIP-Import steht als Lauf im Importprotokoll — mit Signatur
 angelegten Datensätzen. Damit ist der Importpfad auch nachträglich
 auditierbar; ein Akzessions-Archiv braucht es dafür nicht.
 
+## Formatumwandlung in agate
+
+Anton wendet auf SIPs keine Format-Regel an: Die Prüfsummen eines SIP
+belegen, dass die gelieferten Dateien unverändert angekommen sind. agate
+wendet die Format-Regeln des Archivs deshalb selbst an, bevor es ein SIP
+abschliesst; die Schalter liest es über die API aus Anton.
+
+Was agate mit einer Datei getan hat, steht in `metadata.json` beim
+Dateieintrag (`format_normalization`). Anton legt dafür am Medium je Regel ein
+Ereignis `format-normalization` an, wie bei einer Umwandlung in Anton selbst.
+Es nennt die Regel, die Werkzeugversionen und die Prüfsummen vor und nach der
+Umwandlung. Die Prüfsumme der Datei, wie sie bei agate ankam, bleibt damit
+erhalten.
+
 ## Konfigurations-Checkliste
 
 Damit agate-Imports funktionieren:
