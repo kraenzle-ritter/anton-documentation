@@ -78,7 +78,7 @@ Anton hier exportiert, kann Anton **wieder einlesen**.
 
 ```
 paket.zip
-├── metadata.json        ← anton-import-format v0.4 (JSON)
+├── metadata.json        ← anton-import-format v0.5 (JSON)
 └── media/{id}/…         ← Master-Dateien (Originale)
 ```
 
@@ -135,7 +135,7 @@ konsumierbar, semantisch reich, verlustbehaftet), das andere ist
 | | **anton-format** (nativer Round-Trip) | **CIDOC A+ Bundle** |
 |---|---|---|
 | **Zweck** | Backup · Restore · Umzug zwischen Anton-Instanzen | Publikation · Interop · statische Anzeige |
-| **Basis** | `anton-import-format` v0.4 (JSON) | CIDOC CRM 7.1 + RiC-O 1.1 (JSON-LD) |
+| **Basis** | `anton-import-format` v0.5 (JSON) | CIDOC CRM 7.1 + RiC-O 1.1 (JSON-LD) |
 | **Standardisiert** | Nein (Anton-eigenes Schema) | Ja (internationale Ontologien) |
 | **Verlustfrei** | **Ja** — `uuid`, `formset_id`, alle Locales, alle Notizen, termselect, Rohwerte | Nein — Discovery-Sicht; kein `formset_id`, keine Rohwerte |
 | **Wieder importierbar** | **Ja** (`anton:import-native`, uuid-anchored) | Nein |

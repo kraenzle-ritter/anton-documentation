@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **6. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **15. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -24,7 +24,7 @@ andere sind Publikations- und Austauschsichten.**
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
 | RDF «A+» Bundle | CIDOC CRM + RiC-O **+ Mediendateien** als ZIP | Objekt-Baum, offline anzeigbar ohne Anton; mit `--include-protected --include-originals` ein **Migrationspaket** (siehe unten) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
-| **Nativer Round-Trip** | `anton-import-format` v0.4 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
+| **Nativer Round-Trip** | `anton-import-format` v0.5 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | pro Objekt (nur eingebettet) | Baustein in DIP / OCFL |
 | DIP | BagIt | Paket: Medien + Metadaten (Teilbaum) | Taste «DIP» am Datensatz |
 | OCFL | Oxford Common File Layout | Paket: Medien + Metadaten (Objekt/Teilbaum) | Taste am Datensatz |
@@ -201,7 +201,7 @@ Formularsatz, die Rohwerte und die Schutzfristen.
 
 Für den verlustfreien Weg gibt es den **nativen Round-Trip**
 (`anton:export-native` → `anton:import-native`): ein Paket im
-`anton-import-format` v0.4 samt Master-Medien, das Anton wieder einliest.
+`anton-import-format` v0.5 samt Master-Medien, das Anton wieder einliest.
 Verankert über UUIDs (unbekannt → neu anlegen, bekannt → überspringen, mit
 `--update` aktualisieren), Hierarchie über die UUID der übergeordneten Einheit,
 alle Sprachen, Ereignisse, Textfelder **aller** Träger einschliesslich privater,
