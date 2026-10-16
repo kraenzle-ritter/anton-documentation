@@ -37,7 +37,7 @@ validation fails. The algorithm comes from the package itself, so it is not
 fixed to MD5. In addition, Anton remembers the checksum of the SIP ZIP and
 rejects packages that have already been loaded.
 
-### Rules for files {#regeln-fuer-dateien}
+### Format Policy {#regeln-fuer-dateien}
 
 Before a file is stored as a medium, Anton applies the format rules the
 archive has switched on. The first rule, `tiff_zip`, repacks uncompressed TIFF

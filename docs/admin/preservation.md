@@ -37,7 +37,7 @@ Validierung fehl. Der Algorithmus stammt aus dem Paket selbst, ist also nicht au
 MD5 festgelegt. Zusätzlich merkt sich Anton die Prüfsumme des SIP-ZIPs und weist
 bereits eingespielte Pakete ab.
 
-### Regeln für Dateien {#regeln-fuer-dateien}
+### Format Policy {#regeln-fuer-dateien}
 
 Bevor eine Datei als Medium abgelegt wird, wendet Anton die Format-Regeln an,
 die das Archiv eingeschaltet hat. Die erste Regel, `tiff_zip`, packt
