@@ -368,7 +368,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (61)
+### anton: (62)
 
 | Command | Description |
 |---|---|
@@ -418,6 +418,7 @@ up to date with every change to the commands.
 | `anton:reset` | Reset a Anton Installation (DB and assets) |
 | `anton:restore` | Restore Database from the last Backup (by default) |
 | `anton:restore-positions` | Restore object positions from an anton:reorder-positions snapshot TSV. |
+| `anton:review-logs` | Check the security and holdings logs, mail only when something needs doing (#670) |
 | `anton:save-searchqueries` | Exports and deletes data based on the given year and saves it to a file. |
 | `anton:setting` | Get or set a setting. Admin users can edit "editable" settings, superusers can edit all settin… |
 | `anton:setup-import-audit` | Migrate this tenant from accessions_archives_id (legacy) to import_audit_archives_id (new) — s… |
@@ -442,11 +443,12 @@ up to date with every change to the commands.
 | `format-policy:enable` | Switch a format rule on for this archive (over its default) |
 | `format-policy:list` | List the format rules (preingest): default, this archive's switch, whether in force, and wheth… |
 
-### inge: (1)
+### inge: (2)
 
 | Command | Description |
 |---|---|
 | `inge:check-infrastructure` | Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a … |
+| `inge:unconfirmed-masters` | List media whose md5 check was deferred and never passed, and whether the local master is gone… |
 
 ### matomo (1)
 
