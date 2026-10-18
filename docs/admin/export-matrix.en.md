@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **15 October 2026**. It is
+    This matrix reflects the state of **18 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -62,7 +62,7 @@ Key: ● full · ◐ partial / embedded · ○ not included
 | User accounts | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Settings / forms | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | AI cataloguing data | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| File provenance (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| File provenance (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
 ² **EAD** outputs conditions of access and location details only as free text —
 `<accessrestrict>` and `<originalsloc>` are fed from the text fields of the same
@@ -82,6 +82,11 @@ references, image dimensions, AV duration and OCR full text in the graph; the ZI
 additionally places the derivatives (`thumb`/`web`) alongside — in the standard
 case **not the masters**. With `--include-originals` the master files are added,
 see [migration export](#migrations-export-das-bundle-als-weg-hinaus).
+
+⁴ **PREMIS 3** per record with media (anton#661): formats (PRONOM), checksums,
+kept originals and every event on the media with tool and version. The NARA
+risk assessment is not included. Applies to the native round trip too, not to
+the ZH variant of the DIP.
 
 ## Well covered
 
@@ -109,8 +114,9 @@ This data survives **no** format export:
 - **User accounts and authentication** — which does not belong in an archival
   export anyway
 - **Settings, form definitions, locations, orders, notifications**
-- **File provenance** — PRONOM/NARA history and conversion events, that is, the
-  entire preservation history of the files
+- **NARA risk assessment** of the files — the rest of the file provenance
+  (formats, checksums, events) travels as PREMIS in the DIP, OCFL and native
+  round trip since anton#661
 - **AI cataloguing data** — profiles, consumption, budgets, audit samples
 - **Editions** and **correspondences**
 - **The full-text index**
@@ -164,9 +170,14 @@ only institution, objects, instantiations and around eight text field types.
 
 **TEI per object** knows no overall export, no hierarchy and hardly any media.
 
-**DIP and OCFL** carry no PREMIS and no METS; the preservation metadata is
-limited to the OCFL inventory. The ZH variant of the DIP contains only media
-files, no metadata.
+**DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with
+media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL:
+`metadata/premis.xml`, native: `premis/<record>.xml`). It lists the files and
+kept originals with MD5/SHA-512, size and PRONOM format, every event on the
+media (virus check, integrity and format checks, format identification, format
+rules, transfer to the cloud, ingest with the person who acted) and the tools
+involved with their version. There is no METS. The ZH variant of the DIP
+contains only media files, no metadata and no PREMIS.
 
 **The two Excel exports pursue opposite purposes.** The *full* export is an
 evaluation view: it takes along everything that can be represented flatly and
@@ -240,6 +251,7 @@ and always the locked creators (anton#616).
 ## The essence
 
 **Descriptive metadata** is excellently covered by open standards and can be
-packaged. **Authority data** has exactly one export of its own (TEI). **The event
-graph, users, configuration, AI data and file provenance** have no
-standards-based export and can only be secured through the complete SQL dump.
+packaged. **Authority data** has exactly one export of its own (TEI). **File provenance**
+travels as PREMIS in the DIP, OCFL and native round trip. **The event graph,
+users, configuration and AI data** have no standards-based export and can only
+be secured through the complete SQL dump.

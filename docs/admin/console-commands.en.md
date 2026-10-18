@@ -139,6 +139,26 @@ new uploads this runs automatically; the command serves to supply the data
 retrospectively for existing holdings. Without `--force`, only media without
 identification data. For the evaluation see
 [preservation planning](preservation-planning.md).
+Where the master is only in DIMAG or S3, the command skips the medium and says
+at the start how many there are; with `--from-cloud` it fetches such masters
+temporarily, checks the checksum and deletes the copy afterwards. This puts load
+on INGE — run it at a quiet time.
+
+**`media:validate-formats`**{#mediavalidate-formats} checks the media of the
+holdings with the tool for their format: PDF with qpdf and pdftocairo (plus
+veraPDF for a claimed PDF/A, if installed), TIFF with `tiffinfo -D`, other images
+with ImageMagick, audio and video with a full ffmpeg decode. A shorter form of
+the same check already runs at ingest. Every result is recorded as an event on
+the medium (valid, invalid, not checked), as are contradictions between
+extension, format and PRONOM ID and, for PDF, preservation risks (fonts not
+embedded, encryption, JavaScript). `--oldest=N` takes the N media checked
+longest ago — so the holdings are worked through in portions at night, as with
+[`media:snapshot`](#mediasnapshot). `--from-cloud` as above. Exit 1 when
+invalid files were found.
+
+```bash
+php artisan media:validate-formats --env=besenval --oldest=500
+```
 
 **`media:extract-av-metadata`**{#mediaextract-av-metadata} fills the `av_*`
 columns (duration, codec, bitrate, resolution …) via `ffprobe` — likewise a
@@ -456,7 +476,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (18)
+### media: (19)
 
 | Command | Description |
 |---|---|
@@ -476,6 +496,7 @@ up to date with every change to the commands.
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
+| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 

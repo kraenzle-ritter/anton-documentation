@@ -141,6 +141,27 @@ leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
 automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne `--force`
 nur Medien ohne Erkennungsdaten. Auswertung siehe
 [Preservation Planning](preservation-planning.md).
+Liegt der Master nur noch in DIMAG oder S3, überspringt der Befehl das Medium und
+sagt am Anfang, wie viele es sind; mit `--from-cloud` holt er solche Master
+vorübergehend, prüft die Prüfsumme und löscht die Kopie danach wieder. Das
+belastet INGE — in einem ruhigen Moment laufen lassen.
+
+**`media:validate-formats`**{#mediavalidate-formats} prüft die Medien des
+Bestands mit dem Werkzeug ihres Formats: PDF mit qpdf und pdftocairo (dazu
+veraPDF bei behauptetem PDF/A, sofern installiert), TIFF mit `tiffinfo -D`,
+andere Bilder mit ImageMagick, Ton und Video mit einer vollständigen
+ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer Form
+schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
+ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
+PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
+Verschlüsselung, JavaScript). `--oldest=N` nimmt die N am längsten nicht
+geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
+[`media:snapshot`](#mediasnapshot). `--from-cloud` wie oben. Exit 1, wenn
+ungültige Dateien gefunden wurden.
+
+```bash
+php artisan media:validate-formats --env=besenval --oldest=500
+```
 
 **`media:extract-av-metadata`**{#mediaextract-av-metadata} füllt die `av_*`-Spalten (Dauer, Codec, Bitrate,
 Auflösung …) via `ffprobe` — ebenfalls ein Backfill-Befehl, da neue Uploads das
@@ -458,7 +479,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (18)
+### media: (19)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -478,6 +499,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
+| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 

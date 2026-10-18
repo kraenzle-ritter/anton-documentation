@@ -37,6 +37,27 @@ Validierung fehl. Der Algorithmus stammt aus dem Paket selbst, ist also nicht au
 MD5 festgelegt. Zusätzlich merkt sich Anton die Prüfsumme des SIP-ZIPs und weist
 bereits eingespielte Pakete ab.
 
+### Prüfungen bei jeder Übernahme {#prufungen-bei-jeder-ubernahme}
+
+Unabhängig vom Weg, auf dem eine Datei kommt (Hochladen, Import, SIP, agate),
+prüft Anton sie, bevor sie zum Medium wird:
+
+- **Viren:** Wo die Virenprüfung eingerichtet ist, wird jede Datei zuerst mit
+  ClamAV geprüft. Ein Fund wandert in die Quarantäne, der Import bricht ab.
+- **Prüfsummen:** Bringt eine Ablieferung Prüfsummen mit, werden sie mit den
+  Dateien verglichen; nach dem Ablegen rechnet Anton die Kopie nach.
+- **Format:** Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
+  TIFF, andere Bilder, Ton und Video), und Endung, Format und PRONOM-ID werden
+  verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
+  eingebettete Schriften, Verschlüsselung, JavaScript. Eine beschädigte Datei
+  wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
+  [`media:validate-formats`](console-commands.md#mediavalidate-formats) prüft
+  den Bestand regelmässig gründlicher.
+
+Jede Prüfung steht als Ereignis am Medium. Interne Benutzer:innen sehen sie auf
+der Medienseite eines Datensatzes: oben die letzte Prüfung je Art, darunter die
+ganze Liste.
+
 ### Format Policy {#regeln-fuer-dateien}
 
 Bevor eine Datei als Medium abgelegt wird, wendet Anton die Format-Regeln an,
@@ -212,10 +233,11 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
     exportiert wird: dieses Paket ist als **Migrationsweg hinaus** gedacht. Ein
     Rückweg wäre mit Aufwand konstruierbar, ein Werkzeug dafür gibt es nicht.
 
-Die Provenienz einer Datei (Formaterkennung, NARA-Bewertung, Integritätsprüfungen)
-führt Anton in der Datenbank; sie reist deshalb mit dem SQL-Dump. DIP und OCFL
-sichern die Dateien über die Prüfsummen im Manifest und geben diese Provenienz
-nicht als PREMIS oder METS aus.
+Die Provenienz einer Datei (Formaterkennung, Prüfungen, Formatregeln, Übernahme)
+führt Anton in der Datenbank. DIP, OCFL und nativer Export geben sie zusätzlich
+als **PREMIS 3** aus, eine Datei je Datensatz mit Medien; ein empfangendes
+Langzeitarchiv übernimmt so die Vorgeschichte jeder Datei ohne Antons Datenbank.
+Nicht darin steht die NARA-Bewertung; METS gibt es nicht.
 
 Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
 wer welches Artefakt auslösen kann, zeigt die [Export-Matrix](export-matrix.md).

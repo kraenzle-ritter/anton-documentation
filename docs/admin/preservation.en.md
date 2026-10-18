@@ -37,6 +37,27 @@ validation fails. The algorithm comes from the package itself, so it is not
 fixed to MD5. In addition, Anton remembers the checksum of the SIP ZIP and
 rejects packages that have already been loaded.
 
+### Checks at every ingest {#prufungen-bei-jeder-ubernahme}
+
+Whichever way a file comes in (upload, import, SIP, agate), Anton checks it
+before it becomes a medium:
+
+- **Viruses:** Where the virus check is set up, every file is first scanned
+  with ClamAV. A finding goes to quarantine, the import stops.
+- **Checksums:** If a delivery brings checksums, they are compared with the
+  files; after storing, Anton recalculates the copy.
+- **Format:** Every file is checked with the tool for its format (PDF, TIFF,
+  other images, audio and video), and extension, format and PRONOM ID are
+  compared. For PDF, Anton also records preservation risks: fonts not embedded,
+  encryption, JavaScript. A damaged file is taken in and recorded as invalid;
+  on request Anton refuses it.
+  [`media:validate-formats`](console-commands.md#mediavalidate-formats) checks
+  the holdings more thoroughly at regular intervals.
+
+Every check is recorded as an event on the medium. Internal users see them on
+a record's media page: the latest check of each kind at the top, the full list
+below.
+
 ### Format Policy {#regeln-fuer-dateien}
 
 Before a file is stored as a medium, Anton applies the format rules the
@@ -208,10 +229,11 @@ The most important distinction, and the one most easily confused:
     outwards**. A way back could be constructed with effort, but there is no
     tool for it.
 
-Anton keeps the provenance of a file (format identification, NARA assessment,
-integrity checks) in the database; it therefore travels with the SQL dump. DIP
-and OCFL secure the files through the checksums in the manifest and do not
-output this provenance as PREMIS or METS.
+Anton keeps the provenance of a file (format identification, checks, format
+rules, ingest) in the database. The DIP, OCFL and native export also output it
+as **PREMIS 3**, one file per record with media; a receiving long-term archive
+thus takes over each file's history without Anton's database. The NARA
+assessment is not included; there is no METS.
 
 Which data each format takes with it in detail, which is only in the SQL dump
 and who can trigger which artefact is shown by the
