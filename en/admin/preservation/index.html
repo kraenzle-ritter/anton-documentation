@@ -3277,10 +3277,21 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#prufungen-bei-jeder-ubernahme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks at every ingest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#regeln-fuer-dateien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules for files
+        Format Policy
       
     </span>
   </a>
@@ -4300,10 +4311,21 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#prufungen-bei-jeder-ubernahme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks at every ingest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#regeln-fuer-dateien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rules for files
+        Format Policy
       
     </span>
   </a>
@@ -4448,7 +4470,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-15</span>
+        <span class="page-meta__date">Last updated: 2026-10-18</span>
     </div>
   
   
@@ -4534,7 +4556,26 @@ hash is recalculated over the actual file and compared. If it deviates,
 validation fails. The algorithm comes from the package itself, so it is not
 fixed to MD5. In addition, Anton remembers the checksum of the SIP ZIP and
 rejects packages that have already been loaded.</p>
-<h3 id="regeln-fuer-dateien">Rules for files<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
+<h3 id="prufungen-bei-jeder-ubernahme">Checks at every ingest<a class="headerlink" href="#prufungen-bei-jeder-ubernahme" title="Permanent link">&para;</a></h3>
+<p>Whichever way a file comes in (upload, import, SIP, agate), Anton checks it
+before it becomes a medium:</p>
+<ul>
+<li><strong>Viruses:</strong> Where the virus check is set up, every file is first scanned
+  with ClamAV. A finding goes to quarantine, the import stops.</li>
+<li><strong>Checksums:</strong> If a delivery brings checksums, they are compared with the
+  files; after storing, Anton recalculates the copy.</li>
+<li><strong>Format:</strong> Every file is checked with the tool for its format (PDF, TIFF,
+  other images, audio and video), and extension, format and PRONOM ID are
+  compared. For PDF, Anton also records preservation risks: fonts not embedded,
+  encryption, JavaScript. A damaged file is taken in and recorded as invalid;
+  on request Anton refuses it.
+  <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> checks
+  the holdings more thoroughly at regular intervals.</li>
+</ul>
+<p>Every check is recorded as an event on the medium. Internal users see them on
+a record's media page: the latest check of each kind at the top, the full list
+below.</p>
+<h3 id="regeln-fuer-dateien">Format Policy<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
 <p>Before a file is stored as a medium, Anton applies the format rules the
 archive has switched on. The first rule, <code>tiff_zip</code>, repacks uncompressed TIFF
 and LZW without a predictor losslessly as Deflate with predictor 2. Before
@@ -4713,10 +4754,11 @@ filtered out. A backup requires the native export <strong>and</strong> the SQL d
 outwards</strong>. A way back could be constructed with effort, but there is no
 tool for it.</p>
 </div>
-<p>Anton keeps the provenance of a file (format identification, NARA assessment,
-integrity checks) in the database; it therefore travels with the SQL dump. DIP
-and OCFL secure the files through the checksums in the manifest and do not
-output this provenance as PREMIS or METS.</p>
+<p>Anton keeps the provenance of a file (format identification, checks, format
+rules, ingest) in the database. The DIP, OCFL and native export also output it
+as <strong>PREMIS 3</strong>, one file per record with media; a receiving long-term archive
+thus takes over each file's history without Anton's database. The NARA
+assessment is not included; there is no METS.</p>
 <p>Which data each format takes with it in detail, which is only in the SQL dump
 and who can trigger which artefact is shown by the
 <a href="../export-matrix/">export matrix</a>. In short: the SQL dump and the standard

@@ -2306,7 +2306,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-15</span>
+        <span class="page-meta__date">Last updated: 2026-10-18</span>
     </div>
   
   
@@ -2325,7 +2325,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>15. Oktober 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>18. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2772,7 +2772,7 @@ zusammen mit den Exportern gepflegt.</p>
 <td>○</td>
 <td>○</td>
 <td>○</td>
-<td>○</td>
+<td>◐⁴</td>
 <td>○</td>
 <td>○</td>
 <td>●</td>
@@ -2794,6 +2794,10 @@ Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (<code>thumb</code>/<code>web</code>) daneben — im Standardfall <strong>nicht die Master</strong>. Mit
 <code>--include-originals</code> kommen die Master-Dateien dazu, siehe
 <a href="#migrations-export-das-bundle-als-weg-hinaus">Migrations-Export</a>.</p>
+<p>⁴ <strong>PREMIS 3</strong> je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
+behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
+Nicht enthalten ist die NARA-Risikobewertung. Gilt auch für den nativen
+Round-Trip, nicht für die ZH-Variante des DIP.</p>
 <h2 id="gut-abgedeckt">Gut abgedeckt<a class="headerlink" href="#gut-abgedeckt" title="Permanent link">&para;</a></h2>
 <p><strong>Verzeichnungseinheiten</strong> sind breit unterstützt. <strong>EAD2002</strong> ist das
 vollständigste Format: Titel, Signatur, Datierung, Stufe, Umfang, Sprachen und
@@ -2816,8 +2820,9 @@ nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
 <ul>
 <li><strong>Benutzerkonten und Authentifizierung</strong> — gehört auch nicht in einen Archivexport</li>
 <li><strong>Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten</strong></li>
-<li><strong>Datei-Provenienz</strong> — PRONOM/NARA-Historie und Konversions-Ereignisse, also die
-  gesamte Preservation-Historie der Dateien</li>
+<li><strong>NARA-Risikobewertung</strong> der Dateien — die übrige Datei-Provenienz (Formate,
+  Prüfsummen, Ereignisse) reist seit anton#661 als PREMIS in DIP, OCFL und nativem
+  Round-Trip mit</li>
 <li><strong>KI-Erschliessungsdaten</strong> — Profile, Verbrauch, Budgets, Audit-Stichproben</li>
 <li><strong>Editionen</strong> und <strong>Korrespondenzen</strong></li>
 <li><strong>Volltext-Index</strong></li>
@@ -2894,9 +2899,15 @@ Grösse, Bildmasse), nicht den Master: keine Prüfsumme des Originals, und ohne
 Zugangskopie kein Link. Ein Export ab einem Teilbaum liefert die übergeordneten
 RecordSets mit.</p>
 <p><strong>TEI pro Objekt</strong> kennt keinen Gesamtexport, keine Hierarchie und kaum Medien.</p>
-<p><strong>DIP und OCFL</strong> führen kein PREMIS und kein METS; die Preservation-Metadaten
-beschränken sich auf das OCFL-Inventory. Die ZH-Variante des DIP enthält nur
-Mediendateien, keine Metadaten.</p>
+<p><strong>DIP, OCFL und nativer Round-Trip</strong> führen seit anton#661 je Datensatz mit
+Medien eine <strong>PREMIS-3-Datei</strong> mit (DIP: <code>data/meta/&lt;Datensatz&gt;.premis.xml</code>,
+OCFL: <code>metadata/premis.xml</code>, nativ: <code>premis/&lt;Datensatz&gt;.xml</code>). Darin stehen die
+Dateien und behaltenen Originale mit MD5/SHA-512, Grösse und PRONOM-Format, alle
+Ereignisse an den Medien (Virenprüfung, Integritäts- und Formatprüfung,
+Formaterkennung, Formatregeln, Übergabe an die Cloud, Übernahme mit der
+handelnden Person) und die beteiligten Werkzeuge mit Version. METS gibt es nicht.
+Die ZH-Variante des DIP enthält nur Mediendateien, keine Metadaten und kein
+PREMIS.</p>
 <p><strong>Die beiden Excel-Exporte verfolgen entgegengesetzte Zwecke.</strong> Der <em>volle</em>
 Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
 lässt, und lässt sich <strong>nicht</strong> wieder einspielen. Die <em>Update-Tabelle</em> ist das
@@ -2963,9 +2974,10 @@ Dateinamen keine weiteren Berechtigungen.</p>
 <h2 id="kernaussage">Kernaussage<a class="headerlink" href="#kernaussage" title="Permanent link">&para;</a></h2>
 <p><strong>Beschreibungsmetadaten</strong> sind über offene Standards exzellent abgedeckt und
 paketierbar. <strong>Normdaten</strong> haben genau einen eigenständigen Export (TEI).
-<strong>Ereignisgraph, Benutzer:innen, Konfiguration, KI-Daten und Datei-Provenienz</strong> haben
-keinen standardbasierten Export und lassen sich nur über den vollständigen
-SQL-Dump sichern.</p>
+<strong>Datei-Provenienz</strong> reist als PREMIS in DIP, OCFL und nativem Round-Trip mit.
+<strong>Ereignisgraph, Benutzer:innen, Konfiguration und KI-Daten</strong> haben keinen
+standardbasierten Export und lassen sich nur über den vollständigen SQL-Dump
+sichern.</p>
 
 
 

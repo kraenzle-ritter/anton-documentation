@@ -4336,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-15</span>
+        <span class="page-meta__date">Last updated: 2026-10-18</span>
     </div>
   
   
@@ -4356,7 +4356,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>15 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>18 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4803,7 +4803,7 @@ maintained together with the exporters.</p>
 <td>○</td>
 <td>○</td>
 <td>○</td>
-<td>○</td>
+<td>◐⁴</td>
 <td>○</td>
 <td>○</td>
 <td>●</td>
@@ -4826,6 +4826,10 @@ references, image dimensions, AV duration and OCR full text in the graph; the ZI
 additionally places the derivatives (<code>thumb</code>/<code>web</code>) alongside — in the standard
 case <strong>not the masters</strong>. With <code>--include-originals</code> the master files are added,
 see <a href="#migrations-export-das-bundle-als-weg-hinaus">migration export</a>.</p>
+<p>⁴ <strong>PREMIS 3</strong> per record with media (anton#661): formats (PRONOM), checksums,
+kept originals and every event on the media with tool and version. The NARA
+risk assessment is not included. Applies to the native round trip too, not to
+the ZH variant of the DIP.</p>
 <h2 id="well-covered">Well covered<a class="headerlink" href="#well-covered" title="Permanent link">&para;</a></h2>
 <p><strong>Units of description</strong> are broadly supported. <strong>EAD2002</strong> is the most complete
 format: title, reference code, dating, level, extent, languages and all ISAD(G)
@@ -4847,8 +4851,9 @@ dissolution of corporate bodies (from Anton v0.103.0).</p>
 <li><strong>User accounts and authentication</strong> — which does not belong in an archival
   export anyway</li>
 <li><strong>Settings, form definitions, locations, orders, notifications</strong></li>
-<li><strong>File provenance</strong> — PRONOM/NARA history and conversion events, that is, the
-  entire preservation history of the files</li>
+<li><strong>NARA risk assessment</strong> of the files — the rest of the file provenance
+  (formats, checksums, events) travels as PREMIS in the DIP, OCFL and native
+  round trip since anton#661</li>
 <li><strong>AI cataloguing data</strong> — profiles, consumption, budgets, audit samples</li>
 <li><strong>Editions</strong> and <strong>correspondences</strong></li>
 <li><strong>The full-text index</strong></li>
@@ -4922,9 +4927,14 @@ per node.</p>
 <p><strong>Memobase RDF</strong> is deliberately lossy: no actors, places, keywords or events —
 only institution, objects, instantiations and around eight text field types.</p>
 <p><strong>TEI per object</strong> knows no overall export, no hierarchy and hardly any media.</p>
-<p><strong>DIP and OCFL</strong> carry no PREMIS and no METS; the preservation metadata is
-limited to the OCFL inventory. The ZH variant of the DIP contains only media
-files, no metadata.</p>
+<p><strong>DIP, OCFL and native round trip</strong> carry a <strong>PREMIS 3 file</strong> per record with
+media since anton#661 (DIP: <code>data/meta/&lt;record&gt;.premis.xml</code>, OCFL:
+<code>metadata/premis.xml</code>, native: <code>premis/&lt;record&gt;.xml</code>). It lists the files and
+kept originals with MD5/SHA-512, size and PRONOM format, every event on the
+media (virus check, integrity and format checks, format identification, format
+rules, transfer to the cloud, ingest with the person who acted) and the tools
+involved with their version. There is no METS. The ZH variant of the DIP
+contains only media files, no metadata and no PREMIS.</p>
 <p><strong>The two Excel exports pursue opposite purposes.</strong> The <em>full</em> export is an
 evaluation view: it takes along everything that can be represented flatly and
 <strong>cannot</strong> be loaded back in. The <em>update table</em> is the opposite — it
@@ -4986,9 +4996,10 @@ permissions.</p>
 </div>
 <h2 id="the-essence">The essence<a class="headerlink" href="#the-essence" title="Permanent link">&para;</a></h2>
 <p><strong>Descriptive metadata</strong> is excellently covered by open standards and can be
-packaged. <strong>Authority data</strong> has exactly one export of its own (TEI). <strong>The event
-graph, users, configuration, AI data and file provenance</strong> have no
-standards-based export and can only be secured through the complete SQL dump.</p>
+packaged. <strong>Authority data</strong> has exactly one export of its own (TEI). <strong>File provenance</strong>
+travels as PREMIS in the DIP, OCFL and native round trip. <strong>The event graph,
+users, configuration and AI data</strong> have no standards-based export and can only
+be secured through the complete SQL dump.</p>
 
 
 

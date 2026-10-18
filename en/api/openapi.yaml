@@ -883,15 +883,20 @@ paths:
     get:
       tags:
         - media
-      summary: Stream a media file by its ID
-      description: Returns the binary media file with the appropriate Content-Type (cloud/Inge fallback when the local file is missing).
+      summary: Redirect to the web version of a media file
+      description: >-
+        The master goes to internal users only (anton#659). This route carries no
+        session, so it always answers with a redirect to the web version
+        `/media/web/{id}` — the derivative the public catalogue shows. Media of a
+        record that is not public, under a protection period, or without a record
+        answers 404.
       parameters:
         - $ref: '#/components/parameters/idParam'
       responses:
-        200:
-          description: OK — binary media file
+        302:
+          description: Redirect to `/media/web/{id}`
         404:
-          description: Media not found
+          description: Media not found or not public
 
 # -------------
 # system / counts / auth

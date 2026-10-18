@@ -2291,10 +2291,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-61" class="md-nav__link">
+  <a href="#anton-62" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (61)
+        anton: (62)
       
     </span>
   </a>
@@ -2313,10 +2313,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#inge-1" class="md-nav__link">
+  <a href="#inge-2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        inge: (1)
+        inge: (2)
       
     </span>
   </a>
@@ -2335,10 +2335,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-18" class="md-nav__link">
+  <a href="#media-19" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (18)
+        media: (19)
       
     </span>
   </a>
@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-15</span>
+        <span class="page-meta__date">Last updated: 2026-10-18</span>
     </div>
   
   
@@ -2567,7 +2567,25 @@ siehe <a href="../preservation/#wenn-die-prufung-anschlagt">Langzeitarchivierung
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
 automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne <code>--force</code>
 nur Medien ohne Erkennungsdaten. Auswertung siehe
-<a href="../preservation-planning/">Preservation Planning</a>.</p>
+<a href="../preservation-planning/">Preservation Planning</a>.
+Liegt der Master nur noch in DIMAG oder S3, überspringt der Befehl das Medium und
+sagt am Anfang, wie viele es sind; mit <code>--from-cloud</code> holt er solche Master
+vorübergehend, prüft die Prüfsumme und löscht die Kopie danach wieder. Das
+belastet INGE — in einem ruhigen Moment laufen lassen.</p>
+<p><strong id="mediavalidate-formats"><code>media:validate-formats</code></strong> prüft die Medien des
+Bestands mit dem Werkzeug ihres Formats: PDF mit qpdf und pdftocairo (dazu
+veraPDF bei behauptetem PDF/A, sofern installiert), TIFF mit <code>tiffinfo -D</code>,
+andere Bilder mit ImageMagick, Ton und Video mit einer vollständigen
+ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer Form
+schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
+ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
+PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
+Verschlüsselung, JavaScript). <code>--oldest=N</code> nimmt die N am längsten nicht
+geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
+<a href="#mediasnapshot"><code>media:snapshot</code></a>. <code>--from-cloud</code> wie oben. Exit 1, wenn
+ungültige Dateien gefunden wurden.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:validate-formats<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
+</code></pre></div>
 <p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> füllt die <code>av_*</code>-Spalten (Dauer, Codec, Bitrate,
 Auflösung …) via <code>ffprobe</code> — ebenfalls ein Backfill-Befehl, da neue Uploads das
 automatisch tun. <code>--dry-run</code> zeigt nur, was sich ändern würde; <code>--force</code> auch
@@ -2588,7 +2606,7 @@ unabhängig von ihrer Vorgabe:</p>
 <p>Die erste Regel, <code>tiff_zip</code>, packt TIFF-Dateien verlustfrei nach Deflate mit
 Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Admins schalten
 die Regeln auch in der Oberfläche, unter
-<a href="../preservation/#regeln-fuer-dateien">Regeln für Dateien</a>.</p>
+<a href="../preservation/#regeln-fuer-dateien">Format Policy</a>.</p>
 <p><strong id="mediamigrate"><code>media:migrate</code></strong> wendet eine dieser Regeln auf Medien an, die
 schon in Anton liegen — etwa TIFF-Master, die vor der Regel als LZW eingeliefert
 wurden. Die Regel gilt dabei unabhängig davon, ob sie für neue Dateien
@@ -2830,7 +2848,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-61">anton: (61)<a class="headerlink" href="#anton-61" title="Permanent link">&para;</a></h3>
+<h3 id="anton-62">anton: (62)<a class="headerlink" href="#anton-62" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3024,6 +3042,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <td>Restore object positions from an anton:reorder-positions snapshot TSV.</td>
 </tr>
 <tr>
+<td><code>anton:review-logs</code></td>
+<td>Check the security and holdings logs, mail only when something needs doing (#670)</td>
+</tr>
+<tr>
 <td><code>anton:save-searchqueries</code></td>
 <td>Exports and deletes data based on the given year and saves it to a file.</td>
 </tr>
@@ -3108,7 +3130,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="inge-1">inge: (1)<a class="headerlink" href="#inge-1" title="Permanent link">&para;</a></h3>
+<h3 id="inge-2">inge: (2)<a class="headerlink" href="#inge-2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3120,6 +3142,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>inge:check-infrastructure</code></td>
 <td>Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a …</td>
+</tr>
+<tr>
+<td><code>inge:unconfirmed-masters</code></td>
+<td>List media whose md5 check was deferred and never passed, and whether the local master is gone…</td>
 </tr>
 </tbody>
 </table>
@@ -3138,7 +3164,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-18">media: (18)<a class="headerlink" href="#media-18" title="Permanent link">&para;</a></h3>
+<h3 id="media-19">media: (19)<a class="headerlink" href="#media-19" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3210,6 +3236,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:snapshot</code></td>
 <td>Reference checksum lists of all media (git), and the integrity check of all or the N least rec…</td>
+</tr>
+<tr>
+<td><code>media:validate-formats</code></td>
+<td>Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME…</td>
 </tr>
 <tr>
 <td><code>media:validate-pdfs</code></td>
