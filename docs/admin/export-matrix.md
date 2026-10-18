@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **15. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **18. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -61,7 +61,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
+| Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
 ² **EAD** gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
 `<accessrestrict>` und `<originalsloc>` werden aus den gleichnamigen Textfeldern
@@ -80,6 +80,11 @@ Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
 `--include-originals` kommen die Master-Dateien dazu, siehe
 [Migrations-Export](#migrations-export-das-bundle-als-weg-hinaus).
+
+⁴ **PREMIS 3** je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
+behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
+Nicht enthalten ist die NARA-Risikobewertung. Gilt auch für den nativen
+Round-Trip, nicht für die ZH-Variante des DIP.
 
 ## Gut abgedeckt
 
@@ -108,8 +113,9 @@ Diese Daten überleben **keinen** Formatexport:
 
 - **Benutzerkonten und Authentifizierung** — gehört auch nicht in einen Archivexport
 - **Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten**
-- **Datei-Provenienz** — PRONOM/NARA-Historie und Konversions-Ereignisse, also die
-  gesamte Preservation-Historie der Dateien
+- **NARA-Risikobewertung** der Dateien — die übrige Datei-Provenienz (Formate,
+  Prüfsummen, Ereignisse) reist seit anton#661 als PREMIS in DIP, OCFL und nativem
+  Round-Trip mit
 - **KI-Erschliessungsdaten** — Profile, Verbrauch, Budgets, Audit-Stichproben
 - **Editionen** und **Korrespondenzen**
 - **Volltext-Index**
@@ -166,9 +172,15 @@ RecordSets mit.
 
 **TEI pro Objekt** kennt keinen Gesamtexport, keine Hierarchie und kaum Medien.
 
-**DIP und OCFL** führen kein PREMIS und kein METS; die Preservation-Metadaten
-beschränken sich auf das OCFL-Inventory. Die ZH-Variante des DIP enthält nur
-Mediendateien, keine Metadaten.
+**DIP, OCFL und nativer Round-Trip** führen seit anton#661 je Datensatz mit
+Medien eine **PREMIS-3-Datei** mit (DIP: `data/meta/<Datensatz>.premis.xml`,
+OCFL: `metadata/premis.xml`, nativ: `premis/<Datensatz>.xml`). Darin stehen die
+Dateien und behaltenen Originale mit MD5/SHA-512, Grösse und PRONOM-Format, alle
+Ereignisse an den Medien (Virenprüfung, Integritäts- und Formatprüfung,
+Formaterkennung, Formatregeln, Übergabe an die Cloud, Übernahme mit der
+handelnden Person) und die beteiligten Werkzeuge mit Version. METS gibt es nicht.
+Die ZH-Variante des DIP enthält nur Mediendateien, keine Metadaten und kein
+PREMIS.
 
 **Die beiden Excel-Exporte verfolgen entgegengesetzte Zwecke.** Der *volle*
 Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen
@@ -247,6 +259,7 @@ die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
 
 **Beschreibungsmetadaten** sind über offene Standards exzellent abgedeckt und
 paketierbar. **Normdaten** haben genau einen eigenständigen Export (TEI).
-**Ereignisgraph, Benutzer:innen, Konfiguration, KI-Daten und Datei-Provenienz** haben
-keinen standardbasierten Export und lassen sich nur über den vollständigen
-SQL-Dump sichern.
+**Datei-Provenienz** reist als PREMIS in DIP, OCFL und nativem Round-Trip mit.
+**Ereignisgraph, Benutzer:innen, Konfiguration und KI-Daten** haben keinen
+standardbasierten Export und lassen sich nur über den vollständigen SQL-Dump
+sichern.
