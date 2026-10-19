@@ -163,6 +163,11 @@ php artisan storage:audit --clean-masters --env={slug} -vv
 
 Bei Inge-Installationen sollten lokale Masterfiles 0 sein. Falls nicht, weist `storage:audit` darauf hin und `--clean-masters` bereinigt verifizierte Dateien.
 
+Für eine Auswahl gibt es [`media:delete-master`](console-commands.md)
+mit `--media-ids`, `--sip-ids` oder `--all`; ohne eine davon bricht der Befehl ab.
+Er löscht einen Master nur, wenn Inge seine MD5 bestätigt hat, und vermerkt es in
+den Ereignissen des Mediums. `--dry-run` zeigt vorher, was ginge.
+
 ### Fehlersuche
 
 #### Die SIP-Import-Daten prüfen

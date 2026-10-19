@@ -506,7 +506,7 @@ up to date with every change to the commands.
 | `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
-| `media:delete-master` | Delete Masterfiles from local media directory (eg. if the masters are in a repository) |
+| `media:delete-master` | Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed |
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
