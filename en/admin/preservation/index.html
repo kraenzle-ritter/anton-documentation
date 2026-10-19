@@ -4470,7 +4470,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4561,20 +4561,26 @@ rejects packages that have already been loaded.</p>
 before it becomes a medium:</p>
 <ul>
 <li><strong>Viruses:</strong> Where the virus check is set up, every file is first scanned
-  with ClamAV. A finding goes to quarantine, the import stops.</li>
+  with ClamAV. A finding goes to quarantine, the import stops.
+  <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a> checks the holdings
+  too, against the latest signatures. A finding there is recorded and
+  reported; the file stays where it is. ClamAV cannot scan files over 2 GB;
+  they are recorded as not checkable, never as clean.</li>
 <li><strong>Checksums:</strong> If a delivery brings checksums, they are compared with the
   files; after storing, Anton recalculates the copy.</li>
 <li><strong>Format:</strong> Every file is checked with the tool for its format (PDF, TIFF,
   other images, audio and video), and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
   encryption, JavaScript. A damaged file is taken in and recorded as invalid;
-  on request Anton refuses it.
+  on request Anton refuses it. What the tool itself gets past, such as a
+  faulty colour profile in a PDF, counts as valid with a warning.
   <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> checks
   the holdings more thoroughly at regular intervals.</li>
 </ul>
 <p>Every check is recorded as an event on the medium. Internal users see them on
 a record's media page: the latest check of each kind at the top, the full list
-below.</p>
+below. All format validations of the archive, counted day by day and filterable
+by result, are under <strong>Administration → Logs → Format validation</strong> for admins.</p>
 <h3 id="regeln-fuer-dateien">Format Policy<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
 <p>Before a file is stored as a medium, Anton applies the format rules the
 archive has switched on. The first rule, <code>tiff_zip</code>, repacks uncompressed TIFF

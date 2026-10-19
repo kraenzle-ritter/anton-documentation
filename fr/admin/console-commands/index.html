@@ -2335,10 +2335,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-19" class="md-nav__link">
+  <a href="#media-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (19)
+        media: (20)
       
     </span>
   </a>
@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -2585,6 +2585,17 @@ geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
 <a href="#mediasnapshot"><code>media:snapshot</code></a>. <code>--from-cloud</code> wie oben. Exit 1, wenn
 ungültige Dateien gefunden wurden.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:validate-formats<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
+</code></pre></div>
+<p><strong id="mediavirus-scan"><code>media:virus-scan</code></strong> prüft die Master und aufbewahrten
+Fassungen des Bestands mit ClamAV, mit den jeweils neuesten Signaturen. Bei der
+Übernahme wird jede Datei ohnehin geprüft; der Befehl erreicht, was vor der
+Einrichtung von clamd kam, und alte Dateien, für die es inzwischen neue
+Signaturen gibt. Er verschiebt nichts: Ein Fund wird als Ereignis am Medium
+vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
+liegen. <code>--oldest=N</code> nimmt die N am längsten nicht geprüften, nie geprüfte
+zuerst; <code>--from-cloud</code> wie oben. Exit 1 bei einem Fund, Exit 2, wenn die
+Virenprüfung aus ist oder clamd nicht antwortet.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
 <p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> füllt die <code>av_*</code>-Spalten (Dauer, Codec, Bitrate,
 Auflösung …) via <code>ffprobe</code> — ebenfalls ein Backfill-Befehl, da neue Uploads das
@@ -3164,7 +3175,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-19">media: (19)<a class="headerlink" href="#media-19" title="Permanent link">&para;</a></h3>
+<h3 id="media-20">media: (20)<a class="headerlink" href="#media-20" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3248,6 +3259,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:versions-to-cloud</code></td>
 <td>Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (…</td>
+</tr>
+<tr>
+<td><code>media:virus-scan</code></td>
+<td>Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662)</td>
 </tr>
 </tbody>
 </table>

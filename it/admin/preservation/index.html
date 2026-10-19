@@ -2373,7 +2373,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -2464,7 +2464,11 @@ bereits eingespielte Pakete ab.</p>
 prüft Anton sie, bevor sie zum Medium wird:</p>
 <ul>
 <li><strong>Viren:</strong> Wo die Virenprüfung eingerichtet ist, wird jede Datei zuerst mit
-  ClamAV geprüft. Ein Fund wandert in die Quarantäne, der Import bricht ab.</li>
+  ClamAV geprüft. Ein Fund wandert in die Quarantäne, der Import bricht ab.
+  <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a> prüft auch den
+  Bestand, mit den jeweils neuesten Signaturen. Ein Fund dort wird vermerkt
+  und gemeldet, die Datei bleibt liegen. Dateien über 2 GB kann ClamAV nicht
+  prüfen; sie werden als nicht prüfbar vermerkt, nie als sauber.</li>
 <li><strong>Prüfsummen:</strong> Bringt eine Ablieferung Prüfsummen mit, werden sie mit den
   Dateien verglichen; nach dem Ablegen rechnet Anton die Kopie nach.</li>
 <li><strong>Format:</strong> Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
@@ -2472,12 +2476,16 @@ prüft Anton sie, bevor sie zum Medium wird:</p>
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
   eingebettete Schriften, Verschlüsselung, JavaScript. Eine beschädigte Datei
   wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
+  Was das Werkzeug selbst übergeht, etwa ein fehlerhaftes Farbprofil in einem
+  PDF, gilt als gültig mit Warnung.
   <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> prüft
   den Bestand regelmässig gründlicher.</li>
 </ul>
 <p>Jede Prüfung steht als Ereignis am Medium. Interne Benutzer:innen sehen sie auf
 der Medienseite eines Datensatzes: oben die letzte Prüfung je Art, darunter die
-ganze Liste.</p>
+ganze Liste. Alle Formatprüfungen des Archivs, Tag für Tag gezählt und nach
+Ergebnis filterbar, finden Admins unter <strong>Administration → Protokolle →
+Formatprüfung</strong>.</p>
 <h3 id="regeln-fuer-dateien">Format Policy<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
 <p>Bevor eine Datei als Medium abgelegt wird, wendet Anton die Format-Regeln an,
 die das Archiv eingeschaltet hat. Die erste Regel, <code>tiff_zip</code>, packt

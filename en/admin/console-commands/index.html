@@ -3649,10 +3649,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-19" class="md-nav__link">
+  <a href="#media-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (19)
+        media: (20)
       
     </span>
   </a>
@@ -4481,10 +4481,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-19" class="md-nav__link">
+  <a href="#media-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (19)
+        media: (20)
       
     </span>
   </a>
@@ -4568,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4728,6 +4728,16 @@ longest ago — so the holdings are worked through in portions at night, as with
 <a href="#mediasnapshot"><code>media:snapshot</code></a>. <code>--from-cloud</code> as above. Exit 1 when
 invalid files were found.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:validate-formats<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
+</code></pre></div>
+<p><strong id="mediavirus-scan"><code>media:virus-scan</code></strong> scans the masters and kept versions of
+the holdings with ClamAV, against the latest signatures. Every file is scanned
+at ingest anyway; the command reaches what came before clamd was set up, and
+old files for which there are new signatures since. It moves nothing: a finding
+is recorded as an event on the medium, written to the security log and
+reported; the file stays where it is. <code>--oldest=N</code> takes the N scanned longest
+ago, never scanned first; <code>--from-cloud</code> as above. Exit 1 on a finding, exit 2
+when the virus check is off or clamd does not answer.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
 <p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> fills the <code>av_*</code>
 columns (duration, codec, bitrate, resolution …) via <code>ffprobe</code> — likewise a
@@ -5306,7 +5316,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="media-19">media: (19)<a class="headerlink" href="#media-19" title="Permanent link">&para;</a></h3>
+<h3 id="media-20">media: (20)<a class="headerlink" href="#media-20" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5390,6 +5400,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>media:versions-to-cloud</code></td>
 <td>Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (…</td>
+</tr>
+<tr>
+<td><code>media:virus-scan</code></td>
+<td>Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662)</td>
 </tr>
 </tbody>
 </table>

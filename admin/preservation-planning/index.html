@@ -3343,6 +3343,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formatpruefung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virenpruefung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virenprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#batch-verarbeitung-mit-siegfried" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4232,6 +4254,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formatpruefung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virenpruefung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virenprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#batch-verarbeitung-mit-siegfried" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4292,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation-planning/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4306,7 +4350,7 @@
 <h1 id="preservation-planning">Preservation Planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h1>
 <p>Anton bietet ein Dashboard für die digitale Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
 empfohlene Handlungen pro Tenant.</p>
-<p>Unter <strong>Admin → Preservation Planning</strong> stehen vier Analyse-Bereiche.</p>
+<p>Unter <strong>Admin → Preservation Planning</strong> stehen diese Bereiche.</p>
 <h2 id="mime-type-verteilung">MIME-Type-Verteilung<a class="headerlink" href="#mime-type-verteilung" title="Permanent link">&para;</a></h2>
 <p>Interaktive Charts (Donut / Balken) zeigen, wie sich die Medienbestände
 auf MIME-Typen verteilen:</p>
@@ -4378,6 +4422,22 @@ Migration auf PDF/A. 89 davon sind unter <code>Akzession 2018/3</code>."</em></p
 </blockquote>
 <p>Klick auf die Zeile öffnet die Liste mit Bulk-Aktionen (Migration
 anstossen, in Sammlung verschieben, etc.).</p>
+<h2 id="formatpruefung">Formatprüfung<a class="headerlink" href="#formatpruefung" title="Permanent link">&para;</a></h2>
+<p>Wo der Bestand in der <a href="../preservation/">Formatprüfung</a> steht, je Master nach
+seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und
+Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft.
+Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme,
+nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung,
+Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren,
+mit Link zum Datensatz. Was wann geprüft wurde, steht unter <strong>Administration →
+Protokolle → Formatprüfung</strong>.</p>
+<h2 id="virenpruefung">Virenprüfung<a class="headerlink" href="#virenpruefung" title="Permanent link">&para;</a></h2>
+<p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit
+<a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware
+gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und
+Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht
+prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie
+Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
 <h2 id="batch-verarbeitung-mit-siegfried">Batch-Verarbeitung mit Siegfried<a class="headerlink" href="#batch-verarbeitung-mit-siegfried" title="Permanent link">&para;</a></h2>
 <p>Bei neuen Medien führt Anton die Format-Identifikation asynchron als
 Queue-Job aus (<code>ProcessMediaIdentification</code>). Für <strong>Bestands-Sichtung</strong>
