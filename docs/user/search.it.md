@@ -19,9 +19,9 @@ Per ogni oggetto d'archivio vengono riuniti ai fini della ricerca:
 !!! note "Vista estesa per il personale interno"
     Per le persone autenticate a partire dal ruolo `user_intern` vengono inoltre interrogati:
 
-    - attori e attrici privati
+    - attori e attrici non pubblicati
     - tutti i campi di testo (anche quelli visibili solo internamente)
-    - gli oggetti contrassegnati come privati
+    - le schede non pubblicate
 
 ## Comportamento della ricerca
 

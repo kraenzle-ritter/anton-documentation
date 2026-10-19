@@ -65,7 +65,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 
 ² **EAD** gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
 `<accessrestrict>` und `<originalsloc>` werden aus den gleichnamigen Textfeldern
-gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
+gespeist, nicht aus dem Feld «Schutzfrist» oder dem
 Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
 nicht die auswertbare Frist. `<physloc>` ist nicht implementiert.
 
@@ -129,7 +129,7 @@ die ihn aus der Publikationsecke herausheben:
 
 | Schalter | Wirkung |
 |---|---|
-| `--include-protected` | umgeht den Datenschutzfilter — gesperrte Objekte, private Medien und interne Textfelder kommen mit. Wirkt bei `a-plus`, `ric` und `a-plus-bundle`, **nicht** bei `memobase` |
+| `--include-protected` | umgeht den Datenschutzfilter — gesperrte Datensätze, nur interne Medien und interne Textfelder kommen mit. Wirkt bei `a-plus`, `ric` und `a-plus-bundle`, **nicht** bei `memobase` |
 | `--include-originals` | nur `a-plus-bundle`: packt die **Original-Master** ins ZIP, nicht nur `web`/`thumb` |
 
 ```bash
@@ -239,8 +239,8 @@ Formulardefinitionen und die KI-Daten.
 
 ## Datenschutz-Filter
 
-RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
-Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
+RDF, TEI und EAD filtern gesperrte Datensätze und Akteur:innen, nur interne
+Medien sowie interne Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.
 
 **EAD** zeigt immer die öffentliche Sicht, wer die Datei auch erzeugt: keine

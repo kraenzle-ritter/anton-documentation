@@ -1,60 +1,86 @@
-# Accès et délais de protection
+# Accès, notices non publiées et délais de communicabilité
 
 Anton règle l'accès à trois niveaux : par le rôle de la personne, par le
-paramètre indiquant si le service est public, et par les délais de protection
-attachés à chaque notice.
+paramètre indiquant si le service est public, et pour chaque notice par deux
+choses distinctes — la **non-publication** de la notice et le **délai de
+communicabilité**.
 
 ## Le service est-il public ?
 
 Le paramètre **public_access** détermine si les personnes extérieures voient le
 catalogue. S'il est désactivé, la base de données n'est ouverte qu'aux personnes
 connectées. S'il est activé, le catalogue est public — ce que montrent les
-notices individuelles relève alors des délais de protection.
+notices individuelles relève alors de la non-publication et des délais de
+communicabilité.
 
 Ce que chaque rôle peut faire figure dans la
 [Prise en main](index.md#roles).
 
-## Délais de protection
+## Notice non publiée et délai de communicabilité
 
-Si une unité de description est encore soumise à un délai de protection, la
-notice reste visible, mais pas les images ni les documents.
+> Le **délai de communicabilité** protège les documents ; la notice reste
+> trouvable. La **non-publication** retire toute la notice, description
+> comprise.
 
-Anton calcule **une** année de libération par notice. Font foi :
+| | Notice non publiée | Délai de communicabilité |
+|---|---|---|
+| Description (titre, dates, description archivistique) | invisible | visible et trouvable |
+| Images et documents | invisibles | seulement à partir de «&nbsp;Communicable dès&nbsp;» |
+| Unités subordonnées | toujours non publiées aussi | type : non ; «&nbsp;Communicable dès&nbsp;» saisi à la main : oui |
+| Limité dans le temps | non | oui |
 
-1. **Le champ «&nbsp;protégé jusqu'à&nbsp;»** (année de libération). Cette
-   valeur prime et **se transmet vers le bas dans l'arborescence** à toutes les
-   unités subordonnées.
-2. **Sinon le délai de protection du type choisi**, compté à partir de la date
-   de création. Les délais liés au type ne valent **que pour la notice
+Les deux restent visibles pour les utilisateur·trice·s internes, les personnes
+chargées de la description et l'administration. Un service peut avoir renommé
+les champs ; depuis Anton 0.108, les noms standard sont ceux employés ici.
+
+## Notice non publiée
+
+Le champ **Notice non publiée** retire toute la notice de la consultation
+publique : description, médias et toutes les unités subordonnées. Elle
+n'apparaît ni dans la recherche ni par les interfaces (API, OAI, plan du site).
+La non-publication se transmet toujours vers le bas — sous une notice non
+publiée, il n'y a pas de notice publique.
+
+## Délai de communicabilité
+
+Le délai de communicabilité protège uniquement les documents et les
+numérisations : si une unité de description y est encore soumise, la notice
+reste visible et trouvable, mais pas les images ni les documents.
+
+Anton calcule **une** année par notice à partir de laquelle elle est
+communicable. Font foi :
+
+1. **Le champ «&nbsp;Communicable dès&nbsp;».** Cette valeur prime et **vaut
+   vers le bas dans l'arborescence** pour toutes les unités subordonnées.
+2. **Sinon le délai de communicabilité du type choisi**, compté à partir de la
+   date de création. Les délais liés au type ne valent **que pour la notice
    elle-même** et ne se transmettent pas.
 
-Le champ **conditions d'accès / délai de protection** sélectionne le type. Trois
-sont fournis par défaut :
+Le champ **Délai de communicabilité** sélectionne le type. Trois sont fournis
+par défaut :
 
 | Type | Délai |
 |---|---|
-| public | aucun — librement accessible immédiatement |
-| délai de protection standard | 30 ans |
-| délai de protection prolongé | 70 ans |
+| public | aucun — communicable immédiatement |
+| délai standard | 30 ans |
+| délai prolongé | 70 ans |
 
 Les délais sont configurables par archive : les types peuvent être renommés,
-complétés et modifiés dans leur durée ; «&nbsp;ne jamais libérer&nbsp;» est
+complétés et modifiés dans leur durée ; «&nbsp;jamais communicable&nbsp;» est
 également possible. La gestion est réservée aux superutilisateur·trice·s ; avec
 Anton as a Service, k & r s'en charge.
 
-!!! note "L'année de libération affichée"
-    Ce qui est affiché est la première année où l'unité est **libre** — pour une
-    création en 1990 et un délai de 30 ans, donc 2021 et non 2020.
+!!! note "«&nbsp;Communicable dès&nbsp;» est la première année libre"
+    Pour une création en 1990 et un délai de 30 ans, on y lit 2021 : dès 2021,
+    les documents sont communicables. Jusqu'à 0.107, le champ s'appelait
+    «&nbsp;Délai de protection jusqu'à&nbsp;» — la valeur a toujours été la
+    première année libre.
 
-## Bloquer sans limite de durée
+## Médias isolés : interne seulement
 
-Les **médias isolés** peuvent être bloqués sans limite de durée dans le masque
-de saisie.
-
-Les **notices entières** sont bloquées par le champ **bloqué**. Il agit sur la
-notice, sur toutes les unités subordonnées et sur leurs médias ; ceux-ci ne
-restent visibles que pour les utilisateur·trice·s internes, les personnes
-chargées de la description et l'administration.
+Les **médias isolés** peuvent être définis comme **interne seulement** dans le
+masque de saisie. Cela vaut sans limite de durée et pour ce seul média ; la
+notice et ses autres médias restent tels quels.
 
 ## Ouvrir certains secteurs
 

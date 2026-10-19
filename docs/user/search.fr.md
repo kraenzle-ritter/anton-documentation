@@ -19,9 +19,9 @@ Pour chaque objet d'archives, les éléments suivants sont réunis pour la reche
 !!! note "Vue étendue pour le personnel interne"
     Pour les personnes connectées à partir du rôle `user_intern`, sont en outre interrogés :
 
-    - les acteur·trice·s privé·e·s
+    - les acteur·trice·s non publié·e·s
     - tous les champs de texte (y compris ceux visibles en interne seulement)
-    - les objets marqués comme privés
+    - les notices non publiées
 
 ## Comportement de la recherche
 

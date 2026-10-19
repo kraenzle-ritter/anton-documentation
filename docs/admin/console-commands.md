@@ -313,7 +313,8 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:reorder-positions` | Positionsfeld der Geschwister neu ordnen; `anton:restore-positions` macht es aus einem Snapshot rückgängig |
 | `anton:update-fulltext` | Volltextindex neu aufbauen (nötig z.B. nach Sprachänderungen) |
 | `anton:update-dates` / `anton:update-all-dates` | Aggregierte Datierung neu berechnen |
-| `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
+| `anton:update-release-year` | Das effektive Jahr «Frei ab» materialisieren |
+| `anton:access-labels` | Eigene Bezeichnungen und Hilfetexte von «Datensatz gesperrt», «Schutzfrist» und «Frei ab» neben dem Standard auflisten; `--adopt` übernimmt den Standard |
 | `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
 | `anton:repair-content-locale --from=<sprache>` | Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben |
 | `anton:audit-orphans` | Zeilen melden, deren Datensatz nicht mehr existiert, und sie auf Wunsch entfernen |
@@ -410,10 +411,11 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (62)
+### anton: (63)
 
 | Befehl | Beschreibung |
 |---|---|
+| `anton:access-labels` | List the archive's own labels and help texts of record lock, closure period and release year n… |
 | `anton:add-user` | Add or update a user; a new one without --password gets an invitation to set its own password.… |
 | `anton:audit-duplicate-users` | Konten melden, die sich einen Benutzernamen oder eine Adresse teilen (#572). |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |

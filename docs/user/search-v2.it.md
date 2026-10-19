@@ -65,5 +65,6 @@ condiviso** e ripristina la ricerca con i relativi filtri.
 ## Visibilità
 
 Come nella ricerca classica si vede soltanto ciò che si è autorizzati a vedere.
-I contenuti di PDF bloccati (sotto embargo) non compaiono nella ricerca
-pubblica, anche se i dati descrittivi corrispondono al termine cercato.
+I contenuti di PDF soggetti a un termine di consultabilità non compaiono nella
+ricerca pubblica, anche se i dati descrittivi corrispondono al termine cercato;
+le schede non pubblicate non compaiono affatto.

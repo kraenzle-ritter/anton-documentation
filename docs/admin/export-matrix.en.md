@@ -66,7 +66,7 @@ Key: ● full · ◐ partial / embedded · ○ not included
 
 ² **EAD** outputs conditions of access and location details only as free text —
 `<accessrestrict>` and `<originalsloc>` are fed from the text fields of the same
-name, not from the «conditions of access / closure period» field or the location
+name, not from the «Closure period» field or the location
 reference. A consumer therefore receives what someone wrote down, not the
 evaluable period. `<physloc>` is not implemented.
 
@@ -130,7 +130,7 @@ switches that lift it out of the publication corner:
 
 | Switch | Effect |
 |---|---|
-| `--include-protected` | bypasses the data protection filter — blocked objects, private media and internal text fields come along. Takes effect with `a-plus`, `ric` and `a-plus-bundle`, **not** with `memobase` |
+| `--include-protected` | bypasses the data protection filter — withheld records, internal-only media and internal text fields come along. Takes effect with `a-plus`, `ric` and `a-plus-bundle`, **not** with `memobase` |
 | `--include-originals` | `a-plus-bundle` only: packs the **original masters** into the ZIP, not just `web`/`thumb` |
 
 ```bash
@@ -234,8 +234,8 @@ definitions and the AI data.
 
 ## Privacy filter
 
-RDF, TEI and EAD filter out private objects, actors and media as well as private
-text field types (internal archival remarks, cataloguer's information, comment).
+RDF, TEI and EAD filter out withheld records and actors, internal-only media as
+well as internal text field types (internal archival remarks, cataloguer's information, comment).
 
 **EAD** always shows the public view, whoever generates the file: no locked
 descriptions or drafts, with everything below them, and no locked actors, not

@@ -311,7 +311,8 @@ materialised fields in a closure table — is explained by
 | `anton:reorder-positions` | Reorder the position field of siblings; `anton:restore-positions` undoes it from a snapshot |
 | `anton:update-fulltext` | Rebuild the full-text index (necessary after language changes, for example) |
 | `anton:update-dates` / `anton:update-all-dates` | Recalculate the aggregated dating |
-| `anton:update-release-year` | Materialise the effective release year |
+| `anton:update-release-year` | Materialise the effective «Open from» year |
+| `anton:access-labels` | List the archive's own labels and help texts of «Record withheld», «Closure period» and «Open from» next to the standard; `--adopt` takes over the standard |
 | `anton:merge <type> <target_id>` | Merge actors, places or keywords |
 | `anton:repair-content-locale --from=<language>` | Move titles and text fields an import filed under the wrong language into the archive's content language |
 | `anton:audit-orphans` | Report rows whose record no longer exists, and remove them on request |
@@ -406,10 +407,11 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (62)
+### anton: (63)
 
 | Command | Description |
 |---|---|
+| `anton:access-labels` | List the archive's own labels and help texts of record lock, closure period and release year n… |
 | `anton:add-user` | Add or update a user; a new one without --password gets an invitation to set its own password.… |
 | `anton:audit-duplicate-users` | Konten melden, die sich einen Benutzernamen oder eine Adresse teilen (#572). |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
