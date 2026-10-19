@@ -50,7 +50,8 @@ before it becomes a medium:
   other images, audio and video), and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
   encryption, JavaScript. A damaged file is taken in and recorded as invalid;
-  on request Anton refuses it.
+  on request Anton refuses it. What the tool itself gets past, such as a
+  faulty colour profile in a PDF, counts as valid with a warning.
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) checks
   the holdings more thoroughly at regular intervals.
 

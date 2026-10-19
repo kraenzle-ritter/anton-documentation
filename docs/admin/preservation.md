@@ -51,6 +51,8 @@ prüft Anton sie, bevor sie zum Medium wird:
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
   eingebettete Schriften, Verschlüsselung, JavaScript. Eine beschädigte Datei
   wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
+  Was das Werkzeug selbst übergeht, etwa ein fehlerhaftes Farbprofil in einem
+  PDF, gilt als gültig mit Warnung.
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) prüft
   den Bestand regelmässig gründlicher.
 
