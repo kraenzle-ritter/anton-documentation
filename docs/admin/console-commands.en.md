@@ -137,7 +137,12 @@ procedure see [long-term preservation](preservation.md#wenn-die-prufung-anschlag
 (Siegfried/Fido → PRONOM ID) and derives the NARA risk assessment from it. With
 new uploads this runs automatically; the command serves to supply the data
 retrospectively for existing holdings. Without `--force`, only media without
-identification data. For the evaluation see
+identification data; with `--force` it identifies media again that are
+identified already and records the previous PRONOM ID in the event.
+`--oldest=N` takes the N media identified longest ago, those without an
+identification event first: a nightly run with a fixed portion thus works
+through the whole holding, picks up where it stopped and later identifies again
+with newer signatures. For the evaluation see
 [preservation planning](preservation-planning.md).
 Where the master is only in DIMAG or S3, the command skips the medium and says
 at the start how many there are; with `--from-cloud` it fetches such masters
