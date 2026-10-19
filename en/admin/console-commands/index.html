@@ -4710,7 +4710,12 @@ procedure see <a href="../preservation/#wenn-die-prufung-anschlagt">long-term pr
 (Siegfried/Fido → PRONOM ID) and derives the NARA risk assessment from it. With
 new uploads this runs automatically; the command serves to supply the data
 retrospectively for existing holdings. Without <code>--force</code>, only media without
-identification data. For the evaluation see
+identification data; with <code>--force</code> it identifies media again that are
+identified already and records the previous PRONOM ID in the event.
+<code>--oldest=N</code> takes the N media identified longest ago, those without an
+identification event first: a nightly run with a fixed portion thus works
+through the whole holding, picks up where it stopped and later identifies again
+with newer signatures. For the evaluation see
 <a href="../preservation-planning/">preservation planning</a>.
 Where the master is only in DIMAG or S3, the command skips the medium and says
 at the start how many there are; with <code>--from-cloud</code> it fetches such masters

@@ -2566,7 +2566,12 @@ siehe <a href="../preservation/#wenn-die-prufung-anschlagt">Langzeitarchivierung
 <p><strong id="mediaidentify"><code>media:identify</code></strong> bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das
 automatisch; der Befehl dient dem Nachtragen bei Altbeständen. Ohne <code>--force</code>
-nur Medien ohne Erkennungsdaten. Auswertung siehe
+nur Medien ohne Erkennungsdaten; mit <code>--force</code> erkennt er auch bereits erkannte
+Medien neu und hält die bisherige PRONOM-ID im Ereignis fest. <code>--oldest=N</code>
+nimmt die N Medien, deren letzte Erkennung am längsten zurückliegt, solche ohne
+Erkennungsereignis zuerst: Ein Nachtlauf mit fester Portion geht so den ganzen
+Bestand durch, macht nach einem Abbruch dort weiter und erkennt später mit
+neueren Signaturen erneut. Auswertung siehe
 <a href="../preservation-planning/">Preservation Planning</a>.
 Liegt der Master nur noch in DIMAG oder S3, überspringt der Befehl das Medium und
 sagt am Anfang, wie viele es sind; mit <code>--from-cloud</code> holt er solche Master
