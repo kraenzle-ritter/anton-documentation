@@ -46,7 +46,8 @@ before it becomes a medium:
   with ClamAV. A finding goes to quarantine, the import stops.
   [`media:virus-scan`](console-commands.md#mediavirus-scan) checks the holdings
   too, against the latest signatures. A finding there is recorded and
-  reported; the file stays where it is.
+  reported; the file stays where it is. ClamAV cannot scan files over 2 GB;
+  they are recorded as not checkable, never as clean.
 - **Checksums:** If a delivery brings checksums, they are compared with the
   files; after storing, Anton recalculates the copy.
 - **Format:** Every file is checked with the tool for its format (PDF, TIFF,

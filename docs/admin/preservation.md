@@ -46,7 +46,8 @@ prüft Anton sie, bevor sie zum Medium wird:
   ClamAV geprüft. Ein Fund wandert in die Quarantäne, der Import bricht ab.
   [`media:virus-scan`](console-commands.md#mediavirus-scan) prüft auch den
   Bestand, mit den jeweils neuesten Signaturen. Ein Fund dort wird vermerkt
-  und gemeldet, die Datei bleibt liegen.
+  und gemeldet, die Datei bleibt liegen. Dateien über 2 GB kann ClamAV nicht
+  prüfen; sie werden als nicht prüfbar vermerkt, nie als sauber.
 - **Prüfsummen:** Bringt eine Ablieferung Prüfsummen mit, werden sie mit den
   Dateien verglichen; nach dem Ablegen rechnet Anton die Kopie nach.
 - **Format:** Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
