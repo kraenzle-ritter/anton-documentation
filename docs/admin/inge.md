@@ -168,6 +168,10 @@ mit `--media-ids`, `--sip-ids` oder `--all`; ohne eine davon bricht der Befehl a
 Er löscht einen Master nur, wenn Inge seine MD5 bestätigt hat, und vermerkt es in
 den Ereignissen des Mediums. `--dry-run` zeigt vorher, was ginge.
 
+`media:conversions` holt einen Master, der nur in DIMAG liegt, für den Lauf als
+geprüfte Kopie (MD5 bzw. SHA-512) und räumt sie danach weg; er landet nicht
+mehr in `media/`. Stimmt die Prüfsumme nicht, wird das Medium übersprungen.
+
 ### Fehlersuche
 
 #### Die SIP-Import-Daten prüfen

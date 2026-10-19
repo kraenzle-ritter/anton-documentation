@@ -62,7 +62,9 @@ The standard conversions (`web`, `thumb`, `poster`) are in
 `config/conversions.php`. For anything different, a **custom conversion script**
 can be stored: `media:conversions --conversion-script=…` reads it from the
 tenant's `scripts/` directory (`customers/{slug}/scripts/`). This allows an
-archive to run a normalisation that the core does not know about.
+archive to run a normalisation that the core does not know about. The script
+is given the master in `media/`; for a medium whose master is only in the cloud
+it does not run.
 
 ## Forms and value lists
 

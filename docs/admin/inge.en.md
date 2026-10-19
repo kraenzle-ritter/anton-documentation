@@ -168,6 +168,10 @@ with `--media-ids`, `--sip-ids` or `--all`; without one of them the command stop
 It removes a master only once Inge has confirmed its MD5, and records it in the
 medium's events. `--dry-run` shows beforehand what would go.
 
+`media:conversions` fetches a master that is only in DIMAG as a checked copy
+(MD5 or SHA-512) for the run and removes it afterwards; it no longer ends up in
+`media/`. If the checksum does not match, the medium is skipped.
+
 ### Debugging
 
 #### Checking the SIP import data
