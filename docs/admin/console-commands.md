@@ -163,6 +163,20 @@ ungültige Dateien gefunden wurden.
 php artisan media:validate-formats --env=besenval --oldest=500
 ```
 
+**`media:virus-scan`**{#mediavirus-scan} prüft die Master und aufbewahrten
+Fassungen des Bestands mit ClamAV, mit den jeweils neuesten Signaturen. Bei der
+Übernahme wird jede Datei ohnehin geprüft; der Befehl erreicht, was vor der
+Einrichtung von clamd kam, und alte Dateien, für die es inzwischen neue
+Signaturen gibt. Er verschiebt nichts: Ein Fund wird als Ereignis am Medium
+vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
+liegen. `--oldest=N` nimmt die N am längsten nicht geprüften, nie geprüfte
+zuerst; `--from-cloud` wie oben. Exit 1 bei einem Fund, Exit 2, wenn die
+Virenprüfung aus ist oder clamd nicht antwortet.
+
+```bash
+php artisan media:virus-scan --env=besenval --oldest=500
+```
+
 **`media:extract-av-metadata`**{#mediaextract-av-metadata} füllt die `av_*`-Spalten (Dauer, Codec, Bitrate,
 Auflösung …) via `ffprobe` — ebenfalls ein Backfill-Befehl, da neue Uploads das
 automatisch tun. `--dry-run` zeigt nur, was sich ändern würde; `--force` auch
@@ -479,7 +493,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (19)
+### media: (20)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -502,6 +516,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
+| `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |
 
 ### notification: (3)
 

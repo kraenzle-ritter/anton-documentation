@@ -44,6 +44,9 @@ before it becomes a medium:
 
 - **Viruses:** Where the virus check is set up, every file is first scanned
   with ClamAV. A finding goes to quarantine, the import stops.
+  [`media:virus-scan`](console-commands.md#mediavirus-scan) checks the holdings
+  too, against the latest signatures. A finding there is recorded and
+  reported; the file stays where it is.
 - **Checksums:** If a delivery brings checksums, they are compared with the
   files; after storing, Anton recalculates the copy.
 - **Format:** Every file is checked with the tool for its format (PDF, TIFF,

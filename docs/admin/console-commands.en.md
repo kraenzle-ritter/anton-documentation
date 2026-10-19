@@ -160,6 +160,19 @@ invalid files were found.
 php artisan media:validate-formats --env=besenval --oldest=500
 ```
 
+**`media:virus-scan`**{#mediavirus-scan} scans the masters and kept versions of
+the holdings with ClamAV, against the latest signatures. Every file is scanned
+at ingest anyway; the command reaches what came before clamd was set up, and
+old files for which there are new signatures since. It moves nothing: a finding
+is recorded as an event on the medium, written to the security log and
+reported; the file stays where it is. `--oldest=N` takes the N scanned longest
+ago, never scanned first; `--from-cloud` as above. Exit 1 on a finding, exit 2
+when the virus check is off or clamd does not answer.
+
+```bash
+php artisan media:virus-scan --env=besenval --oldest=500
+```
+
 **`media:extract-av-metadata`**{#mediaextract-av-metadata} fills the `av_*`
 columns (duration, codec, bitrate, resolution …) via `ffprobe` — likewise a
 backfill command, since new uploads do this automatically. `--dry-run` only
@@ -476,7 +489,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (19)
+### media: (20)
 
 | Command | Description |
 |---|---|
@@ -499,6 +512,7 @@ up to date with every change to the commands.
 | `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
+| `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |
 
 ### notification: (3)
 
