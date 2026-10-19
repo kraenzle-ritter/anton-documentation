@@ -57,7 +57,8 @@ before it becomes a medium:
 
 Every check is recorded as an event on the medium. Internal users see them on
 a record's media page: the latest check of each kind at the top, the full list
-below.
+below. All format validations of the archive, counted day by day and filterable
+by result, are under **Administration → Logs → Format validation** for admins.
 
 ### Format Policy {#regeln-fuer-dateien}
 

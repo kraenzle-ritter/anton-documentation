@@ -58,7 +58,9 @@ prüft Anton sie, bevor sie zum Medium wird:
 
 Jede Prüfung steht als Ereignis am Medium. Interne Benutzer:innen sehen sie auf
 der Medienseite eines Datensatzes: oben die letzte Prüfung je Art, darunter die
-ganze Liste.
+ganze Liste. Alle Formatprüfungen des Archivs, Tag für Tag gezählt und nach
+Ergebnis filterbar, finden Admins unter **Administration → Protokolle →
+Formatprüfung**.
 
 ### Format Policy {#regeln-fuer-dateien}
 
