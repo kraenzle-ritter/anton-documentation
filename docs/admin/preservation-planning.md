@@ -3,7 +3,7 @@
 Anton bietet ein Dashboard für die digitale Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
 empfohlene Handlungen pro Tenant.
 
-Unter **Admin → Preservation Planning** stehen vier Analyse-Bereiche.
+Unter **Admin → Preservation Planning** stehen diese Bereiche.
 
 ## MIME-Type-Verteilung
 
@@ -62,6 +62,26 @@ priorisiert, wo Massnahmen sinnvoll sind. Beispiel:
 
 Klick auf die Zeile öffnet die Liste mit Bulk-Aktionen (Migration
 anstossen, in Sammlung verschieben, etc.).
+
+## Formatprüfung {#formatpruefung}
+
+Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach
+seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und
+Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft.
+Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme,
+nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung,
+Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren,
+mit Link zum Datensatz. Was wann geprüft wurde, steht unter **Administration →
+Protokolle → Formatprüfung**.
+
+## Virenprüfung {#virenpruefung}
+
+Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit
+[`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware
+gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und
+Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht
+prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie
+Medien geworden; sie stehen im Sicherheitsprotokoll.
 
 ## Batch-Verarbeitung mit Siegfried
 

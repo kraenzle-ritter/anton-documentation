@@ -3,7 +3,7 @@
 Anton offers a dashboard for digital preservation — an overview of file formats, risks and recommended actions per
 tenant.
 
-Under **Admin → Preservation Planning** there are four areas of analysis.
+Under **Admin → Preservation Planning** there are these areas.
 
 ## MIME type distribution
 
@@ -61,6 +61,25 @@ form where measures make sense. Example:
 
 Clicking the row opens the list with bulk actions (trigger migration, move into
 a collection, etc.).
+
+## Format validation {#formatpruefung}
+
+Where the holdings stand in the [format validation](preservation.md), each
+master by its latest check: per format group (PDF, TIFF, other images, audio
+and video) invalid, valid with warnings, valid, not validated, never checked.
+Also how far the nightly run has come (latest check thorough, at ingest only,
+never), PDF risks and PDF/A claims, contradictions between extension, format
+and PRONOM ID, and the list of media invalid in their latest check, with a link
+to the record. What was checked when is under **Administration → Logs →
+Format validation**.
+
+## Virus check {#virenpruefung}
+
+For each master the result of its latest virus check, at ingest or with
+[`media:virus-scan`](console-commands.md#mediavirus-scan): malware found, not
+checkable, clean, never checked. Also the scanner and signatures of the latest
+check and the list of masters with a finding or not checkable. Files refused at
+ingest never became media; they are in the security log.
 
 ## Batch processing with Siegfried
 
