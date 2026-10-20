@@ -485,10 +485,22 @@ The `anton:import` command offers a number of options that can be useful in spec
 |--show-possible-columns   |show all possible column names|
 |--show-mapping            |show mapping for this file|
 |--show-separators         |show separators|
-|--from-ead                |import file is a xml-ead file (also use --parent and --dont-validate)|
-|--parent=                  |if import file is an ead you need a parent|
+|--from-ead                |import file is an EAD 2002 or EAD3 file (use with --parent)|
+|--parent=                  |the record the fonds goes under (id, UUID or signature)|
+|--no-ead-validation        |do not check the EAD file against its schema before the import|
+|--show-ead                 |show the rows the EAD file makes|
+|--no-ead-import            |check and show only, import nothing|
 
 Example
 ```bash
-php artisan anton:import customers/kr/ead/test_2-ead.xml --from-ead --dont-validate --create-actors --create-places --create-keywords --parent=1 --env=kr -vv --import --no-backup
+php artisan anton:import test_2-ead.xml --from-ead --create-actors --create-places --create-keywords --parent=1 --env=kr --import
 ```
+
+The file lies in `metadata_to_import`, like an Excel table. What Anton's EAD 2002
+and EAD3 exports write is read: every ISAD(G) note (as Markdown), access points
+as keywords, actors and places, languages, dates, extent, titles in other
+languages. An actor already in the archive under the same GND number is taken
+rather than created again. The file is checked against its schema before the
+import; an invalid file imports nothing. `anton:import-ead <file>` checks a file
+and shows its rows without importing.
+
