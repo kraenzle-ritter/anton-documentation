@@ -159,7 +159,7 @@ ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer For
 schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
 ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
 PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
-Verschlüsselung, JavaScript). `--oldest=N` nimmt die N am längsten nicht
+Verschlüsselung, JavaScript, Verweise nach aussen). `--oldest=N` nimmt die N am längsten nicht
 geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
 [`media:snapshot`](#mediasnapshot). `--from-cloud` wie oben. Exit 1, wenn
 ungültige Dateien gefunden wurden.

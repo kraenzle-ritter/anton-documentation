@@ -53,7 +53,8 @@ prüft Anton sie, bevor sie zum Medium wird:
 - **Format:** Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
   TIFF, andere Bilder, Ton und Video), und Endung, Format und PRONOM-ID werden
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
-  eingebettete Schriften, Verschlüsselung, JavaScript. Eine beschädigte Datei
+  eingebettete Schriften, Verschlüsselung, JavaScript, Verweise auf Programme
+  oder andere Dateien und Links ins Web. Eine beschädigte Datei
   wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
   Was das Werkzeug selbst übergeht, etwa ein fehlerhaftes Farbprofil in einem
   PDF, gilt als gültig mit Warnung.
@@ -142,9 +143,24 @@ hält die **PRONOM-ID** fest; daraus leitet es die Risikobewertung nach dem
 
 ### Formatentscheide
 
-Anton migriert keine Master in Archivformate. Ob eine Datei in ein anderes
-Format überführt wird, entscheidet das Archiv. Das Preservation Planning liefert dafür
-die Grundlage: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
+Anton migriert bei Bedarf, nicht vorsorglich. Eine Datei bleibt im Format, in
+dem sie übernommen wurde, solange sie sich mit quelloffenen Werkzeugen richtig
+darstellen oder abspielen lässt und die Nutzungskopie ohne Fehler entsteht.
+Anlass für eine Migration ist ein Fehlschlag: bei der wiederkehrenden Prüfung,
+ob sich die Datei darstellen oder dekodieren lässt
+([`media:validate-formats`](console-commands.md#mediavalidate-formats)), oder
+beim Erstellen der Nutzungskopie. Ob und wohin migriert wird, entscheidet das
+Archiv.
+
+«Richtig darstellen» prüft die Formatprüfung bei PDF über die
+Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
+Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.
+
+Normalisiert wird nur bei der Übernahme, nach den
+[Regeln für Dateien](#regeln-fuer-dateien), mit Prüfung und
+[behaltenem Original](#behaltene-originale). Originale bleiben bitgenau
+erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation
+Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
 ihnen zuweist und welche Handlung NARA empfiehlt.
 
 ### Abgabe

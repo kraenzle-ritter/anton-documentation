@@ -53,7 +53,8 @@ before it becomes a medium:
 - **Format:** Every file is checked with the tool for its format (PDF, TIFF,
   other images, audio and video), and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
-  encryption, JavaScript. A damaged file is taken in and recorded as invalid;
+  encryption, JavaScript, references to programs or other files, and links to
+  the web. A damaged file is taken in and recorded as invalid;
   on request Anton refuses it. What the tool itself gets past, such as a
   faulty colour profile in a PDF, counts as valid with a warning.
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) checks
@@ -139,10 +140,24 @@ supplied retrospectively with
 
 ### Format decisions {#formatentscheide}
 
-Anton does not migrate masters into archival formats. Whether a file is
-converted into another format is decided by the archive. Preservation planning
-provides the basis for this: it shows which formats are in the holdings, which
-risk NARA assigns to them and which action NARA recommends.
+Anton migrates when there is a need, not as a precaution. A file stays in the
+format it was taken in as long as open-source tools render or play it
+correctly and the access copy is made without errors. A migration is
+triggered by a failure: in the recurring check whether the file still renders
+or decodes ([`media:validate-formats`](console-commands.md#mediavalidate-formats)),
+or when the access copy is made. Whether and into what a file is migrated is
+decided by the archive.
+
+For PDF, the format check judges «correctly» by the preservation risks: a PDF
+without embedded fonts, for example, appears with substitute fonts and looks
+different without anyone noticing.
+
+Normalisation happens only at ingest, under the
+[file rules](#regeln-fuer-dateien), verified and with the
+[original kept](#behaltene-originale). Originals are kept bit for bit, with a
+checksum. Preservation planning is the basis for decisions: it shows which
+formats are in the holdings, which risk NARA assigns to them and which action
+NARA recommends.
 
 ### Delivery {#abgabe}
 

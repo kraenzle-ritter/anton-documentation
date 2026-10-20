@@ -156,7 +156,7 @@ with ImageMagick, audio and video with a full ffmpeg decode. A shorter form of
 the same check already runs at ingest. Every result is recorded as an event on
 the medium (valid, invalid, not checked), as are contradictions between
 extension, format and PRONOM ID and, for PDF, preservation risks (fonts not
-embedded, encryption, JavaScript). `--oldest=N` takes the N media checked
+embedded, encryption, JavaScript, references outside the file). `--oldest=N` takes the N media checked
 longest ago — so the holdings are worked through in portions at night, as with
 [`media:snapshot`](#mediasnapshot). `--from-cloud` as above. Exit 1 when
 invalid files were found.
