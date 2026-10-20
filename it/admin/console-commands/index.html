@@ -2291,10 +2291,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-62" class="md-nav__link">
+  <a href="#anton-63" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (62)
+        anton: (63)
       
     </span>
   </a>
@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -2585,7 +2585,7 @@ ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer For
 schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
 ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
 PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
-Verschlüsselung, JavaScript). <code>--oldest=N</code> nimmt die N am längsten nicht
+Verschlüsselung, JavaScript, Verweise nach aussen). <code>--oldest=N</code> nimmt die N am längsten nicht
 geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
 <a href="#mediasnapshot"><code>media:snapshot</code></a>. <code>--from-cloud</code> wie oben. Exit 1, wenn
 ungültige Dateien gefunden wurden.</p>
@@ -2598,8 +2598,11 @@ Einrichtung von clamd kam, und alte Dateien, für die es inzwischen neue
 Signaturen gibt. Er verschiebt nichts: Ein Fund wird als Ereignis am Medium
 vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
 liegen. <code>--oldest=N</code> nimmt die N am längsten nicht geprüften, nie geprüfte
-zuerst; <code>--from-cloud</code> wie oben. Exit 1 bei einem Fund, Exit 2, wenn die
-Virenprüfung aus ist oder clamd nicht antwortet.</p>
+zuerst; <code>--from-cloud</code> wie oben. Antwortet clamd für eine Datei nicht
+rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
+<code>--timeout=</code> setzt die Wartezeit für den Lauf, sonst gilt <code>CLAMD_TIMEOUT</code>.
+Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
+mehr antwortet.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
 <p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> füllt die <code>av_*</code>-Spalten (Dauer, Codec, Bitrate,
@@ -2772,7 +2775,11 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 </tr>
 <tr>
 <td><code>anton:update-release-year</code></td>
-<td>Das effektive Freigabejahr materialisieren</td>
+<td>Das effektive Jahr «Frei ab» materialisieren</td>
+</tr>
+<tr>
+<td><code>anton:access-labels</code></td>
+<td>Eigene Bezeichnungen und Hilfetexte von «Datensatz gesperrt», «Schutzfrist» und «Frei ab» neben dem Standard auflisten; <code>--adopt</code> übernimmt den Standard</td>
 </tr>
 <tr>
 <td><code>anton:merge &lt;type&gt; &lt;target_id&gt;</code></td>
@@ -2864,7 +2871,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-62">anton: (62)<a class="headerlink" href="#anton-62" title="Permanent link">&para;</a></h3>
+<h3 id="anton-63">anton: (63)<a class="headerlink" href="#anton-63" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2873,6 +2880,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>anton:access-labels</code></td>
+<td>List the archive's own labels and help texts of record lock, closure period and release year n…</td>
+</tr>
 <tr>
 <td><code>anton:add-user</code></td>
 <td>Add or update a user; a new one without --password gets an invitation to set its own password.…</td>
@@ -3215,7 +3226,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 <tr>
 <td><code>media:delete-master</code></td>
-<td>Delete Masterfiles from local media directory (eg. if the masters are in a repository)</td>
+<td>Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed</td>
 </tr>
 <tr>
 <td><code>media:extract-av-metadata</code></td>

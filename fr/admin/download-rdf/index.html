@@ -2356,7 +2356,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-rdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -2538,7 +2538,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:export-rdf<span 
 <tr>
 <td><code>--include-protected</code></td>
 <td>aus</td>
-<td>Umgeht den Datenschutzfilter: gesperrte Objekte, private Medien und interne Textfelder kommen mit. <strong>Für Migration und Backup, nicht für Publikation.</strong> Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code> — <strong>nicht</strong> bei <code>memobase</code></td>
+<td>Umgeht den Datenschutzfilter: gesperrte Datensätze, nur interne Medien und interne Textfelder kommen mit. <strong>Für Migration und Backup, nicht für Publikation.</strong> Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code> — <strong>nicht</strong> bei <code>memobase</code></td>
 </tr>
 <tr>
 <td><code>--include-originals</code></td>
@@ -2611,8 +2611,8 @@ Stichworte:</p>
   <code>rico:conditionsOfAccess</code> («Closed until 2099»), damit der Status ohne Rechnen
   lesbar ist. Fehlt das Entstehungsdatum, wird die Frist ohne Jahr ausgewiesen —
   siehe <a href="../protection-periods/">Schutzfristen</a>.</li>
-<li><strong>Privates wird gefiltert</strong>: <code>objects.private</code>, <code>media.private_media</code>,
-  <code>actors.private</code> plus private Note-Types (<code>internal_note</code>,
+<li><strong>Gesperrtes und Internes wird gefiltert</strong>: <code>objects.private</code>, <code>media.private_media</code>,
+  <code>actors.private</code> plus interne Note-Types (<code>internal_note</code>,
   <code>archivists_notes</code>, <code>comment</code>).</li>
 </ul>
 <div class="admonition warning">
@@ -2821,7 +2821,7 @@ neuen Button bis ein Admin via <code>/settings</code> (oder Tinker) die LoDs ein
 <p>Die Buttons hängen alle an synchrone Inline-Download-Routes
 (<code>/objects/{id}/download/{format}</code> mit Format <code>ead|cidoc-crm|ric|memobase</code>)
 und respektieren die <code>mayBeShown()</code>-Privacy-Logik der bestehenden
-Detail-Ansicht (private Objekte sind nur für Admins zugänglich).</p>
+Detail-Ansicht (gesperrte Datensätze sehen nur interne Rollen).</p>
 <blockquote>
 <p><strong>Hinweis zum Rename:</strong> Eine Backwards-Compat-Klasse
 <code>WordDownload extends Download</code> besteht weiterhin, damit
@@ -2835,12 +2835,11 @@ customer-spezifischen Forms sollten auf <code>download</code> umstellen.</p>
 <li>Volltext (<code>objects.full_text</code>) — gehört nicht zu den ISAD-Feldern</li>
 <li>Interne Textfelder (Notetypes <code>internal_note</code>, <code>archivists_notes</code>,
   <code>comment</code>) — werden im A+ und im Memobase-Profil gleich gefiltert</li>
-<li>Private Datensätze (<code>private = 1</code>) — Subtree-Kinder werden zwar
-  exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
-  fehlt</li>
+<li>Gesperrte Datensätze (<code>private = 1</code>) — mit ihnen der ganze Teilbaum,
+  weil sich die Sperre vererbt</li>
 </ul>
 <p>Mit <code>--include-protected</code> entfallen die beiden letzten Punkte: gesperrte
-Datensätze, private Medien und die internen Textfelder sind dann enthalten.
+Datensätze, nur interne Medien und die internen Textfelder sind dann enthalten.
 Der Volltext bleibt in jedem Fall draussen.</p>
 <h2 id="bezugspunkte">Bezugspunkte<a class="headerlink" href="#bezugspunkte" title="Permanent link">&para;</a></h2>
 <ul>

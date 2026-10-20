@@ -2373,7 +2373,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -2474,10 +2474,16 @@ prüft Anton sie, bevor sie zum Medium wird:</p>
 <li><strong>Format:</strong> Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
   TIFF, andere Bilder, Ton und Video), und Endung, Format und PRONOM-ID werden
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
-  eingebettete Schriften, Verschlüsselung, JavaScript. Eine beschädigte Datei
-  wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
-  Was das Werkzeug selbst übergeht, etwa ein fehlerhaftes Farbprofil in einem
-  PDF, gilt als gültig mit Warnung.
+  eingebettete Schriften, Verschlüsselung, JavaScript, Verweise auf Programme
+  oder andere Dateien und Links ins Web. Schriften, die nur in der
+  unsichtbaren Texterkennung eines Scans vorkommen, sind kein Risiko.
+  «Ungültig» heisst beschädigt oder nicht lesbar. Eine solche Datei wird
+  übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab. Was die
+  Datei nicht beschädigt, gilt als gültig mit Warnung: ein Fehler, über den
+  das Werkzeug hinweg darstellt (etwa ein fehlerhaftes Farbprofil oder ein
+  wiederhergestellter Querverweis), ein PDF, das sich als PDF/A ausgibt und
+  keines ist, und ein JPEG-2000-Bild, an dem nur poppler scheitert, während
+  MuPDF es darstellt.
   <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> prüft
   den Bestand regelmässig gründlicher.</li>
 </ul>
@@ -2550,9 +2556,22 @@ als Fehler. Der Reiter «Nicht identifizierte Medien» zeigt, wie vollständig
 die Erkennung im Bestand ist.</p>
 </div>
 <h3 id="formatentscheide">Formatentscheide<a class="headerlink" href="#formatentscheide" title="Permanent link">&para;</a></h3>
-<p>Anton migriert keine Master in Archivformate. Ob eine Datei in ein anderes
-Format überführt wird, entscheidet das Archiv. Das Preservation Planning liefert dafür
-die Grundlage: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
+<p>Anton migriert bei Bedarf, nicht vorsorglich. Eine Datei bleibt im Format, in
+dem sie übernommen wurde, solange sie sich mit quelloffenen Werkzeugen richtig
+darstellen oder abspielen lässt und die Nutzungskopie ohne Fehler entsteht.
+Anlass für eine Migration ist ein Fehlschlag: bei der wiederkehrenden Prüfung,
+ob sich die Datei darstellen oder dekodieren lässt
+(<a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a>), oder
+beim Erstellen der Nutzungskopie. Ob und wohin migriert wird, entscheidet das
+Archiv.</p>
+<p>«Richtig darstellen» prüft die Formatprüfung bei PDF über die
+Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
+Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.</p>
+<p>Normalisiert wird nur bei der Übernahme, nach den
+<a href="#regeln-fuer-dateien">Regeln für Dateien</a>, mit Prüfung und
+<a href="#behaltene-originale">behaltenem Original</a>. Originale bleiben bitgenau
+erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation
+Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
 ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <h3 id="abgabe">Abgabe<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="#sicherung-oder-publikation">Sicherung oder Publikation?</a> weiter unten.</p>

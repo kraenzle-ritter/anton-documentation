@@ -3141,7 +3141,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -3628,17 +3628,37 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--from-ead</td>
-<td style="text-align: left;">import file is a xml-ead file (also use --parent and --dont-validate)</td>
+<td style="text-align: left;">import file is an EAD 2002 or EAD3 file (use with --parent)</td>
 </tr>
 <tr>
 <td style="text-align: left;">--parent=</td>
-<td style="text-align: left;">if import file is an ead you need a parent</td>
+<td style="text-align: left;">the record the fonds goes under (id, UUID or signature)</td>
+</tr>
+<tr>
+<td style="text-align: left;">--no-ead-validation</td>
+<td style="text-align: left;">do not check the EAD file against its schema before the import</td>
+</tr>
+<tr>
+<td style="text-align: left;">--show-ead</td>
+<td style="text-align: left;">show the rows the EAD file makes</td>
+</tr>
+<tr>
+<td style="text-align: left;">--no-ead-import</td>
+<td style="text-align: left;">check and show only, import nothing</td>
 </tr>
 </tbody>
 </table>
 <p>Esempio
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>customers/kr/ead/test_2-ead.xml<span class="w"> </span>--from-ead<span class="w"> </span>--dont-validate<span class="w"> </span>--create-actors<span class="w"> </span>--create-places<span class="w"> </span>--create-keywords<span class="w"> </span>--parent<span class="o">=</span><span class="m">1</span><span class="w"> </span>--env<span class="o">=</span>kr<span class="w"> </span>-vv<span class="w"> </span>--import<span class="w"> </span>--no-backup
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:import<span class="w"> </span>test_2-ead.xml<span class="w"> </span>--from-ead<span class="w"> </span>--create-actors<span class="w"> </span>--create-places<span class="w"> </span>--create-keywords<span class="w"> </span>--parent<span class="o">=</span><span class="m">1</span><span class="w"> </span>--env<span class="o">=</span>kr<span class="w"> </span>--import
 </code></pre></div></p>
+<p>Il file si trova in <code>metadata_to_import</code>, come una tabella Excel. Viene letto
+ciò che scrivono gli export EAD 2002 ed EAD3 di Anton: tutte le note ISAD(G) (in
+Markdown), i punti di accesso come parole chiave, attori e luoghi, le lingue, la
+datazione, la consistenza, i titoli in altre lingue. Un attore già presente
+nell'archivio con lo stesso numero GND viene ripreso invece di essere creato di
+nuovo. Il file viene verificato rispetto al suo schema prima dell'importazione;
+un file non valido non importa nulla. <code>anton:import-ead &lt;file&gt;</code> verifica un
+file e ne mostra le righe senza importare.</p>
 
 
 

@@ -4436,7 +4436,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4618,7 +4618,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>anton:export-rdf<span 
 <tr>
 <td><code>--include-protected</code></td>
 <td>off</td>
-<td>Bypasses the data protection filter: blocked objects, private media and internal text fields come along. <strong>For migration and backup, not for publication.</strong> Takes effect with <code>a-plus</code>, <code>ric</code> and <code>a-plus-bundle</code> — <strong>not</strong> with <code>memobase</code></td>
+<td>Bypasses the data protection filter: withheld records, internal-only media and internal text fields come along. <strong>For migration and backup, not for publication.</strong> Takes effect with <code>a-plus</code>, <code>ric</code> and <code>a-plus-bundle</code> — <strong>not</strong> with <code>memobase</code></td>
 </tr>
 <tr>
 <td><code>--include-originals</code></td>
@@ -4692,14 +4692,14 @@ In outline:</p>
   that the status is readable without calculation. If the date of creation is
   missing, the period is stated without a year — see
   <a href="../protection-periods/">protection periods</a>.</li>
-<li><strong>Private material is filtered</strong>: <code>objects.private</code>, <code>media.private_media</code>,
-  <code>actors.private</code> plus private note types (<code>internal_note</code>,
+<li><strong>Withheld and internal material is filtered</strong>: <code>objects.private</code>, <code>media.private_media</code>,
+  <code>actors.private</code> plus internal note types (<code>internal_note</code>,
   <code>archivists_notes</code>, <code>comment</code>).</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">The export represents periods but does not apply them</p>
 <p>With <code>--include-protected</code> (migration/backup), the package also contains
-blocked records. The periods are then in the graph and can be evaluated
+withheld records. The periods are then in the graph and can be evaluated
 automatically, but they have to be enforced in the target system.</p>
 </div>
 <p>Full spec: <a href="https://github.com/kraenzle-ritter/anton-cidoc">https://github.com/kraenzle-ritter/anton-cidoc</a>.</p>
@@ -4899,8 +4899,8 @@ admin enters the LoDs via <code>/settings</code> (or Tinker).</p>
 </code></pre></div>
 <p>The buttons all hang off synchronous inline download routes
 (<code>/objects/{id}/download/{format}</code> with format <code>ead|cidoc-crm|ric|memobase</code>) and
-respect the <code>mayBeShown()</code> privacy logic of the existing detail view (private
-objects are accessible to admins only).</p>
+respect the <code>mayBeShown()</code> privacy logic of the existing detail view (withheld
+records are visible to internal roles only).</p>
 <blockquote>
 <p><strong>Note on the rename:</strong> a backwards-compatibility class
 <code>WordDownload extends Download</code> remains in place, so that customer-specific
@@ -4914,11 +4914,11 @@ should switch to <code>download</code>.</p>
 <li>Full text (<code>objects.full_text</code>) — not part of the ISAD fields</li>
 <li>Internal text fields (note types <code>internal_note</code>, <code>archivists_notes</code>,
   <code>comment</code>) — filtered identically in the A+ and the Memobase profile</li>
-<li>Private records (<code>private = 1</code>) — subtree children are exported, but the
-  hierarchy connection to the private parent object is missing</li>
+<li>Withheld records (<code>private = 1</code>) — and with them the whole subtree, since
+  withholding is inherited</li>
 </ul>
-<p>With <code>--include-protected</code>, the last two points no longer apply: blocked
-records, private media and the internal text fields are then included. The full
+<p>With <code>--include-protected</code>, the last two points no longer apply: withheld
+records, internal-only media and the internal text fields are then included. The full
 text stays out in every case.</p>
 <h2 id="points-of-reference">Points of reference<a class="headerlink" href="#points-of-reference" title="Permanent link">&para;</a></h2>
 <ul>

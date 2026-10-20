@@ -3605,10 +3605,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-62" class="md-nav__link">
+  <a href="#anton-63" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (62)
+        anton: (63)
       
     </span>
   </a>
@@ -4437,10 +4437,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-62" class="md-nav__link">
+  <a href="#anton-63" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (62)
+        anton: (63)
       
     </span>
   </a>
@@ -4568,7 +4568,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -4728,7 +4728,7 @@ with ImageMagick, audio and video with a full ffmpeg decode. A shorter form of
 the same check already runs at ingest. Every result is recorded as an event on
 the medium (valid, invalid, not checked), as are contradictions between
 extension, format and PRONOM ID and, for PDF, preservation risks (fonts not
-embedded, encryption, JavaScript). <code>--oldest=N</code> takes the N media checked
+embedded, encryption, JavaScript, references outside the file). <code>--oldest=N</code> takes the N media checked
 longest ago — so the holdings are worked through in portions at night, as with
 <a href="#mediasnapshot"><code>media:snapshot</code></a>. <code>--from-cloud</code> as above. Exit 1 when
 invalid files were found.</p>
@@ -4740,8 +4740,11 @@ at ingest anyway; the command reaches what came before clamd was set up, and
 old files for which there are new signatures since. It moves nothing: a finding
 is recorded as an event on the medium, written to the security log and
 reported; the file stays where it is. <code>--oldest=N</code> takes the N scanned longest
-ago, never scanned first; <code>--from-cloud</code> as above. Exit 1 on a finding, exit 2
-when the virus check is off or clamd does not answer.</p>
+ago, never scanned first; <code>--from-cloud</code> as above. If clamd does not answer in
+time for a file, it is recorded as not checked and the run goes on;
+<code>--timeout=</code> sets the wait for the run, otherwise <code>CLAMD_TIMEOUT</code> applies.
+Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
+answers.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
 <p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> fills the <code>av_*</code>
@@ -4916,7 +4919,11 @@ materialised fields in a closure table — is explained by
 </tr>
 <tr>
 <td><code>anton:update-release-year</code></td>
-<td>Materialise the effective release year</td>
+<td>Materialise the effective «Open from» year</td>
+</tr>
+<tr>
+<td><code>anton:access-labels</code></td>
+<td>List the archive's own labels and help texts of «Record withheld», «Closure period» and «Open from» next to the standard; <code>--adopt</code> takes over the standard</td>
 </tr>
 <tr>
 <td><code>anton:merge &lt;type&gt; &lt;target_id&gt;</code></td>
@@ -5005,7 +5012,7 @@ up to date with every change to the commands.</p>
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-62">anton: (62)<a class="headerlink" href="#anton-62" title="Permanent link">&para;</a></h3>
+<h3 id="anton-63">anton: (63)<a class="headerlink" href="#anton-63" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5014,6 +5021,10 @@ up to date with every change to the commands.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>anton:access-labels</code></td>
+<td>List the archive's own labels and help texts of record lock, closure period and release year n…</td>
+</tr>
 <tr>
 <td><code>anton:add-user</code></td>
 <td>Add or update a user; a new one without --password gets an invitation to set its own password.…</td>
@@ -5356,7 +5367,7 @@ up to date with every change to the commands.</p>
 </tr>
 <tr>
 <td><code>media:delete-master</code></td>
-<td>Delete Masterfiles from local media directory (eg. if the masters are in a repository)</td>
+<td>Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed</td>
 </tr>
 <tr>
 <td><code>media:extract-av-metadata</code></td>

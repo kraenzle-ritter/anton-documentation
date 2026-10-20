@@ -4336,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4812,7 +4812,7 @@ maintained together with the exporters.</p>
 </table>
 <p>² <strong>EAD</strong> outputs conditions of access and location details only as free text —
 <code>&lt;accessrestrict&gt;</code> and <code>&lt;originalsloc&gt;</code> are fed from the text fields of the same
-name, not from the «conditions of access / closure period» field or the location
+name, not from the «Closure period» field or the location
 reference. A consumer therefore receives what someone wrote down, not the
 evaluable period. <code>&lt;physloc&gt;</code> is not implemented.</p>
 <p>³ <strong>Comments</strong> are internal working notes and deliberately appear in no
@@ -4873,7 +4873,7 @@ switches that lift it out of the publication corner:</p>
 <tbody>
 <tr>
 <td><code>--include-protected</code></td>
-<td>bypasses the data protection filter — blocked objects, private media and internal text fields come along. Takes effect with <code>a-plus</code>, <code>ric</code> and <code>a-plus-bundle</code>, <strong>not</strong> with <code>memobase</code></td>
+<td>bypasses the data protection filter — withheld records, internal-only media and internal text fields come along. Takes effect with <code>a-plus</code>, <code>ric</code> and <code>a-plus-bundle</code>, <strong>not</strong> with <code>memobase</code></td>
 </tr>
 <tr>
 <td><code>--include-originals</code></td>
@@ -4981,8 +4981,8 @@ which really does contain everything.</p>
 <p>Not included, and therefore still the SQL dump: user accounts, settings, form
 definitions and the AI data.</p>
 <h2 id="privacy-filter">Privacy filter<a class="headerlink" href="#privacy-filter" title="Permanent link">&para;</a></h2>
-<p>RDF, TEI and EAD filter out private objects, actors and media as well as private
-text field types (internal archival remarks, cataloguer's information, comment).</p>
+<p>RDF, TEI and EAD filter out withheld records and actors, internal-only media as
+well as internal text field types (internal archival remarks, cataloguer's information, comment).</p>
 <p><strong>EAD</strong> always shows the public view, whoever generates the file: no locked
 descriptions or drafts, with everything below them, and no locked actors, not
 even as creators. Anton serves the file of a public fonds to anybody through

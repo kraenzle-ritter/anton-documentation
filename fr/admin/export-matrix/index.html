@@ -2306,7 +2306,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -2325,7 +2325,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>18. Oktober 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>20. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2348,7 +2348,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>EAD3</td>
 <td><code>ead3.rng</code></td>
-<td>Objekt-Baum (reduziert)</td>
+<td>Objekt-Baum ab Bestand</td>
 <td>Admin → Export</td>
 </tr>
 <tr>
@@ -2472,7 +2472,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>Verzeichnungseinheit</td>
 <td>●</td>
-<td>◐</td>
+<td>●</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -2500,7 +2500,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>Medien (Metadaten)</td>
 <td>◐</td>
-<td>○</td>
+<td>◐</td>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
@@ -2541,8 +2541,8 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td>Akteur:innen (eingebettet)</td>
-<td>◐</td>
-<td>◐</td>
+<td>●</td>
+<td>●</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -2570,7 +2570,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>Orte (eingebettet)</td>
 <td>◐</td>
-<td>○</td>
+<td>◐</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -2597,8 +2597,8 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td>Schlagwörter</td>
-<td>◐</td>
-<td>◐</td>
+<td>●</td>
+<td>●</td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
@@ -2626,7 +2626,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>Textfelder (ISAD-Felder)</td>
 <td>●</td>
-<td>○</td>
+<td>●</td>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
@@ -2668,7 +2668,7 @@ zusammen mit den Exportern gepflegt.</p>
 <tr>
 <td>Sprachen / Anzeige-Datum</td>
 <td>●</td>
-<td>◐</td>
+<td>●</td>
 <td>○</td>
 <td>●</td>
 <td>●</td>
@@ -2681,8 +2681,8 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td>Standort (physisch)</td>
-<td>○²</td>
-<td>○²</td>
+<td>◐²</td>
+<td>◐²</td>
 <td>○</td>
 <td>●</td>
 <td>○</td>
@@ -2695,8 +2695,8 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td>Schutzfrist (strukturiert)</td>
-<td>○²</td>
-<td>○²</td>
+<td>◐²</td>
+<td>◐²</td>
 <td>○</td>
 <td>●</td>
 <td>○</td>
@@ -2779,11 +2779,11 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 </tbody>
 </table>
-<p>² <strong>EAD</strong> gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
-<code>&lt;accessrestrict&gt;</code> und <code>&lt;originalsloc&gt;</code> werden aus den gleichnamigen Textfeldern
-gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
-Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
-nicht die auswertbare Frist. <code>&lt;physloc&gt;</code> ist nicht implementiert.</p>
+<p>² <strong>EAD 2002 und EAD3</strong> schreiben die Schutzfrist als Satz in <code>&lt;accessrestrict&gt;</code>,
+mit dem Jahr, ab dem die Unterlagen frei sind, neben dem Textfeld
+«Zugangsbedingungen». apeEAD lässt dafür kein eigenes, auswertbares Element zu.
+Das Textfeld «Standort (Detail)» geht als <code>&lt;physloc&gt;</code> hinaus, der Standort-Verweis
+nicht.</p>
 <p>³ <strong>Kommentare</strong> sind interne Arbeitsnotizen und erscheinen bewusst in keinem
 Publikationsformat — auch nicht im nativen Round-Trip. Sie liegen ausschliesslich
 im SQL-Dump. Das ist kein Umsetzungsstand, sondern eine Festlegung: Sie werden in
@@ -2800,8 +2800,17 @@ Nicht enthalten ist die NARA-Risikobewertung. Gilt auch für den nativen
 Round-Trip, nicht für die ZH-Variante des DIP.</p>
 <h2 id="gut-abgedeckt">Gut abgedeckt<a class="headerlink" href="#gut-abgedeckt" title="Permanent link">&para;</a></h2>
 <p><strong>Verzeichnungseinheiten</strong> sind breit unterstützt. <strong>EAD2002</strong> ist das
-vollständigste Format: Titel, Signatur, Datierung, Stufe, Umfang, Sprachen und
-sämtliche ISAD(G)-Textfelder. <strong>RDF A+</strong> typisiert dasselbe doppelt (CIDOC CRM
+vollständigste Format: Titel auch in den weiteren Sprachen, Signatur, Datierung
+mit Kommentar, Stufe, Umfang, Sprachen und Schrift, Schutzfrist und die
+ISAD(G)-Textfelder, die das Formular des Datensatzes öffentlich zeigt.
+Zugangspunkte stehen nach Typ (<code>persname</code>, <code>corpname</code>, <code>famname</code>, <code>subject</code>,
+<code>geogname</code>) mit der GND-Nummer, wo eine verknüpft ist. Digitalisate gehen als
+Webansicht und Vorschaubild hinaus, nie als Master. Jede Datei wird beim
+Schreiben gegen <code>ead.xsd</code> und <code>apeEAD.xsd</code> geprüft, auch im nächtlichen Lauf; ein
+Befund steht im Log und in der Ausgabe von <code>anton:export</code>.
+Nicht möglich sind mehrsprachige Textfelder: apeEAD erlaubt jedes Textfeld nur
+einmal und kennt keine Sprachangabe daran. Hinaus geht die Fassung in der
+Hauptsprache des Archivs. <strong>RDF A+</strong> typisiert dasselbe doppelt (CIDOC CRM
 <em>und</em> RiC-O), inklusive mehrsprachiger Titel.</p>
 <p><strong>Normdaten</strong> haben genau einen strukturierten, eigenständigen Export: die
 <strong>TEI-Normdatenlisten</strong> mit allen Namensformen, Lebensdaten, Koordinaten,
@@ -2842,7 +2851,7 @@ die ihn aus der Publikationsecke herausheben:</p>
 <tbody>
 <tr>
 <td><code>--include-protected</code></td>
-<td>umgeht den Datenschutzfilter — gesperrte Objekte, private Medien und interne Textfelder kommen mit. Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code>, <strong>nicht</strong> bei <code>memobase</code></td>
+<td>umgeht den Datenschutzfilter — gesperrte Datensätze, nur interne Medien und interne Textfelder kommen mit. Wirkt bei <code>a-plus</code>, <code>ric</code> und <code>a-plus-bundle</code>, <strong>nicht</strong> bei <code>memobase</code></td>
 </tr>
 <tr>
 <td><code>--include-originals</code></td>
@@ -2887,9 +2896,11 @@ native Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öff
 <p>Bei <em>Anton as a Service</em> erzeugt k &amp; r die CLI-Artefakte auf Anfrage; <em>on premises</em>
 laufen die Kommandos bei der betreibenden Institution.</p>
 <h2 id="format-einschrankungen-im-einzelnen">Format-Einschränkungen im Einzelnen<a class="headerlink" href="#format-einschrankungen-im-einzelnen" title="Permanent link">&para;</a></h2>
-<p><strong>EAD3</strong> ist deutlich dünner als EAD2002: keine Textfelder, keine Orte, keine
-Akteur:innen-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,
-Datierung, Urheber:innen und Schlagwörter.</p>
+<p><strong>EAD3</strong> enthält dasselbe wie EAD2002, in EAD3 geschrieben und beim Schreiben
+gegen <code>ead3.rng</code> geprüft: Umfang und Datierung strukturiert, Namen mit
+<code>@identifier</code> und <code>@source</code> des Normdatensatzes, Titel in den weiteren Sprachen
+mit <code>@lang</code>. Textfelder gehen wie in EAD2002 in der Hauptsprache hinaus. Die
+Validierungsseite prüft auch EAD3-Dateien.</p>
 <p><strong>EAD Holding Guide</strong> liefert eine flache Bestandsübersicht ohne Textfelder pro
 Knoten.</p>
 <p><strong>Memobase-RDF</strong> ist bewusst verlustbehaftet: keine Akteur:innen, Orte, Schlagwörter
@@ -2956,8 +2967,8 @@ die wirklich alles enthält.</p>
 <p>Nicht enthalten und damit weiterhin SQL-Dump: Benutzerkonten, Einstellungen,
 Formulardefinitionen und die KI-Daten.</p>
 <h2 id="datenschutz-filter">Datenschutz-Filter<a class="headerlink" href="#datenschutz-filter" title="Permanent link">&para;</a></h2>
-<p>RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
-Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
+<p>RDF, TEI und EAD filtern gesperrte Datensätze und Akteur:innen, nur interne
+Medien sowie interne Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.</p>
 <p><strong>EAD</strong> zeigt immer die öffentliche Sicht, wer die Datei auch erzeugt: keine
 gesperrten Verzeichnungen und Entwürfe samt allem, was darunter liegt, keine

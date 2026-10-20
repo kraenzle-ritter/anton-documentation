@@ -2396,6 +2396,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bezeichnungen-der-felder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bezeichnungen der Felder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#beim-andern-einer-frist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4199,6 +4210,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#bezeichnungen-der-felder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bezeichnungen der Felder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#beim-andern-einer-frist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4226,7 +4248,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/protection-periods/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4238,18 +4260,19 @@
 
 
 <h1 id="schutzfristen">Schutzfristen<a class="headerlink" href="#schutzfristen" title="Permanent link">&para;</a></h1>
-<p>Die Schutzfristen bestimmen, wann die Medien einer Verzeichnungseinheit
-öffentlich werden. Wie sie beim Erschliessen wirken, beschreibt
-<a href="../../user/access/">Zugang und Schutzfristen</a> — diese Seite behandelt die
-Einrichtung.</p>
+<p>Die Schutzfristen bestimmen, wann die Unterlagen und Medien einer
+Verzeichnungseinheit öffentlich werden; die Beschreibung bleibt sichtbar. Den
+ganzen Datensatz verbirgt nur das Feld <strong>Datensatz gesperrt</strong>. Wie beides beim
+Erschliessen wirkt, beschreibt <a href="../../user/access/">Zugang, Sperre und Schutzfrist</a>
+— diese Seite behandelt die Einrichtung.</p>
 <h2 id="wie-anton-rechnet">Wie Anton rechnet<a class="headerlink" href="#wie-anton-rechnet" title="Permanent link">&para;</a></h2>
-<p>Anton ermittelt für jeden Datensatz <strong>ein</strong> Freigabejahr und hält es
+<p>Anton ermittelt für jeden Datensatz <strong>ein</strong> Jahr «Frei ab» und hält es
 gespeichert. Katalog, Galerie und Suche lesen alle denselben Wert — es gibt
 keine zweite Rechnung an anderer Stelle. Massgeblich ist:</p>
 <ol>
-<li>Das Feld <strong>Schutzfrist bis</strong> am Datensatz. Es hat Vorrang und <strong>vererbt sich
-   nach unten</strong> an den ganzen Teilbaum.</li>
-<li>Sonst die Frist des im Feld <strong>Zugangsbestimmungen / Sperrfrist</strong> gewählten
+<li>Das Feld <strong>Frei ab</strong> am Datensatz. Es hat Vorrang und <strong>wirkt nach unten</strong>
+   auf den ganzen Teilbaum.</li>
+<li>Sonst die Frist des im Feld <strong>Schutzfrist</strong> gewählten
    Typs, gerechnet ab dem Entstehungsdatum. Typ-Fristen gelten <strong>nur für den
    Datensatz selbst</strong> und vererben sich nicht.</li>
 </ol>
@@ -4260,12 +4283,12 @@ können also nicht auseinanderlaufen.</p>
 </div>
 <h2 id="datensatze-ohne-entstehungsdatum">Datensätze ohne Entstehungsdatum<a class="headerlink" href="#datensatze-ohne-entstehungsdatum" title="Permanent link">&para;</a></h2>
 <p>Eine Typ-Frist wird ab dem <strong>Ende</strong> des Entstehungszeitraums gerechnet, also ab
-dem Feld <strong>Entstehung bis</strong>. Fehlt dieses, lässt sich das Freigabejahr nicht
-ermitteln — der Datensatz bleibt dann <strong>gesperrt</strong>, bis eine der beiden Angaben
-nachgetragen wird:</p>
+dem Feld <strong>Entstehung bis</strong>. Fehlt dieses, lässt sich das Jahr «Frei ab» nicht
+ermitteln — die Unterlagen bleiben dann <strong>geschützt</strong>, bis eine der beiden
+Angaben nachgetragen wird (die Beschreibung bleibt sichtbar):</p>
 <ul>
 <li>das <strong>Entstehungsdatum bis</strong>, oder</li>
-<li>ein <strong>Schutzfrist bis</strong> direkt am Datensatz.</li>
+<li>ein <strong>Frei ab</strong> direkt am Datensatz.</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Beide Datumsfelder ausfüllen</p>
@@ -4277,14 +4300,14 @@ Zeitraums, und Anton rät es nicht aus dem Anfang — eine 80-Jahre-Frist ab
 weiss nur das Archiv.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Wen die Sperre betrifft</p>
+<p class="admonition-title">Wen das betrifft</p>
 <p>Betroffen sind nur Datensätze, bei denen jemand tatsächlich eine Frist
-gewählt hat. Ohne gewählte Sperrfrist bleibt ein Datensatz frei, auch ohne
+gewählt hat. Ohne gewählte Schutzfrist bleibt ein Datensatz frei, auch ohne
 Entstehungsdatum.</p>
 <p>Welche Datensätze im eigenen Bestand betroffen sind, lässt sich auf
 Anfrage auswerten — bei Anton as a Service über k &amp; r. Sinnvollerweise
-trägt man die fehlenden Entstehungsdaten nach, statt die Einträge
-gesperrt zu lassen.</p>
+trägt man die fehlenden Entstehungsdaten nach, statt die Unterlagen
+geschützt zu lassen.</p>
 </div>
 <h2 id="die-typen-pflegen">Die Typen pflegen<a class="headerlink" href="#die-typen-pflegen" title="Permanent link">&para;</a></h2>
 <p>Jeder Eintrag der Werteliste trägt:</p>
@@ -4305,8 +4328,8 @@ gesperrt zu lassen.</p>
 <td>keine Frist — sofort frei</td>
 </tr>
 <tr>
-<td><strong>nie freigeben</strong></td>
-<td>dauerhaft gesperrt</td>
+<td><strong>dauernd geschützt</strong></td>
+<td>Unterlagen nie frei, Beschreibung sichtbar</td>
 </tr>
 </tbody>
 </table>
@@ -4319,14 +4342,21 @@ lassen sich umbenennen, ergänzen und in der Dauer ändern.</p>
 vorbehalten — mit der Rolle <code>admin</code> ist er nicht erreichbar. Bei Anton as a
 Service ist dafür k &amp; r zuständig.</p>
 </div>
-<p>Für Archive ohne dauerhafte Sperren ist «nie freigeben» optional; es muss nicht
-konfiguriert sein.</p>
+<p>Für Archive ohne dauernden Schutz ist «dauernd geschützt» optional; es muss
+nicht konfiguriert sein.</p>
 <h2 id="was-das-angezeigte-jahr-bedeutet">Was das angezeigte Jahr bedeutet<a class="headerlink" href="#was-das-angezeigte-jahr-bedeutet" title="Permanent link">&para;</a></h2>
-<p>Angezeigt wird das erste Jahr, in dem die Einheit <strong>frei</strong> ist. Bei Entstehung
-1990 und 30 Jahren Frist also 2021, nicht 2020.</p>
+<p>«Frei ab» ist das erste Jahr, in dem die Einheit <strong>frei</strong> ist. Bei Entstehung
+1990 und 30 Jahren Frist also 2021, nicht 2020. Bis 0.107 hiess das Feld
+«Sperrfrist bis»; der Wert war schon damals das erste freie Jahr.</p>
+<h2 id="bezeichnungen-der-felder">Bezeichnungen der Felder<a class="headerlink" href="#bezeichnungen-der-felder" title="Permanent link">&para;</a></h2>
+<p>Seit 0.108 heissen die Felder im Standard <strong>Datensatz gesperrt</strong>,
+<strong>Schutzfrist</strong> und <strong>Frei ab</strong>, mit Hilfetexten, die den Unterschied nennen.
+Hat ein Archiv eigene Bezeichnungen oder Hilfetexte gesetzt, bleiben sie beim
+Update stehen. <code>anton:access-labels</code> listet sie neben dem Standard;
+<code>anton:access-labels --adopt</code> übernimmt den Standard, wenn das Archiv es will.</p>
 <h2 id="beim-andern-einer-frist">Beim Ändern einer Frist<a class="headerlink" href="#beim-andern-einer-frist" title="Permanent link">&para;</a></h2>
 <p>Eine geänderte Dauer wirkt auf <strong>alle</strong> Datensätze dieses Typs — auch auf
-bestehende. Das Freigabejahr wird neu ermittelt, Medien können damit
+bestehende. Das Jahr «Frei ab» wird neu ermittelt, Medien können damit
 schlagartig öffentlich werden oder verschwinden. Eine Änderung an den Fristen
 ist deshalb keine Kleinigkeit und gehört geprüft, bevor sie auf einem
 produktiven Archiv landet.</p>

@@ -4470,7 +4470,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-20</span>
     </div>
   
   
@@ -4571,9 +4571,14 @@ before it becomes a medium:</p>
 <li><strong>Format:</strong> Every file is checked with the tool for its format (PDF, TIFF,
   other images, audio and video), and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
-  encryption, JavaScript. A damaged file is taken in and recorded as invalid;
-  on request Anton refuses it. What the tool itself gets past, such as a
-  faulty colour profile in a PDF, counts as valid with a warning.
+  encryption, JavaScript, references to programs or other files, and links to
+  the web. Fonts that occur only in the invisible OCR text of a scan are no
+  risk. «Invalid» means damaged or unreadable. Such a file is taken in and
+  recorded as invalid; on request Anton refuses it. What does not damage the
+  file counts as valid with a warning: an error the tool renders past (such as
+  a faulty colour profile or a reconstructed cross-reference), a PDF that
+  claims to be PDF/A and is not, and a JPEG 2000 image only poppler fails on
+  while MuPDF renders it.
   <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> checks
   the holdings more thoroughly at regular intervals.</li>
 </ul>
@@ -4644,10 +4649,22 @@ The «unidentified media» tab shows how complete the identification of the
 holdings is.</p>
 </div>
 <h3 id="formatentscheide">Format decisions<a class="headerlink" href="#formatentscheide" title="Permanent link">&para;</a></h3>
-<p>Anton does not migrate masters into archival formats. Whether a file is
-converted into another format is decided by the archive. Preservation planning
-provides the basis for this: it shows which formats are in the holdings, which
-risk NARA assigns to them and which action NARA recommends.</p>
+<p>Anton migrates when there is a need, not as a precaution. A file stays in the
+format it was taken in as long as open-source tools render or play it
+correctly and the access copy is made without errors. A migration is
+triggered by a failure: in the recurring check whether the file still renders
+or decodes (<a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a>),
+or when the access copy is made. Whether and into what a file is migrated is
+decided by the archive.</p>
+<p>For PDF, the format check judges «correctly» by the preservation risks: a PDF
+without embedded fonts, for example, appears with substitute fonts and looks
+different without anyone noticing.</p>
+<p>Normalisation happens only at ingest, under the
+<a href="#regeln-fuer-dateien">file rules</a>, verified and with the
+<a href="#behaltene-originale">original kept</a>. Originals are kept bit for bit, with a
+checksum. Preservation planning is the basis for decisions: it shows which
+formats are in the holdings, which risk NARA assigns to them and which action
+NARA recommends.</p>
 <h3 id="abgabe">Delivery<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>See <a href="#sicherung-oder-publikation">Backup or publication?</a> further down.</p>
 <h2 id="integritat-prufen">Checking integrity<a class="headerlink" href="#integritat-prufen" title="Permanent link">&para;</a></h2>

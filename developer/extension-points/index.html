@@ -4246,7 +4246,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/developer/extension-points/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4312,7 +4312,9 @@ auch in <code>CLAUDE.md</code>.</p>
 <code>config/conversions.php</code>. Für Abweichendes lässt sich ein <strong>eigenes
 Konversionsskript</strong> hinterlegen: <code>media:conversions --conversion-script=…</code> liest
 es aus dem <code>scripts/</code>-Verzeichnis des Mandanten (<code>customers/{slug}/scripts/</code>).
-Damit kann ein Archiv etwa eine Normalisierung fahren, die der Kern nicht kennt.</p>
+Damit kann ein Archiv etwa eine Normalisierung fahren, die der Kern nicht kennt.
+Das Skript bekommt den Master in <code>media/</code>; liegt er nur in der Cloud, läuft es
+für dieses Medium nicht.</p>
 <h2 id="formulare-und-wertelisten">Formulare und Wertelisten<a class="headerlink" href="#formulare-und-wertelisten" title="Permanent link">&para;</a></h2>
 <p>Kein Code, sondern Daten — aber die wichtigste «Erweiterung» überhaupt: Felder,
 Formularsätze und Wertelisten macht ein Archiv über die Oberfläche oder über

@@ -4246,7 +4246,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/developer/extension-points/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4310,7 +4310,9 @@ archives decide on that basis what counts as a backup. The rule is also in
 <code>config/conversions.php</code>. For anything different, a <strong>custom conversion script</strong>
 can be stored: <code>media:conversions --conversion-script=…</code> reads it from the
 tenant's <code>scripts/</code> directory (<code>customers/{slug}/scripts/</code>). This allows an
-archive to run a normalisation that the core does not know about.</p>
+archive to run a normalisation that the core does not know about. The script
+is given the master in <code>media/</code>; for a medium whose master is only in the cloud
+it does not run.</p>
 <h2 id="forms-and-value-lists">Forms and value lists<a class="headerlink" href="#forms-and-value-lists" title="Permanent link">&para;</a></h2>
 <p>Not code but data — and yet the most important «extension» of all: fields, form
 sets and value lists are created by an archive via the interface or via seeders.

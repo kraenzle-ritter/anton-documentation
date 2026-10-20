@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#access-and-protection-periods" class="md-skip">
+        <a href="#access-withholding-and-closure-periods" class="md-skip">
           Skip to content
         </a>
       
@@ -1119,10 +1119,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protection-periods" class="md-nav__link">
+  <a href="#withholding-and-closure-periods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Protection periods
+        Withholding and closure periods
       
     </span>
   </a>
@@ -1130,10 +1130,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocking-indefinitely" class="md-nav__link">
+  <a href="#record-withheld" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Blocking indefinitely
+        Record withheld
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closure-period" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Closure period
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-media-internal-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single media: internal only
       
     </span>
   </a>
@@ -4164,10 +4186,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protection-periods" class="md-nav__link">
+  <a href="#withholding-and-closure-periods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Protection periods
+        Withholding and closure periods
       
     </span>
   </a>
@@ -4175,10 +4197,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocking-indefinitely" class="md-nav__link">
+  <a href="#record-withheld" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Blocking indefinitely
+        Record withheld
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closure-period" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Closure period
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-media-internal-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single media: internal only
       
     </span>
   </a>
@@ -4224,7 +4268,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/access/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/access/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/access/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-19</span>
     </div>
   
   
@@ -4235,30 +4279,75 @@
   
 
 
-<h1 id="access-and-protection-periods">Access and protection periods<a class="headerlink" href="#access-and-protection-periods" title="Permanent link">&para;</a></h1>
+<h1 id="access-withholding-and-closure-periods">Access, withholding and closure periods<a class="headerlink" href="#access-withholding-and-closure-periods" title="Permanent link">&para;</a></h1>
 <p>Anton regulates access at three levels: via the person's role, via the setting
-of whether the archive is public at all, and via protection periods on the
-individual record.</p>
+of whether the archive is public at all, and on the individual record via two
+separate things — <strong>withholding</strong> the record and the <strong>closure period</strong>.</p>
 <h2 id="is-the-archive-public">Is the archive public?<a class="headerlink" href="#is-the-archive-public" title="Permanent link">&para;</a></h2>
 <p>The <strong>public_access</strong> setting determines whether outsiders can see the
 catalogue. If it is switched off, the database is only open to logged-in
 persons. If it is switched on, the catalogue is public — what individual records
-show is then governed by the protection periods.</p>
+show is then governed by withholding and closure periods.</p>
 <p>What each role is allowed to do is set out in
 <a href="../#roles">Getting started</a>.</p>
-<h2 id="protection-periods">Protection periods<a class="headerlink" href="#protection-periods" title="Permanent link">&para;</a></h2>
-<p>If a unit of description is still subject to a protection period, the record
-remains visible, but the images and documents do not.</p>
-<p>Anton calculates <strong>one</strong> release year for each record. Decisive is:</p>
+<h2 id="withholding-and-closure-periods">Withholding and closure periods<a class="headerlink" href="#withholding-and-closure-periods" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>The <strong>closure period</strong> protects the material; the record stays findable.
+<strong>Withholding</strong> hides the whole record, its description included.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Record withheld</th>
+<th>Closure period</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description (title, dates, cataloguing)</td>
+<td>hidden</td>
+<td>visible and searchable</td>
+</tr>
+<tr>
+<td>Images and documents</td>
+<td>hidden</td>
+<td>only from «Open from»</td>
+</tr>
+<tr>
+<td>Subordinate units</td>
+<td>always withheld too</td>
+<td>type: no; «Open from» set by hand: yes</td>
+</tr>
+<tr>
+<td>Limited in time</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Both stay visible to internal users, editors and the administration. An archive
+may have renamed the fields; since Anton 0.108 the standard names are the ones
+used here.</p>
+<h2 id="record-withheld">Record withheld<a class="headerlink" href="#record-withheld" title="Permanent link">&para;</a></h2>
+<p>The <strong>Record withheld</strong> field hides the whole record from the public:
+description, media and all subordinate units. It appears neither in the search
+nor through interfaces (API, OAI, sitemap). Withholding is always inherited
+downwards — below a withheld record there is no public one.</p>
+<h2 id="closure-period">Closure period<a class="headerlink" href="#closure-period" title="Permanent link">&para;</a></h2>
+<p>The closure period protects only the material and digital copies: if a unit of
+description is still subject to a closure period, the record remains visible
+and searchable, but the images and documents do not.</p>
+<p>Anton calculates for each record <strong>one</strong> year from which it is open. Decisive
+is:</p>
 <ol>
-<li><strong>The «protected until» field</strong> (release year). This value takes precedence
-   and <strong>is inherited down the tree</strong> by all subordinate units.</li>
-<li><strong>Otherwise the protection period of the chosen type</strong>, counted from the date
-   of creation. Type protection periods apply <strong>only to the record itself</strong> and
+<li><strong>The «Open from» field.</strong> This value takes precedence and <strong>applies down
+   the tree</strong> to all subordinate units.</li>
+<li><strong>Otherwise the closure period of the chosen type</strong>, counted from the date
+   of creation. Type closure periods apply <strong>only to the record itself</strong> and
    are not inherited.</li>
 </ol>
-<p>The <strong>conditions of access / closure period</strong> field selects the type. Three are
-provided by default:</p>
+<p>The <strong>Closure period</strong> field selects the type. Three are provided by default:</p>
 <table>
 <thead>
 <tr>
@@ -4269,31 +4358,31 @@ provided by default:</p>
 <tbody>
 <tr>
 <td>public</td>
-<td>none — immediately free</td>
+<td>none — open at once</td>
 </tr>
 <tr>
-<td>standard protection period</td>
+<td>standard closure period</td>
 <td>30 years</td>
 </tr>
 <tr>
-<td>extended protection period</td>
+<td>extended closure period</td>
 <td>70 years</td>
 </tr>
 </tbody>
 </table>
 <p>The periods are configurable per archive: types can be renamed, added and
-changed in duration; «never release» is also possible. Maintenance is reserved
-for superusers; with Anton as a Service, k &amp; r is responsible for it.</p>
+changed in duration; «closed permanently» is also possible. Maintenance is
+reserved for superusers; with Anton as a Service, k &amp; r is responsible for it.</p>
 <div class="admonition note">
-<p class="admonition-title">The release year displayed</p>
-<p>What is displayed is the first year in which the unit is <strong>free</strong> — with
-creation in 1990 and a 30-year period, therefore 2021, not 2020.</p>
+<p class="admonition-title">«Open from» is the first open year</p>
+<p>With creation in 1990 and a 30-year period it reads 2021: from 2021 the
+material is open. Until 0.107 the field was called «Closure period until» —
+the value has always been the first open year.</p>
 </div>
-<h2 id="blocking-indefinitely">Blocking indefinitely<a class="headerlink" href="#blocking-indefinitely" title="Permanent link">&para;</a></h2>
-<p><strong>Individual media</strong> can be blocked indefinitely in the edit form.</p>
-<p><strong>Whole records</strong> are blocked by the <strong>blocked</strong> field. It affects the record,
-all subordinate units and their media; they remain visible only to internal
-users, editors and the administration.</p>
+<h2 id="single-media-internal-only">Single media: internal only<a class="headerlink" href="#single-media-internal-only" title="Permanent link">&para;</a></h2>
+<p><strong>Single media</strong> can be set to <strong>internal only</strong> in the edit form. This holds
+without a time limit and only for that medium; the record and its other media
+stay as they are.</p>
 <h2 id="releasing-individual-areas">Releasing individual areas<a class="headerlink" href="#releasing-individual-areas" title="Permanent link">&para;</a></h2>
 <p>A person with the user role can be granted access to particular branches. To do
 so, the IDs of the records are entered in the user administration as a
