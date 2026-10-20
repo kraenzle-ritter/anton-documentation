@@ -172,6 +172,14 @@ den Ereignissen des Mediums. `--dry-run` zeigt vorher, was ginge.
 geprüfte Kopie (MD5 bzw. SHA-512) und räumt sie danach weg; er landet nicht
 mehr in `media/`. Stimmt die Prüfsumme nicht, wird das Medium übersprungen.
 
+Ebenso lesen die KI-Katalogisierung, der PDF- und der Word-Export einen Master
+aus DIMAG als geprüfte Kopie, die danach wieder geht. Kann der Export ein PDF
+oder Bild nicht lesen, bricht er ab, statt es wegzulassen. `media:identify`,
+`media:validate-formats`, `media:validate-pdfs`, `media:virus-scan`,
+`media:extract-av-metadata` und `media:count-pdf-pages` holen Master aus DIMAG
+nur mit `--from-cloud`, wegen der Last auf Inge; ohne die Option lassen sie
+solche Master aus.
+
 ### Fehlersuche
 
 #### Die SIP-Import-Daten prüfen

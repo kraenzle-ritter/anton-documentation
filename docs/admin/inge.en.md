@@ -172,6 +172,14 @@ medium's events. `--dry-run` shows beforehand what would go.
 (MD5 or SHA-512) for the run and removes it afterwards; it no longer ends up in
 `media/`. If the checksum does not match, the medium is skipped.
 
+AI cataloging, the PDF export and the Word export read a master from DIMAG the
+same way, as a checked copy that goes again afterwards. If the export cannot
+read a PDF or image, it stops rather than leaving it out. `media:identify`,
+`media:validate-formats`, `media:validate-pdfs`, `media:virus-scan`,
+`media:extract-av-metadata` and `media:count-pdf-pages` fetch masters from
+DIMAG only with `--from-cloud`, because of the load on Inge; without it they
+leave such masters out.
+
 ### Debugging
 
 #### Checking the SIP import data
