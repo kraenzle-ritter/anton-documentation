@@ -16,7 +16,7 @@ andere sind Publikations- und Austauschsichten.**
 | Format | Standard | Umfang | Einstieg |
 |---|---|---|---|
 | EAD 2002 | apeEAD (`ead.xsd` + `apeEAD.xsd`) | Objekt-Baum ab Bestand | Admin → Export |
-| EAD3 | `ead3.rng` | Objekt-Baum (reduziert) | Admin → Export |
+| EAD3 | `ead3.rng` | Objekt-Baum ab Bestand | Admin → Export |
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
 | TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
@@ -40,34 +40,34 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 
 | Entität | EAD2002 | EAD3 | TEI | RDF A+ | RiC | Memobase | DC | DIP/OCFL | Excel voll | Excel Update | SQL-Dump |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Verzeichnungseinheit | ● | ◐ | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Verzeichnungseinheit | ● | ● | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
 | Hierarchie | ● | ● | ○ | ● | ● | ● | ◐ | ● | ◐ | ○ | ● |
-| Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
+| Medien (Metadaten) | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
 | Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ | ○ |
 | Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Akteur:innen (eingebettet) | ● | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Akteur:innen (eingebettet) | ● | ● | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Orte (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Schlagwörter | ● | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Schlagwörter | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
-| Textfelder (ISAD-Felder) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
+| Textfelder (ISAD-Felder) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
-| Standort (physisch) | ◐² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
-| Schutzfrist (strukturiert) | ◐² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Sprachen / Anzeige-Datum | ● | ● | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
+| Standort (physisch) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Schutzfrist (strukturiert) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Kommentare (intern) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ●³ |
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
-² **EAD 2002** schreibt die Schutzfrist als Satz in `<accessrestrict>`, mit dem
-Jahr, ab dem die Unterlagen frei sind, neben dem Textfeld «Zugangsbedingungen».
-apeEAD lässt dafür kein eigenes, auswertbares Element zu. Das Textfeld «Standort
-(Detail)» geht als `<physloc>` hinaus, der Standort-Verweis nicht. **EAD3** gibt
-beides noch nicht aus.
+² **EAD 2002 und EAD3** schreiben die Schutzfrist als Satz in `<accessrestrict>`,
+mit dem Jahr, ab dem die Unterlagen frei sind, neben dem Textfeld
+«Zugangsbedingungen». apeEAD lässt dafür kein eigenes, auswertbares Element zu.
+Das Textfeld «Standort (Detail)» geht als `<physloc>` hinaus, der Standort-Verweis
+nicht.
 
 ³ **Kommentare** sind interne Arbeitsnotizen und erscheinen bewusst in keinem
 Publikationsformat — auch nicht im nativen Round-Trip. Sie liegen ausschliesslich
@@ -165,9 +165,11 @@ laufen die Kommandos bei der betreibenden Institution.
 
 ## Format-Einschränkungen im Einzelnen
 
-**EAD3** ist deutlich dünner als EAD2002: keine Textfelder, keine Orte, keine
-Akteur:innen-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,
-Datierung, Urheber:innen und Schlagwörter.
+**EAD3** enthält dasselbe wie EAD2002, in EAD3 geschrieben und beim Schreiben
+gegen `ead3.rng` geprüft: Umfang und Datierung strukturiert, Namen mit
+`@identifier` und `@source` des Normdatensatzes, Titel in den weiteren Sprachen
+mit `@lang`. Textfelder gehen wie in EAD2002 in der Hauptsprache hinaus. Die
+Validierungsseite prüft auch EAD3-Dateien.
 
 **EAD Holding Guide** liefert eine flache Bestandsübersicht ohne Textfelder pro
 Knoten.
