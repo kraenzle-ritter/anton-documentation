@@ -54,9 +54,13 @@ before it becomes a medium:
   other images, audio and video), and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
   encryption, JavaScript, references to programs or other files, and links to
-  the web. A damaged file is taken in and recorded as invalid;
-  on request Anton refuses it. What the tool itself gets past, such as a
-  faulty colour profile in a PDF, counts as valid with a warning.
+  the web. Fonts that occur only in the invisible OCR text of a scan are no
+  risk. «Invalid» means damaged or unreadable. Such a file is taken in and
+  recorded as invalid; on request Anton refuses it. What does not damage the
+  file counts as valid with a warning: an error the tool renders past (such as
+  a faulty colour profile or a reconstructed cross-reference), a PDF that
+  claims to be PDF/A and is not, and a JPEG 2000 image only poppler fails on
+  while MuPDF renders it.
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) checks
   the holdings more thoroughly at regular intervals.
 

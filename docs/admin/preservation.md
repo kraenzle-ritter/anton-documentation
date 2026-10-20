@@ -54,10 +54,15 @@ prüft Anton sie, bevor sie zum Medium wird:
   TIFF, andere Bilder, Ton und Video), und Endung, Format und PRONOM-ID werden
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
   eingebettete Schriften, Verschlüsselung, JavaScript, Verweise auf Programme
-  oder andere Dateien und Links ins Web. Eine beschädigte Datei
-  wird übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab.
-  Was das Werkzeug selbst übergeht, etwa ein fehlerhaftes Farbprofil in einem
-  PDF, gilt als gültig mit Warnung.
+  oder andere Dateien und Links ins Web. Schriften, die nur in der
+  unsichtbaren Texterkennung eines Scans vorkommen, sind kein Risiko.
+  «Ungültig» heisst beschädigt oder nicht lesbar. Eine solche Datei wird
+  übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab. Was die
+  Datei nicht beschädigt, gilt als gültig mit Warnung: ein Fehler, über den
+  das Werkzeug hinweg darstellt (etwa ein fehlerhaftes Farbprofil oder ein
+  wiederhergestellter Querverweis), ein PDF, das sich als PDF/A ausgibt und
+  keines ist, und ein JPEG-2000-Bild, an dem nur poppler scheitert, während
+  MuPDF es darstellt.
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) prüft
   den Bestand regelmässig gründlicher.
 
