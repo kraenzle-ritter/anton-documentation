@@ -171,8 +171,11 @@ at ingest anyway; the command reaches what came before clamd was set up, and
 old files for which there are new signatures since. It moves nothing: a finding
 is recorded as an event on the medium, written to the security log and
 reported; the file stays where it is. `--oldest=N` takes the N scanned longest
-ago, never scanned first; `--from-cloud` as above. Exit 1 on a finding, exit 2
-when the virus check is off or clamd does not answer.
+ago, never scanned first; `--from-cloud` as above. If clamd does not answer in
+time for a file, it is recorded as not checked and the run goes on;
+`--timeout=` sets the wait for the run, otherwise `CLAMD_TIMEOUT` applies.
+Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
+answers.
 
 ```bash
 php artisan media:virus-scan --env=besenval --oldest=500
