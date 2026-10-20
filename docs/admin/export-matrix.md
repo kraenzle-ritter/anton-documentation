@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **18. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **20. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -45,29 +45,29 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
 | Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ | ○ |
 | Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Akteur:innen (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Akteur:innen (eingebettet) | ● | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Schlagwörter | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Schlagwörter | ● | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
 | Textfelder (ISAD-Felder) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
-| Standort (physisch) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
-| Schutzfrist (strukturiert) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Standort (physisch) | ◐² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Schutzfrist (strukturiert) | ◐² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Kommentare (intern) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ●³ |
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
-² **EAD** gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
-`<accessrestrict>` und `<originalsloc>` werden aus den gleichnamigen Textfeldern
-gespeist, nicht aus dem Feld «Schutzfrist» oder dem
-Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
-nicht die auswertbare Frist. `<physloc>` ist nicht implementiert.
+² **EAD 2002** schreibt die Schutzfrist als Satz in `<accessrestrict>`, mit dem
+Jahr, ab dem die Unterlagen frei sind, neben dem Textfeld «Zugangsbedingungen».
+apeEAD lässt dafür kein eigenes, auswertbares Element zu. Das Textfeld «Standort
+(Detail)» geht als `<physloc>` hinaus, der Standort-Verweis nicht. **EAD3** gibt
+beides noch nicht aus.
 
 ³ **Kommentare** sind interne Arbeitsnotizen und erscheinen bewusst in keinem
 Publikationsformat — auch nicht im nativen Round-Trip. Sie liegen ausschliesslich
@@ -89,8 +89,17 @@ Round-Trip, nicht für die ZH-Variante des DIP.
 ## Gut abgedeckt
 
 **Verzeichnungseinheiten** sind breit unterstützt. **EAD2002** ist das
-vollständigste Format: Titel, Signatur, Datierung, Stufe, Umfang, Sprachen und
-sämtliche ISAD(G)-Textfelder. **RDF A+** typisiert dasselbe doppelt (CIDOC CRM
+vollständigste Format: Titel auch in den weiteren Sprachen, Signatur, Datierung
+mit Kommentar, Stufe, Umfang, Sprachen und Schrift, Schutzfrist und die
+ISAD(G)-Textfelder, die das Formular des Datensatzes öffentlich zeigt.
+Zugangspunkte stehen nach Typ (`persname`, `corpname`, `famname`, `subject`,
+`geogname`) mit der GND-Nummer, wo eine verknüpft ist. Digitalisate gehen als
+Webansicht und Vorschaubild hinaus, nie als Master. Jede Datei wird beim
+Schreiben gegen `ead.xsd` und `apeEAD.xsd` geprüft, auch im nächtlichen Lauf; ein
+Befund steht im Log und in der Ausgabe von `anton:export`.
+Nicht möglich sind mehrsprachige Textfelder: apeEAD erlaubt jedes Textfeld nur
+einmal und kennt keine Sprachangabe daran. Hinaus geht die Fassung in der
+Hauptsprache des Archivs. **RDF A+** typisiert dasselbe doppelt (CIDOC CRM
 *und* RiC-O), inklusive mehrsprachiger Titel.
 
 **Normdaten** haben genau einen strukturierten, eigenständigen Export: die
