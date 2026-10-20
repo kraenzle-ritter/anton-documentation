@@ -176,9 +176,9 @@ Ebenso lesen die KI-Katalogisierung, der PDF- und der Word-Export einen Master
 aus DIMAG als geprüfte Kopie, die danach wieder geht. Kann der Export ein PDF
 oder Bild nicht lesen, bricht er ab, statt es wegzulassen. `media:identify`,
 `media:validate-formats`, `media:validate-pdfs`, `media:virus-scan`,
-`media:extract-av-metadata` und `media:count-pdf-pages` holen Master aus DIMAG
-nur mit `--from-cloud`, wegen der Last auf Inge; ohne die Option lassen sie
-solche Master aus.
+`media:extract-av-metadata`, `media:count-pdf-pages`, `media:checksum`,
+`media:size` und `validate:mp4` holen Master aus DIMAG nur mit `--from-cloud`,
+wegen der Last auf Inge; ohne die Option lassen sie solche Master aus.
 
 ### Fehlersuche
 
