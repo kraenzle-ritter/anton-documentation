@@ -64,9 +64,9 @@ eine neue Signatur. Medien werden nicht mitkopiert.
 
 ## Löschen
 
-Die Taste **Löschen** öffnet das Fenster «Datensatz löschen» mit der Rückfrage
-«Diesen Datensatz wirklich löschen?». Zur Bestätigung ist das **eigene Passwort**
-einzugeben.
+Die Taste **Löschen** öffnet das Fenster «Datensatz löschen» mit der Rückfrage «Diesen Datensatz wirklich löschen?». Zur Bestätigung ist das **eigene Passwort** einzugeben.
+
+Im Feld **Grund der Löschung** lässt sich festhalten, warum der Datensatz gelöscht wird und auf wessen Entscheid, etwa «Kassation nach Entscheid vom …» oder «Dublette von …». Das Feld ist freiwillig. Der Grund bleibt mit Signatur, Titel, Textfeldern und den Prüfsummen der Medien im Bestandsprotokoll (**Administration → Protokolle**), auch wenn der Datensatz gelöscht ist.
 
 !!! danger "Löschen ist endgültig"
     Anton führt keinen Papierkorb. Gelöscht werden der Datensatz, alle
