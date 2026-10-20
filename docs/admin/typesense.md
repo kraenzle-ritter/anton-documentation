@@ -76,7 +76,7 @@ Admin-Oberfläche.
     einmalig neu aufgesetzt werden:
     `typesense:setup --fresh --force` gefolgt von den Index-Befehlen.
 
-Die zeitabhängigen Sperrfrist-Freigaben (welche PDF-Inhalte öffentlich
+Die zeitabhängigen Freigaben nach Schutzfrist (welche PDF-Inhalte öffentlich
 durchsuchbar sind) werden automatisch zum Jahreswechsel neu berechnet —
 kein manueller Eingriff nötig.
 
@@ -121,6 +121,6 @@ Die übrigen `gallery_*`-Einstellungen siehe [Mediengalerie](gallery.md).
 Die Zugriffsbeschränkungen sind in die Suche eingebaut: anonyme,
 angemeldete und interne Nutzer:innen sehen jeweils genau das, was sie
 auch sonst sehen dürfen. Der PDF-/Medien-Volltext respektiert die
-**Sperrfrist** — embargierte Inhalte erscheinen nie in der öffentlichen
+**Schutzfrist** — geschützte Inhalte erscheinen nie in der öffentlichen
 Suche, auch wenn die Metadaten treffen. Die Galerie reproduziert exakt
 die Sichtbarkeitsregeln der klassischen Galerie.

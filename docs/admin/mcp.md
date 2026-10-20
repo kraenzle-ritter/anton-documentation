@@ -48,7 +48,7 @@ daneben:
   zeigt, gibt auch die Schnittstelle aus.
 - Dokumente und deren Volltext nur bei abgelaufener
   [Schutzfrist](protection-periods.md) und nicht unbefristet gesperrten Medien.
-- Keine privaten Akteur:innen.
+- Keine gesperrten Akteur:innen.
 
 Ein Konto hilft nicht weiter: Auch eine angemeldete Mitarbeiterin sieht über die
 Schnittstelle nur die öffentliche Sicht. Zugriff auf interne Bestände über ein

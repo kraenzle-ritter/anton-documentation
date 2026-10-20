@@ -66,6 +66,6 @@ la recherche avec ses filtres.
 ## Visibilité
 
 Comme dans la recherche classique, vous ne voyez que ce que vous êtes autorisé·e
-à voir. Les contenus de PDF bloqués (sous embargo) n'apparaissent pas dans la
-recherche publique, même si les données descriptives correspondent au terme
-recherché.
+à voir. Les contenus de PDF soumis à un délai de communicabilité n'apparaissent
+pas dans la recherche publique, même si les données descriptives correspondent
+au terme recherché ; les notices non publiées n'apparaissent pas du tout.

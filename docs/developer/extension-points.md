@@ -65,6 +65,8 @@ Die Standard-Konversionen (`web`, `thumb`, `poster`) stehen in
 Konversionsskript** hinterlegen: `media:conversions --conversion-script=…` liest
 es aus dem `scripts/`-Verzeichnis des Mandanten (`customers/{slug}/scripts/`).
 Damit kann ein Archiv etwa eine Normalisierung fahren, die der Kern nicht kennt.
+Das Skript bekommt den Master in `media/`; liegt er nur in der Cloud, läuft es
+für dieses Medium nicht.
 
 ## Formulare und Wertelisten
 

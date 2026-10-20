@@ -45,7 +45,7 @@ as for guests in the browser, with no separate permission check alongside it:
 - Documents and their full text only once the
   [protection period](protection-periods.md) has expired and the media are not
   blocked indefinitely.
-- No private actors.
+- No withheld actors.
 
 An account makes no difference: a logged-in staff member also sees only the
 public view through the interface. Access to internal holdings through an

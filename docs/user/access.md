@@ -1,35 +1,58 @@
-# Zugang und Schutzfristen
+# Zugang, Sperre und Schutzfrist
 
 Anton regelt den Zugang auf drei Ebenen: über die Rolle der Person, über die
-Einstellung, ob das Archiv überhaupt öffentlich ist, und über Schutzfristen am
-einzelnen Datensatz.
+Einstellung, ob das Archiv überhaupt öffentlich ist, und am einzelnen Datensatz
+über zwei getrennte Dinge — die **Sperre** und die **Schutzfrist**.
 
 ## Ist das Archiv öffentlich?
 
 Die Einstellung **public_access** entscheidet, ob Aussenstehende den Katalog
 sehen. Ist sie ausgeschaltet, steht die Datenbank nur angemeldeten Personen
 offen. Ist sie eingeschaltet, ist der Katalog öffentlich — was einzelne
-Datensätze zeigen, regeln dann die Schutzfristen.
+Datensätze zeigen, regeln dann Sperre und Schutzfrist.
 
 Welche Rolle was darf, steht im [Einstieg](index.md#rollen).
 
-## Schutzfristen
+## Sperre und Schutzfrist
 
-Schutzfristen sperren nur die Archivalien und Digitalisate: Unterliegt eine
-Verzeichnungseinheit noch einer Schutzfrist, bleibt der Datensatz sichtbar, die
-Bilder und Dokumente jedoch nicht. Den ganzen Datensatz sperrt das Feld
-**Datensatz gesperrt** (siehe [unten](#unbefristet-sperren)).
+> Die **Schutzfrist** schützt die Unterlagen, der Datensatz bleibt auffindbar.
+> Die **Sperre** verbirgt den ganzen Datensatz, auch seine Beschreibung.
 
-Anton rechnet für jeden Datensatz **ein** Freigabejahr aus. Massgeblich ist:
+| | Datensatz gesperrt | Schutzfrist |
+|---|---|---|
+| Beschreibung (Titel, Daten, Verzeichnung) | unsichtbar | sichtbar und auffindbar |
+| Bilder und Dokumente | unsichtbar | erst ab «Frei ab» |
+| untergeordnete Einheiten | immer mitgesperrt | Typ: nein; «Frei ab» von Hand: ja |
+| zeitlich begrenzt | nein | ja |
 
-1. **Das Feld «Schutzfrist bis»** (Freigabejahr). Dieser Wert hat Vorrang und
-   **vererbt sich im Baum nach unten** an alle untergeordneten Einheiten.
+Sichtbar bleibt beides für interne Benutzer:innen, Bearbeitende und die
+Administration. Ein Archiv kann die Felder umbenannt haben; seit Anton 0.108
+heissen sie im Standard so wie hier.
+
+## Datensatz gesperrt
+
+Das Feld **Datensatz gesperrt** verbirgt den ganzen Datensatz vor der
+Öffentlichkeit: Beschreibung, Medien und alle untergeordneten Einheiten. Er
+erscheint weder in der Suche noch über Schnittstellen (API, OAI, Sitemap). Die
+Sperre vererbt sich immer nach unten — unter einem gesperrten Datensatz gibt es
+keinen öffentlichen.
+
+## Schutzfrist
+
+Die Schutzfrist schützt nur die Unterlagen und Digitalisate: Unterliegt eine
+Verzeichnungseinheit noch einer Schutzfrist, bleibt der Datensatz sichtbar und
+auffindbar, die Bilder und Dokumente jedoch nicht.
+
+Anton rechnet für jeden Datensatz **ein** Jahr aus, ab dem er frei ist.
+Massgeblich ist:
+
+1. **Das Feld «Frei ab».** Dieser Wert hat Vorrang und **wirkt im Baum nach
+   unten** auf alle untergeordneten Einheiten.
 2. **Sonst die Schutzfrist des gewählten Typs**, gerechnet ab dem
    Entstehungsdatum. Typ-Schutzfristen gelten **nur für den Datensatz selbst**
    und vererben sich nicht.
 
-Das Feld **Zugangsbestimmungen / Sperrfrist** wählt den Typ. Im Standard sind
-drei hinterlegt:
+Das Feld **Schutzfrist** wählt den Typ. Im Standard sind drei hinterlegt:
 
 | Typ | Frist |
 |---|---|
@@ -38,22 +61,20 @@ drei hinterlegt:
 | verlängerte Schutzfrist | 70 Jahre |
 
 Die Fristen sind pro Archiv konfigurierbar: Typen lassen sich umbenennen,
-ergänzen und in der Dauer ändern; ebenso ist «nie freigeben» möglich. Die
+ergänzen und in der Dauer ändern; ebenso ist «dauernd geschützt» möglich. Die
 Pflege ist Superusern vorbehalten; bei Anton as a Service ist dafür k & r
 zuständig.
 
-!!! note "Das angezeigte Freigabejahr"
-    Angezeigt wird das erste Jahr, in dem die Einheit **frei** ist — bei
-    Entstehung 1990 und 30 Jahren Frist also 2021, nicht 2020.
+!!! note "«Frei ab» ist das erste freie Jahr"
+    Bei Entstehung 1990 und 30 Jahren Frist steht dort 2021: ab 2021 sind die
+    Unterlagen frei. Bis 0.107 hiess das Feld «Sperrfrist bis» oder «Schutzfrist bis» — der Wert war
+    schon immer das erste freie Jahr.
 
-## Unbefristet sperren
+## Einzelne Medien: nur intern
 
-**Einzelne Medien** lassen sich in der Bearbeitungsmaske unbefristet sperren.
-
-**Ganze Datensätze** sperrt das Feld **Datensatz gesperrt** (bis 0.99
-«Gesperrt»; ein Archiv kann es umbenannt haben). Es wirkt auf den Datensatz,
-alle untergeordneten Einheiten und deren Medien; sichtbar bleiben sie nur für
-interne Benutzer:innen, Bearbeitende und die Administration.
+**Einzelne Medien** lassen sich in der Bearbeitungsmaske auf **nur intern**
+setzen. Das gilt ohne Frist und nur für dieses Medium; Datensatz und übrige
+Medien bleiben, wie sie sind.
 
 ## Einzelne Bereiche freigeben
 

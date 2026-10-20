@@ -19,9 +19,9 @@ Pro Archivobjekt werden für die Suche zusammengefasst:
 !!! note "Erweiterte Sicht für interne Bearbeitende"
     Für angemeldete Benutzer:innen ab der Rolle `user_intern` werden zusätzlich durchsucht:
 
-    - private Akteur:innen
+    - gesperrte Akteur:innen
     - alle Textfelder (auch nur intern sichtbare)
-    - als privat markierte Objekte
+    - gesperrte Datensätze
 
 ## Suchverhalten
 

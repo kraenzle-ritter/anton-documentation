@@ -65,5 +65,6 @@ und stellt die Suche samt Filtern wieder her.
 ## Sichtbarkeit
 
 Wie in der klassischen Suche sehen Sie nur, was Sie sehen dürfen.
-Gesperrte (embargierte) PDF-Inhalte erscheinen nicht in der öffentlichen
-Suche, auch wenn die beschreibenden Daten zum Suchbegriff passen.
+PDF-Inhalte in der Schutzfrist erscheinen nicht in der öffentlichen Suche,
+auch wenn die beschreibenden Daten zum Suchbegriff passen; gesperrte
+Datensätze erscheinen gar nicht.

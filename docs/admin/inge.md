@@ -163,6 +163,23 @@ php artisan storage:audit --clean-masters --env={slug} -vv
 
 Bei Inge-Installationen sollten lokale Masterfiles 0 sein. Falls nicht, weist `storage:audit` darauf hin und `--clean-masters` bereinigt verifizierte Dateien.
 
+Für eine Auswahl gibt es [`media:delete-master`](console-commands.md)
+mit `--media-ids`, `--sip-ids` oder `--all`; ohne eine davon bricht der Befehl ab.
+Er löscht einen Master nur, wenn Inge seine MD5 bestätigt hat, und vermerkt es in
+den Ereignissen des Mediums. `--dry-run` zeigt vorher, was ginge.
+
+`media:conversions` holt einen Master, der nur in DIMAG liegt, für den Lauf als
+geprüfte Kopie (MD5 bzw. SHA-512) und räumt sie danach weg; er landet nicht
+mehr in `media/`. Stimmt die Prüfsumme nicht, wird das Medium übersprungen.
+
+Ebenso lesen die KI-Katalogisierung, der PDF- und der Word-Export einen Master
+aus DIMAG als geprüfte Kopie, die danach wieder geht. Kann der Export ein PDF
+oder Bild nicht lesen, bricht er ab, statt es wegzulassen. `media:identify`,
+`media:validate-formats`, `media:validate-pdfs`, `media:virus-scan`,
+`media:extract-av-metadata`, `media:count-pdf-pages`, `media:checksum`,
+`media:size` und `validate:mp4` holen Master aus DIMAG nur mit `--from-cloud`,
+wegen der Last auf Inge; ohne die Option lassen sie solche Master aus.
+
 ### Fehlersuche
 
 #### Die SIP-Import-Daten prüfen

@@ -159,7 +159,7 @@ ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer For
 schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
 ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
 PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
-Verschlüsselung, JavaScript). `--oldest=N` nimmt die N am längsten nicht
+Verschlüsselung, JavaScript, Verweise nach aussen). `--oldest=N` nimmt die N am längsten nicht
 geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
 [`media:snapshot`](#mediasnapshot). `--from-cloud` wie oben. Exit 1, wenn
 ungültige Dateien gefunden wurden.
@@ -175,8 +175,11 @@ Einrichtung von clamd kam, und alte Dateien, für die es inzwischen neue
 Signaturen gibt. Er verschiebt nichts: Ein Fund wird als Ereignis am Medium
 vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
 liegen. `--oldest=N` nimmt die N am längsten nicht geprüften, nie geprüfte
-zuerst; `--from-cloud` wie oben. Exit 1 bei einem Fund, Exit 2, wenn die
-Virenprüfung aus ist oder clamd nicht antwortet.
+zuerst; `--from-cloud` wie oben. Antwortet clamd für eine Datei nicht
+rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
+`--timeout=` setzt die Wartezeit für den Lauf, sonst gilt `CLAMD_TIMEOUT`.
+Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
+mehr antwortet.
 
 ```bash
 php artisan media:virus-scan --env=besenval --oldest=500
@@ -313,7 +316,8 @@ gibt — materialisierte Felder in einer Closure Table — erklärt
 | `anton:reorder-positions` | Positionsfeld der Geschwister neu ordnen; `anton:restore-positions` macht es aus einem Snapshot rückgängig |
 | `anton:update-fulltext` | Volltextindex neu aufbauen (nötig z.B. nach Sprachänderungen) |
 | `anton:update-dates` / `anton:update-all-dates` | Aggregierte Datierung neu berechnen |
-| `anton:update-release-year` | Das effektive Freigabejahr materialisieren |
+| `anton:update-release-year` | Das effektive Jahr «Frei ab» materialisieren |
+| `anton:access-labels` | Eigene Bezeichnungen und Hilfetexte von «Datensatz gesperrt», «Schutzfrist» und «Frei ab» neben dem Standard auflisten; `--adopt` übernimmt den Standard |
 | `anton:merge <type> <target_id>` | Akteur:innen, Orte oder Schlagwörter zusammenführen |
 | `anton:repair-content-locale --from=<sprache>` | Titel und Textfelder, die ein Import unter der falschen Sprache abgelegt hat, in die Inhaltssprache des Archivs verschieben |
 | `anton:audit-orphans` | Zeilen melden, deren Datensatz nicht mehr existiert, und sie auf Wunsch entfernen |
@@ -410,10 +414,11 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (62)
+### anton: (63)
 
 | Befehl | Beschreibung |
 |---|---|
+| `anton:access-labels` | List the archive's own labels and help texts of record lock, closure period and release year n… |
 | `anton:add-user` | Add or update a user; a new one without --password gets an invitation to set its own password.… |
 | `anton:audit-duplicate-users` | Konten melden, die sich einen Benutzernamen oder eine Adresse teilen (#572). |
 | `anton:audit-identifiers` | Report duplicate values in objects.identifier. Empty/NULL identifiers (e.g. on Lod=class) are … |
@@ -508,7 +513,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:checksum` | Compute SHA-512 for media without one, verifying each file against its stored MD5 (#574) |
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
-| `media:delete-master` | Delete Masterfiles from local media directory (eg. if the masters are in a repository) |
+| `media:delete-master` | Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed |
 | `media:extract-av-metadata` | Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s… |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |

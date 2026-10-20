@@ -110,7 +110,7 @@ Options:
 | `--root=<id>` | empty | Restricts the export to the closure table subtree below the AntonObject with this ID. Without `--root=`, all root objects are exported. |
 | `--format=<value>` | `turtle` (a-plus), `jsonld` (memobase + ric + bundle) | Serialisation |
 | `--profile=<value>` | `a-plus` | `a-plus`, `memobase`, `ric` (alias `rico`) or `a-plus-bundle` |
-| `--include-protected` | off | Bypasses the data protection filter: blocked objects, private media and internal text fields come along. **For migration and backup, not for publication.** Takes effect with `a-plus`, `ric` and `a-plus-bundle` — **not** with `memobase` |
+| `--include-protected` | off | Bypasses the data protection filter: withheld records, internal-only media and internal text fields come along. **For migration and backup, not for publication.** Takes effect with `a-plus`, `ric` and `a-plus-bundle` — **not** with `memobase` |
 | `--include-originals` | off | `a-plus-bundle` only: in addition to the `web`/`thumb` derivatives, packs the **original masters** into the ZIP |
 | `--media-layout=<value>` | `flat` | `a-plus-bundle` only: `flat` (anton-static) or `native` (mirrors the media storage, with a conversion subfolder per medium) |
 
@@ -176,13 +176,13 @@ In outline:
   that the status is readable without calculation. If the date of creation is
   missing, the period is stated without a year — see
   [protection periods](protection-periods.md).
-- **Private material is filtered**: `objects.private`, `media.private_media`,
-  `actors.private` plus private note types (`internal_note`,
+- **Withheld and internal material is filtered**: `objects.private`, `media.private_media`,
+  `actors.private` plus internal note types (`internal_note`,
   `archivists_notes`, `comment`).
 
 !!! warning "The export represents periods but does not apply them"
     With `--include-protected` (migration/backup), the package also contains
-    blocked records. The periods are then in the graph and can be evaluated
+    withheld records. The periods are then in the graph and can be evaluated
     automatically, but they have to be enforced in the target system.
 
 Full spec: <https://github.com/kraenzle-ritter/anton-cidoc>.
@@ -327,8 +327,8 @@ foreach (["ead", "cidoc", "ric", "memobase"] as $k) {
 
 The buttons all hang off synchronous inline download routes
 (`/objects/{id}/download/{format}` with format `ead|cidoc-crm|ric|memobase`) and
-respect the `mayBeShown()` privacy logic of the existing detail view (private
-objects are accessible to admins only).
+respect the `mayBeShown()` privacy logic of the existing detail view (withheld
+records are visible to internal roles only).
 
 > **Note on the rename:** a backwards-compatibility class
 > `WordDownload extends Download` remains in place, so that customer-specific
@@ -343,11 +343,11 @@ Applies to the **standard case** — that is, without `--include-protected`:
 - Full text (`objects.full_text`) — not part of the ISAD fields
 - Internal text fields (note types `internal_note`, `archivists_notes`,
   `comment`) — filtered identically in the A+ and the Memobase profile
-- Private records (`private = 1`) — subtree children are exported, but the
-  hierarchy connection to the private parent object is missing
+- Withheld records (`private = 1`) — and with them the whole subtree, since
+  withholding is inherited
 
-With `--include-protected`, the last two points no longer apply: blocked
-records, private media and the internal text fields are then included. The full
+With `--include-protected`, the last two points no longer apply: withheld
+records, internal-only media and the internal text fields are then included. The full
 text stays out in every case.
 
 ## Points of reference

@@ -62,6 +62,7 @@ including its filters.
 
 ## Visibility
 
-As in the classic search, you only see what you are allowed to see. Blocked
-(embargoed) PDF contents do not appear in the public search, even if the
-descriptive data matches the search term.
+As in the classic search, you only see what you are allowed to see. PDF
+contents under a closure period do not appear in the public search, even if the
+descriptive data matches the search term; withheld records do not appear at
+all.

@@ -114,6 +114,6 @@ For the remaining `gallery_*` settings, see [media gallery](gallery.md).
 
 The access restrictions are built into the search: anonymous, logged-in and
 internal users each see exactly what they are otherwise allowed to see. The
-PDF/media full text respects the **closure period** — embargoed content never
+PDF/media full text respects the **closure period** — closed content never
 appears in the public search, even if the metadata matches. The gallery
 reproduces the visibility rules of the classic gallery exactly.

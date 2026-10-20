@@ -19,9 +19,9 @@ For each archival object, the following are combined for the search:
 !!! note "Extended view for internal editors"
     For logged-in users from the `user_intern` role upwards, the following are searched in addition:
 
-    - private actors
+    - withheld actors
     - all text fields (including those visible internally only)
-    - objects marked as private
+    - withheld records
 
 ## Search behaviour
 

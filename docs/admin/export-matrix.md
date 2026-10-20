@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **18. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **20. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -16,7 +16,7 @@ andere sind Publikations- und Austauschsichten.**
 | Format | Standard | Umfang | Einstieg |
 |---|---|---|---|
 | EAD 2002 | apeEAD (`ead.xsd` + `apeEAD.xsd`) | Objekt-Baum ab Bestand | Admin → Export |
-| EAD3 | `ead3.rng` | Objekt-Baum (reduziert) | Admin → Export |
+| EAD3 | `ead3.rng` | Objekt-Baum ab Bestand | Admin → Export |
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
 | TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
@@ -40,34 +40,34 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 
 | Entität | EAD2002 | EAD3 | TEI | RDF A+ | RiC | Memobase | DC | DIP/OCFL | Excel voll | Excel Update | SQL-Dump |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Verzeichnungseinheit | ● | ◐ | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Verzeichnungseinheit | ● | ● | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
 | Hierarchie | ● | ● | ○ | ● | ● | ● | ◐ | ● | ◐ | ○ | ● |
-| Medien (Metadaten) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
+| Medien (Metadaten) | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
 | Medien (Dateien) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ | ○ |
 | Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Akteur:innen (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Akteur:innen (eingebettet) | ● | ● | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Orte (eingebettet) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Orte (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Schlagwörter | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Schlagwörter | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
-| Textfelder (ISAD-Felder) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
+| Textfelder (ISAD-Felder) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Seiten / Editionen | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Sprachen / Anzeige-Datum | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
-| Standort (physisch) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
-| Schutzfrist (strukturiert) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Sprachen / Anzeige-Datum | ● | ● | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
+| Standort (physisch) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Schutzfrist (strukturiert) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Kommentare (intern) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ●³ |
 | Benutzerkonten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Einstellungen / Formulare | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | KI-Erschliessungsdaten | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Datei-Provenienz (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
-² **EAD** gibt Zugangsbestimmungen und Standortangaben nur als Freitext aus —
-`<accessrestrict>` und `<originalsloc>` werden aus den gleichnamigen Textfeldern
-gespeist, nicht aus dem Feld «Zugangsbestimmungen / Sperrfrist» oder dem
-Standort-Verweis. Ein Konsument erhält also das, was jemand hingeschrieben hat,
-nicht die auswertbare Frist. `<physloc>` ist nicht implementiert.
+² **EAD 2002 und EAD3** schreiben die Schutzfrist als Satz in `<accessrestrict>`,
+mit dem Jahr, ab dem die Unterlagen frei sind, neben dem Textfeld
+«Zugangsbedingungen». apeEAD lässt dafür kein eigenes, auswertbares Element zu.
+Das Textfeld «Standort (Detail)» geht als `<physloc>` hinaus, der Standort-Verweis
+nicht.
 
 ³ **Kommentare** sind interne Arbeitsnotizen und erscheinen bewusst in keinem
 Publikationsformat — auch nicht im nativen Round-Trip. Sie liegen ausschliesslich
@@ -89,8 +89,17 @@ Round-Trip, nicht für die ZH-Variante des DIP.
 ## Gut abgedeckt
 
 **Verzeichnungseinheiten** sind breit unterstützt. **EAD2002** ist das
-vollständigste Format: Titel, Signatur, Datierung, Stufe, Umfang, Sprachen und
-sämtliche ISAD(G)-Textfelder. **RDF A+** typisiert dasselbe doppelt (CIDOC CRM
+vollständigste Format: Titel auch in den weiteren Sprachen, Signatur, Datierung
+mit Kommentar, Stufe, Umfang, Sprachen und Schrift, Schutzfrist und die
+ISAD(G)-Textfelder, die das Formular des Datensatzes öffentlich zeigt.
+Zugangspunkte stehen nach Typ (`persname`, `corpname`, `famname`, `subject`,
+`geogname`) mit der GND-Nummer, wo eine verknüpft ist. Digitalisate gehen als
+Webansicht und Vorschaubild hinaus, nie als Master. Jede Datei wird beim
+Schreiben gegen `ead.xsd` und `apeEAD.xsd` geprüft, auch im nächtlichen Lauf; ein
+Befund steht im Log und in der Ausgabe von `anton:export`.
+Nicht möglich sind mehrsprachige Textfelder: apeEAD erlaubt jedes Textfeld nur
+einmal und kennt keine Sprachangabe daran. Hinaus geht die Fassung in der
+Hauptsprache des Archivs. **RDF A+** typisiert dasselbe doppelt (CIDOC CRM
 *und* RiC-O), inklusive mehrsprachiger Titel.
 
 **Normdaten** haben genau einen strukturierten, eigenständigen Export: die
@@ -129,7 +138,7 @@ die ihn aus der Publikationsecke herausheben:
 
 | Schalter | Wirkung |
 |---|---|
-| `--include-protected` | umgeht den Datenschutzfilter — gesperrte Objekte, private Medien und interne Textfelder kommen mit. Wirkt bei `a-plus`, `ric` und `a-plus-bundle`, **nicht** bei `memobase` |
+| `--include-protected` | umgeht den Datenschutzfilter — gesperrte Datensätze, nur interne Medien und interne Textfelder kommen mit. Wirkt bei `a-plus`, `ric` und `a-plus-bundle`, **nicht** bei `memobase` |
 | `--include-originals` | nur `a-plus-bundle`: packt die **Original-Master** ins ZIP, nicht nur `web`/`thumb` |
 
 ```bash
@@ -156,9 +165,11 @@ laufen die Kommandos bei der betreibenden Institution.
 
 ## Format-Einschränkungen im Einzelnen
 
-**EAD3** ist deutlich dünner als EAD2002: keine Textfelder, keine Orte, keine
-Akteur:innen-Deskriptoren, keine Medien, keine Sprachangaben — nur Signatur, Titel,
-Datierung, Urheber:innen und Schlagwörter.
+**EAD3** enthält dasselbe wie EAD2002, in EAD3 geschrieben und beim Schreiben
+gegen `ead3.rng` geprüft: Umfang und Datierung strukturiert, Namen mit
+`@identifier` und `@source` des Normdatensatzes, Titel in den weiteren Sprachen
+mit `@lang`. Textfelder gehen wie in EAD2002 in der Hauptsprache hinaus. Die
+Validierungsseite prüft auch EAD3-Dateien.
 
 **EAD Holding Guide** liefert eine flache Bestandsübersicht ohne Textfelder pro
 Knoten.
@@ -239,8 +250,8 @@ Formulardefinitionen und die KI-Daten.
 
 ## Datenschutz-Filter
 
-RDF, TEI und EAD filtern private Objekte, Akteur:innen und Medien sowie private
-Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
+RDF, TEI und EAD filtern gesperrte Datensätze und Akteur:innen, nur interne
+Medien sowie interne Textfeldtypen (Archivinterne Bemerkungen, Informationen des Bearbeiters,
 Kommentar) heraus.
 
 **EAD** zeigt immer die öffentliche Sicht, wer die Datei auch erzeugt: keine

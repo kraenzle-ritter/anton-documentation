@@ -110,7 +110,7 @@ Optionen:
 | `--root=<id>` | leer | Beschränkt den Export auf den Closure-Table-Teilbaum unter dem AntonObject mit dieser ID. Ohne `--root=` werden alle Root-Objekte exportiert. |
 | `--format=<wert>` | `turtle` (a-plus), `jsonld` (memobase + ric + bundle) | Serialisierung |
 | `--profile=<wert>` | `a-plus` | `a-plus`, `memobase`, `ric` (alias `rico`) oder `a-plus-bundle` |
-| `--include-protected` | aus | Umgeht den Datenschutzfilter: gesperrte Objekte, private Medien und interne Textfelder kommen mit. **Für Migration und Backup, nicht für Publikation.** Wirkt bei `a-plus`, `ric` und `a-plus-bundle` — **nicht** bei `memobase` |
+| `--include-protected` | aus | Umgeht den Datenschutzfilter: gesperrte Datensätze, nur interne Medien und interne Textfelder kommen mit. **Für Migration und Backup, nicht für Publikation.** Wirkt bei `a-plus`, `ric` und `a-plus-bundle` — **nicht** bei `memobase` |
 | `--include-originals` | aus | Nur `a-plus-bundle`: packt zusätzlich zu den `web`/`thumb`-Ableitungen die **Original-Master** ins ZIP |
 | `--media-layout=<wert>` | `flat` | Nur `a-plus-bundle`: `flat` (anton-static) oder `native` (spiegelt die Medienablage, mit Konversions-Unterordner je Medium) |
 
@@ -175,8 +175,8 @@ Stichworte:
   `rico:conditionsOfAccess` («Closed until 2099»), damit der Status ohne Rechnen
   lesbar ist. Fehlt das Entstehungsdatum, wird die Frist ohne Jahr ausgewiesen —
   siehe [Schutzfristen](protection-periods.md).
-- **Privates wird gefiltert**: `objects.private`, `media.private_media`,
-  `actors.private` plus private Note-Types (`internal_note`,
+- **Gesperrtes und Internes wird gefiltert**: `objects.private`, `media.private_media`,
+  `actors.private` plus interne Note-Types (`internal_note`,
   `archivists_notes`, `comment`).
 
 !!! warning "Der Export bildet Fristen ab, wendet sie aber nicht an"
@@ -329,7 +329,7 @@ foreach (["ead", "cidoc", "ric", "memobase"] as $k) {
 Die Buttons hängen alle an synchrone Inline-Download-Routes
 (`/objects/{id}/download/{format}` mit Format `ead|cidoc-crm|ric|memobase`)
 und respektieren die `mayBeShown()`-Privacy-Logik der bestehenden
-Detail-Ansicht (private Objekte sind nur für Admins zugänglich).
+Detail-Ansicht (gesperrte Datensätze sehen nur interne Rollen).
 
 > **Hinweis zum Rename:** Eine Backwards-Compat-Klasse
 > `WordDownload extends Download` besteht weiterhin, damit
@@ -344,12 +344,11 @@ Gilt für den **Standardfall** — also ohne `--include-protected`:
 - Volltext (`objects.full_text`) — gehört nicht zu den ISAD-Feldern
 - Interne Textfelder (Notetypes `internal_note`, `archivists_notes`,
   `comment`) — werden im A+ und im Memobase-Profil gleich gefiltert
-- Private Datensätze (`private = 1`) — Subtree-Kinder werden zwar
-  exportiert, aber die Hierarchie-Verbindung zum privaten Eltern-Objekt
-  fehlt
+- Gesperrte Datensätze (`private = 1`) — mit ihnen der ganze Teilbaum,
+  weil sich die Sperre vererbt
 
 Mit `--include-protected` entfallen die beiden letzten Punkte: gesperrte
-Datensätze, private Medien und die internen Textfelder sind dann enthalten.
+Datensätze, nur interne Medien und die internen Textfelder sind dann enthalten.
 Der Volltext bleibt in jedem Fall draussen.
 
 ## Bezugspunkte
