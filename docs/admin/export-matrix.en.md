@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **18 October 2026**. It is
+    This matrix reflects the state of **20 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -17,7 +17,7 @@ or exchange view.**
 | Format | Standard | Scope | Entry point |
 |---|---|---|---|
 | EAD 2002 | apeEAD (`ead.xsd` + `apeEAD.xsd`) | Object tree from fonds level | Admin → Export |
-| EAD3 | `ead3.rng` | Object tree (reduced) | Admin → Export |
+| EAD3 | `ead3.rng` | Object tree from the fonds | Admin → Export |
 | EAD holding guide | apeEAD `type=holdings_guide` | Holdings overview | Admin → Export |
 | TEI – authority lists | TEI-P5 `standOff` | Actors / places / keywords (all) | `/api/tei/{actors,places,keywords}` |
 | TEI – per object | TEI-P5 | one record | API with `?format=tei` |
@@ -41,34 +41,34 @@ Key: ● full · ◐ partial / embedded · ○ not included
 
 | Entity | EAD2002 | EAD3 | TEI | RDF A+ | RiC | Memobase | DC | DIP/OCFL | Excel full | Excel update | SQL dump |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Unit of description | ● | ◐ | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
+| Unit of description | ● | ● | ◐ | ● | ● | ● | ● | ● | ● | ◐ | ● |
 | Hierarchy | ● | ● | ○ | ● | ● | ● | ◐ | ● | ◐ | ○ | ● |
-| Media (metadata) | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
+| Media (metadata) | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ○ | ○ | ● |
 | Media (files) | ○ | ○ | ○ | ◐¹ | ○ | ○ | ○ | ● | ○ | ○ | ○ |
 | Full text / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Actors (embedded) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Actors (embedded) | ● | ● | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Actors (authority file) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Places (embedded) | ◐ | ○ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Places (embedded) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Places (authority file) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
-| Keywords | ◐ | ◐ | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Keywords | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Events (graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
-| Text fields (ISAD fields) | ● | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
+| Text fields (ISAD fields) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect values | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Pages / editions | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
-| Languages / display date | ● | ◐ | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
-| Location (physical) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
-| Protection period (structured) | ○² | ○² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Languages / display date | ● | ● | ○ | ● | ● | ○ | ○ | ○ | ◐ | ◐ | ● |
+| Location (physical) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
+| Protection period (structured) | ◐² | ◐² | ○ | ● | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Comments (internal) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ●³ |
 | User accounts | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Settings / forms | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | AI cataloguing data | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | File provenance (PRONOM/NARA) | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ◐⁴ | ○ | ○ | ● |
 
-² **EAD** outputs conditions of access and location details only as free text —
-`<accessrestrict>` and `<originalsloc>` are fed from the text fields of the same
-name, not from the «Closure period» field or the location
-reference. A consumer therefore receives what someone wrote down, not the
-evaluable period. `<physloc>` is not implemented.
+² **EAD 2002 and EAD3** write the closure period as a sentence in `<accessrestrict>`,
+with the year from which the material is open, next to the text field
+«Conditions of access». apeEAD allows no element of its own that could be
+evaluated. The text field «Location (detail)» goes out as `<physloc>`, the
+location reference does not.
 
 ³ **Comments** are internal working notes and deliberately appear in no
 publication format — not even in the native round trip. They are held
@@ -91,8 +91,17 @@ the ZH variant of the DIP.
 ## Well covered
 
 **Units of description** are broadly supported. **EAD2002** is the most complete
-format: title, reference code, dating, level, extent, languages and all ISAD(G)
-text fields. **RDF A+** types the same thing twice (CIDOC CRM *and* RiC-O),
+format: title also in the other languages, reference code, dating with its
+comment, level, extent, languages and script, closure period and the ISAD(G)
+text fields that the record's form shows to the public. Access points are
+written by type (`persname`, `corpname`, `famname`, `subject`, `geogname`) with
+the GND number where one is linked. Digital objects go out as the web view and
+thumbnail, never as the master. Every file is checked against `ead.xsd` and
+`apeEAD.xsd` as it is written, also in the nightly run; a finding is in the log
+and in the output of `anton:export`.
+Multilingual text fields are not possible: apeEAD allows each text field only
+once and has no language attribute on it. The version in the archive's main
+language goes out. **RDF A+** types the same thing twice (CIDOC CRM *and* RiC-O),
 including multilingual titles.
 
 **Authority data** has exactly one structured, standalone export: the **TEI
@@ -158,9 +167,11 @@ premises*, the commands are run by the operating institution.
 
 ## Format restrictions in detail
 
-**EAD3** is considerably thinner than EAD2002: no text fields, no places, no
-actor descriptors, no media, no language details — only reference code, title,
-dating, creators and keywords.
+**EAD3** contains the same as EAD2002, written in EAD3 and checked against
+`ead3.rng` as it is written: extent and dating structured, names with
+`@identifier` and `@source` of the authority record, titles in the other
+languages with `@lang`. Text fields go out in the main language, as in EAD2002.
+The validation page checks EAD3 files too.
 
 **The EAD holding guide** delivers a flat holdings overview without text fields
 per node.

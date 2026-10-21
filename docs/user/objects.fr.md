@@ -72,6 +72,8 @@ Le bouton **Supprimer** ouvre la fenêtre «&nbsp;Supprimer la notice&nbsp;» av
 la question «&nbsp;Supprimer réellement cette notice ?&nbsp;». La confirmation
 exige la saisie de **son propre mot de passe**.
 
+Le champ **Motif de la suppression** permet de noter pourquoi la notice est supprimée et sur quelle décision, par exemple «&nbsp;Élimination selon la décision du …&nbsp;» ou «&nbsp;Doublon de …&nbsp;». Le champ est facultatif. Le motif reste dans le journal du fonds (**Administration → Journaux**) avec la cote, le titre, les champs de texte et les sommes de contrôle des médias, même après la suppression de la notice.
+
 !!! danger "La suppression est définitive"
     Anton ne tient pas de corbeille. Sont supprimés la notice, toutes les unités
     de description subordonnées et leurs médias, fichiers compris. Une

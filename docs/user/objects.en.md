@@ -65,6 +65,8 @@ not copied.
 The **Delete** button opens the «Delete record» window with the query «Really
 delete this record?». Confirmation requires entering **one's own password**.
 
+The field **Reason for deletion** records why the record is deleted and on whose decision, e.g. «Appraised out, decision of …» or «Duplicate of …». The field is optional. The reason stays in the holdings log (**Administration → Logs**) with the reference code, title, text fields and the checksums of the media, also after the record is gone.
+
 !!! danger "Deletion is final"
     Anton has no recycle bin. What is deleted is the record, all subordinate
     units of description and their media including the files. Restoration is

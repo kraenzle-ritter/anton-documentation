@@ -71,6 +71,8 @@ Il pulsante **Elimina** apre la finestra «Eliminare la scheda» con la richiest
 «Eliminare davvero questa scheda?». Per confermare occorre inserire la
 **propria password**.
 
+Nel campo **Motivo della cancellazione** si può annotare perché la scheda viene eliminata e su decisione di chi, ad esempio «Scarto secondo la decisione del …» o «Doppione di …». Il campo è facoltativo. Il motivo resta nel registro del fondo (**Amministrazione → Protocolli**) con la segnatura, il titolo, i campi di testo e le somme di controllo dei media, anche dopo l'eliminazione della scheda.
+
 !!! danger "L'eliminazione è definitiva"
     Anton non dispone di un cestino. Vengono eliminati la scheda, tutte le unità
     di descrizione subordinate e i loro media, file compresi. Un ripristino è
