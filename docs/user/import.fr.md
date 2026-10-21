@@ -8,7 +8,7 @@ Toutes les voies d'import sont regroupées à une seule adresse : `/import` (dan
 | Onglet | Contenu |
 |---|---|
 | **Boîte d'entrée** (par défaut) | SIP agate en attente, auxquels il manque encore un fonds parent. Lorsque quelque chose est en attente, un badge compteur apparaît à côté dans le menu Admin. |
-| **SIP** | Téléversement SIP direct (paquets BagIt) avec validation et ingest. Voir [SIP Ingest](../admin/sip-ingest.md) et [agate SIP](../admin/agate-sip.md). |
+| **SIP** | Téléversement SIP direct (paquets BagIt ou E-ARK) avec validation et ingest. Voir [SIP Ingest](../admin/sip-ingest.md) et [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Imports Excel (le thème principal de cette page, voir ci-dessous). |
 | **Répertoire** | Import d'une arborescence de répertoires (ZIP/GZ). |
 
@@ -16,9 +16,9 @@ Les anciennes URL (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/imp
 
 ### Vue de détail dans la boîte d'entrée
 
-Pour chaque SIP en attente dans la boîte d'entrée, il existe un lien **Détails**. Derrière se trouve une page d'inspection qui ne lit que le `metadata.json` du BagIt (sans décompresser les médias) et affiche :
+Pour chaque SIP en attente dans la boîte d'entrée, il existe un lien **Détails**. Derrière se trouve une page d'inspection qui ne lit que le `metadata.json` du paquet (sans décompresser les médias) et affiche :
 
-- la validité BagIt (manifeste, sommes de contrôle)
+- le contrôle du paquet : BagIt (manifeste, sommes de contrôle) ou E-ARK (validation E-ARK)
 - le nombre de notices dans le SIP
 - les catégories de types d'objets NARA — avec une indication si le tenant ne connaît aucun type approprié pour une catégorie
 - le titre de la notice la plus élevée

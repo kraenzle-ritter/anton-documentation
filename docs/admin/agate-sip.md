@@ -1,14 +1,27 @@
 # agate-SIP-Import
 
 [agate](https://github.com/kraenzle-ritter/agate) (das
-Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann BagIt-
-Pakete direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
+Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann SIPs
+(BagIt oder E-ARK) direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
 prüft es, legt ein Backup an, importiert die Inhalte als
 Verzeichnungseinheiten unter dem gewählten Bestand und gibt agate
 Bescheid wenn alles fertig ist.
 
 Der gesamte Pfad läuft **asynchron** — agate kann parallel
 weiterarbeiten oder andere SIPs vorbereiten.
+
+## BagIt oder E-ARK
+
+agate liefert ein SIP als BagIt-Bag oder als E-ARK-SIP 2.2.0, je nach Einstellung in agate. Beide tragen dieselbe `metadata.json`. Anton erkennt die Form am Inhalt des ZIP (`bagit.txt` oder `METS.xml`); der Dateiname bleibt `sip-agate-<bestand_id>.zip`, und beide nehmen dieselben Wege: Direkt-Import, Eingangskorb, Upload auf `/import/sip-anton` und `anton:import --from-sip`.
+
+| | BagIt | E-ARK |
+|---|---|---|
+| `metadata.json` | `data/meta/metadata.json` | dmdSec mit `OTHERMDTYPE="anton-import-format"`, meist `metadata/descriptive/metadata.json` |
+| Dateien | `data/content/` | `representations/rep1/data/` |
+| Prüfung vor dem Import | Manifeste des Bags | Prüfsummen im METS, für `metadata.json` und jede Datei, die sie nennt |
+| Prüfbericht | — | Prüfung nach E-ARK (eark-ip) als Prüf-Ereignis beim Lauf |
+
+Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. Ein E-ARK-SIP aus einem anderen Werkzeug (nur EAD oder Dublin Core, ohne `anton-import-format`) nimmt Anton noch nicht an.
 
 ## Workflow
 
@@ -46,7 +59,7 @@ Sichtbar für Editor- und Admin-Rollen unter **Import / Export → SIP
 Inbox**. Pro Zeile:
 
 - SIP-Filename, Hochladedatum
-- Vorschau (Anzahl Dateien, BagIt-Validität, NARA-Kategorien)
+- Vorschau (Anzahl Dateien, Paketprüfung BagIt oder E-ARK, NARA-Kategorien)
 - Aktionen: **Bestand zuweisen** (öffnet Auswahl) oder **Verwerfen**
 
 ## Vokabular-Mapping: NARA → Tenant-Objekttyp
@@ -80,7 +93,7 @@ Endpoint: `POST /api/sip/upload`
 
 Request:
 
-- Multipart-Form mit `file`-Feld (`sip.zip` BagIt-Container)
+- Multipart-Form mit `file`-Feld (`sip.zip`, BagIt oder E-ARK)
 - Header `Authorization: Bearer <api_token>` (Sanctum-Token, siehe
   [API-Authentifizierung](../api/authentication.md))
 

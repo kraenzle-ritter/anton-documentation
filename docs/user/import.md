@@ -8,7 +8,7 @@ Alle Import-Pfade sind unter einer Adresse zusammengefasst: `/import` (im Menü 
 | Tab | Inhalt |
 |---|---|
 | **Eingangskorb** (Standard) | Wartende agate-SIPs, die noch einen Parent-Bestand brauchen. Wenn etwas wartet, erscheint im Admin-Menü eine Zähler-Badge daneben. |
-| **SIP** | Direkter SIP-Upload (BagIt-Pakete) mit Validation + Ingest. Siehe [SIP Ingest](../admin/sip-ingest.md) und [agate SIP](../admin/agate-sip.md). |
+| **SIP** | Direkter SIP-Upload (BagIt- oder E-ARK-Pakete) mit Validation + Ingest. Siehe [SIP Ingest](../admin/sip-ingest.md) und [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Excel-Importe (das Hauptthema dieser Seite, siehe unten). |
 | **Verzeichnis** | Import einer Verzeichnis-Struktur (ZIP/GZ). |
 
@@ -16,9 +16,9 @@ Die alten URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import
 
 ### Detail-Ansicht im Eingangskorb
 
-Pro wartendem SIP im Eingangskorb gibt es einen **Details**-Link. Dahinter steht eine Inspektions-Seite, die nur die `metadata.json` aus dem BagIt liest (kein Auspacken der Medien) und zeigt:
+Pro wartendem SIP im Eingangskorb gibt es einen **Details**-Link. Dahinter steht eine Inspektions-Seite, die nur die `metadata.json` aus dem Paket liest (kein Auspacken der Medien) und zeigt:
 
-- BagIt-Validität (Manifest, Checksummen)
+- Paketprüfung: BagIt (Manifest, Checksummen) oder E-ARK (Prüfung nach E-ARK)
 - Anzahl Datensätze im SIP
 - NARA-Objekttyp-Kategorien — mit Hinweis, falls der Tenant für eine Kategorie keinen passenden Typ kennt
 - Titel des obersten Datensatzes

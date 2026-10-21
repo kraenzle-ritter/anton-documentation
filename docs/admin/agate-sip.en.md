@@ -1,13 +1,26 @@
 # agate SIP import
 
 [agate](https://github.com/kraenzle-ritter/agate) (the Anton preparation tool
-for SIPs built from loose file collections) can send BagIt packages directly to
+for SIPs built from loose file collections) can send SIPs (BagIt or E-ARK) directly to
 Anton via HTTP. Anton receives the ZIP, checks it, creates
 a backup, imports the contents as units of description below the chosen fonds
 and notifies agate when everything is finished.
 
 The whole path runs **asynchronously** — agate can carry on working in parallel
 or prepare other SIPs.
+
+## BagIt or E-ARK
+
+agate delivers a SIP as a BagIt bag or as an E-ARK SIP 2.2.0, depending on its settings. Both carry the same `metadata.json`. Anton recognises the layout from the content of the ZIP (`bagit.txt` or `METS.xml`); the file name stays `sip-agate-<fonds_id>.zip`, and both take the same ways in: direct import, inbox, upload on `/import/sip-anton` and `anton:import --from-sip`.
+
+| | BagIt | E-ARK |
+|---|---|---|
+| `metadata.json` | `data/meta/metadata.json` | dmdSec with `OTHERMDTYPE="anton-import-format"`, usually `metadata/descriptive/metadata.json` |
+| Files | `data/content/` | `representations/rep1/data/` |
+| Check before the import | the bag's manifests | the checksums in the METS, for `metadata.json` and every file it names |
+| Validation report | — | E-ARK validation (eark-ip), kept as a validation event with the run |
+
+A missing or altered file stops the import before anything is written. The E-ARK report does not stop the import: whether the files are unchanged is decided by the checksums. An E-ARK SIP from another tool (EAD or Dublin Core only, without `anton-import-format`) is not accepted yet.
 
 ## Workflow
 
@@ -45,7 +58,7 @@ Visible to the editor and admin roles under **Import / Export → SIP Inbox**.
 Per row:
 
 - SIP file name, upload date
-- Preview (number of files, BagIt validity, NARA categories)
+- Preview (number of files, package check BagIt or E-ARK, NARA categories)
 - Actions: **assign fonds** (opens a selection) or **discard**
 
 ## Vocabulary mapping: NARA → tenant object type
@@ -79,7 +92,7 @@ Endpoint: `POST /api/sip/upload`
 
 Request:
 
-- Multipart form with a `file` field (`sip.zip` BagIt container)
+- Multipart form with a `file` field (`sip.zip`, BagIt or E-ARK)
 - Header `Authorization: Bearer <api_token>` (Sanctum token, see
   [API authentication](../api/authentication.md))
 

@@ -8,7 +8,7 @@ All import paths are brought together at one address: `/import` (in the menu und
 | Tab | Content |
 |---|---|
 | **Inbox** (default) | Waiting agate SIPs that still need a parent fonds. When something is waiting, a counter badge appears next to it in the admin menu. |
-| **SIP** | Direct SIP upload (BagIt packages) with validation and ingest. See [SIP ingest](../admin/sip-ingest.md) and [agate SIP](../admin/agate-sip.md). |
+| **SIP** | Direct SIP upload (BagIt or E-ARK packages) with validation and ingest. See [SIP ingest](../admin/sip-ingest.md) and [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Excel imports (the main subject of this page, see below). |
 | **Directory** | Import of a directory structure (ZIP/GZ). |
 
@@ -16,9 +16,9 @@ The old URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/i
 
 ### Detail view in the inbox
 
-For each waiting SIP in the inbox there is a **details** link. Behind it is an inspection page that reads only the `metadata.json` from the BagIt (without unpacking the media) and shows:
+For each waiting SIP in the inbox there is a **details** link. Behind it is an inspection page that reads only the `metadata.json` from the package (without unpacking the media) and shows:
 
-- BagIt validity (manifest, checksums)
+- package check: BagIt (manifest, checksums) or E-ARK (E-ARK validation)
 - number of records in the SIP
 - NARA object type categories — with a note if the tenant does not know a suitable type for a category
 - title of the topmost record

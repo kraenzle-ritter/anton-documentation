@@ -8,7 +8,7 @@ Tutte le vie di importazione sono raccolte a un unico indirizzo: `/import` (nel 
 | Scheda | Contenuto |
 |---|---|
 | **Casella d'entrata** (predefinita) | SIP agate in attesa, ai quali manca ancora un fondo superiore. Quando qualcosa è in attesa, nel menu Admin compare accanto un badge contatore. |
-| **SIP** | Caricamento SIP diretto (pacchetti BagIt) con validazione e ingest. Vedi [SIP Ingest](../admin/sip-ingest.md) e [agate SIP](../admin/agate-sip.md). |
+| **SIP** | Caricamento SIP diretto (pacchetti BagIt o E-ARK) con validazione e ingest. Vedi [SIP Ingest](../admin/sip-ingest.md) e [agate SIP](../admin/agate-sip.md). |
 | **Excel** | Importazioni Excel (il tema principale di questa pagina, vedi sotto). |
 | **Directory** | Importazione di una struttura di directory (ZIP/GZ). |
 
@@ -16,9 +16,9 @@ Le vecchie URL (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import
 
 ### Vista di dettaglio nella casella d'entrata
 
-Per ogni SIP in attesa nella casella d'entrata esiste un link **Dettagli**. Dietro si trova una pagina di ispezione che legge solo il `metadata.json` dal BagIt (senza estrarre i media) e mostra:
+Per ogni SIP in attesa nella casella d'entrata esiste un link **Dettagli**. Dietro si trova una pagina di ispezione che legge solo il `metadata.json` dal pacchetto (senza estrarre i media) e mostra:
 
-- la validità BagIt (manifesto, somme di controllo)
+- il controllo del pacchetto: BagIt (manifesto, somme di controllo) o E-ARK (validazione E-ARK)
 - il numero di schede nel SIP
 - le categorie di tipo di oggetto NARA — con un avviso se il tenant non conosce alcun tipo adeguato per una categoria
 - il titolo della scheda più alta
