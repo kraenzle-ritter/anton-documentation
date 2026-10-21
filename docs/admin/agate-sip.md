@@ -131,6 +131,15 @@ Es nennt die Regel, die Werkzeugversionen und die Prüfsummen vor und nach der
 Umwandlung. Die Prüfsumme der Datei, wie sie bei agate ankam, bleibt damit
 erhalten.
 
+## Original und Nutzungskopie
+
+Ab anton-import-format 0.6 kann ein SIP zu einer Datei mehr als den Master liefern: die Datei vor einer Umwandlung (`versions`, Rolle `original`) und eine Nutzungskopie (`access_copy`). Der Master bleibt das Medium.
+
+- **Original:** Anton bewahrt es hinter dem Medium auf (Fassung «Original», mit eigenen Prüfsummen und Ereignissen, in DIMAG über `media:versions-to-cloud`), nie als eigenes Medium. Hat agate die Datei umgewandelt und das Original behalten, verweist das Ereignis `format-normalization` auf diese Fassung.
+- **Nutzungskopie:** Die Einstellung `import_access_copy` entscheidet. `derive` (Vorgabe): Anton rechnet die Webfassung selbst, die gelieferte Kopie wird nicht gespeichert. `adopt`: Anton übernimmt sie als Webfassung, wenn sie zum Master passt (Bild → JPEG, PDF → PDF, Video → MP4, Audio → MP3) und die Prüfsumme stimmt; sonst rechnet es selbst. Der Entscheid steht als Ereignis «Nutzungskopie» am Medium. Eine übernommene Webfassung ersetzt `media:conversions` nur mit `--replace-supplied`. Das Vorschaubild rechnet Anton immer selbst.
+- **Prüfung:** Original und Nutzungskopie werden vor dem Import geprüft wie der Master: Virenprüfung, Prüfsumme, bei E-ARK gegen das METS ihrer Repräsentation (`representations/<source>/data/`). Ein Fehler bricht den Import ab, bevor etwas geschrieben ist.
+- **Formatversion:** agate fragt Anton über `GET /api/import-format`, welche Version des Formats sein Import liest, und schreibt Original und Nutzungskopie nur, wenn Anton 0.6 oder neuer meldet. Ein `metadata.json` in einer neueren Version, als Anton liest, weist Anton ab.
+
 ## Konfigurations-Checkliste
 
 Damit agate-Imports funktionieren:

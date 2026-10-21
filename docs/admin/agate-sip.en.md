@@ -128,6 +128,15 @@ event on the medium, as for a conversion in Anton itself. The event names the
 rule, the tool versions and the checksums before and after the conversion, so
 the checksum of the file as agate received it stays on record.
 
+## Original and access copy
+
+From anton-import-format 0.6 on, a SIP may deliver more than the master for a file: the file before a conversion (`versions`, role `original`) and an access copy (`access_copy`). The master stays the medium.
+
+- **Original:** Anton keeps it behind the medium (version «original», with its own checksums and events, in DIMAG through `media:versions-to-cloud`), never as a medium of its own. If agate converted the file and kept the original, the `format-normalization` event points to that version.
+- **Access copy:** the setting `import_access_copy` decides. `derive` (default): Anton computes the web version itself and does not store the delivered copy. `adopt`: Anton takes it as the web version when it fits the master (image → JPEG, PDF → PDF, video → MP4, audio → MP3) and its checksum matches; otherwise it computes its own. The decision is recorded as an «access copy» event on the medium. `media:conversions` replaces an adopted web version only with `--replace-supplied`. Anton always computes the thumbnail itself.
+- **Checks:** original and access copy are checked before the import like the master: virus check, checksum, and for E-ARK against the METS of their representation (`representations/<source>/data/`). A failure stops the import before anything is written.
+- **Format version:** agate asks Anton through `GET /api/import-format` which version of the format its import reads, and writes original and access copy only when Anton reports 0.6 or later. Anton refuses a `metadata.json` in a newer version than it reads.
+
 ## Configuration checklist
 
 For agate imports to work:
