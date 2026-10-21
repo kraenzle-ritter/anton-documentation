@@ -53,6 +53,8 @@ Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieb
 Der Eingangskorb verhindert, dass unzugeordnete SIPs den Speicherplatz
 still aufessen — Bearbeiter:innen sehen aktiv, was wartet.
 
+Dasselbe gilt für den manuellen Upload im Reiter **Manueller Upload** von **SIP-Import (anton-import-format)**: Ein SIP mit `sip-agate-<bestand_id>.zip` erscheint in der Liste und wird mit **Importieren** gestartet, jedes andere landet im Eingangskorb. Ein SIP, dessen Inhalt schon importiert ist oder gerade importiert wird, nimmt der Upload nicht an.
+
 ## Eingangskorb (`/sip/inbox`)
 
 Sichtbar für Editor- und Admin-Rollen unter **Import / Export → SIP

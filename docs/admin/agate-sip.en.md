@@ -52,6 +52,8 @@ A missing or altered file stops the import before anything is written. The E-ARK
 The inbox prevents unassigned SIPs from silently eating up storage space —
 editors actively see what is waiting.
 
+The same holds for the manual upload in the tab **Manual upload** of **SIP import (anton-import-format)**: a SIP named `sip-agate-<fonds_id>.zip` appears in the list and is started with **Import**; any other goes to the inbox. A SIP whose content is already imported, or being imported, is not accepted.
+
 ## Inbox (`/sip/inbox`)
 
 Visible to the editor and admin roles under **Import / Export → SIP Inbox**.
