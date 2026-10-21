@@ -3141,7 +3141,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -3172,7 +3172,7 @@
 </tr>
 <tr>
 <td><strong>SIP</strong></td>
-<td>Caricamento SIP diretto (pacchetti BagIt) con validazione e ingest. Vedi <a href="../../admin/sip-ingest/">SIP Ingest</a> e <a href="../../admin/agate-sip/">agate SIP</a>.</td>
+<td>Caricamento SIP diretto (pacchetti BagIt o E-ARK) con validazione e ingest. Vedi <a href="../../admin/sip-ingest/">SIP Ingest</a> e <a href="../../admin/agate-sip/">agate SIP</a>.</td>
 </tr>
 <tr>
 <td><strong>Excel</strong></td>
@@ -3186,9 +3186,9 @@
 </table>
 <p>Le vecchie URL (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/import/validation</code>, <code>/import/ingest</code>, <code>/sip/inbox</code>) reindirizzano in modo trasparente alla scheda corrispondente — segnalibri e link esterni restano validi.</p>
 <h3 id="vista-di-dettaglio-nella-casella-dentrata">Vista di dettaglio nella casella d'entrata<a class="headerlink" href="#vista-di-dettaglio-nella-casella-dentrata" title="Permanent link">&para;</a></h3>
-<p>Per ogni SIP in attesa nella casella d'entrata esiste un link <strong>Dettagli</strong>. Dietro si trova una pagina di ispezione che legge solo il <code>metadata.json</code> dal BagIt (senza estrarre i media) e mostra:</p>
+<p>Per ogni SIP in attesa nella casella d'entrata esiste un link <strong>Dettagli</strong>. Dietro si trova una pagina di ispezione che legge solo il <code>metadata.json</code> dal pacchetto (senza estrarre i media) e mostra:</p>
 <ul>
-<li>la validità BagIt (manifesto, somme di controllo)</li>
+<li>il controllo del pacchetto: BagIt (manifesto, somme di controllo) o E-ARK (validazione E-ARK)</li>
 <li>il numero di schede nel SIP</li>
 <li>le categorie di tipo di oggetto NARA — con un avviso se il tenant non conosce alcun tipo adeguato per una categoria</li>
 <li>il titolo della scheda più alta</li>

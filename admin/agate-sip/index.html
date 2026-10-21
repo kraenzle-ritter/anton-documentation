@@ -2881,6 +2881,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bagit-oder-e-ark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BagIt oder E-ARK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2957,6 +2968,17 @@
     <span class="md-ellipsis">
       
         Formatumwandlung in agate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#original-und-nutzungskopie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original und Nutzungskopie
       
     </span>
   </a>
@@ -4216,6 +4238,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#bagit-oder-e-ark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BagIt oder E-ARK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4299,6 +4332,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#original-und-nutzungskopie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original und Nutzungskopie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#konfigurations-checkliste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4348,7 +4392,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-15</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -4361,13 +4405,47 @@
 
 <h1 id="agate-sip-import">agate-SIP-Import<a class="headerlink" href="#agate-sip-import" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/kraenzle-ritter/agate">agate</a> (das
-Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann BagIt-
-Pakete direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
+Anton-Vorbereitungs-Tool für SIPs aus losen Datei-Ablagen) kann SIPs
+(BagIt oder E-ARK) direkt per HTTP an Anton schicken. Anton nimmt das ZIP entgegen,
 prüft es, legt ein Backup an, importiert die Inhalte als
 Verzeichnungseinheiten unter dem gewählten Bestand und gibt agate
 Bescheid wenn alles fertig ist.</p>
 <p>Der gesamte Pfad läuft <strong>asynchron</strong> — agate kann parallel
 weiterarbeiten oder andere SIPs vorbereiten.</p>
+<h2 id="bagit-oder-e-ark">BagIt oder E-ARK<a class="headerlink" href="#bagit-oder-e-ark" title="Permanent link">&para;</a></h2>
+<p>agate liefert ein SIP als BagIt-Bag oder als E-ARK-SIP 2.2.0, je nach Einstellung in agate. Beide tragen dieselbe <code>metadata.json</code>. Anton erkennt die Form am Inhalt des ZIP (<code>bagit.txt</code> oder <code>METS.xml</code>); der Dateiname bleibt <code>sip-agate-&lt;bestand_id&gt;.zip</code>, und beide nehmen dieselben Wege: Direkt-Import, Eingangskorb, Upload auf <code>/import/sip-anton</code> und <code>anton:import --from-sip</code>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>BagIt</th>
+<th>E-ARK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata.json</code></td>
+<td><code>data/meta/metadata.json</code></td>
+<td>dmdSec mit <code>OTHERMDTYPE="anton-import-format"</code>, meist <code>metadata/descriptive/metadata.json</code></td>
+</tr>
+<tr>
+<td>Dateien</td>
+<td><code>data/content/</code></td>
+<td><code>representations/rep1/data/</code></td>
+</tr>
+<tr>
+<td>Prüfung vor dem Import</td>
+<td>Manifeste des Bags</td>
+<td>Prüfsummen im METS, für <code>metadata.json</code> und jede Datei, die sie nennt</td>
+</tr>
+<tr>
+<td>Prüfbericht</td>
+<td>—</td>
+<td>Prüfung nach E-ARK (eark-ip) als Prüf-Ereignis beim Lauf</td>
+</tr>
+</tbody>
+</table>
+<p>Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. Ein E-ARK-SIP aus einem anderen Werkzeug (nur EAD oder Dublin Core, ohne <code>anton-import-format</code>) nimmt Anton noch nicht an.</p>
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>┌──────────┐    HTTP-POST     ┌──────────┐
 │  agate   │ ───────────────▶ │  Anton   │
@@ -4397,12 +4475,13 @@ weiterarbeiten oder andere SIPs vorbereiten.</p>
 </ol>
 <p>Der Eingangskorb verhindert, dass unzugeordnete SIPs den Speicherplatz
 still aufessen — Bearbeiter:innen sehen aktiv, was wartet.</p>
+<p>Dasselbe gilt für den manuellen Upload im Reiter <strong>Manueller Upload</strong> von <strong>SIP-Import (anton-import-format)</strong>: Ein SIP mit <code>sip-agate-&lt;bestand_id&gt;.zip</code> erscheint in der Liste und wird mit <strong>Importieren</strong> gestartet, jedes andere landet im Eingangskorb. Ein SIP, dessen Inhalt schon importiert ist oder gerade importiert wird, nimmt der Upload nicht an.</p>
 <h2 id="eingangskorb-sipinbox">Eingangskorb (<code>/sip/inbox</code>)<a class="headerlink" href="#eingangskorb-sipinbox" title="Permanent link">&para;</a></h2>
 <p>Sichtbar für Editor- und Admin-Rollen unter <strong>Import / Export → SIP
 Inbox</strong>. Pro Zeile:</p>
 <ul>
 <li>SIP-Filename, Hochladedatum</li>
-<li>Vorschau (Anzahl Dateien, BagIt-Validität, NARA-Kategorien)</li>
+<li>Vorschau (Anzahl Dateien, Paketprüfung BagIt oder E-ARK, NARA-Kategorien)</li>
 <li>Aktionen: <strong>Bestand zuweisen</strong> (öffnet Auswahl) oder <strong>Verwerfen</strong></li>
 </ul>
 <h2 id="vokabular-mapping-nara-tenant-objekttyp">Vokabular-Mapping: NARA → Tenant-Objekttyp<a class="headerlink" href="#vokabular-mapping-nara-tenant-objekttyp" title="Permanent link">&para;</a></h2>
@@ -4427,7 +4506,7 @@ kann später von Hand vergeben werden.</p>
 <p>Endpoint: <code>POST /api/sip/upload</code></p>
 <p>Request:</p>
 <ul>
-<li>Multipart-Form mit <code>file</code>-Feld (<code>sip.zip</code> BagIt-Container)</li>
+<li>Multipart-Form mit <code>file</code>-Feld (<code>sip.zip</code>, BagIt oder E-ARK)</li>
 <li>Header <code>Authorization: Bearer &lt;api_token&gt;</code> (Sanctum-Token, siehe
   <a href="../../api/authentication/">API-Authentifizierung</a>)</li>
 </ul>
@@ -4456,6 +4535,14 @@ Ereignis <code>format-normalization</code> an, wie bei einer Umwandlung in Anton
 Es nennt die Regel, die Werkzeugversionen und die Prüfsummen vor und nach der
 Umwandlung. Die Prüfsumme der Datei, wie sie bei agate ankam, bleibt damit
 erhalten.</p>
+<h2 id="original-und-nutzungskopie">Original und Nutzungskopie<a class="headerlink" href="#original-und-nutzungskopie" title="Permanent link">&para;</a></h2>
+<p>Ab anton-import-format 0.6 kann ein SIP zu einer Datei mehr als den Master liefern: die Datei vor einer Umwandlung (<code>versions</code>, Rolle <code>original</code>) und eine Nutzungskopie (<code>access_copy</code>). Der Master bleibt das Medium.</p>
+<ul>
+<li><strong>Original:</strong> Anton bewahrt es hinter dem Medium auf (Fassung «Original», mit eigenen Prüfsummen und Ereignissen, in DIMAG über <code>media:versions-to-cloud</code>), nie als eigenes Medium. Hat agate die Datei umgewandelt und das Original behalten, verweist das Ereignis <code>format-normalization</code> auf diese Fassung.</li>
+<li><strong>Nutzungskopie:</strong> Die Einstellung <code>import_access_copy</code> entscheidet. <code>derive</code> (Vorgabe): Anton rechnet die Webfassung selbst, die gelieferte Kopie wird nicht gespeichert. <code>adopt</code>: Anton übernimmt sie als Webfassung, wenn sie zum Master passt (Bild → JPEG, PDF → PDF, Video → MP4, Audio → MP3) und die Prüfsumme stimmt; sonst rechnet es selbst. Der Entscheid steht als Ereignis «Nutzungskopie» am Medium. Eine übernommene Webfassung ersetzt <code>media:conversions</code> nur mit <code>--replace-supplied</code>. Das Vorschaubild rechnet Anton immer selbst.</li>
+<li><strong>Prüfung:</strong> Original und Nutzungskopie werden vor dem Import geprüft wie der Master: Virenprüfung, Prüfsumme, bei E-ARK gegen das METS ihrer Repräsentation (<code>representations/&lt;source&gt;/data/</code>). Ein Fehler bricht den Import ab, bevor etwas geschrieben ist.</li>
+<li><strong>Formatversion:</strong> agate fragt Anton über <code>GET /api/import-format</code>, welche Version des Formats sein Import liest, und schreibt Original und Nutzungskopie nur, wenn Anton 0.6 oder neuer meldet. Ein <code>metadata.json</code> in einer neueren Version, als Anton liest, weist Anton ab.</li>
+</ul>
 <h2 id="konfigurations-checkliste">Konfigurations-Checkliste<a class="headerlink" href="#konfigurations-checkliste" title="Permanent link">&para;</a></h2>
 <p>Damit agate-Imports funktionieren:</p>
 <ol>

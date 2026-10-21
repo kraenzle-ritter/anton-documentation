@@ -5006,7 +5006,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -5037,7 +5037,7 @@
 </tr>
 <tr>
 <td><strong>SIP</strong></td>
-<td>Direkter SIP-Upload (BagIt-Pakete) mit Validation + Ingest. Siehe <a href="../../admin/sip-ingest/">SIP Ingest</a> und <a href="../../admin/agate-sip/">agate SIP</a>.</td>
+<td>Direkter SIP-Upload (BagIt- oder E-ARK-Pakete) mit Validation + Ingest. Siehe <a href="../../admin/sip-ingest/">SIP Ingest</a> und <a href="../../admin/agate-sip/">agate SIP</a>.</td>
 </tr>
 <tr>
 <td><strong>Excel</strong></td>
@@ -5051,9 +5051,9 @@
 </table>
 <p>Die alten URLs (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/import/validation</code>, <code>/import/ingest</code>, <code>/sip/inbox</code>) leiten transparent auf den passenden Tab um — Lesezeichen und externe Links bleiben gültig.</p>
 <h3 id="detail-ansicht-im-eingangskorb">Detail-Ansicht im Eingangskorb<a class="headerlink" href="#detail-ansicht-im-eingangskorb" title="Permanent link">&para;</a></h3>
-<p>Pro wartendem SIP im Eingangskorb gibt es einen <strong>Details</strong>-Link. Dahinter steht eine Inspektions-Seite, die nur die <code>metadata.json</code> aus dem BagIt liest (kein Auspacken der Medien) und zeigt:</p>
+<p>Pro wartendem SIP im Eingangskorb gibt es einen <strong>Details</strong>-Link. Dahinter steht eine Inspektions-Seite, die nur die <code>metadata.json</code> aus dem Paket liest (kein Auspacken der Medien) und zeigt:</p>
 <ul>
-<li>BagIt-Validität (Manifest, Checksummen)</li>
+<li>Paketprüfung: BagIt (Manifest, Checksummen) oder E-ARK (Prüfung nach E-ARK)</li>
 <li>Anzahl Datensätze im SIP</li>
 <li>NARA-Objekttyp-Kategorien — mit Hinweis, falls der Tenant für eine Kategorie keinen passenden Typ kennt</li>
 <li>Titel des obersten Datensatzes</li>

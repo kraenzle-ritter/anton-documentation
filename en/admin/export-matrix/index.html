@@ -4336,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -4356,7 +4356,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>18 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>20 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4379,7 +4379,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>EAD3</td>
 <td><code>ead3.rng</code></td>
-<td>Object tree (reduced)</td>
+<td>Object tree from the fonds</td>
 <td>Admin → Export</td>
 </tr>
 <tr>
@@ -4503,7 +4503,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>Unit of description</td>
 <td>●</td>
-<td>◐</td>
+<td>●</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -4531,7 +4531,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>Media (metadata)</td>
 <td>◐</td>
-<td>○</td>
+<td>◐</td>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
@@ -4572,8 +4572,8 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td>Actors (embedded)</td>
-<td>◐</td>
-<td>◐</td>
+<td>●</td>
+<td>●</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -4601,7 +4601,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>Places (embedded)</td>
 <td>◐</td>
-<td>○</td>
+<td>◐</td>
 <td>◐</td>
 <td>●</td>
 <td>●</td>
@@ -4628,8 +4628,8 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td>Keywords</td>
-<td>◐</td>
-<td>◐</td>
+<td>●</td>
+<td>●</td>
 <td>●</td>
 <td>●</td>
 <td>●</td>
@@ -4657,7 +4657,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>Text fields (ISAD fields)</td>
 <td>●</td>
-<td>○</td>
+<td>●</td>
 <td>◐</td>
 <td>◐</td>
 <td>◐</td>
@@ -4699,7 +4699,7 @@ maintained together with the exporters.</p>
 <tr>
 <td>Languages / display date</td>
 <td>●</td>
-<td>◐</td>
+<td>●</td>
 <td>○</td>
 <td>●</td>
 <td>●</td>
@@ -4712,8 +4712,8 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td>Location (physical)</td>
-<td>○²</td>
-<td>○²</td>
+<td>◐²</td>
+<td>◐²</td>
 <td>○</td>
 <td>●</td>
 <td>○</td>
@@ -4726,8 +4726,8 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td>Protection period (structured)</td>
-<td>○²</td>
-<td>○²</td>
+<td>◐²</td>
+<td>◐²</td>
 <td>○</td>
 <td>●</td>
 <td>○</td>
@@ -4810,11 +4810,11 @@ maintained together with the exporters.</p>
 </tr>
 </tbody>
 </table>
-<p>² <strong>EAD</strong> outputs conditions of access and location details only as free text —
-<code>&lt;accessrestrict&gt;</code> and <code>&lt;originalsloc&gt;</code> are fed from the text fields of the same
-name, not from the «Closure period» field or the location
-reference. A consumer therefore receives what someone wrote down, not the
-evaluable period. <code>&lt;physloc&gt;</code> is not implemented.</p>
+<p>² <strong>EAD 2002 and EAD3</strong> write the closure period as a sentence in <code>&lt;accessrestrict&gt;</code>,
+with the year from which the material is open, next to the text field
+«Conditions of access». apeEAD allows no element of its own that could be
+evaluated. The text field «Location (detail)» goes out as <code>&lt;physloc&gt;</code>, the
+location reference does not.</p>
 <p>³ <strong>Comments</strong> are internal working notes and deliberately appear in no
 publication format — not even in the native round trip. They are held
 exclusively in the SQL dump. This is not a state of implementation but a
@@ -4832,8 +4832,17 @@ risk assessment is not included. Applies to the native round trip too, not to
 the ZH variant of the DIP.</p>
 <h2 id="well-covered">Well covered<a class="headerlink" href="#well-covered" title="Permanent link">&para;</a></h2>
 <p><strong>Units of description</strong> are broadly supported. <strong>EAD2002</strong> is the most complete
-format: title, reference code, dating, level, extent, languages and all ISAD(G)
-text fields. <strong>RDF A+</strong> types the same thing twice (CIDOC CRM <em>and</em> RiC-O),
+format: title also in the other languages, reference code, dating with its
+comment, level, extent, languages and script, closure period and the ISAD(G)
+text fields that the record's form shows to the public. Access points are
+written by type (<code>persname</code>, <code>corpname</code>, <code>famname</code>, <code>subject</code>, <code>geogname</code>) with
+the GND number where one is linked. Digital objects go out as the web view and
+thumbnail, never as the master. Every file is checked against <code>ead.xsd</code> and
+<code>apeEAD.xsd</code> as it is written, also in the nightly run; a finding is in the log
+and in the output of <code>anton:export</code>.
+Multilingual text fields are not possible: apeEAD allows each text field only
+once and has no language attribute on it. The version in the archive's main
+language goes out. <strong>RDF A+</strong> types the same thing twice (CIDOC CRM <em>and</em> RiC-O),
 including multilingual titles.</p>
 <p><strong>Authority data</strong> has exactly one structured, standalone export: the <strong>TEI
 authority lists</strong> with all name forms, life dates, coordinates, description,
@@ -4919,9 +4928,11 @@ host it publicly.</p>
 <p>With <em>Anton as a Service</em>, k &amp; r produces the CLI artefacts on request; <em>on
 premises</em>, the commands are run by the operating institution.</p>
 <h2 id="format-restrictions-in-detail">Format restrictions in detail<a class="headerlink" href="#format-restrictions-in-detail" title="Permanent link">&para;</a></h2>
-<p><strong>EAD3</strong> is considerably thinner than EAD2002: no text fields, no places, no
-actor descriptors, no media, no language details — only reference code, title,
-dating, creators and keywords.</p>
+<p><strong>EAD3</strong> contains the same as EAD2002, written in EAD3 and checked against
+<code>ead3.rng</code> as it is written: extent and dating structured, names with
+<code>@identifier</code> and <code>@source</code> of the authority record, titles in the other
+languages with <code>@lang</code>. Text fields go out in the main language, as in EAD2002.
+The validation page checks EAD3 files too.</p>
 <p><strong>The EAD holding guide</strong> delivers a flat holdings overview without text fields
 per node.</p>
 <p><strong>Memobase RDF</strong> is deliberately lossy: no actors, places, keywords or events —

@@ -3141,7 +3141,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -3172,7 +3172,7 @@
 </tr>
 <tr>
 <td><strong>SIP</strong></td>
-<td>Téléversement SIP direct (paquets BagIt) avec validation et ingest. Voir <a href="../../admin/sip-ingest/">SIP Ingest</a> et <a href="../../admin/agate-sip/">agate SIP</a>.</td>
+<td>Téléversement SIP direct (paquets BagIt ou E-ARK) avec validation et ingest. Voir <a href="../../admin/sip-ingest/">SIP Ingest</a> et <a href="../../admin/agate-sip/">agate SIP</a>.</td>
 </tr>
 <tr>
 <td><strong>Excel</strong></td>
@@ -3186,9 +3186,9 @@
 </table>
 <p>Les anciennes URL (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/import/validation</code>, <code>/import/ingest</code>, <code>/sip/inbox</code>) redirigent de manière transparente vers l'onglet correspondant — les signets et les liens externes restent valables.</p>
 <h3 id="vue-de-detail-dans-la-boite-dentree">Vue de détail dans la boîte d'entrée<a class="headerlink" href="#vue-de-detail-dans-la-boite-dentree" title="Permanent link">&para;</a></h3>
-<p>Pour chaque SIP en attente dans la boîte d'entrée, il existe un lien <strong>Détails</strong>. Derrière se trouve une page d'inspection qui ne lit que le <code>metadata.json</code> du BagIt (sans décompresser les médias) et affiche :</p>
+<p>Pour chaque SIP en attente dans la boîte d'entrée, il existe un lien <strong>Détails</strong>. Derrière se trouve une page d'inspection qui ne lit que le <code>metadata.json</code> du paquet (sans décompresser les médias) et affiche :</p>
 <ul>
-<li>la validité BagIt (manifeste, sommes de contrôle)</li>
+<li>le contrôle du paquet : BagIt (manifeste, sommes de contrôle) ou E-ARK (validation E-ARK)</li>
 <li>le nombre de notices dans le SIP</li>
 <li>les catégories de types d'objets NARA — avec une indication si le tenant ne connaît aucun type approprié pour une catégorie</li>
 <li>le titre de la notice la plus élevée</li>

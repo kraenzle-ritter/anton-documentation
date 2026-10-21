@@ -5006,7 +5006,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-21</span>
     </div>
   
   
@@ -5037,7 +5037,7 @@
 </tr>
 <tr>
 <td><strong>SIP</strong></td>
-<td>Direct SIP upload (BagIt packages) with validation and ingest. See <a href="../../admin/sip-ingest/">SIP ingest</a> and <a href="../../admin/agate-sip/">agate SIP</a>.</td>
+<td>Direct SIP upload (BagIt or E-ARK packages) with validation and ingest. See <a href="../../admin/sip-ingest/">SIP ingest</a> and <a href="../../admin/agate-sip/">agate SIP</a>.</td>
 </tr>
 <tr>
 <td><strong>Excel</strong></td>
@@ -5051,9 +5051,9 @@
 </table>
 <p>The old URLs (<code>/sip/validation</code>, <code>/sip/ingest</code>, <code>/import/validation</code>, <code>/import/ingest</code>, <code>/sip/inbox</code>) redirect transparently to the appropriate tab — bookmarks and external links remain valid.</p>
 <h3 id="detail-view-in-the-inbox">Detail view in the inbox<a class="headerlink" href="#detail-view-in-the-inbox" title="Permanent link">&para;</a></h3>
-<p>For each waiting SIP in the inbox there is a <strong>details</strong> link. Behind it is an inspection page that reads only the <code>metadata.json</code> from the BagIt (without unpacking the media) and shows:</p>
+<p>For each waiting SIP in the inbox there is a <strong>details</strong> link. Behind it is an inspection page that reads only the <code>metadata.json</code> from the package (without unpacking the media) and shows:</p>
 <ul>
-<li>BagIt validity (manifest, checksums)</li>
+<li>package check: BagIt (manifest, checksums) or E-ARK (E-ARK validation)</li>
 <li>number of records in the SIP</li>
 <li>NARA object type categories — with a note if the tenant does not know a suitable type for a category</li>
 <li>title of the topmost record</li>
