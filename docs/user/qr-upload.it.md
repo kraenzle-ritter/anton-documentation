@@ -12,6 +12,8 @@ Con il caricamento tramite codice QR è possibile inviare file direttamente dall
 
 L'impostazione `upload-qr-lods` contiene i livelli di descrizione per i quali viene visualizzato il pulsante di caricamento QR, ad esempio unità archivistiche e unità documentarie `[5,6]`. Per disattivare il caricamento QR si salva un array vuoto `[]` oppure si cancella il contenuto del campo.
 
+Il pulsante è visibile agli account con il ruolo **Editor** o **Admin**, come per il caricamento tramite il modulo. Un codice di caricamento vale per una sola registrazione e scade dopo `upload-qr-token-minutes` (60 minuti, salvo diversa impostazione).
+
 ## Attivare il caricamento
 
 ### 1. Aprire l'oggetto

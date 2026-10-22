@@ -12,6 +12,8 @@ Mit dem QR-Code Upload können Dateien direkt vom Smartphone zu einem Archivobje
 
 Die Einstellung `upload-qr-lods` enthält die Verzeichnungsstufen bei denen der QR-Upload Button eingeblendet wird, also z.B. Dossiers und Einzelstücke `[5,6]`. Um den QR-Upload zu deaktivieren, wird ein leeres Array gespeichert `[]` bzw. der Inhalt des Feldes gelöscht.
 
+Den Knopf sehen Konten mit der Rolle **Editor** oder **Admin**, wie beim Hochladen über das Formular. Ein Upload-Code gilt für einen Datensatz und läuft nach `upload-qr-token-minutes` ab (60 Minuten, wenn nichts anderes eingestellt ist).
+
 ## Upload aktivieren
 
 ### 1. Objekt öffnen

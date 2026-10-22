@@ -12,6 +12,8 @@ Le téléversement par code QR permet d'envoyer des fichiers directement depuis 
 
 Le paramètre `upload-qr-lods` contient les niveaux de description pour lesquels le bouton de téléversement QR est affiché, par exemple les dossiers et les pièces `[5,6]`. Pour désactiver le téléversement QR, on enregistre un tableau vide `[]` ou l'on supprime le contenu du champ.
 
+Le bouton est affiché aux comptes ayant le rôle **Editor** ou **Admin**, comme pour le téléversement par le formulaire. Un code de téléversement vaut pour une seule notice et expire après `upload-qr-token-minutes` (60 minutes, sauf autre réglage).
+
 ## Activer le téléversement
 
 ### 1. Ouvrir l'objet

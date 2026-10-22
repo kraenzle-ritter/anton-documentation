@@ -12,6 +12,8 @@ With the QR code upload, files can be uploaded directly from a smartphone to an 
 
 The `upload-qr-lods` setting contains the levels of description for which the QR upload button is displayed, for example files and items `[5,6]`. To deactivate the QR upload, an empty array `[]` is saved, or the content of the field is deleted.
 
+The button is shown to accounts with the role **Editor** or **Admin**, as for uploading through the form. An upload code applies to one record and expires after `upload-qr-token-minutes` (60 minutes unless set otherwise).
+
 ## Activating the upload
 
 ### 1. Open the object
