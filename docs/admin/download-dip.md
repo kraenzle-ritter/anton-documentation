@@ -103,6 +103,8 @@ Der Zugangsumfang entsteht immer als öffentliche Sicht, gleich wer ihn herunter
 
 Jedes Paket wird nach dem Schreiben gegen E-ARK geprüft (`kraenzle-ritter/eark-ip`). Ein Paket mit Fehlern wird gelöscht und nicht ausgeliefert; die Meldung nennt die verletzten Anforderungen. Warnungen halten es nicht auf.
 
+Wer die Pakete zusätzlich mit commons-ip prüft, dem Java-Validator der E-ARK-Gemeinschaft, bekommt eine Warnung zu CSIP101. Sie ist ein Fehlalarm von commons-ip: Das Paket folgt hier dem Beispiel der Spezifikation und der DILCIS-Testsammlung, und commons-ip meldet dasselbe auch für deren gültiges Beispielpaket (gemeldet als keeps/commons-ip#390).
+
 ### Einstellungen
 
 | Setting | Bedeutung | Vorgabe |

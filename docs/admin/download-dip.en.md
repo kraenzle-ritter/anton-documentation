@@ -100,6 +100,8 @@ The access scope is always built as the public view, whoever downloads it. A med
 
 Every package is validated against E-ARK after it is written (`kraenzle-ritter/eark-ip`). A package with errors is deleted and not delivered; the message names the failed requirements. Warnings do not stop it.
 
+If you also check the packages with commons-ip, the Java validator of the E-ARK community, you get one warning on CSIP101. It is a false alarm of commons-ip: here the package follows the example of the specification and the DILCIS test corpus, and commons-ip reports the same for the corpus's own valid sample package (reported as keeps/commons-ip#390).
+
 ### Settings
 
 | Setting | Meaning | Default |
