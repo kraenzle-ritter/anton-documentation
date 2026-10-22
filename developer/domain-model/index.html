@@ -4224,7 +4224,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/developer/domain-model/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4252,7 +4252,7 @@ Unterscheidung im ganzen Modell (siehe unten).</p>
 Place, Keyword und Location. Pro Sprache ein Datensatz. In der Doku heissen
 diese Felder «Textfelder».</p>
 <p><strong>Media</strong> — die digitalen Objekte, über <code>spatie/laravel-medialibrary</code> mit
-Konversionen (<code>web</code>, <code>thumb</code>). Der Master bleibt unverändert.</p>
+Konversionen (<code>web</code>, <code>thumb</code>). Einen abgelegten Master verändert nur <code>media:migrate</code> (siehe <a href="../../admin/preservation/#speicherung">Speicherung</a>).</p>
 <h2 id="die-hierarchie-ist-eine-closure-table">Die Hierarchie ist eine Closure Table<a class="headerlink" href="#die-hierarchie-ist-eine-closure-table" title="Permanent link">&para;</a></h2>
 <p>Die Tektonik lebt nicht in einer <code>parent_id</code>, sondern in einer
 Closure Table (<code>franzose/closure-table</code>): einer Tabelle, die für <strong>jedes</strong>

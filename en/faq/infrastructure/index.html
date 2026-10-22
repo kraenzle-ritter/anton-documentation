@@ -1850,7 +1850,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/faq/infrastructure/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/faq/infrastructure/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/infrastructure/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-08-18</span>
+<span class="page-meta__date">Last updated: 2026-10-22</span>
 </div>
 <h1 id="anton-server-infrastructure-diagram">Anton server infrastructure diagram<a class="headerlink" href="#anton-server-infrastructure-diagram" title="Permanent link">¶</a></h1>
 <pre class="mermaid"><code>---
@@ -1900,8 +1900,8 @@ flowchart TB
 <li>Daily full backups (metadata + digitised objects)</li>
 </ul>
 </li>
-<li><strong>Geographical distribution</strong>: two backup servers at two different locations in Switzerland</li>
-<li><strong>Mirroring</strong>: both backup servers run as RAID 1, so every backup exists twice; sixfold data redundancy in total</li>
+<li><strong>Geographical distribution</strong>: two backup servers at two locations in Zurich; with the production data and the local backup on the ANTON SERVER, four copies at three locations. The two Zurich locations share the regional risks; there is no further, independent location for now</li>
+<li><strong>Mirroring</strong>: both backup servers run as RAID 1; this protects against the failure of a disk but is not a further copy</li>
 <li><strong>Encryption</strong>: all backups are stored and transmitted encrypted</li>
 <li><strong>Pull-based backups</strong>: the backup servers fetch the data (no push)<ul>
 <li>protection against compromise of the production server</li>

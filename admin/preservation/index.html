@@ -4470,7 +4470,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4482,13 +4482,7 @@
 
 
 <h1 id="langzeitarchivierung-uberblick">Langzeitarchivierung: Überblick<a class="headerlink" href="#langzeitarchivierung-uberblick" title="Permanent link">&para;</a></h1>
-<p>Anton übernimmt digitale Unterlagen geprüft, bewahrt die Master unverändert,
-erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Die
-Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei
-Installationen mit angebundenem Langzeitarchiv übernimmt dieses die
-Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und
-verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches
-Artefakt eine <strong>Sicherung</strong> ist und welches eine <strong>Publikationsansicht</strong>.</p>
+<p>Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe <a href="#speicherung">Speicherung</a>). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine <strong>Sicherung</strong> ist und welches eine <strong>Publikationsansicht</strong>.</p>
 <h2 id="aufgabenteilung">Aufgabenteilung<a class="headerlink" href="#aufgabenteilung" title="Permanent link">&para;</a></h2>
 <p>Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
 die fachlichen ab, der Betrieb die Speicherung:</p>
@@ -4522,7 +4516,7 @@ die fachlichen ab, der Betrieb die Speicherung:</p>
 </tr>
 <tr>
 <td>Master und Zugriffskopien</td>
-<td>bewahrt den Master unverändert, erzeugt <code>web</code> und <code>thumb</code></td>
+<td>bewahrt den Master, verändert ihn nur über Format-Regeln, Upload-Verarbeitung und <code>media:migrate</code>, erzeugt <code>web</code> und <code>thumb</code></td>
 <td></td>
 <td></td>
 </tr>
@@ -4619,8 +4613,8 @@ SHA-512 ist der Referenzwert für die Integritätsprüfung, wie ihn OCFL und Bag
 empfehlen; MD5 bleibt für die Anbindung an DIMAG und für das Erkennen doppelter
 Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 <a href="../console-commands/#mediachecksum"><code>media:checksum</code></a> SHA-512 nach — und prüft
-dabei jede Datei gegen ihre MD5. Der <strong>Master bleibt unverändert</strong>; die
-Ableitungen (<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
+dabei jede Datei gegen ihre MD5. Die Ableitungen (<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
+<p>Der Master ist nicht in jedem Fall die gelieferte Datei. Bei der Übernahme kann sie verändert werden, bevor sie zum Master wird: durch eine <a href="#regeln-fuer-dateien">Format-Regel</a> wie <code>tiff_zip</code>, die sie verlustfrei umpackt und die gelieferte Datei verwirft (ihre Prüfsummen stehen im Ereignis am Medium), oder durch die Verarbeitung beim <a href="../../user/qr-upload/">QR-Upload</a> (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet; nur «Bilder → PDF» behält die gelieferten Bilder als <a href="#behaltene-originale">Originale</a>. Einen abgelegten Master verändert danach nur <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, mit Prüfung und Ereignis; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> stellt bloss den geprüften Inhalt wieder her.</p>
 <h3 id="behaltene-originale">Behaltene Originale<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
 <p>Neben manchen Mastern liegt das Original, wie es geliefert wurde, im Ordner
 <code>original/</code> des Mediums: wenn beim Upload per QR-Code mehrere Bilder zu einem
@@ -4664,12 +4658,7 @@ Archiv.</p>
 <p>«Richtig darstellen» prüft die Formatprüfung bei PDF über die
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.</p>
-<p>Normalisiert wird nur bei der Übernahme, nach den
-<a href="#regeln-fuer-dateien">Regeln für Dateien</a>, mit Prüfung und
-<a href="#behaltene-originale">behaltenem Original</a>. Originale bleiben bitgenau
-erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation
-Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
-ihnen zuweist und welche Handlung NARA empfiehlt.</p>
+<p>Normalisiert wird bei der Übernahme nach den <a href="#regeln-fuer-dateien">Regeln für Dateien</a> und im Bestand mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, beides mit Prüfung. Ob das Original bleibt, legt die Regel fest: <code>tiff_zip</code> verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, <code>media:migrate --keep-original</code> behält sie. <a href="#behaltene-originale">Behaltene Originale</a> bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <h3 id="abgabe">Abgabe<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="#sicherung-oder-publikation">Sicherung oder Publikation?</a> weiter unten.</p>
 <h2 id="integritat-prufen">Integrität prüfen<a class="headerlink" href="#integritat-prufen" title="Permanent link">&para;</a></h2>
@@ -4739,10 +4728,7 @@ Wo das nicht eingerichtet ist, meldet der Befehl das und tut nichts.</p>
 <h2 id="redundante-speicherung">Redundante Speicherung<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
 <p>Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
 lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
-der Betrieb an. Bei <strong>Anton as a Service</strong> liegen die Daten in
-<a href="../../faq/longterm_archives/">drei Kopien an drei Standorten</a> (gesamthaft
-sechsfache Redundanz); <strong>on Premises</strong> verantwortet das die betreibende
-Institution.</p>
+der Betrieb an. Bei <strong>Anton as a Service</strong> liegen die Daten in <a href="../../faq/longterm_archives/">vier Kopien an drei Standorten, zwei davon in Zürich</a>; <strong>on Premises</strong> verantwortet das die betreibende Institution.</p>
 <h2 id="sicherung-oder-publikation">Sicherung oder Publikation?<a class="headerlink" href="#sicherung-oder-publikation" title="Permanent link">&para;</a></h2>
 <p>Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:</p>
 <table>
@@ -4759,7 +4745,7 @@ Institution.</p>
 </tr>
 <tr>
 <td><strong>SQL-Dump</strong></td>
-<td><strong>Sicherung.</strong> Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der Datei-Provenienz (PRONOM/NARA-Historie). Enthält keine Mediendateien.</td>
+<td><strong>Sicherung.</strong> Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der NARA-Bewertung der Dateien (nur der aktuelle Wert, keine Historie). Die Ereignisse am Medium, darunter seit Version 0.107 jede Formaterkennung, stehen auch im PREMIS von DIP, OCFL und nativem Export. Enthält keine Mediendateien.</td>
 </tr>
 <tr>
 <td><a href="../download-dip/"><strong>DIP</strong></a> (BagIt) und <a href="../download-ocfl/"><strong>OCFL</strong></a></td>

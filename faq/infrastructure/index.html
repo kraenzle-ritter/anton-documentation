@@ -1850,7 +1850,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/faq/infrastructure/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/infrastructure/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/infrastructure/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-08-09</span>
+<span class="page-meta__date">Last updated: 2026-10-22</span>
 </div>
 <h1 id="anton-server-infrastruktur-diagramm">Anton Server Infrastruktur Diagramm<a class="headerlink" href="#anton-server-infrastruktur-diagramm" title="Permanent link">¶</a></h1>
 <pre class="mermaid"><code>---
@@ -1900,8 +1900,8 @@ flowchart TB
 <li>Tägliche Vollbackups (Metadaten + Digitalisate)</li>
 </ul>
 </li>
-<li><strong>Geografische Verteilung</strong>: Zwei Backup-Server an zwei verschiedenen Standorten in der Schweiz</li>
-<li><strong>Spiegelung</strong>: Beide Backup-Server laufen als RAID 1, jede Sicherung liegt also doppelt; insgesamt also 6fache Datenredundanz</li>
+<li><strong>Geografische Verteilung</strong>: Zwei Backup-Server an zwei Standorten in Zürich; mit den Produktionsdaten und dem lokalen Backup auf dem ANTON-SERVER vier Kopien an drei Standorten. Die beiden Zürcher Standorte teilen sich die regionalen Risiken; einen weiteren, davon unabhängigen Standort gibt es vorerst nicht</li>
+<li><strong>Spiegelung</strong>: Beide Backup-Server laufen als RAID 1; das schützt vor dem Ausfall einer Platte, ist aber keine weitere Kopie</li>
 <li><strong>Verschlüsselung</strong>: Alle Backups verschlüsselt gespeichert und übertragen</li>
 <li><strong>Pull-basierte Backups</strong>: Backup-Server holen Daten ab (kein Push)<ul>
 <li>Schutz vor Kompromittierung des Produktionsservers</li>

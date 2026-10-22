@@ -4470,7 +4470,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4482,13 +4482,7 @@
 
 
 <h1 id="long-term-preservation-overview">Long-term preservation: overview<a class="headerlink" href="#long-term-preservation-overview" title="Permanent link">&para;</a></h1>
-<p>Anton ingests digital records with verification, keeps the masters unchanged,
-identifies their formats and records how well they can be preserved. Storage
-itself and its redundancy are provided by the operating infrastructure; in
-installations with a connected long-term archive, that archive takes over
-bitstream preservation. This page shows how the tasks are divided and refers to
-the detail pages. It also answers the question of which artefact is a
-<strong>backup</strong> and which is a <strong>publication view</strong>.</p>
+<p>Anton ingests digital records with verification, identifies their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it: at ingest through a format rule or the processing of a QR upload, afterwards through a migration (see <a href="#speicherung">Storage</a>). Storage itself and its redundancy are provided by the operating infrastructure; in installations with a connected long-term archive, that archive takes over bitstream preservation. This page shows how the tasks are divided and refers to the detail pages. It also answers the question of which artefact is a <strong>backup</strong> and which is a <strong>publication view</strong>.</p>
 <h2 id="aufgabenteilung">Division of tasks<a class="headerlink" href="#aufgabenteilung" title="Permanent link">&para;</a></h2>
 <p>Digital preservation consists of several layers. Anton covers the archival
 ones, operations cover storage:</p>
@@ -4522,7 +4516,7 @@ ones, operations cover storage:</p>
 </tr>
 <tr>
 <td>Master and access copies</td>
-<td>keeps the master unchanged, produces <code>web</code> and <code>thumb</code></td>
+<td>keeps the master, changes it only through format rules, upload processing and <code>media:migrate</code>, produces <code>web</code> and <code>thumb</code></td>
 <td></td>
 <td></td>
 </tr>
@@ -4614,9 +4608,8 @@ a single read on upload and stores both in the database. SHA-512 is the
 reference for the integrity check, as OCFL and BagIt recommend; MD5 stays for
 the DIMAG connection and for recognising duplicate imports. For media from
 before version 0.98, <a href="../console-commands/#mediachecksum"><code>media:checksum</code></a>
-computes SHA-512 afterwards — checking every file against its MD5 as it goes.
-The <strong>master remains unchanged</strong>; the derivatives (<code>web</code>, <code>thumb</code>) are access
-copies.</p>
+computes SHA-512 afterwards — checking every file against its MD5 as it goes. The derivatives (<code>web</code>, <code>thumb</code>) are access copies.</p>
+<p>The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a <a href="#regeln-fuer-dateien">format rule</a> such as <code>tiff_zip</code>, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a <a href="../../user/qr-upload/">QR upload</a> (HEIC → JPEG, images → PDF, OCR) that the archive switches on; only «images → PDF» keeps the delivered images as <a href="#behaltene-originale">originals</a>. Once stored, a master is changed only by <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, with verification and an event; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> merely restores the verified content.</p>
 <h3 id="behaltene-originale">Kept originals<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
 <p>Next to some masters lies the original as delivered, in the medium's
 <code>original/</code> folder: when an upload by QR code combines several images into one
@@ -4659,12 +4652,7 @@ decided by the archive.</p>
 <p>For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.</p>
-<p>Normalisation happens only at ingest, under the
-<a href="#regeln-fuer-dateien">file rules</a>, verified and with the
-<a href="#behaltene-originale">original kept</a>. Originals are kept bit for bit, with a
-checksum. Preservation planning is the basis for decisions: it shows which
-formats are in the holdings, which risk NARA assigns to them and which action
-NARA recommends.</p>
+<p>Normalisation happens at ingest under the <a href="#regeln-fuer-dateien">file rules</a> and in the holdings with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, both verified. Whether the original stays is up to the rule: <code>tiff_zip</code> discards the delivered file and records its checksums in the event, <code>media:migrate --keep-original</code> keeps it. <a href="#behaltene-originale">Kept originals</a> are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.</p>
 <h3 id="abgabe">Delivery<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>See <a href="#sicherung-oder-publikation">Backup or publication?</a> further down.</p>
 <h2 id="integritat-prufen">Checking integrity<a class="headerlink" href="#integritat-prufen" title="Permanent link">&para;</a></h2>
@@ -4731,10 +4719,7 @@ Where that is not set up, the command says so and does nothing.</p>
 <h2 id="redundante-speicherung">Redundant storage<a class="headerlink" href="#redundante-speicherung" title="Permanent link">&para;</a></h2>
 <p>Redundant storage is a matter for the infrastructure: Anton writes to a local
 store and optionally to a cloud store, and operations create the copies
-underneath. With <strong>Anton as a Service</strong>, the data is held in
-<a href="../../faq/longterm_archives/">three copies at three locations</a> (sixfold
-redundancy in total); <strong>on premises</strong>, the operating institution is
-responsible for this.</p>
+underneath. With <strong>Anton as a Service</strong>, the data is held in <a href="../../faq/longterm_archives/">four copies at three locations, two of them in Zurich</a>; <strong>on premises</strong>, the operating institution is responsible for this.</p>
 <h2 id="sicherung-oder-publikation">Backup or publication?<a class="headerlink" href="#sicherung-oder-publikation" title="Permanent link">&para;</a></h2>
 <p>The most important distinction, and the one most easily confused:</p>
 <table>
@@ -4751,7 +4736,7 @@ responsible for this.</p>
 </tr>
 <tr>
 <td><strong>SQL dump</strong></td>
-<td><strong>Backup.</strong> The only artefact with users, settings, forms and file provenance (PRONOM/NARA history). Contains no media files.</td>
+<td><strong>Backup.</strong> The only artefact with users, settings, forms and the NARA assessment of the files (current value only, no history). The events on the media, including every format identification since version 0.107, are also in the PREMIS of the DIP, OCFL and native export. Contains no media files.</td>
 </tr>
 <tr>
 <td><a href="../download-dip/"><strong>DIP</strong></a> (BagIt) and <a href="../download-ocfl/"><strong>OCFL</strong></a></td>

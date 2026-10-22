@@ -3299,10 +3299,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mime-type-verteilung" class="md-nav__link">
+  <a href="#mime-typen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MIME-Type-Verteilung
+        MIME-Typen
       
     </span>
   </a>
@@ -3358,6 +3358,17 @@
     <span class="md-ellipsis">
       
         Virenprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mediendateien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mediendateien
       
     </span>
   </a>
@@ -4210,10 +4221,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mime-type-verteilung" class="md-nav__link">
+  <a href="#mime-typen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MIME-Type-Verteilung
+        MIME-Typen
       
     </span>
   </a>
@@ -4269,6 +4280,17 @@
     <span class="md-ellipsis">
       
         Virenprüfung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mediendateien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mediendateien
       
     </span>
   </a>
@@ -4336,7 +4358,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation-planning/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4348,26 +4370,12 @@
 
 
 <h1 id="preservation-planning">Preservation Planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h1>
-<p>Anton bietet ein Dashboard für die digitale Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
-empfohlene Handlungen pro Tenant.</p>
-<p>Unter <strong>Admin → Preservation Planning</strong> stehen diese Bereiche.</p>
-<h2 id="mime-type-verteilung">MIME-Type-Verteilung<a class="headerlink" href="#mime-type-verteilung" title="Permanent link">&para;</a></h2>
-<p>Interaktive Charts (Donut / Balken) zeigen, wie sich die Medienbestände
-auf MIME-Typen verteilen:</p>
-<ul>
-<li>Anzahl Dateien pro MIME-Typ</li>
-<li>Gesamtgrösse pro MIME-Typ</li>
-<li>Klick auf einen Slice öffnet die Liste der betroffenen Datensätze</li>
-</ul>
-<p>Hilft bei Fragen wie: „Wie viele PDFs haben wir?" / „Sind unsere TIFFs
-schon migriert?" / „Wie gross ist der Audio-Anteil?".</p>
+<p>Unter <strong>Admin → Preservation Planning</strong> zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>.</p>
+<h2 id="mime-typen">MIME-Typen<a class="headerlink" href="#mime-typen" title="Permanent link">&para;</a></h2>
+<p>Anzahl und Anteil der Medien je MIME-Typ, als Tabelle und als Kreisdiagramm.</p>
 <h2 id="nara-kategorien">NARA-Kategorien<a class="headerlink" href="#nara-kategorien" title="Permanent link">&para;</a></h2>
-<p>Klassifizierung nach den Standards der <strong>US National Archives</strong>
-(NARA Risk/Action Matrix). Jede Datei wird einer Kategorie zugeordnet
-(StillImage, Audio, Textual, Video, Geospatial, …) und erhält eine
-<strong>Risiko-Stufe</strong> plus eine <strong>empfohlene Aktion</strong> aus der NARA-Liste.</p>
-<p>Implementiert über das Anton-Open-Source-Package
-<a href="https://github.com/kraenzle-ritter/nara-risk"><code>kraenzle-ritter/nara-risk</code></a>.</p>
+<p>Klassifizierung nach den Standards der <strong>US National Archives</strong> (NARA Risk/Action Matrix). Jede Datei wird einer Kategorie zugeordnet (StillImage, Audio, Textual, Video, Geospatial, …) und erhält eine <strong>Risiko-Stufe</strong> plus eine <strong>empfohlene Aktion</strong> aus der NARA-Liste.</p>
+<p>Implementiert über das Anton-Open-Source-Package <a href="https://github.com/kraenzle-ritter/nara-risk"><code>kraenzle-ritter/nara-risk</code></a>.</p>
 <p>Risiko-Stufen:</p>
 <table>
 <thead>
@@ -4400,49 +4408,20 @@ schon migriert?" / „Wie gross ist der Audio-Anteil?".</p>
 </tr>
 </tbody>
 </table>
-<p>Empfohlene Aktionen: <strong>retain</strong>, <strong>transform</strong> (z. B. DOC → PDF/A),
-<strong>replace</strong> (z. B. RAW → DNG), <strong>monitor</strong>.</p>
+<p>Empfohlene Aktionen, wie NARA sie vergibt: <strong>Retain</strong> (behalten), <strong>Retain for Future Assessment</strong> (behalten, später neu bewerten), <strong>Transform</strong> (in ein anderes Format überführen), <strong>Identify</strong> (Format oder Version genauer bestimmen). Medien ohne Erkennung zählt die Ansicht unter <strong>Identify</strong>.</p>
 <h2 id="pronom-ids">PRONOM-IDs<a class="headerlink" href="#pronom-ids" title="Permanent link">&para;</a></h2>
-<p>PRONOM ist die UK-National-Archives-Datenbank für Dateiformat-
-Identifikation. Jede Datei in Anton wird über
-<strong>Siegfried</strong> (oder die interne <code>kraenzle-ritter/puidentify</code>-Library)
-mit einer PUID (PRONOM Unique IDentifier) versehen.</p>
-<p>Das Dashboard listet:</p>
-<ul>
-<li>Top PUIDs nach Häufigkeit</li>
-<li>Datei-Beispiele pro PUID (klickbar, öffnet den Datensatz)</li>
-<li>Hinweis, wenn eine PUID auf einer NARA-Warn-Liste steht</li>
-</ul>
+<p>PRONOM ist die UK-National-Archives-Datenbank für Dateiformat-Identifikation. Anton versieht jede Datei mit einer PUID (PRONOM Unique IDentifier); die Erkennung leistet <strong>Siegfried</strong> oder <strong>Fido</strong> über die Library <code>kraenzle-ritter/puidentify</code>.</p>
+<p>Die Tabelle listet die PUIDs nach Häufigkeit, mit Formatname, Anteil und der häufigsten NARA-Risiko-Stufe und -Aktion. «Ansicht» öffnet die Medienliste, gefiltert auf diese PUID; eine eigene Zeile zählt die nicht identifizierten Medien.</p>
 <h2 id="risikobewertung">Risikobewertung<a class="headerlink" href="#risikobewertung" title="Permanent link">&para;</a></h2>
-<p>Konsolidierte Sicht: NARA-Risiko × PUID-Vertrauen × Anzahl. Zeigt
-priorisiert, wo Massnahmen sinnvoll sind. Beispiel:</p>
-<blockquote>
-<p><em>„127 Dateien sind WordPerfect 5.x (PUID fmt/192) — NARA empfiehlt
-Migration auf PDF/A. 89 davon sind unter <code>Akzession 2018/3</code>."</em></p>
-</blockquote>
-<p>Klick auf die Zeile öffnet die Liste mit Bulk-Aktionen (Migration
-anstossen, in Sammlung verschieben, etc.).</p>
+<p>Eine Kreuztabelle zählt die Medien nach NARA-Risiko und empfohlener Aktion, zwei Kreisdiagramme zeigen die Verteilung der Risiko-Stufen und der Aktionen. Darunter stehen bis zu 50 Medien mit Handlungsbedarf: nicht identifizierte zuerst, dann die übrigen ausser <strong>Retain</strong>, nach Risiko geordnet.</p>
 <h2 id="formatpruefung">Formatprüfung<a class="headerlink" href="#formatpruefung" title="Permanent link">&para;</a></h2>
-<p>Wo der Bestand in der <a href="../preservation/">Formatprüfung</a> steht, je Master nach
-seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und
-Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft.
-Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme,
-nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung,
-Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren,
-mit Link zum Datensatz. Was wann geprüft wurde, steht unter <strong>Administration →
-Protokolle → Formatprüfung</strong>.</p>
+<p>Wo der Bestand in der <a href="../preservation/">Formatprüfung</a> steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter <strong>Administration → Protokolle → Formatprüfung</strong>.</p>
 <h2 id="virenpruefung">Virenprüfung<a class="headerlink" href="#virenpruefung" title="Permanent link">&para;</a></h2>
-<p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit
-<a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware
-gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und
-Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht
-prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie
-Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
+<p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
+<h2 id="mediendateien">Mediendateien<a class="headerlink" href="#mediendateien" title="Permanent link">&para;</a></h2>
+<p>Alle Medien mit Suche und Filtern nach PUID, NARA-Risiko, NARA-Aktion und MIME-Typ, je mit Link zum Datensatz und zum Download des Masters.</p>
 <h2 id="batch-verarbeitung-mit-siegfried">Batch-Verarbeitung mit Siegfried<a class="headerlink" href="#batch-verarbeitung-mit-siegfried" title="Permanent link">&para;</a></h2>
-<p>Bei neuen Medien führt Anton die Format-Identifikation asynchron als
-Queue-Job aus (<code>ProcessMediaIdentification</code>). Für <strong>Bestands-Sichtung</strong>
-(z. B. nach einem Migrations-Schritt oder Datenimport) gibt es einen
-Batch-Befehl:</p>
+<p>Bei neuen Medien führt Anton die Format-Identifikation asynchron als Queue-Job aus (<code>ProcessMediaIdentification</code>). Für <strong>Bestands-Sichtung</strong> (z. B. nach einem Migrations-Schritt oder Datenimport) gibt es einen Batch-Befehl:</p>
 <div class="highlight"><pre><span></span><code>ddev<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>media:identify<span class="w"> </span>--env<span class="o">=</span>&lt;tenant&gt;
 </code></pre></div>
 <p>Optionen:</p>
@@ -4450,13 +4429,11 @@ Batch-Befehl:</p>
 <li><code>--limit=1000</code> — nur N Dateien</li>
 <li><code>--collection=image</code> — nur Dateien einer Collection</li>
 <li><code>--force</code> — auch Dateien neu identifizieren, die schon eine PUID haben</li>
+<li><code>--oldest=N</code> — die N Medien, deren Erkennung am längsten zurückliegt, solche ohne Erkennungsereignis zuerst (schliesst <code>--force</code> ein)</li>
 </ul>
-<p>Der Befehl nutzt <strong>Siegfried</strong> wenn auf dem Server verfügbar
-(<code>which sf</code>), sonst fällt auf die Pure-PHP-Implementierung von
-<code>puidentify</code> zurück (langsamer aber hat keine externe Dependency).</p>
+<p>Der Befehl nutzt <strong>Siegfried</strong> oder <strong>Fido</strong>, je nachdem, was auf dem Server installiert ist. Fehlen beide, bleibt die Erkennung leer; einen Ersatz ohne externes Programm gibt es nicht. Jede Erkennung steht als Ereignis am Medium, mit Werkzeug, Version und Signaturdatei; eine neue Erkennung bewertet auch das NARA-Risiko neu.</p>
 <h2 id="open-source-pakete-dieser-pipeline">Open-Source-Pakete dieser Pipeline<a class="headerlink" href="#open-source-pakete-dieser-pipeline" title="Permanent link">&para;</a></h2>
-<p>Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-
-Grundlage:</p>
+<p>Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-Grundlage:</p>
 <table>
 <thead>
 <tr>
@@ -4471,7 +4448,7 @@ Grundlage:</p>
 </tr>
 <tr>
 <td><a href="https://github.com/kraenzle-ritter/puidentify"><code>kraenzle-ritter/puidentify</code></a></td>
-<td>PRONOM-PUID-Lookup</td>
+<td>PRONOM-PUID-Lookup über Siegfried oder Fido</td>
 </tr>
 <tr>
 <td><a href="https://github.com/ottosmops/office2text"><code>ottosmops/office2text</code></a></td>
@@ -4501,17 +4478,15 @@ Grundlage:</p>
 <td><code>media:identify</code> CLI-Befehl</td>
 </tr>
 <tr>
-<td>Daily Statistics</td>
-<td>Cache wird über Nacht neu berechnet (siehe <code>app/Console/Kernel.php</code>)</td>
+<td>Dashboard aufgerufen</td>
+<td>Zahlen werden beim Aufruf aus der Datenbank berechnet; einen Zeitplan dafür gibt es nicht</td>
 </tr>
 </tbody>
 </table>
 <h2 id="verwandte-themen">Verwandte Themen<a class="headerlink" href="#verwandte-themen" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../console-commands/">Console Commands</a> — <code>media:identify</code>,
-  <code>media:validate-pdfs</code>, <code>media:check</code></li>
-<li><a href="../sip-ingest/">SIP Ingest</a> — bei SIP-Import läuft die
-  PRONOM-Identifikation automatisch</li>
+<li><a href="../console-commands/">Console Commands</a> — <code>media:identify</code>, <code>media:validate-pdfs</code>, <code>media:check</code></li>
+<li><a href="../sip-ingest/">SIP Ingest</a> — bei SIP-Import läuft die PRONOM-Identifikation automatisch</li>
 </ul>
 
 

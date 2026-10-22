@@ -3035,6 +3035,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#e-ark-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK DIP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E-ARK DIP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4187,6 +4248,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#e-ark-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK DIP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E-ARK DIP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4204,7 +4326,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-dip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4284,7 +4406,7 @@ objects (without children of their own) that carry media are included.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span>,77,103<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/target
 </code></pre></div>
 <p><code>--target-dir</code> is optional (default: the transfer directory). The CLI export
-always uses <code>CreateDip</code> and places the ZIPs in the target directory instead of
+always uses <code>CreateDip</code> for the BagIt DIP and places the ZIPs in the target directory instead of
 deleting them after delivery as the web download does.</p>
 <div class="admonition note">
 <p class="admonition-title">Visibility</p>
@@ -4292,6 +4414,97 @@ deleting them after delivery as the web download does.</p>
 rest of the internal view, a DIP also contains <strong>records marked as
 private</strong> — internal users are meant to see them.</p>
 </div>
+<h2 id="e-ark-dip">E-ARK DIP<a class="headerlink" href="#e-ark-dip" title="Permanent link">&para;</a></h2>
+<p>Besides the BagIt DIP there is an <strong>E-ARK DIP 2.2.0</strong> following the European standard for dissemination packages (anton#697). It can be read without Anton: <code>METS.xml</code> describes the package, the representations lie below <code>representations/</code>, the description below <code>metadata/descriptive/</code>.</p>
+<h3 id="two-scopes">Two scopes<a class="headerlink" href="#two-scopes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Access (default)</th>
+<th>Full (<code>--full</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where</td>
+<td>«E-ARK DIP» button, console</td>
+<td>console only</td>
+</tr>
+<tr>
+<td>Records</td>
+<td>what a guest sees: without locked records and drafts, with their subtree</td>
+<td>all</td>
+</tr>
+<tr>
+<td>Media</td>
+<td>access copies (<code>web</code>) in <code>representations/access/</code>; without private media and without the media of records under a protection period (their description stays)</td>
+<td>masters in <code>representations/master/</code>, kept originals in <code>representations/original/</code></td>
+</tr>
+<tr>
+<td>Description</td>
+<td>EAD3 or EAD 2002, optionally RiC-O and CIDOC CRM</td>
+<td>the same, plus the native format (<code>anton-native.json</code>)</td>
+</tr>
+<tr>
+<td>PREMIS</td>
+<td>each representation's function, each file's format and source — no events, no persons</td>
+<td>plus PREMIS per record with all events (as in the BagIt DIP)</td>
+</tr>
+<tr>
+<td>Word finding aid</td>
+<td>no (it does not filter)</td>
+<td>yes, under <code>documentation/</code></td>
+</tr>
+<tr>
+<td>Holdings log</td>
+<td>«Export delivered»</td>
+<td>«Master downloaded»</td>
+</tr>
+</tbody>
+</table>
+<p>The access scope is always built as the public view, whoever downloads it. A medium without an access copy is left out and counted; <code>media:conversions</code> computes it. What was left out is counted in <code>documentation/export.txt</code>, never with titles.</p>
+<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
+<p>Every package is validated against E-ARK after it is written (<code>kraenzle-ritter/eark-ip</code>). A package with errors is deleted and not delivered; the message names the failed requirements. Warnings do not stop it.</p>
+<p>If you also check the packages with commons-ip, the Java validator of the E-ARK community, you get one warning on CSIP101. It is a false alarm of commons-ip: here the package follows the example of the specification and the DILCIS test corpus, and commons-ip reports the same for the corpus's own valid sample package (reported as keeps/commons-ip#390).</p>
+<h3 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>level_of_description_ids_for_eark_dip_download</code></td>
+<td>level ids with an «E-ARK DIP» button</td>
+<td><code>[]</code> (no button)</td>
+</tr>
+<tr>
+<td><code>eark_dip_ead</code></td>
+<td><code>ead3</code> or <code>ead</code> (EAD 2002)</td>
+<td><code>ead3</code></td>
+</tr>
+<tr>
+<td><code>eark_dip_rdf</code></td>
+<td>further descriptions: <code>ric</code>, <code>cidoc</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><code>eark_dip_sync_limit</code></td>
+<td>from how many media in the subtree the package is built in the background</td>
+<td><code>500</code></td>
+</tr>
+</tbody>
+</table>
+<p>Above <code>eark_dip_sync_limit</code>, the package is built in the background and appears under <strong>Data export → E-ARK DIP</strong> (<code>/export/dip</code>), where internal users download or delete it.</p>
+<h3 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span><span class="w"> </span>--format<span class="o">=</span>eark<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/target
+php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span><span class="w"> </span>--format<span class="o">=</span>eark<span class="w"> </span>--full<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/target
+</code></pre></div>
+<p>Without <code>--format</code> the BagIt DIP is written as before; <code>--full</code> applies to <code>--format=eark</code> only. The full scope checks first whether there is enough free space (about twice the size of the masters).</p>
 
 
 

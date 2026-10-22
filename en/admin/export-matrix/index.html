@@ -4336,7 +4336,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4356,7 +4356,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>20 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>22 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4441,6 +4441,12 @@ maintained together with the exporters.</p>
 <td>BagIt</td>
 <td>Package: media + metadata (subtree)</td>
 <td>«DIP» button on the record</td>
+</tr>
+<tr>
+<td>E-ARK DIP</td>
+<td>E-ARK DIP 2.2.0 (CSIP)</td>
+<td>Package of a record and its subtree: <em>access</em> = public view with access copies, <em>full</em> = everything with masters and originals</td>
+<td>«E-ARK DIP» button on the record (access), <code>anton:export-dip --format=eark [--full]</code></td>
 </tr>
 <tr>
 <td>OCFL</td>
@@ -4912,8 +4918,12 @@ host it publicly.</p>
 <td><strong>yes</strong> — Admin → Export</td>
 </tr>
 <tr>
-<td>EAD, TEI, RDF (standard), A+ bundle (standard), DIP, OCFL, Excel, Word/PDF</td>
+<td>EAD, TEI, RDF (standard), A+ bundle (standard), DIP, E-ARK DIP (access), OCFL, Excel, Word/PDF</td>
 <td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>E-ARK DIP full (<code>--full</code>)</td>
+<td><strong>no</strong> — CLI only</td>
 </tr>
 <tr>
 <td>A+ bundle with <code>--include-protected</code> / <code>--include-originals</code></td>
@@ -4938,6 +4948,7 @@ per node.</p>
 <p><strong>Memobase RDF</strong> is deliberately lossy: no actors, places, keywords or events —
 only institution, objects, instantiations and around eight text field types.</p>
 <p><strong>TEI per object</strong> knows no overall export, no hierarchy and hardly any media.</p>
+<p><strong>E-ARK DIP</strong> (anton#697) comes in two scopes. <em>Access</em> is a publication view: what a guest may see, whoever exports — locked records and drafts are left out with their subtree, records under a protection period keep their description but not their media, private media are left out. The media are access copies (<code>web</code>) in representation <code>access</code>, described in EAD3 or EAD 2002 (setting <code>eark_dip_ead</code>), optionally also RiC-O and CIDOC CRM as Turtle (<code>eark_dip_rdf</code>). PREMIS names each representation's function and each file's source, without events and without persons. <em>Full</em> (<code>--full</code>, CLI only) is a hand-over like DIP and OCFL: every record, masters in <code>master</code>, kept originals in <code>original</code>, plus the native format (<code>anton-native</code>), PREMIS per record and the Word finding aid. Every package is validated before it is delivered; an invalid one is not delivered. See <a href="../download-dip/#e-ark-dip">DIP download</a>.</p>
 <p><strong>DIP, OCFL and native round trip</strong> carry a <strong>PREMIS 3 file</strong> per record with
 media since anton#661 (DIP: <code>data/meta/&lt;record&gt;.premis.xml</code>, OCFL:
 <code>metadata/premis.xml</code>, native: <code>premis/&lt;record&gt;.xml</code>). It lists the files and

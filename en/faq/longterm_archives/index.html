@@ -4192,7 +4192,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/faq/longterm_archives/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/faq/longterm_archives/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/longterm_archives/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4204,8 +4204,8 @@
 
 
 <h1 id="anton-as-a-digital-long-term-archive">Anton as a digital long-term archive<a class="headerlink" href="#anton-as-a-digital-long-term-archive" title="Permanent link">&para;</a></h1>
-<p>Anton ingests digital records with verification, keeps the masters unchanged and monitors their formats. This applies to Anton <a href="../anton_as_service/">as a service</a> as well as to operation <a href="../anton_on_premises/">on premises</a>.</p>
-<p>So-called <em>bitstream preservation</em>, that is the actual storage and safeguarding of the data, is provided by the operating infrastructure. <strong>With Anton as a Service</strong>, that is, when running on our servers, the digital data is stored on a suitable infrastructure that keeps three copies at three locations – sixfold redundancy in total.</p>
+<p>Anton ingests digital records with verification, identifies and validates their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it, for example through a format rule at ingest or through a migration; both are verified and recorded on the medium. This applies to Anton <a href="../anton_as_service/">as a service</a> as well as to operation <a href="../anton_on_premises/">on premises</a>.</p>
+<p>So-called <em>bitstream preservation</em>, that is the actual storage and safeguarding of the data, is provided by the operating infrastructure. <strong>With Anton as a Service</strong>, that is, when running on our servers, the digital data is held in four copies at three locations: on the production server in a data centre in Switzerland, the production data and an encrypted local backup, plus one backup each on two backup servers at two locations in Zurich (see <a href="../infrastructure/">Infrastructure</a>). The two Zurich locations share the regional risks; there is no further, independent location for now.</p>
 <div class="admonition note">
 <p class="admonition-title">On premises</p>
 <p>Anyone running Anton on their own servers is responsible for storage, redundancy and backup themselves. The infrastructure described here is part of our operations and is not supplied with the software. We are happy to advise on setting it up.</p>
@@ -4218,7 +4218,7 @@
 <p>Format identification based on the MIME type or the file extension is complemented in Anton by the integration of <a href="https://www.itforarchivists.com/siegfried">Siegfried</a> and/or <a href="https://github.com/openpreserve/fido">Fido</a>. Both tools identify file formats by means of <a href="https://www.nationalarchives.gov.uk/pronom/">PRONOM</a> IDs. This allows file formats to be determined precisely for digital preservation.</p>
 <h3 id="risk-assessment">Risk assessment<a class="headerlink" href="#risk-assessment" title="Permanent link">&para;</a></h3>
 <p>From the PRONOM ID, Anton derives the risk assessment of the <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a>. It is the basis for decisions on preservation measures, such as converting a file to another format.</p>
-<p><a href="../../admin/preservation-planning/">Preservation planning</a> in the admin area shows the file formats present in the archive together with their risk assessment.</p>
+<p><a href="../../admin/preservation-planning/">Preservation planning</a> in the admin area shows the file formats present in the archive together with their risk assessment. The view has to be opened by hand; there is no notification when a format becomes obsolete.</p>
 
 
 

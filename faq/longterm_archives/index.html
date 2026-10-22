@@ -4192,7 +4192,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/faq/longterm_archives/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/longterm_archives/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/longterm_archives/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4204,8 +4204,8 @@
 
 
 <h1 id="anton-als-digitales-langzeitarchiv">Anton als digitales Langzeitarchiv<a class="headerlink" href="#anton-als-digitales-langzeitarchiv" title="Permanent link">&para;</a></h1>
-<p>Anton übernimmt digitale Unterlagen geprüft, bewahrt die Master unverändert und überwacht ihre Formate. Das gilt für Anton <a href="../anton_as_service/">as a Service</a> wie für den Betrieb <a href="../anton_on_premises/">on Premises</a>.</p>
-<p>Die sogenannte <em>Bitstream Preservation</em>, also die eigentliche Datenspeicherung und -sicherung, erbringt die Betriebsinfrastruktur. <strong>Bei Anton as a Service</strong>, also beim Betrieb auf unseren Servern, werden die digitalen Daten auf einer geeigneten Infrastruktur gespeichert, die drei Kopien an drei Standorten vorhält – gesamthaft eine sechsfache Redundanz.</p>
+<p>Anton übernimmt digitale Unterlagen geprüft, erkennt und prüft ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat, etwa durch eine Format-Regel bei der Übernahme oder durch eine Migration; beides wird geprüft und am Medium festgehalten. Das gilt für Anton <a href="../anton_as_service/">as a Service</a> wie für den Betrieb <a href="../anton_on_premises/">on Premises</a>.</p>
+<p>Die sogenannte <em>Bitstream Preservation</em>, also die eigentliche Datenspeicherung und -sicherung, erbringt die Betriebsinfrastruktur. <strong>Bei Anton as a Service</strong>, also beim Betrieb auf unseren Servern, liegen die digitalen Daten in vier Kopien an drei Standorten: auf dem Produktivserver in einem Rechenzentrum in der Schweiz die Produktionsdaten und eine verschlüsselte lokale Sicherung, dazu je eine Sicherung auf zwei Backupservern an zwei Standorten in Zürich (siehe <a href="../infrastructure/">Infrastruktur</a>). Die beiden Zürcher Standorte teilen sich die regionalen Risiken; einen weiteren, davon unabhängigen Standort gibt es vorerst nicht.</p>
 <div class="admonition note">
 <p class="admonition-title">On Premises</p>
 <p>Wer Anton auf eigenen Servern betreibt, verantwortet die Speicherung, die Redundanz und die Sicherung selbst. Die genannte Infrastruktur ist Teil unseres Betriebs und wird mit der Software nicht mitgeliefert. Gerne beraten wir bei der Einrichtung.</p>
@@ -4218,7 +4218,7 @@
 <p>Die Formaterkennung auf Grundlage des Mime Types bzw. der Dateiendung wird in Anton durch die Integration von <a href="https://www.itforarchivists.com/siegfried">Siegfried</a> und/oder <a href="https://github.com/openpreserve/fido">Fido</a> ergänzt. Beide Tools identifizieren Dateiformate anhand der <a href="https://www.nationalarchives.gov.uk/pronom/">PRONOM</a> IDs. Dies ermöglicht eine präzise Bestimmung von Dateiformaten für die digitale Langzeitarchivierung.</p>
 <h3 id="risiko-einschatzung">Risiko Einschätzung<a class="headerlink" href="#risiko-einschatzung" title="Permanent link">&para;</a></h3>
 <p>Aus der PRONOM-ID leitet Anton die Risikobewertung des <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a> ab. Sie ist die Grundlage für Entscheidungen über Erhaltungsmassnahmen, etwa die Überführung in ein anderes Format. </p>
-<p>Das <a href="../../admin/preservation-planning/">Preservation Planning</a> im Admin-Bereich zeigt die im Archiv vorhandenen Dateiformate mit ihrer Risikobewertung.</p>
+<p>Das <a href="../../admin/preservation-planning/">Preservation Planning</a> im Admin-Bereich zeigt die im Archiv vorhandenen Dateiformate mit ihrer Risikobewertung. Die Ansicht muss man selbst aufrufen; eine Meldung, wenn ein Format veraltet, gibt es nicht.</p>
 
 
 

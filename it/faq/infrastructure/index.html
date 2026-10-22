@@ -1024,7 +1024,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/faq/infrastructure/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/faq/infrastructure/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/infrastructure/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-<span class="page-meta__date">Last updated: 2026-08-18</span>
+<span class="page-meta__date">Last updated: 2026-10-22</span>
 </div>
 <h1 id="schema-dellinfrastruttura-server-di-anton">Schema dell'infrastruttura server di Anton<a class="headerlink" href="#schema-dellinfrastruttura-server-di-anton" title="Permanent link">¶</a></h1>
 <pre class="mermaid"><code>---
@@ -1074,8 +1074,8 @@ flowchart TB
 <li>backup completi giornalieri (metadati + digitalizzazioni)</li>
 </ul>
 </li>
-<li><strong>Distribuzione geografica</strong>: due server di backup in due ubicazioni diverse in Svizzera</li>
-<li><strong>Mirroring</strong>: entrambi i server di backup funzionano in RAID 1, ogni salvataggio è quindi presente in doppia copia; complessivamente una ridondanza sestupla dei dati</li>
+<li><strong>Distribuzione geografica</strong>: due server di backup in due ubicazioni a Zurigo; con i dati di produzione e il backup locale sul SERVER ANTON, quattro copie in tre ubicazioni. Le due ubicazioni zurighesi condividono i rischi regionali; per ora non esiste un'ulteriore ubicazione indipendente</li>
+<li><strong>Mirroring</strong>: entrambi i server di backup funzionano in RAID 1; ciò protegge dal guasto di un disco, ma non costituisce un'ulteriore copia</li>
 <li><strong>Cifratura</strong>: tutti i backup vengono conservati e trasmessi in forma cifrata</li>
 <li><strong>Backup basati su pull</strong>: sono i server di backup a prelevare i dati (nessun push)<ul>
 <li>protezione da una compromissione del server di produzione</li>

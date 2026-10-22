@@ -4224,7 +4224,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/developer/domain-model/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4252,7 +4252,7 @@ the whole model (see below).</p>
 Place, Keyword and Location. One record per language. In the documentation these
 fields are called «text fields».</p>
 <p><strong>Media</strong> — the digital objects, via <code>spatie/laravel-medialibrary</code> with
-conversions (<code>web</code>, <code>thumb</code>). The master remains unchanged.</p>
+conversions (<code>web</code>, <code>thumb</code>). Once stored, a master is changed only by <code>media:migrate</code> (see <a href="../../admin/preservation/#speicherung">Storage</a>).</p>
 <h2 id="the-hierarchy-is-a-closure-table">The hierarchy is a closure table<a class="headerlink" href="#the-hierarchy-is-a-closure-table" title="Permanent link">&para;</a></h2>
 <p>The archival arrangement does not live in a <code>parent_id</code> but in a closure table
 (<code>franzose/closure-table</code>): a table that holds one row for <strong>every</strong>

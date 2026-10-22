@@ -2327,7 +2327,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/faq/longterm_archives/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/faq/longterm_archives/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/longterm_archives/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -2339,8 +2339,8 @@
 
 
 <h1 id="anton-come-archivio-digitale-a-lungo-termine">Anton come archivio digitale a lungo termine<a class="headerlink" href="#anton-come-archivio-digitale-a-lungo-termine" title="Permanent link">&para;</a></h1>
-<p>Anton acquisisce i documenti digitali con verifica, conserva i master senza modificarli e ne sorveglia i formati. Ciò vale per Anton <a href="../anton_as_service/">come servizio</a> come per l'esercizio <a href="../anton_on_premises/">on premises</a>.</p>
-<p>La cosiddetta <em>bitstream preservation</em>, ossia l'effettiva memorizzazione e messa in sicurezza dei dati, è compito dell'infrastruttura di esercizio. <strong>Con Anton as a Service</strong>, cioè in esercizio sui nostri server, i dati digitali vengono conservati su un'infrastruttura adeguata che ne mantiene tre copie in tre ubicazioni – complessivamente una ridondanza sestupla.</p>
+<p>Anton acquisisce i documenti digitali con verifica, ne riconosce e valida i formati e registra quanto bene possono essere conservati. Anton modifica un master solo dove l'archivio lo ha configurato o richiesto, ad esempio tramite una regola di formato all'acquisizione o tramite una migrazione; entrambe vengono verificate e registrate sul media. Ciò vale per Anton <a href="../anton_as_service/">come servizio</a> come per l'esercizio <a href="../anton_on_premises/">on premises</a>.</p>
+<p>La cosiddetta <em>bitstream preservation</em>, ossia l'effettiva memorizzazione e messa in sicurezza dei dati, è compito dell'infrastruttura di esercizio. <strong>Con Anton as a Service</strong>, cioè in esercizio sui nostri server, i dati digitali sono presenti in quattro copie in tre ubicazioni: sul server di produzione, in un centro di calcolo in Svizzera, i dati di produzione e un backup locale cifrato, più un backup ciascuno su due server di backup in due ubicazioni a Zurigo (vedi <a href="../infrastructure/">Infrastruttura</a>). Le due ubicazioni zurighesi condividono i rischi regionali; per ora non esiste un'ulteriore ubicazione indipendente.</p>
 <div class="admonition note">
 <p class="admonition-title">On premises</p>
 <p>Chi gestisce Anton su server propri è responsabile in prima persona della memorizzazione, della ridondanza e del backup. L'infrastruttura descritta fa parte del nostro esercizio e non viene fornita con il software. Volentieri offriamo consulenza per la messa in opera.</p>
@@ -2353,7 +2353,7 @@
 <p>Il riconoscimento dei formati sulla base del tipo MIME o dell'estensione del file è completato in Anton dall'integrazione di <a href="https://www.itforarchivists.com/siegfried">Siegfried</a> e/o <a href="https://github.com/openpreserve/fido">Fido</a>. Entrambi gli strumenti identificano i formati di file mediante gli identificativi <a href="https://www.nationalarchives.gov.uk/pronom/">PRONOM</a>. Ciò consente di determinare con precisione i formati ai fini della conservazione digitale a lungo termine.</p>
 <h3 id="valutazione-del-rischio">Valutazione del rischio<a class="headerlink" href="#valutazione-del-rischio" title="Permanent link">&para;</a></h3>
 <p>Dall'identificativo PRONOM Anton ricava la valutazione del rischio del <a href="https://www.archives.gov/preservation/digital-preservation">NARA Digital Preservation Framework</a>. Essa è la base per decidere le misure di conservazione, ad esempio la conversione di un file in un altro formato.</p>
-<p>Il <a href="../../admin/preservation-planning/">preservation planning</a> nell'area di amministrazione mostra i formati di file presenti nell'archivio con la relativa valutazione del rischio.</p>
+<p>Il <a href="../../admin/preservation-planning/">preservation planning</a> nell'area di amministrazione mostra i formati di file presenti nell'archivio con la relativa valutazione del rischio. La vista va aperta di propria iniziativa; non esiste alcuna notifica quando un formato diventa obsoleto.</p>
 
 
 

@@ -4282,7 +4282,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4303,6 +4303,7 @@
 </ul>
 <h2 id="setting-up-the-qr-code-upload">Setting up the QR code upload<a class="headerlink" href="#setting-up-the-qr-code-upload" title="Permanent link">&para;</a></h2>
 <p>The <code>upload-qr-lods</code> setting contains the levels of description for which the QR upload button is displayed, for example files and items <code>[5,6]</code>. To deactivate the QR upload, an empty array <code>[]</code> is saved, or the content of the field is deleted.</p>
+<p>The button is shown to accounts with the role <strong>Editor</strong> or <strong>Admin</strong>, as for uploading through the form. An upload code applies to one record and expires after <code>upload-qr-token-minutes</code> (60 minutes unless set otherwise).</p>
 <h2 id="activating-the-upload">Activating the upload<a class="headerlink" href="#activating-the-upload" title="Permanent link">&para;</a></h2>
 <h3 id="1-open-the-object">1. Open the object<a class="headerlink" href="#1-open-the-object" title="Permanent link">&para;</a></h3>
 <p>Navigate to the desired unit of description (a file or an item, for example).</p>

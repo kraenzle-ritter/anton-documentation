@@ -2306,7 +2306,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-20</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -2325,7 +2325,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>20. Oktober 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>22. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2410,6 +2410,12 @@ zusammen mit den Exportern gepflegt.</p>
 <td>BagIt</td>
 <td>Paket: Medien + Metadaten (Teilbaum)</td>
 <td>Taste «DIP» am Datensatz</td>
+</tr>
+<tr>
+<td>E-ARK DIP</td>
+<td>E-ARK DIP 2.2.0 (CSIP)</td>
+<td>Paket ab Datensatz samt Teilbaum: <em>Zugang</em> = öffentliche Sicht mit Nutzungskopien, <em>vollständig</em> = alles mit Mastern und Originalen</td>
+<td>Taste «E-ARK DIP» am Datensatz (Zugang), <code>anton:export-dip --format=eark [--full]</code></td>
 </tr>
 <tr>
 <td>OCFL</td>
@@ -2880,8 +2886,12 @@ native Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öff
 <td><strong>ja</strong> — Admin → Export</td>
 </tr>
 <tr>
-<td>EAD, TEI, RDF (Standard), A+ Bundle (Standard), DIP, OCFL, Excel, Word/PDF</td>
+<td>EAD, TEI, RDF (Standard), A+ Bundle (Standard), DIP, E-ARK DIP (Zugang), OCFL, Excel, Word/PDF</td>
 <td><strong>ja</strong></td>
+</tr>
+<tr>
+<td>E-ARK DIP vollständig (<code>--full</code>)</td>
+<td><strong>nein</strong> — nur CLI</td>
 </tr>
 <tr>
 <td>A+ Bundle mit <code>--include-protected</code> / <code>--include-originals</code></td>
@@ -2910,6 +2920,7 @@ Grösse, Bildmasse), nicht den Master: keine Prüfsumme des Originals, und ohne
 Zugangskopie kein Link. Ein Export ab einem Teilbaum liefert die übergeordneten
 RecordSets mit.</p>
 <p><strong>TEI pro Objekt</strong> kennt keinen Gesamtexport, keine Hierarchie und kaum Medien.</p>
+<p><strong>E-ARK DIP</strong> (anton#697) gibt es in zwei Umfängen. <em>Zugang</em> ist eine Publikationssicht: Was ein Gast sehen darf, gleich wer exportiert — gesperrte Datensätze und Entwürfe fehlen samt Teilbaum, Datensätze mit laufender Schutzfrist behalten ihre Beschreibung, aber nicht ihre Medien, private Medien fehlen. Die Medien liegen als Nutzungskopien (<code>web</code>) in der Repräsentation <code>access</code>, beschrieben in EAD3 oder EAD 2002 (Einstellung <code>eark_dip_ead</code>), auf Wunsch zusätzlich RiC-O und CIDOC CRM als Turtle (<code>eark_dip_rdf</code>). PREMIS nennt die Funktion jeder Repräsentation und die Herkunft jeder Datei, ohne Ereignisse und ohne Personen. <em>Vollständig</em> (<code>--full</code>, nur CLI) ist eine Übergabe wie DIP und OCFL: alle Datensätze, Master in <code>master</code>, behaltene Originale in <code>original</code>, dazu das native Format (<code>anton-native</code>), PREMIS je Datensatz und das Word-Findbuch. Jedes Paket wird vor der Auslieferung geprüft; ein ungültiges wird nicht ausgeliefert. Siehe <a href="../download-dip/#e-ark-dip">DIP Download</a>.</p>
 <p><strong>DIP, OCFL und nativer Round-Trip</strong> führen seit anton#661 je Datensatz mit
 Medien eine <strong>PREMIS-3-Datei</strong> mit (DIP: <code>data/meta/&lt;Datensatz&gt;.premis.xml</code>,
 OCFL: <code>metadata/premis.xml</code>, nativ: <code>premis/&lt;Datensatz&gt;.xml</code>). Darin stehen die

@@ -2223,6 +2223,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#e-ark-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK DIP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E-ARK DIP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zwei-umfange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zwei Umfänge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prufung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prüfung
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#einstellungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Einstellungen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#konsole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Konsole
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2240,7 +2301,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/download-dip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-dip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -2323,7 +2384,7 @@ Setting eintragen.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span>,77,103<span class="w"> </span>--target-dir<span class="o">=</span>/pfad/zum/ziel
 </code></pre></div>
 <p><code>--target-dir</code> ist optional (Default: Transfer-Verzeichnis). Der
-CLI-Export nutzt immer <code>CreateDip</code> und legt die ZIPs im Zielverzeichnis
+CLI-Export nutzt für das BagIt-DIP immer <code>CreateDip</code> und legt die ZIPs im Zielverzeichnis
 ab, statt sie wie der Web-Download nach der Auslieferung zu löschen.</p>
 <div class="admonition note">
 <p class="admonition-title">Sichtbarkeit</p>
@@ -2331,6 +2392,97 @@ ab, statt sie wie der Web-Download nach der Auslieferung zu löschen.</p>
 Wie die übrige interne Ansicht enthält ein DIP <strong>auch als privat
 markierte Datensätze</strong> — interne Nutzer:innen sollen diese sehen.</p>
 </div>
+<h2 id="e-ark-dip">E-ARK DIP<a class="headerlink" href="#e-ark-dip" title="Permanent link">&para;</a></h2>
+<p>Neben dem BagIt-DIP gibt es ein <strong>E-ARK DIP 2.2.0</strong> nach dem europäischen Standard für Auslieferungspakete (anton#697). Es lässt sich ohne Anton lesen: <code>METS.xml</code> beschreibt das Paket, die Repräsentationen liegen unter <code>representations/</code>, die Beschreibung unter <code>metadata/descriptive/</code>.</p>
+<h3 id="zwei-umfange">Zwei Umfänge<a class="headerlink" href="#zwei-umfange" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Zugang (Vorgabe)</th>
+<th>Vollständig (<code>--full</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wo</td>
+<td>Knopf «E-ARK DIP», Konsole</td>
+<td>nur Konsole</td>
+</tr>
+<tr>
+<td>Datensätze</td>
+<td>was ein Gast sieht: ohne gesperrte Datensätze und Entwürfe samt Teilbaum</td>
+<td>alle</td>
+</tr>
+<tr>
+<td>Medien</td>
+<td>Nutzungskopien (<code>web</code>) in <code>representations/access/</code>; ohne private Medien und ohne Medien von Datensätzen mit laufender Schutzfrist (deren Beschreibung bleibt)</td>
+<td>Master in <code>representations/master/</code>, behaltene Originale in <code>representations/original/</code></td>
+</tr>
+<tr>
+<td>Beschreibung</td>
+<td>EAD3 oder EAD 2002, optional RiC-O und CIDOC CRM</td>
+<td>dasselbe, dazu das native Format (<code>anton-native.json</code>)</td>
+</tr>
+<tr>
+<td>PREMIS</td>
+<td>Funktion jeder Repräsentation, Format und Herkunft jeder Datei — ohne Ereignisse und ohne Personen</td>
+<td>dazu PREMIS je Datensatz mit allen Ereignissen (wie im BagIt-DIP)</td>
+</tr>
+<tr>
+<td>Word-Findbuch</td>
+<td>nein (es filtert nicht)</td>
+<td>ja, unter <code>documentation/</code></td>
+</tr>
+<tr>
+<td>Bestandsprotokoll</td>
+<td>«Export ausgeliefert»</td>
+<td>«Master heruntergeladen»</td>
+</tr>
+</tbody>
+</table>
+<p>Der Zugangsumfang entsteht immer als öffentliche Sicht, gleich wer ihn herunterlädt. Ein Medium ohne Nutzungskopie fehlt und wird gezählt; <code>media:conversions</code> rechnet sie nach. Was fehlt, steht als Anzahl in <code>documentation/export.txt</code>, nie mit Titeln.</p>
+<h3 id="prufung">Prüfung<a class="headerlink" href="#prufung" title="Permanent link">&para;</a></h3>
+<p>Jedes Paket wird nach dem Schreiben gegen E-ARK geprüft (<code>kraenzle-ritter/eark-ip</code>). Ein Paket mit Fehlern wird gelöscht und nicht ausgeliefert; die Meldung nennt die verletzten Anforderungen. Warnungen halten es nicht auf.</p>
+<p>Wer die Pakete zusätzlich mit commons-ip prüft, dem Java-Validator der E-ARK-Gemeinschaft, bekommt eine Warnung zu CSIP101. Sie ist ein Fehlalarm von commons-ip: Das Paket folgt hier dem Beispiel der Spezifikation und der DILCIS-Testsammlung, und commons-ip meldet dasselbe auch für deren gültiges Beispielpaket (gemeldet als keeps/commons-ip#390).</p>
+<h3 id="einstellungen">Einstellungen<a class="headerlink" href="#einstellungen" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Bedeutung</th>
+<th>Vorgabe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>level_of_description_ids_for_eark_dip_download</code></td>
+<td>Stufen-Ids mit Knopf «E-ARK DIP»</td>
+<td><code>[]</code> (kein Knopf)</td>
+</tr>
+<tr>
+<td><code>eark_dip_ead</code></td>
+<td><code>ead3</code> oder <code>ead</code> (EAD 2002)</td>
+<td><code>ead3</code></td>
+</tr>
+<tr>
+<td><code>eark_dip_rdf</code></td>
+<td>weitere Beschreibungen: <code>ric</code>, <code>cidoc</code></td>
+<td>leer</td>
+</tr>
+<tr>
+<td><code>eark_dip_sync_limit</code></td>
+<td>ab wie vielen Medien im Teilbaum das Paket im Hintergrund entsteht</td>
+<td><code>500</code></td>
+</tr>
+</tbody>
+</table>
+<p>Liegt der Teilbaum über <code>eark_dip_sync_limit</code>, entsteht das Paket im Hintergrund und erscheint unter <strong>Daten-Export → E-ARK DIP</strong> (<code>/export/dip</code>), wo interne Nutzer:innen es herunterladen oder löschen.</p>
+<h3 id="konsole">Konsole<a class="headerlink" href="#konsole" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span><span class="w"> </span>--format<span class="o">=</span>eark<span class="w"> </span>--target-dir<span class="o">=</span>/pfad/zum/ziel
+php<span class="w"> </span>artisan<span class="w"> </span>anton:export-dip<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>--ids<span class="o">=</span><span class="m">42</span><span class="w"> </span>--format<span class="o">=</span>eark<span class="w"> </span>--full<span class="w"> </span>--target-dir<span class="o">=</span>/pfad/zum/ziel
+</code></pre></div>
+<p>Ohne <code>--format</code> entsteht wie bisher das BagIt-DIP; <code>--full</code> gilt nur mit <code>--format=eark</code>. Der vollständige Umfang prüft vorher, ob genug Platz frei ist (etwa die doppelte Grösse der Master).</p>
 
 
 
