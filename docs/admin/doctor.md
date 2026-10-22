@@ -29,7 +29,7 @@ aus anderen Daten errechnet und können nach Import oder Massenänderung
 veralten. Der Reiter zeigt das Ergebnis des **letzten** Laufs aus dem
 Zwischenspeicher; die Neuberechnung ist ausdrücklich anzustossen.
 
-**Data Integrity** prüft beim Aufruf: Bestände innerhalb von Beständen, Positionskollisionen unter Geschwistern, doppelte Signaturen und Datensätze ohne die ISAD(G)-Kernelemente (Signatur, Titel, Entstehungszeitraum, Verzeichnungsstufe, Umfang, beim Bestand die Provenienzstelle). Gezählt wird, was der EAD-Export schreiben würde; Sammlungen, Beständegruppen und Klassen werden nur auf Titel und Stufe geprüft. Je Element listet die Seite die ersten 200 Datensätze mit Link, `anton:doctor --core-elements` gibt die Zahlen auf der Konsole.
+**Data Integrity** prüft beim Aufruf: Bestände innerhalb von Beständen, Positionskollisionen unter Geschwistern, doppelte Signaturen und Datensätze ohne die ISAD(G)-Kernelemente (Signatur, Titel, Entstehungszeitraum, Verzeichnungsstufe, Umfang, beim Bestand die Provenienzstelle als Textfeld Provenienz oder als Provenienz- oder Entstehungs-Ereignis mit Person oder Organisation). Gezählt wird, was der EAD-Export schreiben würde; Sammlungen, Beständegruppen und Klassen werden nur auf Titel und Stufe geprüft. Je Element listet die Seite die ersten 200 Datensätze mit Link, `anton:doctor --core-elements` gibt die Zahlen auf der Konsole.
 
 **Environment** prüft Umgebungsvariablen, Einstellungen und ob die
 Kundenverzeichnisse les- und schreibbar sind.

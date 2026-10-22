@@ -28,7 +28,7 @@ calculated from other data and can become stale after an import or a bulk
 change. The tab shows the result of the **last** run from the cache;
 recalculation has to be triggered explicitly.
 
-**Data Integrity** checks on invocation: fonds within fonds, position collisions among siblings, duplicate reference codes and records without the ISAD(G) core elements (reference code, title, dates, level of description, extent, for a fonds the name of the creator). It counts what the EAD export would write; collections, record groups and classes are checked for title and level only. Per element the page lists the first 200 records with a link; `anton:doctor --core-elements` prints the counts on the console.
+**Data Integrity** checks on invocation: fonds within fonds, position collisions among siblings, duplicate reference codes and records without the ISAD(G) core elements (reference code, title, dates, level of description, extent, for a fonds the name of the creator, as the provenance text field or a provenance or creation event with a person or organisation). It counts what the EAD export would write; collections, record groups and classes are checked for title and level only. Per element the page lists the first 200 records with a link; `anton:doctor --core-elements` prints the counts on the console.
 
 **Environment** checks environment variables, settings and whether the customer
 directories are readable and writable.
