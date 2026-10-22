@@ -1,8 +1,8 @@
 # Anton as a digital long-term archive
 
-Anton ingests digital records with verification, keeps the masters unchanged and monitors their formats. This applies to Anton [as a service](anton_as_service.md) as well as to operation [on premises](anton_on_premises.md).
+Anton ingests digital records with verification, identifies and validates their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it, for example through a format rule at ingest or through a migration; both are verified and recorded on the medium. This applies to Anton [as a service](anton_as_service.md) as well as to operation [on premises](anton_on_premises.md).
 
-So-called _bitstream preservation_, that is the actual storage and safeguarding of the data, is provided by the operating infrastructure. **With Anton as a Service**, that is, when running on our servers, the digital data is stored on a suitable infrastructure that keeps three copies at three locations – sixfold redundancy in total.
+So-called _bitstream preservation_, that is the actual storage and safeguarding of the data, is provided by the operating infrastructure. **With Anton as a Service**, that is, when running on our servers, the digital data is held in four copies at three locations: on the production server in a data centre in Switzerland, the production data and an encrypted local backup, plus one backup each on two backup servers at two locations in Zurich (see [Infrastructure](infrastructure.md)). The two Zurich locations share the regional risks; there is no further, independent location for now.
 
 !!! note "On premises"
     Anyone running Anton on their own servers is responsible for storage, redundancy and backup themselves. The infrastructure described here is part of our operations and is not supplied with the software. We are happy to advise on setting it up.
@@ -23,4 +23,4 @@ Format identification based on the MIME type or the file extension is complement
 
 From the PRONOM ID, Anton derives the risk assessment of the [NARA Digital Preservation Framework](https://www.archives.gov/preservation/digital-preservation). It is the basis for decisions on preservation measures, such as converting a file to another format.
 
-[Preservation planning](../admin/preservation-planning.md) in the admin area shows the file formats present in the archive together with their risk assessment.
+[Preservation planning](../admin/preservation-planning.md) in the admin area shows the file formats present in the archive together with their risk assessment. The view has to be opened by hand; there is no notification when a format becomes obsolete.

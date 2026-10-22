@@ -2,7 +2,7 @@
 
 Anton funziona su un server affittato da k & r presso un fornitore di primo piano (ubicazione in Svizzera). k & r è responsabile sia della configurazione e della manutenzione del server (messa in sicurezza, monitoraggio, aggiornamenti e upgrade del sistema operativo) sia della configurazione e della manutenzione di Anton (aggiornamenti e upgrade).
 
-Ogni giorno viene salvato un backup del server di produzione su due server situati in due luoghi diversi in Svizzera. Entrambi funzionano in RAID 1. Insieme ai dati di produzione e al backup locale cifrato sul server di produzione, i dati sono quindi presenti in sei copie, distribuite su tre ubicazioni (vedi [Infrastruttura](infrastructure.md)). Un ulteriore server controlla costantemente il funzionamento delle macchine coinvolte (monitoraggio), così che k & r sia sempre informato in caso di problemi e possa intervenire rapidamente.
+Ogni giorno due server di backup in due ubicazioni a Zurigo prelevano un backup cifrato dal server di produzione. Entrambi funzionano in RAID 1. Insieme ai dati di produzione e al backup locale cifrato sul server di produzione, i dati sono quindi presenti in quattro copie in tre ubicazioni, due delle quali a Zurigo (vedi [Infrastruttura](infrastructure.md)). Un ulteriore server controlla costantemente il funzionamento delle macchine coinvolte (monitoraggio), così che k & r sia sempre informato in caso di problemi e possa intervenire rapidamente.
 
 ## Vantaggi
 

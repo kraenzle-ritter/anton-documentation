@@ -23,7 +23,7 @@ Per i seguenti formati Anton produce copie di consultazione; un'estensione è fa
 - Quicktime
 
 ### Audio
-- WAF  
+- WAV  
 - MPEG  
 - MP3  
 

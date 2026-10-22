@@ -47,8 +47,8 @@ flowchart TB
 - **Mehrstufige Backups**: 
     - Stündliche Metadaten-Backups (Geschäftszeiten)
     - Tägliche Vollbackups (Metadaten + Digitalisate)
-- **Geografische Verteilung**: Zwei Backup-Server an zwei verschiedenen Standorten in der Schweiz
-- **Spiegelung**: Beide Backup-Server laufen als RAID 1, jede Sicherung liegt also doppelt; insgesamt also 6fache Datenredundanz
+- **Geografische Verteilung**: Zwei Backup-Server an zwei Standorten in Zürich; mit den Produktionsdaten und dem lokalen Backup auf dem ANTON-SERVER vier Kopien an drei Standorten. Die beiden Zürcher Standorte teilen sich die regionalen Risiken; einen weiteren, davon unabhängigen Standort gibt es vorerst nicht
+- **Spiegelung**: Beide Backup-Server laufen als RAID 1; das schützt vor dem Ausfall einer Platte, ist aber keine weitere Kopie
 - **Verschlüsselung**: Alle Backups verschlüsselt gespeichert und übertragen
 - **Pull-basierte Backups**: Backup-Server holen Daten ab (kein Push)
     - Schutz vor Kompromittierung des Produktionsservers

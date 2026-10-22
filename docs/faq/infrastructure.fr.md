@@ -47,8 +47,8 @@ flowchart TB
 - **Sauvegardes à plusieurs niveaux** : 
     - sauvegardes horaires des métadonnées (heures de bureau)
     - sauvegardes complètes quotidiennes (métadonnées + numérisations)
-- **Répartition géographique** : deux serveurs de sauvegarde sur deux sites différents en Suisse
-- **Mise en miroir** : les deux serveurs de sauvegarde fonctionnent en RAID 1, chaque sauvegarde existe donc en double ; au total une redondance sextuple des données
+- **Répartition géographique** : deux serveurs de sauvegarde sur deux sites à Zurich ; avec les données de production et la sauvegarde locale sur le SERVEUR ANTON, quatre copies sur trois sites. Les deux sites zurichois partagent les mêmes risques régionaux ; il n'existe pour l'instant pas d'autre site indépendant
+- **Mise en miroir** : les deux serveurs de sauvegarde fonctionnent en RAID 1 ; cela protège contre la panne d'un disque, mais ne constitue pas une copie supplémentaire
 - **Chiffrement** : toutes les sauvegardes sont stockées et transmises chiffrées
 - **Sauvegardes en mode pull** : les serveurs de sauvegarde vont chercher les données (pas de push)
     - protection contre une compromission du serveur de production

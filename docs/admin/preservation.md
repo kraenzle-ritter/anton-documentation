@@ -1,12 +1,6 @@
 # Langzeitarchivierung: Überblick
 
-Anton übernimmt digitale Unterlagen geprüft, bewahrt die Master unverändert,
-erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Die
-Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei
-Installationen mit angebundenem Langzeitarchiv übernimmt dieses die
-Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und
-verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches
-Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
+Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe [Speicherung](#speicherung)). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
 
 ## Aufgabenteilung
 
@@ -18,7 +12,7 @@ die fachlichen ab, der Betrieb die Speicherung:
 | Prüfsummen bei der Übernahme | prüft jede Datei eines SIP gegen das Paket | | |
 | Prüfsumme pro Datei | berechnet beim Upload MD5 und SHA-512 und legt sie ab | | |
 | Formaterkennung und Risiko | PRONOM-ID, NARA-Bewertung, [Preservation Planning](preservation-planning.md) | stellt Siegfried bzw. Fido bereit | |
-| Master und Zugriffskopien | bewahrt den Master unverändert, erzeugt `web` und `thumb` | | |
+| Master und Zugriffskopien | bewahrt den Master, verändert ihn nur über Format-Regeln, Upload-Verarbeitung und `media:migrate`, erzeugt `web` und `thumb` | | |
 | Integritätsprüfung | bringt `media:check`, `media:snapshot` und `media:repair` mit, protokolliert die Prüfungen | legt den Rhythmus als Cronjob fest, richtet die Sicherung für `media:repair` ein | übernimmt die Fixity der Master |
 | Redundante Speicherung | | Kopien an mehreren Standorten | Bitstream-Sicherung |
 | Formatentscheide | zeigt Formate mit Handlungsbedarf | | |
@@ -107,8 +101,9 @@ SHA-512 ist der Referenzwert für die Integritätsprüfung, wie ihn OCFL und Bag
 empfehlen; MD5 bleibt für die Anbindung an DIMAG und für das Erkennen doppelter
 Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 [`media:checksum`](console-commands.md#mediachecksum) SHA-512 nach — und prüft
-dabei jede Datei gegen ihre MD5. Der **Master bleibt unverändert**; die
-Ableitungen (`web`, `thumb`) sind Zugriffskopien.
+dabei jede Datei gegen ihre MD5. Die Ableitungen (`web`, `thumb`) sind Zugriffskopien.
+
+Der Master ist nicht in jedem Fall die gelieferte Datei. Bei der Übernahme kann sie verändert werden, bevor sie zum Master wird: durch eine [Format-Regel](#regeln-fuer-dateien) wie `tiff_zip`, die sie verlustfrei umpackt und die gelieferte Datei verwirft (ihre Prüfsummen stehen im Ereignis am Medium), oder durch die Verarbeitung beim [QR-Upload](../user/qr-upload.md) (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet; nur «Bilder → PDF» behält die gelieferten Bilder als [Originale](#behaltene-originale). Einen abgelegten Master verändert danach nur [`media:migrate`](console-commands.md#mediamigrate), mit Prüfung und Ereignis; [`media:repair`](console-commands.md#mediarepair) stellt bloss den geprüften Inhalt wieder her.
 
 ### Behaltene Originale {#behaltene-originale}
 
@@ -161,12 +156,7 @@ Archiv.
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.
 
-Normalisiert wird nur bei der Übernahme, nach den
-[Regeln für Dateien](#regeln-fuer-dateien), mit Prüfung und
-[behaltenem Original](#behaltene-originale). Originale bleiben bitgenau
-erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation
-Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA
-ihnen zuweist und welche Handlung NARA empfiehlt.
+Normalisiert wird bei der Übernahme nach den [Regeln für Dateien](#regeln-fuer-dateien) und im Bestand mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Ob das Original bleibt, legt die Regel fest: `tiff_zip` verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, `media:migrate --keep-original` behält sie. [Behaltene Originale](#behaltene-originale) bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
 
 ### Abgabe
 
@@ -235,10 +225,7 @@ Originale zusammen.
 
 Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
 lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
-der Betrieb an. Bei **Anton as a Service** liegen die Daten in
-[drei Kopien an drei Standorten](../faq/longterm_archives.md) (gesamthaft
-sechsfache Redundanz); **on Premises** verantwortet das die betreibende
-Institution.
+der Betrieb an. Bei **Anton as a Service** liegen die Daten in [vier Kopien an drei Standorten, zwei davon in Zürich](../faq/longterm_archives.md); **on Premises** verantwortet das die betreibende Institution.
 
 ## Sicherung oder Publikation?
 
@@ -247,7 +234,7 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
 | Artefakt | Zweck |
 |---|---|
 | **Nativer Export** (`anton:export-native`) | **Sicherung.** Verlustfrei und wieder einlesbar: Metadaten in allen Sprachen, Ereignisse, Textfelder — auch private —, Normdaten-Bezüge über UUID und die **Master-Medien**. |
-| **SQL-Dump** | **Sicherung.** Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der Datei-Provenienz (PRONOM/NARA-Historie). Enthält keine Mediendateien. |
+| **SQL-Dump** | **Sicherung.** Das einzige Artefakt mit Benutzern, Einstellungen, Formularen und der NARA-Bewertung der Dateien (nur der aktuelle Wert, keine Historie). Die Ereignisse am Medium, darunter seit Version 0.107 jede Formaterkennung, stehen auch im PREMIS von DIP, OCFL und nativem Export. Enthält keine Mediendateien. |
 | [**DIP**](download-dip.md) (BagIt) und [**OCFL**](download-ocfl.md) | **Abgabepakete.** Medien und Metadaten gebündelt, mit Prüfsummen im Manifest. |
 | [**RDF/CIDOC**](download-rdf.md), **EAD**, **TEI**, **Memobase** | **Publikationsansichten.** Gefiltert und verlustbehaftet — aus ihnen lässt sich Anton nicht wiederherstellen. |
 | [**A+ Bundle mit `--include-protected --include-originals`**](download-rdf.md#migrations-export) | **Migrationspaket.** Graph inklusive gesperrter Daten plus Originaldateien — für den Weg in ein *anderes* System. Kein Restore-Werkzeug nach Anton, und wegen der enthaltenen Personendaten nicht öffentlich zu hosten. |

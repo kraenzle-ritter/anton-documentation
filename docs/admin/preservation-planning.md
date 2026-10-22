@@ -1,31 +1,16 @@
 # Preservation Planning
 
-Anton bietet ein Dashboard für die digitale Langzeitarchivierung — eine Übersicht über Dateiformate, Risiken und
-empfohlene Handlungen pro Tenant.
+Unter **Admin → Preservation Planning** zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über [`media:migrate`](console-commands.md#mediamigrate).
 
-Unter **Admin → Preservation Planning** stehen diese Bereiche.
+## MIME-Typen
 
-## MIME-Type-Verteilung
-
-Interaktive Charts (Donut / Balken) zeigen, wie sich die Medienbestände
-auf MIME-Typen verteilen:
-
-- Anzahl Dateien pro MIME-Typ
-- Gesamtgrösse pro MIME-Typ
-- Klick auf einen Slice öffnet die Liste der betroffenen Datensätze
-
-Hilft bei Fragen wie: „Wie viele PDFs haben wir?" / „Sind unsere TIFFs
-schon migriert?" / „Wie gross ist der Audio-Anteil?".
+Anzahl und Anteil der Medien je MIME-Typ, als Tabelle und als Kreisdiagramm.
 
 ## NARA-Kategorien
 
-Klassifizierung nach den Standards der **US National Archives**
-(NARA Risk/Action Matrix). Jede Datei wird einer Kategorie zugeordnet
-(StillImage, Audio, Textual, Video, Geospatial, …) und erhält eine
-**Risiko-Stufe** plus eine **empfohlene Aktion** aus der NARA-Liste.
+Klassifizierung nach den Standards der **US National Archives** (NARA Risk/Action Matrix). Jede Datei wird einer Kategorie zugeordnet (StillImage, Audio, Textual, Video, Geospatial, …) und erhält eine **Risiko-Stufe** plus eine **empfohlene Aktion** aus der NARA-Liste.
 
-Implementiert über das Anton-Open-Source-Package
-[`kraenzle-ritter/nara-risk`](https://github.com/kraenzle-ritter/nara-risk).
+Implementiert über das Anton-Open-Source-Package [`kraenzle-ritter/nara-risk`](https://github.com/kraenzle-ritter/nara-risk).
 
 Risiko-Stufen:
 
@@ -36,59 +21,33 @@ Risiko-Stufen:
 | **High** | Proprietär oder schlecht dokumentiert | DOC, RAW-Bildformate |
 | **Unknown** | Format nicht identifiziert | unbekannt |
 
-Empfohlene Aktionen: **retain**, **transform** (z. B. DOC → PDF/A),
-**replace** (z. B. RAW → DNG), **monitor**.
+Empfohlene Aktionen, wie NARA sie vergibt: **Retain** (behalten), **Retain for Future Assessment** (behalten, später neu bewerten), **Transform** (in ein anderes Format überführen), **Identify** (Format oder Version genauer bestimmen). Medien ohne Erkennung zählt die Ansicht unter **Identify**.
 
 ## PRONOM-IDs
 
-PRONOM ist die UK-National-Archives-Datenbank für Dateiformat-
-Identifikation. Jede Datei in Anton wird über
-**Siegfried** (oder die interne `kraenzle-ritter/puidentify`-Library)
-mit einer PUID (PRONOM Unique IDentifier) versehen.
+PRONOM ist die UK-National-Archives-Datenbank für Dateiformat-Identifikation. Anton versieht jede Datei mit einer PUID (PRONOM Unique IDentifier); die Erkennung leistet **Siegfried** oder **Fido** über die Library `kraenzle-ritter/puidentify`.
 
-Das Dashboard listet:
-
-- Top PUIDs nach Häufigkeit
-- Datei-Beispiele pro PUID (klickbar, öffnet den Datensatz)
-- Hinweis, wenn eine PUID auf einer NARA-Warn-Liste steht
+Die Tabelle listet die PUIDs nach Häufigkeit, mit Formatname, Anteil und der häufigsten NARA-Risiko-Stufe und -Aktion. «Ansicht» öffnet die Medienliste, gefiltert auf diese PUID; eine eigene Zeile zählt die nicht identifizierten Medien.
 
 ## Risikobewertung
 
-Konsolidierte Sicht: NARA-Risiko × PUID-Vertrauen × Anzahl. Zeigt
-priorisiert, wo Massnahmen sinnvoll sind. Beispiel:
-
-> *„127 Dateien sind WordPerfect 5.x (PUID fmt/192) — NARA empfiehlt
-> Migration auf PDF/A. 89 davon sind unter `Akzession 2018/3`."*
-
-Klick auf die Zeile öffnet die Liste mit Bulk-Aktionen (Migration
-anstossen, in Sammlung verschieben, etc.).
+Eine Kreuztabelle zählt die Medien nach NARA-Risiko und empfohlener Aktion, zwei Kreisdiagramme zeigen die Verteilung der Risiko-Stufen und der Aktionen. Darunter stehen bis zu 50 Medien mit Handlungsbedarf: nicht identifizierte zuerst, dann die übrigen ausser **Retain**, nach Risiko geordnet.
 
 ## Formatprüfung {#formatpruefung}
 
-Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach
-seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und
-Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft.
-Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme,
-nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung,
-Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren,
-mit Link zum Datensatz. Was wann geprüft wurde, steht unter **Administration →
-Protokolle → Formatprüfung**.
+Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter **Administration → Protokolle → Formatprüfung**.
 
 ## Virenprüfung {#virenpruefung}
 
-Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit
-[`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware
-gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und
-Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht
-prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie
-Medien geworden; sie stehen im Sicherheitsprotokoll.
+Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit [`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware gefunden, nicht prüfbar, ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.
+
+## Mediendateien
+
+Alle Medien mit Suche und Filtern nach PUID, NARA-Risiko, NARA-Aktion und MIME-Typ, je mit Link zum Datensatz und zum Download des Masters.
 
 ## Batch-Verarbeitung mit Siegfried
 
-Bei neuen Medien führt Anton die Format-Identifikation asynchron als
-Queue-Job aus (`ProcessMediaIdentification`). Für **Bestands-Sichtung**
-(z. B. nach einem Migrations-Schritt oder Datenimport) gibt es einen
-Batch-Befehl:
+Bei neuen Medien führt Anton die Format-Identifikation asynchron als Queue-Job aus (`ProcessMediaIdentification`). Für **Bestands-Sichtung** (z. B. nach einem Migrations-Schritt oder Datenimport) gibt es einen Batch-Befehl:
 
 ```bash
 ddev exec php artisan media:identify --env=<tenant>
@@ -99,20 +58,18 @@ Optionen:
 - `--limit=1000` — nur N Dateien
 - `--collection=image` — nur Dateien einer Collection
 - `--force` — auch Dateien neu identifizieren, die schon eine PUID haben
+- `--oldest=N` — die N Medien, deren Erkennung am längsten zurückliegt, solche ohne Erkennungsereignis zuerst (schliesst `--force` ein)
 
-Der Befehl nutzt **Siegfried** wenn auf dem Server verfügbar
-(`which sf`), sonst fällt auf die Pure-PHP-Implementierung von
-`puidentify` zurück (langsamer aber hat keine externe Dependency).
+Der Befehl nutzt **Siegfried** oder **Fido**, je nachdem, was auf dem Server installiert ist. Fehlen beide, bleibt die Erkennung leer; einen Ersatz ohne externes Programm gibt es nicht. Jede Erkennung steht als Ereignis am Medium, mit Werkzeug, Version und Signaturdatei; eine neue Erkennung bewertet auch das NARA-Risiko neu.
 
 ## Open-Source-Pakete dieser Pipeline
 
-Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-
-Grundlage:
+Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-Grundlage:
 
 | Package | Zweck |
 |---|---|
 | [`kraenzle-ritter/nara-risk`](https://github.com/kraenzle-ritter/nara-risk) | NARA-Risk-/Action-Mapping |
-| [`kraenzle-ritter/puidentify`](https://github.com/kraenzle-ritter/puidentify) | PRONOM-PUID-Lookup |
+| [`kraenzle-ritter/puidentify`](https://github.com/kraenzle-ritter/puidentify) | PRONOM-PUID-Lookup über Siegfried oder Fido |
 | [`ottosmops/office2text`](https://github.com/ottosmops/office2text) | Volltext-Extraktion aus Office-Dateien (für die Suche, nicht direkt Preservation) |
 
 ## Wann läuft was?
@@ -122,11 +79,9 @@ Grundlage:
 | Neue Datei hochgeladen | Async-Queue: PRONOM-Identifikation + NARA-Mapping |
 | Datei ersetzt | Async-Queue: gleiche Pipeline neu |
 | Manueller Audit | `media:identify` CLI-Befehl |
-| Daily Statistics | Cache wird über Nacht neu berechnet (siehe `app/Console/Kernel.php`) |
+| Dashboard aufgerufen | Zahlen werden beim Aufruf aus der Datenbank berechnet; einen Zeitplan dafür gibt es nicht |
 
 ## Verwandte Themen
 
-- [Console Commands](console-commands.md) — `media:identify`,
-  `media:validate-pdfs`, `media:check`
-- [SIP Ingest](sip-ingest.md) — bei SIP-Import läuft die
-  PRONOM-Identifikation automatisch
+- [Console Commands](console-commands.md) — `media:identify`, `media:validate-pdfs`, `media:check`
+- [SIP Ingest](sip-ingest.md) — bei SIP-Import läuft die PRONOM-Identifikation automatisch

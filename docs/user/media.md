@@ -23,7 +23,7 @@ Für die folgenden Formate werden in Anton Benutzungskopien angefertigt; eine Er
 - Quicktime
 
 ### Audio
-- WAF  
+- WAV  
 - MPEG  
 - MP3  
 

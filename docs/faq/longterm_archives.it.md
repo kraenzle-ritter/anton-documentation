@@ -1,8 +1,8 @@
 # Anton come archivio digitale a lungo termine
 
-Anton acquisisce i documenti digitali con verifica, conserva i master senza modificarli e ne sorveglia i formati. Ciò vale per Anton [come servizio](anton_as_service.md) come per l'esercizio [on premises](anton_on_premises.md).
+Anton acquisisce i documenti digitali con verifica, ne riconosce e valida i formati e registra quanto bene possono essere conservati. Anton modifica un master solo dove l'archivio lo ha configurato o richiesto, ad esempio tramite una regola di formato all'acquisizione o tramite una migrazione; entrambe vengono verificate e registrate sul media. Ciò vale per Anton [come servizio](anton_as_service.md) come per l'esercizio [on premises](anton_on_premises.md).
 
-La cosiddetta _bitstream preservation_, ossia l'effettiva memorizzazione e messa in sicurezza dei dati, è compito dell'infrastruttura di esercizio. **Con Anton as a Service**, cioè in esercizio sui nostri server, i dati digitali vengono conservati su un'infrastruttura adeguata che ne mantiene tre copie in tre ubicazioni – complessivamente una ridondanza sestupla.
+La cosiddetta _bitstream preservation_, ossia l'effettiva memorizzazione e messa in sicurezza dei dati, è compito dell'infrastruttura di esercizio. **Con Anton as a Service**, cioè in esercizio sui nostri server, i dati digitali sono presenti in quattro copie in tre ubicazioni: sul server di produzione, in un centro di calcolo in Svizzera, i dati di produzione e un backup locale cifrato, più un backup ciascuno su due server di backup in due ubicazioni a Zurigo (vedi [Infrastruttura](infrastructure.md)). Le due ubicazioni zurighesi condividono i rischi regionali; per ora non esiste un'ulteriore ubicazione indipendente.
 
 !!! note "On premises"
     Chi gestisce Anton su server propri è responsabile in prima persona della memorizzazione, della ridondanza e del backup. L'infrastruttura descritta fa parte del nostro esercizio e non viene fornita con il software. Volentieri offriamo consulenza per la messa in opera.
@@ -23,4 +23,4 @@ Il riconoscimento dei formati sulla base del tipo MIME o dell'estensione del fil
 
 Dall'identificativo PRONOM Anton ricava la valutazione del rischio del [NARA Digital Preservation Framework](https://www.archives.gov/preservation/digital-preservation). Essa è la base per decidere le misure di conservazione, ad esempio la conversione di un file in un altro formato.
 
-Il [preservation planning](../admin/preservation-planning.md) nell'area di amministrazione mostra i formati di file presenti nell'archivio con la relativa valutazione del rischio.
+Il [preservation planning](../admin/preservation-planning.md) nell'area di amministrazione mostra i formati di file presenti nell'archivio con la relativa valutazione del rischio. La vista va aperta di propria iniziativa; non esiste alcuna notifica quando un formato diventa obsoleto.

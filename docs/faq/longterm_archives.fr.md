@@ -1,8 +1,8 @@
 # Anton comme archive numérique à long terme
 
-Anton prend en charge les documents numériques avec vérification, conserve les masters sans les modifier et surveille leurs formats. Cela vaut pour Anton [comme service](anton_as_service.md) comme pour l'exploitation [on premises](anton_on_premises.md).
+Anton prend en charge les documents numériques avec vérification, identifie et valide leurs formats et consigne dans quelle mesure ils peuvent être conservés. Anton ne modifie un master que là où l'archive l'a configuré ou demandé, par exemple par une règle de format lors de la prise en charge ou par une migration ; les deux sont vérifiées et consignées sur le média. Cela vaut pour Anton [comme service](anton_as_service.md) comme pour l'exploitation [on premises](anton_on_premises.md).
 
-Ce que l'on appelle la _bitstream preservation_, c'est-à-dire le stockage et la sauvegarde effectifs des données, relève de l'infrastructure d'exploitation. **Avec Anton as a Service**, c'est-à-dire en exploitation sur nos serveurs, les données numériques sont conservées sur une infrastructure appropriée qui en maintient trois copies sur trois sites – soit une redondance sextuple au total.
+Ce que l'on appelle la _bitstream preservation_, c'est-à-dire le stockage et la sauvegarde effectifs des données, relève de l'infrastructure d'exploitation. **Avec Anton as a Service**, c'est-à-dire en exploitation sur nos serveurs, les données numériques existent en quatre copies sur trois sites : sur le serveur de production, dans un centre de calcul en Suisse, les données de production et une sauvegarde locale chiffrée, ainsi qu'une sauvegarde sur chacun de deux serveurs de sauvegarde situés sur deux sites à Zurich (voir [Infrastructure](infrastructure.md)). Les deux sites zurichois partagent les mêmes risques régionaux ; il n'existe pour l'instant pas d'autre site indépendant.
 
 !!! note "On premises"
     Qui exploite Anton sur ses propres serveurs assume lui-même le stockage, la redondance et la sauvegarde. L'infrastructure décrite ici fait partie de notre exploitation et n'est pas livrée avec le logiciel. Nous conseillons volontiers lors de la mise en place.
@@ -23,4 +23,4 @@ L'identification des formats sur la base du type MIME ou de l'extension de fichi
 
 À partir de l'identifiant PRONOM, Anton déduit l'évaluation des risques du [NARA Digital Preservation Framework](https://www.archives.gov/preservation/digital-preservation). Elle sert de base aux décisions sur les mesures de conservation, par exemple la conversion d'un fichier dans un autre format.
 
-Le [preservation planning](../admin/preservation-planning.md) de l'espace d'administration affiche les formats de fichiers présents dans les archives, accompagnés de leur évaluation des risques.
+Le [preservation planning](../admin/preservation-planning.md) de l'espace d'administration affiche les formats de fichiers présents dans les archives, accompagnés de leur évaluation des risques. Il faut ouvrir cette vue soi-même ; aucune notification ne signale qu'un format devient obsolète.

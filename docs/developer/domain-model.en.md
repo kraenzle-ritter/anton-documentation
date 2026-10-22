@@ -22,7 +22,7 @@ Place, Keyword and Location. One record per language. In the documentation these
 fields are called «text fields».
 
 **Media** — the digital objects, via `spatie/laravel-medialibrary` with
-conversions (`web`, `thumb`). The master remains unchanged.
+conversions (`web`, `thumb`). Once stored, a master is changed only by `media:migrate` (see [Storage](../admin/preservation.md#speicherung)).
 
 ## The hierarchy is a closure table
 

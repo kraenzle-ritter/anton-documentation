@@ -1,12 +1,6 @@
 # Long-term preservation: overview
 
-Anton ingests digital records with verification, keeps the masters unchanged,
-identifies their formats and records how well they can be preserved. Storage
-itself and its redundancy are provided by the operating infrastructure; in
-installations with a connected long-term archive, that archive takes over
-bitstream preservation. This page shows how the tasks are divided and refers to
-the detail pages. It also answers the question of which artefact is a
-**backup** and which is a **publication view**.
+Anton ingests digital records with verification, identifies their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it: at ingest through a format rule or the processing of a QR upload, afterwards through a migration (see [Storage](#speicherung)). Storage itself and its redundancy are provided by the operating infrastructure; in installations with a connected long-term archive, that archive takes over bitstream preservation. This page shows how the tasks are divided and refers to the detail pages. It also answers the question of which artefact is a **backup** and which is a **publication view**.
 
 ## Division of tasks {#aufgabenteilung}
 
@@ -18,7 +12,7 @@ ones, operations cover storage:
 | Checksums on transfer | verifies every file of a SIP against the package | | |
 | Checksum per file | calculates MD5 and SHA-512 on upload and stores them | | |
 | Format identification and risk | PRONOM ID, NARA assessment, [preservation planning](preservation-planning.md) | provides Siegfried or Fido | |
-| Master and access copies | keeps the master unchanged, produces `web` and `thumb` | | |
+| Master and access copies | keeps the master, changes it only through format rules, upload processing and `media:migrate`, produces `web` and `thumb` | | |
 | Integrity check | provides `media:check`, `media:snapshot` and `media:repair`, logs the checks | sets the schedule as a cron job, sets up the backup for `media:repair` | takes over fixity of the masters |
 | Redundant storage | | copies at several locations | bitstream preservation |
 | Format decisions | shows formats that need action | | |
@@ -102,9 +96,9 @@ a single read on upload and stores both in the database. SHA-512 is the
 reference for the integrity check, as OCFL and BagIt recommend; MD5 stays for
 the DIMAG connection and for recognising duplicate imports. For media from
 before version 0.98, [`media:checksum`](console-commands.md#mediachecksum)
-computes SHA-512 afterwards — checking every file against its MD5 as it goes.
-The **master remains unchanged**; the derivatives (`web`, `thumb`) are access
-copies.
+computes SHA-512 afterwards — checking every file against its MD5 as it goes. The derivatives (`web`, `thumb`) are access copies.
+
+The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a [format rule](#regeln-fuer-dateien) such as `tiff_zip`, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a [QR upload](../user/qr-upload.md) (HEIC → JPEG, images → PDF, OCR) that the archive switches on; only «images → PDF» keeps the delivered images as [originals](#behaltene-originale). Once stored, a master is changed only by [`media:migrate`](console-commands.md#mediamigrate), with verification and an event; [`media:repair`](console-commands.md#mediarepair) merely restores the verified content.
 
 ### Kept originals {#behaltene-originale}
 
@@ -156,12 +150,7 @@ For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.
 
-Normalisation happens only at ingest, under the
-[file rules](#regeln-fuer-dateien), verified and with the
-[original kept](#behaltene-originale). Originals are kept bit for bit, with a
-checksum. Preservation planning is the basis for decisions: it shows which
-formats are in the holdings, which risk NARA assigns to them and which action
-NARA recommends.
+Normalisation happens at ingest under the [file rules](#regeln-fuer-dateien) and in the holdings with [`media:migrate`](console-commands.md#mediamigrate), both verified. Whether the original stays is up to the rule: `tiff_zip` discards the delivered file and records its checksums in the event, `media:migrate --keep-original` keeps it. [Kept originals](#behaltene-originale) are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
 
 ### Delivery {#abgabe}
 
@@ -227,10 +216,7 @@ together.
 
 Redundant storage is a matter for the infrastructure: Anton writes to a local
 store and optionally to a cloud store, and operations create the copies
-underneath. With **Anton as a Service**, the data is held in
-[three copies at three locations](../faq/longterm_archives.md) (sixfold
-redundancy in total); **on premises**, the operating institution is
-responsible for this.
+underneath. With **Anton as a Service**, the data is held in [four copies at three locations, two of them in Zurich](../faq/longterm_archives.md); **on premises**, the operating institution is responsible for this.
 
 ## Backup or publication? {#sicherung-oder-publikation}
 
@@ -239,7 +225,7 @@ The most important distinction, and the one most easily confused:
 | Artefact | Purpose |
 |---|---|
 | **Native export** (`anton:export-native`) | **Backup.** Lossless and re-importable: metadata in all languages, events, text fields — including private ones —, authority references via UUID and the **master media**. |
-| **SQL dump** | **Backup.** The only artefact with users, settings, forms and file provenance (PRONOM/NARA history). Contains no media files. |
+| **SQL dump** | **Backup.** The only artefact with users, settings, forms and the NARA assessment of the files (current value only, no history). The events on the media, including every format identification since version 0.107, are also in the PREMIS of the DIP, OCFL and native export. Contains no media files. |
 | [**DIP**](download-dip.md) (BagIt) and [**OCFL**](download-ocfl.md) | **Delivery packages.** Media and metadata bundled, with checksums in the manifest. |
 | [**RDF/CIDOC**](download-rdf.md), **EAD**, **TEI**, **Memobase** | **Publication views.** Filtered and lossy — Anton cannot be restored from them. |
 | [**A+ bundle with `--include-protected --include-originals`**](download-rdf.md#migrations-export) | **Migration package.** Graph including blocked data plus original files — for the route into a *different* system. Not a restore tool for Anton, and not to be hosted publicly because of the personal data it contains. |

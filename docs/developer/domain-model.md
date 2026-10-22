@@ -22,7 +22,7 @@ Place, Keyword und Location. Pro Sprache ein Datensatz. In der Doku heissen
 diese Felder «Textfelder».
 
 **Media** — die digitalen Objekte, über `spatie/laravel-medialibrary` mit
-Konversionen (`web`, `thumb`). Der Master bleibt unverändert.
+Konversionen (`web`, `thumb`). Einen abgelegten Master verändert nur `media:migrate` (siehe [Speicherung](../admin/preservation.md#speicherung)).
 
 ## Die Hierarchie ist eine Closure Table
 

@@ -23,7 +23,7 @@ For the following formats, Anton produces access copies; an extension can easily
 - Quicktime
 
 ### Audio
-- WAF  
+- WAV  
 - MPEG  
 - MP3  
 

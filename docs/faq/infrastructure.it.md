@@ -47,8 +47,8 @@ flowchart TB
 - **Backup a più livelli**: 
     - backup orari dei metadati (orari lavorativi)
     - backup completi giornalieri (metadati + digitalizzazioni)
-- **Distribuzione geografica**: due server di backup in due ubicazioni diverse in Svizzera
-- **Mirroring**: entrambi i server di backup funzionano in RAID 1, ogni salvataggio è quindi presente in doppia copia; complessivamente una ridondanza sestupla dei dati
+- **Distribuzione geografica**: due server di backup in due ubicazioni a Zurigo; con i dati di produzione e il backup locale sul SERVER ANTON, quattro copie in tre ubicazioni. Le due ubicazioni zurighesi condividono i rischi regionali; per ora non esiste un'ulteriore ubicazione indipendente
+- **Mirroring**: entrambi i server di backup funzionano in RAID 1; ciò protegge dal guasto di un disco, ma non costituisce un'ulteriore copia
 - **Cifratura**: tutti i backup vengono conservati e trasmessi in forma cifrata
 - **Backup basati su pull**: sono i server di backup a prelevare i dati (nessun push)
     - protezione da una compromissione del server di produzione
