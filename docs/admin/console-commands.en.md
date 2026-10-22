@@ -432,7 +432,7 @@ up to date with every change to the commands.
 | `anton:doctor` | Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2… |
 | `anton:export` | Export metadata to a XML-File (EAD or EAD3) |
 | `anton:export-antonfields` | Export per-formset field labels, form order and controlled-vocabulary labels as antonfields.js… |
-| `anton:export-dip` | Export metadata to a XML-File (EAD or EAD3) |
+| `anton:export-dip` | Export records with their subtree as a DIP: BagIt (default) or E-ARK DIP 2.2.0 (--format=eark,… |
 | `anton:export-native` | Export an Anton subtree as a lossless native round-trip package (anton-import-format + media). |
 | `anton:export-rdf` | Export Anton tenant data as RDF (CIDOC CRM + RiC-O A+ profile, Memobase, or a self-contained A… |
 | `anton:home` | Get or set a home entry. If you set a value, you should also choose a locale |

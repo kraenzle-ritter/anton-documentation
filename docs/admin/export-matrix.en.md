@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **20 October 2026**. It is
+    This matrix reflects the state of **22 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -28,6 +28,7 @@ or exchange view.**
 | **Native round trip** | `anton-import-format` v0.5 (JSON) **+ master media** as a ZIP | Object tree, **losslessly re-importable** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | per object (embedded only) | Building block in DIP / OCFL |
 | DIP | BagIt | Package: media + metadata (subtree) | «DIP» button on the record |
+| E-ARK DIP | E-ARK DIP 2.2.0 (CSIP) | Package of a record and its subtree: *access* = public view with access copies, *full* = everything with masters and originals | «E-ARK DIP» button on the record (access), `anton:export-dip --format=eark [--full]` |
 | OCFL | Oxford Common File Layout | Package: media + metadata (object/subtree) | Button on the record |
 | Excel (full) | XLSX | current result list, all fields | Result list → Export |
 | Excel (update table) | XLSX | Result list, **only writable fields**, re-importable | Result list → Export → Update |
@@ -158,7 +159,8 @@ host it publicly.
 | Artefact | Self-service in the interface |
 |---|---|
 | SQL dump | **yes** — Admin → Export |
-| EAD, TEI, RDF (standard), A+ bundle (standard), DIP, OCFL, Excel, Word/PDF | **yes** |
+| EAD, TEI, RDF (standard), A+ bundle (standard), DIP, E-ARK DIP (access), OCFL, Excel, Word/PDF | **yes** |
+| E-ARK DIP full (`--full`) | **no** — CLI only |
 | A+ bundle with `--include-protected` / `--include-originals` | **no** — the UI and the API do not pass the switches through, CLI only |
 | Native round trip (`anton:export-native` / `anton:import-native`) | **no** — a pure CLI command |
 
@@ -180,6 +182,8 @@ per node.
 only institution, objects, instantiations and around eight text field types.
 
 **TEI per object** knows no overall export, no hierarchy and hardly any media.
+
+**E-ARK DIP** (anton#697) comes in two scopes. *Access* is a publication view: what a guest may see, whoever exports — locked records and drafts are left out with their subtree, records under a protection period keep their description but not their media, private media are left out. The media are access copies (`web`) in representation `access`, described in EAD3 or EAD 2002 (setting `eark_dip_ead`), optionally also RiC-O and CIDOC CRM as Turtle (`eark_dip_rdf`). PREMIS names each representation's function and each file's source, without events and without persons. *Full* (`--full`, CLI only) is a hand-over like DIP and OCFL: every record, masters in `master`, kept originals in `original`, plus the native format (`anton-native`), PREMIS per record and the Word finding aid. Every package is validated before it is delivered; an invalid one is not delivered. See [DIP download](download-dip.md#e-ark-dip).
 
 **DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with
 media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL:

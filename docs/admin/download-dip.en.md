@@ -69,10 +69,53 @@ php artisan anton:export-dip --env=<slug> --ids=42,77,103 --target-dir=/path/to/
 ```
 
 `--target-dir` is optional (default: the transfer directory). The CLI export
-always uses `CreateDip` and places the ZIPs in the target directory instead of
+always uses `CreateDip` for the BagIt DIP and places the ZIPs in the target directory instead of
 deleting them after delivery as the web download does.
 
 !!! note "Visibility"
     The DIP download is only reachable for logged-in internal users. Like the
     rest of the internal view, a DIP also contains **records marked as
     private** — internal users are meant to see them.
+
+
+## E-ARK DIP
+
+Besides the BagIt DIP there is an **E-ARK DIP 2.2.0** following the European standard for dissemination packages (anton#697). It can be read without Anton: `METS.xml` describes the package, the representations lie below `representations/`, the description below `metadata/descriptive/`.
+
+### Two scopes
+
+| | Access (default) | Full (`--full`) |
+|---|---|---|
+| Where | «E-ARK DIP» button, console | console only |
+| Records | what a guest sees: without locked records and drafts, with their subtree | all |
+| Media | access copies (`web`) in `representations/access/`; without private media and without the media of records under a protection period (their description stays) | masters in `representations/master/`, kept originals in `representations/original/` |
+| Description | EAD3 or EAD 2002, optionally RiC-O and CIDOC CRM | the same, plus the native format (`anton-native.json`) |
+| PREMIS | each representation's function, each file's format and source — no events, no persons | plus PREMIS per record with all events (as in the BagIt DIP) |
+| Word finding aid | no (it does not filter) | yes, under `documentation/` |
+| Holdings log | «Export delivered» | «Master downloaded» |
+
+The access scope is always built as the public view, whoever downloads it. A medium without an access copy is left out and counted; `media:conversions` computes it. What was left out is counted in `documentation/export.txt`, never with titles.
+
+### Validation
+
+Every package is validated against E-ARK after it is written (`kraenzle-ritter/eark-ip`). A package with errors is deleted and not delivered; the message names the failed requirements. Warnings do not stop it.
+
+### Settings
+
+| Setting | Meaning | Default |
+|---|---|---|
+| `level_of_description_ids_for_eark_dip_download` | level ids with an «E-ARK DIP» button | `[]` (no button) |
+| `eark_dip_ead` | `ead3` or `ead` (EAD 2002) | `ead3` |
+| `eark_dip_rdf` | further descriptions: `ric`, `cidoc` | empty |
+| `eark_dip_sync_limit` | from how many media in the subtree the package is built in the background | `500` |
+
+Above `eark_dip_sync_limit`, the package is built in the background and appears under **Data export → E-ARK DIP** (`/export/dip`), where internal users download or delete it.
+
+### Console
+
+```bash
+php artisan anton:export-dip --env=<slug> --ids=42 --format=eark --target-dir=/path/to/target
+php artisan anton:export-dip --env=<slug> --ids=42 --format=eark --full --target-dir=/path/to/target
+```
+
+Without `--format` the BagIt DIP is written as before; `--full` applies to `--format=eark` only. The full scope checks first whether there is enough free space (about twice the size of the masters).

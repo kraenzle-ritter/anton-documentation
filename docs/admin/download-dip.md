@@ -72,10 +72,53 @@ php artisan anton:export-dip --env=<slug> --ids=42,77,103 --target-dir=/pfad/zum
 ```
 
 `--target-dir` ist optional (Default: Transfer-Verzeichnis). Der
-CLI-Export nutzt immer `CreateDip` und legt die ZIPs im Zielverzeichnis
+CLI-Export nutzt für das BagIt-DIP immer `CreateDip` und legt die ZIPs im Zielverzeichnis
 ab, statt sie wie der Web-Download nach der Auslieferung zu löschen.
 
 !!! note "Sichtbarkeit"
     Der DIP-Download ist nur für eingeloggte interne Nutzer:innen erreichbar.
     Wie die übrige interne Ansicht enthält ein DIP **auch als privat
     markierte Datensätze** — interne Nutzer:innen sollen diese sehen.
+
+
+## E-ARK DIP
+
+Neben dem BagIt-DIP gibt es ein **E-ARK DIP 2.2.0** nach dem europäischen Standard für Auslieferungspakete (anton#697). Es lässt sich ohne Anton lesen: `METS.xml` beschreibt das Paket, die Repräsentationen liegen unter `representations/`, die Beschreibung unter `metadata/descriptive/`.
+
+### Zwei Umfänge
+
+| | Zugang (Vorgabe) | Vollständig (`--full`) |
+|---|---|---|
+| Wo | Knopf «E-ARK DIP», Konsole | nur Konsole |
+| Datensätze | was ein Gast sieht: ohne gesperrte Datensätze und Entwürfe samt Teilbaum | alle |
+| Medien | Nutzungskopien (`web`) in `representations/access/`; ohne private Medien und ohne Medien von Datensätzen mit laufender Schutzfrist (deren Beschreibung bleibt) | Master in `representations/master/`, behaltene Originale in `representations/original/` |
+| Beschreibung | EAD3 oder EAD 2002, optional RiC-O und CIDOC CRM | dasselbe, dazu das native Format (`anton-native.json`) |
+| PREMIS | Funktion jeder Repräsentation, Format und Herkunft jeder Datei — ohne Ereignisse und ohne Personen | dazu PREMIS je Datensatz mit allen Ereignissen (wie im BagIt-DIP) |
+| Word-Findbuch | nein (es filtert nicht) | ja, unter `documentation/` |
+| Bestandsprotokoll | «Export ausgeliefert» | «Master heruntergeladen» |
+
+Der Zugangsumfang entsteht immer als öffentliche Sicht, gleich wer ihn herunterlädt. Ein Medium ohne Nutzungskopie fehlt und wird gezählt; `media:conversions` rechnet sie nach. Was fehlt, steht als Anzahl in `documentation/export.txt`, nie mit Titeln.
+
+### Prüfung
+
+Jedes Paket wird nach dem Schreiben gegen E-ARK geprüft (`kraenzle-ritter/eark-ip`). Ein Paket mit Fehlern wird gelöscht und nicht ausgeliefert; die Meldung nennt die verletzten Anforderungen. Warnungen halten es nicht auf.
+
+### Einstellungen
+
+| Setting | Bedeutung | Vorgabe |
+|---|---|---|
+| `level_of_description_ids_for_eark_dip_download` | Stufen-Ids mit Knopf «E-ARK DIP» | `[]` (kein Knopf) |
+| `eark_dip_ead` | `ead3` oder `ead` (EAD 2002) | `ead3` |
+| `eark_dip_rdf` | weitere Beschreibungen: `ric`, `cidoc` | leer |
+| `eark_dip_sync_limit` | ab wie vielen Medien im Teilbaum das Paket im Hintergrund entsteht | `500` |
+
+Liegt der Teilbaum über `eark_dip_sync_limit`, entsteht das Paket im Hintergrund und erscheint unter **Daten-Export → E-ARK DIP** (`/export/dip`), wo interne Nutzer:innen es herunterladen oder löschen.
+
+### Konsole
+
+```bash
+php artisan anton:export-dip --env=<slug> --ids=42 --format=eark --target-dir=/pfad/zum/ziel
+php artisan anton:export-dip --env=<slug> --ids=42 --format=eark --full --target-dir=/pfad/zum/ziel
+```
+
+Ohne `--format` entsteht wie bisher das BagIt-DIP; `--full` gilt nur mit `--format=eark`. Der vollständige Umfang prüft vorher, ob genug Platz frei ist (etwa die doppelte Grösse der Master).
