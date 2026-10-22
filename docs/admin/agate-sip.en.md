@@ -20,7 +20,16 @@ agate delivers a SIP as a BagIt bag or as an E-ARK SIP 2.2.0, depending on its s
 | Check before the import | the bag's manifests | the checksums in the METS, for `metadata.json` and every file it names |
 | Validation report | — | E-ARK validation (eark-ip), kept as a validation event with the run |
 
-A missing or altered file stops the import before anything is written. The E-ARK report does not stop the import: whether the files are unchanged is decided by the checksums. An E-ARK SIP from another tool (EAD or Dublin Core only, without `anton-import-format`) is not accepted yet.
+A missing or altered file stops the import before anything is written. The E-ARK report does not stop the import: whether the files are unchanged is decided by the checksums. E-ARK packages from other tools are accepted too, see below.
+
+## E-ARK packages from other tools
+
+An E-ARK package without `anton-import-format` (for example from RODA-in, commons-ip or ESSArch) is recognised by its content as well, on every way in and under any file name. Without a target in its name (`…-agate-<holding_id>.zip`) the package waits in the inbox.
+
+- **Description:** from the first EAD in the package (EAD3 or EAD 2002, read as the EAD import reads it), else from Dublin Core as one record, else one record named after the package (METS `LABEL` or `OBJID`).
+- **Files:** the files of the master representation hang below the description as folders and records. When an EAD `<dao>` names a file of the package, that file becomes the medium of its unit of description.
+- **Representations:** the inbox shows each representation with its number of files and a proposal (from PREMIS, from the name, otherwise the first as master and the others «unknown»). For each one chooses master, original (version), access copy or separate entries; exactly one must be the master, at most one the access copy. A file of a version or access copy hangs on the medium of the master file with the same folder and name without extension; files without a pair and separate entries go below a folder named after their representation. Without a choice in the inbox (import with a target in the file name, console) the proposal applies, «unknown» as separate entries.
+- **Check:** every file of every representation is checked against its checksum in the METS before the import.
 
 ## Workflow
 

@@ -21,7 +21,16 @@ agate liefert ein SIP als BagIt-Bag oder als E-ARK-SIP 2.2.0, je nach Einstellun
 | Prüfung vor dem Import | Manifeste des Bags | Prüfsummen im METS, für `metadata.json` und jede Datei, die sie nennt |
 | Prüfbericht | — | Prüfung nach E-ARK (eark-ip) als Prüf-Ereignis beim Lauf |
 
-Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. Ein E-ARK-SIP aus einem anderen Werkzeug (nur EAD oder Dublin Core, ohne `anton-import-format`) nimmt Anton noch nicht an.
+Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. E-ARK-Pakete aus anderen Werkzeugen nimmt Anton ebenfalls an, siehe unten.
+
+## E-ARK-Pakete aus anderen Werkzeugen
+
+Ein E-ARK-Paket ohne `anton-import-format` (etwa aus RODA-in, commons-ip oder ESSArch) erkennt Anton ebenfalls am Inhalt, auf allen Wegen und unter jedem Dateinamen. Trägt der Name kein Ziel (`…-agate-<bestand_id>.zip`), wartet das Paket im Eingangskorb.
+
+- **Beschreibung:** aus der ersten EAD im Paket (EAD3 oder EAD 2002, gelesen wie beim EAD-Import), sonst aus Dublin Core als ein Datensatz, sonst ein Datensatz mit dem Namen des Pakets (METS `LABEL` oder `OBJID`).
+- **Dateien:** Die Dateien der Master-Repräsentation hängen als Ordner und Datensätze unter der Beschreibung. Nennt ein `<dao>` der EAD eine Datei des Pakets, wird sie Medium dieser Verzeichnungseinheit.
+- **Repräsentationen:** Der Eingangskorb zeigt jede Repräsentation mit der Zahl ihrer Dateien und einem Vorschlag (aus PREMIS, aus dem Namen, sonst die erste als Master und die übrigen «unbestimmt»). Für jede wählt man Master, Original (Fassung), Nutzungskopie oder eigene Einträge; genau eine muss Master sein, höchstens eine Nutzungskopie. Eine Datei einer Fassung oder Nutzungskopie hängt am Medium der Master-Datei mit gleichem Ordner und Namen ohne Endung; Dateien ohne Paar und eigene Einträge kommen unter einen Ordner mit dem Namen ihrer Repräsentation. Ohne Wahl im Eingangskorb (Import mit Ziel im Dateinamen, Konsole) gilt der Vorschlag, «unbestimmt» als eigene Einträge.
+- **Prüfung:** Jede Datei jeder Repräsentation wird vor dem Import gegen ihre Prüfsumme im METS geprüft.
 
 ## Workflow
 
