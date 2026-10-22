@@ -56,6 +56,8 @@ php artisan anton:doctor --closure --env=<slug>
 php artisan anton:doctor --closure --repair --env=<slug>
 ```
 
+Die Prüfung hält jeden Datensatz gegen sein Elternobjekt: Seine Vorfahren müssen genau die des Elternobjekts sein, eine Stufe tiefer. So fällt auch ein Datensatz auf, der verschoben wurde, ohne dass die Hierarchie nachgeführt wurde. Der Reparaturlauf baut einen solchen Datensatz aus seinem Elternobjekt neu auf, danach alles darunter, und führt Pfad und Bestand nach. Er läuft in einer Transaktion: Schlägt ein Schritt fehl, bleibt alles, wie es war.
+
 !!! warning "Vor dem Reparieren sichern"
     Ein Reparaturlauf schreibt in die Datenbank. Vorher eine
     [Sicherung](restore.md) anlegen.

@@ -54,6 +54,8 @@ php artisan anton:doctor --closure --env=<slug>
 php artisan anton:doctor --closure --repair --env=<slug>
 ```
 
+The check holds every record against its parent: its ancestors must be exactly the parent's, one level further down. A record that was moved without the hierarchy being updated shows up this way too. The repair run rebuilds such a record from its parent, then everything below it, and updates the path and the fonds. It runs in one transaction: if a step fails, everything stays as it was.
+
 !!! warning "Back up before repairing"
     A repair run writes to the database. Create a [backup](restore.md)
     beforehand.
