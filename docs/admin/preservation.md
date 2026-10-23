@@ -158,7 +158,7 @@ Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.
 
 Normalisiert wird bei der Übernahme nach den [Regeln für Dateien](#regeln-fuer-dateien) und im Bestand mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Ob das Original bleibt, legt die Regel fest: `tiff_zip` verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, `media:migrate --keep-original` behält sie. [Behaltene Originale](#behaltene-originale) bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
 
-Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite, bisher für [Bilder](formate-bild.md) und [PDF](formate-pdf.md).
+Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite, bisher für [Bilder](formate-bild.md), [PDF](formate-pdf.md) und [Text](formate-text.md).
 
 ### Abgabe
 

@@ -1,6 +1,6 @@
 # PDF: formats and significant properties
 
-This page sets out, for PDF, which versions Anton prefers and accepts, which properties of a PDF must be preserved, and what Anton measures or checks of them today. It belongs to the series per format category (anton#687), after [images](formate-bild.md). Text formats such as DOCX, ODT and TXT get a page of their own; PDF containing photographs only is covered by the page on images.
+This page sets out, for PDF, which versions Anton prefers and accepts, which properties of a PDF must be preserved, and what Anton measures or checks of them today. It belongs to the series per format category (anton#687), after [images](formate-bild.md). Text formats such as DOCX, ODT and TXT are on the page [Text](formate-text.md); PDF containing photographs only is covered by the page on images.
 
 Anton needs this for three things: to document what makes up a PDF (NDSA Cn-1.1), to verify that it still does (Cn-2.1), and to prove after a migration that nothing significant was lost ([`media:migrate`](console-commands.md#mediamigrate)).
 
@@ -26,7 +26,7 @@ A PDF that opens only with a password can be neither validated nor rendered by A
 
 Here too: an archive keeps [as few formats as possible](formate-bild.md#formate). Whoever produces PDF, for instance when scanning or exporting from a word processor, chooses PDF/A-2. The depositor embeds all fonts and avoids JavaScript, encryption, embedded audio and video, and JBIG2 compression: its lossy pattern matching can swap characters unnoticed, such as a 6 for an 8.
 
-## Significant properties
+## Significant properties {#wesentliche-eigenschaften}
 
 Grouped as NARA does into appearance, structure, behaviour and context. NARA distinguishes whether a document is kept for its content or as evidence of its form. For minutes the text counts; for a publication, a plan or a deed, what the page looks like counts as well. The table therefore separates two levels: «always» and «where appearance is fixed».
 

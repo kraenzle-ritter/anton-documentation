@@ -1,6 +1,6 @@
 # Images: formats and significant properties
 
-This page sets out, for raster images, which formats Anton prefers and accepts, which properties of an image must be preserved, and what Anton measures or checks of them today. It is the first page of a series per format category (anton#687); [PDF](formate-pdf.md) is written, text, audio and video follow. Vector graphics are not covered here.
+This page sets out, for raster images, which formats Anton prefers and accepts, which properties of an image must be preserved, and what Anton measures or checks of them today. It is the first page of a series per format category (anton#687); [PDF](formate-pdf.md) and [text](formate-text.md) are written, audio and video follow. Vector graphics are not covered here.
 
 Anton needs this for three things: to document what makes up an image (NDSA Cn-1.1), to verify that it still does (Cn-2.1), and to prove after a migration that nothing significant was lost ([`media:migrate`](console-commands.md#mediamigrate)).
 

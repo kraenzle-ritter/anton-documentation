@@ -1,6 +1,6 @@
 # PDF: Formate und wesentliche Eigenschaften
 
-Diese Seite legt für PDF fest, welche Fassungen Anton bevorzugt und akzeptiert, welche Eigenschaften eines PDF erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie gehört zur Reihe je Formatkategorie (anton#687), nach den [Bildern](formate-bild.md). Textformate wie DOCX, ODT und TXT erhalten eine eigene Seite; PDF, das nur Fotos enthält, behandelt die Seite für Bilder.
+Diese Seite legt für PDF fest, welche Fassungen Anton bevorzugt und akzeptiert, welche Eigenschaften eines PDF erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie gehört zur Reihe je Formatkategorie (anton#687), nach den [Bildern](formate-bild.md). Textformate wie DOCX, ODT und TXT stehen auf der Seite [Text](formate-text.md); PDF, das nur Fotos enthält, behandelt die Seite für Bilder.
 
 Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein PDF ausmacht (NDSA Cn-1.1), um zu prüfen, ob es das noch tut (Cn-2.1), und um nach einer Migration zu belegen, dass nichts Wesentliches verloren ging ([`media:migrate`](console-commands.md#mediamigrate)).
 
@@ -26,7 +26,7 @@ Ein PDF, das sich nur mit Passwort öffnen lässt, kann Anton weder prüfen noch
 
 Auch hier gilt: Ein Archiv führt [möglichst wenige Formate](formate-bild.md#formate). Wer PDF selbst erzeugt, etwa beim Scannen oder beim Export aus einer Textverarbeitung, wählt PDF/A-2. Die Ablieferstelle bettet alle Schriften ein, vermeidet JavaScript, Verschlüsselung, eingebettetes Audio und Video sowie die Kompression JBIG2: Ihre verlustbehaftete Mustererkennung kann Zeichen unbemerkt vertauschen, etwa eine 6 durch eine 8.
 
-## Wesentliche Eigenschaften
+## Wesentliche Eigenschaften {#wesentliche-eigenschaften}
 
 Gruppiert wie bei der NARA nach Erscheinung, Struktur, Verhalten und Kontext. Die NARA unterscheidet, ob ein Dokument wegen seines Inhalts oder als Beweis seiner Form aufbewahrt wird. Bei einem Protokoll zählt der Text, bei einer Publikation, einem Plan oder einer Urkunde auch, wie die Seite aussieht. Die Tabelle trennt darum zwei Stufen: «immer» und «bei fester Erscheinung».
 
