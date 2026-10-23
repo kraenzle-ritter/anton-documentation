@@ -13,6 +13,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild
 | akzeptiert | JPEG | |
 | akzeptiert | PNG | |
 | akzeptiert | JPEG 2000 (JP2) | |
+| akzeptiert | HEIC/HEIF | bleibt Master, Nutzungskopie JPEG |
 | akzeptiert | PDF/A | wenn es nur Bilder enthält, etwa Scans ohne Textschicht oder mit OCR-Schicht |
 | akzeptiert | PDF | wenn es ausschliesslich Fotos enthält |
 
@@ -22,7 +23,9 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild
 
 PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für PDF/Text.
 
-Für GIF, BMP, WebP, HEIC/HEIF, DNG und Kamera-RAW ist noch nichts festgelegt. HEIC wandelt der [QR-Upload](../user/qr-upload.md) heute schon in JPEG um.
+HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Wer eine Umwandlung will, wählt sie für das ganze Archiv: nach JPEG, wenn Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; oder nach TIFF, ohne weiteren Verlust, aber etwa zehnmal grösser. Heute bietet Anton nur JPEG an, beim [QR-Upload](../user/qr-upload.md) (`heic2jpg`, voreingestellt aus); TIFF und das Behalten des HEIC folgen mit anton#710.
+
+Für GIF, BMP, WebP, DNG und Kamera-RAW ist noch nichts festgelegt.
 
 ## Wesentliche Eigenschaften
 
@@ -72,6 +75,7 @@ Gemessene Werte stehen am Medium unter **Technische Merkmale** und im Probelauf 
 - Ausrichtung und Auflösung misst Anton bei keinem Format.
 - Eingebettete Metadaten werden bei `tiff_zip` übertragen, aber nicht verglichen. Ob nach einer Migration alle Felder noch da sind, belegt nichts.
 - Ob ein PDF ausschliesslich Fotos enthält, prüft Anton nicht.
+- HEIC/HEIF erfasst die Formatprüfung noch nicht, und `heic2jpg` verwirft das HEIC (anton#710).
 - Die Prüfung «darstellbar» heisst, das Werkzeug liest die Datei ohne Fehler. Ob die Farben stimmen, prüft sie nicht.
 
 ## Was eine Migration prüfen muss
@@ -94,5 +98,7 @@ Heute prüft `media:migrate` nur die Pixelsignatur. Bei verlustfreiem Ziel deckt
 - NISO Z39.87, Data Dictionary – Technical Metadata for Digital Still Images, und das XML-Schema dazu: [MIX, Library of Congress](https://www.loc.gov/standards/mix/). Das Vokabular der technischen Bildmetadaten.
 - Library of Congress, Sustainability of Digital Formats: [Still Image, Quality and Functionality Factors](https://www.loc.gov/preservation/digital/formats/content/still_quality.shtml). Darstellung, Auflösung, Farbtreue, Spektralbänder, Funktionen über die Darstellung hinaus.
 - KOST, Katalog archivischer Dateiformate (KaD), Version 7.1, Mai 2026: [Bild, Zusammenfassung](https://kost-ceco.ch/cms/kad_image_intro_de.html) und [TIFF](https://kost-ceco.ch/cms/kad_tiff_de.html). Empfohlene und akzeptierte Bildformate, archivtaugliches TIFF, keine sofortige Umwandlung verlustbehafteter Bilder.
+- NARA: [Preservation Action Plan, Format-Tabelle](https://github.com/usnationalarchives/digital-preservation/tree/master/Digital_Preservation_Plan_Spreadsheet), Stand 2026-03-20. Risiko und Handlung je Format, darunter HEIC («Moderate Risk», belassen, solange gut darstellbar).
+- Library of Congress, Sustainability of Digital Formats: [HEIF (fdd000525)](https://loc.gov/preservation/digital/formats/fdd/fdd000525.shtml), dazu HEIC (fdd000526). Offenlegung, Verbreitung, Patente auf HEVC.
 - Archivematica 1.17: [Preservation planning](https://www.archivematica.org/en/docs/archivematica-1.17/user-manual/preservation/preservation-planning/). Zum Vergleich: Erkennung mit Siegfried, Charakterisierung mit ExifTool, keine festgelegten wesentlichen Eigenschaften, nach der Normalisierung keine Prüfung auf Eigenschaften.
 - NDSA: [Levels of Digital Preservation, Version 2.1](https://ndsa.org/publications/levels-of-digital-preservation/), März 2026, Anforderungen Cn-1.1 und Cn-2.1.

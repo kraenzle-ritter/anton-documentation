@@ -13,6 +13,7 @@ Anton needs this for three things: to document what makes up an image (NDSA Cn-1
 | accepted | JPEG | |
 | accepted | PNG | |
 | accepted | JPEG 2000 (JP2) | |
+| accepted | HEIC/HEIF | stays the master, access copy JPEG |
 | accepted | PDF/A | if it contains only images, such as scans without a text layer or with an OCR layer |
 | accepted | PDF | if it contains photographs only |
 
@@ -22,7 +23,9 @@ Anton needs this for three things: to document what makes up an image (NDSA Cn-1
 
 PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on PDF/text applies.
 
-Nothing is decided yet for GIF, BMP, WebP, HEIC/HEIF, DNG and camera raw. The [QR upload](../user/qr-upload.md) already converts HEIC to JPEG today.
+HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). An archive that wants a conversion chooses it for the whole archive: to JPEG, where storage is expensive and the file should open everywhere, with a second lossy encoding; or to TIFF, without further loss but about ten times larger. Today Anton offers only JPEG, in the [QR upload](../user/qr-upload.md) (`heic2jpg`, off by default); TIFF and keeping the HEIC follow with anton#710.
+
+Nothing is decided yet for GIF, BMP, WebP, DNG and camera raw.
 
 ## Significant properties
 
@@ -72,6 +75,7 @@ Measured values appear on the medium under **Technical characteristics** and in 
 - Anton measures orientation and resolution for no format.
 - Embedded metadata is carried over by `tiff_zip` but not compared. Nothing proves that all fields are still present after a migration.
 - Anton does not check whether a PDF contains photographs only.
+- Format validation does not cover HEIC/HEIF yet, and `heic2jpg` discards the HEIC (anton#710).
 - The check «renderable» means the tool reads the file without error. It does not check whether the colours are right.
 
 ## What a migration must check
@@ -94,5 +98,7 @@ Today `media:migrate` checks only the pixel signature. With a lossless target it
 - NISO Z39.87, Data Dictionary – Technical Metadata for Digital Still Images, and its XML schema: [MIX, Library of Congress](https://www.loc.gov/standards/mix/). The vocabulary of technical image metadata.
 - Library of Congress, Sustainability of Digital Formats: [Still Image, Quality and Functionality Factors](https://www.loc.gov/preservation/digital/formats/content/still_quality.shtml). Rendering, resolution, colour maintenance, spectral bands, functionality beyond rendering.
 - KOST, Katalog archivischer Dateiformate (KaD), version 7.1, May 2026: [Image, summary](https://kost-ceco.ch/cms/kad_image_intro_de.html) and [TIFF](https://kost-ceco.ch/cms/kad_tiff_de.html). Recommended and accepted image formats, archival TIFF, no immediate conversion of lossy images.
+- NARA: [Preservation Action Plan, format table](https://github.com/usnationalarchives/digital-preservation/tree/master/Digital_Preservation_Plan_Spreadsheet), as of 2026-03-20. Risk and action per format, among them HEIC («Moderate Risk», leave as is while it renders well).
+- Library of Congress, Sustainability of Digital Formats: [HEIF (fdd000525)](https://loc.gov/preservation/digital/formats/fdd/fdd000525.shtml), with HEIC (fdd000526). Disclosure, adoption, HEVC patents.
 - Archivematica 1.17: [Preservation planning](https://www.archivematica.org/en/docs/archivematica-1.17/user-manual/preservation/preservation-planning/). For comparison: identification with Siegfried, characterisation with ExifTool, no defined significant properties, no check of properties after normalisation.
 - NDSA: [Levels of Digital Preservation, version 2.1](https://ndsa.org/publications/levels-of-digital-preservation/), March 2026, requirements Cn-1.1 and Cn-2.1.
