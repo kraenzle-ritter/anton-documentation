@@ -24,11 +24,13 @@ Anton needs this for three things: to document what makes up an image (NDSA Cn-1
 
 **Accepted** is what widespread open-source tools can read and will in all likelihood go on reading. Anton takes in the file and keeps it in its format. Following the [format decisions](preservation.md#formatentscheide), Anton migrates only when a file can no longer be rendered. Images already compressed with loss (JPEG, JPEG-compressed TIFF, lossy JP2) are not converted to a lossless format: the lost information does not come back, the file would only grow (KOST says the same).
 
+As a rule, we recommend keeping as few different formats as possible in one archive (KOST says the same). The list of accepted formats says what Anton can preserve, not what an archive should collect.
+
 PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on PDF/text applies.
 
 HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the [QR upload](../user/qr-upload.md) offers this today (`heic2jpg`, off by default). Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with [`media:migrate`](console-commands.md#mediamigrate), once the rule for it exists (anton#710).
 
-GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. For JP2, BMP, DNG and camera raw no access copy is made yet (anton#711).
+GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. DNG and camera raw hold sensor data, the image only arises when it is developed; what matters there is that the sensor data is preserved, and a TIFF made from it does not replace the original. For JP2, BMP, DNG and camera raw no access copy is made yet (anton#711).
 
 ## Significant properties
 
@@ -45,6 +47,7 @@ Grouped as NARA does into appearance, structure, behaviour and context. The colu
 | | number of pages in a multi-page TIFF | LoC, KOST |
 | | compression: recorded, not preserved | NARA, KOST |
 | Behaviour | The image can be rendered. | NARA |
+| | for GIF and WebP, the animation | LoC |
 | Context | embedded metadata (EXIF, IPTC, XMP), such as date taken, creator, rights | NARA |
 
 Colour space counts here, unlike in InSPECT. InSPECT did not consider it significant because it changes in almost every migration. For scans of photographs, posters and maps, however, colour is content, and Anton migrates only when needed anyway. A migration that changes the colour space must carry the ICC profile along.
@@ -52,25 +55,6 @@ Colour space counts here, unlike in InSPECT. InSPECT did not consider it signifi
 Compression is not a property that must be preserved. It is recorded because it tells whether the other properties are held losslessly.
 
 Layers, editing steps and preview images in a TIFF are not significant behaviour: they belong to the software the image was made with, not to the image.
-
-## Restrictions per format
-
-Not every format knows every property. What a format cannot carry is absent; what only it carries is added.
-
-| Format | Absent | Added |
-|---|---|---|
-| TIFF | – | pages |
-| JPEG | alpha channel, multiple pages; mostly 8 bits | – |
-| PNG | CMYK, multiple pages; orientation mostly not set | transparency |
-| JPEG 2000 | – | resolution levels |
-| HEIC/HEIF | – | auxiliary images beside the main image: depth map, HDR gain map; image sequences |
-| GIF | more than 256 colours, bit depth above 8, ICC profile, resolution | animation (frame sequence, duration, looping) as behaviour; transparency |
-| BMP | mostly ICC profile, embedded metadata | – |
-| WebP | multiple pages | animation as behaviour; transparency; lossless or lossy |
-| DNG, camera raw | pixels in the usual sense: the file holds sensor data, the image only arises when it is developed | sensor data at full bit depth, camera and lens data, embedded preview; for raw no open description |
-| PDF/A, PDF | – | pages; the properties apply per embedded image |
-
-For DNG and camera raw, width, height and colour can only be compared after development, and that depends on the tool. What matters there is that the sensor data is preserved; a conversion to TIFF produces a developed image and does not replace the original.
 
 ## What Anton measures and checks
 

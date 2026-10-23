@@ -24,11 +24,13 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild
 
 **Akzeptiert** ist, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Anton übernimmt die Datei und behält sie in ihrem Format. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt. Bereits verlustbehaftet komprimierte Bilder (JPEG, JPEG-komprimiertes TIFF, verlustbehaftetes JP2) werden nicht in ein verlustfreies Format umgewandelt: Die verlorene Information kommt nicht zurück, die Datei würde nur grösser (so auch die KOST).
 
+Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene Formate zu führen (so auch die KOST). Die Liste der akzeptierten Formate sagt, was Anton erhalten kann, nicht, was ein Archiv sammeln soll.
+
 PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für PDF/Text.
 
 HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Bei der Übernahme lässt sich HEIC nach JPEG umwandeln, für Archive, bei denen Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; das bietet heute der [QR-Upload](../user/qr-upload.md) an (`heic2jpg`, voreingestellt aus). Nach TIFF lässt sich jederzeit später umwandeln, ohne weiteren Verlust, aber etwa zehnmal grösser, mit [`media:migrate`](console-commands.md#mediamigrate), sobald es die Regel dafür gibt (anton#710).
 
-GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. Für JP2, BMP, DNG und Kamera-RAW entsteht heute noch keine Nutzungskopie (anton#711).
+GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. DNG und Kamera-RAW halten Sensordaten fest, das Bild entsteht erst bei der Entwicklung; wesentlich ist dort, dass die Sensordaten erhalten bleiben, und ein TIFF daraus ersetzt das Original nicht. Für JP2, BMP, DNG und Kamera-RAW entsteht heute noch keine Nutzungskopie (anton#711).
 
 ## Wesentliche Eigenschaften
 
@@ -45,6 +47,7 @@ Gegliedert wie bei der NARA in Erscheinung, Struktur, Verhalten und Kontext. Die
 | | Seitenzahl bei mehrseitigem TIFF | LoC, KOST |
 | | Kompression: festhalten, nicht erhalten | NARA, KOST |
 | Verhalten | Das Bild lässt sich darstellen. | NARA |
+| | bei GIF und WebP die Animation | LoC |
 | Kontext | eingebettete Metadaten (EXIF, IPTC, XMP), etwa Aufnahmedatum, Urheber:in, Rechte | NARA |
 
 Der Farbraum zählt hier, anders als bei InSPECT. InSPECT hielt ihn nicht für wesentlich, weil er sich bei fast jeder Migration ändert. Bei Scans von Fotos, Plakaten und Karten ist die Farbe aber Inhalt, und Anton migriert ohnehin nur bei Bedarf. Ändert eine Migration den Farbraum, muss sie das ICC-Profil mitführen.
@@ -52,25 +55,6 @@ Der Farbraum zählt hier, anders als bei InSPECT. InSPECT hielt ihn nicht für w
 Die Kompression ist keine Eigenschaft, die erhalten bleiben muss. Sie wird festgehalten, weil sie sagt, ob die anderen Eigenschaften verlustfrei vorliegen.
 
 Kein wesentliches Verhalten sind Ebenen, Bearbeitungsschritte und Vorschaubilder im TIFF: Sie gehören zur Software, mit der das Bild entstand, nicht zum Bild.
-
-## Einschränkungen je Format
-
-Nicht jedes Format kennt jede Eigenschaft. Was ein Format nicht tragen kann, fehlt; was nur es trägt, kommt dazu.
-
-| Format | Fehlt | Kommt dazu |
-|---|---|---|
-| TIFF | – | Seiten |
-| JPEG | Alphakanal, mehrere Seiten; meist 8 Bit | – |
-| PNG | CMYK, mehrere Seiten; Ausrichtung meist nicht gesetzt | Transparenz |
-| JPEG 2000 | – | Auflösungsstufen |
-| HEIC/HEIF | – | Hilfsbilder neben dem Hauptbild: Tiefenkarte, HDR-Gain-Map; Bildfolgen |
-| GIF | mehr als 256 Farben, Bittiefe über 8, ICC-Profil, Auflösung | Animation (Bildfolge, Dauer, Wiederholung) als Verhalten; Transparenz |
-| BMP | meist ICC-Profil, eingebettete Metadaten | – |
-| WebP | mehrere Seiten | Animation als Verhalten; Transparenz; verlustfrei oder verlustbehaftet |
-| DNG, Kamera-RAW | Pixel im üblichen Sinn: Die Datei hält Sensordaten fest, das Bild entsteht erst bei der Entwicklung | Sensordaten in voller Bittiefe, Kamera- und Objektivdaten, eingebettete Vorschau; für RAW keine offene Beschreibung |
-| PDF/A, PDF | – | Seiten; die Eigenschaften gelten je eingebettetem Bild |
-
-Bei DNG und Kamera-RAW lassen sich Breite, Höhe und Farbe erst nach der Entwicklung vergleichen, und die hängt vom Werkzeug ab. Wesentlich ist dort, dass die Sensordaten erhalten bleiben; eine Umwandlung nach TIFF erzeugt ein entwickeltes Bild und ersetzt das Original nicht.
 
 ## Was Anton misst und prüft
 
