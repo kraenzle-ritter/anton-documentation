@@ -137,6 +137,7 @@ nav:
       - Export-Matrix: admin/export-matrix.md
       - Preservation Planning: admin/preservation-planning.md
       - 'Bilder: Formate und Eigenschaften': admin/formate-bild.md
+      - 'PDF: Formate und Eigenschaften': admin/formate-pdf.md
       - Inge und DIMAG: admin/inge.md
       - DIMAG-Upload-Status: admin/dimag-uploads.md
     - Betrieb:
@@ -283,6 +284,7 @@ plugins:
                 - Export matrix: admin/export-matrix.md
                 - Preservation planning: admin/preservation-planning.md
                 - 'Images: formats and properties': admin/formate-bild.md
+                - 'PDF: formats and properties': admin/formate-pdf.md
                 - Inge and DIMAG: admin/inge.md
                 - DIMAG upload status: admin/dimag-uploads.md
               - Operations:

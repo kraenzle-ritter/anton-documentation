@@ -152,7 +152,7 @@ different without anyone noticing.
 
 Normalisation happens at ingest under the [file rules](#regeln-fuer-dateien) and in the holdings with [`media:migrate`](console-commands.md#mediamigrate), both verified. Whether the original stays is up to the rule: `tiff_zip` discards the delivered file and records its checksums in the event, `media:migrate --keep-original` keeps it. [Kept originals](#behaltene-originale) are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
 
-Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own, so far for [images](formate-bild.md).
+Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own, so far for [images](formate-bild.md) and [PDF](formate-pdf.md).
 
 ### Delivery {#abgabe}
 

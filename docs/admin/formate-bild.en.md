@@ -1,10 +1,10 @@
 # Images: formats and significant properties
 
-This page sets out, for raster images, which formats Anton prefers and accepts, which properties of an image must be preserved, and what Anton measures or checks of them today. It is the first page of a series per format category (anton#687); PDF/text, audio and video follow. Vector graphics are not covered here.
+This page sets out, for raster images, which formats Anton prefers and accepts, which properties of an image must be preserved, and what Anton measures or checks of them today. It is the first page of a series per format category (anton#687); [PDF](formate-pdf.md) is written, text, audio and video follow. Vector graphics are not covered here.
 
 Anton needs this for three things: to document what makes up an image (NDSA Cn-1.1), to verify that it still does (Cn-2.1), and to prove after a migration that nothing significant was lost ([`media:migrate`](console-commands.md#mediamigrate)).
 
-## Formats
+## Formats {#formate}
 
 | Level | Format | Condition |
 |---|---|---|
@@ -26,7 +26,7 @@ Anton needs this for three things: to document what makes up an image (NDSA Cn-1
 
 As a rule, we recommend keeping as few different formats as possible in one archive, so that preservation planning stays simple in the long run: every format has to be watched, checked and perhaps one day migrated (KOST says the same). The list of accepted formats says what Anton can preserve, not what an archive should collect. Where a holding brings many formats, it is therefore normalised before ingest where possible: by the depositor or with the [file rules](preservation.md#regeln-fuer-dateien) that Anton applies before the file becomes the master. Lossy images are the exception (see above).
 
-PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on PDF/text applies.
+PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on [PDF](formate-pdf.md) applies.
 
 HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the [QR upload](../user/qr-upload.md) offers this today (`heic2jpg`, off by default). Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with [`media:migrate`](console-commands.md#mediamigrate), once the rule for it exists (anton#710).
 
@@ -104,7 +104,7 @@ Today `media:migrate` checks only the pixel signature. With a lossless target it
 
 ## Sources {#quellen}
 
-- National Archives and Records Administration (NARA), Digital Preservation Framework: [Preservation Action Plan for Digital Still Image](https://github.com/usnationalarchives/digital-preservation/blob/master/Digital_Preservation_Record_Categories/NARA_PreservationActionPlan_DigitalStillImage.md), plan date 2024-11. Significant properties in four groups, preferred and acceptable formats.
+- National Archives and Records Administration (NARA), Digital Preservation Framework: [Preservation Action Plan for Digital Still Image](https://github.com/usnationalarchives/digital-preservation/blob/master/Digital_Preservation_Record_Categories/PreservationActionPlan_PDFs/NARA_PreservationActionPlan_DigitalStillImage_20250604.pdf), plan date 2025-06-04 ([Markdown version](https://github.com/usnationalarchives/digital-preservation/blob/master/Digital_Preservation_Record_Categories/NARA_PreservationActionPlan_DigitalStillImage.md) as of 2024-11, same properties). Significant properties in four groups, preferred and acceptable formats.
 - NARA: [Bulletin 2014-04, Format Guidance for the Transfer of Permanent Electronic Records](https://www.archives.gov/records-mgmt/bulletins/2014/2014-04.html). Transfer formats the plan refers to.
 - Lynne Montague, Adrian Brown, Gareth Knight, Stephen Grace: [InSPECT, Significant Properties Testing Report: Raster Images](https://significantproperties.kdl.kcl.ac.uk/rasterimages-testingreport.html), King's College London, 2009 ([PDF on Figshare](https://figshare.com/articles/journal_contribution/InSPECT_Significant_Properties_Testing_Report_Raster_Images/7137803)). Properties derived from NISO Z39.87 and tested on migrations between TIFF, JPEG and GIF.
 - NISO Z39.87, Data Dictionary – Technical Metadata for Digital Still Images, and its XML schema: [MIX, Library of Congress](https://www.loc.gov/standards/mix/). The vocabulary of technical image metadata.
