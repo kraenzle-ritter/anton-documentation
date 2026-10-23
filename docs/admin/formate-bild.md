@@ -24,7 +24,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild
 
 **Akzeptiert** ist, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Anton übernimmt die Datei und behält sie in ihrem Format. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt. Bereits verlustbehaftet komprimierte Bilder (JPEG, JPEG-komprimiertes TIFF, verlustbehaftetes JP2) werden nicht in ein verlustfreies Format umgewandelt: Die verlorene Information kommt nicht zurück, die Datei würde nur grösser (so auch die KOST).
 
-Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene Formate zu führen (so auch die KOST). Die Liste der akzeptierten Formate sagt, was Anton erhalten kann, nicht, was ein Archiv sammeln soll.
+Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene Formate zu führen (so auch die KOST). Die Liste der akzeptierten Formate sagt, was Anton erhalten kann, nicht, was ein Archiv sammeln soll. Wo ein Bestand viele Formate mitbringt, wird darum möglichst vor der Übernahme normalisiert: durch die Ablieferstelle oder mit den [Regeln für Dateien](preservation.md#regeln-fuer-dateien), die Anton anwendet, bevor die Datei zum Master wird. Ausgenommen sind verlustbehaftete Bilder (siehe oben).
 
 PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für PDF/Text.
 
