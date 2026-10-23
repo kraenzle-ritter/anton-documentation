@@ -76,18 +76,17 @@ As of version 0.111.1.
 | Property | Measured | Checked |
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning |
-| Can be opened | – | no, format validation does not cover spreadsheets and presentations |
-| Text | XLSX and PPTX for full text (not with `fulltext-from-webpdf`); ODS, ODP, XLS, PPT and CSV not (anton#719) | no |
-| Character encoding (CSV) | no (anton#719) | no |
+| Can be opened | – | only indirectly for presentations: LibreOffice must read them to make the access copy, which is validated like a PDF; for spreadsheets no |
+| Text | for full text: XLSX, ODS, PPTX, ODP and CSV directly, PPT from the PDF access copy; XLS not | no |
+| Character encoding and dialect (CSV) | encoding, byte order mark, line endings, delimiter (comma, semicolon, tab, pipe) and number of fields in the first line, with libmagic at ingest | – |
 | all other properties | no | no |
 
 ## Limits
 
 - No access copy is made for spreadsheets; they appear as a download under «Other files». This is decided: a spreadsheet as PDF falls apart over many pages when sheets are wide, and does not show hidden rows.
-- No access copy is made for presentations yet; a PDF copy via LibreOffice as for text is planned (anton#719). It shows the slides, not the speaker notes.
-- ODS, ODP, XLS, PPT and CSV do not reach the full-text index (anton#719).
-- Upload takes XLSX, XLS and CSV, ODS only in part, PPTX, PPT and ODP not (anton#719).
-- For CSV Anton records neither encoding nor delimiter (anton#719).
+- For presentations (ODP, PPTX, PPT) LibreOffice makes a PDF access copy as for [text](formate-text.md) (anton#719); they then appear under «Documents» in the PDF viewer. The copy shows the slides, not the speaker notes. A server without LibreOffice Impress makes none.
+- XLS does not reach the full-text index.
+- For CSV the delimiter is inferred: the one that splits the first line, quotes respected, into the most fields. It does not replace the depositor's description.
 - Whether a spreadsheet contains formulas, hidden rows, macros or links to other files, Anton does not measure.
 
 ## What a migration must check

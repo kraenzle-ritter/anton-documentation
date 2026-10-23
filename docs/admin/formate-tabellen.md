@@ -76,18 +76,17 @@ Stand: Version 0.111.1.
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Format | PRONOM-PUID mit Siegfried, wie bei allen Dateien | Widerspruch zwischen Endung, MIME-Typ und PUID als Warnung |
-| Öffnen lässt es sich | – | nein, die Formatprüfung kennt keine Tabellen und Präsentationen |
-| Text | XLSX und PPTX für den Volltext (nicht mit `fulltext-from-webpdf`); ODS, ODP, XLS, PPT und CSV nicht (anton#719) | nein |
-| Zeichenkodierung (CSV) | nein (anton#719) | nein |
+| Öffnen lässt es sich | – | nur mittelbar bei Präsentationen: LibreOffice muss sie lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft; bei Tabellen nein |
+| Text | für den Volltext: XLSX, ODS, PPTX, ODP und CSV direkt, PPT aus der PDF-Nutzungskopie; XLS nicht | nein |
+| Zeichenkodierung und Dialekt (CSV) | Kodierung, Byte Order Mark, Zeilenenden, Trennzeichen (Komma, Semikolon, Tab, senkrechter Strich) und Zahl der Felder der ersten Zeile, mit libmagic bei der Übernahme | – |
 | alle übrigen Eigenschaften | nein | nein |
 
 ## Grenzen
 
 - Für Tabellen entsteht keine Nutzungskopie; sie erscheinen als Download unter «Weitere Dateien». Das ist entschieden: Eine Tabelle als PDF zerfällt bei breiten Blättern über viele Seiten und zeigt versteckte Zeilen nicht.
-- Für Präsentationen entsteht noch keine Nutzungskopie; geplant ist eine PDF-Kopie über LibreOffice wie bei Text (anton#719). Sie zeigt die Folien, nicht die Sprechernotizen.
-- ODS, ODP, XLS, PPT und CSV kommen nicht in den Volltext (anton#719).
-- Der Upload nimmt XLSX, XLS und CSV an, ODS nur zum Teil, PPTX, PPT und ODP nicht (anton#719).
-- Bei CSV hält Anton weder Kodierung noch Trennzeichen fest (anton#719).
+- Für Präsentationen (ODP, PPTX, PPT) rechnet LibreOffice eine PDF-Nutzungskopie wie bei [Text](formate-text.md) (anton#719); sie erscheinen dann unter «Dokumente» im PDF-Viewer. Die Kopie zeigt die Folien, nicht die Sprechernotizen. Auf einem Server ohne LibreOffice Impress entsteht keine.
+- XLS kommt nicht in den Volltext.
+- Bei CSV ist das Trennzeichen erschlossen: dasjenige, das die erste Zeile, Anführungszeichen beachtet, in die meisten Felder teilt. Die Beschreibung der Ablieferstelle ersetzt es nicht.
 - Ob eine Tabelle Formeln, versteckte Zeilen, Makros oder Verweise auf andere Dateien enthält, misst Anton nicht.
 
 ## Was eine Migration prüfen muss
