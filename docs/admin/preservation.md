@@ -41,7 +41,11 @@ prüft Anton sie, bevor sie zum Medium wird:
   [`media:virus-scan`](console-commands.md#mediavirus-scan) prüft auch den
   Bestand, mit den jeweils neuesten Signaturen. Ein Fund dort wird vermerkt
   und gemeldet, die Datei bleibt liegen. Dateien über 2 GB kann ClamAV nicht
-  prüfen; sie werden als nicht prüfbar vermerkt, nie als sauber.
+  als Ganzes prüfen; Anton schickt sie in überlappenden Teilen von 256 MB.
+  ClamAV sieht dann die Bytes jedes Teils, nicht das Format: Signaturen nach
+  Bytemustern findet es, solche am Dateiende, zum Aufbau des Formats oder
+  über die Prüfsumme der ganzen Datei nicht. Ohne Fund wird die Datei daher
+  als «ohne Befund, in Teilen geprüft» vermerkt, nicht als sauber.
 - **Prüfsummen:** Bringt eine Ablieferung Prüfsummen mit, werden sie mit den
   Dateien verglichen; nach dem Ablegen rechnet Anton die Kopie nach.
 - **Format:** Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,

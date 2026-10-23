@@ -40,8 +40,12 @@ before it becomes a medium:
   with ClamAV. A finding goes to quarantine, the import stops.
   [`media:virus-scan`](console-commands.md#mediavirus-scan) checks the holdings
   too, against the latest signatures. A finding there is recorded and
-  reported; the file stays where it is. ClamAV cannot scan files over 2 GB;
-  they are recorded as not checkable, never as clean.
+  reported; the file stays where it is. ClamAV cannot scan a file over 2 GB
+  whole; Anton sends it in overlapping parts of 256 MB. ClamAV then sees the
+  bytes of each part, not the format: it finds signatures by byte pattern, not
+  those at the end of the file, tied to the format's structure or by checksum
+  of the whole file. Without a finding the file is recorded as «clean, scanned
+  in parts», not as clean.
 - **Checksums:** If a delivery brings checksums, they are compared with the
   files; after storing, Anton recalculates the copy.
 - **Format:** Every file is checked with the tool for its format (PDF, TIFF,

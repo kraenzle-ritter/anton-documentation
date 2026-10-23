@@ -178,6 +178,9 @@ liegen. `--oldest=N` nimmt die N am längsten nicht geprüften, nie geprüfte
 zuerst; `--from-cloud` wie oben. Antwortet clamd für eine Datei nicht
 rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
 `--timeout=` setzt die Wartezeit für den Lauf, sonst gilt `CLAMD_TIMEOUT`.
+Master über 2 GB prüft er in überlappenden Teilen (`VIRUS_SCAN_PART_SIZE`,
+256 MB; `VIRUS_SCAN_PART_OVERLAP`, 1 MB) und zählt sie gesondert als «ohne
+Befund, in Teilen geprüft».
 Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
 mehr antwortet.
 
