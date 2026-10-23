@@ -54,17 +54,16 @@ Stand: Version 0.111.1.
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Format | PRONOM-PUID mit Siegfried, wie bei allen Dateien | Widerspruch zwischen Endung, MIME-Typ und PUID als Warnung |
-| Öffnen lässt es sich | – | nein, die Formatprüfung kennt keine Textformate |
+| Öffnen lässt es sich | – | nur mittelbar: Die Formatprüfung kennt keine Textformate, aber für ODT, DOCX, DOC und RTF muss LibreOffice das Dokument lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft |
 | Zeichenkodierung (TXT) | Kodierung, Byte Order Mark und Zeilenenden mit libmagic bei der Übernahme | – |
-| Text | DOCX für den Volltext (nicht mit `fulltext-from-webpdf`); TXT und Markdown, nach UTF-8 gewandelt; ODT, DOC und RTF nicht (anton#714) | nein |
+| Text | für den Volltext: ODT und DOCX direkt, DOC und RTF aus der PDF-Nutzungskopie (mit `fulltext-from-webpdf` auch DOCX); TXT und Markdown, nach UTF-8 gewandelt | nein |
 | alle übrigen Eigenschaften | nein | nein |
 
 ## Grenzen
 
-- Für TXT entsteht als Nutzungskopie der Text in UTF-8 (iconv); der Master bleibt unverändert. Für ODT, DOCX, DOC und RTF entsteht keine Nutzungskopie; sie erscheinen nur als Download unter «Weitere Dateien». Eine PDF-Nutzungskopie über LibreOffice ist geplant (anton#714).
-- Die geplante Nutzungskopie ist eine Ansicht, kein Beleg der Erscheinung. LibreOffice stellt DOCX nicht immer so dar wie Word: Schriften, Seitenumbruch, Tabellen und Felder können abweichen.
-- ODT und RTF nimmt der Upload heute nicht an, nur SIP und Import (anton#714).
-- ODT, DOC und RTF kommen nicht in den Volltext (anton#714).
+- Für TXT entsteht als Nutzungskopie der Text in UTF-8 (iconv); der Master bleibt unverändert. Für ODT, DOCX, DOC und RTF rechnet LibreOffice eine PDF-Nutzungskopie (anton#714); das Dokument erscheint dann unter «Dokumente» im PDF-Viewer. Auf einem Server ohne LibreOffice entsteht keine, und das Dokument bleibt ein Download unter «Weitere Dateien». Ältere Dokumente erhalten die Kopie erst mit [`media:conversions`](console-commands.md).
+- Die Nutzungskopie ist eine Ansicht, kein Beleg der Erscheinung. LibreOffice stellt DOCX nicht immer so dar wie Word: Schriften, Seitenumbruch, Tabellen und Felder können abweichen.
+- Der Upload nimmt ODT, DOCX, DOC, RTF und TXT an; der QR-Upload nur Bilder und PDF.
 - Für TXT, das vor Version 0.111.1 übernommen wurde, ist die Kodierung nicht festgehalten; Volltext und Nutzungskopie bestimmen sie, wenn sie entstehen.
 - libmagic erkennt eine Kodierung nur nach Wahrscheinlichkeit. ISO-8859-1 und unbekannte 8-Bit-Kodierungen liest Anton als Windows-1252, das mit ISO-8859-1 übereinstimmt, wo dieses definiert ist, und dazu typografische Anführungszeichen und Striche kennt.
 - Die Formatprüfung erfasst Textformate nicht. Ob ein DOCX oder ODT beschädigt ist, merkt Anton erst, wenn es sich nicht öffnen lässt.

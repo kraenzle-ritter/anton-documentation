@@ -54,17 +54,16 @@ As of version 0.111.1.
 | Property | Measured | Checked |
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning |
-| Can be opened | – | no, format validation does not cover text formats |
+| Can be opened | – | only indirectly: format validation does not cover text formats, but for ODT, DOCX, DOC and RTF LibreOffice must read the document to make the access copy, which is validated like a PDF |
 | Character encoding (TXT) | encoding, byte order mark and line endings with libmagic at ingest | – |
-| Text | DOCX for full text (not with `fulltext-from-webpdf`); TXT and Markdown, converted to UTF-8; ODT, DOC and RTF not (anton#714) | no |
+| Text | for full text: ODT and DOCX directly, DOC and RTF from the PDF access copy (with `fulltext-from-webpdf` DOCX too); TXT and Markdown, converted to UTF-8 | no |
 | all other properties | no | no |
 
 ## Limits
 
-- For TXT the access copy is the text in UTF-8 (iconv); the master stays unchanged. No access copy is made for ODT, DOCX, DOC and RTF; they appear only as a download under «Other files». A PDF access copy via LibreOffice is planned (anton#714).
-- The planned access copy is a view, not evidence of appearance. LibreOffice does not always render DOCX the way Word does: fonts, page breaks, tables and fields may differ.
-- Upload does not take ODT and RTF today, only SIP and import (anton#714).
-- ODT, DOC and RTF do not reach the full-text index (anton#714).
+- For TXT the access copy is the text in UTF-8 (iconv); the master stays unchanged. For ODT, DOCX, DOC and RTF LibreOffice makes a PDF access copy (anton#714); the document then appears under «Documents» in the PDF viewer. A server without LibreOffice makes none, and the document stays a download under «Other files». Older documents get the copy only with [`media:conversions`](console-commands.md).
+- The access copy is a view, not evidence of appearance. LibreOffice does not always render DOCX the way Word does: fonts, page breaks, tables and fields may differ.
+- Upload takes ODT, DOCX, DOC, RTF and TXT; the QR upload only images and PDF.
 - For TXT ingested before version 0.111.1 the encoding is not recorded; full text and access copy detect it when they are made.
 - libmagic detects an encoding only by likelihood. Anton reads ISO-8859-1 and unknown 8-bit encodings as Windows-1252, which matches ISO-8859-1 wherever that is defined and adds typographic quotes and dashes.
 - Format validation does not cover text formats. Anton notices a damaged DOCX or ODT only when it cannot be opened.
