@@ -14,18 +14,21 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild
 | akzeptiert | PNG | |
 | akzeptiert | JPEG 2000 (JP2) | |
 | akzeptiert | HEIC/HEIF | bleibt Master, Nutzungskopie JPEG |
+| akzeptiert | GIF, BMP, WebP | |
+| akzeptiert | DNG | |
+| akzeptiert | Kamera-RAW (CR2, CR3, NEF, ARW und andere) | solange LibRaw sie liest |
 | akzeptiert | PDF/A | wenn es nur Bilder enthält, etwa Scans ohne Textschicht oder mit OCR-Schicht |
 | akzeptiert | PDF | wenn es ausschliesslich Fotos enthält |
 
 **Bevorzugt** heisst: Das empfiehlt Anton Ablieferstellen, und dahin packt die Regel [`tiff_zip`](preservation.md#regeln-fuer-dateien) unkomprimierte TIFF und LZW ohne Predictor verlustfrei um. Deflate mit Predictor 2 spart gegenüber unkomprimiert 38–66 %, ohne dass sich ein Pixel ändert, und libtiff, ImageMagick, GIMP und Photoshop lesen es. Es gehört aber nicht zum Baseline-TIFF; die KOST empfiehlt Baseline mit LZW oder CCITT. Bitonale Bilder bleiben besser bei CCITT G4, das sie stärker verdichtet; `tiff_zip` lässt sie darum aus.
 
-**Akzeptiert** heisst: Anton übernimmt die Datei und behält sie in ihrem Format. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt. Bereits verlustbehaftet komprimierte Bilder (JPEG, JPEG-komprimiertes TIFF, verlustbehaftetes JP2) werden nicht in ein verlustfreies Format umgewandelt: Die verlorene Information kommt nicht zurück, die Datei würde nur grösser (so auch die KOST).
+**Akzeptiert** ist, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Anton übernimmt die Datei und behält sie in ihrem Format. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt. Bereits verlustbehaftet komprimierte Bilder (JPEG, JPEG-komprimiertes TIFF, verlustbehaftetes JP2) werden nicht in ein verlustfreies Format umgewandelt: Die verlorene Information kommt nicht zurück, die Datei würde nur grösser (so auch die KOST).
 
 PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für PDF/Text.
 
-HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Wer eine Umwandlung will, wählt sie für das ganze Archiv: nach JPEG, wenn Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; oder nach TIFF, ohne weiteren Verlust, aber etwa zehnmal grösser. Heute bietet Anton nur JPEG an, beim [QR-Upload](../user/qr-upload.md) (`heic2jpg`, voreingestellt aus); TIFF und das Behalten des HEIC folgen mit anton#710.
+HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Bei der Übernahme lässt sich HEIC nach JPEG umwandeln, für Archive, bei denen Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; das bietet heute der [QR-Upload](../user/qr-upload.md) an (`heic2jpg`, voreingestellt aus). Nach TIFF lässt sich jederzeit später umwandeln, ohne weiteren Verlust, aber etwa zehnmal grösser, mit [`media:migrate`](console-commands.md#mediamigrate), sobald es die Regel dafür gibt (anton#710).
 
-Für GIF, BMP, WebP, DNG und Kamera-RAW ist noch nichts festgelegt.
+GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. Für JP2, BMP, DNG und Kamera-RAW entsteht heute noch keine Nutzungskopie (anton#711).
 
 ## Wesentliche Eigenschaften
 
@@ -50,6 +53,25 @@ Die Kompression ist keine Eigenschaft, die erhalten bleiben muss. Sie wird festg
 
 Kein wesentliches Verhalten sind Ebenen, Bearbeitungsschritte und Vorschaubilder im TIFF: Sie gehören zur Software, mit der das Bild entstand, nicht zum Bild.
 
+## Einschränkungen je Format
+
+Nicht jedes Format kennt jede Eigenschaft. Was ein Format nicht tragen kann, fehlt; was nur es trägt, kommt dazu.
+
+| Format | Fehlt | Kommt dazu |
+|---|---|---|
+| TIFF | – | Seiten |
+| JPEG | Alphakanal, mehrere Seiten; meist 8 Bit | – |
+| PNG | CMYK, mehrere Seiten; Ausrichtung meist nicht gesetzt | Transparenz |
+| JPEG 2000 | – | Auflösungsstufen |
+| HEIC/HEIF | – | Hilfsbilder neben dem Hauptbild: Tiefenkarte, HDR-Gain-Map; Bildfolgen |
+| GIF | mehr als 256 Farben, Bittiefe über 8, ICC-Profil, Auflösung | Animation (Bildfolge, Dauer, Wiederholung) als Verhalten; Transparenz |
+| BMP | meist ICC-Profil, eingebettete Metadaten | – |
+| WebP | mehrere Seiten | Animation als Verhalten; Transparenz; verlustfrei oder verlustbehaftet |
+| DNG, Kamera-RAW | Pixel im üblichen Sinn: Die Datei hält Sensordaten fest, das Bild entsteht erst bei der Entwicklung | Sensordaten in voller Bittiefe, Kamera- und Objektivdaten, eingebettete Vorschau; für RAW keine offene Beschreibung |
+| PDF/A, PDF | – | Seiten; die Eigenschaften gelten je eingebettetem Bild |
+
+Bei DNG und Kamera-RAW lassen sich Breite, Höhe und Farbe erst nach der Entwicklung vergleichen, und die hängt vom Werkzeug ab. Wesentlich ist dort, dass die Sensordaten erhalten bleiben; eine Umwandlung nach TIFF erzeugt ein entwickeltes Bild und ersetzt das Original nicht.
+
 ## Was Anton misst und prüft
 
 Stand: Version 0.111.
@@ -64,18 +86,19 @@ Stand: Version 0.111.
 | Auflösung | nein | nein |
 | Seitenzahl | TIFF mit exiftool, wie oben, Vorschaubilder getrennt | über die Pixelsignatur je Seite |
 | Kompression | TIFF mit exiftool, wie oben | – |
-| Darstellbar | – | bei der Übernahme und nachts mit [`media:validate-formats`](console-commands.md#mediavalidate-formats): TIFF mit tiffinfo (gründlich: `-D`), JPEG, PNG und JP2 mit ImageMagick; dazu beim Erstellen der Nutzungskopie |
+| Darstellbar | – | bei der Übernahme und nachts mit [`media:validate-formats`](console-commands.md#mediavalidate-formats): TIFF mit tiffinfo (gründlich: `-D`), JPEG, PNG, JP2, GIF, BMP und WebP mit ImageMagick, HEIC, DNG und Kamera-RAW noch nicht (anton#710, anton#711); dazu beim Erstellen der Nutzungskopie |
 | Eingebettete Metadaten | nein | `tiff_zip` überträgt sie mit exiftool, vergleicht sie aber nicht |
 
 Gemessene Werte stehen am Medium unter **Technische Merkmale** und im Probelauf vor einem Tabellen-Import.
 
 ## Grenzen
 
-- Für JPEG, PNG und JP2 hält Anton keine Merkmale fest, nur PUID, MIME-Typ und Grösse. Ebenso für TIFF aus SIPs und für TIFF in Archiven, die `tiff_zip` nicht eingeschaltet haben.
+- Für JPEG, PNG, JP2, HEIC, GIF, BMP, WebP, DNG und Kamera-RAW hält Anton keine Merkmale fest, nur PUID, MIME-Typ und Grösse. Ebenso für TIFF aus SIPs und für TIFF in Archiven, die `tiff_zip` nicht eingeschaltet haben.
 - Ausrichtung und Auflösung misst Anton bei keinem Format.
 - Eingebettete Metadaten werden bei `tiff_zip` übertragen, aber nicht verglichen. Ob nach einer Migration alle Felder noch da sind, belegt nichts.
 - Ob ein PDF ausschliesslich Fotos enthält, prüft Anton nicht.
 - HEIC/HEIF erfasst die Formatprüfung noch nicht, und `heic2jpg` verwirft das HEIC (anton#710).
+- Für JP2, BMP, DNG und Kamera-RAW entsteht keine Nutzungskopie, und DNG und Kamera-RAW erfasst die Formatprüfung nicht (anton#711).
 - Die Prüfung «darstellbar» heisst, das Werkzeug liest die Datei ohne Fehler. Ob die Farben stimmen, prüft sie nicht.
 
 ## Was eine Migration prüfen muss
@@ -100,5 +123,6 @@ Heute prüft `media:migrate` nur die Pixelsignatur. Bei verlustfreiem Ziel deckt
 - KOST, Katalog archivischer Dateiformate (KaD), Version 7.1, Mai 2026: [Bild, Zusammenfassung](https://kost-ceco.ch/cms/kad_image_intro_de.html) und [TIFF](https://kost-ceco.ch/cms/kad_tiff_de.html). Empfohlene und akzeptierte Bildformate, archivtaugliches TIFF, keine sofortige Umwandlung verlustbehafteter Bilder.
 - NARA: [Preservation Action Plan, Format-Tabelle](https://github.com/usnationalarchives/digital-preservation/tree/master/Digital_Preservation_Plan_Spreadsheet), Stand 2026-03-20. Risiko und Handlung je Format, darunter HEIC («Moderate Risk», belassen, solange gut darstellbar).
 - Library of Congress, Sustainability of Digital Formats: [HEIF (fdd000525)](https://loc.gov/preservation/digital/formats/fdd/fdd000525.shtml), dazu HEIC (fdd000526). Offenlegung, Verbreitung, Patente auf HEVC.
+- [LibRaw](https://www.libraw.org/): quelloffene Bibliothek zum Lesen von Kamera-RAW.
 - Archivematica 1.17: [Preservation planning](https://www.archivematica.org/en/docs/archivematica-1.17/user-manual/preservation/preservation-planning/). Zum Vergleich: Erkennung mit Siegfried, Charakterisierung mit ExifTool, keine festgelegten wesentlichen Eigenschaften, nach der Normalisierung keine Prüfung auf Eigenschaften.
 - NDSA: [Levels of Digital Preservation, Version 2.1](https://ndsa.org/publications/levels-of-digital-preservation/), März 2026, Anforderungen Cn-1.1 und Cn-2.1.

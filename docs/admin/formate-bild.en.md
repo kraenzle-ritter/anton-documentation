@@ -14,18 +14,21 @@ Anton needs this for three things: to document what makes up an image (NDSA Cn-1
 | accepted | PNG | |
 | accepted | JPEG 2000 (JP2) | |
 | accepted | HEIC/HEIF | stays the master, access copy JPEG |
+| accepted | GIF, BMP, WebP | |
+| accepted | DNG | |
+| accepted | camera raw (CR2, CR3, NEF, ARW and others) | as long as LibRaw reads it |
 | accepted | PDF/A | if it contains only images, such as scans without a text layer or with an OCR layer |
 | accepted | PDF | if it contains photographs only |
 
 **Preferred** means: this is what Anton recommends to depositors, and it is the form into which the rule [`tiff_zip`](preservation.md#regeln-fuer-dateien) losslessly repacks uncompressed TIFF and LZW without a predictor. Deflate with predictor 2 saves 38–66 % over uncompressed without changing a single pixel, and libtiff, ImageMagick, GIMP and Photoshop read it. It is not part of baseline TIFF, however; KOST recommends baseline with LZW or CCITT. Bitonal images are better left in CCITT G4, which compresses them more; `tiff_zip` therefore skips them.
 
-**Accepted** means: Anton takes in the file and keeps it in its format. Following the [format decisions](preservation.md#formatentscheide), Anton migrates only when a file can no longer be rendered. Images already compressed with loss (JPEG, JPEG-compressed TIFF, lossy JP2) are not converted to a lossless format: the lost information does not come back, the file would only grow (KOST says the same).
+**Accepted** is what widespread open-source tools can read and will in all likelihood go on reading. Anton takes in the file and keeps it in its format. Following the [format decisions](preservation.md#formatentscheide), Anton migrates only when a file can no longer be rendered. Images already compressed with loss (JPEG, JPEG-compressed TIFF, lossy JP2) are not converted to a lossless format: the lost information does not come back, the file would only grow (KOST says the same).
 
 PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on PDF/text applies.
 
-HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). An archive that wants a conversion chooses it for the whole archive: to JPEG, where storage is expensive and the file should open everywhere, with a second lossy encoding; or to TIFF, without further loss but about ten times larger. Today Anton offers only JPEG, in the [QR upload](../user/qr-upload.md) (`heic2jpg`, off by default); TIFF and keeping the HEIC follow with anton#710.
+HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the [QR upload](../user/qr-upload.md) offers this today (`heic2jpg`, off by default). Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with [`media:migrate`](console-commands.md#mediamigrate), once the rule for it exists (anton#710).
 
-Nothing is decided yet for GIF, BMP, WebP, DNG and camera raw.
+GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. For JP2, BMP, DNG and camera raw no access copy is made yet (anton#711).
 
 ## Significant properties
 
@@ -50,6 +53,25 @@ Compression is not a property that must be preserved. It is recorded because it 
 
 Layers, editing steps and preview images in a TIFF are not significant behaviour: they belong to the software the image was made with, not to the image.
 
+## Restrictions per format
+
+Not every format knows every property. What a format cannot carry is absent; what only it carries is added.
+
+| Format | Absent | Added |
+|---|---|---|
+| TIFF | – | pages |
+| JPEG | alpha channel, multiple pages; mostly 8 bits | – |
+| PNG | CMYK, multiple pages; orientation mostly not set | transparency |
+| JPEG 2000 | – | resolution levels |
+| HEIC/HEIF | – | auxiliary images beside the main image: depth map, HDR gain map; image sequences |
+| GIF | more than 256 colours, bit depth above 8, ICC profile, resolution | animation (frame sequence, duration, looping) as behaviour; transparency |
+| BMP | mostly ICC profile, embedded metadata | – |
+| WebP | multiple pages | animation as behaviour; transparency; lossless or lossy |
+| DNG, camera raw | pixels in the usual sense: the file holds sensor data, the image only arises when it is developed | sensor data at full bit depth, camera and lens data, embedded preview; for raw no open description |
+| PDF/A, PDF | – | pages; the properties apply per embedded image |
+
+For DNG and camera raw, width, height and colour can only be compared after development, and that depends on the tool. What matters there is that the sensor data is preserved; a conversion to TIFF produces a developed image and does not replace the original.
+
 ## What Anton measures and checks
 
 As of version 0.111.
@@ -64,18 +86,19 @@ As of version 0.111.
 | Resolution | no | no |
 | Number of pages | TIFF with exiftool, as above, previews counted separately | via the pixel signature per page |
 | Compression | TIFF with exiftool, as above | – |
-| Renderable | – | at ingest and nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats): TIFF with tiffinfo (thorough: `-D`), JPEG, PNG and JP2 with ImageMagick; also when the access copy is made |
+| Renderable | – | at ingest and nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats): TIFF with tiffinfo (thorough: `-D`), JPEG, PNG, JP2, GIF, BMP and WebP with ImageMagick, HEIC, DNG and camera raw not yet (anton#710, anton#711); also when the access copy is made |
 | Embedded metadata | no | `tiff_zip` carries it over with exiftool but does not compare it |
 
 Measured values appear on the medium under **Technical characteristics** and in the dry run before a spreadsheet import.
 
 ## Limits
 
-- For JPEG, PNG and JP2 Anton records no characteristics, only PUID, MIME type and size. Likewise for TIFF from SIPs and for TIFF in archives that have not switched on `tiff_zip`.
+- For JPEG, PNG, JP2, HEIC, GIF, BMP, WebP, DNG and camera raw Anton records no characteristics, only PUID, MIME type and size. Likewise for TIFF from SIPs and for TIFF in archives that have not switched on `tiff_zip`.
 - Anton measures orientation and resolution for no format.
 - Embedded metadata is carried over by `tiff_zip` but not compared. Nothing proves that all fields are still present after a migration.
 - Anton does not check whether a PDF contains photographs only.
 - Format validation does not cover HEIC/HEIF yet, and `heic2jpg` discards the HEIC (anton#710).
+- For JP2, BMP, DNG and camera raw no access copy is made, and format validation does not cover DNG and camera raw (anton#711).
 - The check «renderable» means the tool reads the file without error. It does not check whether the colours are right.
 
 ## What a migration must check
@@ -100,5 +123,6 @@ Today `media:migrate` checks only the pixel signature. With a lossless target it
 - KOST, Katalog archivischer Dateiformate (KaD), version 7.1, May 2026: [Image, summary](https://kost-ceco.ch/cms/kad_image_intro_de.html) and [TIFF](https://kost-ceco.ch/cms/kad_tiff_de.html). Recommended and accepted image formats, archival TIFF, no immediate conversion of lossy images.
 - NARA: [Preservation Action Plan, format table](https://github.com/usnationalarchives/digital-preservation/tree/master/Digital_Preservation_Plan_Spreadsheet), as of 2026-03-20. Risk and action per format, among them HEIC («Moderate Risk», leave as is while it renders well).
 - Library of Congress, Sustainability of Digital Formats: [HEIF (fdd000525)](https://loc.gov/preservation/digital/formats/fdd/fdd000525.shtml), with HEIC (fdd000526). Disclosure, adoption, HEVC patents.
+- [LibRaw](https://www.libraw.org/): open-source library for reading camera raw formats.
 - Archivematica 1.17: [Preservation planning](https://www.archivematica.org/en/docs/archivematica-1.17/user-manual/preservation/preservation-planning/). For comparison: identification with Siegfried, characterisation with ExifTool, no defined significant properties, no check of properties after normalisation.
 - NDSA: [Levels of Digital Preservation, version 2.1](https://ndsa.org/publications/levels-of-digital-preservation/), March 2026, requirements Cn-1.1 and Cn-2.1.
