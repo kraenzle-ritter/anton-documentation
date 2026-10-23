@@ -1,6 +1,6 @@
 # Text: Formate und wesentliche Eigenschaften
 
-Diese Seite legt für Textdokumente fest, in welchen Formaten Anton sie bevorzugt und akzeptiert, welche Eigenschaften erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie gehört zur Reihe je Formatkategorie (anton#687), nach den [Bildern](formate-bild.md) und [PDF](formate-pdf.md). Tabellen (XLSX, ODS, CSV) und Präsentationen (PPTX, ODP) erhalten eine eigene Seite.
+Diese Seite legt für Textdokumente fest, in welchen Formaten Anton sie bevorzugt und akzeptiert, welche Eigenschaften erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie gehört zur Reihe je Formatkategorie (anton#687), nach den [Bildern](formate-bild.md) und [PDF](formate-pdf.md). Tabellen (XLSX, ODS, CSV) und Präsentationen (PPTX, ODP) stehen auf einer [eigenen Seite](formate-tabellen.md).
 
 Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Textdokument ausmacht (NDSA Cn-1.1), um zu prüfen, ob es das noch tut (Cn-2.1), und um nach einer Migration zu belegen, dass nichts Wesentliches verloren ging ([`media:migrate`](console-commands.md#mediamigrate)).
 
@@ -23,7 +23,7 @@ Ein Textdokument hat keine festen Seiten. Seitenumbruch und Erscheinung entstehe
 
 Auch hier gilt: Ein Archiv führt [möglichst wenige Formate](formate-bild.md#formate). Die Ablieferstelle verwendet Standardschriften, liefert ohne Passwort und Schreibschutz und schaltet die automatische Aktualisierung von Datumsfeldern aus: Sonst überschreibt das Öffnen im Archiv das Datum des Dokuments (KOST).
 
-## Wesentliche Eigenschaften
+## Wesentliche Eigenschaften {#wesentliche-eigenschaften}
 
 Gruppiert wie bei der NARA nach Erscheinung, Struktur, Verhalten und Kontext, mit derselben Unterscheidung wie bei [PDF](formate-pdf.md#wesentliche-eigenschaften): Wird ein Dokument wegen seines Inhalts aufbewahrt, zählt der Text; wird es als Beweis seiner Form aufbewahrt, zählt auch, wie es aussieht.
 

@@ -140,6 +140,7 @@ nav:
       - 'PDF: Formate und Eigenschaften': admin/formate-pdf.md
       - 'Text: Formate und Eigenschaften': admin/formate-text.md
       - 'Audio und Video: Formate und Eigenschaften': admin/formate-av.md
+      - 'Tabellen und Präsentationen: Formate und Eigenschaften': admin/formate-tabellen.md
       - Inge und DIMAG: admin/inge.md
       - DIMAG-Upload-Status: admin/dimag-uploads.md
     - Betrieb:
@@ -289,6 +290,7 @@ plugins:
                 - 'PDF: formats and properties': admin/formate-pdf.md
                 - 'Text: formats and properties': admin/formate-text.md
                 - 'Audio and video: formats and properties': admin/formate-av.md
+                - 'Spreadsheets and presentations: formats and properties': admin/formate-tabellen.md
                 - Inge and DIMAG: admin/inge.md
                 - DIMAG upload status: admin/dimag-uploads.md
               - Operations:

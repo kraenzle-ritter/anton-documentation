@@ -1,6 +1,6 @@
 # Text: formats and significant properties
 
-This page sets out, for text documents, which formats Anton prefers and accepts, which properties must be preserved, and what Anton measures or checks of them today. It belongs to the series per format category (anton#687), after [images](formate-bild.md) and [PDF](formate-pdf.md). Spreadsheets (XLSX, ODS, CSV) and presentations (PPTX, ODP) get a page of their own.
+This page sets out, for text documents, which formats Anton prefers and accepts, which properties must be preserved, and what Anton measures or checks of them today. It belongs to the series per format category (anton#687), after [images](formate-bild.md) and [PDF](formate-pdf.md). Spreadsheets (XLSX, ODS, CSV) and presentations (PPTX, ODP) are on a [page of their own](formate-tabellen.md).
 
 Anton needs this for three things: to document what makes up a text document (NDSA Cn-1.1), to verify that it still does (Cn-2.1), and to prove after a migration that nothing significant was lost ([`media:migrate`](console-commands.md#mediamigrate)).
 
@@ -23,7 +23,7 @@ A text document has no fixed pages. Page breaks and appearance arise only when i
 
 Here too: an archive keeps [as few formats as possible](formate-bild.md#formate). The depositor uses standard fonts, delivers without password or write protection, and switches off automatic updating of date fields: otherwise opening the file in the archive overwrites the document's date (KOST).
 
-## Significant properties
+## Significant properties {#wesentliche-eigenschaften}
 
 Grouped as NARA does into appearance, structure, behaviour and context, with the same distinction as for [PDF](formate-pdf.md#wesentliche-eigenschaften): if a document is kept for its content, the text counts; if it is kept as evidence of its form, what it looks like counts as well.
 
