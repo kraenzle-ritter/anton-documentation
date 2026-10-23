@@ -55,16 +55,18 @@ As of version 0.111.1.
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning |
 | Can be opened | – | no, format validation does not cover text formats |
-| Character encoding (TXT) | no (anton#715) | no |
-| Text | DOCX for full text (not with `fulltext-from-webpdf`); ODT, DOC, RTF and TXT not (anton#714, anton#715) | no |
+| Character encoding (TXT) | encoding, byte order mark and line endings with libmagic at ingest | – |
+| Text | DOCX for full text (not with `fulltext-from-webpdf`); TXT and Markdown, converted to UTF-8; ODT, DOC and RTF not (anton#714) | no |
 | all other properties | no | no |
 
 ## Limits
 
-- No access copy is made for text documents; they appear only as a download under «Other files». A PDF access copy via LibreOffice is planned (anton#714).
+- For TXT the access copy is the text in UTF-8 (iconv); the master stays unchanged. No access copy is made for ODT, DOCX, DOC and RTF; they appear only as a download under «Other files». A PDF access copy via LibreOffice is planned (anton#714).
 - The planned access copy is a view, not evidence of appearance. LibreOffice does not always render DOCX the way Word does: fonts, page breaks, tables and fields may differ.
 - Upload does not take ODT and RTF today, only SIP and import (anton#714).
-- TXT, ODT, DOC and RTF do not reach the full-text index; Anton does not record the encoding of TXT (anton#714, anton#715).
+- ODT, DOC and RTF do not reach the full-text index (anton#714).
+- For TXT ingested before version 0.111.1 the encoding is not recorded; full text and access copy detect it when they are made.
+- libmagic detects an encoding only by likelihood. Anton reads ISO-8859-1 and unknown 8-bit encodings as Windows-1252, which matches ISO-8859-1 wherever that is defined and adds typographic quotes and dashes.
 - Format validation does not cover text formats. Anton notices a damaged DOCX or ODT only when it cannot be opened.
 - Whether a document contains macros, automatic fields, tracked changes or embedded objects, Anton does not measure.
 
