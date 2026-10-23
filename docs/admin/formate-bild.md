@@ -1,6 +1,6 @@
 # Bilder: Formate und wesentliche Eigenschaften
 
-Diese Seite legt für Rasterbilder fest, in welchen Formaten Anton sie bevorzugt und akzeptiert, welche Eigenschaften eines Bildes erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie ist die erste Seite einer Reihe je Formatkategorie (anton#687); [PDF](formate-pdf.md) und [Text](formate-text.md) sind geschrieben, Audio und Video folgen. Vektorgrafiken gehören nicht hierher.
+Diese Seite legt für Rasterbilder fest, in welchen Formaten Anton sie bevorzugt und akzeptiert, welche Eigenschaften eines Bildes erhalten bleiben müssen und was Anton davon heute misst oder prüft. Sie ist die erste Seite einer Reihe je Formatkategorie (anton#687); Es folgen [PDF](formate-pdf.md), [Text](formate-text.md) sowie [Audio und Video](formate-av.md). Vektorgrafiken gehören nicht hierher.
 
 Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein Bild ausmacht (NDSA Cn-1.1), um zu prüfen, ob es das noch tut (Cn-2.1), und um nach einer Migration zu belegen, dass nichts Wesentliches verloren ging ([`media:migrate`](console-commands.md#mediamigrate)).
 
