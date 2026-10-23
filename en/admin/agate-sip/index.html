@@ -2892,6 +2892,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#e-ark-packages-from-other-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK packages from other tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4249,6 +4260,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#e-ark-packages-from-other-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK packages from other tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4392,7 +4414,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4444,7 +4466,15 @@ or prepare other SIPs.</p>
 </tr>
 </tbody>
 </table>
-<p>A missing or altered file stops the import before anything is written. The E-ARK report does not stop the import: whether the files are unchanged is decided by the checksums. An E-ARK SIP from another tool (EAD or Dublin Core only, without <code>anton-import-format</code>) is not accepted yet.</p>
+<p>A missing or altered file stops the import before anything is written. The E-ARK report does not stop the import: whether the files are unchanged is decided by the checksums. E-ARK packages from other tools are accepted too, see below.</p>
+<h2 id="e-ark-packages-from-other-tools">E-ARK packages from other tools<a class="headerlink" href="#e-ark-packages-from-other-tools" title="Permanent link">&para;</a></h2>
+<p>An E-ARK package without <code>anton-import-format</code> (for example from RODA-in, commons-ip or ESSArch) is recognised by its content as well, on every way in and under any file name. Without a target in its name (<code>…-agate-&lt;holding_id&gt;.zip</code>) the package waits in the inbox.</p>
+<ul>
+<li><strong>Description:</strong> from the first EAD in the package (EAD3 or EAD 2002, read as the EAD import reads it), else from Dublin Core as one record, else one record named after the package (METS <code>LABEL</code> or <code>OBJID</code>).</li>
+<li><strong>Files:</strong> the files of the master representation hang below the description as folders and records. When an EAD <code>&lt;dao&gt;</code> names a file of the package, that file becomes the medium of its unit of description.</li>
+<li><strong>Representations:</strong> the inbox shows each representation with its number of files and a proposal (from PREMIS, from the name, otherwise the first as master and the others «unknown»). For each one chooses master, original (version), access copy or separate entries; exactly one must be the master, at most one the access copy. A file of a version or access copy hangs on the medium of the master file with the same folder and name without extension; files without a pair and separate entries go below a folder named after their representation. Without a choice in the inbox (import with a target in the file name, console) the proposal applies, «unknown» as separate entries.</li>
+<li><strong>Check:</strong> every file of every representation is checked against its checksum in the METS before the import.</li>
+</ul>
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>┌──────────┐    HTTP POST     ┌──────────┐
 │  agate   │ ───────────────▶ │  Anton   │

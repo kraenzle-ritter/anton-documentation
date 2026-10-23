@@ -4269,6 +4269,7 @@ with it — the check reports, the repair run intervenes:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--closure<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--closure<span class="w"> </span>--repair<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 </code></pre></div>
+<p>The check holds every record against its parent: its ancestors must be exactly the parent's, one level further down. A record that was moved without the hierarchy being updated shows up this way too. The repair run rebuilds such a record from its parent, then everything below it, and updates the path and the fonds. It runs in one transaction: if a step fails, everything stays as it was.</p>
 <div class="admonition warning">
 <p class="admonition-title">Back up before repairing</p>
 <p>A repair run writes to the database. Create a <a href="../restore/">backup</a>

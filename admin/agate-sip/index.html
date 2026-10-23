@@ -2892,6 +2892,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#e-ark-pakete-aus-anderen-werkzeugen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK-Pakete aus anderen Werkzeugen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4249,6 +4260,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#e-ark-pakete-aus-anderen-werkzeugen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-ARK-Pakete aus anderen Werkzeugen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4392,7 +4414,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-22</span>
     </div>
   
   
@@ -4445,7 +4467,15 @@ weiterarbeiten oder andere SIPs vorbereiten.</p>
 </tr>
 </tbody>
 </table>
-<p>Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. Ein E-ARK-SIP aus einem anderen Werkzeug (nur EAD oder Dublin Core, ohne <code>anton-import-format</code>) nimmt Anton noch nicht an.</p>
+<p>Eine fehlende oder veränderte Datei bricht den Import ab, bevor etwas geschrieben ist. Der E-ARK-Prüfbericht hält den Import nicht auf: Ob die Dateien unverändert sind, entscheiden die Prüfsummen. E-ARK-Pakete aus anderen Werkzeugen nimmt Anton ebenfalls an, siehe unten.</p>
+<h2 id="e-ark-pakete-aus-anderen-werkzeugen">E-ARK-Pakete aus anderen Werkzeugen<a class="headerlink" href="#e-ark-pakete-aus-anderen-werkzeugen" title="Permanent link">&para;</a></h2>
+<p>Ein E-ARK-Paket ohne <code>anton-import-format</code> (etwa aus RODA-in, commons-ip oder ESSArch) erkennt Anton ebenfalls am Inhalt, auf allen Wegen und unter jedem Dateinamen. Trägt der Name kein Ziel (<code>…-agate-&lt;bestand_id&gt;.zip</code>), wartet das Paket im Eingangskorb.</p>
+<ul>
+<li><strong>Beschreibung:</strong> aus der ersten EAD im Paket (EAD3 oder EAD 2002, gelesen wie beim EAD-Import), sonst aus Dublin Core als ein Datensatz, sonst ein Datensatz mit dem Namen des Pakets (METS <code>LABEL</code> oder <code>OBJID</code>).</li>
+<li><strong>Dateien:</strong> Die Dateien der Master-Repräsentation hängen als Ordner und Datensätze unter der Beschreibung. Nennt ein <code>&lt;dao&gt;</code> der EAD eine Datei des Pakets, wird sie Medium dieser Verzeichnungseinheit.</li>
+<li><strong>Repräsentationen:</strong> Der Eingangskorb zeigt jede Repräsentation mit der Zahl ihrer Dateien und einem Vorschlag (aus PREMIS, aus dem Namen, sonst die erste als Master und die übrigen «unbestimmt»). Für jede wählt man Master, Original (Fassung), Nutzungskopie oder eigene Einträge; genau eine muss Master sein, höchstens eine Nutzungskopie. Eine Datei einer Fassung oder Nutzungskopie hängt am Medium der Master-Datei mit gleichem Ordner und Namen ohne Endung; Dateien ohne Paar und eigene Einträge kommen unter einen Ordner mit dem Namen ihrer Repräsentation. Ohne Wahl im Eingangskorb (Import mit Ziel im Dateinamen, Konsole) gilt der Vorschlag, «unbestimmt» als eigene Einträge.</li>
+<li><strong>Prüfung:</strong> Jede Datei jeder Repräsentation wird vor dem Import gegen ihre Prüfsumme im METS geprüft.</li>
+</ul>
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>┌──────────┐    HTTP-POST     ┌──────────┐
 │  agate   │ ───────────────▶ │  Anton   │

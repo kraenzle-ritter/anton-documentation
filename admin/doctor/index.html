@@ -4271,6 +4271,7 @@ etwa in einem wiederkehrenden Auftrag. Die Tektonik lässt sich damit auch
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--closure<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--closure<span class="w"> </span>--repair<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 </code></pre></div>
+<p>Die Prüfung hält jeden Datensatz gegen sein Elternobjekt: Seine Vorfahren müssen genau die des Elternobjekts sein, eine Stufe tiefer. So fällt auch ein Datensatz auf, der verschoben wurde, ohne dass die Hierarchie nachgeführt wurde. Der Reparaturlauf baut einen solchen Datensatz aus seinem Elternobjekt neu auf, danach alles darunter, und führt Pfad und Bestand nach. Er läuft in einer Transaktion: Schlägt ein Schritt fehl, bleibt alles, wie es war.</p>
 <div class="admonition warning">
 <p class="admonition-title">Vor dem Reparieren sichern</p>
 <p>Ein Reparaturlauf schreibt in die Datenbank. Vorher eine
