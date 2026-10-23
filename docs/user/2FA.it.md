@@ -34,19 +34,16 @@ Funziona qualsiasi app compatibile con TOTP. App open source consigliate:
 
 Altre app compatibili: Authy, Google Authenticator, Microsoft Authenticator, 1Password
 
-### Disattivare la 2FA
+### Reimpostare la 2FA
 
-L'amministrazione può reimpostare la 2FA:
+Se una persona ha perso il dispositivo con il secondo fattore, l'amministrazione lo reimposta; un account superutente solo un superutente. Prima l'admin si accerta che la richiesta venga davvero da quella persona (di persona, per telefono o per e-mail dall'indirizzo dell'account).
 
-1. Nell'area Admin andare su **Utenze**
-2. Individuare la persona nell'elenco
-3. Fare clic sul pulsante **Reset 2FA** (nella riga della tabella)
+1. Nell'area Admin andare su **Utenze**, trovare la persona e fare clic su **Reimpostare la 2FA** (nella riga della tabella o in **Modifica**).
+2. In **Motivo** annotare come è stata riconosciuta la persona, p. es. «e-mail dall'indirizzo dell'account, 23.10.». Per un account superutente è obbligatorio.
+3. **Rimuovere anche le passkey** è selezionato: il dispositivo perso ne porta di solito una. Deselezionare solo se manca soltanto l'app di autenticazione.
+4. Confermare **Reimpostare la 2FA**.
 
-In alternativa anche nella pagina di modifica dell'utenza:
-
-1. Nell'area Admin andare su **Utenze**
-2. Selezionare l'utenza → **Modifica**
-3. Fare clic sul pulsante **Reset 2FA**
+Tutte le sessioni della persona vengono poi chiuse, anche quella sul dispositivo perso. Riceve un'e-mail all'indirizzo dell'account che dice chi ha reimpostato e quando. Al prossimo accesso configura di nuovo il secondo fattore. L'operazione figura con il motivo nel registro di sicurezza.
 
 ## Risoluzione dei problemi
 

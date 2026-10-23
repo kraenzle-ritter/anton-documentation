@@ -35,19 +35,16 @@ Toute application compatible TOTP fonctionne. Applications open source recommand
 
 Autres applications compatibles : Authy, Google Authenticator, Microsoft Authenticator, 1Password
 
-### Désactiver la 2FA
+### Réinitialiser la 2FA
 
-L'administration peut réinitialiser la 2FA :
+Si une personne a perdu l'appareil portant son second facteur, l'administration le réinitialise ; un compte superutilisateur, seul un superutilisateur. Auparavant, l'admin s'assure que la demande vient bien de cette personne (en personne, par téléphone ou par e-mail depuis l'adresse du compte).
 
-1. Dans la section Admin, aller sur **Utilisateur·trice·s**
-2. Trouver la personne dans la liste
-3. Cliquer sur le bouton **Reset 2FA** (dans la ligne du tableau)
+1. Dans la section Admin, aller sur **Utilisateur·trice·s**, trouver la personne et cliquer sur **Réinitialiser la 2FA** (dans la ligne du tableau ou sous **Éditer**).
+2. Sous **Motif**, noter comment la personne a été reconnue, p. ex. « e-mail de l'adresse du compte, 23.10. ». Pour un compte superutilisateur, c'est obligatoire.
+3. **Supprimer aussi les passkeys** est coché : l'appareil perdu en porte généralement une. Ne décocher que s'il ne manque que l'application d'authentification.
+4. Confirmer **Réinitialiser la 2FA**.
 
-Autre possibilité, depuis la page de modification de la personne :
-
-1. Dans la section Admin, aller sur **Utilisateur·trice·s**
-2. Sélectionner la personne → **Éditer**
-3. Cliquer sur le bouton **Reset 2FA**
+Toutes les sessions de la personne sont alors fermées, y compris sur l'appareil perdu. Elle reçoit un e-mail à l'adresse du compte indiquant qui a réinitialisé et quand. À sa prochaine connexion, elle configure à nouveau le second facteur. L'opération figure avec le motif dans le journal de sécurité.
 
 ## Dépannage
 

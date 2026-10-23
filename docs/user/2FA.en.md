@@ -32,19 +32,16 @@ Any TOTP-compatible app works. Recommended open source apps:
 
 Other compatible apps: Authy, Google Authenticator, Microsoft Authenticator, 1Password
 
-### Deactivating 2FA
+### Resetting 2FA
 
-Admins can reset 2FA:
+When someone has lost the device with their second factor, an admin resets it; a superuser account only a superuser. First the admin makes sure the request really comes from that person (in person, by phone, or by mail from the account's address).
 
-1. In the admin area, go to **Users**
-2. Find the user in the list
-3. Click the **Reset 2FA** button (in the table row)
+1. In the admin area, go to **Users**, find the person and click **Reset 2FA** (in the table row or under **Edit**).
+2. Under **Reason**, note how the person was recognised, e.g. "mail from the address of the account, 23.10.". For a superuser account this is required.
+3. **Also remove the passkeys** is ticked: the lost device usually carries one. Untick it only if just the authenticator app is missing.
+4. Confirm **Reset 2FA**.
 
-Alternatively, also on the user's edit page:
-
-1. In the admin area, go to **Users**
-2. Select the user → **Edit**
-3. Click the **Reset 2FA** button
+All of the person's sessions are then ended, one on the lost device too. They get a mail at the account's address saying who reset it and when. At their next sign-in they set up the second factor anew. The reset is in the security log, with the reason.
 
 ## Troubleshooting
 

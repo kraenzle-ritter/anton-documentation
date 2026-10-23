@@ -34,19 +34,16 @@ Jede TOTP-kompatible App funktioniert. Empfohlene Open-Source-Apps:
 
 Weitere kompatible Apps: Authy, Google Authenticator, Microsoft Authenticator, 1Password
 
-### 2FA deaktivieren
+### 2FA zurücksetzen
 
-Admins können die 2FA zurücksetzen:
+Hat jemand das Gerät mit dem zweiten Faktor verloren, setzt ein Admin ihn zurück; ein Superuser-Konto nur ein Superuser. Vorher klärt der Admin, dass die Bitte wirklich von der Person kommt (persönlich, telefonisch oder per Mail von der Adresse des Kontos).
 
-1. Im Bereich Admin auf **Benutzer:innen** gehen
-2. Benutzer:in in der Liste finden
-3. **Reset 2FA** Button klicken (in der Tabellenzeile)
+1. Im Bereich Admin auf **Benutzer:innen** gehen, die Person suchen und **2FA zurücksetzen** klicken (in der Tabellenzeile oder unter **Bearbeiten**).
+2. Unter **Anlass** festhalten, wie die Person erkannt wurde, etwa «Mail von der hinterlegten Adresse, 23.10.». Bei einem Superuser-Konto ist das Pflicht.
+3. **Auch die Passkeys entfernen** ist vorgewählt: Das verlorene Gerät trägt meist einen. Nur abwählen, wenn allein die Authenticator-App fehlt.
+4. **2FA zurücksetzen** bestätigen.
 
-Alternativ auch in der Benutzer:in-Bearbeitungsseite:
-
-1. Im Bereich Admin auf **Benutzer:innen** gehen
-2. Benutzer:in auswählen → **Bearbeiten**
-3. **Reset 2FA** Button klicken
+Danach sind alle Sitzungen der Person beendet, auch eine auf dem verlorenen Gerät. Sie erhält eine Mail an die Adresse des Kontos: wer zurückgesetzt hat und wann. Bei der nächsten Anmeldung richtet sie den zweiten Faktor neu ein. Der Vorgang steht mit dem Anlass im Sicherheitsprotokoll.
 
 ## Fehlerbehebung
 
