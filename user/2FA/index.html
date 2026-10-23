@@ -1772,10 +1772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2fa-deaktivieren" class="md-nav__link">
+  <a href="#2fa-zurucksetzen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2FA deaktivieren
+        2FA zurücksetzen
       
     </span>
   </a>
@@ -3371,6 +3371,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin/formate-bild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bilder: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-pdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDF: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-av/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio und Video: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-tabellen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabellen und Präsentationen: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin/inge/" class="md-nav__link">
         
   
@@ -4189,10 +4329,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2fa-deaktivieren" class="md-nav__link">
+  <a href="#2fa-zurucksetzen" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2FA deaktivieren
+        2FA zurücksetzen
       
     </span>
   </a>
@@ -4232,7 +4372,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/2FA/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/2FA/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/2FA/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -4311,19 +4451,15 @@ sechsstelligen Code.</p>
 </tbody>
 </table>
 <p>Weitere kompatible Apps: Authy, Google Authenticator, Microsoft Authenticator, 1Password</p>
-<h3 id="2fa-deaktivieren">2FA deaktivieren<a class="headerlink" href="#2fa-deaktivieren" title="Permanent link">&para;</a></h3>
-<p>Admins können die 2FA zurücksetzen:</p>
+<h3 id="2fa-zurucksetzen">2FA zurücksetzen<a class="headerlink" href="#2fa-zurucksetzen" title="Permanent link">&para;</a></h3>
+<p>Hat jemand das Gerät mit dem zweiten Faktor verloren, setzt ein Admin ihn zurück; ein Superuser-Konto nur ein Superuser. Vorher klärt der Admin, dass die Bitte wirklich von der Person kommt (persönlich, telefonisch oder per Mail von der Adresse des Kontos).</p>
 <ol>
-<li>Im Bereich Admin auf <strong>Benutzer:innen</strong> gehen</li>
-<li>Benutzer:in in der Liste finden</li>
-<li><strong>Reset 2FA</strong> Button klicken (in der Tabellenzeile)</li>
+<li>Im Bereich Admin auf <strong>Benutzer:innen</strong> gehen, die Person suchen und <strong>2FA zurücksetzen</strong> klicken (in der Tabellenzeile oder unter <strong>Bearbeiten</strong>).</li>
+<li>Unter <strong>Anlass</strong> festhalten, wie die Person erkannt wurde, etwa «Mail von der hinterlegten Adresse, 23.10.». Bei einem Superuser-Konto ist das Pflicht.</li>
+<li><strong>Auch die Passkeys entfernen</strong> ist vorgewählt: Das verlorene Gerät trägt meist einen. Nur abwählen, wenn allein die Authenticator-App fehlt.</li>
+<li><strong>2FA zurücksetzen</strong> bestätigen.</li>
 </ol>
-<p>Alternativ auch in der Benutzer:in-Bearbeitungsseite:</p>
-<ol>
-<li>Im Bereich Admin auf <strong>Benutzer:innen</strong> gehen</li>
-<li>Benutzer:in auswählen → <strong>Bearbeiten</strong></li>
-<li><strong>Reset 2FA</strong> Button klicken</li>
-</ol>
+<p>Danach sind alle Sitzungen der Person beendet, auch eine auf dem verlorenen Gerät. Sie erhält eine Mail an die Adresse des Kontos: wer zurückgesetzt hat und wann. Bei der nächsten Anmeldung richtet sie den zweiten Faktor neu ein. Der Vorgang steht mit dem Anlass im Sicherheitsprotokoll.</p>
 <h2 id="fehlerbehebung">Fehlerbehebung<a class="headerlink" href="#fehlerbehebung" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

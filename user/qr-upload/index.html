@@ -3397,6 +3397,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin/formate-bild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bilder: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-pdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDF: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-av/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio und Video: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-tabellen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabellen und Präsentationen: Formate und Eigenschaften
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin/inge/" class="md-nav__link">
         
   
@@ -4282,7 +4422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -4328,8 +4468,8 @@
 <tbody>
 <tr>
 <td><strong>HEIC → JPEG</strong></td>
-<td>iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren</td>
-<td><code>heif-convert</code> (libheif)</td>
+<td>iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren; das HEIC bleibt als Version des Mediums erhalten</td>
+<td>ImageMagick (<code>magick</code>, mit libheif)</td>
 </tr>
 <tr>
 <td><strong>Bilder → PDF</strong></td>
@@ -4338,7 +4478,7 @@
 </tr>
 <tr>
 <td><strong>OCR</strong></td>
-<td>Texterkennung durchführen (macht PDFs durchsuchbar)</td>
+<td>Texterkennung durchführen (macht PDFs durchsuchbar); Scans werden PDF/A-2b, PDF mit Text bleibt PDF</td>
 <td><code>ocrmypdf</code> + Tesseract (deu+eng)</td>
 </tr>
 </tbody>
@@ -4347,9 +4487,9 @@
 <h3 id="pipeline-details-fur-admins">Pipeline-Details (für Admins)<a class="headerlink" href="#pipeline-details-fur-admins" title="Permanent link">&para;</a></h3>
 <p>Die Pipeline läuft in dieser Reihenfolge ab:</p>
 <div class="highlight"><pre><span></span><code>1. BEFORE IMPORT (synchron)
-   HEIC → heif-convert → JPG
+   HEIC → magick       → JPG (HEIC bleibt als Version)
    JPGs → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF mit OCR-Textebene (Master)
+   PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master)
 
 2. IMPORT
    addAntonMedium() → Event MediumAdded
@@ -4369,7 +4509,7 @@ gesteuert. Mögliche Werte: <code>heic2jpg</code>, <code>images2pdf</code>, <cod
 </code></pre></div>
 <p>Voraussetzungen auf dem Server:</p>
 <ul>
-<li><code>heif-convert</code> (Paket <code>libheif</code>/<code>libheif-tools</code>)</li>
+<li>ImageMagick mit HEIF-Unterstützung (libheif)</li>
 <li><code>img2pdf</code> (Python-Tool)</li>
 <li><code>ocrmypdf</code> mit <code>tesseract-ocr-deu</code> und <code>tesseract-ocr-eng</code></li>
 <li><code>pdftotext</code> (Paket <code>poppler-utils</code>) — wird auch für die Volltext-

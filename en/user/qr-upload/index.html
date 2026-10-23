@@ -3397,6 +3397,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin/formate-bild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Images: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-pdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDF: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-av/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio and video: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-tabellen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spreadsheets and presentations: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin/inge/" class="md-nav__link">
         
   
@@ -4282,7 +4422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -4328,8 +4468,8 @@
 <tbody>
 <tr>
 <td><strong>HEIC → JPEG</strong></td>
-<td>Convert iPhone images (HEIC/HEIF) to JPEG automatically</td>
-<td><code>heif-convert</code> (libheif)</td>
+<td>Convert iPhone images (HEIC/HEIF) to JPEG automatically; the HEIC is kept as a version of the medium</td>
+<td>ImageMagick (<code>magick</code>, with libheif)</td>
 </tr>
 <tr>
 <td><strong>Images → PDF</strong></td>
@@ -4338,7 +4478,7 @@
 </tr>
 <tr>
 <td><strong>OCR</strong></td>
-<td>Perform text recognition (makes PDFs searchable)</td>
+<td>Perform text recognition (makes PDFs searchable); scans become PDF/A-2b, a PDF with text stays PDF</td>
 <td><code>ocrmypdf</code> + Tesseract (deu+eng)</td>
 </tr>
 </tbody>
@@ -4347,9 +4487,9 @@
 <h3 id="pipeline-details-for-admins">Pipeline details (for admins)<a class="headerlink" href="#pipeline-details-for-admins" title="Permanent link">&para;</a></h3>
 <p>The pipeline runs in this order:</p>
 <div class="highlight"><pre><span></span><code>1. BEFORE IMPORT (synchronous)
-   HEIC → heif-convert → JPG
+   HEIC → magick       → JPG (HEIC kept as a version)
    JPGs → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF with OCR text layer (master)
+   PDF  → ocrmypdf     → PDF/A-2b for scans, otherwise PDF, with OCR text layer (master)
 
 2. IMPORT
    addAntonMedium() → event MediumAdded
@@ -4369,7 +4509,7 @@
 </code></pre></div>
 <p>Prerequisites on the server:</p>
 <ul>
-<li><code>heif-convert</code> (package <code>libheif</code>/<code>libheif-tools</code>)</li>
+<li>ImageMagick with HEIF support (libheif)</li>
 <li><code>img2pdf</code> (Python tool)</li>
 <li><code>ocrmypdf</code> with <code>tesseract-ocr-deu</code> and <code>tesseract-ocr-eng</code></li>
 <li><code>pdftotext</code> (package <code>poppler-utils</code>) — also needed for full-text extraction</li>

@@ -1772,10 +1772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#desactiver-la-2fa" class="md-nav__link">
+  <a href="#reinitialiser-la-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Désactiver la 2FA
+        Réinitialiser la 2FA
       
     </span>
   </a>
@@ -2324,10 +2324,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#desactiver-la-2fa" class="md-nav__link">
+  <a href="#reinitialiser-la-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Désactiver la 2FA
+        Réinitialiser la 2FA
       
     </span>
   </a>
@@ -2367,7 +2367,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/2FA/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/2FA/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/2FA/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -2447,19 +2447,15 @@ de la connexion.</p>
 </tbody>
 </table>
 <p>Autres applications compatibles : Authy, Google Authenticator, Microsoft Authenticator, 1Password</p>
-<h3 id="desactiver-la-2fa">Désactiver la 2FA<a class="headerlink" href="#desactiver-la-2fa" title="Permanent link">&para;</a></h3>
-<p>L'administration peut réinitialiser la 2FA :</p>
+<h3 id="reinitialiser-la-2fa">Réinitialiser la 2FA<a class="headerlink" href="#reinitialiser-la-2fa" title="Permanent link">&para;</a></h3>
+<p>Si une personne a perdu l'appareil portant son second facteur, l'administration le réinitialise ; un compte superutilisateur, seul un superutilisateur. Auparavant, l'admin s'assure que la demande vient bien de cette personne (en personne, par téléphone ou par e-mail depuis l'adresse du compte).</p>
 <ol>
-<li>Dans la section Admin, aller sur <strong>Utilisateur·trice·s</strong></li>
-<li>Trouver la personne dans la liste</li>
-<li>Cliquer sur le bouton <strong>Reset 2FA</strong> (dans la ligne du tableau)</li>
+<li>Dans la section Admin, aller sur <strong>Utilisateur·trice·s</strong>, trouver la personne et cliquer sur <strong>Réinitialiser la 2FA</strong> (dans la ligne du tableau ou sous <strong>Éditer</strong>).</li>
+<li>Sous <strong>Motif</strong>, noter comment la personne a été reconnue, p. ex. « e-mail de l'adresse du compte, 23.10. ». Pour un compte superutilisateur, c'est obligatoire.</li>
+<li><strong>Supprimer aussi les passkeys</strong> est coché : l'appareil perdu en porte généralement une. Ne décocher que s'il ne manque que l'application d'authentification.</li>
+<li>Confirmer <strong>Réinitialiser la 2FA</strong>.</li>
 </ol>
-<p>Autre possibilité, depuis la page de modification de la personne :</p>
-<ol>
-<li>Dans la section Admin, aller sur <strong>Utilisateur·trice·s</strong></li>
-<li>Sélectionner la personne → <strong>Éditer</strong></li>
-<li>Cliquer sur le bouton <strong>Reset 2FA</strong></li>
-</ol>
+<p>Toutes les sessions de la personne sont alors fermées, y compris sur l'appareil perdu. Elle reçoit un e-mail à l'adresse du compte indiquant qui a réinitialisé et quand. À sa prochaine connexion, elle configure à nouveau le second facteur. L'opération figure avec le motif dans le journal de sécurité.</p>
 <h2 id="depannage">Dépannage<a class="headerlink" href="#depannage" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

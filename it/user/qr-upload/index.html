@@ -2417,7 +2417,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -2463,8 +2463,8 @@
 <tbody>
 <tr>
 <td><strong>HEIC → JPEG</strong></td>
-<td>Convertire automaticamente le immagini iPhone (HEIC/HEIF) in JPEG</td>
-<td><code>heif-convert</code> (libheif)</td>
+<td>Convertire automaticamente le immagini iPhone (HEIC/HEIF) in JPEG; l'HEIC è conservato come versione del media</td>
+<td>ImageMagick (<code>magick</code>, con libheif)</td>
 </tr>
 <tr>
 <td><strong>Immagini → PDF</strong></td>
@@ -2473,7 +2473,7 @@
 </tr>
 <tr>
 <td><strong>OCR</strong></td>
-<td>Eseguire il riconoscimento del testo (rende i PDF ricercabili)</td>
+<td>Eseguire il riconoscimento del testo (rende i PDF ricercabili); le scansioni diventano PDF/A-2b, un PDF con testo resta PDF</td>
 <td><code>ocrmypdf</code> + Tesseract (deu+eng)</td>
 </tr>
 </tbody>
@@ -2482,9 +2482,9 @@
 <h3 id="dettagli-della-pipeline-per-lamministrazione">Dettagli della pipeline (per l'amministrazione)<a class="headerlink" href="#dettagli-della-pipeline-per-lamministrazione" title="Permanent link">&para;</a></h3>
 <p>La pipeline si svolge in questo ordine:</p>
 <div class="highlight"><pre><span></span><code>1. PRIMA DELL'IMPORTAZIONE (sincrono)
-   HEIC → heif-convert → JPG
+   HEIC → magick       → JPG (HEIC conservato come versione)
    JPG  → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF con livello di testo OCR (master)
+   PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master)
 
 2. IMPORTAZIONE
    addAntonMedium() → evento MediumAdded
@@ -2505,7 +2505,7 @@
 </code></pre></div>
 <p>Prerequisiti sul server:</p>
 <ul>
-<li><code>heif-convert</code> (pacchetto <code>libheif</code>/<code>libheif-tools</code>)</li>
+<li>ImageMagick con supporto HEIF (libheif)</li>
 <li><code>img2pdf</code> (strumento Python)</li>
 <li><code>ocrmypdf</code> con <code>tesseract-ocr-deu</code> e <code>tesseract-ocr-eng</code></li>
 <li><code>pdftotext</code> (pacchetto <code>poppler-utils</code>) — necessario anche per l'estrazione

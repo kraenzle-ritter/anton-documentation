@@ -1772,10 +1772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disattivare-la-2fa" class="md-nav__link">
+  <a href="#reimpostare-la-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disattivare la 2FA
+        Reimpostare la 2FA
       
     </span>
   </a>
@@ -2324,10 +2324,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disattivare-la-2fa" class="md-nav__link">
+  <a href="#reimpostare-la-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disattivare la 2FA
+        Reimpostare la 2FA
       
     </span>
   </a>
@@ -2367,7 +2367,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/2FA/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/2FA/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/2FA/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -2446,19 +2446,15 @@ all'accesso.</p>
 </tbody>
 </table>
 <p>Altre app compatibili: Authy, Google Authenticator, Microsoft Authenticator, 1Password</p>
-<h3 id="disattivare-la-2fa">Disattivare la 2FA<a class="headerlink" href="#disattivare-la-2fa" title="Permanent link">&para;</a></h3>
-<p>L'amministrazione può reimpostare la 2FA:</p>
+<h3 id="reimpostare-la-2fa">Reimpostare la 2FA<a class="headerlink" href="#reimpostare-la-2fa" title="Permanent link">&para;</a></h3>
+<p>Se una persona ha perso il dispositivo con il secondo fattore, l'amministrazione lo reimposta; un account superutente solo un superutente. Prima l'admin si accerta che la richiesta venga davvero da quella persona (di persona, per telefono o per e-mail dall'indirizzo dell'account).</p>
 <ol>
-<li>Nell'area Admin andare su <strong>Utenze</strong></li>
-<li>Individuare la persona nell'elenco</li>
-<li>Fare clic sul pulsante <strong>Reset 2FA</strong> (nella riga della tabella)</li>
+<li>Nell'area Admin andare su <strong>Utenze</strong>, trovare la persona e fare clic su <strong>Reimpostare la 2FA</strong> (nella riga della tabella o in <strong>Modifica</strong>).</li>
+<li>In <strong>Motivo</strong> annotare come è stata riconosciuta la persona, p. es. «e-mail dall'indirizzo dell'account, 23.10.». Per un account superutente è obbligatorio.</li>
+<li><strong>Rimuovere anche le passkey</strong> è selezionato: il dispositivo perso ne porta di solito una. Deselezionare solo se manca soltanto l'app di autenticazione.</li>
+<li>Confermare <strong>Reimpostare la 2FA</strong>.</li>
 </ol>
-<p>In alternativa anche nella pagina di modifica dell'utenza:</p>
-<ol>
-<li>Nell'area Admin andare su <strong>Utenze</strong></li>
-<li>Selezionare l'utenza → <strong>Modifica</strong></li>
-<li>Fare clic sul pulsante <strong>Reset 2FA</strong></li>
-</ol>
+<p>Tutte le sessioni della persona vengono poi chiuse, anche quella sul dispositivo perso. Riceve un'e-mail all'indirizzo dell'account che dice chi ha reimpostato e quando. Al prossimo accesso configura di nuovo il secondo fattore. L'operazione figura con il motivo nel registro di sicurezza.</p>
 <h2 id="risoluzione-dei-problemi">Risoluzione dei problemi<a class="headerlink" href="#risoluzione-dei-problemi" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

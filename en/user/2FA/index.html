@@ -1772,10 +1772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deactivating-2fa" class="md-nav__link">
+  <a href="#resetting-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deactivating 2FA
+        Resetting 2FA
       
     </span>
   </a>
@@ -3371,6 +3371,146 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin/formate-bild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Images: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-pdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDF: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-text/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-av/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio and video: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/formate-tabellen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spreadsheets and presentations: formats and properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin/inge/" class="md-nav__link">
         
   
@@ -4189,10 +4329,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deactivating-2fa" class="md-nav__link">
+  <a href="#resetting-2fa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deactivating 2FA
+        Resetting 2FA
       
     </span>
   </a>
@@ -4232,7 +4372,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/2FA/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/2FA/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/2FA/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-13</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -4309,19 +4449,15 @@ sign in.</p>
 </tbody>
 </table>
 <p>Other compatible apps: Authy, Google Authenticator, Microsoft Authenticator, 1Password</p>
-<h3 id="deactivating-2fa">Deactivating 2FA<a class="headerlink" href="#deactivating-2fa" title="Permanent link">&para;</a></h3>
-<p>Admins can reset 2FA:</p>
+<h3 id="resetting-2fa">Resetting 2FA<a class="headerlink" href="#resetting-2fa" title="Permanent link">&para;</a></h3>
+<p>When someone has lost the device with their second factor, an admin resets it; a superuser account only a superuser. First the admin makes sure the request really comes from that person (in person, by phone, or by mail from the account's address).</p>
 <ol>
-<li>In the admin area, go to <strong>Users</strong></li>
-<li>Find the user in the list</li>
-<li>Click the <strong>Reset 2FA</strong> button (in the table row)</li>
+<li>In the admin area, go to <strong>Users</strong>, find the person and click <strong>Reset 2FA</strong> (in the table row or under <strong>Edit</strong>).</li>
+<li>Under <strong>Reason</strong>, note how the person was recognised, e.g. "mail from the address of the account, 23.10.". For a superuser account this is required.</li>
+<li><strong>Also remove the passkeys</strong> is ticked: the lost device usually carries one. Untick it only if just the authenticator app is missing.</li>
+<li>Confirm <strong>Reset 2FA</strong>.</li>
 </ol>
-<p>Alternatively, also on the user's edit page:</p>
-<ol>
-<li>In the admin area, go to <strong>Users</strong></li>
-<li>Select the user → <strong>Edit</strong></li>
-<li>Click the <strong>Reset 2FA</strong> button</li>
-</ol>
+<p>All of the person's sessions are then ended, one on the lost device too. They get a mail at the account's address saying who reset it and when. At their next sign-in they set up the second factor anew. The reset is in the security log, with the reason.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
