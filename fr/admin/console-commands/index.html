@@ -2422,7 +2422,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -2601,6 +2601,9 @@ liegen. <code>--oldest=N</code> nimmt die N am längsten nicht geprüften, nie g
 zuerst; <code>--from-cloud</code> wie oben. Antwortet clamd für eine Datei nicht
 rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
 <code>--timeout=</code> setzt die Wartezeit für den Lauf, sonst gilt <code>CLAMD_TIMEOUT</code>.
+Master über 2 GB prüft er in überlappenden Teilen (<code>VIRUS_SCAN_PART_SIZE</code>,
+256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) und zählt sie gesondert als «ohne
+Befund, in Teilen geprüft».
 Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
 mehr antwortet.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>

@@ -4708,7 +4708,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-23</span>
     </div>
   
   
@@ -4883,6 +4883,9 @@ reported; the file stays where it is. <code>--oldest=N</code> takes the N scanne
 ago, never scanned first; <code>--from-cloud</code> as above. If clamd does not answer in
 time for a file, it is recorded as not checked and the run goes on;
 <code>--timeout=</code> sets the wait for the run, otherwise <code>CLAMD_TIMEOUT</code> applies.
+Masters over 2 GB are scanned in overlapping parts (<code>VIRUS_SCAN_PART_SIZE</code>,
+256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) and counted apart as «clean, scanned
+in parts».
 Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
 answers.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
