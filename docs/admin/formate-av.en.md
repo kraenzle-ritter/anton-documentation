@@ -12,7 +12,7 @@ Anton needs this for three things: to document what makes up a recording (NDSA C
 |---|---|---|
 | preferred | WAV or Broadcast Wave (BWF) with LPCM | |
 | preferred | FLAC | |
-| accepted | MP3, AAC (M4A), AIFF, Ogg Vorbis, Opus | as long as ffmpeg reads them |
+| accepted | MP3, AAC (M4A), AIFF, Ogg Vorbis, Opus, WMA | as long as ffmpeg reads them |
 
 ### Video
 
@@ -21,7 +21,7 @@ Anton needs this for three things: to document what makes up a recording (NDSA C
 | preferred | original codec in a common container, as delivered | born-digital video |
 | preferred | MKV with FFV1 and FLAC | digitisation of analogue carriers |
 | preferred | MP4 with H.264 | where storage is scarce |
-| accepted | MOV (ProRes too), AVI, MPEG-2, MXF, WebM, WMV, MP4 with HEVC or AV1 | as long as ffmpeg reads them |
+| accepted | MOV (ProRes too), AVI, MPEG-2, MPEG-TS, MXF, WebM, WMV, MP4 with HEVC or AV1 | as long as ffmpeg reads them |
 
 **Preferred** for sound are the uncompressed or losslessly compressed formats WAV/BWF and FLAC; this is what NARA and KOST recommend. For video the codec comes first: a born-digital video is not re-encoded, since every lossy re-encoding loses information and may produce artefacts (KOST). When analogue carriers are digitised, the master is made losslessly, as MKV with FFV1 for the picture and FLAC for the sound (KOST); for sound, Memoriav and the Swiss National Sound Archives recommend 96 kHz and 24 bits, NARA at least 44.1 kHz and 16 bits, better 96 kHz and 24 bits, and 10 bits for video. MP4 with H.264 is the choice where a lossless master needs too much storage; an appraisal decision, as with JPEG for images.
 
@@ -60,20 +60,22 @@ As of version 0.111.1.
 
 | Property | Measured | Checked |
 |---|---|---|
-| Duration, codec, bit rate, resolution, sample rate, aspect ratio | with ffprobe at ingest, to be filled in with [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata) | no |
-| Channels, bit depth, frame rate, interlacing, colour space, streams | no (anton#717) | no |
+| Container, duration, number of video, audio, subtitle and data streams | with ffprobe at ingest; for older recordings [`media:validate-formats`](console-commands.md#mediavalidate-formats) fills them in | no |
+| Picture: codec, width and height, aspect ratio (SAR, DAR), frame rate, interlacing, pixel format and bit depth, colour space | likewise, for the first video stream; a cover picture does not count as a video stream | no |
+| Sound: codec, channels and channel layout, sample rate, bit depth | likewise, for the first audio stream | no |
+| All streams | likewise, one line per stream with kind and codec | no |
 | Content of each stream | no (anton#717) | no |
 | Playable | – | at ingest ffprobe reads the container; nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats) ffmpeg decodes every frame and every sample, and every error message counts; also when the access copy is made |
 | Embedded metadata | no | no |
 
-Measured values appear on the medium with the sound and video details.
+Measured values appear on the medium under **Technical characteristics**. The older details on duration, codec, bit rate, resolution, sample rate and aspect ratio remain alongside for the Memobase and RiC exports; [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata) fills them.
 
 ## Limits
 
-- On umberto, on 2026-10-23, only 2 of 771 sound and video recordings had the measured values; the backfill has never run (anton#717).
-- Anton does not measure channels, bit depth, frame rate, interlacing, colour space or the number of streams (anton#717).
-- `media:migrate` proves nothing for sound and video; the pixel signature exists only for images (anton#717).
-- An access copy is made for video only from MP4, MOV and MPEG, for sound only from WAV and MP3. For FLAC, M4A, AIFF, Ogg, MKV, AVI, WebM, MXF and WMV it is missing, and upload does not take FLAC, AIFF, Ogg, MKV, AVI, WebM, MXF and WMV (anton#718).
+- Anton measures detailed characteristics only for the first video and the first audio stream; further streams are only counted and listed with kind and codec.
+- On umberto, on 2026-10-23, 769 of 771 sound and video recordings lacked the older details for the exports; `media:extract-av-metadata` has never run there.
+- `media:migrate` proves nothing for sound and video; the pixel signature exists only for images, a checksum per stream is missing (anton#717). There is no rule yet that converts sound or video.
+- Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.
 - «Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.
 
 ## What a migration must check

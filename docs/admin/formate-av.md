@@ -12,7 +12,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was eine Auf
 |---|---|---|
 | bevorzugt | WAV bzw. Broadcast Wave (BWF) mit LPCM | |
 | bevorzugt | FLAC | |
-| akzeptiert | MP3, AAC (M4A), AIFF, Ogg Vorbis, Opus | solange ffmpeg sie liest |
+| akzeptiert | MP3, AAC (M4A), AIFF, Ogg Vorbis, Opus, WMA | solange ffmpeg sie liest |
 
 ### Video
 
@@ -21,7 +21,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was eine Auf
 | bevorzugt | Originalcodec in einem gängigen Container, wie geliefert | digital entstandenes Video |
 | bevorzugt | MKV mit FFV1 und FLAC | Digitalisierung analoger Träger |
 | bevorzugt | MP4 mit H.264 | wo Speicher knapp ist |
-| akzeptiert | MOV (auch ProRes), AVI, MPEG-2, MXF, WebM, WMV, MP4 mit HEVC oder AV1 | solange ffmpeg sie liest |
+| akzeptiert | MOV (auch ProRes), AVI, MPEG-2, MPEG-TS, MXF, WebM, WMV, MP4 mit HEVC oder AV1 | solange ffmpeg sie liest |
 
 **Bevorzugt** sind beim Ton die unkomprimierten oder verlustfrei komprimierten Formate WAV/BWF und FLAC; so empfehlen es die NARA und die KOST. Bei Video zählt zuerst der Codec: Ein digital entstandenes Video wird nicht neu kodiert, denn jede verlustbehaftete Neukodierung verliert Information und kann Artefakte erzeugen (KOST). Bei der Digitalisierung analoger Träger entsteht der Master verlustfrei, als MKV mit FFV1 für das Bild und FLAC für den Ton (KOST); Memoriav und die Schweizerische Nationalphonothek empfehlen für den Ton 96 kHz und 24 Bit, die NARA mindestens 44,1 kHz und 16 Bit, besser 96 kHz und 24 Bit, für Video 10 Bit. MP4 mit H.264 ist die Wahl, wo ein verlustfreier Master zu viel Speicher braucht; Bewertungsentscheid, wie bei JPEG für Bilder.
 
@@ -60,20 +60,22 @@ Stand: Version 0.111.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
-| Dauer, Codec, Bitrate, Auflösung, Abtastrate, Seitenverhältnis | mit ffprobe bei der Übernahme, nachzutragen mit [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata) | nein |
-| Kanäle, Bittiefe, Bildrate, Zeilensprung, Farbraum, Spuren | nein (anton#717) | nein |
+| Container, Dauer, Zahl der Bild-, Ton-, Untertitel- und Datenspuren | mit ffprobe bei der Übernahme; für ältere Aufnahmen trägt sie [`media:validate-formats`](console-commands.md#mediavalidate-formats) nach | nein |
+| Bild: Codec, Breite und Höhe, Seitenverhältnis (SAR, DAR), Bildrate, Zeilensprung, Pixelformat und Bittiefe, Farbraum | ebenso, für die erste Bildspur; ein Titelbild zählt nicht als Bildspur | nein |
+| Ton: Codec, Kanäle und Kanalbelegung, Abtastrate, Bittiefe | ebenso, für die erste Tonspur | nein |
+| alle Spuren | ebenso, je Spur eine Zeile mit Art und Codec | nein |
 | Inhalt jeder Spur | nein (anton#717) | nein |
 | Abspielbar | – | bei der Übernahme liest ffprobe den Container; nachts mit [`media:validate-formats`](console-commands.md#mediavalidate-formats) dekodiert ffmpeg jedes Bild und jedes Sample, jede Fehlermeldung zählt; dazu beim Erstellen der Nutzungskopie |
 | Eingebettete Metadaten | nein | nein |
 
-Die gemessenen Werte stehen am Medium bei den Angaben zu Ton und Video.
+Die gemessenen Werte stehen am Medium unter **Technische Merkmale**. Die älteren Angaben zu Dauer, Codec, Bitrate, Auflösung, Abtastrate und Seitenverhältnis bleiben daneben für den Memobase- und den RiC-Export; sie füllt [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata).
 
 ## Grenzen
 
-- Auf umberto haben am 23.10.2026 nur 2 von 771 Ton- und Videoaufnahmen die gemessenen Werte; der Nachtrag ist nie gelaufen (anton#717).
-- Kanäle, Bittiefe, Bildrate, Zeilensprung, Farbraum und die Zahl der Spuren misst Anton nicht (anton#717).
-- `media:migrate` belegt bei Ton und Video nichts; die Pixelsignatur gibt es nur für Bilder (anton#717).
-- Eine Nutzungskopie entsteht für Video nur aus MP4, MOV und MPEG, für Ton nur aus WAV und MP3. Für FLAC, M4A, AIFF, Ogg, MKV, AVI, WebM, MXF und WMV fehlt sie, und der Upload nimmt FLAC, AIFF, Ogg, MKV, AVI, WebM, MXF und WMV nicht an (anton#718).
+- Kennwerte im Einzelnen misst Anton nur für die erste Bild- und die erste Tonspur; weitere Spuren sind nur gezählt und mit Art und Codec aufgeführt.
+- Auf umberto fehlten am 23.10.2026 bei 769 von 771 Ton- und Videoaufnahmen die älteren Angaben für die Exporte; `media:extract-av-metadata` ist dort noch nie gelaufen.
+- `media:migrate` belegt bei Ton und Video nichts; die Pixelsignatur gibt es nur für Bilder, eine Prüfsumme je Spur fehlt (anton#717). Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht.
+- Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.
 - «Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.
 
 ## Was eine Migration prüfen muss
