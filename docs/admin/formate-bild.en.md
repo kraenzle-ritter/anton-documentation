@@ -28,9 +28,9 @@ As a rule, we recommend keeping as few different formats as possible in one arch
 
 PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on [PDF](formate-pdf.md) applies.
 
-HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the [QR upload](../user/qr-upload.md) offers this today (`heic2jpg`, off by default). The HEIC is kept as a version of the medium, and the conversion is logged as an event with tool, command and checksums. Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with [`media:migrate`](console-commands.md#mediamigrate), once the rule for it exists; HEIC to TIFF or to JPEG is to become a rule each archive can choose (anton#710).
+HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the [QR upload](../user/qr-upload.md) offers this today (`heic2jpg`, off by default). The HEIC is kept as a version of the medium, and the conversion is logged as an event with tool, command and checksums. Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with [`media:migrate`](console-commands.md#mediamigrate). The rule for this, and likewise a conversion to TIFF or JPEG at ingest chosen per archive, is built only when an archive needs it (decided in anton#710).
 
-GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. Anton recognises camera raw by its extension, since the tools take NEF, ARW and DNG for TIFF, and makes the access copy through LibRaw from the whole image, not from the embedded preview. DNG and camera raw reach the archive only through SIP or import today, not through upload.
+GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. Anton recognises camera raw by its extension, since the tools take NEF, ARW and DNG for TIFF, and makes the access copy through LibRaw from the whole image, not from the embedded preview. Upload takes DNG and camera raw with their extension; the QR upload limits files to 10 MB, so larger ones such as ProRAW DNG from an iPhone (25–75 MB) go through the regular upload.
 
 A TIFF made from raw loses something: raw holds the sensor data, and only development fixes white balance, exposure and tone curve. A TIFF holds one of these developments, and the rest of the sensor data is gone afterwards. What of it must be preserved depends on what the archive wants to preserve:
 
@@ -63,7 +63,7 @@ Layers, editing steps and preview images in a TIFF are not significant behaviour
 
 ## What Anton measures and checks
 
-As of version 0.111, plus anton#710 and #711 from the next version.
+As of version 0.111.1.
 
 | Property | Measured | Checked |
 |---|---|---|
@@ -86,8 +86,8 @@ Measured values appear on the medium under **Technical characteristics** and in 
 - Anton measures orientation and resolution for no format.
 - Embedded metadata is carried over by `tiff_zip` but not compared. Nothing proves that all fields are still present after a migration.
 - Anton does not check whether a PDF contains photographs only.
-- HEIC to TIFF or to JPEG cannot yet be chosen per archive as a rule; today only `heic2jpg` in the QR upload converts (anton#710).
-- Upload does not take DNG and camera raw, only SIP and import.
+- HEIC stays the master. At ingest Anton does not convert it to TIFF or JPEG, except with `heic2jpg` in the QR upload (decided in anton#710).
+- The QR upload takes files up to 10 MB; larger raw and DNG files go through the regular upload.
 - The check «renderable» means the tool reads the file without error. It does not check whether the colours are right.
 
 ## What a migration must check

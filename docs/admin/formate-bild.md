@@ -28,9 +28,9 @@ Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene For
 
 PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für [PDF](formate-pdf.md).
 
-HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Bei der Übernahme lässt sich HEIC nach JPEG umwandeln, für Archive, bei denen Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; das bietet heute der [QR-Upload](../user/qr-upload.md) an (`heic2jpg`, voreingestellt aus). Das HEIC bleibt dabei als Version des Mediums erhalten, und die Umwandlung steht als Ereignis mit Werkzeug, Befehl und Prüfsummen im Protokoll. Nach TIFF lässt sich jederzeit später umwandeln, ohne weiteren Verlust, aber etwa zehnmal grösser, mit [`media:migrate`](console-commands.md#mediamigrate), sobald es die Regel dafür gibt; HEIC nach TIFF oder nach JPEG soll je Archiv als Regel wählbar werden (anton#710).
+HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Bei der Übernahme lässt sich HEIC nach JPEG umwandeln, für Archive, bei denen Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; das bietet heute der [QR-Upload](../user/qr-upload.md) an (`heic2jpg`, voreingestellt aus). Das HEIC bleibt dabei als Version des Mediums erhalten, und die Umwandlung steht als Ereignis mit Werkzeug, Befehl und Prüfsummen im Protokoll. Nach TIFF lässt sich jederzeit später umwandeln, ohne weiteren Verlust, aber etwa zehnmal grösser, mit [`media:migrate`](console-commands.md#mediamigrate). Die Regel dafür, und ebenso eine je Archiv wählbare Umwandlung nach TIFF oder JPEG bei der Übernahme, entsteht erst, wenn ein Archiv sie braucht (entschieden in anton#710).
 
-GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. Anton erkennt Kamera-RAW an der Endung, weil die Werkzeuge NEF, ARW und DNG für TIFF halten, und rechnet die Nutzungskopie über LibRaw aus dem ganzen Bild, nicht aus dem eingebetteten Vorschaubild. DNG und Kamera-RAW kommen heute nur über SIP oder Import ins Archiv, nicht über den Upload.
+GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. Anton erkennt Kamera-RAW an der Endung, weil die Werkzeuge NEF, ARW und DNG für TIFF halten, und rechnet die Nutzungskopie über LibRaw aus dem ganzen Bild, nicht aus dem eingebetteten Vorschaubild. Der Upload nimmt DNG und Kamera-RAW mit ihrer Endung an; der QR-Upload begrenzt Dateien auf 10 MB, grössere wie ProRAW-DNG vom iPhone (25–75 MB) gehen über den gewöhnlichen Upload.
 
 Ein TIFF aus RAW verliert etwas: RAW enthält die Sensordaten, und erst bei der Entwicklung werden Weissabgleich, Belichtung und Tonkurve festgelegt. Ein TIFF hält eine dieser Entwicklungen fest, und der Rest der Sensordaten fehlt danach. Was davon erhalten bleiben muss, hängt davon ab, was das Archiv erhalten will:
 
@@ -63,7 +63,7 @@ Kein wesentliches Verhalten sind Ebenen, Bearbeitungsschritte und Vorschaubilder
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111, dazu anton#710 und #711 aus der nächsten Version.
+Stand: Version 0.111.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
@@ -86,8 +86,8 @@ Gemessene Werte stehen am Medium unter **Technische Merkmale** und im Probelauf 
 - Ausrichtung und Auflösung misst Anton bei keinem Format.
 - Eingebettete Metadaten werden bei `tiff_zip` übertragen, aber nicht verglichen. Ob nach einer Migration alle Felder noch da sind, belegt nichts.
 - Ob ein PDF ausschliesslich Fotos enthält, prüft Anton nicht.
-- HEIC nach TIFF oder nach JPEG lässt sich noch nicht je Archiv als Regel wählen; heute wandelt nur `heic2jpg` im QR-Upload (anton#710).
-- DNG und Kamera-RAW nimmt der Upload nicht an, nur SIP und Import.
+- HEIC bleibt Master. Bei der Übernahme wandelt Anton es nicht nach TIFF oder JPEG, ausser mit `heic2jpg` im QR-Upload (entschieden in anton#710).
+- Der QR-Upload nimmt Dateien bis 10 MB an; grössere RAW- und DNG-Dateien gehen über den gewöhnlichen Upload.
 - Die Prüfung «darstellbar» heisst, das Werkzeug liest die Datei ohne Fehler. Ob die Farben stimmen, prüft sie nicht.
 
 ## Was eine Migration prüfen muss
