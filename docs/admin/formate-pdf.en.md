@@ -20,7 +20,7 @@ Anton needs this for three things: to document what makes up a PDF (NDSA Cn-1.1)
 
 **Accepted** is, as with images, what widespread open-source tools can read and will in all likelihood go on reading. Plain PDF belongs to it: NARA rates PDF 1.7 and 2.0 low risk and PDF 1.0 to 1.6 moderate risk and retains both; KOST considers PDF suitable for archiving «in principle». Anton does not convert PDF to PDF/A at ingest. Following the [format decisions](preservation.md#formatentscheide), Anton migrates only when a file can no longer be rendered, and according to KOST a conversion to PDF/A is «mostly unproblematic» later as well.
 
-**Not accepted** is PDF/A-3. It equals PDF/A-2 but may embed files of any type, such as a Word document or an Excel sheet behind an invoice. These files can be neither identified nor validated, and Anton does not see them: they would have no PUID, no format validation, no access copy. KOST rejects PDF/A-3 for this reason. The same holds for PDF/A-4f. Depositors deliver PDF/A-2 instead, and the embedded files as files of their own. If a PDF/A-3 arrives nevertheless, Anton today takes it in like any PDF; whether it embeds files Anton does not measure yet (anton#713).
+**Not accepted** is PDF/A-3. It equals PDF/A-2 but may embed files of any type, such as a Word document or an Excel sheet behind an invoice. These files can be neither identified nor validated, and Anton does not see them: they would have no PUID, no format validation, no access copy. KOST rejects PDF/A-3 for this reason. The same holds for PDF/A-4f. Depositors deliver PDF/A-2 instead, and the embedded files as files of their own. If a PDF/A-3 arrives nevertheless, Anton takes it in like any PDF and records embedded files with their types as a risk. In the holdings on umberto PDF/A-3 is an exception: on 2026-10-23, among some 70,000 validated PDFs, a single one claimed to be PDF/A-3.
 
 A PDF that opens only with a password can be neither validated nor rendered by Anton. A PDF that only locks printing or copying can be opened; it is accepted, and Anton records the encryption as a risk.
 
@@ -57,24 +57,28 @@ As of version 0.111.1.
 
 | Property | Measured | Checked |
 |---|---|---|
-| Number of pages | at every format validation with qpdf or pdftocairo | no, there is no migration of PDF yet |
+| Version | PDF version, at ingest with poppler | – |
+| Number of pages | at ingest with poppler, at every format validation with qpdf or pdftocairo | no, there is no migration of PDF yet |
 | Renderable | – | at ingest and nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats): qpdf; thorough with pdftocairo page by page, JPEG 2000 errors rechecked with MuPDF; also when the access copy is made |
-| Fonts embedded | – | warning where the PDF shows text that needs a font not embedded (pdffonts) |
-| Page size and orientation | no (anton#713) | no |
-| Text extractable | no (anton#713) | no |
-| Embedded files | no (anton#713) | no |
-| JBIG2 | no (anton#713) | no |
-| Forms | no | warning for a form without fields |
-| Bookmarks, annotations, metadata | no | no |
+| Fonts embedded | number of fonts | warning where the PDF shows text that needs a font not embedded (pdffonts) |
+| Page size and orientation | most common page size in mm, number of different sizes, landscape pages and rotated pages | no |
+| Text extractable | fonts without a Unicode mapping (ToUnicode) | no; such a font is a characteristic, not a risk: with standard encodings the text can still be extracted, only the PDF does not meet PDF/A-2u that way |
+| Images | number of images | – |
+| Embedded files | number and types | warning |
+| JBIG2 | number of images using JBIG2 | warning |
+| Forms and annotations | form (AcroForm or XFA), number of fields and of annotations | warning for a form without fields |
+| Bookmarks, metadata | no | no |
 | JavaScript, actions, links | number per kind (qpdf, pdfinfo) | warning |
 | Encryption | yes | warning |
 | PDF/A conformance | level the PDF claims | with veraPDF, when a PDF claims to be PDF/A and veraPDF is installed; a deviation is a warning |
 
-The findings are in the medium's `format-validation` event and, totalled, under [Preservation Planning → «Format validation»](preservation-planning.md#formatpruefung).
+The characteristics appear on the medium under **Technical characteristics**; for older PDFs [`media:validate-formats`](console-commands.md#mediavalidate-formats) fills them in, as long as the medium has no other characteristics yet. The findings are in the medium's `format-validation` event and, totalled, under [Preservation Planning → «Format validation»](preservation-planning.md#formatpruefung).
 
 ## Limits
 
-- Anton does not measure page size, extractable text, embedded files or JBIG2 (anton#713). So it also cannot say how many PDF/A-3 with attachments are in the holdings.
+- Anton reads page sizes for the first 2000 pages only.
+- If a medium already has other characteristics, for instance from a TIFF rule, `media:validate-formats` does not fill in the PDF characteristics.
+- Anton does not measure bookmarks and embedded metadata.
 - veraPDF checks only what claims to be PDF/A. A plain PDF is not checked against PDF/A, nor is a PDF/A that has lost its identification in the XMP.
 - If the conversion to PDF/A fails during OCR in the [QR upload](../user/qr-upload.md), OCR writes plain PDF. The reason is shown in the medium's upload actions (`pdfa_fallback`).
 - The access copy (Ghostscript, `/ebook`) shrinks images for viewing. It is no normalisation and no replacement for the master.

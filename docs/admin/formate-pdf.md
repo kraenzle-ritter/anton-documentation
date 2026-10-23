@@ -20,7 +20,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein PDF 
 
 **Akzeptiert** ist, wie bei den Bildern, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Gewöhnliches PDF gehört dazu: Die NARA stuft PDF 1.7 und 2.0 mit geringem, PDF 1.0 bis 1.6 mit mittlerem Risiko ein und belässt beide, die KOST hält PDF «grundsätzlich» für archivtauglich. Anton wandelt PDF bei der Übernahme nicht nach PDF/A um. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt, und eine Umwandlung nach PDF/A ist nach der KOST auch später «meist problemlos» möglich.
 
-**Nicht akzeptiert** ist PDF/A-3. Es gleicht PDF/A-2, darf aber Dateien beliebigen Typs einbetten, etwa ein Word-Dokument oder eine Excel-Tabelle hinter einer Rechnung. Diese Dateien lassen sich weder erkennen noch prüfen, und Anton sieht sie nicht: Sie hätten weder PUID noch Formatprüfung noch Nutzungskopie. Die KOST lehnt PDF/A-3 aus diesem Grund ab. Dasselbe gilt für PDF/A-4f. Ablieferstellen liefern stattdessen PDF/A-2 und die eingebetteten Dateien als eigene Dateien. Kommt ein PDF/A-3 trotzdem an, nimmt Anton es heute an wie jedes PDF; ob es Dateien einbettet, misst Anton noch nicht (anton#713).
+**Nicht akzeptiert** ist PDF/A-3. Es gleicht PDF/A-2, darf aber Dateien beliebigen Typs einbetten, etwa ein Word-Dokument oder eine Excel-Tabelle hinter einer Rechnung. Diese Dateien lassen sich weder erkennen noch prüfen, und Anton sieht sie nicht: Sie hätten weder PUID noch Formatprüfung noch Nutzungskopie. Die KOST lehnt PDF/A-3 aus diesem Grund ab. Dasselbe gilt für PDF/A-4f. Ablieferstellen liefern stattdessen PDF/A-2 und die eingebetteten Dateien als eigene Dateien. Kommt ein PDF/A-3 trotzdem an, nimmt Anton es an wie jedes PDF und hält eingebettete Dateien mit ihren Typen als Risiko fest. Im Bestand auf umberto ist PDF/A-3 eine Ausnahme: Am 23.10.2026 gab sich unter rund 70 000 geprüften PDF ein einziges als PDF/A-3 aus.
 
 Ein PDF, das sich nur mit Passwort öffnen lässt, kann Anton weder prüfen noch darstellen. Ein PDF, das nur das Drucken oder Kopieren sperrt, lässt sich öffnen; es ist akzeptiert, und Anton hält die Verschlüsselung als Risiko fest.
 
@@ -57,24 +57,28 @@ Stand: Version 0.111.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
-| Zahl der Seiten | bei jeder Formatprüfung mit qpdf bzw. pdftocairo | nein, es gibt noch keine Migration von PDF |
+| Fassung | PDF-Version, bei der Übernahme mit poppler | – |
+| Zahl der Seiten | bei der Übernahme mit poppler, bei jeder Formatprüfung mit qpdf bzw. pdftocairo | nein, es gibt noch keine Migration von PDF |
 | Darstellbar | – | bei der Übernahme und nächtlich mit [`media:validate-formats`](console-commands.md#mediavalidate-formats): qpdf; gründlich mit pdftocairo Seite für Seite, Fehler bei JPEG 2000 prüft MuPDF nach; auch beim Erzeugen der Nutzungskopie |
-| Schriften eingebettet | – | Warnung, wo das PDF Text zeigt, der eine nicht eingebettete Schrift braucht (pdffonts) |
-| Seitengrösse und Ausrichtung | nein (anton#713) | nein |
-| Text extrahierbar | nein (anton#713) | nein |
-| Eingebettete Dateien | nein (anton#713) | nein |
-| JBIG2 | nein (anton#713) | nein |
-| Formulare | nein | Warnung bei einem Formular ohne Felder |
-| Lesezeichen, Anmerkungen, Metadaten | nein | nein |
+| Schriften eingebettet | Zahl der Schriften | Warnung, wo das PDF Text zeigt, der eine nicht eingebettete Schrift braucht (pdffonts) |
+| Seitengrösse und Ausrichtung | häufigste Seitengrösse in mm, Zahl der verschiedenen Grössen, Seiten im Querformat und gedrehte Seiten | nein |
+| Text extrahierbar | Schriften ohne Unicode-Zuordnung (ToUnicode) | nein; eine solche Schrift ist ein Merkmal, kein Risiko: Text lässt sich bei Standardkodierungen trotzdem extrahieren, nur erfüllt das PDF so nicht PDF/A-2u |
+| Bilder | Zahl der Bilder | – |
+| Eingebettete Dateien | Zahl und Typen | Warnung |
+| JBIG2 | Zahl der Bilder mit JBIG2 | Warnung |
+| Formulare und Anmerkungen | Formular (AcroForm oder XFA), Zahl der Felder und der Anmerkungen | Warnung bei einem Formular ohne Felder |
+| Lesezeichen, Metadaten | nein | nein |
 | JavaScript, Aktionen, Verweise | Anzahl je Art (qpdf, pdfinfo) | Warnung |
 | Verschlüsselung | ja | Warnung |
 | PDF/A-Konformität | Stufe, die das PDF beansprucht | mit veraPDF, wenn ein PDF sich als PDF/A ausgibt und veraPDF installiert ist; eine Abweichung ist eine Warnung |
 
-Die Befunde stehen im Ereignis `format-validation` des Mediums und, zusammengezählt, unter [Preservation Planning → «Formatprüfung»](preservation-planning.md#formatpruefung).
+Die Merkmale stehen am Medium unter **Technische Merkmale**; für ältere PDF trägt sie [`media:validate-formats`](console-commands.md#mediavalidate-formats) nach, sofern das Medium noch keine anderen Merkmale hat. Die Befunde stehen im Ereignis `format-validation` des Mediums und, zusammengezählt, unter [Preservation Planning → «Formatprüfung»](preservation-planning.md#formatpruefung).
 
 ## Grenzen
 
-- Anton misst Seitengrösse, extrahierbaren Text, eingebettete Dateien und JBIG2 nicht (anton#713). Darum lässt sich auch nicht sagen, wie viele PDF/A-3 mit Anhängen im Bestand liegen.
+- Seitengrössen liest Anton nur für die ersten 2000 Seiten.
+- Hat ein Medium schon andere Merkmale, etwa von einer TIFF-Regel, trägt `media:validate-formats` die PDF-Merkmale nicht nach.
+- Lesezeichen und eingebettete Metadaten misst Anton nicht.
 - veraPDF prüft nur, was sich als PDF/A ausgibt. Ein gewöhnliches PDF wird nicht gegen PDF/A geprüft, und ein PDF/A, das seine Kennung im XMP verloren hat, auch nicht.
 - Scheitert bei der OCR im [QR-Upload](../user/qr-upload.md) die Umwandlung nach PDF/A, schreibt sie gewöhnliches PDF. Den Grund zeigen die Upload-Aktionen des Mediums (`pdfa_fallback`).
 - Die Nutzungskopie (Ghostscript, `/ebook`) verkleinert Bilder für die Ansicht. Sie ist keine Normalisierung und kein Ersatz für den Master.
