@@ -34,9 +34,9 @@ Des options de traitement des images peuvent être activées dans la fenêtre mo
 
 | Option | Description | Outil sur le serveur |
 |--------|-------------|---|
-| **HEIC → JPEG** | Convertir automatiquement les images iPhone (HEIC/HEIF) en JPEG | `heif-convert` (libheif) |
+| **HEIC → JPEG** | Convertir automatiquement les images iPhone (HEIC/HEIF) en JPEG ; le HEIC est conservé comme version du média | ImageMagick (`magick`, avec libheif) |
 | **Images → PDF** | Combiner sans perte plusieurs images téléversées en un seul PDF | `img2pdf` |
-| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) ; les numérisations deviennent PDF/A-2b, un PDF avec texte reste PDF | `ocrmypdf` + Tesseract (deu+eng) |
 
 Ces réglages sont enregistrés et s'appliquent à tous les téléversements.
 
@@ -46,9 +46,9 @@ La chaîne s'exécute dans cet ordre :
 
 ```
 1. AVANT L'IMPORT (synchrone)
-   HEIC → heif-convert → JPG
+   HEIC → magick       → JPG (HEIC conservé comme version)
    JPG  → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF avec couche de texte OCR (master)
+   PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master)
 
 2. IMPORT
    addAntonMedium() → événement MediumAdded
@@ -74,7 +74,7 @@ Setting::setValue('image-upload-processing', ['heic2jpg', 'images2pdf', 'ocr']);
 
 Prérequis sur le serveur :
 
-- `heif-convert` (paquet `libheif`/`libheif-tools`)
+- ImageMagick avec prise en charge HEIF (libheif)
 - `img2pdf` (outil Python)
 - `ocrmypdf` avec `tesseract-ocr-deu` et `tesseract-ocr-eng`
 - `pdftotext` (paquet `poppler-utils`) — également nécessaire à l'extraction

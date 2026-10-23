@@ -16,7 +16,7 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was ein PDF 
 | nicht akzeptiert | PDF/A-3, PDF/A-4f | eingebettete Dateien beliebigen Typs |
 | nicht akzeptiert | PDF, das sich nur mit Passwort öffnen lässt | |
 
-**Bevorzugt** ist PDF/A-2u. PDF/A-2 erlaubt, was PDF/A-1 noch verbot (Transparenz, Ebenen, JPEG 2000), und «u» verlangt, dass jedes Zeichen einem Unicode-Zeichen zugeordnet ist: Der Text lässt sich dann suchen, kopieren und vorlesen, nicht nur ansehen. So empfiehlt es die KOST. Bei Scans stammt der Text aus der OCR und ist ohnehin nur so gut wie die Erkennung; dort genügt PDF/A-2b, das nur die Erscheinung der Seite sichert. Die NARA führt PDF/A-1 und PDF/A-2 als bevorzugte Übernahmeformate.
+**Bevorzugt** ist PDF/A-2u. PDF/A-2 erlaubt, was PDF/A-1 noch verbot (Transparenz, Ebenen, JPEG 2000), und «u» verlangt, dass jedes Zeichen einem Unicode-Zeichen zugeordnet ist: Der Text lässt sich dann suchen, kopieren und vorlesen, nicht nur ansehen. So empfiehlt es die KOST. Bei Scans stammt der Text aus der OCR und ist ohnehin nur so gut wie die Erkennung; dort genügt PDF/A-2b, das nur die Erscheinung der Seite sichert. Die OCR in Anton schreibt bei Scans PDF/A-2b; ein PDF, das schon Text hat, bleibt gewöhnliches PDF, damit Ghostscript Schriften und Vektortext nicht neu schreibt (anton#712). Die NARA führt PDF/A-1 und PDF/A-2 als bevorzugte Übernahmeformate.
 
 **Akzeptiert** ist, wie bei den Bildern, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Gewöhnliches PDF gehört dazu: Die NARA stuft PDF 1.7 und 2.0 mit geringem, PDF 1.0 bis 1.6 mit mittlerem Risiko ein und belässt beide, die KOST hält PDF «grundsätzlich» für archivtauglich. Anton wandelt PDF bei der Übernahme nicht nach PDF/A um. Nach den [Formatentscheiden](preservation.md#formatentscheide) migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt, und eine Umwandlung nach PDF/A ist nach der KOST auch später «meist problemlos» möglich.
 
@@ -53,7 +53,7 @@ Die Fassung (PDF 1.4, PDF/A-2b) ist keine Eigenschaft, die erhalten bleiben muss
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111.
+Stand: Version 0.111.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
@@ -76,7 +76,7 @@ Die Befunde stehen im Ereignis `format-validation` des Mediums und, zusammengez�
 
 - Anton misst Seitengrösse, extrahierbaren Text, eingebettete Dateien und JBIG2 nicht (anton#713). Darum lässt sich auch nicht sagen, wie viele PDF/A-3 mit Anhängen im Bestand liegen.
 - veraPDF prüft nur, was sich als PDF/A ausgibt. Ein gewöhnliches PDF wird nicht gegen PDF/A geprüft, und ein PDF/A, das seine Kennung im XMP verloren hat, auch nicht.
-- Die OCR im [QR-Upload](../user/qr-upload.md) und im Stapel-Upload schreibt gewöhnliches PDF, nicht PDF/A-2b (anton#712).
+- Scheitert bei der OCR im [QR-Upload](../user/qr-upload.md) die Umwandlung nach PDF/A, schreibt sie gewöhnliches PDF. Den Grund zeigen die Upload-Aktionen des Mediums (`pdfa_fallback`).
 - Die Nutzungskopie (Ghostscript, `/ebook`) verkleinert Bilder für die Ansicht. Sie ist keine Normalisierung und kein Ersatz für den Master.
 - «Darstellbar» heisst, die Werkzeuge lesen und rendern jede Seite ohne Fehler. Ob die Seite richtig aussieht, prüfen sie nicht.
 

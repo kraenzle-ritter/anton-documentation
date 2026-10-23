@@ -16,7 +16,7 @@ Anton needs this for three things: to document what makes up a PDF (NDSA Cn-1.1)
 | not accepted | PDF/A-3, PDF/A-4f | embedded files of any type |
 | not accepted | PDF that opens only with a password | |
 
-**Preferred** is PDF/A-2u. PDF/A-2 allows what PDF/A-1 still forbade (transparency, layers, JPEG 2000), and «u» requires every character to map to a Unicode character: the text can then be searched, copied and read aloud, not only looked at. This is what KOST recommends. In scans the text comes from OCR and is only as good as the recognition anyway; there PDF/A-2b, which secures only the appearance of the page, suffices. NARA lists PDF/A-1 and PDF/A-2 as preferred transfer formats.
+**Preferred** is PDF/A-2u. PDF/A-2 allows what PDF/A-1 still forbade (transparency, layers, JPEG 2000), and «u» requires every character to map to a Unicode character: the text can then be searched, copied and read aloud, not only looked at. This is what KOST recommends. In scans the text comes from OCR and is only as good as the recognition anyway; there PDF/A-2b, which secures only the appearance of the page, suffices. OCR in Anton writes PDF/A-2b for scans; a PDF that already has text stays plain PDF, so that Ghostscript does not rewrite its fonts and vector text (anton#712). NARA lists PDF/A-1 and PDF/A-2 as preferred transfer formats.
 
 **Accepted** is, as with images, what widespread open-source tools can read and will in all likelihood go on reading. Plain PDF belongs to it: NARA rates PDF 1.7 and 2.0 low risk and PDF 1.0 to 1.6 moderate risk and retains both; KOST considers PDF suitable for archiving «in principle». Anton does not convert PDF to PDF/A at ingest. Following the [format decisions](preservation.md#formatentscheide), Anton migrates only when a file can no longer be rendered, and according to KOST a conversion to PDF/A is «mostly unproblematic» later as well.
 
@@ -53,7 +53,7 @@ The version (PDF 1.4, PDF/A-2b) is not a property that must be preserved. It is 
 
 ## What Anton measures and checks
 
-As of version 0.111.
+As of version 0.111.1.
 
 | Property | Measured | Checked |
 |---|---|---|
@@ -76,7 +76,7 @@ The findings are in the medium's `format-validation` event and, totalled, under 
 
 - Anton does not measure page size, extractable text, embedded files or JBIG2 (anton#713). So it also cannot say how many PDF/A-3 with attachments are in the holdings.
 - veraPDF checks only what claims to be PDF/A. A plain PDF is not checked against PDF/A, nor is a PDF/A that has lost its identification in the XMP.
-- OCR in the [QR upload](../user/qr-upload.md) and in the batch upload writes plain PDF, not PDF/A-2b (anton#712).
+- If the conversion to PDF/A fails during OCR in the [QR upload](../user/qr-upload.md), OCR writes plain PDF. The reason is shown in the medium's upload actions (`pdfa_fallback`).
 - The access copy (Ghostscript, `/ebook`) shrinks images for viewing. It is no normalisation and no replacement for the master.
 - «Renderable» means the tools read and render every page without error. They do not check whether the page looks right.
 

@@ -34,9 +34,9 @@ Image processing options can be activated in the modal:
 
 | Option | Description | Tool on the server |
 |--------|-------------|---|
-| **HEIC → JPEG** | Convert iPhone images (HEIC/HEIF) to JPEG automatically | `heif-convert` (libheif) |
+| **HEIC → JPEG** | Convert iPhone images (HEIC/HEIF) to JPEG automatically; the HEIC is kept as a version of the medium | ImageMagick (`magick`, with libheif) |
 | **Images → PDF** | Combine several uploaded images losslessly into one PDF | `img2pdf` |
-| **OCR** | Perform text recognition (makes PDFs searchable) | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Perform text recognition (makes PDFs searchable); scans become PDF/A-2b, a PDF with text stays PDF | `ocrmypdf` + Tesseract (deu+eng) |
 
 These settings are saved and apply to all uploads.
 
@@ -46,9 +46,9 @@ The pipeline runs in this order:
 
 ```
 1. BEFORE IMPORT (synchronous)
-   HEIC → heif-convert → JPG
+   HEIC → magick       → JPG (HEIC kept as a version)
    JPGs → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF with OCR text layer (master)
+   PDF  → ocrmypdf     → PDF/A-2b for scans, otherwise PDF, with OCR text layer (master)
 
 2. IMPORT
    addAntonMedium() → event MediumAdded
@@ -73,7 +73,7 @@ Setting::setValue('image-upload-processing', ['heic2jpg', 'images2pdf', 'ocr']);
 
 Prerequisites on the server:
 
-- `heif-convert` (package `libheif`/`libheif-tools`)
+- ImageMagick with HEIF support (libheif)
 - `img2pdf` (Python tool)
 - `ocrmypdf` with `tesseract-ocr-deu` and `tesseract-ocr-eng`
 - `pdftotext` (package `poppler-utils`) — also needed for full-text extraction
