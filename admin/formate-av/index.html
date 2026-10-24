@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -4444,7 +4444,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/formate-av/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4611,7 +4611,7 @@
 <p>Codec und Kompression sind keine Eigenschaften, die erhalten bleiben müssen. Sie werden festgehalten, weil sie sagen, ob die anderen Eigenschaften verlustfrei vorliegen; und eine Migration soll sie nur ändern, wo es nötig ist.</p>
 <p>Der Inhalt einer Spur lässt sich bei verlustfreien Formaten über eine Prüfsumme je Spur belegen, das Gegenstück zur Pixelsignatur bei Bildern: Bleibt sie nach einem Containerwechsel oder einer verlustfreien Umwandlung gleich, ist kein Bild und kein Sample verändert.</p>
 <h2 id="was-anton-misst-und-pruft">Was Anton misst und prüft<a class="headerlink" href="#was-anton-misst-und-pruft" title="Permanent link">&para;</a></h2>
-<p>Stand: Version 0.111.1.</p>
+<p>Stand: Version 0.112.0.</p>
 <table>
 <thead>
 <tr>
@@ -4622,17 +4622,17 @@
 </thead>
 <tbody>
 <tr>
-<td>Container, Dauer, Zahl der Bild-, Ton-, Untertitel- und Datenspuren</td>
+<td>Container, Dauer, Bitrate, Zahl der Bild-, Ton-, Untertitel- und Datenspuren</td>
 <td>mit ffprobe bei der Übernahme; für ältere Aufnahmen trägt sie <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> nach</td>
 <td>nein</td>
 </tr>
 <tr>
-<td>Bild: Codec, Breite und Höhe, Seitenverhältnis (SAR, DAR), Bildrate, Zeilensprung, Pixelformat und Bittiefe, Farbraum</td>
+<td>Bild: Codec, Bitrate, Breite und Höhe, Seitenverhältnis (SAR, DAR), Bildrate, Zeilensprung, Pixelformat und Bittiefe, Farbraum</td>
 <td>ebenso, für die erste Bildspur; ein Titelbild zählt nicht als Bildspur</td>
 <td>nein</td>
 </tr>
 <tr>
-<td>Ton: Codec, Kanäle und Kanalbelegung, Abtastrate, Bittiefe</td>
+<td>Ton: Codec, Bitrate, Kanäle und Kanalbelegung, Abtastrate, Bittiefe</td>
 <td>ebenso, für die erste Tonspur</td>
 <td>nein</td>
 </tr>
@@ -4643,8 +4643,8 @@
 </tr>
 <tr>
 <td>Inhalt jeder Spur</td>
-<td>nein (anton#717)</td>
-<td>nein</td>
+<td>bei einer Migration: MD5 der dekodierten Bilder und Samples je Spur (<code>ffmpeg -f streamhash</code>, Ton als 64-Bit-Gleitkommazahl), vorher und nachher</td>
+<td>nach einer Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>: jede Spur mit gleicher Prüfsumme; dazu vergleicht ffprobe Spuren, Kanäle, Abtastrate, Bildgrösse, Bildrate und Dauer (anton#717)</td>
 </tr>
 <tr>
 <td>Abspielbar</td>
@@ -4658,12 +4658,12 @@
 </tr>
 </tbody>
 </table>
-<p>Die gemessenen Werte stehen am Medium unter <strong>Technische Merkmale</strong>. Die älteren Angaben zu Dauer, Codec, Bitrate, Auflösung, Abtastrate und Seitenverhältnis bleiben daneben für den Memobase- und den RiC-Export; sie füllt <a href="../console-commands/#mediaextract-av-metadata"><code>media:extract-av-metadata</code></a>.</p>
+<p>Die gemessenen Werte stehen am Medium unter <strong>Technische Merkmale</strong>; die Bitrate seit v0.112.0. Nach einer Migration misst <code>media:migrate</code> sie neu. Der Memobase-, der RiC- und der A+-Export lesen Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis von dort (anton#720); die früheren Spalten <code>av_*</code> und <code>media:extract-av-metadata</code> gibt es nicht mehr.</p>
 <h2 id="grenzen">Grenzen<a class="headerlink" href="#grenzen" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Kennwerte im Einzelnen misst Anton nur für die erste Bild- und die erste Tonspur; weitere Spuren sind nur gezählt und mit Art und Codec aufgeführt.</li>
-<li>Auf umberto fehlten am 23.10.2026 bei 769 von 771 Ton- und Videoaufnahmen die älteren Angaben für die Exporte; <code>media:extract-av-metadata</code> ist dort noch nie gelaufen.</li>
-<li><code>media:migrate</code> belegt bei Ton und Video nichts; die Pixelsignatur gibt es nur für Bilder, eine Prüfsumme je Spur fehlt (anton#717). Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht.</li>
+<li>Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf <code>media:validate-formats</code> die Merkmale nach; bis dahin fehlen sie auch in den Exporten.</li>
+<li>Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt <code>media:migrate</code> sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt <code>media:migrate</code> ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.</li>
 <li>Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.</li>
 <li>«Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.</li>
 </ul>
@@ -4671,7 +4671,7 @@
 <p>Wandelt <code>media:migrate</code> eine Aufnahme um, muss danach gelten:</p>
 <ul>
 <li>Dauer, Zahl und Art der Spuren, Kanäle, Abtastrate, Auflösung und Bildrate sind gleich.</li>
-<li>Bei verlustfreiem Ziel (Containerwechsel, FFV1, FLAC) ist die Prüfsumme jeder Spur gleich.</li>
+<li>Bei verlustfreiem Ziel (Containerwechsel, FFV1, FLAC) ist die Prüfsumme jeder Spur gleich. Das prüft <code>media:migrate</code> seit v0.111.1 selbst.</li>
 <li>Die eingebetteten Metadaten sind übertragen.</li>
 <li>Die gelieferte Datei bleibt als <a href="../preservation/#behaltene-originale">Original</a>, wenn das Ziel verlustbehaftet ist.</li>
 </ul>
@@ -4768,10 +4768,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

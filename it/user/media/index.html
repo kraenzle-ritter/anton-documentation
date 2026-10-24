@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -2439,7 +2439,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/media/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/media/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/media/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -2479,17 +2479,14 @@
 <li>MP3  </li>
 </ul>
 <h2 id="metadati-tecnici-av">Metadati tecnici (AV)<a class="headerlink" href="#metadati-tecnici-av" title="Permanent link">&para;</a></h2>
-<p>Al caricamento Anton legge automaticamente le proprietà tecniche tramite
-<code>ffprobe</code> e le mostra nella scheda dei media della pagina di dettaglio: durata,
-risoluzione, codec, bitrate, frequenza di campionamento, rapporto d'aspetto —
-nella misura in cui hanno senso per il file in questione. Per le fotografie viene
-mostrata solo la dimensione dell'immagine, per l'audio nessuna risoluzione e così
-via.</p>
-<p>I valori vengono forniti anche nell'esportazione RDF (profilo Memobase) come
-proprietà EBUcore, vedi <a href="../../admin/download-rdf/">Esportazione RDF</a>. Per i media
-più vecchi già presenti i campi possono essere completati a posteriori tramite
-backfill — vedi
-<a href="../../admin/console-commands/#mediaextract-av-metadata"><code>media:extract-av-metadata</code></a>.</p>
+<p>Anton misura audio e video con <code>ffprobe</code> all'acquisizione e mostra i valori
+sul media sotto «Caratteristiche tecniche»: contenitore, durata, bitrate,
+immagine (codec, dimensioni, rapporto d'aspetto, frequenza dei fotogrammi) e
+audio (codec, canali, frequenza di campionamento, profondità di bit). Per i
+media più vecchi il controllo notturno dei formati aggiunge le caratteristiche.</p>
+<p>I valori vengono forniti anche nell'esportazione RDF (profili Memobase, RiC e
+A+) come proprietà EBUcore, vedi <a href="../../admin/download-rdf/">Esportazione RDF</a>.
+Per le fotografie viene fornita solo la dimensione dell'immagine.</p>
 <h2 id="modificare-lordine-dei-media">Modificare l'ordine dei media<a class="headerlink" href="#modificare-lordine-dei-media" title="Permanent link">&para;</a></h2>
 <p>L'ordine dei media di un'unità di descrizione può essere modificato senza
 doverli eliminare e caricare di nuovo.</p>
@@ -2595,10 +2592,10 @@ Richiede la stessa autorizzazione necessaria per eliminare un media.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

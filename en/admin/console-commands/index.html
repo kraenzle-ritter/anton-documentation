@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -3789,10 +3789,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-20" class="md-nav__link">
+  <a href="#media-19" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (20)
+        media: (19)
       
     </span>
   </a>
@@ -4621,10 +4621,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-20" class="md-nav__link">
+  <a href="#media-19" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (20)
+        media: (19)
       
     </span>
   </a>
@@ -4708,7 +4708,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4890,11 +4890,6 @@ Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
 answers.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
-<p><strong id="mediaextract-av-metadata"><code>media:extract-av-metadata</code></strong> fills the <code>av_*</code>
-columns (duration, codec, bitrate, resolution …) via <code>ffprobe</code> — likewise a
-backfill command, since new uploads do this automatically. <code>--dry-run</code> only
-shows what would change; <code>--force</code> also overwrites values that are already
-filled.</p>
 <p><strong><code>media:add</code></strong> attaches a medium to a record from the command line — useful
 when a file is too large for the browser upload:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:add<span class="w"> </span>file.jpg<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--id<span class="o">=</span><span class="m">123</span>
@@ -5475,7 +5470,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="media-20">media: (20)<a class="headerlink" href="#media-20" title="Permanent link">&para;</a></h3>
+<h3 id="media-19">media: (19)<a class="headerlink" href="#media-19" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5511,10 +5506,6 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>media:delete-master</code></td>
 <td>Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed</td>
-</tr>
-<tr>
-<td><code>media:extract-av-metadata</code></td>
-<td>Backfill AV technical metadata (av_duration_seconds, av_codec, av_bitrate, av_resolution, av_s…</td>
 </tr>
 <tr>
 <td><code>media:identify</code></td>
@@ -5793,10 +5784,10 @@ up to date with every change to the commands.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

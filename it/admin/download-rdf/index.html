@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -2356,7 +2356,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-rdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -2649,8 +2649,8 @@ Werte (de/fr/it/en/rm — alle Locales bleiben erhalten).</p>
 <li><strong>Keywords</strong> als <code>rico:Concept</code> + <code>skos:Concept</code>, referenziert
   via <code>rico:hasOrHadSubject</code>.</li>
 <li><strong>Media</strong> als <code>rico:Instantiation</code> mit <code>ebucore:hasMimeType</code>/
-  <code>hasHash</code>/<code>size</code> immer, plus AV-EBUcore-Properties wenn die
-  <code>av_*</code>-Spalten gefüllt sind.</li>
+  <code>hasHash</code>/<code>size</code> immer, plus AV-EBUcore-Properties aus den technischen
+  Merkmalen des Masters (siehe unten).</li>
 <li><strong>IRI-Schema</strong>: <code>https://&lt;tenant&gt;.anton.ch/id/&lt;entity-type&gt;/&lt;tenant-slug&gt;-&lt;id&gt;</code>
   (überschreibbar via <code>setting('ric_base_iri')</code> pro Mandant oder
   <code>config('exporter_rdf.ric.base_iri')</code> global).</li>
@@ -2678,8 +2678,8 @@ Rollen — ein RiC-O-only-Konsument sieht damit die Events vollständig.</p>
   <code>setting('memobase_sponsoring_memoriav')</code> auf <code>1</code> gesetzt ist
   (Memoriav-Konvention §9).</li>
 <li><strong>EBUcore für AV-Material</strong>: <code>ebucore:hasMimeType</code>, <code>ebucore:hasHash</code>,
-  <code>ebucore:size</code> immer. Wenn die <code>av_*</code>-Spalten in der <code>media</code>-Tabelle
-  befüllt sind (siehe unten), zusätzlich <code>ebucore:duration</code>,
+  <code>ebucore:size</code> immer. Bei Ton und Video aus den technischen Merkmalen
+  (siehe unten) zusätzlich <code>ebucore:duration</code>,
   <code>ebucore:hasCodec</code>, <code>ebucore:bitRate</code>, <code>ebucore:videoTrack</code>,
   <code>ebucore:samplingRate</code>, <code>ebucore:aspectRatio</code>.</li>
 </ul>
@@ -2730,26 +2730,18 @@ automatisch zur Export-Laufzeit.</p>
 </table>
 <p>Alle Settings werden über <code>/settings</code> oder per Tinker (<code>setting('key', 'value')</code>) gepflegt.</p>
 <h2 id="av-metadaten">AV-Metadaten<a class="headerlink" href="#av-metadaten" title="Permanent link">&para;</a></h2>
-<p>Anton führt sechs AV-Spalten in <code>media</code>: <code>av_duration_seconds</code>,
-<code>av_codec</code>, <code>av_bitrate</code>, <code>av_resolution</code>, <code>av_sample_rate</code>,
-<code>av_aspect_ratio</code>.</p>
-<p>Sie werden automatisch befüllt:</p>
-<ul>
-<li><strong>Bei neuem Upload</strong>: Listener <code>MediumIdentifyAndConvert</code> ruft direkt
-  nach der PRONOM-Identifikation <code>media:extract-av-metadata</code> für das
-  einzelne neue Medium auf. Inline, ~50ms, blockiert nichts; bei
-  ffprobe-Fehler nur Warn-Log.</li>
-<li><strong>Bei Bestandsdaten</strong>: einmaliger Backfill-Lauf via
-  <code>php artisan media:extract-av-metadata --env=&lt;slug&gt;</code> (siehe
-  <a href="../console-commands/#mediaextract-av-metadata">Console Commands</a>).</li>
-</ul>
-<p>Bei Bildern (<code>image/*</code>) wird nur <code>av_resolution</code> aus Breite × Höhe
-befüllt — kein Codec, keine Dauer. Das reicht damit der Memobase-Export
-das <code>ebucore:videoTrack</code>-Element mit <code>width</code>/<code>height</code> für jedes Foto
-emittieren kann.</p>
-<p>Im Frontend (Objekt-Detail-Ansicht, Media-Tab) erscheint pro Medium eine
-kleine Zeile mit den vorhandenen Werten — <code>1:08</code>, <code>1246x1020 (623:510)</code>,
-<code>h264</code>, <code>903 kbps</code>, … — sofern befüllt.</p>
+<p>Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis kommen
+aus den <strong>technischen Merkmalen</strong> des Masters. Diese misst die
+Formatprüfung mit <code>ffprobe</code> bei der Übernahme, und der nächtliche Lauf
+<code>media:validate-formats</code> trägt sie für ältere Medien nach. Die Medienseite
+zeigt sie unter «Technische Merkmale». Der Codec ist der des Bildes, bei
+reinem Ton der des Tons; die Bitrate ist die der ganzen Datei.</p>
+<p>Bei Bildern zählt nur die Grösse: aus den Merkmalen, wo es welche gibt
+(TIFF), sonst aus dem Kopf des Masters. Damit schreibt der RiC-O- und der
+A+-Export Breite und Höhe auch für Fotos.</p>
+<p>Bis v0.111 standen diese Werte ein zweites Mal in sechs Spalten <code>av_*</code> der
+Tabelle <code>media</code>, gefüllt von <code>media:extract-av-metadata</code>. Spalten und
+Befehl sind seit v0.112 entfernt (#720).</p>
 <h2 id="per-objekt-buttons-in-der-detail-ansicht">Per-Objekt-Buttons in der Detail-Ansicht<a class="headerlink" href="#per-objekt-buttons-in-der-detail-ansicht" title="Permanent link">&para;</a></h2>
 <p>Zusätzlich zum <code>/export/rdf</code>-Tab (Job-basiert, asynchron) kann jedes
 Objekt in der Detail-Ansicht synchron-downloadbar gemacht werden über
@@ -2931,10 +2923,10 @@ Der Volltext bleibt in jedem Fall draussen.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

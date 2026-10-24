@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -2290,7 +2290,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -2362,9 +2362,15 @@ Passwort.</p>
 <p>In der <strong>Benutzerverwaltung</strong> sehen Administrator:innen dieselbe Liste für jedes
 Konto und können mit <strong>Alle Sitzungen beenden</strong> alle Sitzungen eines Kontos
 beenden, etwa bei Verdacht auf Missbrauch oder beim Ausscheiden einer Person.</p>
-<p>Eine Sitzung endet nach 120 Minuten ohne Aktivität (<code>SESSION_LIFETIME</code>). Eine
-feste Höchstdauer gibt es bewusst nicht: Wer erschliesst, arbeitet oft den
-ganzen Tag im Formular.</p>
+<p>Eine Sitzung endet nach 120 Minuten ohne Aktivität (<code>SESSION_LIFETIME</code>) und
+spätestens 12 Stunden nach der Anmeldung, auch wenn ohne Pause gearbeitet wird
+(<code>SESSION_ABSOLUTE_LIFETIME</code>, in Minuten, Vorgabe 720; 0 schaltet die Grenze
+ab). 15 Minuten vorher erscheint unten auf der Seite ein Hinweis mit der Uhrzeit,
+damit Ungespeichertes gesichert werden kann (<code>SESSION_ABSOLUTE_WARNING</code>). Nach
+der neuen Anmeldung führt Anton auf die Seite zurück. «Angemeldet bleiben» gilt
+ebenso lange: Es überbrückt Pausen über 120 Minuten, verlängert die Sitzung aber
+nicht über die 12 Stunden hinaus. Das Ende einer Sitzung steht im
+Sicherheitsprotokoll.</p>
 <h2 id="dienstkonten">Dienstkonten<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
 <p>Das Konto <code>anton</code> gibt es auf jeder Installation. Es trägt den API-Token von
 Skripten und ist für keine Person gedacht. Anton lässt es deshalb <strong>im Browser
@@ -2458,10 +2464,10 @@ Demo-Installation, die sich als <code>anton</code> anmeldet).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

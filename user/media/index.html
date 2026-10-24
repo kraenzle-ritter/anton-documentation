@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -4444,7 +4444,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/media/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/media/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/media/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4484,15 +4484,14 @@
 <li>MP3  </li>
 </ul>
 <h2 id="technische-metadaten-av">Technische Metadaten (AV)<a class="headerlink" href="#technische-metadaten-av" title="Permanent link">&para;</a></h2>
-<p>Anton liest beim Upload via <code>ffprobe</code> automatisch technische Eigenschaften
-aus und zeigt sie im Media-Tab der Detailseite an: Dauer, Auflösung,
-Codec, Bitrate, Sample-Rate, Aspect-Ratio — soweit für die jeweilige
-Datei sinnvoll. Bei Fotos wird nur die Bildgrösse angezeigt, bei Audio
-keine Auflösung etc.</p>
-<p>Die Werte werden auch im RDF-Export (Memobase-Profil) als EBUcore-Properties
-mit ausgeliefert, siehe <a href="../../admin/download-rdf/">RDF-Export</a>. Für ältere
-Bestandsmedien lassen sich die Felder per Backfill nachholen — siehe
-<a href="../../admin/console-commands/#mediaextract-av-metadata"><code>media:extract-av-metadata</code></a>.</p>
+<p>Anton misst Ton und Video bei der Übernahme mit <code>ffprobe</code> und zeigt die
+Werte am Medium unter «Technische Merkmale»: Container, Dauer, Bitrate,
+Bild (Codec, Grösse, Seitenverhältnis, Bildrate) und Ton (Codec, Kanäle,
+Abtastrate, Bittiefe). Für ältere Medien trägt der nächtliche Lauf der
+Formatprüfung die Merkmale nach.</p>
+<p>Die Werte gehen auch in den RDF-Export (Memobase-, RiC- und A+-Profil) als
+EBUcore-Properties, siehe <a href="../../admin/download-rdf/">RDF-Export</a>. Bei Fotos
+geht nur die Bildgrösse mit.</p>
 <h2 id="reihenfolge-der-medien-andern">Reihenfolge der Medien ändern<a class="headerlink" href="#reihenfolge-der-medien-andern" title="Permanent link">&para;</a></h2>
 <p>Die Reihenfolge der Medien einer Verzeichnungseinheit lässt sich ändern,
 ohne sie löschen und neu hochladen zu müssen.</p>
@@ -4599,10 +4598,10 @@ Löschen eines Mediums.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

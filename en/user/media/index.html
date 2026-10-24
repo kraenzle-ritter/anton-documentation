@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -4444,7 +4444,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/media/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/media/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/media/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4484,15 +4484,14 @@
 <li>MP3  </li>
 </ul>
 <h2 id="technical-metadata-av">Technical metadata (AV)<a class="headerlink" href="#technical-metadata-av" title="Permanent link">&para;</a></h2>
-<p>On upload, Anton automatically reads technical properties via <code>ffprobe</code> and
-displays them in the media tab of the detail page: duration, resolution, codec,
-bitrate, sample rate, aspect ratio — as far as these are meaningful for the
-respective file. For photographs only the image size is shown, for audio no
-resolution, and so on.</p>
-<p>The values are also delivered in the RDF export (Memobase profile) as EBUcore
-properties, see <a href="../../admin/download-rdf/">RDF export</a>. For older existing media,
-the fields can be filled in retrospectively by backfill — see
-<a href="../../admin/console-commands/#mediaextract-av-metadata"><code>media:extract-av-metadata</code></a>.</p>
+<p>Anton measures sound and video with <code>ffprobe</code> at ingest and shows the values
+on the medium under «Technical characteristics»: container, duration, bit rate,
+picture (codec, size, aspect ratio, frame rate) and sound (codec, channels,
+sample rate, bit depth). For older media the nightly run of the format
+validation adds the characteristics.</p>
+<p>The values also go into the RDF export (Memobase, RiC and A+ profiles) as
+EBUcore properties, see <a href="../../admin/download-rdf/">RDF export</a>. For photographs
+only the picture size goes along.</p>
 <h2 id="changing-the-order-of-media">Changing the order of media<a class="headerlink" href="#changing-the-order-of-media" title="Permanent link">&para;</a></h2>
 <p>The order of the media of a unit of description can be changed without
 having to delete them and upload them again.</p>
@@ -4597,10 +4596,10 @@ deleting a medium.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

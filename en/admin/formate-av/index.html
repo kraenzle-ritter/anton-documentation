@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -4444,7 +4444,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-av/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4611,7 +4611,7 @@
 <p>Codec and compression are not properties that must be preserved. They are recorded because they tell whether the other properties are held losslessly; and a migration should change them only where necessary.</p>
 <p>For lossless formats, the content of a stream can be proved with a checksum per stream, the counterpart of the pixel signature for images: if it stays the same after a change of container or a lossless conversion, no frame and no sample has changed.</p>
 <h2 id="what-anton-measures-and-checks">What Anton measures and checks<a class="headerlink" href="#what-anton-measures-and-checks" title="Permanent link">&para;</a></h2>
-<p>As of version 0.111.1.</p>
+<p>As of version 0.112.0.</p>
 <table>
 <thead>
 <tr>
@@ -4622,17 +4622,17 @@
 </thead>
 <tbody>
 <tr>
-<td>Container, duration, number of video, audio, subtitle and data streams</td>
+<td>Container, duration, bit rate, number of video, audio, subtitle and data streams</td>
 <td>with ffprobe at ingest; for older recordings <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> fills them in</td>
 <td>no</td>
 </tr>
 <tr>
-<td>Picture: codec, width and height, aspect ratio (SAR, DAR), frame rate, interlacing, pixel format and bit depth, colour space</td>
+<td>Picture: codec, bit rate, width and height, aspect ratio (SAR, DAR), frame rate, interlacing, pixel format and bit depth, colour space</td>
 <td>likewise, for the first video stream; a cover picture does not count as a video stream</td>
 <td>no</td>
 </tr>
 <tr>
-<td>Sound: codec, channels and channel layout, sample rate, bit depth</td>
+<td>Sound: codec, bit rate, channels and channel layout, sample rate, bit depth</td>
 <td>likewise, for the first audio stream</td>
 <td>no</td>
 </tr>
@@ -4643,8 +4643,8 @@
 </tr>
 <tr>
 <td>Content of each stream</td>
-<td>no (anton#717)</td>
-<td>no</td>
+<td>during a migration: MD5 of the decoded frames and samples per stream (<code>ffmpeg -f streamhash</code>, sound as 64-bit float), before and after</td>
+<td>after a migration with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>: every stream with the same checksum; ffprobe also compares streams, channels, sample rate, picture size, frame rate and duration (anton#717)</td>
 </tr>
 <tr>
 <td>Playable</td>
@@ -4658,12 +4658,12 @@
 </tr>
 </tbody>
 </table>
-<p>Measured values appear on the medium under <strong>Technical characteristics</strong>. The older details on duration, codec, bit rate, resolution, sample rate and aspect ratio remain alongside for the Memobase and RiC exports; <a href="../console-commands/#mediaextract-av-metadata"><code>media:extract-av-metadata</code></a> fills them.</p>
+<p>Measured values appear on the medium under <strong>Technical characteristics</strong>; the bit rate since v0.112.0. After a migration <code>media:migrate</code> measures them again. The Memobase, RiC and A+ exports read duration, codec, bit rate, picture size, sample rate and aspect ratio from there (anton#720); the former <code>av_*</code> columns and <code>media:extract-av-metadata</code> are gone.</p>
 <h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Anton measures detailed characteristics only for the first video and the first audio stream; further streams are only counted and listed with kind and codec.</li>
-<li>On umberto, on 2026-10-23, 769 of 771 sound and video recordings lacked the older details for the exports; <code>media:extract-av-metadata</code> has never run there.</li>
-<li><code>media:migrate</code> proves nothing for sound and video; the pixel signature exists only for images, a checksum per stream is missing (anton#717). There is no rule yet that converts sound or video.</li>
+<li>For recordings ingested before v0.111.1, the nightly run <code>media:validate-formats</code> adds the characteristics; until then the exports lack them too.</li>
+<li>There is no rule yet that converts sound or video. When one comes, <code>media:migrate</code> proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. <code>media:migrate</code> refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.</li>
 <li>Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.</li>
 <li>«Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.</li>
 </ul>
@@ -4671,7 +4671,7 @@
 <p>When <code>media:migrate</code> converts a recording, afterwards:</p>
 <ul>
 <li>Duration, number and kind of streams, channels, sample rate, resolution and frame rate are the same.</li>
-<li>With a lossless target (change of container, FFV1, FLAC), the checksum of every stream is the same.</li>
+<li>With a lossless target (change of container, FFV1, FLAC), the checksum of every stream is the same. <code>media:migrate</code> checks this itself since v0.111.1.</li>
 <li>The embedded metadata is carried over.</li>
 <li>The delivered file stays as an <a href="../preservation/#behaltene-originale">original</a> when the target is lossy.</li>
 </ul>
@@ -4768,10 +4768,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

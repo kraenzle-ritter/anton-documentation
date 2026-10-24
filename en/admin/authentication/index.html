@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -37,7 +37,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -4444,7 +4444,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4513,9 +4513,14 @@ password.</p>
 <p>In the <strong>user administration</strong>, administrators see the same list for every
 account and can end all of an account's sessions with <strong>End all sessions</strong>, for
 instance on suspected misuse or when someone leaves.</p>
-<p>A session ends after 120 minutes without activity (<code>SESSION_LIFETIME</code>). There is
-deliberately no fixed maximum duration: people cataloguing often work in the
-form all day.</p>
+<p>A session ends after 120 minutes without activity (<code>SESSION_LIFETIME</code>) and at
+the latest 12 hours after signing in, even with work going on without a break
+(<code>SESSION_ABSOLUTE_LIFETIME</code>, in minutes, default 720; 0 turns the limit off).
+15 minutes before, a notice with the time appears at the bottom of the page so
+that unsaved work can be saved (<code>SESSION_ABSOLUTE_WARNING</code>). After signing in
+again, Anton returns to the page. «Remember me» lasts as long: it bridges breaks
+of more than 120 minutes but does not extend the session beyond the 12 hours.
+The end of a session is recorded in the security log.</p>
 <h2 id="dienstkonten">Service accounts<a class="headerlink" href="#dienstkonten" title="Permanent link">&para;</a></h2>
 <p>The account <code>anton</code> exists on every installation. It holds the API token of
 scripts and is meant for no person. Anton therefore <strong>does not let it sign in
@@ -4608,10 +4613,10 @@ installation that signs in as <code>anton</code>).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
