@@ -11,8 +11,8 @@ Anton needs this for three things: to document what makes up a spreadsheet or pr
 | Level | Format | Condition |
 |---|---|---|
 | preferred | ODS (OpenDocument Spreadsheet) | without a password |
-| preferred | XLSX | without a password |
 | preferred | CSV in UTF-8 | for plain data, with a description |
+| accepted | XLSX | without a password |
 | accepted | XLS | as long as LibreOffice reads it |
 | accepted | PDF/A | only as an additional view beside the original |
 
@@ -24,7 +24,7 @@ Anton needs this for three things: to document what makes up a spreadsheet or pr
 | preferred | PDF/A-2u | where the slides are fixed; see [PDF](formate-pdf.md) |
 | accepted | PPTX, PPT | as long as LibreOffice reads them |
 
-**Spreadsheets:** Preferred are ODS and XLSX in their original format. Only there do formulas, hidden rows and sheets survive; KOST recommends both and advises against converting between them. ODS comes first, as ODT does for [text](formate-text.md#formate); NARA prefers it and rates it low risk, XLSX moderate. LibreOffice reads XLS; KOST advises converting it to XLSX, NARA only for versions before Excel 97. Under the principle it stays until it can no longer be read. For plain data without formulas or formatting, CSV in UTF-8 is the most durable format; NARA prefers it. Since CSV has no fixed standard and cannot be validated, the depositor supplies a description: delimiter, escaping of delimiters and line breaks, quotes, number of fields, encoding and data types (KOST). PDF/A holds only the appearance, not the calculation, and a conversion to PDF/A «must be judged very critically indeed» (KOST): as a view beside the original, not in its place.
+**Spreadsheets:** Preferred is ODS, as ODT is for [text](formate-text.md#formate); NARA prefers it and rates it low risk. XLSX is accepted, as DOCX is: NARA considers it acceptable, at moderate risk, and KOST recommends it. Both stay in their original format, since only there do formulas, hidden rows and sheets survive; KOST advises against converting between them. LibreOffice reads XLS; KOST advises converting it to XLSX, NARA only for versions before Excel 97. Under the principle it stays until it can no longer be read. For plain data without formulas or formatting, CSV in UTF-8 is the most durable format; NARA prefers it. Since CSV has no fixed standard and cannot be validated, the depositor supplies a description: delimiter, escaping of delimiters and line breaks, quotes, number of fields, encoding and data types (KOST). PDF/A holds only the appearance, not the calculation, and a conversion to PDF/A «must be judged very critically indeed» (KOST): as a view beside the original, not in its place.
 
 **Presentations:** Preferred is ODP, like ODT and ODS; NARA prefers it, KOST rejects ODP for the same reasons as ODT. Where the slides are fixed, for instance for a talk given as it stands, the depositor had better also deliver PDF/A-2u. NARA rates PPTX low risk, KOST accepts it. LibreOffice reads Keynote only partly; the depositor exports it as PPTX or PDF.
 
