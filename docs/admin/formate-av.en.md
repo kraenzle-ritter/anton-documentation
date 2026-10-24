@@ -56,25 +56,25 @@ For lossless formats, the content of a stream can be proved with a checksum per 
 
 ## What Anton measures and checks
 
-As of version 0.111.1.
+As of version 0.112.0.
 
 | Property | Measured | Checked |
 |---|---|---|
-| Container, duration, number of video, audio, subtitle and data streams | with ffprobe at ingest; for older recordings [`media:validate-formats`](console-commands.md#mediavalidate-formats) fills them in | no |
-| Picture: codec, width and height, aspect ratio (SAR, DAR), frame rate, interlacing, pixel format and bit depth, colour space | likewise, for the first video stream; a cover picture does not count as a video stream | no |
-| Sound: codec, channels and channel layout, sample rate, bit depth | likewise, for the first audio stream | no |
+| Container, duration, bit rate, number of video, audio, subtitle and data streams | with ffprobe at ingest; for older recordings [`media:validate-formats`](console-commands.md#mediavalidate-formats) fills them in | no |
+| Picture: codec, bit rate, width and height, aspect ratio (SAR, DAR), frame rate, interlacing, pixel format and bit depth, colour space | likewise, for the first video stream; a cover picture does not count as a video stream | no |
+| Sound: codec, bit rate, channels and channel layout, sample rate, bit depth | likewise, for the first audio stream | no |
 | All streams | likewise, one line per stream with kind and codec | no |
-| Content of each stream | no (anton#717) | no |
+| Content of each stream | during a migration: MD5 of the decoded frames and samples per stream (`ffmpeg -f streamhash`, sound as 64-bit float), before and after | after a migration with [`media:migrate`](console-commands.md#mediamigrate): every stream with the same checksum; ffprobe also compares streams, channels, sample rate, picture size, frame rate and duration (anton#717) |
 | Playable | – | at ingest ffprobe reads the container; nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats) ffmpeg decodes every frame and every sample, and every error message counts; also when the access copy is made |
 | Embedded metadata | no | no |
 
-Measured values appear on the medium under **Technical characteristics**, since v0.112 also the bit rate of the file and of the first video and audio stream. The Memobase, RiC and A+ exports read duration, codec, bit rate, picture size, sample rate and aspect ratio from there (anton#720); the former `av_*` columns and `media:extract-av-metadata` are gone.
+Measured values appear on the medium under **Technical characteristics**; the bit rate since v0.112.0. After a migration `media:migrate` measures them again. The Memobase, RiC and A+ exports read duration, codec, bit rate, picture size, sample rate and aspect ratio from there (anton#720); the former `av_*` columns and `media:extract-av-metadata` are gone.
 
 ## Limits
 
 - Anton measures detailed characteristics only for the first video and the first audio stream; further streams are only counted and listed with kind and codec.
 - For recordings ingested before v0.111.1, the nightly run `media:validate-formats` adds the characteristics; until then the exports lack them too.
-- `media:migrate` proves nothing for sound and video; the pixel signature exists only for images, a checksum per stream is missing (anton#717). There is no rule yet that converts sound or video.
+- There is no rule yet that converts sound or video. When one comes, `media:migrate` proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. `media:migrate` refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.
 - Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.
 - «Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.
 
@@ -83,7 +83,7 @@ Measured values appear on the medium under **Technical characteristics**, since 
 When `media:migrate` converts a recording, afterwards:
 
 - Duration, number and kind of streams, channels, sample rate, resolution and frame rate are the same.
-- With a lossless target (change of container, FFV1, FLAC), the checksum of every stream is the same.
+- With a lossless target (change of container, FFV1, FLAC), the checksum of every stream is the same. `media:migrate` checks this itself since v0.111.1.
 - The embedded metadata is carried over.
 - The delivered file stays as an [original](preservation.md#behaltene-originale) when the target is lossy.
 

@@ -56,25 +56,25 @@ Der Inhalt einer Spur lässt sich bei verlustfreien Formaten über eine Prüfsum
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111.1.
+Stand: Version 0.112.0.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
-| Container, Dauer, Zahl der Bild-, Ton-, Untertitel- und Datenspuren | mit ffprobe bei der Übernahme; für ältere Aufnahmen trägt sie [`media:validate-formats`](console-commands.md#mediavalidate-formats) nach | nein |
-| Bild: Codec, Breite und Höhe, Seitenverhältnis (SAR, DAR), Bildrate, Zeilensprung, Pixelformat und Bittiefe, Farbraum | ebenso, für die erste Bildspur; ein Titelbild zählt nicht als Bildspur | nein |
-| Ton: Codec, Kanäle und Kanalbelegung, Abtastrate, Bittiefe | ebenso, für die erste Tonspur | nein |
+| Container, Dauer, Bitrate, Zahl der Bild-, Ton-, Untertitel- und Datenspuren | mit ffprobe bei der Übernahme; für ältere Aufnahmen trägt sie [`media:validate-formats`](console-commands.md#mediavalidate-formats) nach | nein |
+| Bild: Codec, Bitrate, Breite und Höhe, Seitenverhältnis (SAR, DAR), Bildrate, Zeilensprung, Pixelformat und Bittiefe, Farbraum | ebenso, für die erste Bildspur; ein Titelbild zählt nicht als Bildspur | nein |
+| Ton: Codec, Bitrate, Kanäle und Kanalbelegung, Abtastrate, Bittiefe | ebenso, für die erste Tonspur | nein |
 | alle Spuren | ebenso, je Spur eine Zeile mit Art und Codec | nein |
-| Inhalt jeder Spur | nein (anton#717) | nein |
+| Inhalt jeder Spur | bei einer Migration: MD5 der dekodierten Bilder und Samples je Spur (`ffmpeg -f streamhash`, Ton als 64-Bit-Gleitkommazahl), vorher und nachher | nach einer Migration mit [`media:migrate`](console-commands.md#mediamigrate): jede Spur mit gleicher Prüfsumme; dazu vergleicht ffprobe Spuren, Kanäle, Abtastrate, Bildgrösse, Bildrate und Dauer (anton#717) |
 | Abspielbar | – | bei der Übernahme liest ffprobe den Container; nachts mit [`media:validate-formats`](console-commands.md#mediavalidate-formats) dekodiert ffmpeg jedes Bild und jedes Sample, jede Fehlermeldung zählt; dazu beim Erstellen der Nutzungskopie |
 | Eingebettete Metadaten | nein | nein |
 
-Die gemessenen Werte stehen am Medium unter **Technische Merkmale**, seit v0.112 auch die Bitrate der Datei und der ersten Bild- und Tonspur. Der Memobase-, der RiC- und der A+-Export lesen Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis von dort (anton#720); die früheren Spalten `av_*` und `media:extract-av-metadata` gibt es nicht mehr.
+Die gemessenen Werte stehen am Medium unter **Technische Merkmale**; die Bitrate seit v0.112.0. Nach einer Migration misst `media:migrate` sie neu. Der Memobase-, der RiC- und der A+-Export lesen Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis von dort (anton#720); die früheren Spalten `av_*` und `media:extract-av-metadata` gibt es nicht mehr.
 
 ## Grenzen
 
 - Kennwerte im Einzelnen misst Anton nur für die erste Bild- und die erste Tonspur; weitere Spuren sind nur gezählt und mit Art und Codec aufgeführt.
 - Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf `media:validate-formats` die Merkmale nach; bis dahin fehlen sie auch in den Exporten.
-- `media:migrate` belegt bei Ton und Video nichts; die Pixelsignatur gibt es nur für Bilder, eine Prüfsumme je Spur fehlt (anton#717). Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht.
+- Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt `media:migrate` sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt `media:migrate` ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.
 - Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.
 - «Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.
 
@@ -83,7 +83,7 @@ Die gemessenen Werte stehen am Medium unter **Technische Merkmale**, seit v0.112
 Wandelt `media:migrate` eine Aufnahme um, muss danach gelten:
 
 - Dauer, Zahl und Art der Spuren, Kanäle, Abtastrate, Auflösung und Bildrate sind gleich.
-- Bei verlustfreiem Ziel (Containerwechsel, FFV1, FLAC) ist die Prüfsumme jeder Spur gleich.
+- Bei verlustfreiem Ziel (Containerwechsel, FFV1, FLAC) ist die Prüfsumme jeder Spur gleich. Das prüft `media:migrate` seit v0.111.1 selbst.
 - Die eingebetteten Metadaten sind übertragen.
 - Die gelieferte Datei bleibt als [Original](preservation.md#behaltene-originale), wenn das Ziel verlustbehaftet ist.
 
