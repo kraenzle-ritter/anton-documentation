@@ -17,6 +17,7 @@ On the standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ec
 - The archive hierarchy (`parents`) must already exist in Anton.
 - If the reference codes in the archive hierarchy have a prefix, this has to be set (setting: `identifier-prefix`).
 - With the setting `strict_sip_validation`, Anton issues an error during validation if a file is not found in the SIP.
+- Before extracting, Anton checks the archive (ZIP, TAR, GZ): at most 100,000 entries (`ARCHIVE_MAX_ENTRIES`), at most 100 times the archive's size once extracted (`ARCHIVE_MAX_RATIO`, at least `ARCHIVE_MIN_BYTES`, default 100 MB) and never more than the free space minus a reserve (`ARCHIVE_DISK_RESERVE`, default 1 GB), no links. A refused archive is recorded in the security log. The same applies to the directory import and `anton:restore`.
 - Anton form (`default_intern`):
     - `sip_id`: links to the run in the import log this record came from (should be in the `default_intern` form).
 

@@ -51,6 +51,8 @@ The check page shows every step of the check with its state; the running step ha
 7. Check the hierarchy
 8. Check the data
 
+A SIP with more than 100,000 files, with links, or one that would take many times its size once extracted is refused in step 1, before anything is extracted.
+
 An error in steps 1 to 3 ends the check; the following steps then show «not reached». At the end, the findings are listed by kind with an explanation and advice. If the SIP is valid, it can be imported from there.
 
 A check that runs longer than its time limit counts as «broken off» and has to be started again.

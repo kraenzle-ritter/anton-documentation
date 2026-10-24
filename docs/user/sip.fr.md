@@ -51,6 +51,8 @@ La page du contrôle affiche toutes les étapes avec leur état ; l’étape en 
 7. Contrôler la hiérarchie
 8. Contrôler les données
 
+Un SIP de plus de 100 000 fichiers, contenant des liens, ou qui occuperait une fois décompressé un multiple de sa taille est refusé à l’étape 1, avant toute décompression.
+
 Une erreur aux étapes 1 à 3 met fin au contrôle ; les étapes suivantes affichent alors « non atteint ». À la fin, les constats sont listés par type, avec explication et recommandation. Si le SIP est valide, il peut être importé depuis cette page.
 
 Un contrôle qui dépasse sa durée maximale est considéré comme « interrompu » et doit être relancé.

@@ -51,6 +51,8 @@ Die Prüfseite zeigt alle Schritte der Prüfung mit ihrem Zustand; der laufende 
 7. Hierarchie prüfen
 8. Angaben prüfen
 
+Ein SIP mit mehr als 100 000 Dateien, mit Links oder eines, das entpackt ein Vielfaches seiner Grösse belegen würde, wird in Schritt 1 abgewiesen, bevor etwas entpackt ist.
+
 Ein Fehler in Schritt 1 bis 3 beendet die Prüfung; die folgenden Schritte stehen dann auf «nicht erreicht». Am Ende stehen die Befunde je Art mit Erklärung und Empfehlung. Ist das SIP gültig, lässt es sich von dort aus importieren.
 
 Eine Prüfung, die länger als ihre Zeitgrenze läuft, gilt als «abgebrochen» und muss neu gestartet werden.

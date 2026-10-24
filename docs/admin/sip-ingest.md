@@ -17,6 +17,7 @@ Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0
 - Die Archivhierarchie (`parents`) muss bereits in Anton vorhanden sein.
 - Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: `identifier-prefix`).
 - Mit dem Setting `strict_sip_validation` gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.
+- Vor dem Entpacken prüft Anton das Archiv (ZIP, TAR, GZ): höchstens 100 000 Einträge (`ARCHIVE_MAX_ENTRIES`), entpackt höchstens das 100-fache der Archivgrösse (`ARCHIVE_MAX_RATIO`, mindestens `ARCHIVE_MIN_BYTES`, Vorgabe 100 MB) und nie mehr als der freie Platz minus Reserve (`ARCHIVE_DISK_RESERVE`, Vorgabe 1 GB), keine Links. Ein abgewiesenes Archiv steht im Sicherheitsprotokoll. Dasselbe gilt für den Verzeichnisimport und `anton:restore`.
 - Anton-Formular (`default_intern`):
     - `sip_id`: verlinkt auf den Lauf im Importprotokoll, aus dem dieser Datensatz stammt (sollte im Formular `default_intern` sein).
 

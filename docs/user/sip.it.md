@@ -51,6 +51,8 @@ La pagina del controllo mostra tutti i passi con il loro stato; il passo in cors
 7. Controllare la gerarchia
 8. Controllare i dati
 
+Un SIP con più di 100 000 file, con collegamenti, o che una volta estratto occuperebbe un multiplo delle sue dimensioni viene respinto al passo 1, prima di estrarre qualsiasi cosa.
+
 Un errore nei passi da 1 a 3 termina il controllo; i passi successivi mostrano allora «non raggiunto». Alla fine le constatazioni sono elencate per tipo, con spiegazione e raccomandazione. Se il SIP è valido, può essere importato da lì.
 
 Un controllo che supera il suo limite di tempo è considerato «interrotto» e va riavviato.
