@@ -85,9 +85,15 @@ In der **Benutzerverwaltung** sehen Administrator:innen dieselbe Liste für jede
 Konto und können mit **Alle Sitzungen beenden** alle Sitzungen eines Kontos
 beenden, etwa bei Verdacht auf Missbrauch oder beim Ausscheiden einer Person.
 
-Eine Sitzung endet nach 120 Minuten ohne Aktivität (`SESSION_LIFETIME`). Eine
-feste Höchstdauer gibt es bewusst nicht: Wer erschliesst, arbeitet oft den
-ganzen Tag im Formular.
+Eine Sitzung endet nach 120 Minuten ohne Aktivität (`SESSION_LIFETIME`) und
+spätestens 12 Stunden nach der Anmeldung, auch wenn ohne Pause gearbeitet wird
+(`SESSION_ABSOLUTE_LIFETIME`, in Minuten, Vorgabe 720; 0 schaltet die Grenze
+ab). 15 Minuten vorher erscheint unten auf der Seite ein Hinweis mit der Uhrzeit,
+damit Ungespeichertes gesichert werden kann (`SESSION_ABSOLUTE_WARNING`). Nach
+der neuen Anmeldung führt Anton auf die Seite zurück. «Angemeldet bleiben» gilt
+ebenso lange: Es überbrückt Pausen über 120 Minuten, verlängert die Sitzung aber
+nicht über die 12 Stunden hinaus. Das Ende einer Sitzung steht im
+Sicherheitsprotokoll.
 
 ## Dienstkonten
 

@@ -82,9 +82,14 @@ In the **user administration**, administrators see the same list for every
 account and can end all of an account's sessions with **End all sessions**, for
 instance on suspected misuse or when someone leaves.
 
-A session ends after 120 minutes without activity (`SESSION_LIFETIME`). There is
-deliberately no fixed maximum duration: people cataloguing often work in the
-form all day.
+A session ends after 120 minutes without activity (`SESSION_LIFETIME`) and at
+the latest 12 hours after signing in, even with work going on without a break
+(`SESSION_ABSOLUTE_LIFETIME`, in minutes, default 720; 0 turns the limit off).
+15 minutes before, a notice with the time appears at the bottom of the page so
+that unsaved work can be saved (`SESSION_ABSOLUTE_WARNING`). After signing in
+again, Anton returns to the page. «Remember me» lasts as long: it bridges breaks
+of more than 120 minutes but does not extend the session beyond the 12 hours.
+The end of a session is recorded in the security log.
 
 ## Service accounts {#dienstkonten}
 
