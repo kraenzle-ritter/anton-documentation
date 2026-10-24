@@ -2213,6 +2213,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#untertitel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untertitel
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2364,9 +2375,27 @@
 </tr>
 </tbody>
 </table>
+<h3 id="untertitel">Untertitel<a class="headerlink" href="#untertitel" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Stufe</th>
+<th>Format</th>
+<th>Bedingung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>akzeptiert</td>
+<td>SubRip (SRT), WebVTT</td>
+<td>in UTF-8, als Begleitdatei zur Aufnahme</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Bevorzugt</strong> sind beim Ton die unkomprimierten oder verlustfrei komprimierten Formate WAV/BWF und FLAC; so empfehlen es die NARA und die KOST. Bei Video zählt zuerst der Codec: Ein digital entstandenes Video wird nicht neu kodiert, denn jede verlustbehaftete Neukodierung verliert Information und kann Artefakte erzeugen (KOST). Bei der Digitalisierung analoger Träger entsteht der Master verlustfrei, als MKV mit FFV1 für das Bild und FLAC für den Ton (KOST); Memoriav und die Schweizerische Nationalphonothek empfehlen für den Ton 96 kHz und 24 Bit, die NARA mindestens 44,1 kHz und 16 Bit, besser 96 kHz und 24 Bit, für Video 10 Bit. MP4 mit H.264 ist die Wahl, wo ein verlustfreier Master zu viel Speicher braucht; Bewertungsentscheid, wie bei JPEG für Bilder.</p>
 <p><strong>Akzeptiert</strong> ist, wie bei den Bildern, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt; für Ton und Video ist das ffmpeg, das auch ProRes, WMV und MXF dekodiert. Verlustbehaftet komprimierte Aufnahmen (MP3, AAC, H.264) werden nicht in ein verlustfreies Format umgewandelt: Der Verlust bleibt, die Datei wird nur grösser (KOST). Die NARA rät, WMV nach AVI umzuwandeln; nach dem Grundsatz bleibt es, bis ffmpeg es nicht mehr liest.</p>
 <p>Ein Wechsel des Containers ist ohne Verlust möglich: Die Spuren werden unverändert in einen anderen Container verschoben, etwa von MOV nach MKV (KOST). Das ist die schonendste Form der Normalisierung.</p>
+<p><strong>Untertitel</strong> liegen als Begleitdatei neben der Aufnahme, nicht in ihr. SRT und WebVTT sind reiner Text mit Zeitmarken; die NARA stuft SRT mit geringem Risiko ein. Weil SRT keine feste Zeichenkodierung kennt, liefert die Ablieferstelle UTF-8. Untertitel, die als Spur im Container stecken, etwa in MKV oder MP4, bleiben dort; Anton zählt sie als Spur.</p>
 <p>Auch hier gilt: Ein Archiv führt <a href="../formate-bild/#formate">möglichst wenige Formate</a>.</p>
 <h2 id="wesentliche-eigenschaften">Wesentliche Eigenschaften<a class="headerlink" href="#wesentliche-eigenschaften" title="Permanent link">&para;</a></h2>
 <p>Gruppiert wie bei der NARA nach Erscheinung, Struktur, Verhalten und Kontext. Die NARA verlangt, bei einer Umwandlung digital entstandenen Materials dieselben Abtastwerte, dieselbe Kanalbelegung und, wo das neue Format es erlaubt, dieselbe Kompression zu behalten.</p>
@@ -2511,6 +2540,7 @@
 <li>Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf <code>media:validate-formats</code> die Merkmale nach; bis dahin fehlen sie auch in den Exporten.</li>
 <li>Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt <code>media:migrate</code> sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt <code>media:migrate</code> ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.</li>
 <li>Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.</li>
+<li>Untertitel als Begleitdatei nimmt der Upload nicht an; SRT und WebVTT fehlen unter den erlaubten Endungen. Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.</li>
 <li>«Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.</li>
 </ul>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>

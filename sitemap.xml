@@ -208,6 +208,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-text/"/>
     </url>
     <url>
+        <loc>Noneadmin/formate-uebrige/</loc>
+        <lastmod>2026-10-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-uebrige/"/>
+    </url>
+    <url>
         <loc>Noneadmin/forms/</loc>
         <lastmod>2026-10-24</lastmod>
         <changefreq>daily</changefreq>
@@ -1232,6 +1241,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-text/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-text/"/>
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-text/"/>
+    </url>
+    <url>
+        <loc>Noneen/admin/formate-uebrige/</loc>
+        <lastmod>2026-10-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-uebrige/"/>
     </url>
     <url>
         <loc>Noneen/admin/forms/</loc>
@@ -2260,6 +2278,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-text/"/>
     </url>
     <url>
+        <loc>Nonefr/admin/formate-uebrige/</loc>
+        <lastmod>2026-10-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-uebrige/"/>
+    </url>
+    <url>
         <loc>Nonefr/admin/forms/</loc>
         <lastmod>2026-10-24</lastmod>
         <changefreq>daily</changefreq>
@@ -3284,6 +3311,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-text/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/admin/formate-text/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-text/"/>
+    </url>
+    <url>
+        <loc>Noneit/admin/formate-uebrige/</loc>
+        <lastmod>2026-10-24</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneadmin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/admin/formate-uebrige/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/admin/formate-uebrige/"/>
     </url>
     <url>
         <loc>Noneit/admin/forms/</loc>

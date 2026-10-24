@@ -2218,7 +2218,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/sip-ingest/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -2247,6 +2247,7 @@
 <li>Die Archivhierarchie (<code>parents</code>) muss bereits in Anton vorhanden sein.</li>
 <li>Falls die Signaturen in der Archivhierarchie ein Prefix besitzen, muss dieses gesetzt werden (Setting: <code>identifier-prefix</code>).</li>
 <li>Mit dem Setting <code>strict_sip_validation</code> gibt Anton bei der Validierung einen Fehler aus, wenn eine Datei im SIP nicht gefunden wird.</li>
+<li>Vor dem Entpacken prüft Anton das Archiv (ZIP, TAR, GZ): höchstens 100 000 Einträge (<code>ARCHIVE_MAX_ENTRIES</code>), entpackt höchstens das 100-fache der Archivgrösse (<code>ARCHIVE_MAX_RATIO</code>, mindestens <code>ARCHIVE_MIN_BYTES</code>, Vorgabe 100 MB) und nie mehr als der freie Platz minus Reserve (<code>ARCHIVE_DISK_RESERVE</code>, Vorgabe 1 GB), keine Links. Ein abgewiesenes Archiv steht im Sicherheitsprotokoll. Dasselbe gilt für den Verzeichnisimport und <code>anton:restore</code>.</li>
 <li>Anton-Formular (<code>default_intern</code>):<ul>
 <li><code>sip_id</code>: verlinkt auf den Lauf im Importprotokoll, aus dem dieser Datensatz stammt (sollte im Formular <code>default_intern</code> sein).</li>
 </ul>

@@ -3476,6 +3476,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../formate-uebrige/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other formats: containers and XML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../inge/" class="md-nav__link">
         
   
@@ -4300,7 +4328,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/sip-ingest/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-24</span>
     </div>
   
   
@@ -4329,6 +4357,7 @@
 <li>The archive hierarchy (<code>parents</code>) must already exist in Anton.</li>
 <li>If the reference codes in the archive hierarchy have a prefix, this has to be set (setting: <code>identifier-prefix</code>).</li>
 <li>With the setting <code>strict_sip_validation</code>, Anton issues an error during validation if a file is not found in the SIP.</li>
+<li>Before extracting, Anton checks the archive (ZIP, TAR, GZ): at most 100,000 entries (<code>ARCHIVE_MAX_ENTRIES</code>), at most 100 times the archive's size once extracted (<code>ARCHIVE_MAX_RATIO</code>, at least <code>ARCHIVE_MIN_BYTES</code>, default 100 MB) and never more than the free space minus a reserve (<code>ARCHIVE_DISK_RESERVE</code>, default 1 GB), no links. A refused archive is recorded in the security log. The same applies to the directory import and <code>anton:restore</code>.</li>
 <li>Anton form (<code>default_intern</code>):<ul>
 <li><code>sip_id</code>: links to the run in the import log this record came from (should be in the <code>default_intern</code> form).</li>
 </ul>
