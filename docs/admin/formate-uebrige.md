@@ -11,9 +11,17 @@ Diese Seite ergänzt die Reihe je Formatkategorie (anton#687) um das, was in kei
 
 Ein Container ist kein Archivformat, sondern eine Verpackung. Was zählt, ist sein Inhalt: Für ihn gelten die Seiten der jeweiligen Kategorie. Die NARA stuft ZIP und TAR mit mittlerem, GZIP mit geringem Risiko ein und rät bei allen dreien, den Container zu behalten, die Dateien aber herauszuholen («Retain but extract files from the container»). Die KOST führt Container nicht als Format; sie rät allgemein von Kompression mit nicht offengelegten Verfahren und vom erneuten Komprimieren schon komprimierter Daten ab. ZIP, GZIP und TAR sind offengelegt und verlustfrei.
 
-Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Voreinstellung von k & r ist das Entpacken. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.
+Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Anton fragt bei jedem Paket; keine der beiden Möglichkeiten ist vorgewählt. k & r empfiehlt das Entpacken. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.
 
-Ein SIP kommt ebenfalls gepackt; Anton entpackt es beim Import.
+Wie Anton ein Paket behandelt, hängt vom Weg ab:
+
+| Weg | Paket |
+|---|---|
+| SIP-Import | wird immer entpackt |
+| Verzeichnis-Import | wird immer entpackt |
+| Medien zu einem Objekt hochladen | Anton fragt |
+| Upload-Link | bleibt gepackt, als Datei |
+| Medien zum Excel-Import | bleibt gepackt, als Datei |
 
 ## XML {#xml}
 

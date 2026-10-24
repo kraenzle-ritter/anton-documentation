@@ -11,9 +11,17 @@ This page completes the series per format category (anton#687) with what falls i
 
 A container is not an archival format but a wrapping. What counts is its content, and for that the pages of the respective category apply. NARA rates ZIP and TAR moderate risk, GZIP low risk, and for all three advises keeping the container but extracting the files («Retain but extract files from the container»). KOST does not list containers as a format; in general it advises against compression with undisclosed algorithms and against compressing data that is already compressed. ZIP, GZIP and TAR are disclosed and lossless.
 
-When a container is uploaded to an object, Anton asks what to do with it: **Import as directory** extracts it and the files enter the archive one by one; **Save as file** stores it unopened. The k & r default is to extract. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.
+When a container is uploaded to an object, Anton asks what to do with it: **Import as directory** extracts it and the files enter the archive one by one; **Save as file** stores it unopened. Anton asks for every package; neither option is preselected. k & r recommends extracting. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.
 
-A SIP comes packed too; Anton extracts it on import.
+How Anton treats a package depends on the way it comes in:
+
+| Way | Package |
+|---|---|
+| SIP import | always extracted |
+| directory import | always extracted |
+| uploading media to an object | Anton asks |
+| upload link | stays packed, as a file |
+| media for the Excel import | stays packed, as a file |
 
 ## XML {#xml}
 
