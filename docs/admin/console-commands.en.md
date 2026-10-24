@@ -496,7 +496,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (20)
+### media: (19)
 
 | Command | Description |
 |---|---|

@@ -501,7 +501,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (20)
+### media: (19)
 
 | Befehl | Beschreibung |
 |---|---|
