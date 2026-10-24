@@ -95,6 +95,8 @@ ebenso lange: Es überbrückt Pausen über 120 Minuten, verlängert die Sitzung 
 nicht über die 12 Stunden hinaus. Das Ende einer Sitzung steht im
 Sicherheitsprotokoll.
 
+Ein Konto darf an beliebig vielen Geräten zugleich angemeldet sein, etwa am Arbeitsplatz, mit dem Laptop im Magazin und mit dem Tablet für den QR-Upload. Eine neue Anmeldung beendet keine andere Sitzung. Den Überblick behält man über die Liste der Sitzungen; jede Anmeldung steht im Sicherheitsprotokoll. API-Tokens sind keine Sitzungen: Sie erscheinen nicht in der Liste, enden nicht mit ihr und werden einzeln widerrufen.
+
 ## Dienstkonten
 
 Das Konto `anton` gibt es auf jeder Installation. Es trägt den API-Token von

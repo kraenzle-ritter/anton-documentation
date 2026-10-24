@@ -91,6 +91,8 @@ again, Anton returns to the page. «Remember me» lasts as long: it bridges brea
 of more than 120 minutes but does not extend the session beyond the 12 hours.
 The end of a session is recorded in the security log.
 
+An account may be signed in on any number of devices at once, for instance at the desk, on the laptop in the stacks and on the tablet for the QR upload. Signing in does not end another session. The list of sessions keeps the overview; every sign-in is recorded in the security log. API tokens are not sessions: they do not appear in the list, do not end with it and are revoked one by one.
+
 ## Service accounts {#dienstkonten}
 
 The account `anton` exists on every installation. It holds the API token of
