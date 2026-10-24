@@ -214,8 +214,8 @@ Werte (de/fr/it/en/rm — alle Locales bleiben erhalten).
 - **Keywords** als `rico:Concept` + `skos:Concept`, referenziert
   via `rico:hasOrHadSubject`.
 - **Media** als `rico:Instantiation` mit `ebucore:hasMimeType`/
-  `hasHash`/`size` immer, plus AV-EBUcore-Properties wenn die
-  `av_*`-Spalten gefüllt sind.
+  `hasHash`/`size` immer, plus AV-EBUcore-Properties aus den technischen
+  Merkmalen des Masters (siehe unten).
 - **IRI-Schema**: `https://<tenant>.anton.ch/id/<entity-type>/<tenant-slug>-<id>`
   (überschreibbar via `setting('ric_base_iri')` pro Mandant oder
   `config('exporter_rdf.ric.base_iri')` global).
@@ -245,8 +245,8 @@ Schlanker und Memobase-spezifisch:
   `setting('memobase_sponsoring_memoriav')` auf `1` gesetzt ist
   (Memoriav-Konvention §9).
 - **EBUcore für AV-Material**: `ebucore:hasMimeType`, `ebucore:hasHash`,
-  `ebucore:size` immer. Wenn die `av_*`-Spalten in der `media`-Tabelle
-  befüllt sind (siehe unten), zusätzlich `ebucore:duration`,
+  `ebucore:size` immer. Bei Ton und Video aus den technischen Merkmalen
+  (siehe unten) zusätzlich `ebucore:duration`,
   `ebucore:hasCodec`, `ebucore:bitRate`, `ebucore:videoTrack`,
   `ebucore:samplingRate`, `ebucore:aspectRatio`.
 
@@ -269,28 +269,20 @@ Alle Settings werden über `/settings` oder per Tinker (`setting('key', 'value')
 
 ## AV-Metadaten
 
-Anton führt sechs AV-Spalten in `media`: `av_duration_seconds`,
-`av_codec`, `av_bitrate`, `av_resolution`, `av_sample_rate`,
-`av_aspect_ratio`.
+Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis kommen
+aus den **technischen Merkmalen** des Masters. Diese misst die
+Formatprüfung mit `ffprobe` bei der Übernahme, und der nächtliche Lauf
+`media:validate-formats` trägt sie für ältere Medien nach. Die Medienseite
+zeigt sie unter «Technische Merkmale». Der Codec ist der des Bildes, bei
+reinem Ton der des Tons; die Bitrate ist die der ganzen Datei.
 
-Sie werden automatisch befüllt:
+Bei Bildern zählt nur die Grösse: aus den Merkmalen, wo es welche gibt
+(TIFF), sonst aus dem Kopf des Masters. Damit schreibt der RiC-O- und der
+A+-Export Breite und Höhe auch für Fotos.
 
-- **Bei neuem Upload**: Listener `MediumIdentifyAndConvert` ruft direkt
-  nach der PRONOM-Identifikation `media:extract-av-metadata` für das
-  einzelne neue Medium auf. Inline, ~50ms, blockiert nichts; bei
-  ffprobe-Fehler nur Warn-Log.
-- **Bei Bestandsdaten**: einmaliger Backfill-Lauf via
-  `php artisan media:extract-av-metadata --env=<slug>` (siehe
-  [Console Commands](console-commands.md#mediaextract-av-metadata)).
-
-Bei Bildern (`image/*`) wird nur `av_resolution` aus Breite × Höhe
-befüllt — kein Codec, keine Dauer. Das reicht damit der Memobase-Export
-das `ebucore:videoTrack`-Element mit `width`/`height` für jedes Foto
-emittieren kann.
-
-Im Frontend (Objekt-Detail-Ansicht, Media-Tab) erscheint pro Medium eine
-kleine Zeile mit den vorhandenen Werten — `1:08`, `1246x1020 (623:510)`,
-`h264`, `903 kbps`, … — sofern befüllt.
+Bis v0.111 standen diese Werte ein zweites Mal in sechs Spalten `av_*` der
+Tabelle `media`, gefüllt von `media:extract-av-metadata`. Spalten und
+Befehl sind seit v0.112 entfernt (#720).
 
 ## Per-Objekt-Buttons in der Detail-Ansicht
 

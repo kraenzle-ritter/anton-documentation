@@ -68,12 +68,12 @@ As of version 0.111.1.
 | Playable | – | at ingest ffprobe reads the container; nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats) ffmpeg decodes every frame and every sample, and every error message counts; also when the access copy is made |
 | Embedded metadata | no | no |
 
-Measured values appear on the medium under **Technical characteristics**. The older details on duration, codec, bit rate, resolution, sample rate and aspect ratio remain alongside for the Memobase and RiC exports; [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata) fills them.
+Measured values appear on the medium under **Technical characteristics**, since v0.112 also the bit rate of the file and of the first video and audio stream. The Memobase, RiC and A+ exports read duration, codec, bit rate, picture size, sample rate and aspect ratio from there (anton#720); the former `av_*` columns and `media:extract-av-metadata` are gone.
 
 ## Limits
 
 - Anton measures detailed characteristics only for the first video and the first audio stream; further streams are only counted and listed with kind and codec.
-- On umberto, on 2026-10-23, 769 of 771 sound and video recordings lacked the older details for the exports; `media:extract-av-metadata` has never run there.
+- For recordings ingested before v0.111.1, the nightly run `media:validate-formats` adds the characteristics; until then the exports lack them too.
 - `media:migrate` proves nothing for sound and video; the pixel signature exists only for images, a checksum per stream is missing (anton#717). There is no rule yet that converts sound or video.
 - Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.
 - «Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.

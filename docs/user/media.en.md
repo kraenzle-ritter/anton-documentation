@@ -29,17 +29,15 @@ For the following formats, Anton produces access copies; an extension can easily
 
 ## Technical metadata (AV)
 
-On upload, Anton automatically reads technical properties via `ffprobe` and
-displays them in the media tab of the detail page: duration, resolution, codec,
-bitrate, sample rate, aspect ratio — as far as these are meaningful for the
-respective file. For photographs only the image size is shown, for audio no
-resolution, and so on.
+Anton measures sound and video with `ffprobe` at ingest and shows the values
+on the medium under «Technical characteristics»: container, duration, bit rate,
+picture (codec, size, aspect ratio, frame rate) and sound (codec, channels,
+sample rate, bit depth). For older media the nightly run of the format
+validation adds the characteristics.
 
-The values are also delivered in the RDF export (Memobase profile) as EBUcore
-properties, see [RDF export](../admin/download-rdf.md). For older existing media,
-the fields can be filled in retrospectively by backfill — see
-[`media:extract-av-metadata`](../admin/console-commands.md#mediaextract-av-metadata).
-
+The values also go into the RDF export (Memobase, RiC and A+ profiles) as
+EBUcore properties, see [RDF export](../admin/download-rdf.md). For photographs
+only the picture size goes along.
 
 ## Changing the order of media
 

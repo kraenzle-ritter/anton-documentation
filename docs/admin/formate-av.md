@@ -68,12 +68,12 @@ Stand: Version 0.111.1.
 | Abspielbar | – | bei der Übernahme liest ffprobe den Container; nachts mit [`media:validate-formats`](console-commands.md#mediavalidate-formats) dekodiert ffmpeg jedes Bild und jedes Sample, jede Fehlermeldung zählt; dazu beim Erstellen der Nutzungskopie |
 | Eingebettete Metadaten | nein | nein |
 
-Die gemessenen Werte stehen am Medium unter **Technische Merkmale**. Die älteren Angaben zu Dauer, Codec, Bitrate, Auflösung, Abtastrate und Seitenverhältnis bleiben daneben für den Memobase- und den RiC-Export; sie füllt [`media:extract-av-metadata`](console-commands.md#mediaextract-av-metadata).
+Die gemessenen Werte stehen am Medium unter **Technische Merkmale**, seit v0.112 auch die Bitrate der Datei und der ersten Bild- und Tonspur. Der Memobase-, der RiC- und der A+-Export lesen Dauer, Codec, Bitrate, Bildgrösse, Abtastrate und Seitenverhältnis von dort (anton#720); die früheren Spalten `av_*` und `media:extract-av-metadata` gibt es nicht mehr.
 
 ## Grenzen
 
 - Kennwerte im Einzelnen misst Anton nur für die erste Bild- und die erste Tonspur; weitere Spuren sind nur gezählt und mit Art und Codec aufgeführt.
-- Auf umberto fehlten am 23.10.2026 bei 769 von 771 Ton- und Videoaufnahmen die älteren Angaben für die Exporte; `media:extract-av-metadata` ist dort noch nie gelaufen.
+- Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf `media:validate-formats` die Merkmale nach; bis dahin fehlen sie auch in den Exporten.
 - `media:migrate` belegt bei Ton und Video nichts; die Pixelsignatur gibt es nur für Bilder, eine Prüfsumme je Spur fehlt (anton#717). Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht.
 - Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.
 - «Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.

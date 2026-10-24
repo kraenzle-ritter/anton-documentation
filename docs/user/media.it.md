@@ -29,19 +29,15 @@ Per i seguenti formati Anton produce copie di consultazione; un'estensione è fa
 
 ## Metadati tecnici (AV)
 
-Al caricamento Anton legge automaticamente le proprietà tecniche tramite
-`ffprobe` e le mostra nella scheda dei media della pagina di dettaglio: durata,
-risoluzione, codec, bitrate, frequenza di campionamento, rapporto d'aspetto —
-nella misura in cui hanno senso per il file in questione. Per le fotografie viene
-mostrata solo la dimensione dell'immagine, per l'audio nessuna risoluzione e così
-via.
+Anton misura audio e video con `ffprobe` all'acquisizione e mostra i valori
+sul media sotto «Caratteristiche tecniche»: contenitore, durata, bitrate,
+immagine (codec, dimensioni, rapporto d'aspetto, frequenza dei fotogrammi) e
+audio (codec, canali, frequenza di campionamento, profondità di bit). Per i
+media più vecchi il controllo notturno dei formati aggiunge le caratteristiche.
 
-I valori vengono forniti anche nell'esportazione RDF (profilo Memobase) come
-proprietà EBUcore, vedi [Esportazione RDF](../admin/download-rdf.md). Per i media
-più vecchi già presenti i campi possono essere completati a posteriori tramite
-backfill — vedi
-[`media:extract-av-metadata`](../admin/console-commands.md#mediaextract-av-metadata).
-
+I valori vengono forniti anche nell'esportazione RDF (profili Memobase, RiC e
+A+) come proprietà EBUcore, vedi [Esportazione RDF](../admin/download-rdf.md).
+Per le fotografie viene fornita solo la dimensione dell'immagine.
 
 ## Modificare l'ordine dei media
 
