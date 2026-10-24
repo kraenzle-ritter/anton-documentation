@@ -23,11 +23,19 @@ Was hier steht, braucht Anton für drei Dinge: um zu dokumentieren, was eine Auf
 | bevorzugt | MP4 mit H.264 | wo Speicher knapp ist |
 | akzeptiert | MOV (auch ProRes), AVI, MPEG-2, MPEG-TS, MXF, WebM, WMV, MP4 mit HEVC oder AV1 | solange ffmpeg sie liest |
 
+### Untertitel
+
+| Stufe | Format | Bedingung |
+|---|---|---|
+| akzeptiert | SubRip (SRT), WebVTT | in UTF-8, als Begleitdatei zur Aufnahme |
+
 **Bevorzugt** sind beim Ton die unkomprimierten oder verlustfrei komprimierten Formate WAV/BWF und FLAC; so empfehlen es die NARA und die KOST. Bei Video zählt zuerst der Codec: Ein digital entstandenes Video wird nicht neu kodiert, denn jede verlustbehaftete Neukodierung verliert Information und kann Artefakte erzeugen (KOST). Bei der Digitalisierung analoger Träger entsteht der Master verlustfrei, als MKV mit FFV1 für das Bild und FLAC für den Ton (KOST); Memoriav und die Schweizerische Nationalphonothek empfehlen für den Ton 96 kHz und 24 Bit, die NARA mindestens 44,1 kHz und 16 Bit, besser 96 kHz und 24 Bit, für Video 10 Bit. MP4 mit H.264 ist die Wahl, wo ein verlustfreier Master zu viel Speicher braucht; Bewertungsentscheid, wie bei JPEG für Bilder.
 
 **Akzeptiert** ist, wie bei den Bildern, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt; für Ton und Video ist das ffmpeg, das auch ProRes, WMV und MXF dekodiert. Verlustbehaftet komprimierte Aufnahmen (MP3, AAC, H.264) werden nicht in ein verlustfreies Format umgewandelt: Der Verlust bleibt, die Datei wird nur grösser (KOST). Die NARA rät, WMV nach AVI umzuwandeln; nach dem Grundsatz bleibt es, bis ffmpeg es nicht mehr liest.
 
 Ein Wechsel des Containers ist ohne Verlust möglich: Die Spuren werden unverändert in einen anderen Container verschoben, etwa von MOV nach MKV (KOST). Das ist die schonendste Form der Normalisierung.
+
+**Untertitel** liegen als Begleitdatei neben der Aufnahme, nicht in ihr. SRT und WebVTT sind reiner Text mit Zeitmarken; die NARA stuft SRT mit geringem Risiko ein. Weil SRT keine feste Zeichenkodierung kennt, liefert die Ablieferstelle UTF-8. Untertitel, die als Spur im Container stecken, etwa in MKV oder MP4, bleiben dort; Anton zählt sie als Spur.
 
 Auch hier gilt: Ein Archiv führt [möglichst wenige Formate](formate-bild.md#formate).
 
@@ -76,6 +84,7 @@ Die gemessenen Werte stehen am Medium unter **Technische Merkmale**; die Bitrate
 - Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf `media:validate-formats` die Merkmale nach; bis dahin fehlen sie auch in den Exporten.
 - Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt `media:migrate` sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt `media:migrate` ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.
 - Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.
+- Untertitel als Begleitdatei nimmt der Upload nicht an; SRT und WebVTT fehlen unter den erlaubten Endungen. Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.
 - «Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.
 
 ## Was eine Migration prüfen muss

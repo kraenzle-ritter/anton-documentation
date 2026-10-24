@@ -23,11 +23,19 @@ Anton needs this for three things: to document what makes up a recording (NDSA C
 | preferred | MP4 with H.264 | where storage is scarce |
 | accepted | MOV (ProRes too), AVI, MPEG-2, MPEG-TS, MXF, WebM, WMV, MP4 with HEVC or AV1 | as long as ffmpeg reads them |
 
+### Subtitles
+
+| Level | Format | Condition |
+|---|---|---|
+| accepted | SubRip (SRT), WebVTT | in UTF-8, as a sidecar file to the recording |
+
 **Preferred** for sound are the uncompressed or losslessly compressed formats WAV/BWF and FLAC; this is what NARA and KOST recommend. For video the codec comes first: a born-digital video is not re-encoded, since every lossy re-encoding loses information and may produce artefacts (KOST). When analogue carriers are digitised, the master is made losslessly, as MKV with FFV1 for the picture and FLAC for the sound (KOST); for sound, Memoriav and the Swiss National Sound Archives recommend 96 kHz and 24 bits, NARA at least 44.1 kHz and 16 bits, better 96 kHz and 24 bits, and 10 bits for video. MP4 with H.264 is the choice where a lossless master needs too much storage; an appraisal decision, as with JPEG for images.
 
 **Accepted** is, as with images, what widespread open-source tools can read and will in all likelihood go on reading; for sound and video that is ffmpeg, which also decodes ProRes, WMV and MXF. Recordings already compressed with loss (MP3, AAC, H.264) are not converted to a lossless format: the loss remains, the file only grows (KOST). NARA advises converting WMV to AVI; under the principle it stays until ffmpeg no longer reads it.
 
 Changing the container is possible without loss: the streams are moved unchanged into another container, for instance from MOV to MKV (KOST). This is the gentlest form of normalisation.
+
+**Subtitles** lie beside the recording as a sidecar file, not inside it. SRT and WebVTT are plain text with time codes; NARA rates SRT low risk. Since SRT has no fixed character encoding, the depositor delivers UTF-8. Subtitles carried as a stream in the container, for instance in MKV or MP4, stay there; Anton counts them as a stream.
 
 Here too: an archive keeps [as few formats as possible](formate-bild.md#formate).
 
@@ -76,6 +84,7 @@ Measured values appear on the medium under **Technical characteristics**; the bi
 - For recordings ingested before v0.111.1, the nightly run `media:validate-formats` adds the characteristics; until then the exports lack them too.
 - There is no rule yet that converts sound or video. When one comes, `media:migrate` proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. `media:migrate` refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.
 - Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.
+- The upload does not accept subtitles as sidecar files; SRT and WebVTT are missing from the allowed extensions. Of a subtitle stream in the container, Anton measures only the stream, not its text.
 - «Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.
 
 ## What a migration must check
