@@ -41,6 +41,10 @@ Where the holdings stand in the [format validation](preservation.md), each maste
 
 For each master the result of its latest virus check, at ingest or with [`media:virus-scan`](console-commands.md#mediavirus-scan): malware found, not checkable, clean scanned in parts (files over 2 GB), clean, never checked. Also the scanner and signatures of the latest check and the list of masters with a finding or not checkable. Files refused at ingest never became media; they are in the security log.
 
+## Format list {#formatliste}
+
+Which formats the archive prefers and accepts, by PUID, and the media whose format is not on it. Here an admin saves an own list or returns to the default; see [Format list](formatliste.md).
+
 ## Media files
 
 All media with search and filters by PUID, NARA risk, NARA action and MIME type, each with a link to the record and to the master download.

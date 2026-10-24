@@ -41,6 +41,10 @@ Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach se
 
 Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit [`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.
 
+## Formatliste {#formatliste}
+
+Welche Formate das Archiv bevorzugt und akzeptiert, nach PUID, und die Medien, deren Format nicht darauf steht. Hier speichert ein Admin eine eigene Liste oder kehrt zur Vorgabe zurück; siehe [Formatliste](formatliste.md).
+
 ## Mediendateien
 
 Alle Medien mit Suche und Filtern nach PUID, NARA-Risiko, NARA-Aktion und MIME-Typ, je mit Link zum Datensatz und zum Download des Masters.

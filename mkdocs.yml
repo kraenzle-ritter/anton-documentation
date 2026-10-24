@@ -142,6 +142,7 @@ nav:
       - 'Audio und Video: Formate und Eigenschaften': admin/formate-av.md
       - 'Tabellen und Präsentationen: Formate und Eigenschaften': admin/formate-tabellen.md
       - 'Übrige Formate: Container und XML': admin/formate-uebrige.md
+      - Formatliste: admin/formatliste.md
       - Inge und DIMAG: admin/inge.md
       - DIMAG-Upload-Status: admin/dimag-uploads.md
     - Betrieb:
@@ -293,6 +294,7 @@ plugins:
                 - 'Audio and video: formats and properties': admin/formate-av.md
                 - 'Spreadsheets and presentations: formats and properties': admin/formate-tabellen.md
                 - 'Other formats: containers and XML': admin/formate-uebrige.md
+                - Format list: admin/formatliste.md
                 - Inge and DIMAG: admin/inge.md
                 - DIMAG upload status: admin/dimag-uploads.md
               - Operations:
