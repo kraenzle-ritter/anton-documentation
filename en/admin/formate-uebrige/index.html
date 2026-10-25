@@ -14,7 +14,7 @@
         <link rel="prev" href="../formate-tabellen/">
       
       
-        <link rel="next" href="../inge/">
+        <link rel="next" href="../formatliste/">
       
       
         
@@ -3537,6 +3537,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../formatliste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Format list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../inge/" class="md-nav__link">
         
   
@@ -3656,6 +3684,34 @@
     
   
     Anton Doctor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protokolle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
   
 
     
@@ -4430,7 +4486,7 @@
 </tbody>
 </table>
 <p>A container is not an archival format but a wrapping. What counts is its content, and for that the pages of the respective category apply. NARA rates ZIP and TAR moderate risk, GZIP low risk, and for all three advises keeping the container but extracting the files («Retain but extract files from the container»). KOST does not list containers as a format; in general it advises against compression with undisclosed algorithms and against compressing data that is already compressed. ZIP, GZIP and TAR are disclosed and lossless.</p>
-<p>When a container is uploaded to an object, Anton asks what to do with it: <strong>Import as directory</strong> extracts it and the files enter the archive one by one; <strong>Save as file</strong> stores it unopened. Anton asks for every package; neither option is preselected. k &amp; r recommends extracting. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.</p>
+<p>When a container is uploaded to an object, Anton asks what to do with it: <strong>Import as directory</strong> extracts it and the files enter the archive one by one; <strong>Save as file</strong> stores it unopened. Anton asks for every package; extracting is the suggested way, as k &amp; r recommends (anton#737). Saved as a file, Anton does not look inside: no format, no format check, no access copy for the content. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.</p>
 <p>How Anton treats a package depends on the way it comes in:</p>
 <table>
 <thead>
@@ -4454,11 +4510,11 @@
 </tr>
 <tr>
 <td>upload link</td>
-<td>stays packed, as a file</td>
+<td>not taken</td>
 </tr>
 <tr>
 <td>media for the Excel import</td>
-<td>stays packed, as a file</td>
+<td>not taken; put it extracted into the import directory</td>
 </tr>
 </tbody>
 </table>
