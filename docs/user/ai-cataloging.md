@@ -22,6 +22,8 @@ Nichts wird dabei automatisch in die Datenbank geschrieben — die Vorschläge
 landen im Formular, gespeichert wird erst mit der normalen Speichern-Taste. Das
 Erzeugen setzt die Rolle `editor` voraus.
 
+Je Konto gelten Grenzen: höchstens 30 Vorschläge pro Stunde und höchstens ein Viertel des Monatsbudgets pro Tag. Die Werte legt der Betrieb je Archiv fest. Tonaufnahmen und der Ton von Videos werden im Hintergrund transkribiert; solange das läuft, kommt der Vorschlag ohne sie, mit einem Hinweis. Später erneut anfragen, dann ist die Transkription dabei.
+
 ## Was Anton von sich aus übernimmt — und was nicht
 
 Die Voreinstellungen sind bewusst ungleich:

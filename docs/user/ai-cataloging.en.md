@@ -22,6 +22,8 @@ Nothing is written to the database automatically in the process — the suggesti
 land in the form and are only saved with the normal save button. Generating them
 requires the `editor` role.
 
+Each account has limits: at most 30 suggestions per hour and at most a quarter of the monthly budget per day. Operations sets the values per archive. Audio recordings and the sound of videos are transcribed in the background; while that runs, the suggestion comes without them, with a notice. Ask again later and the transcript is included.
+
 ## What Anton adopts on its own — and what it does not
 
 The defaults are deliberately unequal:

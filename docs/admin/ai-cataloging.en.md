@@ -49,6 +49,7 @@ writes — the AI only makes suggestions, the human decides.
   better quality with typed documents)
 - **Audio** — Whisper V3 transcript via the Infomaniak async batch API. The
   transcript can optionally end up in the full-text index as a text field.
+  It is made in the job `TranscribeAudioJob` (up to 1,200 s), not in the request, and stored on the medium; a suggestion made before goes without it.
 - **Video** — 5 ffmpeg stills, evenly spaced across the running time
 - **The existing title** of the record as context
 
@@ -123,6 +124,8 @@ selection in the operator workflow only unfolds on request.
 - The **margin** on the provider costs (default 1.30, that is, a 30 % surcharge)
   is set installation-wide in `config/ai.php` and can be overridden in the env
   via `AI_BILLING_MARGIN`
+- **Limits per account:** `AI_SUGGESTIONS_PER_HOUR` (default 30 suggestions per hour) and `AI_USER_DAILY_SHARE` (default 0.25: one account spends at most a quarter of the monthly budget per day).
+- The call to the provider stops after 60 s (`laravel/ai`'s default).
 
 ## Data protection
 

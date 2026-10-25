@@ -53,6 +53,7 @@ Mensch entscheidet.
   (für bessere Qualität bei getippten Dokumenten)
 - **Audio** — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
   Das Transkript kann optional als Textfeld in den Volltext-Index landen.
+  Es entsteht im Job `TranscribeAudioJob` (bis 1 200 s), nicht im Request, und wird am Medium gespeichert; ein Vorschlag, der vorher kommt, geht ohne es.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
 - **Bestehender Titel** des Datensatzes als Kontext
 
@@ -128,6 +129,8 @@ Profil-Auswahl im Operator-Workflow nur auf Wunsch aufklappt.
 - **Marge** auf die Provider-Kosten (Default 1.30, also 30% Aufschlag)
   liegt anton-installations-weit in `config/ai.php`, env-overridable
   via `AI_BILLING_MARGIN`
+- **Grenzen je Konto:** `AI_SUGGESTIONS_PER_HOUR` (Vorgabe 30 Vorschläge pro Stunde) und `AI_USER_DAILY_SHARE` (Vorgabe 0.25: ein Konto verbraucht pro Tag höchstens ein Viertel des Monatsbudgets).
+- Der Aufruf beim Anbieter bricht nach 60 s ab (Vorgabe von `laravel/ai`).
 
 ## Datenschutz
 

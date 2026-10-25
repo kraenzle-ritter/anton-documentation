@@ -22,6 +22,8 @@ Nulla viene scritto automaticamente nella banca dati — le proposte finiscono n
 formulario e vengono salvate solo con il normale pulsante di salvataggio. La
 generazione presuppone il ruolo `editor`.
 
+Ogni account ha dei limiti: al massimo 30 proposte all'ora e al massimo un quarto del budget mensile al giorno. L'esercizio fissa i valori per ogni archivio. Le registrazioni audio e l'audio dei video vengono trascritti in background; finché ciò avviene, la proposta arriva senza di essi, con un avviso. Richiedendo più tardi, la trascrizione è inclusa.
+
 ## Che cosa Anton riprende da sé — e che cosa no
 
 Le impostazioni predefinite sono volutamente disuguali:

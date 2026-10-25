@@ -25,6 +25,8 @@ Rien n'est écrit automatiquement dans la base de données — les propositions
 arrivent dans le formulaire et ne sont enregistrées qu'avec le bouton
 d'enregistrement habituel. La génération suppose le rôle `editor`.
 
+Chaque compte a des limites : 30 propositions par heure au plus et au plus un quart du budget mensuel par jour. L'exploitation fixe ces valeurs pour chaque archive. Les enregistrements sonores et le son des vidéos sont transcrits en arrière-plan ; tant que cela dure, la proposition est faite sans eux, avec un avis. Redemander plus tard, et la transcription est incluse.
+
 ## Ce qu'Anton reprend de lui-même — et ce qu'il ne reprend pas
 
 Les valeurs par défaut sont délibérément inégales :
