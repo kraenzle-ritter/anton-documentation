@@ -12,7 +12,7 @@ eingehängt werden.
 
 1. Auf der Detail- oder Bearbeitungsansicht die Taste **Neu** anklicken. Es
    öffnet sich das Fenster «Neue Datensätze erstellen».
-2. **Anzahl** angeben — mehrere Geschwister lassen sich in einem Schritt anlegen.
+2. **Anzahl** angeben — mehrere Geschwister lassen sich in einem Schritt anlegen, höchstens 500.
 3. **Position** wählen: **vor**, **in** oder **nach** dem aktuellen Datensatz.
    Bei «in» wird der aktuelle Datensatz zum übergeordneten, bei «vor» und «nach»
    entsteht ein Geschwister.
@@ -57,7 +57,7 @@ Abschnitt. Nach dem Speichern wechselt Anton in die Detailansicht.
 ## Kopieren
 
 Auf der Detailansicht — nicht in der Bearbeitungsmaske — steht die Taste
-**Kopieren**. Im Fenster «Datensatz kopieren» wird die Anzahl Kopien angegeben.
+**Kopieren**. Im Fenster «Datensatz kopieren» wird die Anzahl Kopien angegeben, höchstens 500.
 Kopiert werden Titel, Textfelder, Ereignisse, Akteur:innen, Orte und Schlagwörter;
 die Kopie wird als Geschwister direkt hinter dem Original eingehängt und erhält
 eine neue Signatur. Medien werden nicht mitkopiert.

@@ -12,6 +12,8 @@ I descrittori (attori e attrici, luoghi, parole chiave tematiche) possono essere
 
 L'amministrazione può generare e scaricare in qualsiasi momento un dump SQL. Contiene tutti i dati d'archivio senza perdite, ma nessun mezzo d'accesso di altre persone: sessioni, code e cache sono esclusi, i token API e di caricamento sono vuoti. I backup completi della banca dati sono visibili solo al superutente.
 
+Il dump viene creato in background e compare nell'elenco non appena è pronto; ne viene creato uno alla volta.
+
 ## Strumenti di ricerca in Word
 
 Per singoli fondi è possibile generare strumenti di ricerca classici in formato Word. Sono possibili anche adattamenti più estesi.

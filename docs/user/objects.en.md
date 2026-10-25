@@ -11,7 +11,7 @@ record: from there it is determined where the new units are attached.
 
 1. In the detail or edit view, click the **New** button. The «Create new records»
    window opens.
-2. Specify the **number** — several siblings can be created in one step.
+2. Specify the **number** — several siblings can be created in one step, at most 500.
 3. Choose the **position**: **before**, **in** or **after** the current record.
    With «in», the current record becomes the parent; with «before» and «after», a
    sibling is created.
@@ -55,7 +55,7 @@ section. After saving, Anton switches to the detail view.
 ## Copying
 
 The **Copy** button is available in the detail view — not in the edit form. In
-the «Copy record» window, the number of copies is specified. Title, text fields,
+the «Copy record» window, the number of copies is specified, at most 500. Title, text fields,
 events, actors, places and keywords are copied; the copy is attached as a
 sibling directly after the original and receives a new reference code. Media are
 not copied.

@@ -13,7 +13,7 @@ unità.
 1. Nella vista di dettaglio o di modifica fare clic sul pulsante **Nuovo**. Si
    apre la finestra «Creare nuove schede».
 2. Indicare il **numero** — più unità dello stesso livello possono essere create
-   in un solo passaggio.
+   in un solo passaggio, al massimo 500.
 3. Scegliere la **posizione**: **prima**, **dentro** o **dopo** la scheda
    corrente. Con «dentro» la scheda corrente diventa l'unità superiore; con
    «prima» e «dopo» nasce un'unità dello stesso livello.
@@ -60,7 +60,7 @@ dettaglio.
 ## Copiare
 
 Nella vista di dettaglio — non nella maschera di modifica — si trova il pulsante
-**Copia**. Nella finestra «Copiare la scheda» si indica il numero di copie.
+**Copia**. Nella finestra «Copiare la scheda» si indica il numero di copie, al massimo 500.
 Vengono copiati titolo, campi di testo, eventi, attori e attrici, luoghi e
 parole chiave; la copia viene agganciata come unità dello stesso livello subito
 dopo l'originale e riceve una nuova segnatura. I media non vengono copiati.

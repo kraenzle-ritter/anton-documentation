@@ -12,6 +12,8 @@ Les descripteurs (acteur·trice·s, lieux, mots-clés matière) peuvent être ex
 
 Les administrateur·trice·s peuvent générer et télécharger à tout moment un dump SQL. Il contient toutes les données d'archives sans perte, mais aucun moyen d'accès d'autres personnes : les sessions, files d'attente et caches sont exclus, les jetons d'API et de téléversement sont vides. Les sauvegardes complètes de la base de données ne sont visibles que pour le superutilisateur.
 
+Le dump est créé en arrière-plan et apparaît dans la liste dès qu'il est prêt ; un seul est créé à la fois.
+
 ## Instruments de recherche Word
 
 Des instruments de recherche classiques au format Word peuvent être générés pour certains fonds. Des adaptations plus poussées sont également possibles.

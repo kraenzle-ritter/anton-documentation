@@ -12,6 +12,8 @@ Die Deskriptoren (Akteur:innen, Orte, Sachschlagworte) können als TEI (Text Enc
 
 Admins können jederzeit einen SQL-Dump erzeugen und herunterladen. Er enthält alle Archivdaten verlustfrei, aber keine Zugangsmittel anderer Personen: Sitzungen, Warteschlangen und Zwischenspeicher bleiben aussen vor, API- und Upload-Tokens sind leer. Die vollständigen Datenbanksicherungen sieht nur der Superuser.
 
+Der Dump entsteht im Hintergrund und erscheint in der Liste, sobald er fertig ist; es läuft einer zur Zeit.
+
 ## Word Findbücher
 
 Von einzelnen Beständen können klassische Findbücher im Wordformat erzeugt werden. Weitergehende Anpassungen sind ebenfalls möglich.

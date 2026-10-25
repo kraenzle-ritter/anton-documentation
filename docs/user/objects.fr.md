@@ -13,7 +13,7 @@ détermine où les nouvelles unités seront rattachées.
 1. Dans la vue de détail ou de saisie, cliquer sur le bouton **Nouveau**. La
    fenêtre «&nbsp;Créer de nouvelles notices&nbsp;» s'ouvre.
 2. Indiquer le **nombre** — plusieurs unités de même niveau peuvent être créées
-   en une seule opération.
+   en une seule opération, 500 au plus.
 3. Choisir la **position** : **avant**, **dans** ou **après** la notice
    courante. Avec «&nbsp;dans&nbsp;», la notice courante devient l'unité
    supérieure ; avec «&nbsp;avant&nbsp;» et «&nbsp;après&nbsp;», on crée une
@@ -61,7 +61,7 @@ l'enregistrement, Anton bascule dans la vue de détail.
 
 Dans la vue de détail — et non dans le masque de saisie — se trouve le bouton
 **Copier**. Dans la fenêtre «&nbsp;Copier la notice&nbsp;», on indique le nombre
-de copies. Sont copiés le titre, les champs de texte, les événements, les
+de copies, 500 au plus. Sont copiés le titre, les champs de texte, les événements, les
 acteur·trice·s, les lieux et les mots-clés ; la copie est rattachée comme unité
 de même niveau directement après l'original et reçoit une nouvelle cote. Les
 médias ne sont pas copiés.

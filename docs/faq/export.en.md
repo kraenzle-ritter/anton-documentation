@@ -12,6 +12,8 @@ The descriptors (actors, places, subject keywords) can be exported as TEI (Text 
 
 Admins can generate and download an SQL dump at any time. It holds all archival data losslessly, but none of other people's means of access: sessions, job queues and caches are left out, API and upload tokens are empty. The complete database backups are visible to the superuser only.
 
+The dump is created in the background and appears in the list once it is ready; one runs at a time.
+
 ## Word finding aids
 
 Classic finding aids in Word format can be generated for individual fonds. Further adaptations are also possible.
