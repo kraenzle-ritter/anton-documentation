@@ -1555,6 +1555,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mes exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2417,7 +2445,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -2479,9 +2507,13 @@
 </tbody>
 </table>
 <p>Ces réglages sont enregistrés et s'appliquent à tous les téléversements.</p>
+<p>Après l'enregistrement, la page indique que les fichiers ont été reçus. Ils sont traités et déposés en arrière-plan et apparaissent dans l'objet dès que c'est fait, après quelques minutes pour de nombreuses numérisations avec OCR. Une exécution OCR s'arrête après 600 secondes (<code>OCRMYPDF_TIMEOUT</code>) ; le fichier est alors déposé sans couche de texte.</p>
 <h3 id="details-de-la-chaine-de-traitement-pour-ladministration">Détails de la chaîne de traitement (pour l'administration)<a class="headerlink" href="#details-de-la-chaine-de-traitement-pour-ladministration" title="Permanent link">&para;</a></h3>
 <p>La chaîne s'exécute dans cet ordre :</p>
-<div class="highlight"><pre><span></span><code>1. AVANT L'IMPORT (synchrone)
+<div class="highlight"><pre><span></span><code>0. DANS LA REQUÊTE
+   vérifier le jeton et les fichiers → job ProcessTokenUpload
+
+1. AVANT L'IMPORT (file d'attente, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC conservé comme version)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master)

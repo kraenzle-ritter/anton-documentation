@@ -1421,6 +1421,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4362,7 +4390,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-word/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4379,7 +4407,7 @@
 <p>The footer (<code>word_footer</code>) and the header (<code>word_header</code>) can also be adapted in the settings.</p>
 <h2 id="custom-word-export">Custom Word export<a class="headerlink" href="#custom-word-export" title="Permanent link">&para;</a></h2>
 <p>For a Word export there must be a class in the <code>Controller\Word</code> directory which organises the download, for example <code>ArchivdatenWordEdxport</code>. The class has to be named like <code>${template}WordEdxport</code>. In the example, therefore, the template is «Archivdaten».</p>
-<p>The export class must have one method which takes an integer as an argument and returns a <code>Symfony\Component\HttpFoundation\Response</code>:</p>
+<p>The export class must have one method which takes an integer as an argument and returns the file as a download (<code>response()-&gt;download(…)</code>, a <code>Symfony\Component\HttpFoundation\BinaryFileResponse</code>). Anton reads the file's path from it: above 1,000 records in the subtree (<code>EXPORT_SYNC_RECORDS</code>) the finding aid is built in the background and filed under <a href="../../user/my-exports/">My exports</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="x">public function run($id) : Response</span>
 </code></pre></div>
 <p>When the class is finished, you have to add the <code>ModuleWordDownload</code> to the default object form (via the GUI).</p>

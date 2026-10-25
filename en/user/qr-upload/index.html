@@ -1555,6 +1555,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4506,7 +4534,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4568,9 +4596,13 @@
 </tbody>
 </table>
 <p>These settings are saved and apply to all uploads.</p>
+<p>After saving, the page reports that the files have been received. They are processed and stored in the background and appear on the object once that is done, after a few minutes for many scans with OCR. An OCR run stops after 600 seconds (<code>OCRMYPDF_TIMEOUT</code>); the file is then stored without a text layer.</p>
 <h3 id="pipeline-details-for-admins">Pipeline details (for admins)<a class="headerlink" href="#pipeline-details-for-admins" title="Permanent link">&para;</a></h3>
 <p>The pipeline runs in this order:</p>
-<div class="highlight"><pre><span></span><code>1. BEFORE IMPORT (synchronous)
+<div class="highlight"><pre><span></span><code>0. IN THE REQUEST
+   check token and files → job ProcessTokenUpload
+
+1. BEFORE IMPORT (queue, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC kept as a version)
    JPGs → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b for scans, otherwise PDF, with OCR text layer (master)

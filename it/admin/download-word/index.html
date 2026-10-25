@@ -1417,6 +1417,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Le mie esportazioni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2207,7 +2235,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/download-word/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-word/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-19</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -2224,7 +2252,7 @@
 <p>Ausserdem kann in der Einstellungen der Footer (<code>word_footer</code>) sowie der Header <code>word_header</code> angepasst werden.</p>
 <h2 id="eigener-word-export">Eigener Word-Export<a class="headerlink" href="#eigener-word-export" title="Permanent link">&para;</a></h2>
 <p>Für einen eigenen Word-Export braucht es im Verzeichnis <code>Controller\Word</code> eine Klasse, die den Download organisiert, zum Beispiel <code>ArchivdatenWordEdxport</code>. Die Klasse muss nach dem Muster <code>${template}WordEdxport</code> benannt sein; im Beispiel lautet das Template also «Archivdaten».</p>
-<p>Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und eine <code>Symfony\Component\HttpFoundation\Response</code> zurückgibt:</p>
+<p>Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und die Datei als Download zurückgibt (<code>response()-&gt;download(…)</code>, eine <code>Symfony\Component\HttpFoundation\BinaryFileResponse</code>). Anton liest den Pfad der Datei daraus: Bei mehr als 1 000 Datensätzen im Teilbaum (<code>EXPORT_SYNC_RECORDS</code>) entsteht das Findbuch im Hintergrund und wird unter <a href="../../user/my-exports/">Meine Exporte</a> abgelegt.</p>
 <div class="highlight"><pre><span></span><code><span class="x">public function run($id) : Response</span>
 </code></pre></div>
 <p>Ist die Klasse fertig, wird das <code>ModuleWordDownload</code> über die Oberfläche in das Standard-Objektformular aufgenommen.</p>

@@ -1421,6 +1421,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3211,6 +3239,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Per-object buttons in the detail view">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#large-subtrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large subtrees
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4619,6 +4664,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Per-object buttons in the detail view">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#large-subtrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large subtrees
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4660,7 +4722,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -5120,6 +5182,35 @@ admin enters the LoDs via <code>/settings</code> (or Tinker).</p>
 (<code>/objects/{id}/download/{format}</code> with format <code>ead|cidoc-crm|ric|memobase</code>) and
 respect the <code>mayBeShown()</code> privacy logic of the existing detail view (withheld
 records are visible to internal roles only).</p>
+<h3 id="large-subtrees">Large subtrees<a class="headerlink" href="#large-subtrees" title="Permanent link">&para;</a></h3>
+<p>Above a size the module's downloads are no longer built in the request but in the background (job <code>BuildUserExport</code>), with the rights of the person who starts them. The file then appears under <strong>Data export → My exports</strong> (<code>/export/mine</code>), see <a href="../../user/my-exports/">My exports</a>. The same holds for the Excel export of a result list.</p>
+<table>
+<thead>
+<tr>
+<th><code>.env</code></th>
+<th>counts</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EXPORT_SYNC_RECORDS</code></td>
+<td>records in the subtree (Word, EAD, CIDOC CRM, RiC, Memobase), rows of the Excel export</td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><code>EXPORT_SYNC_MEDIA</code></td>
+<td>media of a DIP (BagIt) and OCFL</td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>EXPORT_KEEP_DAYS</code></td>
+<td>days a file stays under «My exports»</td>
+<td><code>7</code></td>
+</tr>
+</tbody>
+</table>
+<p>The E-ARK DIP has its own limit, see <a href="../download-dip/#settings">DIP download</a>.</p>
 <blockquote>
 <p><strong>Note on the rename:</strong> a backwards-compatibility class
 <code>WordDownload extends Download</code> remains in place, so that customer-specific

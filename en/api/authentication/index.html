@@ -1421,6 +1421,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4592,7 +4620,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/api/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-02</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4725,6 +4753,7 @@ date. <strong>Revoke</strong> invalidates a token immediately. An expired token 
 <p>If the setting <code>public_api</code> is activated, certain endpoints can be queried without a token — <strong>for reading only</strong> (<code>GET</code>, <code>HEAD</code>). The protected endpoints continue to require authentication.</p>
 <p><strong>Writing always takes the token of an account with the editor role or higher</strong>, public API or not: creating and changing persons and organisations (<code>POST /api/actors</code>, <code>PUT /api/actors/{id}</code>), places (<code>POST /api/places</code>, <code>POST /api/places/{id}</code>), SIP submissions (<code>POST /api/sips/import</code>), ingest callbacks (<code>POST /api/ingest/confirm|failed/{id}</code>) and <code>POST /api/ai-cataloging/usage</code>. Without a token they answer <code>401</code>, with the token of an account lacking that role <code>403</code>.</p>
 <p>Regenerating the TEI exports (<code>GET /api/tei/refresh</code>, <code>?ids=</code> on <code>/api/tei/actors|places|keywords</code>) takes a token of any role; without one they answer <code>401</code>.</p>
+<p><code>/api/tei/refresh</code> rebuilds the TEI files and answers once they are written; they can be fetched right afterwards. One rebuild runs at a time: a call while one runs or is queued from the admin page gets <code>429</code> with <code>Retry-After</code>. <code>?ids=</code> still builds the file at once, for at most 1,000 ids (<code>EXPORT_SYNC_RECORDS</code>); more is answered with <code>422</code>.</p>
 <p>The authority endpoints <code>/api/actors</code>, <code>/api/places</code> and <code>/api/keywords</code> (lists, selection, TEI, Beacon, reconciliation) answer without a token as long as the archive is public (<code>public_access</code>). When it is closed, they too require a token or a login; without one they answer <code>401</code>.</p>
 
 

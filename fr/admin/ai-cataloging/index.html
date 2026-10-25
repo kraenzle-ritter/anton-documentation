@@ -1417,6 +1417,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mes exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2295,7 +2323,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/ai-cataloging/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -2352,7 +2380,8 @@ Mensch entscheidet.</p>
 <li><strong>PDFs</strong> — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
   (für bessere Qualität bei getippten Dokumenten)</li>
 <li><strong>Audio</strong> — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
-  Das Transkript kann optional als Textfeld in den Volltext-Index landen.</li>
+  Das Transkript kann optional als Textfeld in den Volltext-Index landen.
+  Es entsteht im Job <code>TranscribeAudioJob</code> (bis 1 200 s), nicht im Request, und wird am Medium gespeichert; ein Vorschlag, der vorher kommt, geht ohne es.</li>
 <li><strong>Video</strong> — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit</li>
 <li><strong>Bestehender Titel</strong> des Datensatzes als Kontext</li>
 </ul>
@@ -2456,6 +2485,8 @@ Profil-Auswahl im Operator-Workflow nur auf Wunsch aufklappt.</p>
 <li><strong>Marge</strong> auf die Provider-Kosten (Default 1.30, also 30% Aufschlag)
   liegt anton-installations-weit in <code>config/ai.php</code>, env-overridable
   via <code>AI_BILLING_MARGIN</code></li>
+<li><strong>Grenzen je Konto:</strong> <code>AI_SUGGESTIONS_PER_HOUR</code> (Vorgabe 30 Vorschläge pro Stunde) und <code>AI_USER_DAILY_SHARE</code> (Vorgabe 0.25: ein Konto verbraucht pro Tag höchstens ein Viertel des Monatsbudgets).</li>
+<li>Der Aufruf beim Anbieter bricht nach 60 s ab (Vorgabe von <code>laravel/ai</code>).</li>
 </ul>
 <h2 id="datenschutz">Datenschutz<a class="headerlink" href="#datenschutz" title="Permanent link">&para;</a></h2>
 <p>Das System verwendet als Standard Schweiz-gehostete Modelle

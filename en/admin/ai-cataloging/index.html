@@ -1421,6 +1421,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4536,7 +4564,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4589,7 +4617,8 @@ writes — the AI only makes suggestions, the human decides.</p>
 <li><strong>PDFs</strong> — page images; additionally the OCR text layer if present (for
   better quality with typed documents)</li>
 <li><strong>Audio</strong> — Whisper V3 transcript via the Infomaniak async batch API. The
-  transcript can optionally end up in the full-text index as a text field.</li>
+  transcript can optionally end up in the full-text index as a text field.
+  It is made in the job <code>TranscribeAudioJob</code> (up to 1,200 s), not in the request, and stored on the medium; a suggestion made before goes without it.</li>
 <li><strong>Video</strong> — 5 ffmpeg stills, evenly spaced across the running time</li>
 <li><strong>The existing title</strong> of the record as context</li>
 </ul>
@@ -4692,6 +4721,8 @@ selection in the operator workflow only unfolds on request.</p>
 <li>The <strong>margin</strong> on the provider costs (default 1.30, that is, a 30 % surcharge)
   is set installation-wide in <code>config/ai.php</code> and can be overridden in the env
   via <code>AI_BILLING_MARGIN</code></li>
+<li><strong>Limits per account:</strong> <code>AI_SUGGESTIONS_PER_HOUR</code> (default 30 suggestions per hour) and <code>AI_USER_DAILY_SHARE</code> (default 0.25: one account spends at most a quarter of the monthly budget per day).</li>
+<li>The call to the provider stops after 60 s (<code>laravel/ai</code>'s default).</li>
 </ul>
 <h2 id="data-protection">Data protection<a class="headerlink" href="#data-protection" title="Permanent link">&para;</a></h2>
 <p>By default the system uses models hosted in Switzerland (Infomaniak).

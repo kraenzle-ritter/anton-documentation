@@ -1421,6 +1421,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4516,7 +4544,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formatliste/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4532,7 +4560,7 @@
 <ul>
 <li><strong>Default:</strong> Without a list of its own, the list of k &amp; r applies. It is the machine-readable version of the format pages (<a href="../formate-bild/">images</a>, <a href="../formate-pdf/">PDF</a>, <a href="../formate-text/">text</a>, <a href="../formate-av/">audio and video</a>, <a href="../formate-tabellen/">spreadsheets and presentations</a>, <a href="../formate-uebrige/">containers and XML</a>). These are Anton's own rules; where NARA and KOST part ways, as with ODT and DOCX, it follows NARA.</li>
 <li><strong>Own list:</strong> Under <strong>Admin → Preservation Planning → Format list</strong> an admin sees the list in force and the media outside it, and can save an own list: change levels, remove entries, add PUIDs. The own list replaces the default entirely; a button goes back to the default. Every change is recorded in the security log.</li>
-<li><strong>Warn, do not refuse:</strong> If a file's format is not on the list or not accepted, Anton takes it all the same. Whoever uploaded it sees a notice after saving (with the QR upload, on the upload page), and the medium carries the event «Format list» as a yellow check. Excel, SIP and directory imports record the event only.</li>
+<li><strong>Warn, do not refuse:</strong> If a file's format is not on the list or not accepted, Anton takes it all the same. Whoever uploaded it sees a notice after saving, and the medium carries the event «Format list» as a yellow check. The QR upload, whose files are stored in the background, and Excel, SIP and directory imports record the event only.</li>
 <li><strong>One PUID, different conditions:</strong> A PUID does not tell apart everything the format pages do. TIFF with Deflate and TIFF with LZW share one PUID; the check takes the best level. Conditions such as «without a password» are text only.</li>
 <li><strong>Archive files:</strong> A ZIP, GZ or TAR imported as a directory has each extracted file checked; saved as a file, Anton does not look inside.</li>
 </ul>

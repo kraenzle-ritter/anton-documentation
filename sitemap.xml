@@ -946,6 +946,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/movie-tracks/"/>
     </url>
     <url>
+        <loc>Noneuser/my-exports/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneuser/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/my-exports/"/>
+    </url>
+    <url>
         <loc>Noneuser/objects/</loc>
         <lastmod>2026-10-25</lastmod>
         <changefreq>daily</changefreq>
@@ -1997,6 +2006,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneuser/movie-tracks/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/movie-tracks/"/>
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/movie-tracks/"/>
+    </url>
+    <url>
+        <loc>Noneen/user/my-exports/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneuser/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/my-exports/"/>
     </url>
     <url>
         <loc>Noneen/user/objects/</loc>
@@ -3052,6 +3070,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/movie-tracks/"/>
     </url>
     <url>
+        <loc>Nonefr/user/my-exports/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneuser/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/my-exports/"/>
+    </url>
+    <url>
         <loc>Nonefr/user/objects/</loc>
         <lastmod>2026-10-25</lastmod>
         <changefreq>daily</changefreq>
@@ -4103,6 +4130,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneuser/movie-tracks/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/movie-tracks/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/movie-tracks/"/>
+    </url>
+    <url>
+        <loc>Noneit/user/my-exports/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneuser/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/user/my-exports/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/user/my-exports/"/>
     </url>
     <url>
         <loc>Noneit/user/objects/</loc>

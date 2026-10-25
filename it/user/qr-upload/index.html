@@ -1555,6 +1555,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Le mie esportazioni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2417,7 +2445,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -2479,9 +2507,13 @@
 </tbody>
 </table>
 <p>Queste impostazioni vengono salvate e valgono per tutti i caricamenti.</p>
+<p>Dopo il salvataggio, la pagina segnala che i file sono stati ricevuti. Vengono elaborati e archiviati in background e appaiono nell'oggetto non appena ciò è avvenuto, dopo alcuni minuti per molte scansioni con OCR. Un'esecuzione OCR si interrompe dopo 600 secondi (<code>OCRMYPDF_TIMEOUT</code>); il file viene allora archiviato senza livello di testo.</p>
 <h3 id="dettagli-della-pipeline-per-lamministrazione">Dettagli della pipeline (per l'amministrazione)<a class="headerlink" href="#dettagli-della-pipeline-per-lamministrazione" title="Permanent link">&para;</a></h3>
 <p>La pipeline si svolge in questo ordine:</p>
-<div class="highlight"><pre><span></span><code>1. PRIMA DELL'IMPORTAZIONE (sincrono)
+<div class="highlight"><pre><span></span><code>0. NELLA RICHIESTA
+   verificare token e file → job ProcessTokenUpload
+
+1. PRIMA DELL'IMPORTAZIONE (coda, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC conservato come versione)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master)

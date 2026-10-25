@@ -1417,6 +1417,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mes exports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2315,6 +2343,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Per-Objekt-Buttons in der Detail-Ansicht">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grosse-teilbaume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grosse Teilbäume
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2356,7 +2401,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/download-rdf/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/download-rdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -2814,6 +2859,35 @@ neuen Button bis ein Admin via <code>/settings</code> (oder Tinker) die LoDs ein
 (<code>/objects/{id}/download/{format}</code> mit Format <code>ead|cidoc-crm|ric|memobase</code>)
 und respektieren die <code>mayBeShown()</code>-Privacy-Logik der bestehenden
 Detail-Ansicht (gesperrte Datensätze sehen nur interne Rollen).</p>
+<h3 id="grosse-teilbaume">Grosse Teilbäume<a class="headerlink" href="#grosse-teilbaume" title="Permanent link">&para;</a></h3>
+<p>Ab einer Grösse entstehen die Downloads des Moduls nicht mehr im Request, sondern im Hintergrund (Job <code>BuildUserExport</code>), mit den Rechten der Person, die sie auslöst. Die Datei erscheint dann unter <strong>Daten-Export → Meine Exporte</strong> (<code>/export/mine</code>), siehe <a href="../../user/my-exports/">Meine Exporte</a>. Dasselbe gilt für den Excel-Export einer Trefferliste.</p>
+<table>
+<thead>
+<tr>
+<th><code>.env</code></th>
+<th>zählt</th>
+<th>Vorgabe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EXPORT_SYNC_RECORDS</code></td>
+<td>Datensätze im Teilbaum (Word, EAD, CIDOC CRM, RiC, Memobase), Zeilen beim Excel-Export</td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><code>EXPORT_SYNC_MEDIA</code></td>
+<td>Medien bei DIP (BagIt) und OCFL</td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>EXPORT_KEEP_DAYS</code></td>
+<td>Tage, die eine Datei unter «Meine Exporte» bleibt</td>
+<td><code>7</code></td>
+</tr>
+</tbody>
+</table>
+<p>Das E-ARK DIP hat seine eigene Grenze, siehe <a href="../download-dip/#einstellungen">DIP Download</a>.</p>
 <blockquote>
 <p><strong>Hinweis zum Rename:</strong> Eine Backwards-Compat-Klasse
 <code>WordDownload extends Download</code> besteht weiterhin, damit

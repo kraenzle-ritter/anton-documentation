@@ -1555,6 +1555,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meine Exporte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4506,7 +4534,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/qr-upload/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-25</span>
     </div>
   
   
@@ -4568,9 +4596,13 @@
 </tbody>
 </table>
 <p>Diese Einstellungen werden gespeichert und gelten für alle Uploads.</p>
+<p>Nach dem Speichern meldet die Seite, dass die Dateien empfangen sind. Verarbeitet und abgelegt werden sie im Hintergrund; beim Objekt erscheinen sie, sobald das geschehen ist, bei vielen Scans mit OCR nach einigen Minuten. Ein OCR-Lauf bricht nach 600 Sekunden ab (<code>OCRMYPDF_TIMEOUT</code>), die Datei wird dann ohne Textebene abgelegt.</p>
 <h3 id="pipeline-details-fur-admins">Pipeline-Details (für Admins)<a class="headerlink" href="#pipeline-details-fur-admins" title="Permanent link">&para;</a></h3>
 <p>Die Pipeline läuft in dieser Reihenfolge ab:</p>
-<div class="highlight"><pre><span></span><code>1. BEFORE IMPORT (synchron)
+<div class="highlight"><pre><span></span><code>0. IM REQUEST
+   Token und Dateien prüfen → Job ProcessTokenUpload
+
+1. BEFORE IMPORT (Queue, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC bleibt als Version)
    JPGs → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master)
