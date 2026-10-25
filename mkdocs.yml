@@ -147,6 +147,7 @@ nav:
       - DIMAG-Upload-Status: admin/dimag-uploads.md
     - Betrieb:
       - Anton Doctor: admin/doctor.md
+      - Protokolle: admin/protokolle.md
       - Sicherung und Wiederherstellung: admin/restore.md
       - Console Commands: admin/console-commands.md
       - Nachrichten: admin/notifications.md
@@ -299,6 +300,7 @@ plugins:
                 - DIMAG upload status: admin/dimag-uploads.md
               - Operations:
                 - Anton Doctor: admin/doctor.md
+                - Logs: admin/protokolle.md
                 - Backup and restoration: admin/restore.md
                 - Console commands: admin/console-commands.md
                 - Notifications: admin/notifications.md
