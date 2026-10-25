@@ -40,12 +40,17 @@ Im Modal können Bildverarbeitungsoptionen aktiviert werden:
 
 Diese Einstellungen werden gespeichert und gelten für alle Uploads.
 
+Nach dem Speichern meldet die Seite, dass die Dateien empfangen sind. Verarbeitet und abgelegt werden sie im Hintergrund; beim Objekt erscheinen sie, sobald das geschehen ist, bei vielen Scans mit OCR nach einigen Minuten. Ein OCR-Lauf bricht nach 600 Sekunden ab (`OCRMYPDF_TIMEOUT`), die Datei wird dann ohne Textebene abgelegt.
+
 ### Pipeline-Details (für Admins)
 
 Die Pipeline läuft in dieser Reihenfolge ab:
 
 ```
-1. BEFORE IMPORT (synchron)
+0. IM REQUEST
+   Token und Dateien prüfen → Job ProcessTokenUpload
+
+1. BEFORE IMPORT (Queue, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC bleibt als Version)
    JPGs → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master)

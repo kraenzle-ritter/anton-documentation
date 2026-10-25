@@ -40,12 +40,17 @@ Nella finestra modale è possibile attivare opzioni di elaborazione delle immagi
 
 Queste impostazioni vengono salvate e valgono per tutti i caricamenti.
 
+Dopo il salvataggio, la pagina segnala che i file sono stati ricevuti. Vengono elaborati e archiviati in background e appaiono nell'oggetto non appena ciò è avvenuto, dopo alcuni minuti per molte scansioni con OCR. Un'esecuzione OCR si interrompe dopo 600 secondi (`OCRMYPDF_TIMEOUT`); il file viene allora archiviato senza livello di testo.
+
 ### Dettagli della pipeline (per l'amministrazione)
 
 La pipeline si svolge in questo ordine:
 
 ```
-1. PRIMA DELL'IMPORTAZIONE (sincrono)
+0. NELLA RICHIESTA
+   verificare token e file → job ProcessTokenUpload
+
+1. PRIMA DELL'IMPORTAZIONE (coda, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC conservato come versione)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master)

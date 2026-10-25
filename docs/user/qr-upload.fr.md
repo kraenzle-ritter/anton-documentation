@@ -40,12 +40,17 @@ Des options de traitement des images peuvent être activées dans la fenêtre mo
 
 Ces réglages sont enregistrés et s'appliquent à tous les téléversements.
 
+Après l'enregistrement, la page indique que les fichiers ont été reçus. Ils sont traités et déposés en arrière-plan et apparaissent dans l'objet dès que c'est fait, après quelques minutes pour de nombreuses numérisations avec OCR. Une exécution OCR s'arrête après 600 secondes (`OCRMYPDF_TIMEOUT`) ; le fichier est alors déposé sans couche de texte.
+
 ### Détails de la chaîne de traitement (pour l'administration)
 
 La chaîne s'exécute dans cet ordre :
 
 ```
-1. AVANT L'IMPORT (synchrone)
+0. DANS LA REQUÊTE
+   vérifier le jeton et les fichiers → job ProcessTokenUpload
+
+1. AVANT L'IMPORT (file d'attente, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC conservé comme version)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master)

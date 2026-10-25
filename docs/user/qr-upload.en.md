@@ -40,12 +40,17 @@ Image processing options can be activated in the modal:
 
 These settings are saved and apply to all uploads.
 
+After saving, the page reports that the files have been received. They are processed and stored in the background and appear on the object once that is done, after a few minutes for many scans with OCR. An OCR run stops after 600 seconds (`OCRMYPDF_TIMEOUT`); the file is then stored without a text layer.
+
 ### Pipeline details (for admins)
 
 The pipeline runs in this order:
 
 ```
-1. BEFORE IMPORT (synchronous)
+0. IN THE REQUEST
+   check token and files → job ProcessTokenUpload
+
+1. BEFORE IMPORT (queue, ProcessTokenUpload)
    HEIC → magick       → JPG (HEIC kept as a version)
    JPGs → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b for scans, otherwise PDF, with OCR text layer (master)
