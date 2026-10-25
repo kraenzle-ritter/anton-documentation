@@ -27,9 +27,7 @@ cartelle:
   seguito la completezza del pacchetto.
 
 !!! tip "Dimensione"
-    Un DIP contiene **tutti** i media della scheda e delle sue unità
-    subordinate. Con fondi cospicui il pacchetto può diventare grande e la
-    creazione richiedere un momento.
+    Un DIP contiene **tutti** i media della scheda e delle sue unità subordinate. Oltre 500 media il pacchetto viene creato in background e compare sotto [Le mie esportazioni](my-exports.md).
 
 !!! note
     A seconda dell'archivio il pacchetto può essere fornito anche in forma

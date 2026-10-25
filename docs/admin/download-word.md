@@ -10,7 +10,7 @@ Ausserdem kann in der Einstellungen der Footer (`word_footer`) sowie der Header 
 
 Für einen eigenen Word-Export braucht es im Verzeichnis `Controller\Word` eine Klasse, die den Download organisiert, zum Beispiel `ArchivdatenWordEdxport`. Die Klasse muss nach dem Muster `${template}WordEdxport` benannt sein; im Beispiel lautet das Template also «Archivdaten».
 
-Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und eine `Symfony\Component\HttpFoundation\Response` zurückgibt:
+Die Export-Klasse muss eine Methode besitzen, die eine ganze Zahl entgegennimmt und die Datei als Download zurückgibt (`response()->download(…)`, eine `Symfony\Component\HttpFoundation\BinaryFileResponse`). Anton liest den Pfad der Datei daraus: Bei mehr als 1 000 Datensätzen im Teilbaum (`EXPORT_SYNC_RECORDS`) entsteht das Findbuch im Hintergrund und wird unter [Meine Exporte](../user/my-exports.md) abgelegt.
 
 ```php
 public function run($id) : Response

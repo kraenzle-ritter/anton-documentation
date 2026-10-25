@@ -323,6 +323,18 @@ Die Buttons hängen alle an synchrone Inline-Download-Routes
 und respektieren die `mayBeShown()`-Privacy-Logik der bestehenden
 Detail-Ansicht (gesperrte Datensätze sehen nur interne Rollen).
 
+### Grosse Teilbäume
+
+Ab einer Grösse entstehen die Downloads des Moduls nicht mehr im Request, sondern im Hintergrund (Job `BuildUserExport`), mit den Rechten der Person, die sie auslöst. Die Datei erscheint dann unter **Daten-Export → Meine Exporte** (`/export/mine`), siehe [Meine Exporte](../user/my-exports.md). Dasselbe gilt für den Excel-Export einer Trefferliste.
+
+| `.env` | zählt | Vorgabe |
+|---|---|---|
+| `EXPORT_SYNC_RECORDS` | Datensätze im Teilbaum (Word, EAD, CIDOC CRM, RiC, Memobase), Zeilen beim Excel-Export | `1000` |
+| `EXPORT_SYNC_MEDIA` | Medien bei DIP (BagIt) und OCFL | `500` |
+| `EXPORT_KEEP_DAYS` | Tage, die eine Datei unter «Meine Exporte» bleibt | `7` |
+
+Das E-ARK DIP hat seine eigene Grenze, siehe [DIP Download](download-dip.md#einstellungen).
+
 > **Hinweis zum Rename:** Eine Backwards-Compat-Klasse
 > `WordDownload extends Download` besteht weiterhin, damit
 > kundenspezifische Form-Konfigurationen, die noch `word_download`

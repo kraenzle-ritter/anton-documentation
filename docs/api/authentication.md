@@ -130,4 +130,6 @@ Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne T
 
 TEI-Exporte neu erzeugen (`GET /api/tei/refresh`, `?ids=` an `/api/tei/actors|places|keywords`) verlangt ein Token, gleich welcher Rolle; ohne antworten sie mit `401`.
 
+`/api/tei/refresh` baut die TEI-Dateien im Hintergrund neu, einen Lauf zur Zeit, und antwortet sofort mit `202` und `{"queued": true, "message": …}`. Wer die Dateien direkt danach abholt, bekommt noch die vorherige Fassung. `?ids=` erzeugt die Datei weiterhin sofort, für höchstens 1 000 Ids (`EXPORT_SYNC_RECORDS`); mehr beantwortet die API mit `422`.
+
 Die Normdaten-Endpunkte `/api/actors`, `/api/places` und `/api/keywords` (Listen, Auswahl, TEI, Beacon, Abgleich) beantworten Anfragen ohne Token, solange das Archiv öffentlich ist (`public_access`). Ist es geschlossen, verlangen auch sie einen Token oder eine Anmeldung; ohne antworten sie mit `401`.

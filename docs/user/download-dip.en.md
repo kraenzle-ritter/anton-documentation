@@ -25,9 +25,7 @@ The ZIP maps the record and all subordinate units as a folder structure:
   be verified later.
 
 !!! tip "Size"
-    A DIP contains **all** media of the record and its subordinate units. With
-    extensive holdings the package can become large and creation may take a
-    moment.
+    A DIP contains **all** media of the record and its subordinate units. Above 500 media the package is built in the background and appears under [My exports](my-exports.md).
 
 !!! note
     Depending on the archive, the package can also be delivered in a simplified

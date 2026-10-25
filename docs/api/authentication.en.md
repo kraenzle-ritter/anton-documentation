@@ -129,4 +129,6 @@ If the setting `public_api` is activated, certain endpoints can be queried witho
 
 Regenerating the TEI exports (`GET /api/tei/refresh`, `?ids=` on `/api/tei/actors|places|keywords`) takes a token of any role; without one they answer `401`.
 
+`/api/tei/refresh` rebuilds the TEI files in the background, one run at a time, and answers at once with `202` and `{"queued": true, "message": …}`. Fetching the files right afterwards still returns the previous version. `?ids=` still builds the file at once, for at most 1,000 ids (`EXPORT_SYNC_RECORDS`); more is answered with `422`.
+
 The authority endpoints `/api/actors`, `/api/places` and `/api/keywords` (lists, selection, TEI, Beacon, reconciliation) answer without a token as long as the archive is public (`public_access`). When it is closed, they too require a token or a login; without one they answer `401`.

@@ -13,7 +13,7 @@ DLZA — expect OCFL for handover.
 | **Single object** | "OCFL" | One OCFL object root with the media of this record |
 | **Subtree (fonds)** | "OCFL (fonds)" | One OCFL storage root (HashedNTupleStorageLayout) with one object per descendant |
 
-Both modes deliver a ZIP for immediate download. Per OCFL version (v1), each
+Both modes deliver a ZIP for immediate download; above 500 media (`EXPORT_SYNC_MEDIA`) it is built in the background and appears under [My exports](../user/my-exports.md). Per OCFL version (v1), each
 object contains:
 
 - `data/content/<file>` — the original media files

@@ -81,6 +81,7 @@ nav:
       - Datenimport: user/import.md
       - SIP Ingest: user/sip.md
       - DIP herunterladen: user/download-dip.md
+      - Meine Exporte: user/my-exports.md
     - Verwaltung:
       - Ausleihe von Objekten: user/loans.md
       - Auswahl und Sammelaktionen: user/selection.md
@@ -234,6 +235,7 @@ plugins:
                 - Data import: user/import.md
                 - SIP ingest: user/sip.md
                 - Downloading a DIP: user/download-dip.md
+                - My exports: user/my-exports.md
               - Administration:
                 - Lending objects: user/loans.md
                 - Selection and bulk actions: user/selection.md
@@ -363,6 +365,7 @@ plugins:
                 - Import de données: user/import.md
                 - SIP Ingest: user/sip.md
                 - Télécharger un DIP: user/download-dip.md
+                - Mes exports: user/my-exports.md
               - Gestion:
                 - Prêt d'objets: user/loans.md
                 - Sélection et actions groupées: user/selection.md
@@ -430,6 +433,7 @@ plugins:
                 - Importazione dati: user/import.md
                 - SIP Ingest: user/sip.md
                 - Scaricare un DIP: user/download-dip.md
+                - Le mie esportazioni: user/my-exports.md
               - Gestione:
                 - Prestito di oggetti: user/loans.md
                 - Selezione e azioni collettive: user/selection.md

@@ -14,7 +14,7 @@ OCFL für die Übergabe.
 | **Einzel-Objekt** | "OCFL" | Ein OCFL Object Root mit den Medien dieses Datensatzes |
 | **Subtree (Bestand)** | "OCFL (Bestand)" | Ein OCFL Storage Root (HashedNTupleStorageLayout) mit je einem Object pro Descendant |
 
-Beide Modi liefern ein ZIP zum sofortigen Download. Pro OCFL-Version (v1)
+Beide Modi liefern ein ZIP zum sofortigen Download, ab 500 Medien (`EXPORT_SYNC_MEDIA`) entsteht es im Hintergrund und erscheint unter [Meine Exporte](../user/my-exports.md). Pro OCFL-Version (v1)
 enthält jedes Objekt:
 
 - `data/content/<datei>` — die Original-Mediendateien

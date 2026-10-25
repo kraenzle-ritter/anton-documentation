@@ -325,6 +325,18 @@ The buttons all hang off synchronous inline download routes
 respect the `mayBeShown()` privacy logic of the existing detail view (withheld
 records are visible to internal roles only).
 
+### Large subtrees
+
+Above a size the module's downloads are no longer built in the request but in the background (job `BuildUserExport`), with the rights of the person who starts them. The file then appears under **Data export → My exports** (`/export/mine`), see [My exports](../user/my-exports.md). The same holds for the Excel export of a result list.
+
+| `.env` | counts | default |
+|---|---|---|
+| `EXPORT_SYNC_RECORDS` | records in the subtree (Word, EAD, CIDOC CRM, RiC, Memobase), rows of the Excel export | `1000` |
+| `EXPORT_SYNC_MEDIA` | media of a DIP (BagIt) and OCFL | `500` |
+| `EXPORT_KEEP_DAYS` | days a file stays under «My exports» | `7` |
+
+The E-ARK DIP has its own limit, see [DIP download](download-dip.md#settings).
+
 > **Note on the rename:** a backwards-compatibility class
 > `WordDownload extends Download` remains in place, so that customer-specific
 > form configurations still referring to `word_download` continue to render.

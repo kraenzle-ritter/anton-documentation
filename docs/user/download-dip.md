@@ -28,9 +28,7 @@ Ordnerstruktur ab:
   Pakets später überprüfen lässt.
 
 !!! tip "Grösse"
-    Ein DIP enthält **alle** Medien des Datensatzes und seiner
-    Untereinheiten. Bei umfangreichen Beständen kann das Paket gross
-    werden und die Erstellung einen Moment dauern.
+    Ein DIP enthält **alle** Medien des Datensatzes und seiner Untereinheiten. Ab 500 Medien entsteht das Paket im Hintergrund und erscheint unter [Meine Exporte](my-exports.md).
 
 !!! note
     Je nach Archiv kann das Paket auch in einer vereinfachten Form ohne

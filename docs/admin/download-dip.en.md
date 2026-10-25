@@ -29,6 +29,8 @@ Neither setting is editable via `/settings` — they are set by seeder or Tinker
 The button is suppressed automatically if the object lies in the accession area
 (`accessions_archives_id` in its path).
 
+Above 500 media in the subtree (`EXPORT_SYNC_MEDIA`) the package is built in the background and appears under [My exports](../user/my-exports.md), see [Large subtrees](download-rdf.md#large-subtrees).
+
 ## What is in the package (`CreateDip`, default)
 
 The standard produces a **BagIt bag** (ZIP):

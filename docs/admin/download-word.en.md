@@ -10,7 +10,7 @@ The footer (`word_footer`) and the header (`word_header`) can also be adapted in
 
 For a Word export there must be a class in the `Controller\Word` directory which organises the download, for example `ArchivdatenWordEdxport`. The class has to be named like `${template}WordEdxport`. In the example, therefore, the template is «Archivdaten».
 
-The export class must have one method which takes an integer as an argument and returns a `Symfony\Component\HttpFoundation\Response`:
+The export class must have one method which takes an integer as an argument and returns the file as a download (`response()->download(…)`, a `Symfony\Component\HttpFoundation\BinaryFileResponse`). Anton reads the file's path from it: above 1,000 records in the subtree (`EXPORT_SYNC_RECORDS`) the finding aid is built in the background and filed under [My exports](../user/my-exports.md).
 
 ```php
 public function run($id) : Response

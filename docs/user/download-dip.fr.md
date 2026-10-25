@@ -27,9 +27,7 @@ d'arborescence de dossiers :
   ultérieurement l'intégralité du paquet.
 
 !!! tip "Taille"
-    Un DIP contient **tous** les médias de la notice et de ses unités
-    subordonnées. Pour des fonds volumineux, le paquet peut devenir lourd et sa
-    création prendre un moment.
+    Un DIP contient **tous** les médias de la notice et de ses unités subordonnées. Au-delà de 500 médias, le paquet est créé en arrière-plan et apparaît sous [Mes exports](my-exports.md).
 
 !!! note
     Selon le service, le paquet peut aussi être livré sous une forme simplifiée,

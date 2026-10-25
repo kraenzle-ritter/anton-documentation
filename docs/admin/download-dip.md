@@ -31,6 +31,8 @@ Seeder oder Tinker gesetzt:
 Der Knopf wird automatisch unterdrückt, wenn das Objekt im
 Akzessionsbereich liegt (`accessions_archives_id` in seinem Pfad).
 
+Ab 500 Medien im Teilbaum (`EXPORT_SYNC_MEDIA`) entsteht das Paket im Hintergrund und erscheint unter [Meine Exporte](../user/my-exports.md), siehe [Grosse Teilbäume](download-rdf.md#grosse-teilbaume).
+
 ## Was im Paket steckt (`CreateDip`, Default)
 
 Der Standard erzeugt eine **BagIt-Bag** (ZIP):
