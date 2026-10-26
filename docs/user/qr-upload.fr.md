@@ -36,7 +36,9 @@ Des options de traitement des images peuvent être activées dans la fenêtre mo
 |--------|-------------|---|
 | **HEIC → JPEG** | Convertir automatiquement les images iPhone (HEIC/HEIF) en JPEG ; le HEIC est conservé comme version du média | ImageMagick (`magick`, avec libheif) |
 | **Images → PDF** | Combiner sans perte plusieurs images téléversées en un seul PDF | `img2pdf` |
-| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) ; les numérisations deviennent PDF/A-2b, un PDF avec texte reste PDF | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) ; les numérisations deviennent PDF/A-2b, un PDF avec texte reste PDF ; le PDF livré est conservé comme version du média | `ocrmypdf` + Tesseract (deu+eng) |
+
+En dessous figure **Conserver le fichier livré**, activé par défaut. Lorsqu'Anton convertit un HEIC en JPEG ou ajoute le texte OCR à un PDF, le fichier tel que livré est conservé comme version du média. Sans coche, il est remplacé ; l'événement du média garde les sommes de contrôle des deux fichiers. Avec « Images → PDF », les images livrées sont toujours conservées.
 
 Ces réglages sont enregistrés et s'appliquent à tous les téléversements.
 
@@ -51,9 +53,11 @@ La chaîne s'exécute dans cet ordre :
    vérifier le jeton et les fichiers → job ProcessTokenUpload
 
 1. AVANT L'IMPORT (file d'attente, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC conservé comme version)
+   HEIC → magick       → JPG (HEIC conservé comme version, sauf si « Conserver le
+                         fichier livré » est désactivé)
    JPG  → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master)
+   PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master ;
+                         le PDF livré conservé comme version)
 
 2. IMPORT
    addAntonMedium() → événement MediumAdded

@@ -229,7 +229,8 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --collection=        Nur Medien dieser Sammlung
     --filename-pattern=  Nur Dateinamen wie dieses Muster, z. B. %.tif
     --limit=             Höchstens so viele Medien
-    --keep-original      Original in original/ behalten statt verwerfen
+    --discard-original   Original verwerfen statt behalten (nur Regeln, die es
+                         ersetzen dürfen, z. B. tiff_zip)
     --write              Umpacken (ohne: nur berichten)
 ```
 
@@ -238,11 +239,8 @@ Ohne `--write` sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis `format-normalization` (Kategorie
 `migration`) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
-**Ohne `--keep-original` wird das Original verworfen.** Es bleibt dann nur in
-der lokalen [Sicherung](#sicherung-und-wiederherstellung), bis deren
-Jahresstände rotieren. Mit `--keep-original` (und bei einer Regel, die das
-Original behält) wandert es in den Ordner `original/` des Mediums und wird als
-[behaltenes Original](preservation.md#behaltene-originale) geführt und geprüft.
+
+**Das Original bleibt.** Es wandert in den Ordner `original/` des Mediums und wird als [behaltenes Original](preservation.md#behaltene-originale) geführt und geprüft; massgebend ist die Datei, wie sie übernommen wurde. Nur eine Regel, die das Original ersetzen darf, verwirft es, und nur mit `--discard-original`: heute `tiff_zip`, die jedes Pixel prüft. Ein verworfenes Original bleibt nur in der lokalen [Sicherung](#sicherung-und-wiederherstellung), bis deren Jahresstände rotieren; seine Prüfsummen stehen im Ereignis. Bei jeder anderen Regel lehnt der Befehl `--discard-original` ab. `--keep-original`, bis Version 0.113 der Weg zum Behalten, nimmt er weiter an; es ändert nichts mehr.
 
 Folgen, die man kennen sollte:
 

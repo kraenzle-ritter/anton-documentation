@@ -36,7 +36,9 @@ Im Modal können Bildverarbeitungsoptionen aktiviert werden:
 |--------|-------------|---|
 | **HEIC → JPEG** | iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren; das HEIC bleibt als Version des Mediums erhalten | ImageMagick (`magick`, mit libheif) |
 | **Bilder → PDF** | Mehrere hochgeladene Bilder verlustfrei zu einem PDF kombinieren | `img2pdf` |
-| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar); Scans werden PDF/A-2b, PDF mit Text bleibt PDF | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar); Scans werden PDF/A-2b, PDF mit Text bleibt PDF; das gelieferte PDF bleibt als Version des Mediums erhalten | `ocrmypdf` + Tesseract (deu+eng) |
+
+Darunter steht **Gelieferte Datei behalten**, standardmässig eingeschaltet. Wandelt Anton ein HEIC in JPEG um oder schreibt es mit OCR Text in ein PDF, bleibt die Datei, wie sie geliefert wurde, als Version des Mediums erhalten. Ohne Häkchen wird sie ersetzt; das Ereignis am Medium hält die Prüfsummen beider Dateien fest. Bei «Bilder → PDF» bleiben die gelieferten Bilder immer erhalten.
 
 Diese Einstellungen werden gespeichert und gelten für alle Uploads.
 
@@ -51,9 +53,11 @@ Die Pipeline läuft in dieser Reihenfolge ab:
    Token und Dateien prüfen → Job ProcessTokenUpload
 
 1. BEFORE IMPORT (Queue, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC bleibt als Version)
+   HEIC → magick       → JPG (HEIC bleibt als Version, ausser «Gelieferte Datei
+                         behalten» ist aus)
    JPGs → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master)
+   PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master;
+                         das gelieferte PDF bleibt als Version)
 
 2. IMPORT
    addAntonMedium() → Event MediumAdded

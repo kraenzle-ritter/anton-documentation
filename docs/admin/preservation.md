@@ -107,15 +107,12 @@ Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 [`media:checksum`](console-commands.md#mediachecksum) SHA-512 nach — und prüft
 dabei jede Datei gegen ihre MD5. Die Ableitungen (`web`, `thumb`) sind Zugriffskopien.
 
-Der Master ist nicht in jedem Fall die gelieferte Datei. Bei der Übernahme kann sie verändert werden, bevor sie zum Master wird: durch eine [Format-Regel](#regeln-fuer-dateien) wie `tiff_zip`, die sie verlustfrei umpackt und die gelieferte Datei verwirft (ihre Prüfsummen stehen im Ereignis am Medium), oder durch die Verarbeitung beim [QR-Upload](../user/qr-upload.md) (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet; nur «Bilder → PDF» behält die gelieferten Bilder als [Originale](#behaltene-originale). Einen abgelegten Master verändert danach nur [`media:migrate`](console-commands.md#mediamigrate), mit Prüfung und Ereignis; [`media:repair`](console-commands.md#mediarepair) stellt bloss den geprüften Inhalt wieder her.
+Der Master ist nicht in jedem Fall die gelieferte Datei. Bei der Übernahme kann sie verändert werden, bevor sie zum Master wird: durch eine [Format-Regel](#regeln-fuer-dateien) wie `tiff_zip`, die sie verlustfrei umpackt und die gelieferte Datei verwirft (ihre Prüfsummen stehen im Ereignis am Medium), oder durch die Verarbeitung beim [QR-Upload](../user/qr-upload.md) (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet; die gelieferte Datei bleibt dabei als [Original](#behaltene-originale), solange «Gelieferte Datei behalten» eingeschaltet ist (die Vorgabe). Einen abgelegten Master verändert danach nur [`media:migrate`](console-commands.md#mediamigrate), mit Prüfung und Ereignis; [`media:repair`](console-commands.md#mediarepair) stellt bloss den geprüften Inhalt wieder her.
 
 ### Behaltene Originale {#behaltene-originale}
 
 Neben manchen Mastern liegt das Original, wie es geliefert wurde, im Ordner
-`original/` des Mediums: wenn beim Upload per QR-Code mehrere Bilder zu einem
-PDF zusammengefasst werden, wenn eine Format-Regel das Original behält, und
-wenn [`media:migrate --keep-original`](console-commands.md#mediamigrate) einen
-Master umpackt. Seit Version 0.105 führt Anton jedes solche Original als
+`original/` des Mediums: wenn der Upload per QR-Code ein HEIC in JPEG umwandelt, Text per OCR in ein PDF schreibt oder mehrere Bilder zu einem PDF zusammenfasst, wenn eine Format-Regel das Original behält, und wenn [`media:migrate`](console-commands.md#mediamigrate) einen Master umpackt (ausser mit `--discard-original`). Seit Version 0.105 führt Anton jedes solche Original als
 **Fassung** des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
 Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
 Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.
@@ -160,7 +157,7 @@ Archiv.
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.
 
-Normalisiert wird bei der Übernahme nach den [Regeln für Dateien](#regeln-fuer-dateien) und im Bestand mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Ob das Original bleibt, legt die Regel fest: `tiff_zip` verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, `media:migrate --keep-original` behält sie. [Behaltene Originale](#behaltene-originale) bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
+Normalisiert wird bei der Übernahme nach den [Regeln für Dateien](#regeln-fuer-dateien) und im Bestand mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Das Original bleibt, massgebend ist die Datei zum Zeitpunkt der Übernahme. Ausnahme ist `tiff_zip`, das jedes Pixel prüft: Diese Regel verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit `media:migrate --discard-original`. [Behaltene Originale](#behaltene-originale) bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
 
 Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite: für [Bilder](formate-bild.md), [PDF](formate-pdf.md), [Text](formate-text.md), [Audio und Video](formate-av.md) [Tabellen und Präsentationen](formate-tabellen.md) sowie [übrige Formate](formate-uebrige.md), Container und XML.
 

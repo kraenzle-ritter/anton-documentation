@@ -102,15 +102,12 @@ the DIMAG connection and for recognising duplicate imports. For media from
 before version 0.98, [`media:checksum`](console-commands.md#mediachecksum)
 computes SHA-512 afterwards — checking every file against its MD5 as it goes. The derivatives (`web`, `thumb`) are access copies.
 
-The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a [format rule](#regeln-fuer-dateien) such as `tiff_zip`, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a [QR upload](../user/qr-upload.md) (HEIC → JPEG, images → PDF, OCR) that the archive switches on; only «images → PDF» keeps the delivered images as [originals](#behaltene-originale). Once stored, a master is changed only by [`media:migrate`](console-commands.md#mediamigrate), with verification and an event; [`media:repair`](console-commands.md#mediarepair) merely restores the verified content.
+The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a [format rule](#regeln-fuer-dateien) such as `tiff_zip`, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a [QR upload](../user/qr-upload.md) (HEIC → JPEG, images → PDF, OCR) that the archive switches on; the delivered file stays as an [original](#behaltene-originale) as long as «Keep the delivered file» is on (the default). Once stored, a master is changed only by [`media:migrate`](console-commands.md#mediamigrate), with verification and an event; [`media:repair`](console-commands.md#mediarepair) merely restores the verified content.
 
 ### Kept originals {#behaltene-originale}
 
 Next to some masters lies the original as delivered, in the medium's
-`original/` folder: when an upload by QR code combines several images into one
-PDF, when a format rule keeps the original, and when
-[`media:migrate --keep-original`](console-commands.md#mediamigrate) repacks a
-master. Since version 0.105 Anton keeps every such original as a **version** of
+`original/` folder: when an upload by QR code turns a HEIC into JPEG, writes OCR text into a PDF or combines several images into one PDF, when a format rule keeps the original, and when [`media:migrate`](console-commands.md#mediamigrate) repacks a master (unless with `--discard-original`). Since version 0.105 Anton keeps every such original as a **version** of
 the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
 records where it came from. Versions appear nowhere in the interface; lists,
 gallery, download and export show the current version.
@@ -154,7 +151,7 @@ For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.
 
-Normalisation happens at ingest under the [file rules](#regeln-fuer-dateien) and in the holdings with [`media:migrate`](console-commands.md#mediamigrate), both verified. Whether the original stays is up to the rule: `tiff_zip` discards the delivered file and records its checksums in the event, `media:migrate --keep-original` keeps it. [Kept originals](#behaltene-originale) are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
+Normalisation happens at ingest under the [file rules](#regeln-fuer-dateien) and in the holdings with [`media:migrate`](console-commands.md#mediamigrate), both verified. The original stays; what counts is the file at the time it was taken over. The exception is `tiff_zip`, which verifies every pixel: it discards the delivered file and records its checksums in the event, in the holdings with `media:migrate --discard-original`. [Kept originals](#behaltene-originale) are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
 
 Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own: for [images](formate-bild.md), [PDF](formate-pdf.md), [text](formate-text.md), [audio and video](formate-av.md), [spreadsheets and presentations](formate-tabellen.md), and [other formats](formate-uebrige.md), containers and XML.
 

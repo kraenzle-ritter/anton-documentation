@@ -225,7 +225,8 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --collection=        Only media of this collection
     --filename-pattern=  Only file names like this pattern, e.g. %.tif
     --limit=             At most this many media
-    --keep-original      Keep the original in original/ instead of discarding it
+    --discard-original   Discard the original instead of keeping it (only rules
+                         that may replace it, e.g. tiff_zip)
     --write              Repack (without: report only)
 ```
 
@@ -233,12 +234,9 @@ Without `--write` the command only says how many media the rule would touch.
 With `--write` it puts the result next to the master, verifies it, and swaps
 file and checksums in one step; if anything fails, the old master stays. Every
 repacked medium gets a `format-normalization` event (category `migration`) with
-the tool versions and the checksums before and after. **Without
-`--keep-original` the original is discarded.** It then remains only in the
-local [backup](#sicherung-und-wiederherstellung) until its yearly snapshots
-rotate. With `--keep-original` (and with a rule that keeps the original) it
-moves to the medium's `original/` folder and is kept and checked as a
-[kept original](preservation.md#behaltene-originale).
+the tool versions and the checksums before and after.
+
+**The original stays.** It moves to the medium's `original/` folder and is kept and checked as a [kept original](preservation.md#behaltene-originale); what counts is the file as it was taken over. Only a rule that may replace the original discards it, and only with `--discard-original`: today `tiff_zip`, which verifies every pixel. A discarded original remains only in the local [backup](#sicherung-und-wiederherstellung) until its yearly snapshots rotate; its checksums are in the event. For any other rule the command refuses `--discard-original`. `--keep-original`, the way to keep it up to version 0.113, is still accepted and no longer changes anything.
 
 Consequences worth knowing:
 
