@@ -44,7 +44,7 @@ Nel proprio profilo è possibile:
 
 - **visualizzare tutte le passkey registrate**
 - **rinominare le passkey** (per una migliore visione d'insieme)
-- **eliminare le passkey** (ad es. in caso di smarrimento del dispositivo)
+- **eliminare le passkey** (ad es. in caso di smarrimento del dispositivo). Anton chiede prima la sua password e poi la riporta alla pagina; clicchi quindi di nuovo sul cestino
 
 ## Domande frequenti
 

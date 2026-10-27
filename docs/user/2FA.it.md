@@ -12,8 +12,7 @@ Per una sicurezza aggiuntiva è possibile attivare l'autenticazione a due fattor
    chiave è riportata sotto come testo e può essere inserita a mano
 5. **Conservare i codici di recupero** — sono la via di ritorno se lo smartphone
    va perso
-6. Inserire un codice dell'app sotto **Verificare il codice**. Anton indica se è
-   corretto; non viene modificato nulla
+6. Inserire un codice dell'app sotto **Verificare il codice**. Se è corretto, Anton lo conferma in verde accanto al campo, e la scheda porta la dicitura **Attiva**. La verifica non modifica nulla
 
 Da quel momento Anton chiede questo codice a sei cifre dopo la password
 all'accesso.

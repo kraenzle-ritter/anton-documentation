@@ -13,8 +13,7 @@ Pour plus de sécurité, l'authentification à deux facteurs peut être activée
    la main
 5. **Conserver les codes de récupération** — ils sont le moyen de revenir si le
    téléphone est perdu
-6. Saisir un code de l'application sous **Vérifier le code**. Anton indique s'il
-   correspond; rien n'est modifié
+6. Saisir un code de l'application sous **Vérifier le code**. S'il correspond, Anton le confirme en vert à côté du champ, et la carte porte la mention **Activée**. La vérification ne modifie rien
 
 À partir de là, Anton demande ce code à six chiffres après le mot de passe lors
 de la connexion.

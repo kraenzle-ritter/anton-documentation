@@ -10,8 +10,7 @@ For additional security, two-factor authentication can be activated.
 4. Scan the QR code with your authenticator app. Where that is not possible, the
    key is printed below it as text and can be typed in by hand
 5. **Keep the recovery codes** — they are the way back in if the phone is lost
-6. Enter a code from the app under **Check the code**. Anton tells you whether it
-   matches; nothing is changed by it
+6. Enter a code from the app under **Check the code**. If it matches, Anton confirms it in green right by the field, and the card carries the badge **Active**. Checking changes nothing
 
 From then on, Anton asks for this six-digit code after your password when you
 sign in.

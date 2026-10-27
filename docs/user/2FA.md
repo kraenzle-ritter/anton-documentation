@@ -12,8 +12,7 @@ Für zusätzliche Sicherheit kann die Zwei-Faktor-Authentifizierung aktiviert we
    Schlüssel darunter als Text und lässt sich von Hand eintippen
 5. **Wiederherstellungscodes sichern** — sie sind der Weg zurück, wenn das
    Smartphone verloren geht
-6. Einen Code aus der App im Feld **Code prüfen** eingeben. Anton sagt, ob er
-   stimmt; geändert wird dabei nichts
+6. Einen Code aus der App im Feld **Code prüfen** eingeben. Stimmt er, bestätigt Anton das grün direkt beim Feld, und die Karte trägt das Zeichen **Aktiv**. Geändert wird beim Prüfen nichts
 
 Von da an fragt Anton beim Anmelden nach dem Passwort zusätzlich diesen
 sechsstelligen Code.
