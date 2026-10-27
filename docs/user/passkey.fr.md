@@ -43,7 +43,6 @@ Les passkeys sont plus sûrs que les mots de passe, car ils ne peuvent être ni 
 Dans votre profil, vous pouvez :
 
 - **consulter tous les passkeys enregistrés**
-- **renommer des passkeys** (pour une meilleure vue d'ensemble)
 - **supprimer des passkeys** (p. ex. en cas de perte d'un appareil). Anton demande d'abord votre mot de passe, puis vous ramène à la page; cliquez alors une nouvelle fois sur la corbeille
 
 ## Questions fréquentes

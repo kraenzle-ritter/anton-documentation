@@ -43,7 +43,6 @@ Passkeys sind sicherer als Passwörter, da sie nicht gestohlen, erraten oder dur
 In Ihrem Profil können Sie:
 
 - **Alle registrierten Passkeys einsehen**
-- **Passkeys umbenennen** (zur besseren Übersicht)
 - **Passkeys löschen** (z.B. bei Geräteverlust). Anton fragt dafür zuerst nach Ihrem Passwort und bringt Sie danach zurück; klicken Sie dann nochmals auf den Papierkorb
 
 ## Häufige Fragen

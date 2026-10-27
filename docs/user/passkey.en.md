@@ -43,7 +43,6 @@ Passkeys are more secure than passwords because they cannot be stolen, guessed o
 In your profile you can:
 
 - **View all registered passkeys**
-- **Rename passkeys** (for a better overview)
 - **Delete passkeys** (if a device is lost, for example). Anton first asks for your password and then brings you back; click the trash button once more
 
 ## Frequently asked questions
