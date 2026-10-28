@@ -34,11 +34,11 @@ Nella finestra modale è possibile attivare opzioni di elaborazione delle immagi
 
 | Opzione | Descrizione | Strumento sul server |
 |--------|-------------|---|
-| **HEIC → JPEG** | Convertire automaticamente le immagini iPhone (HEIC/HEIF) in JPEG; l'HEIC è conservato come versione del media | ImageMagick (`magick`, con libheif) |
+| **HEIC → JPEG** | Convertire automaticamente le immagini iPhone (HEIC/HEIF) in JPEG; il JPEG diventa il master, l'HEIC resta solo con «Conservare il file consegnato» | ImageMagick (`magick`, con libheif) |
 | **Immagini → PDF** | Combinare senza perdita più immagini caricate in un unico PDF | `img2pdf` |
-| **OCR** | Eseguire il riconoscimento del testo (rende i PDF ricercabili); le scansioni diventano PDF/A-2b, un PDF con testo resta PDF; il PDF consegnato è conservato come versione del media | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Eseguire il riconoscimento del testo (rende i PDF ricercabili); le scansioni diventano PDF/A-2b, un PDF con testo resta PDF; il PDF con il livello di testo diventa il master, il PDF consegnato resta solo con «Conservare il file consegnato» | `ocrmypdf` + Tesseract (deu+eng) |
 
-Sotto si trova **Conservare il file consegnato**, attivo per impostazione predefinita. Quando Anton converte un HEIC in JPEG o scrive il testo OCR in un PDF, il file così come è stato consegnato resta come versione del media. Senza spunta viene sostituito; l'evento del media conserva le somme di controllo di entrambi i file. Con «Immagini → PDF» le immagini consegnate restano sempre.
+Sotto si trova **Conservare il file consegnato**, disattivato per impostazione predefinita. HEIC → JPEG e OCR fanno parte della presa in carico (preingest, vedi [Conservazione a lungo termine](../admin/preservation.md#speicherung)): il loro risultato è il master, e il file consegnato viene sostituito. L'evento del media registra la conversione con lo strumento e le somme di controllo di entrambi i file. Con la spunta, il file così come è stato consegnato resta come versione del media. Con «Immagini → PDF» le immagini consegnate restano sempre.
 
 Queste impostazioni vengono salvate e valgono per tutti i caricamenti.
 
@@ -53,11 +53,11 @@ La pipeline si svolge in questo ordine:
    verificare token e file → job ProcessTokenUpload
 
 1. PRIMA DELL'IMPORTAZIONE (coda, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC conservato come versione, salvo se «Conservare
-                         il file consegnato» è disattivato)
+   HEIC → magick       → JPG (HEIC conservato come versione solo con «Conservare
+                         il file consegnato»)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master;
-                         il PDF consegnato conservato come versione)
+                         il PDF consegnato conservato solo con «Conservare il file consegnato»)
 
 2. IMPORTAZIONE
    addAntonMedium() → evento MediumAdded

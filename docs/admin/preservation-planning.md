@@ -1,6 +1,6 @@
 # Preservation Planning
 
-Unter **Admin → Preservation Planning** zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über [`media:migrate`](console-commands.md#mediamigrate).
+Unter **Admin → Preservation Planning** zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über [`media:migrate`](console-commands.md#mediamigrate), heute als verlustfreies Umpacken im selben Format (siehe [Formatentscheide](preservation.md#formatentscheide)).
 
 ## MIME-Typen
 

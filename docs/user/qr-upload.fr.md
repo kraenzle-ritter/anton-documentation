@@ -34,11 +34,11 @@ Des options de traitement des images peuvent être activées dans la fenêtre mo
 
 | Option | Description | Outil sur le serveur |
 |--------|-------------|---|
-| **HEIC → JPEG** | Convertir automatiquement les images iPhone (HEIC/HEIF) en JPEG ; le HEIC est conservé comme version du média | ImageMagick (`magick`, avec libheif) |
+| **HEIC → JPEG** | Convertir automatiquement les images iPhone (HEIC/HEIF) en JPEG ; le JPEG devient le master, le HEIC n'est conservé qu'avec « Conserver le fichier livré » | ImageMagick (`magick`, avec libheif) |
 | **Images → PDF** | Combiner sans perte plusieurs images téléversées en un seul PDF | `img2pdf` |
-| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) ; les numérisations deviennent PDF/A-2b, un PDF avec texte reste PDF ; le PDF livré est conservé comme version du média | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Effectuer la reconnaissance de texte (rend les PDF interrogeables) ; les numérisations deviennent PDF/A-2b, un PDF avec texte reste PDF ; le PDF avec sa couche de texte devient le master, le PDF livré n'est conservé qu'avec « Conserver le fichier livré » | `ocrmypdf` + Tesseract (deu+eng) |
 
-En dessous figure **Conserver le fichier livré**, activé par défaut. Lorsqu'Anton convertit un HEIC en JPEG ou ajoute le texte OCR à un PDF, le fichier tel que livré est conservé comme version du média. Sans coche, il est remplacé ; l'événement du média garde les sommes de contrôle des deux fichiers. Avec « Images → PDF », les images livrées sont toujours conservées.
+En dessous figure **Conserver le fichier livré**, désactivé par défaut. HEIC → JPEG et OCR font partie de la prise en charge (préingest, voir [Préservation à long terme](../admin/preservation.md#speicherung)) : leur résultat est le master, et le fichier livré est remplacé. L'événement du média consigne la conversion avec l'outil et les sommes de contrôle des deux fichiers. Avec la coche, le fichier tel que livré est conservé comme version du média. Avec « Images → PDF », les images livrées sont toujours conservées.
 
 Ces réglages sont enregistrés et s'appliquent à tous les téléversements.
 
@@ -53,11 +53,11 @@ La chaîne s'exécute dans cet ordre :
    vérifier le jeton et les fichiers → job ProcessTokenUpload
 
 1. AVANT L'IMPORT (file d'attente, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC conservé comme version, sauf si « Conserver le
-                         fichier livré » est désactivé)
+   HEIC → magick       → JPG (HEIC conservé comme version seulement avec
+                         « Conserver le fichier livré »)
    JPG  → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b pour les numérisations, sinon PDF, avec couche de texte OCR (master ;
-                         le PDF livré conservé comme version)
+                         le PDF livré conservé seulement avec « Conserver le fichier livré »)
 
 2. IMPORT
    addAntonMedium() → événement MediumAdded

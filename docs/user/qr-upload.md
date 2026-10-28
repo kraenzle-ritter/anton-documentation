@@ -34,11 +34,11 @@ Im Modal können Bildverarbeitungsoptionen aktiviert werden:
 
 | Option | Beschreibung | Werkzeug auf dem Server |
 |--------|-------------|---|
-| **HEIC → JPEG** | iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren; das HEIC bleibt als Version des Mediums erhalten | ImageMagick (`magick`, mit libheif) |
+| **HEIC → JPEG** | iPhone-Bilder (HEIC/HEIF) automatisch in JPEG konvertieren; das JPEG wird der Master, das HEIC bleibt nur mit «Gelieferte Datei behalten» | ImageMagick (`magick`, mit libheif) |
 | **Bilder → PDF** | Mehrere hochgeladene Bilder verlustfrei zu einem PDF kombinieren | `img2pdf` |
-| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar); Scans werden PDF/A-2b, PDF mit Text bleibt PDF; das gelieferte PDF bleibt als Version des Mediums erhalten | `ocrmypdf` + Tesseract (deu+eng) |
+| **OCR** | Texterkennung durchführen (macht PDFs durchsuchbar); Scans werden PDF/A-2b, PDF mit Text bleibt PDF; das PDF mit Textschicht wird der Master, das gelieferte PDF bleibt nur mit «Gelieferte Datei behalten» | `ocrmypdf` + Tesseract (deu+eng) |
 
-Darunter steht **Gelieferte Datei behalten**, standardmässig eingeschaltet. Wandelt Anton ein HEIC in JPEG um oder schreibt es mit OCR Text in ein PDF, bleibt die Datei, wie sie geliefert wurde, als Version des Mediums erhalten. Ohne Häkchen wird sie ersetzt; das Ereignis am Medium hält die Prüfsummen beider Dateien fest. Bei «Bilder → PDF» bleiben die gelieferten Bilder immer erhalten.
+Darunter steht **Gelieferte Datei behalten**, standardmässig ausgeschaltet. HEIC → JPEG und OCR gehören zur Übernahme (Preingest, siehe [Langzeitarchivierung](../admin/preservation.md#speicherung)): Ihr Ergebnis ist der Master, und die gelieferte Datei wird ersetzt. Das Ereignis am Medium hält die Umwandlung mit Werkzeug und den Prüfsummen beider Dateien fest. Mit Häkchen bleibt die Datei, wie sie geliefert wurde, als behaltene Fassung des Mediums erhalten. Bei «Bilder → PDF» bleiben die gelieferten Bilder immer erhalten.
 
 Diese Einstellungen werden gespeichert und gelten für alle Uploads.
 
@@ -53,11 +53,11 @@ Die Pipeline läuft in dieser Reihenfolge ab:
    Token und Dateien prüfen → Job ProcessTokenUpload
 
 1. BEFORE IMPORT (Queue, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC bleibt als Version, ausser «Gelieferte Datei
-                         behalten» ist aus)
+   HEIC → magick       → JPG (HEIC bleibt als Fassung nur mit «Gelieferte Datei
+                         behalten»)
    JPGs → img2pdf      → PDF
    PDF  → ocrmypdf     → PDF/A-2b bei Scans, sonst PDF, mit OCR-Textebene (Master;
-                         das gelieferte PDF bleibt als Version)
+                         das gelieferte PDF bleibt nur mit «Gelieferte Datei behalten»)
 
 2. IMPORT
    addAntonMedium() → Event MediumAdded

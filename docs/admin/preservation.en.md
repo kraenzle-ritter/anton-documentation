@@ -12,7 +12,7 @@ ones, operations cover storage:
 | Checksums on transfer | verifies every file of a SIP against the package | | |
 | Checksum per file | calculates MD5 and SHA-512 on upload and stores them | | |
 | Format identification and risk | PRONOM ID, NARA assessment, [preservation planning](preservation-planning.md) | provides Siegfried or Fido | |
-| Master and access copies | keeps the master, changes it only through format rules, upload processing and `media:migrate`, produces `web` and `thumb` | | |
+| Master and access copies | keeps the master, changes it only in preingest (format rules, upload processing) and by a migration with `media:migrate`, produces `web` and `thumb` | | |
 | Integrity check | provides `media:check`, `media:snapshot` and `media:repair`, logs the checks | sets the schedule as a cron job, sets up the backup for `media:repair` | takes over fixity of the masters |
 | Redundant storage | | copies at several locations | bitstream preservation |
 | Format decisions | shows formats that need action | | |
@@ -100,14 +100,13 @@ a single read on upload and stores both in the database. SHA-512 is the
 reference for the integrity check, as OCFL and BagIt recommend; MD5 stays for
 the DIMAG connection and for recognising duplicate imports. For media from
 before version 0.98, [`media:checksum`](console-commands.md#mediachecksum)
-computes SHA-512 afterwards — checking every file against its MD5 as it goes. The derivatives (`web`, `thumb`) are access copies.
+computes SHA-512 afterwards — checking every file against its MD5 as it goes. `web` and `thumb` are access copies: Anton makes them and can make them again at any time.
 
-The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a [format rule](#regeln-fuer-dateien) such as `tiff_zip`, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a [QR upload](../user/qr-upload.md) (HEIC → JPEG, images → PDF, OCR) that the archive switches on; the delivered file stays as an [original](#behaltene-originale) as long as «Keep the delivered file» is on (the default). Once stored, a master is changed only by [`media:migrate`](console-commands.md#mediamigrate), with verification and an event; [`media:repair`](console-commands.md#mediarepair) merely restores the verified content.
+The master is not always the delivered file. What counts is the file at the time it is taken in: what Anton does to it before is **preingest**, what happens afterwards is a **migration**. Preingest covers the [format rules](#regeln-fuer-dateien) such as `tiff_zip`, the processing of a [QR upload](../user/qr-upload.md) (HEIC → JPEG, images → PDF, OCR) that the archive switches on, and unpacking archive files. Their result is the file taken in, and so the master. The delivered file stays only where the archive decides so: on the QR upload with «Keep the delivered file» (off by default) as a [kept original](#behaltene-originale); the images of «images → PDF» always stay, the delivered file of `tiff_zip` never does. For HEIC → JPEG, OCR and `tiff_zip`, an event on the medium records the conversion with tool, version and the checksums of the delivered file, also when it does not stay. Once stored, a master is changed only by [`media:migrate`](console-commands.md#mediamigrate), with verification and an event; [`media:repair`](console-commands.md#mediarepair) merely restores the verified content.
 
 ### Kept originals {#behaltene-originale}
 
-Next to some masters lies the original as delivered, in the medium's
-`original/` folder: when an upload by QR code turns a HEIC into JPEG, writes OCR text into a PDF or combines several images into one PDF, when a format rule keeps the original, and when [`media:migrate`](console-commands.md#mediamigrate) repacks a master (unless with `--discard-original`). Since version 0.105 Anton keeps every such original as a **version** of
+Next to some masters lies a **kept original** in the medium's `original/` folder: after a migration with [`media:migrate`](console-commands.md#mediamigrate) the file taken in (unless with `--discard-original`, which only a rule such as `tiff_zip` allows), after preingest the delivered file where the archive keeps it: on the QR upload with «Keep the delivered file», and the images of «images → PDF». Since version 0.105 Anton keeps every such file as a **version** of
 the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
 records where it came from. Versions appear nowhere in the interface; lists,
 gallery, download and export show the current version.
@@ -145,13 +144,13 @@ correctly and the access copy is made without errors. A migration is
 triggered by a failure: in the recurring check whether the file still renders
 or decodes ([`media:validate-formats`](console-commands.md#mediavalidate-formats)),
 or when the access copy is made. Whether and into what a file is migrated is
-decided by the archive.
+decided by the archive. Today [`media:migrate`](console-commands.md#mediamigrate) can only repack losslessly, in the same format and with the same extension; the only rule is `tiff_zip`. Migration into another format follows (anton#565).
 
 For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.
 
-Normalisation happens at ingest under the [file rules](#regeln-fuer-dateien) and in the holdings with [`media:migrate`](console-commands.md#mediamigrate), both verified. The original stays; what counts is the file at the time it was taken over. The exception is `tiff_zip`, which verifies every pixel: it discards the delivered file and records its checksums in the event, in the holdings with `media:migrate --discard-original`. [Kept originals](#behaltene-originale) are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
+Normalisation happens in preingest under the [file rules](#regeln-fuer-dateien) and in the holdings by a migration with [`media:migrate`](console-commands.md#mediamigrate), both verified. In a migration the file taken in stays as a [kept original](#behaltene-originale), bit for bit and with a checksum. Anton may discard it only where the rule allows it: `tiff_zip` verifies every pixel, discards the delivered file and records its checksums in the event, in the holdings with `media:migrate --discard-original`. Converting is best done before Anton takes the file in, by whoever delivers it; the converted file is then the delivery. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
 
 Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own: for [images](formate-bild.md), [PDF](formate-pdf.md), [text](formate-text.md), [audio and video](formate-av.md), [spreadsheets and presentations](formate-tabellen.md), and [other formats](formate-uebrige.md), containers and XML.
 
