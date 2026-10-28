@@ -4722,7 +4722,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-26</span>
     </div>
   
   
@@ -4865,13 +4865,10 @@ reference for the integrity check, as OCFL and BagIt recommend; MD5 stays for
 the DIMAG connection and for recognising duplicate imports. For media from
 before version 0.98, <a href="../console-commands/#mediachecksum"><code>media:checksum</code></a>
 computes SHA-512 afterwards — checking every file against its MD5 as it goes. The derivatives (<code>web</code>, <code>thumb</code>) are access copies.</p>
-<p>The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a <a href="#regeln-fuer-dateien">format rule</a> such as <code>tiff_zip</code>, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a <a href="../../user/qr-upload/">QR upload</a> (HEIC → JPEG, images → PDF, OCR) that the archive switches on; only «images → PDF» keeps the delivered images as <a href="#behaltene-originale">originals</a>. Once stored, a master is changed only by <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, with verification and an event; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> merely restores the verified content.</p>
+<p>The master is not always the delivered file. At ingest the file can be changed before it becomes the master: by a <a href="#regeln-fuer-dateien">format rule</a> such as <code>tiff_zip</code>, which repacks it losslessly and discards the delivered file (its checksums are in the event on the medium), or by the processing of a <a href="../../user/qr-upload/">QR upload</a> (HEIC → JPEG, images → PDF, OCR) that the archive switches on; the delivered file stays as an <a href="#behaltene-originale">original</a> as long as «Keep the delivered file» is on (the default). Once stored, a master is changed only by <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, with verification and an event; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> merely restores the verified content.</p>
 <h3 id="behaltene-originale">Kept originals<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
 <p>Next to some masters lies the original as delivered, in the medium's
-<code>original/</code> folder: when an upload by QR code combines several images into one
-PDF, when a format rule keeps the original, and when
-<a href="../console-commands/#mediamigrate"><code>media:migrate --keep-original</code></a> repacks a
-master. Since version 0.105 Anton keeps every such original as a <strong>version</strong> of
+<code>original/</code> folder: when an upload by QR code turns a HEIC into JPEG, writes OCR text into a PDF or combines several images into one PDF, when a format rule keeps the original, and when <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> repacks a master (unless with <code>--discard-original</code>). Since version 0.105 Anton keeps every such original as a <strong>version</strong> of
 the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
 records where it came from. Versions appear nowhere in the interface; lists,
 gallery, download and export show the current version.</p>
@@ -4908,7 +4905,7 @@ decided by the archive.</p>
 <p>For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.</p>
-<p>Normalisation happens at ingest under the <a href="#regeln-fuer-dateien">file rules</a> and in the holdings with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, both verified. Whether the original stays is up to the rule: <code>tiff_zip</code> discards the delivered file and records its checksums in the event, <code>media:migrate --keep-original</code> keeps it. <a href="#behaltene-originale">Kept originals</a> are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.</p>
+<p>Normalisation happens at ingest under the <a href="#regeln-fuer-dateien">file rules</a> and in the holdings with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, both verified. The original stays; what counts is the file at the time it was taken over. The exception is <code>tiff_zip</code>, which verifies every pixel: it discards the delivered file and records its checksums in the event, in the holdings with <code>media:migrate --discard-original</code>. <a href="#behaltene-originale">Kept originals</a> are kept bit for bit, with a checksum. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.</p>
 <p>Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own: for <a href="../formate-bild/">images</a>, <a href="../formate-pdf/">PDF</a>, <a href="../formate-text/">text</a>, <a href="../formate-av/">audio and video</a>, <a href="../formate-tabellen/">spreadsheets and presentations</a>, and <a href="../formate-uebrige/">other formats</a>, containers and XML.</p>
 <h3 id="abgabe">Delivery<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>See <a href="#sicherung-oder-publikation">Backup or publication?</a> further down.</p>

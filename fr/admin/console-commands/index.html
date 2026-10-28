@@ -2450,7 +2450,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-26</span>
     </div>
   
   
@@ -2665,19 +2665,16 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --collection=        Nur Medien dieser Sammlung
     --filename-pattern=  Nur Dateinamen wie dieses Muster, z. B. %.tif
     --limit=             Höchstens so viele Medien
-    --keep-original      Original in original/ behalten statt verwerfen
+    --discard-original   Original verwerfen statt behalten (nur Regeln, die es
+                         ersetzen dürfen, z. B. tiff_zip)
     --write              Umpacken (ohne: nur berichten)
 </code></pre></div>
 <p>Ohne <code>--write</code> sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 <code>--write</code> legt er das Ergebnis neben den Master, prüft es und tauscht Datei und
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis <code>format-normalization</code> (Kategorie
-<code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
-<strong>Ohne <code>--keep-original</code> wird das Original verworfen.</strong> Es bleibt dann nur in
-der lokalen <a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren
-Jahresstände rotieren. Mit <code>--keep-original</code> (und bei einer Regel, die das
-Original behält) wandert es in den Ordner <code>original/</code> des Mediums und wird als
-<a href="../preservation/#behaltene-originale">behaltenes Original</a> geführt und geprüft.</p>
+<code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.</p>
+<p><strong>Das Original bleibt.</strong> Es wandert in den Ordner <code>original/</code> des Mediums und wird als <a href="../preservation/#behaltene-originale">behaltenes Original</a> geführt und geprüft; massgebend ist die Datei, wie sie übernommen wurde. Nur eine Regel, die das Original ersetzen darf, verwirft es, und nur mit <code>--discard-original</code>: heute <code>tiff_zip</code>, die jedes Pixel prüft. Ein verworfenes Original bleibt nur in der lokalen <a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren Jahresstände rotieren; seine Prüfsummen stehen im Ereignis. Bei jeder anderen Regel lehnt der Befehl <code>--discard-original</code> ab. <code>--keep-original</code>, bis Version 0.113 der Weg zum Behalten, nimmt er weiter an; es ändert nichts mehr.</p>
 <p>Folgen, die man kennen sollte:</p>
 <ul>
 <li>Während ein <code>--write</code>-Lauf dauert, lassen <a href="#mediasnapshot"><code>media:check --check-integrity</code></a>

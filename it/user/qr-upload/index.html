@@ -2445,7 +2445,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/qr-upload/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/qr-upload/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/qr-upload/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-10-26</span>
     </div>
   
   
@@ -2501,11 +2501,12 @@
 </tr>
 <tr>
 <td><strong>OCR</strong></td>
-<td>Eseguire il riconoscimento del testo (rende i PDF ricercabili); le scansioni diventano PDF/A-2b, un PDF con testo resta PDF</td>
+<td>Eseguire il riconoscimento del testo (rende i PDF ricercabili); le scansioni diventano PDF/A-2b, un PDF con testo resta PDF; il PDF consegnato è conservato come versione del media</td>
 <td><code>ocrmypdf</code> + Tesseract (deu+eng)</td>
 </tr>
 </tbody>
 </table>
+<p>Sotto si trova <strong>Conservare il file consegnato</strong>, attivo per impostazione predefinita. Quando Anton converte un HEIC in JPEG o scrive il testo OCR in un PDF, il file così come è stato consegnato resta come versione del media. Senza spunta viene sostituito; l'evento del media conserva le somme di controllo di entrambi i file. Con «Immagini → PDF» le immagini consegnate restano sempre.</p>
 <p>Queste impostazioni vengono salvate e valgono per tutti i caricamenti.</p>
 <p>Dopo il salvataggio, la pagina segnala che i file sono stati ricevuti. Vengono elaborati e archiviati in background e appaiono nell'oggetto non appena ciò è avvenuto, dopo alcuni minuti per molte scansioni con OCR. Un'esecuzione OCR si interrompe dopo 600 secondi (<code>OCRMYPDF_TIMEOUT</code>); il file viene allora archiviato senza livello di testo.</p>
 <h3 id="dettagli-della-pipeline-per-lamministrazione">Dettagli della pipeline (per l'amministrazione)<a class="headerlink" href="#dettagli-della-pipeline-per-lamministrazione" title="Permanent link">&para;</a></h3>
@@ -2514,9 +2515,11 @@
    verificare token e file → job ProcessTokenUpload
 
 1. PRIMA DELL'IMPORTAZIONE (coda, ProcessTokenUpload)
-   HEIC → magick       → JPG (HEIC conservato come versione)
+   HEIC → magick       → JPG (HEIC conservato come versione, salvo se «Conservare
+                         il file consegnato» è disattivato)
    JPG  → img2pdf      → PDF
-   PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master)
+   PDF  → ocrmypdf     → PDF/A-2b per le scansioni, altrimenti PDF, con livello di testo OCR (master;
+                         il PDF consegnato conservato come versione)
 
 2. IMPORTAZIONE
    addAntonMedium() → evento MediumAdded

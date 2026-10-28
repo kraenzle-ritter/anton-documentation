@@ -4820,7 +4820,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-26</span>
     </div>
   
   
@@ -5031,19 +5031,16 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --collection=        Only media of this collection
     --filename-pattern=  Only file names like this pattern, e.g. %.tif
     --limit=             At most this many media
-    --keep-original      Keep the original in original/ instead of discarding it
+    --discard-original   Discard the original instead of keeping it (only rules
+                         that may replace it, e.g. tiff_zip)
     --write              Repack (without: report only)
 </code></pre></div>
 <p>Without <code>--write</code> the command only says how many media the rule would touch.
 With <code>--write</code> it puts the result next to the master, verifies it, and swaps
 file and checksums in one step; if anything fails, the old master stays. Every
 repacked medium gets a <code>format-normalization</code> event (category <code>migration</code>) with
-the tool versions and the checksums before and after. <strong>Without
-<code>--keep-original</code> the original is discarded.</strong> It then remains only in the
-local <a href="#sicherung-und-wiederherstellung">backup</a> until its yearly snapshots
-rotate. With <code>--keep-original</code> (and with a rule that keeps the original) it
-moves to the medium's <code>original/</code> folder and is kept and checked as a
-<a href="../preservation/#behaltene-originale">kept original</a>.</p>
+the tool versions and the checksums before and after.</p>
+<p><strong>The original stays.</strong> It moves to the medium's <code>original/</code> folder and is kept and checked as a <a href="../preservation/#behaltene-originale">kept original</a>; what counts is the file as it was taken over. Only a rule that may replace the original discards it, and only with <code>--discard-original</code>: today <code>tiff_zip</code>, which verifies every pixel. A discarded original remains only in the local <a href="#sicherung-und-wiederherstellung">backup</a> until its yearly snapshots rotate; its checksums are in the event. For any other rule the command refuses <code>--discard-original</code>. <code>--keep-original</code>, the way to keep it up to version 0.113, is still accepted and no longer changes anything.</p>
 <p>Consequences worth knowing:</p>
 <ul>
 <li>While a <code>--write</code> run lasts, <a href="#mediasnapshot"><code>media:check --check-integrity</code></a>
