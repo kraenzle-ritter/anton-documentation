@@ -2303,6 +2303,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#inge-nicht-erreichbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wenn Inge nicht erreichbar ist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fehlersuche" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2335,7 +2346,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/inge/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/inge/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -2538,6 +2549,14 @@ oder Bild nicht lesen, bricht er ab, statt es wegzulassen. <code>media:identify<
 <code>media:count-pdf-pages</code>, <code>media:checksum</code>,
 <code>media:size</code> und <code>validate:mp4</code> holen Master aus DIMAG nur mit <code>--from-cloud</code>,
 wegen der Last auf Inge; ohne die Option lassen sie solche Master aus.</p>
+<h3 id="inge-nicht-erreichbar">Wenn Inge nicht erreichbar ist<a class="headerlink" href="#inge-nicht-erreichbar" title="Permanent link">&para;</a></h3>
+<p>Jeder Aufruf an Inge hat eine Zeitgrenze nach dem, was er tut: 5 Sekunden für den Verbindungsaufbau, 20 Sekunden für eine Frage nach einer AID oder MD5, 120 Sekunden für die Listen aller AIDs, 600 Sekunden für Download und Ingest eines Masters. Kommt keine Verbindung zustande, merkt sich Anton das für 60 Sekunden und fragt in dieser Zeit nicht erneut, sondern meldet sofort «nicht erreichbar». Ein Lauf über viele Medien bricht so nach einem Versuch ab, statt jedes Medium einzeln abzuwarten. Eine Antwort von Inge, auch ein Fehler wie 503, gilt nicht als Ausfall. Die Werte lassen sich je Mandant in der <code>.env</code> setzen: <code>INGE_CONNECT_TIMEOUT</code>, <code>INGE_QUERY_TIMEOUT</code>, <code>INGE_LIST_TIMEOUT</code>, <code>INGE_TRANSFER_TIMEOUT</code> und <code>INGE_UNREACHABLE_PAUSE</code> (0 schaltet die Pause ab). <code>inge:check-infrastructure</code> und der Status-Reiter fragen immer.</p>
+<p>Ein Upload während eines Ausfalls wird übernommen: Das Medium bekommt seine Nutzungskopien und seinen Volltext, der Master bleibt lokal, und die Datei zeigt «DIMAG-Fehler» (siehe <a href="../dimag-uploads/">DIMAG-Upload-Status</a>). Nachgeholt wird die Übergabe mit <code>inge:retry-handovers</code>: Er nimmt jedes Medium, dessen letzte DIMAG-Übergabe gescheitert ist und dessen Master noch lokal liegt. Liegt die AID schon in DIMAG (die Übergabe kam an, ihre Antwort nicht), vermerkt er das, statt die Datei ein zweites Mal zu schicken. Ist Inge noch nicht erreichbar, hört er beim ersten Medium auf.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>inge:retry-handovers<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>--dry-run<span class="w">   </span><span class="c1"># nur auflisten</span>
+php<span class="w"> </span>artisan<span class="w"> </span>inge:retry-handovers<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
+</code></pre></div>
+<p>Mit <code>--unprocessed</code> nimmt er auch Medien ohne jedes DIMAG-Ereignis, älter als eine Stunde. Bis v0.113.3 hielt ein unerreichbares Inge den Upload vor der Verarbeitung an; solche Medien haben weder Nutzungskopien noch Volltext, und für sie läuft die ganze Verarbeitung noch einmal. Erst mit <code>--dry-run</code> ansehen: Auf einem Mandanten, der DIMAG erst später angebunden hat, sind das auch alte Medien.</p>
+<p>Kann ein Master beim Herunterladen nicht aus DIMAG geholt werden, geht die Meldung über die gedrosselte Fehlermail, nicht mehr als eigene Mail je Versuch.</p>
 <h3 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h3>
 <h4 id="die-sip-import-daten-prufen">Die SIP-Import-Daten prüfen<a class="headerlink" href="#die-sip-import-daten-prufen" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry

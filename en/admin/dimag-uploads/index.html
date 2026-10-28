@@ -4578,7 +4578,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/dimag-uploads/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -4749,6 +4749,11 @@ which 5+ classes filled with differing schemas.</p>
 <td>Uploads stay 🟡 "waiting for DIMAG"</td>
 <td>Queue worker is down</td>
 <td>Check the supervisor: <code>supervisorctl status</code></td>
+</tr>
+<tr>
+<td>Files 🔴 after an Inge outage</td>
+<td>Hand-over failed during the outage; the master is local, the access copies are there</td>
+<td>Once Inge answers again: <code>inge:retry-handovers</code> (see <a href="../inge/#inge-nicht-erreichbar">When Inge cannot be reached</a>)</td>
 </tr>
 <tr>
 <td>Badge missing entirely</td>

@@ -4632,7 +4632,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation-planning/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -4644,7 +4644,7 @@
 
 
 <h1 id="preservation-planning">Preservation Planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h1>
-<p>Unter <strong>Admin → Preservation Planning</strong> zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>.</p>
+<p>Unter <strong>Admin → Preservation Planning</strong> zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, heute als verlustfreies Umpacken im selben Format (siehe <a href="../preservation/#formatentscheide">Formatentscheide</a>).</p>
 <h2 id="mime-typen">MIME-Typen<a class="headerlink" href="#mime-typen" title="Permanent link">&para;</a></h2>
 <p>Anzahl und Anteil der Medien je MIME-Typ, als Tabelle und als Kreisdiagramm.</p>
 <h2 id="nara-kategorien">NARA-Kategorien<a class="headerlink" href="#nara-kategorien" title="Permanent link">&para;</a></h2>
@@ -4691,7 +4691,7 @@
 <h2 id="formatpruefung">Formatprüfung<a class="headerlink" href="#formatpruefung" title="Permanent link">&para;</a></h2>
 <p>Wo der Bestand in der <a href="../preservation/">Formatprüfung</a> steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter <strong>Administration → Protokolle → Formatprüfung</strong>.</p>
 <h2 id="virenpruefung">Virenprüfung<a class="headerlink" href="#virenpruefung" title="Permanent link">&para;</a></h2>
-<p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
+<p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB oder über der Grenze, bis zu der ClamAV am Stück prüft), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
 <h2 id="formatliste">Formatliste<a class="headerlink" href="#formatliste" title="Permanent link">&para;</a></h2>
 <p>Welche Formate das Archiv bevorzugt und akzeptiert, nach PUID, und die Medien, deren Format nicht darauf steht. Hier speichert ein Admin eine eigene Liste oder kehrt zur Vorgabe zurück; siehe <a href="../formatliste/">Formatliste</a>.</p>
 <h2 id="mediendateien">Mediendateien<a class="headerlink" href="#mediendateien" title="Permanent link">&para;</a></h2>

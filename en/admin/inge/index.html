@@ -3646,6 +3646,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#inge-nicht-erreichbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Inge cannot be reached
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#debugging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4558,6 +4569,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#inge-nicht-erreichbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Inge cannot be reached
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#debugging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4590,7 +4612,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/inge/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -4794,6 +4816,14 @@ read a PDF or image, it stops rather than leaving it out. <code>media:identify</
 <code>media:size</code> and <code>validate:mp4</code> fetch masters from DIMAG only with
 <code>--from-cloud</code>, because of the load on Inge; without it they leave such masters
 out.</p>
+<h3 id="inge-nicht-erreichbar">When Inge cannot be reached<a class="headerlink" href="#inge-nicht-erreichbar" title="Permanent link">&para;</a></h3>
+<p>Every call to Inge has a time limit by what it does: 5 seconds to connect, 20 seconds for a question about one AID or MD5, 120 seconds for the lists of all AIDs, 600 seconds for the download and the ingest of a master. When no connection can be made, Anton remembers it for 60 seconds and does not ask again in that time but reports «unreachable» at once. A run over many media thus stops after one attempt instead of waiting for each medium in turn. An answer from Inge, an error such as 503 too, does not count as an outage. The values can be set per tenant in the <code>.env</code>: <code>INGE_CONNECT_TIMEOUT</code>, <code>INGE_QUERY_TIMEOUT</code>, <code>INGE_LIST_TIMEOUT</code>, <code>INGE_TRANSFER_TIMEOUT</code> and <code>INGE_UNREACHABLE_PAUSE</code> (0 turns the pause off). <code>inge:check-infrastructure</code> and the status tab always ask.</p>
+<p>An upload during an outage is taken in: the medium gets its access copies and its full text, the master stays local, and the file shows «DIMAG error» (see <a href="../dimag-uploads/">DIMAG upload status</a>). The hand-over is made up with <code>inge:retry-handovers</code>: it takes every medium whose last DIMAG hand-over failed and whose master is still local. Where DIMAG holds the AID already (the hand-over arrived, its answer did not), it records that instead of sending the file a second time. While Inge is still unreachable, it stops at the first medium.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>inge:retry-handovers<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span><span class="w"> </span>--dry-run<span class="w">   </span><span class="c1"># list only</span>
+php<span class="w"> </span>artisan<span class="w"> </span>inge:retry-handovers<span class="w"> </span>--env<span class="o">={</span>slug<span class="o">}</span>
+</code></pre></div>
+<p>With <code>--unprocessed</code> it also takes media without any DIMAG event, older than an hour. Up to v0.113.3 an unreachable Inge stopped the upload before processing; such media have neither access copies nor full text, and the whole processing runs again for them. Look with <code>--dry-run</code> first: on a tenant that connected DIMAG only later, old media are among them too.</p>
+<p>When a master cannot be fetched from DIMAG for a download, the report goes through the throttled error mail, no longer as a mail of its own for each attempt.</p>
 <h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
 <h4 id="checking-the-sip-import-data">Checking the SIP import data<a class="headerlink" href="#checking-the-sip-import-data" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:check<span class="w"> </span>--env<span class="w"> </span><span class="o">{</span>slug<span class="o">}</span><span class="w">  </span>--path<span class="w"> </span><span class="o">{</span>path_to_sip<span class="o">}</span><span class="w"> </span>--show-sip_entry

@@ -2278,7 +2278,7 @@
   <a href="#behaltene-originale" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Behaltene Originale
+        Behaltene Fassungen
       
     </span>
   </a>
@@ -2401,7 +2401,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -2446,8 +2446,8 @@ die fachlichen ab, der Betrieb die Speicherung:</p>
 <td></td>
 </tr>
 <tr>
-<td>Master und Zugriffskopien</td>
-<td>bewahrt den Master, verändert ihn nur über Format-Regeln, Upload-Verarbeitung und <code>media:migrate</code>, erzeugt <code>web</code> und <code>thumb</code></td>
+<td>Master und Nutzungskopien</td>
+<td>bewahrt den Master, verändert ihn nur im Preingest (Format-Regeln, Upload-Verarbeitung) und durch eine Migration mit <code>media:migrate</code>, erzeugt <code>web</code> und <code>thumb</code></td>
 <td></td>
 <td></td>
 </tr>
@@ -2491,6 +2491,9 @@ prüft Anton sie, bevor sie zum Medium wird:</p>
   Bestand, mit den jeweils neuesten Signaturen. Ein Fund dort wird vermerkt
   und gemeldet, die Datei bleibt liegen. Dateien über 2 GB kann ClamAV nicht
   als Ganzes prüfen; Anton schickt sie in überlappenden Teilen von 256 MB.
+  Ebenso eine kleinere Datei, bei der ClamAV an seiner Grenze für die
+  geprüfte Datenmenge aufhört: Mitgezählt wird auch, was es in der Datei
+  eingebettet findet.
   ClamAV sieht dann die Bytes jedes Teils, nicht das Format: Signaturen nach
   Bytemustern findet es, solche am Dateiende, zum Aufbau des Formats oder
   über die Prüfsumme der ganzen Datei nicht. Ohne Fund wird die Datei daher
@@ -2530,7 +2533,7 @@ Ablieferung belegen.</p>
 Dateien</strong> fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
 lässt sich keine Regel abwählen. Die Seite zeigt jede Regel als «Wenn …
 ausser … dann …»: für welche Formate sie gilt, wann sie eine Datei auslässt,
-welche Schritte sie ausführt und was mit dem Original geschieht; die Befehle
+welche Schritte sie ausführt und was mit der gelieferten Datei geschieht; die Befehle
 mit Werkzeug und Version stehen aufklappbar darunter. Passen mehrere Regeln auf
 eine Datei, laufen sie in der angezeigten Reihenfolge nacheinander, jede mit
 dem Ergebnis der vorherigen. Jede Änderung steht mit Benutzer:in und Zeitpunkt
@@ -2548,20 +2551,19 @@ SHA-512 ist der Referenzwert für die Integritätsprüfung, wie ihn OCFL und Bag
 empfehlen; MD5 bleibt für die Anbindung an DIMAG und für das Erkennen doppelter
 Importe. Für Medien aus der Zeit vor Version 0.98 rechnet
 <a href="../console-commands/#mediachecksum"><code>media:checksum</code></a> SHA-512 nach — und prüft
-dabei jede Datei gegen ihre MD5. Die Ableitungen (<code>web</code>, <code>thumb</code>) sind Zugriffskopien.</p>
-<p>Der Master ist nicht in jedem Fall die gelieferte Datei. Bei der Übernahme kann sie verändert werden, bevor sie zum Master wird: durch eine <a href="#regeln-fuer-dateien">Format-Regel</a> wie <code>tiff_zip</code>, die sie verlustfrei umpackt und die gelieferte Datei verwirft (ihre Prüfsummen stehen im Ereignis am Medium), oder durch die Verarbeitung beim <a href="../../user/qr-upload/">QR-Upload</a> (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet; die gelieferte Datei bleibt dabei als <a href="#behaltene-originale">Original</a>, solange «Gelieferte Datei behalten» eingeschaltet ist (die Vorgabe). Einen abgelegten Master verändert danach nur <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, mit Prüfung und Ereignis; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> stellt bloss den geprüften Inhalt wieder her.</p>
-<h3 id="behaltene-originale">Behaltene Originale<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
-<p>Neben manchen Mastern liegt das Original, wie es geliefert wurde, im Ordner
-<code>original/</code> des Mediums: wenn der Upload per QR-Code ein HEIC in JPEG umwandelt, Text per OCR in ein PDF schreibt oder mehrere Bilder zu einem PDF zusammenfasst, wenn eine Format-Regel das Original behält, und wenn <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> einen Master umpackt (ausser mit <code>--discard-original</code>). Seit Version 0.105 führt Anton jedes solche Original als
+dabei jede Datei gegen ihre MD5. <code>web</code> und <code>thumb</code> sind Nutzungskopien: Anton erzeugt sie und kann sie jederzeit neu erzeugen.</p>
+<p>Der Master ist nicht in jedem Fall die gelieferte Datei. Massgebend ist die Datei zum Zeitpunkt der Übernahme: Was Anton vorher mit ihr tut, ist <strong>Preingest</strong>, was danach geschieht, eine <strong>Migration</strong>. Zum Preingest gehören die <a href="#regeln-fuer-dateien">Format-Regeln</a> wie <code>tiff_zip</code>, die Verarbeitung beim <a href="../../user/qr-upload/">QR-Upload</a> (HEIC → JPEG, Bilder → PDF, OCR), die das Archiv einschaltet, und das Entpacken von Archivdateien. Ihr Ergebnis ist die übernommene Datei und damit der Master. Die gelieferte Datei bleibt danach nur, wo das Archiv es festlegt: beim QR-Upload mit «Gelieferte Datei behalten» (voreingestellt aus) als <a href="#behaltene-originale">behaltene Fassung</a>; die Bilder von «Bilder → PDF» bleiben immer, die gelieferte Datei von <code>tiff_zip</code> nie. Bei HEIC → JPEG, OCR und <code>tiff_zip</code> hält ein Ereignis am Medium die Umwandlung fest, mit Werkzeug, Version und den Prüfsummen der gelieferten Datei, auch wenn sie nicht bleibt. Einen abgelegten Master verändert danach nur <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, mit Prüfung und Ereignis; <a href="../console-commands/#mediarepair"><code>media:repair</code></a> stellt bloss den geprüften Inhalt wieder her.</p>
+<h3 id="behaltene-originale">Behaltene Fassungen<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
+<p>Neben manchen Mastern liegt eine <strong>behaltene Fassung</strong> im Ordner <code>original/</code> des Mediums: nach einer Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> die übernommene Datei (ausser mit <code>--discard-original</code>, das nur eine Regel wie <code>tiff_zip</code> erlaubt), nach dem Preingest die gelieferte Datei, wo das Archiv sie behält: beim QR-Upload mit «Gelieferte Datei behalten» und die Bilder von «Bilder → PDF». Seit Version 0.105 führt Anton jede solche Datei als
 <strong>Fassung</strong> des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
 Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
 Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.</p>
-<p>Originale aus der Zeit davor trägt
+<p>Behaltene Fassungen aus der Zeit davor trägt
 <a href="../console-commands/#mediaregister-originals"><code>media:register-originals</code></a> nach.
 Ihre Prüfsumme ist dann die vom Tag der Erfassung, und das Ereignis hält das
 fest: Ob die Datei seit dem Upload unverändert ist, lässt sich nicht mehr
 belegen.</p>
-<p>Bei Mandanten mit DIMAG können die Originale lokal bleiben oder wie die Master
+<p>Bei Mandanten mit DIMAG können die behaltenen Fassungen lokal bleiben oder wie die Master
 ins Langzeitarchiv gehen; das legt der Betrieb je Installation fest (siehe
 <a href="../inge/#originale-in-dimag">Inge und Dimag</a>).</p>
 <h3 id="formaterkennung-und-risiko">Formaterkennung und Risiko<a class="headerlink" href="#formaterkennung-und-risiko" title="Permanent link">&para;</a></h3>
@@ -2586,11 +2588,11 @@ Anlass für eine Migration ist ein Fehlschlag: bei der wiederkehrenden Prüfung,
 ob sich die Datei darstellen oder dekodieren lässt
 (<a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a>), oder
 beim Erstellen der Nutzungskopie. Ob und wohin migriert wird, entscheidet das
-Archiv.</p>
+Archiv. Heute kann <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> nur verlustfrei umpacken, im selben Format und mit derselben Endung; einzige Regel ist <code>tiff_zip</code>. Die Migration in ein anderes Format folgt (anton#565).</p>
 <p>«Richtig darstellen» prüft die Formatprüfung bei PDF über die
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.</p>
-<p>Normalisiert wird bei der Übernahme nach den <a href="#regeln-fuer-dateien">Regeln für Dateien</a> und im Bestand mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, beides mit Prüfung. Das Original bleibt, massgebend ist die Datei zum Zeitpunkt der Übernahme. Ausnahme ist <code>tiff_zip</code>, das jedes Pixel prüft: Diese Regel verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit <code>media:migrate --discard-original</code>. <a href="#behaltene-originale">Behaltene Originale</a> bleiben bitgenau erhalten, mit Prüfsumme. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.</p>
+<p>Normalisiert wird im Preingest nach den <a href="#regeln-fuer-dateien">Regeln für Dateien</a> und im Bestand durch eine Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, beides mit Prüfung. Bei einer Migration bleibt die übernommene Datei als <a href="#behaltene-originale">behaltene Fassung</a>, bitgenau und mit Prüfsumme. Verwerfen darf Anton sie nur, wo die Regel es erlaubt: <code>tiff_zip</code> prüft jedes Pixel, verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit <code>media:migrate --discard-original</code>. Am besten wird schon vor der Übernahme umgewandelt, bei der Ablieferstelle; dann ist die umgewandelte Datei die Ablieferung. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <p>Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite: für <a href="../formate-bild/">Bilder</a>, <a href="../formate-pdf/">PDF</a>, <a href="../formate-text/">Text</a>, <a href="../formate-av/">Audio und Video</a> <a href="../formate-tabellen/">Tabellen und Präsentationen</a> sowie <a href="../formate-uebrige/">übrige Formate</a>, Container und XML.</p>
 <h3 id="abgabe">Abgabe<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="#sicherung-oder-publikation">Sicherung oder Publikation?</a> weiter unten.</p>
@@ -2623,9 +2625,9 @@ Durchlauf liest jede Datei, und bei mehreren Terabyte will das geplant sein.</p>
 2026 für die grossen Archive). <strong>On Premises</strong> richtet die betreibende
 Institution den Auftrag selbst ein; die Befehle stehen dafür bereit.</p>
 </div>
-<p>Beide Befehle prüfen auch die lokalen <a href="#behaltene-originale">behaltenen Originale</a>,
-je mit eigenem Pfad in den Listen. Ein beschädigtes Original macht das Medium
-selbst nicht zum Befund.</p>
+<p>Beide Befehle prüfen auch die lokalen <a href="#behaltene-originale">behaltenen Fassungen</a>,
+je mit eigenem Pfad in den Listen. Eine beschädigte behaltene Fassung macht das
+Medium selbst nicht zum Befund.</p>
 <p>Davon zu unterscheiden ist <a href="../console-commands/"><code>anton:doctor</code></a>: Es prüft die
 <strong>Konsistenz der Datenbank</strong> — Hierarchie, Signaturen, abgeleitete Felder — und
 ob die Dateien vorhanden sind. Die Prüfsummen vergleichen die beiden Befehle oben.</p>
@@ -2648,9 +2650,9 @@ Sicherung —, holen wir sie bei <strong>Anton as a Service</strong> von Hand vo
 externen Backupserver zurück. Die Meldung von <code>media:repair</code> nennt dafür alles
 Nötige. Mandanten mit DIMAG sind ausgenommen: Dort liegt der Master im
 Langzeitarchiv.</p>
-<p>Ein lokales <a href="#behaltene-originale">behaltenes Original</a> repariert <code>media:repair</code>
+<p>Eine lokale <a href="#behaltene-originale">behaltene Fassung</a> repariert <code>media:repair</code>
 auf dieselbe Weise; die Schwelle für zu viele Abweichungen zählt Master und
-Originale zusammen.</p>
+behaltene Fassungen zusammen.</p>
 <div class="admonition note">
 <p class="admonition-title">Einrichtung durch den Betrieb</p>
 <p><code>media:repair</code> braucht eine lokale Sicherung, welche die Mediendateien

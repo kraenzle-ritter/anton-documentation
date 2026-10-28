@@ -2341,10 +2341,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#inge-2" class="md-nav__link">
+  <a href="#inge-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        inge: (2)
+        inge: (3)
       
     </span>
   </a>
@@ -2450,7 +2450,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -2629,7 +2629,8 @@ liegen. <code>--oldest=N</code> nimmt die N am längsten nicht geprüften, nie g
 zuerst; <code>--from-cloud</code> wie oben. Antwortet clamd für eine Datei nicht
 rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
 <code>--timeout=</code> setzt die Wartezeit für den Lauf, sonst gilt <code>CLAMD_TIMEOUT</code>.
-Master über 2 GB prüft er in überlappenden Teilen (<code>VIRUS_SCAN_PART_SIZE</code>,
+Master über 2 GB, und kleinere, bei denen clamd an <code>MaxScanSize</code> oder
+<code>MaxFileSize</code> aufhört, prüft er in überlappenden Teilen (<code>VIRUS_SCAN_PART_SIZE</code>,
 256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) und zählt sie gesondert als «ohne
 Befund, in Teilen geprüft».
 Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
@@ -3181,7 +3182,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="inge-2">inge: (2)<a class="headerlink" href="#inge-2" title="Permanent link">&para;</a></h3>
+<h3 id="inge-3">inge: (3)<a class="headerlink" href="#inge-3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3193,6 +3194,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>inge:check-infrastructure</code></td>
 <td>Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a …</td>
+</tr>
+<tr>
+<td><code>inge:retry-handovers</code></td>
+<td>Hand over to DIMAG again the media whose hand-over failed, with their local master (#753)</td>
 </tr>
 <tr>
 <td><code>inge:unconfirmed-masters</code></td>

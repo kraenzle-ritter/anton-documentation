@@ -2329,7 +2329,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/dimag-uploads/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/dimag-uploads/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -2503,6 +2503,11 @@ Datei <code>original_location='inge'</code> hat aber noch keine Events.</p>
 <td>Uploads bleiben 🟡 „wartet auf DIMAG"</td>
 <td>Queue-Worker steht</td>
 <td>Supervisor checken: <code>supervisorctl status</code></td>
+</tr>
+<tr>
+<td>Dateien 🔴 nach einem Ausfall von Inge</td>
+<td>Übergabe während des Ausfalls gescheitert; Master liegt lokal, Nutzungskopien sind da</td>
+<td>Sobald Inge wieder antwortet: <code>inge:retry-handovers</code> (siehe <a href="../inge/#inge-nicht-erreichbar">Wenn Inge nicht erreichbar ist</a>)</td>
 </tr>
 <tr>
 <td>Badge fehlt komplett</td>

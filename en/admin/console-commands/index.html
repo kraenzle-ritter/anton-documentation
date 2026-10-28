@@ -3879,10 +3879,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#inge-2" class="md-nav__link">
+  <a href="#inge-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        inge: (2)
+        inge: (3)
       
     </span>
   </a>
@@ -4711,10 +4711,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#inge-2" class="md-nav__link">
+  <a href="#inge-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        inge: (2)
+        inge: (3)
       
     </span>
   </a>
@@ -4820,7 +4820,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-28</span>
     </div>
   
   
@@ -4995,7 +4995,8 @@ reported; the file stays where it is. <code>--oldest=N</code> takes the N scanne
 ago, never scanned first; <code>--from-cloud</code> as above. If clamd does not answer in
 time for a file, it is recorded as not checked and the run goes on;
 <code>--timeout=</code> sets the wait for the run, otherwise <code>CLAMD_TIMEOUT</code> applies.
-Masters over 2 GB are scanned in overlapping parts (<code>VIRUS_SCAN_PART_SIZE</code>,
+Masters over 2 GB, and smaller ones where clamd stops at <code>MaxScanSize</code> or
+<code>MaxFileSize</code>, are scanned in overlapping parts (<code>VIRUS_SCAN_PART_SIZE</code>,
 256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) and counted apart as «clean, scanned
 in parts».
 Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
@@ -5545,7 +5546,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="inge-2">inge: (2)<a class="headerlink" href="#inge-2" title="Permanent link">&para;</a></h3>
+<h3 id="inge-3">inge: (3)<a class="headerlink" href="#inge-3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5557,6 +5558,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>inge:check-infrastructure</code></td>
 <td>Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a …</td>
+</tr>
+<tr>
+<td><code>inge:retry-handovers</code></td>
+<td>Hand over to DIMAG again the media whose hand-over failed, with their local master (#753)</td>
 </tr>
 <tr>
 <td><code>inge:unconfirmed-masters</code></td>
