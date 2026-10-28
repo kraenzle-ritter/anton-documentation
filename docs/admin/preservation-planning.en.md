@@ -39,7 +39,7 @@ Where the holdings stand in the [format validation](preservation.md), each maste
 
 ## Virus check {#virenpruefung}
 
-For each master the result of its latest virus check, at ingest or with [`media:virus-scan`](console-commands.md#mediavirus-scan): malware found, not checkable, clean scanned in parts (files over 2 GB), clean, never checked. Also the scanner and signatures of the latest check and the list of masters with a finding or not checkable. Files refused at ingest never became media; they are in the security log.
+For each master the result of its latest virus check, at ingest or with [`media:virus-scan`](console-commands.md#mediavirus-scan): malware found, not checkable, clean scanned in parts (files over 2 GB or over the limit up to which ClamAV scans in one go), clean, never checked. Also the scanner and signatures of the latest check and the list of masters with a finding or not checkable. Files refused at ingest never became media; they are in the security log.
 
 ## Format list {#formatliste}
 

@@ -41,7 +41,9 @@ before it becomes a medium:
   [`media:virus-scan`](console-commands.md#mediavirus-scan) checks the holdings
   too, against the latest signatures. A finding there is recorded and
   reported; the file stays where it is. ClamAV cannot scan a file over 2 GB
-  whole; Anton sends it in overlapping parts of 256 MB. ClamAV then sees the
+  whole; Anton sends it in overlapping parts of 256 MB. So too a smaller file
+  where ClamAV stops at its limit for the amount of data scanned, which counts
+  what it finds embedded in the file as well. ClamAV then sees the
   bytes of each part, not the format: it finds signatures by byte pattern, not
   those at the end of the file, tied to the format's structure or by checksum
   of the whole file. Without a finding the file is recorded as «clean, scanned

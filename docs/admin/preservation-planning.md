@@ -39,7 +39,7 @@ Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach se
 
 ## Virenprüfung {#virenpruefung}
 
-Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit [`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.
+Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit [`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB oder über der Grenze, bis zu der ClamAV am Stück prüft), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.
 
 ## Formatliste {#formatliste}
 

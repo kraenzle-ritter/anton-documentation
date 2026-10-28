@@ -42,6 +42,9 @@ prüft Anton sie, bevor sie zum Medium wird:
   Bestand, mit den jeweils neuesten Signaturen. Ein Fund dort wird vermerkt
   und gemeldet, die Datei bleibt liegen. Dateien über 2 GB kann ClamAV nicht
   als Ganzes prüfen; Anton schickt sie in überlappenden Teilen von 256 MB.
+  Ebenso eine kleinere Datei, bei der ClamAV an seiner Grenze für die
+  geprüfte Datenmenge aufhört: Mitgezählt wird auch, was es in der Datei
+  eingebettet findet.
   ClamAV sieht dann die Bytes jedes Teils, nicht das Format: Signaturen nach
   Bytemustern findet es, solche am Dateiende, zum Aufbau des Formats oder
   über die Prüfsumme der ganzen Datei nicht. Ohne Fund wird die Datei daher
