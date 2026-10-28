@@ -104,6 +104,7 @@ Datei `original_location='inge'` hat aber noch keine Events.
 |---|---|---|
 | Alle Uploads sind 🔴 mit „401 Unauthorized" | DIMAG-Passwort rotiert | Neues Passwort im `.env` setzen, Queue-Worker neu starten |
 | Uploads bleiben 🟡 „wartet auf DIMAG" | Queue-Worker steht | Supervisor checken: `supervisorctl status` |
+| Dateien 🔴 nach einem Ausfall von Inge | Übergabe während des Ausfalls gescheitert; Master liegt lokal, Nutzungskopien sind da | Sobald Inge wieder antwortet: `inge:retry-handovers` (siehe [Wenn Inge nicht erreichbar ist](inge.md#inge-nicht-erreichbar)) |
 | Badge fehlt komplett | Tenant ist kein DIMAG-Tenant (`setting('cloud') !== 'inge'`) | Erwartungsgemäss — Badge erscheint nur bei inge-Cloud |
 | Mail-Storm bei wiederholten Fehlern | Rate-Limit-Bucket greift trotzdem nicht | Cache-Treiber prüfen — Rate-Limit braucht funktionierende Cache (Redis/DB, nicht `array`) |
 

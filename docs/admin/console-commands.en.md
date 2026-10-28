@@ -481,11 +481,12 @@ up to date with every change to the commands.
 | `format-policy:enable` | Switch a format rule on for this archive (over its default) |
 | `format-policy:list` | List the format rules (preingest): default, this archive's switch, whether in force, and wheth… |
 
-### inge: (2)
+### inge: (3)
 
 | Command | Description |
 |---|---|
 | `inge:check-infrastructure` | Check connectivity between Anton and Inge (and Dimag via Inge /status). On failure, reports a … |
+| `inge:retry-handovers` | Hand over to DIMAG again the media whose hand-over failed, with their local master (#753) |
 | `inge:unconfirmed-masters` | List media whose md5 check was deferred and never passed, and whether the local master is gone… |
 
 ### matomo (1)

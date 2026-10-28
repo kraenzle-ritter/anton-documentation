@@ -181,6 +181,21 @@ read a PDF or image, it stops rather than leaving it out. `media:identify`,
 `--from-cloud`, because of the load on Inge; without it they leave such masters
 out.
 
+### When Inge cannot be reached {#inge-nicht-erreichbar}
+
+Every call to Inge has a time limit by what it does: 5 seconds to connect, 20 seconds for a question about one AID or MD5, 120 seconds for the lists of all AIDs, 600 seconds for the download and the ingest of a master. When no connection can be made, Anton remembers it for 60 seconds and does not ask again in that time but reports «unreachable» at once. A run over many media thus stops after one attempt instead of waiting for each medium in turn. An answer from Inge, an error such as 503 too, does not count as an outage. The values can be set per tenant in the `.env`: `INGE_CONNECT_TIMEOUT`, `INGE_QUERY_TIMEOUT`, `INGE_LIST_TIMEOUT`, `INGE_TRANSFER_TIMEOUT` and `INGE_UNREACHABLE_PAUSE` (0 turns the pause off). `inge:check-infrastructure` and the status tab always ask.
+
+An upload during an outage is taken in: the medium gets its access copies and its full text, the master stays local, and the file shows «DIMAG error» (see [DIMAG upload status](dimag-uploads.md)). The hand-over is made up with `inge:retry-handovers`: it takes every medium whose last DIMAG hand-over failed and whose master is still local. Where DIMAG holds the AID already (the hand-over arrived, its answer did not), it records that instead of sending the file a second time. While Inge is still unreachable, it stops at the first medium.
+
+```bash
+php artisan inge:retry-handovers --env={slug} --dry-run   # list only
+php artisan inge:retry-handovers --env={slug}
+```
+
+With `--unprocessed` it also takes media without any DIMAG event, older than an hour. Up to v0.113.3 an unreachable Inge stopped the upload before processing; such media have neither access copies nor full text, and the whole processing runs again for them. Look with `--dry-run` first: on a tenant that connected DIMAG only later, old media are among them too.
+
+When a master cannot be fetched from DIMAG for a download, the report goes through the throttled error mail, no longer as a mail of its own for each attempt.
+
 ### Debugging
 
 #### Checking the SIP import data

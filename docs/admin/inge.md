@@ -180,6 +180,21 @@ oder Bild nicht lesen, bricht er ab, statt es wegzulassen. `media:identify`,
 `media:size` und `validate:mp4` holen Master aus DIMAG nur mit `--from-cloud`,
 wegen der Last auf Inge; ohne die Option lassen sie solche Master aus.
 
+### Wenn Inge nicht erreichbar ist {#inge-nicht-erreichbar}
+
+Jeder Aufruf an Inge hat eine Zeitgrenze nach dem, was er tut: 5 Sekunden für den Verbindungsaufbau, 20 Sekunden für eine Frage nach einer AID oder MD5, 120 Sekunden für die Listen aller AIDs, 600 Sekunden für Download und Ingest eines Masters. Kommt keine Verbindung zustande, merkt sich Anton das für 60 Sekunden und fragt in dieser Zeit nicht erneut, sondern meldet sofort «nicht erreichbar». Ein Lauf über viele Medien bricht so nach einem Versuch ab, statt jedes Medium einzeln abzuwarten. Eine Antwort von Inge, auch ein Fehler wie 503, gilt nicht als Ausfall. Die Werte lassen sich je Mandant in der `.env` setzen: `INGE_CONNECT_TIMEOUT`, `INGE_QUERY_TIMEOUT`, `INGE_LIST_TIMEOUT`, `INGE_TRANSFER_TIMEOUT` und `INGE_UNREACHABLE_PAUSE` (0 schaltet die Pause ab). `inge:check-infrastructure` und der Status-Reiter fragen immer.
+
+Ein Upload während eines Ausfalls wird übernommen: Das Medium bekommt seine Nutzungskopien und seinen Volltext, der Master bleibt lokal, und die Datei zeigt «DIMAG-Fehler» (siehe [DIMAG-Upload-Status](dimag-uploads.md)). Nachgeholt wird die Übergabe mit `inge:retry-handovers`: Er nimmt jedes Medium, dessen letzte DIMAG-Übergabe gescheitert ist und dessen Master noch lokal liegt. Liegt die AID schon in DIMAG (die Übergabe kam an, ihre Antwort nicht), vermerkt er das, statt die Datei ein zweites Mal zu schicken. Ist Inge noch nicht erreichbar, hört er beim ersten Medium auf.
+
+```bash
+php artisan inge:retry-handovers --env={slug} --dry-run   # nur auflisten
+php artisan inge:retry-handovers --env={slug}
+```
+
+Mit `--unprocessed` nimmt er auch Medien ohne jedes DIMAG-Ereignis, älter als eine Stunde. Bis v0.113.3 hielt ein unerreichbares Inge den Upload vor der Verarbeitung an; solche Medien haben weder Nutzungskopien noch Volltext, und für sie läuft die ganze Verarbeitung noch einmal. Erst mit `--dry-run` ansehen: Auf einem Mandanten, der DIMAG erst später angebunden hat, sind das auch alte Medien.
+
+Kann ein Master beim Herunterladen nicht aus DIMAG geholt werden, geht die Meldung über die gedrosselte Fehlermail, nicht mehr als eigene Mail je Versuch.
+
 ### Fehlersuche
 
 #### Die SIP-Import-Daten prüfen

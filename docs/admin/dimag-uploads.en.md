@@ -101,6 +101,7 @@ Media::latestIngestEvent(?string $category)  // → MediumEvent | null
 |---|---|---|
 | All uploads are 🔴 with "401 Unauthorized" | DIMAG password rotated | Set the new password in the `.env`, restart the queue worker |
 | Uploads stay 🟡 "waiting for DIMAG" | Queue worker is down | Check the supervisor: `supervisorctl status` |
+| Files 🔴 after an Inge outage | Hand-over failed during the outage; the master is local, the access copies are there | Once Inge answers again: `inge:retry-handovers` (see [When Inge cannot be reached](inge.md#inge-nicht-erreichbar)) |
 | Badge missing entirely | Tenant is not a DIMAG tenant (`setting('cloud') !== 'inge'`) | As expected — the badge only appears with the inge cloud |
 | Mail storm on repeated errors | The rate limit bucket does not take effect | Check the cache driver — the rate limit needs a working cache (Redis/DB, not `array`) |
 
