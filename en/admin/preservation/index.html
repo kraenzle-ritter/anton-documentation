@@ -4722,7 +4722,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-28</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -5017,11 +5017,7 @@ filtered out. A backup requires the native export <strong>and</strong> the SQL d
 outwards</strong>. A way back could be constructed with effort, but there is no
 tool for it.</p>
 </div>
-<p>Anton keeps the provenance of a file (format identification, checks, format
-rules, ingest) in the database. The DIP, OCFL and native export also output it
-as <strong>PREMIS 3</strong>, one file per record with media; a receiving long-term archive
-thus takes over each file's history without Anton's database. The NARA
-assessment is not included; there is no METS.</p>
+<p>Anton keeps the provenance of a file (format identification, checks, format rules, migrations, ingest) in the database. The DIP, OCFL and native export also output it as <strong>PREMIS 3</strong>, one file per record with media; a receiving long-term archive thus takes over each file's history without Anton's database. A migration appears there as <em>migration</em> with the person who started it, and a replaced file that was not kept, with its checksums, as the medium's source. The NARA assessment is not included; there is no METS.</p>
 <p>Which data each format takes with it in detail, which is only in the SQL dump
 and who can trigger which artefact is shown by the
 <a href="../export-matrix/">export matrix</a>. In short: the SQL dump and the standard

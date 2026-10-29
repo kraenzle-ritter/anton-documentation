@@ -4588,7 +4588,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-22</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -4608,7 +4608,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>22 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>29 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -5201,14 +5201,7 @@ per node.</p>
 only institution, objects, instantiations and around eight text field types.</p>
 <p><strong>TEI per object</strong> knows no overall export, no hierarchy and hardly any media.</p>
 <p><strong>E-ARK DIP</strong> (anton#697) comes in two scopes. <em>Access</em> is a publication view: what a guest may see, whoever exports — locked records and drafts are left out with their subtree, records under a protection period keep their description but not their media, private media are left out. The media are access copies (<code>web</code>) in representation <code>access</code>, described in EAD3 or EAD 2002 (setting <code>eark_dip_ead</code>), optionally also RiC-O and CIDOC CRM as Turtle (<code>eark_dip_rdf</code>). PREMIS names each representation's function and each file's source, without events and without persons. <em>Full</em> (<code>--full</code>, CLI only) is a hand-over like DIP and OCFL: every record, masters in <code>master</code>, kept originals in <code>original</code>, plus the native format (<code>anton-native</code>), PREMIS per record and the Word finding aid. Every package is validated before it is delivered; an invalid one is not delivered. See <a href="../download-dip/#e-ark-dip">DIP download</a>.</p>
-<p><strong>DIP, OCFL and native round trip</strong> carry a <strong>PREMIS 3 file</strong> per record with
-media since anton#661 (DIP: <code>data/meta/&lt;record&gt;.premis.xml</code>, OCFL:
-<code>metadata/premis.xml</code>, native: <code>premis/&lt;record&gt;.xml</code>). It lists the files and
-kept originals with MD5/SHA-512, size and PRONOM format, every event on the
-media (virus check, integrity and format checks, format identification, format
-rules, transfer to the cloud, ingest with the person who acted) and the tools
-involved with their version. There is no METS. The ZH variant of the DIP
-contains only media files, no metadata and no PREMIS.</p>
+<p><strong>DIP, OCFL and native round trip</strong> carry a <strong>PREMIS 3 file</strong> per record with media since anton#661 (DIP: <code>data/meta/&lt;record&gt;.premis.xml</code>, OCFL: <code>metadata/premis.xml</code>, native: <code>premis/&lt;record&gt;.xml</code>). It lists the files and kept originals with MD5/SHA-512, size and PRONOM format, every event on the media (virus check, integrity and format checks, format identification, format rules, transfer to the cloud, ingest with the person who acted) and the tools involved with their version. A format rule at ingest is a <em>normalization</em> and names as implementer whoever added the medium; <code>media:migrate</code> is a <em>migration</em> and names the account that started the run, as <code>&lt;account&gt;@cli</code>. A file a format rule replaced without keeping it is an object of its own without a file, with the checksums, size and format the rule recorded before converting; the medium refers to it as its source (anton#751). There is no METS. The ZH variant of the DIP contains only media files, no metadata and no PREMIS.</p>
 <p><strong>The two Excel exports pursue opposite purposes.</strong> The <em>full</em> export is an
 evaluation view: it takes along everything that can be represented flatly and
 <strong>cannot</strong> be loaded back in. The <em>update table</em> is the opposite — it

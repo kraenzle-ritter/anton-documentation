@@ -4556,7 +4556,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -4593,9 +4593,10 @@ check off in the <code>.env</code> file:</p>
 </code></pre></div>
 <p>In the settings (<code>two-factor-auth-role</code>) a role can be set for which 2FA is obligatory. If, for example, editor is specified, 2FA is mandatory for editor and admin.</p>
 <p>The check is therefore <strong>hierarchical</strong>, and that is where it is easy to get
-wrong: <code>user_intern</code> obliges not that one role but user_intern, loan_admin,
-editor and admin — four of them. An empty value, or <code>none</code>, switches the
-requirement off.</p>
+wrong: <code>user_intern</code> obliges not that one role but user_intern, editor and
+admin — three of them. An empty value, or <code>none</code>, switches the requirement off.
+The older value <code>loan_admin</code> obliges editors, admins and every account holding
+the capability <strong>Manage loans</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Without <code>2FA=1</code> the setting has no effect</p>
 <p>The environment has the last word. If two-factor authentication is not

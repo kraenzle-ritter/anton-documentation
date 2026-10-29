@@ -3169,7 +3169,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -3287,6 +3287,7 @@ verzeichnungsstufe
 </code></pre></div>
 
 <h2 id="explication-et-regles-pour-chaque-colonne-champ">Explication et règles pour chaque colonne / champ<a class="headerlink" href="#explication-et-regles-pour-chaque-colonne-champ" title="Permanent link">&para;</a></h2>
+<p>Un texte plus long que ce que la base de données peut contenir interrompt l’import avec un message, au lieu d’être tronqué sans avertissement. Le texte libre, comme les détails d’un événement, contient au plus 65 535 octets, soit 16 000 à 65 000 caractères selon l’écriture ; pour les autres colonnes, la section de la colonne indique la longueur maximale.</p>
 <h3 id="parent">parent<a class="headerlink" href="#parent" title="Permanent link">&para;</a></h3>
 <p>Le champ <code>parent</code> indique où la notice à importer est rattachée. Le champ ne doit pas être vide. Il peut contenir au maximum 100 caractères. Il doit contenir une cote existant déjà dans la base de données.</p>
 <p>Comme Anton peut comporter des unités de description sans cote (par exemple des classes, des groupes de fonds), il est également possible d'indiquer le <code>parent</code> via l'<code>id</code>. Si le <code>parent</code> contient un nombre entier (integer), l'importeur considère qu'il s'agit du <code>parent_id</code>. L'<code>id</code> d'une unité de description est visible dans le <code>permalink</code>.</p>
@@ -3334,6 +3335,7 @@ Einzelstück
 </div>
 <h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
 <p>Les Antonevents relient les unités de description aux acteur·trice·s et aux lieux. Ils se composent des champs suivants : <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Pour importer un Antonevent, l'EventType doit désormais être placé devant le nom du champ dans la désignation de la colonne, par exemple pour la création (dates extrêmes) :  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
+<p>Les colonnes de date (<code>…_date_start</code>, <code>…_date_end</code>) acceptent une année, un mois ou un jour : <code>1900</code>, <code>1900-03</code>, <code>1900-03-12</code>, ou encore <code>12.03.1900</code> ou <code>3. März 1900</code>. «&nbsp;ca.&nbsp;» devant la date (<code>ca. 1900</code>) active l'indication «&nbsp;circa&nbsp;» comme un 1 dans la colonne <code>…_ca</code>. La validation signale une date qu'elle ne peut pas lire et une date de fin antérieure à la date de début ; une année compte comme l'année entière, <code>1923</code> ne se termine donc pas avant <code>1923-05-15</code>. Un champ vide signifie : pas de date.</p>
 <p>Il existe de nombreux Antonevents : <code>creation</code>, <code>acquisition</code>, <code>accumulation</code>, <code>destruction</code>, <code>validation</code>, <code>migration</code>, <code>reproduction</code>, <code>publication</code>, <code>digitisation</code>, <code>ingest</code>, <code>reception</code>, <code>performance</code>, <code>provenance</code>, <code>loaned</code>, <code>preservation</code>, <code>engravation</code>, <code>writing</code>, <code>coloring</code>, <code>edition</code>, <code>production</code>, <code>other</code>, <code>text_author</code>. </p>
 <h4 id="acteurtrices-p-ex-creation_actors">Acteur·trice·s (p. ex. creation_actors)<a class="headerlink" href="#acteurtrices-p-ex-creation_actors" title="Permanent link">&para;</a></h4>
 <p>Le champ peut contenir au maximum 500 caractères. L'indication de la période d'existence (dates de vie) entre parenthèses n'est pas obligatoire, mais possible. Les parenthèses ne doivent toutefois pas être utilisées à d'autres fins. Plusieurs acteur·trice·s devraient être séparés par <code>::</code>.</p>

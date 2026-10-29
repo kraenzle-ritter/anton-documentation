@@ -5258,7 +5258,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -5376,6 +5376,7 @@ verzeichnungsstufe
 </code></pre></div>
 
 <h2 id="erlauterung-und-regeln-fur-die-einzelnen-spaltenfelder">Erläuterung und Regeln für die einzelnen Spalten/Felder<a class="headerlink" href="#erlauterung-und-regeln-fur-die-einzelnen-spaltenfelder" title="Permanent link">&para;</a></h2>
+<p>Ein Text, der länger ist, als die Datenbank fasst, bricht den Import mit einer Meldung ab, statt still gekürzt zu werden. Freitext wie Ereignisdetails fasst 65 535 Bytes, das sind je nach Schrift 16 000 bis 65 000 Zeichen; für die übrigen Spalten nennt der Abschnitt der Spalte die Höchstlänge.</p>
 <h3 id="parent">parent<a class="headerlink" href="#parent" title="Permanent link">&para;</a></h3>
 <p>Das Feld <code>parent</code> gibt an, wo der zu importierende Datensatz angehängt wird. Das Feld darf nicht leer sein. Es darf höchstens 100 Zeichen enthalten. Es muss eine Signatur enthalten, die es bereits in der Datenbank gibt.</p>
 <p>Da es in Anton Verzeichnungseinheiten ohne Signatur geben kann (z.B. Klassen, Bestandsgruppen), ist es auch möglich den <code>parent</code> über die <code>id</code> anzugeben. Wenn im <code>parent</code> eine ganze Zahl (integer) steht, geht der Importer davon aus, dass die <code>parent_id</code> gemein ist. Die <code>id</code> einer Verzeichnungseinheit ist aus dem <code>permalink</code> ersichtlich.</p>
@@ -5423,6 +5424,7 @@ Einzelstück
 </div>
 <h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
 <p>Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
+<p>Die Datumsspalten (<code>…_date_start</code>, <code>…_date_end</code>) nehmen ein Jahr, einen Monat oder einen Tag an: <code>1900</code>, <code>1900-03</code>, <code>1900-03-12</code>, auch <code>12.03.1900</code> oder <code>3. März 1900</code>. «ca.» vor dem Datum (<code>ca. 1900</code>) setzt das ca.-Kennzeichen wie eine 1 in der Spalte <code>…_ca</code>. Die Validierung meldet ein Datum, das sie nicht lesen kann, und ein Bis-Datum vor dem Von-Datum; ein Jahr gilt dabei als ganzes Jahr, <code>1923</code> endet also nicht vor <code>1923-05-15</code>. Ein leeres Feld bedeutet: kein Datum.</p>
 <p>Es gibt zahlreiche Antonevents: <code>creation</code>, <code>acquisition</code>, <code>accumulation</code>, <code>destruction</code>, <code>validation</code>, <code>migration</code>, <code>reproduction</code>, <code>publication</code>, <code>digitisation</code>, <code>ingest</code>, <code>reception</code>, <code>performance</code>, <code>provenance</code>, <code>loaned</code>, <code>preservation</code>, <code>engravation</code>, <code>writing</code>, <code>coloring</code>, <code>edition</code>, <code>production</code>, <code>other</code>, <code>text_author</code>. </p>
 <h4 id="akteurinnen-zb-creation_actors">Akteur:innen (z.B. creation_actors)<a class="headerlink" href="#akteurinnen-zb-creation_actors" title="Permanent link">&para;</a></h4>
 <p>Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteur:innen sollten mit <code>::</code> getrennt werden.</p>

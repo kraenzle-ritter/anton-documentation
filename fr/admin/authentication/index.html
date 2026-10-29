@@ -2318,7 +2318,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/authentication/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/authentication/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -2357,8 +2357,9 @@ Wechsel.</p>
 <p>In den Einstellungen (<code>two-factor-auth-role</code>) lässt sich eine Rolle festlegen, ab der die 2FA verbindlich ist. Steht dort beispielsweise editor, ist die 2FA für Editor:innen und Admins Pflicht.</p>
 <p>Die Prüfung ist also <strong>hierarchisch</strong>, und das ist die Stelle, an der man sich
 leicht vertut: <code>user_intern</code> verpflichtet nicht nur diese eine Rolle, sondern
-user_intern, loan_admin, editor und admin — vier Rollen. Ein leerer Wert oder
-<code>none</code> schaltet die Pflicht ab.</p>
+user_intern, editor und admin — drei Rollen. Ein leerer Wert oder
+<code>none</code> schaltet die Pflicht ab. Der ältere Wert <code>loan_admin</code> verpflichtet
+Editor:innen, Admins und alle Konten mit der Befugnis <strong>Ausleihe verwalten</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Ohne <code>2FA=1</code> bleibt die Einstellung wirkungslos</p>
 <p>Die Umgebung hat das letzte Wort. Ist die Zwei-Faktor-Anmeldung dort nicht

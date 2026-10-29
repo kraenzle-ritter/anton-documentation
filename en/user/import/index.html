@@ -5258,7 +5258,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-21</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -5376,6 +5376,7 @@ verzeichnungsstufe
 </code></pre></div>
 
 <h2 id="explanation-and-rules-for-the-individual-columnsfields">Explanation and rules for the individual columns/fields<a class="headerlink" href="#explanation-and-rules-for-the-individual-columnsfields" title="Permanent link">&para;</a></h2>
+<p>A text longer than the database can hold stops the import with a message instead of being cut off silently. Free text such as event details holds 65,535 bytes, which is 16,000 to 65,000 characters depending on the script; for the other columns, the column's section gives the maximum length.</p>
 <h3 id="parent">parent<a class="headerlink" href="#parent" title="Permanent link">&para;</a></h3>
 <p>The <code>parent</code> field specifies where the record to be imported is attached. The field must not be empty. It may contain at most 100 characters. It must contain a reference code that already exists in the database.</p>
 <p>Since Anton can contain units of description without a reference code (classes, recordgroups, for example), it is also possible to specify the <code>parent</code> via the <code>id</code>. If the <code>parent</code> contains an integer, the importer assumes that the <code>parent_id</code> is meant. The <code>id</code> of a unit of description can be seen from the <code>permalink</code>.</p>
@@ -5423,6 +5424,7 @@ Einzelstück
 </div>
 <h3 id="antonevents">Antonevents<a class="headerlink" href="#antonevents" title="Permanent link">&para;</a></h3>
 <p>Antonevents link the units of description to the actors and the places. They consist of the following fields: <code>actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details</code>. To import an Antonevent, the EventType now has to be placed before the field name in the column designation, for example for the creation (date range):  <code>creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details</code>.</p>
+<p>The date columns (<code>…_date_start</code>, <code>…_date_end</code>) take a year, a month or a day: <code>1900</code>, <code>1900-03</code>, <code>1900-03-12</code>, also <code>12.03.1900</code> or <code>3. März 1900</code>. «ca.» before the date (<code>ca. 1900</code>) sets the circa flag like a 1 in the <code>…_ca</code> column. The validation reports a date it cannot read and an end date before the start date; a year counts as the whole year, so <code>1923</code> does not end before <code>1923-05-15</code>. An empty field means: no date.</p>
 <p>There are numerous Antonevents: <code>creation</code>, <code>acquisition</code>, <code>accumulation</code>, <code>destruction</code>, <code>validation</code>, <code>migration</code>, <code>reproduction</code>, <code>publication</code>, <code>digitisation</code>, <code>ingest</code>, <code>reception</code>, <code>performance</code>, <code>provenance</code>, <code>loaned</code>, <code>preservation</code>, <code>engravation</code>, <code>writing</code>, <code>coloring</code>, <code>edition</code>, <code>production</code>, <code>other</code>, <code>text_author</code>. </p>
 <h4 id="actors-eg-creation_actors">Actors (e.g. creation_actors)<a class="headerlink" href="#actors-eg-creation_actors" title="Permanent link">&para;</a></h4>
 <p>The field may contain at most 500 characters. Giving the period of existence (dates of life) in brackets is not obligatory but is possible. Round brackets must not, however, be used for other purposes. Several actors should be separated with <code>::</code>.</p>

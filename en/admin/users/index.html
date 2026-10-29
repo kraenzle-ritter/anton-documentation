@@ -2520,6 +2520,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#superusers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4438,6 +4449,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#superusers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4498,7 +4520,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -4511,7 +4533,8 @@
 
 <h1 id="user-administration">User administration<a class="headerlink" href="#user-administration" title="Permanent link">&para;</a></h1>
 <p>User accounts are managed on the admin page under <strong>Users</strong>. Creating, changing
-and deleting requires the <code>admin</code> role.</p>
+and deleting requires the <code>admin</code> role and the capability <strong>Manage users and
+capabilities</strong>.</p>
 <h2 id="creating-an-account">Creating an account<a class="headerlink" href="#creating-an-account" title="Permanent link">&para;</a></h2>
 <p>A new account needs a username and an <strong>e-mail address</strong>. You do not set a
 password: the person receives an e-mail with a link and chooses their own
@@ -4543,10 +4566,6 @@ exactly like this:</p>
 <td>In addition, blocked content, locations (view only), loans, original media</td>
 </tr>
 <tr>
-<td><code>loan_admin</code></td>
-<td>In addition, manage loans</td>
-</tr>
-<tr>
 <td><code>editor</code></td>
 <td>Catalogue: create, change, move, delete (including locations); import; media</td>
 </tr>
@@ -4556,7 +4575,56 @@ exactly like this:</p>
 </tr>
 </tbody>
 </table>
-<p>Each role includes the rights of the one below it.</p>
+<p>Each role includes the rights of the one below it. The former role
+<code>loan_admin</code> is gone: such accounts are <code>user_intern</code> with the capability
+<strong>Manage loans</strong>.</p>
+<h2 id="capabilities">Capabilities<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h2>
+<p>Some tasks require a <strong>capability</strong> on top of the role, granted to one account
+at a time. Not everyone with the <code>admin</code> role has to be allowed everything. A
+right needs the minimum role <strong>and</strong> the capability.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Allows</th>
+<th>from role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manage loans</td>
+<td>Record, change and delete loans</td>
+<td><code>user_intern</code></td>
+</tr>
+<tr>
+<td>Change digital preservation</td>
+<td>Change the format policy, the format list and image processing; start format identification again; in the QR upload dialog, the switches for HEIC→JPEG, images→PDF, OCR and «keep delivered files», which apply to the whole archive. All admins can view the pages.</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>Manage users and capabilities</td>
+<td>Create, change, delete and invite accounts, end their sessions, reset 2FA and grant capabilities</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>Create API tokens for others</td>
+<td>Create and revoke API tokens for other accounts</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>Create own API tokens</td>
+<td>Create and revoke one's own API tokens on the profile (tab <strong>Security</strong>)</td>
+<td><code>user</code></td>
+</tr>
+</tbody>
+</table>
+<p>Capabilities are granted by superusers and by admins holding <strong>Manage users and
+capabilities</strong>, on an account's edit page. Nobody can change their own
+capabilities. Superusers hold all capabilities. Every change is recorded in the
+security log.</p>
+<p>At the changeover every admin received every capability and every editor
+<strong>Manage loans</strong>, so nothing changed until an archive withdraws capabilities. New
+accounts hold no capability until they are given one.</p>
 <div class="admonition tip">
 <p class="admonition-title">Block accounts rather than delete them</p>
 <p><code>blocked</code> is the right approach for accounts that are no longer used. When
@@ -4581,7 +4649,8 @@ descriptions and drafts, media under protection period and blocked media, and
 the internal detail view. Outside the branch it sees what guests see.</p>
 <h2 id="api-tokens">API tokens<a class="headerlink" href="#api-tokens" title="Permanent link">&para;</a></h2>
 <p>For access via the <a href="../../api/authentication/">API</a>, tokens can be generated per
-account, each with a name and, if needed, an expiry date. A token is shown only
+account — for other accounts with the capability <strong>Create API tokens for others</strong>,
+for one's own on the profile with <strong>Create own API tokens</strong> — each with a name and, if needed, an expiry date. A token is shown only
 once, right after it was created; the detail page then lists name, last use and
 expiry and lets you revoke single tokens. A token receives the rights of the
 account; a token for read access therefore belongs to an account with a

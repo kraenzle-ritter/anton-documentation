@@ -2230,6 +2230,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#befugnisse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Befugnisse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#superuser" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2290,7 +2301,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/users/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -2303,7 +2314,8 @@
 
 <h1 id="benutzerverwaltung">Benutzerverwaltung<a class="headerlink" href="#benutzerverwaltung" title="Permanent link">&para;</a></h1>
 <p>Benutzerkonten werden über die Admin-Seite unter <strong>Benutzer:innen</strong>
-verwaltet. Anlegen, Ändern und Löschen setzt die Rolle <code>admin</code> voraus.</p>
+verwaltet. Anlegen, Ändern und Löschen setzt die Rolle <code>admin</code> und die Befugnis
+<strong>Benutzer:innen und Befugnisse verwalten</strong> voraus.</p>
 <h2 id="ein-konto-anlegen">Ein Konto anlegen<a class="headerlink" href="#ein-konto-anlegen" title="Permanent link">&para;</a></h2>
 <p>Ein neues Konto braucht einen Benutzernamen und eine <strong>E-Mail-Adresse</strong>. Ein
 Passwort setzen Sie nicht: Die Person erhält eine E-Mail mit einem Link und
@@ -2335,10 +2347,6 @@ so:</p>
 <td>Zusätzlich gesperrte Inhalte, Standorte (nur ansehen), Ausleihen, Originalmedien</td>
 </tr>
 <tr>
-<td><code>loan_admin</code></td>
-<td>Zusätzlich Ausleihen verwalten</td>
-</tr>
-<tr>
 <td><code>editor</code></td>
 <td>Erschliessen: anlegen, ändern, verschieben, löschen (inkl. Standorte); Import; Medien</td>
 </tr>
@@ -2348,7 +2356,56 @@ so:</p>
 </tr>
 </tbody>
 </table>
-<p>Jede Rolle schliesst die Rechte der darunterliegenden ein.</p>
+<p>Jede Rolle schliesst die Rechte der darunterliegenden ein. Die frühere Rolle
+<code>loan_admin</code> gibt es nicht mehr: Solche Konten sind <code>user_intern</code> mit der
+Befugnis <strong>Ausleihe verwalten</strong>.</p>
+<h2 id="befugnisse">Befugnisse<a class="headerlink" href="#befugnisse" title="Permanent link">&para;</a></h2>
+<p>Einzelne Aufgaben verlangen zur Rolle eine <strong>Befugnis</strong>, die einem Konto einzeln
+gegeben wird. So muss nicht jede Person mit Rolle <code>admin</code> alles dürfen. Ein Recht
+hat, wer die Mindestrolle <strong>und</strong> die Befugnis hat.</p>
+<table>
+<thead>
+<tr>
+<th>Befugnis</th>
+<th>Erlaubt</th>
+<th>ab Rolle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ausleihe verwalten</td>
+<td>Ausleihen erfassen, ändern, löschen</td>
+<td><code>user_intern</code></td>
+</tr>
+<tr>
+<td>Digitale Archivierung ändern</td>
+<td>Formatrichtlinie, Formatliste und Bildverarbeitung ändern, die Formaterkennung neu auslösen; im Upload-Dialog mit QR-Code die Schalter für HEIC→JPEG, Bilder→PDF, OCR und «gelieferte Originale behalten», die für das ganze Archiv gelten. Ansehen können die Seiten alle Admins.</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>Benutzer:innen und Befugnisse verwalten</td>
+<td>Konten anlegen, ändern, löschen, einladen, ihre Sitzungen beenden, 2FA zurücksetzen und Befugnisse vergeben</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>API-Schlüssel für andere erstellen</td>
+<td>API-Tokens für andere Konten erstellen und widerrufen</td>
+<td><code>admin</code></td>
+</tr>
+<tr>
+<td>Eigene API-Schlüssel erstellen</td>
+<td>Eigene API-Tokens im Profil (Tab <strong>Sicherheit</strong>) erstellen und widerrufen</td>
+<td><code>user</code></td>
+</tr>
+</tbody>
+</table>
+<p>Befugnisse vergeben Superuser und Admins mit der Befugnis <strong>Benutzer:innen und
+Befugnisse verwalten</strong>, auf der Bearbeitungsseite eines Kontos. Die eigenen
+Befugnisse kann niemand ändern. Superuser haben alle Befugnisse. Jede Änderung
+steht im Sicherheitsprotokoll.</p>
+<p>Bei der Umstellung erhielten alle Admins alle Befugnisse und alle Editor:innen
+<strong>Ausleihe verwalten</strong>; es änderte sich also nichts, bis ein Archiv Befugnisse
+entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.</p>
 <div class="admonition tip">
 <p class="admonition-title">Konto sperren statt löschen</p>
 <p><code>blocked</code> ist der richtige Weg für Konten, die nicht mehr genutzt werden.
@@ -2374,7 +2431,8 @@ Verzeichnungen und Entwürfe, Medien unter Schutzfrist und gesperrte Medien, und
 die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.</p>
 <h2 id="api-token">API-Token<a class="headerlink" href="#api-token" title="Permanent link">&para;</a></h2>
 <p>Für den Zugriff über die <a href="../../api/authentication/">API</a> lassen sich pro Konto
-Tokens erzeugen, jeder mit Bezeichnung und bei Bedarf einem Ablaufdatum. Ein
+Tokens erzeugen: für andere Konten mit der Befugnis <strong>API-Schlüssel für andere
+erstellen</strong>, für das eigene im Profil mit <strong>Eigene API-Schlüssel erstellen</strong>, jeder mit Bezeichnung und bei Bedarf einem Ablaufdatum. Ein
 Token wird nur einmal angezeigt, direkt nach dem Erstellen; die Detailseite
 listet danach Bezeichnung, letzte Nutzung und Ablauf und erlaubt, einzelne
 Tokens zu widerrufen. Ein Token erhält die Rechte des Kontos; ein Token für einen
