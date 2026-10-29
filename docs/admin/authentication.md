@@ -38,8 +38,9 @@ In den Einstellungen (`two-factor-auth-role`) lässt sich eine Rolle festlegen, 
 
 Die Prüfung ist also **hierarchisch**, und das ist die Stelle, an der man sich
 leicht vertut: `user_intern` verpflichtet nicht nur diese eine Rolle, sondern
-user_intern, loan_admin, editor und admin — vier Rollen. Ein leerer Wert oder
-`none` schaltet die Pflicht ab.
+user_intern, editor und admin — drei Rollen. Ein leerer Wert oder
+`none` schaltet die Pflicht ab. Der ältere Wert `loan_admin` verpflichtet
+Editor:innen, Admins und alle Konten mit der Befugnis **Ausleihe verwalten**.
 
 !!! warning "Ohne `2FA=1` bleibt die Einstellung wirkungslos"
     Die Umgebung hat das letzte Wort. Ist die Zwei-Faktor-Anmeldung dort nicht

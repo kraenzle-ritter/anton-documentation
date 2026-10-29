@@ -31,7 +31,7 @@ paramètre — le masquer n'annulerait pas le prêt, il le rendrait seulement
 inaccessible.
 
 ### Rôles
-Les prêts peuvent être gérés par `editor`, `admin` et `loan_admin`.
+Les prêts sont gérés par les comptes qui ont l’autorisation **Gérer les prêts**, à partir du rôle `user_intern`. L’ancien rôle `loan_admin` y est intégré.
 
 <!-- 
 Actuellement pas encore possible : définir des durées de prêt ; il faudrait pour cela probablement modifier le modèle de données des prêts.

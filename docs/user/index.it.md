@@ -43,7 +43,6 @@ dei ruoli non tradotti; nella gestione delle utenze compaiono esattamente così:
 | (non autenticato) | Consultare il catalogo pubblico — se l'archivio lo rende accessibile |
 | `user` | Lo stesso, da autenticato; profilo personale, notifiche |
 | `user_intern` | Inoltre vedere i contenuti bloccati e le collocazioni, prendere in prestito e scaricare i media originali |
-| `loan_admin` | Inoltre gestire i prestiti |
 | `editor` | Descrivere: creare, modificare, spostare ed eliminare schede (comprese le collocazioni); importazione; media |
 | `admin` | Impostazioni, formulari, account utente, esportazione, statistiche |
 | `blocked` | Nulla — l'accesso è bloccato |

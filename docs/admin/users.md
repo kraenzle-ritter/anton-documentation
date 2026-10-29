@@ -1,7 +1,8 @@
 # Benutzerverwaltung
 
 Benutzerkonten werden über die Admin-Seite unter **Benutzer:innen**
-verwaltet. Anlegen, Ändern und Löschen setzt die Rolle `admin` voraus.
+verwaltet. Anlegen, Ändern und Löschen setzt die Rolle `admin` und die Befugnis
+**Benutzer:innen und Befugnisse verwalten** voraus.
 
 ## Ein Konto anlegen
 
@@ -23,11 +24,35 @@ so:
 | `blocked` | Nichts; der Zugang ist gesperrt |
 | `user` | Den Katalog sehen wie die Öffentlichkeit, dazu Profil und Benachrichtigungen |
 | `user_intern` | Zusätzlich gesperrte Inhalte, Standorte (nur ansehen), Ausleihen, Originalmedien |
-| `loan_admin` | Zusätzlich Ausleihen verwalten |
 | `editor` | Erschliessen: anlegen, ändern, verschieben, löschen (inkl. Standorte); Import; Medien |
 | `admin` | Einstellungen, Formulare, Benutzerkonten, Export, Statistik |
 
-Jede Rolle schliesst die Rechte der darunterliegenden ein.
+Jede Rolle schliesst die Rechte der darunterliegenden ein. Die frühere Rolle
+`loan_admin` gibt es nicht mehr: Solche Konten sind `user_intern` mit der
+Befugnis **Ausleihe verwalten**.
+
+## Befugnisse
+
+Einzelne Aufgaben verlangen zur Rolle eine **Befugnis**, die einem Konto einzeln
+gegeben wird. So muss nicht jede Person mit Rolle `admin` alles dürfen. Ein Recht
+hat, wer die Mindestrolle **und** die Befugnis hat.
+
+| Befugnis | Erlaubt | ab Rolle |
+|---|---|---|
+| Ausleihe verwalten | Ausleihen erfassen, ändern, löschen | `user_intern` |
+| Digitale Archivierung ändern | Formatrichtlinie, Formatliste und Bildverarbeitung ändern, die Formaterkennung neu auslösen. Ansehen können die Seiten alle Admins. | `admin` |
+| Benutzer:innen und Befugnisse verwalten | Konten anlegen, ändern, löschen, einladen, ihre Sitzungen beenden, 2FA zurücksetzen und Befugnisse vergeben | `admin` |
+| API-Schlüssel für andere erstellen | API-Tokens für andere Konten erstellen und widerrufen | `admin` |
+| Eigene API-Schlüssel erstellen | Eigene API-Tokens im Profil (Tab **Sicherheit**) erstellen und widerrufen | `user` |
+
+Befugnisse vergeben Superuser und Admins mit der Befugnis **Benutzer:innen und
+Befugnisse verwalten**, auf der Bearbeitungsseite eines Kontos. Die eigenen
+Befugnisse kann niemand ändern. Superuser haben alle Befugnisse. Jede Änderung
+steht im Sicherheitsprotokoll.
+
+Bei der Umstellung erhielten alle Admins alle Befugnisse und alle Editor:innen
+**Ausleihe verwalten**; es änderte sich also nichts, bis ein Archiv Befugnisse
+entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.
 
 !!! tip "Konto sperren statt löschen"
     `blocked` ist der richtige Weg für Konten, die nicht mehr genutzt werden.
@@ -61,7 +86,8 @@ die interne Detailansicht. Ausserhalb des Zweigs sieht es, was Gäste sehen.
 ## API-Token
 
 Für den Zugriff über die [API](../api/authentication.md) lassen sich pro Konto
-Tokens erzeugen, jeder mit Bezeichnung und bei Bedarf einem Ablaufdatum. Ein
+Tokens erzeugen: für andere Konten mit der Befugnis **API-Schlüssel für andere
+erstellen**, für das eigene im Profil mit **Eigene API-Schlüssel erstellen**, jeder mit Bezeichnung und bei Bedarf einem Ablaufdatum. Ein
 Token wird nur einmal angezeigt, direkt nach dem Erstellen; die Detailseite
 listet danach Bezeichnung, letzte Nutzung und Ablauf und erlaubt, einzelne
 Tokens zu widerrufen. Ein Token erhält die Rechte des Kontos; ein Token für einen

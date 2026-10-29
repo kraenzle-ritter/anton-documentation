@@ -36,9 +36,10 @@ Two-factor authentication can be enabled with an entry in the `.env` file:
 In the settings (`two-factor-auth-role`) a role can be set for which 2FA is obligatory. If, for example, editor is specified, 2FA is mandatory for editor and admin.
 
 The check is therefore **hierarchical**, and that is where it is easy to get
-wrong: `user_intern` obliges not that one role but user_intern, loan_admin,
-editor and admin — four of them. An empty value, or `none`, switches the
-requirement off.
+wrong: `user_intern` obliges not that one role but user_intern, editor and
+admin — three of them. An empty value, or `none`, switches the requirement off.
+The older value `loan_admin` obliges editors, admins and every account holding
+the capability **Manage loans**.
 
 !!! warning "Without `2FA=1` the setting has no effect"
     The environment has the last word. If two-factor authentication is not

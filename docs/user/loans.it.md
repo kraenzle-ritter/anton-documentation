@@ -31,7 +31,7 @@ indipendentemente da questa impostazione — nasconderlo non annullerebbe il
 prestito, lo renderebbe soltanto irraggiungibile.
 
 ### Ruoli
-I prestiti possono essere gestiti da `editor`, `admin` e `loan_admin`.
+I prestiti sono gestiti dagli account con l’autorizzazione **Gestire i prestiti**, a partire dal ruolo `user_intern`. Il vecchio ruolo `loan_admin` vi è confluito.
 
 <!-- 
 Attualmente non ancora possibile: impostare le scadenze di prestito; per farlo occorrerebbe probabilmente modificare il modello di dati dei prestiti.

@@ -47,7 +47,6 @@ utilisateur·trice·s :
 | (non connecté·e) | Consulter le catalogue public — pour autant que le service le rende accessible |
 | `user` | La même chose, en étant connecté·e ; profil personnel, notifications |
 | `user_intern` | En plus, voir les contenus non communicables et les lieux de conservation, emprunter et télécharger les médias originaux |
-| `loan_admin` | En plus, gérer les prêts |
 | `editor` | Décrire : créer, modifier, déplacer et supprimer des notices (y compris les lieux de conservation) ; import ; médias |
 | `admin` | Paramètres, formulaires, comptes utilisateur, export, statistiques |
 | `blocked` | Rien — l'accès est bloqué |
