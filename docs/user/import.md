@@ -163,6 +163,8 @@ Dasselbe gilt für die **Textfelder**: `scopecontent` schreibt in die Inhaltsspr
 ### Antonevents
 Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
 
+Die Datumsspalten (`…_date_start`, `…_date_end`) nehmen ein Jahr, einen Monat oder einen Tag an: `1900`, `1900-03`, `1900-03-12`, auch `12.03.1900` oder `3. März 1900`. «ca.» vor dem Datum (`ca. 1900`) setzt das ca.-Kennzeichen wie eine 1 in der Spalte `…_ca`. Die Validierung meldet ein Datum, das sie nicht lesen kann, und ein Bis-Datum vor dem Von-Datum; ein Jahr gilt dabei als ganzes Jahr, `1923` endet also nicht vor `1923-05-15`. Ein leeres Feld bedeutet: kein Datum.
+
 Es gibt zahlreiche Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
 
 #### Akteur:innen (z.B. creation_actors)

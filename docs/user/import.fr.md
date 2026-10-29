@@ -163,6 +163,8 @@ Il en va de même pour les **champs de texte** : `scopecontent` écrit dans la l
 ### Antonevents
 Les Antonevents relient les unités de description aux acteur·trice·s et aux lieux. Ils se composent des champs suivants : `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Pour importer un Antonevent, l'EventType doit désormais être placé devant le nom du champ dans la désignation de la colonne, par exemple pour la création (dates extrêmes) :  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
 
+Les colonnes de date (`…_date_start`, `…_date_end`) acceptent une année, un mois ou un jour : `1900`, `1900-03`, `1900-03-12`, ou encore `12.03.1900` ou `3. März 1900`. «&nbsp;ca.&nbsp;» devant la date (`ca. 1900`) active l'indication «&nbsp;circa&nbsp;» comme un 1 dans la colonne `…_ca`. La validation signale une date qu'elle ne peut pas lire et une date de fin antérieure à la date de début ; une année compte comme l'année entière, `1923` ne se termine donc pas avant `1923-05-15`. Un champ vide signifie : pas de date.
+
 Il existe de nombreux Antonevents : `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
 
 #### Acteur·trice·s (p. ex. creation_actors)
