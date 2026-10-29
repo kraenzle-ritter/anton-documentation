@@ -67,6 +67,8 @@ delete this record?». Confirmation requires entering **one's own password**.
 
 The field **Reason for deletion** records why the record is deleted and on whose decision, e.g. «Appraised out, decision of …» or «Duplicate of …». The field is optional. The reason stays in the holdings log (**Administration → Logs**) with the reference code, title, text fields and the checksums of the media, also after the record is gone.
 
+If the record has records below it, the dialog names how many go with it and how many files of what size. To confirm, the record's **identifier** must then be typed as well, or the number of records where there is no identifier. Editors may delete at most as many records at once as the setting `delete_max_records` allows (default 5); an admin carries out a larger delete.
+
 !!! danger "Deletion is final"
     Anton has no recycle bin. What is deleted is the record, all subordinate
     units of description and their media including the files. Restoration is

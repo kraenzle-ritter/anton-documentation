@@ -68,6 +68,8 @@ Die Taste **Löschen** öffnet das Fenster «Datensatz löschen» mit der Rückf
 
 Im Feld **Grund der Löschung** lässt sich festhalten, warum der Datensatz gelöscht wird und auf wessen Entscheid, etwa «Kassation nach Entscheid vom …» oder «Dublette von …». Das Feld ist freiwillig. Der Grund bleibt mit Signatur, Titel, Textfeldern und den Prüfsummen der Medien im Bestandsprotokoll (**Administration → Protokolle**), auch wenn der Datensatz gelöscht ist.
 
+Hat der Datensatz untergeordnete Datensätze, nennt das Fenster, wie viele mitgelöscht werden und wie viele Dateien mit welcher Grösse. Zur Bestätigung ist dann zusätzlich die **Signatur** des Datensatzes einzutippen, ohne Signatur die Anzahl der Datensätze. Bearbeiter:innen dürfen höchstens so viele Datensätze auf einmal löschen, wie die Einstellung `delete_max_records` erlaubt (Vorgabe 5); eine grössere Löschung nimmt ein Admin vor.
+
 !!! danger "Löschen ist endgültig"
     Anton führt keinen Papierkorb. Gelöscht werden der Datensatz, alle
     untergeordneten Verzeichnungseinheiten und deren Medien samt Dateien. Ein

@@ -74,6 +74,8 @@ exige la saisie de **son propre mot de passe**.
 
 Le champ **Motif de la suppression** permet de noter pourquoi la notice est supprimée et sur quelle décision, par exemple «&nbsp;Élimination selon la décision du …&nbsp;» ou «&nbsp;Doublon de …&nbsp;». Le champ est facultatif. Le motif reste dans le journal du fonds (**Administration → Journaux**) avec la cote, le titre, les champs de texte et les sommes de contrôle des médias, même après la suppression de la notice.
 
+Si l’enregistrement a des enregistrements subordonnés, la fenêtre indique combien sont supprimés avec lui et combien de fichiers, de quelle taille. Pour confirmer, il faut alors aussi saisir la **cote** de l’enregistrement, ou le nombre d’enregistrements s’il n’a pas de cote. Les éditeur·rices peuvent supprimer au plus autant d’enregistrements à la fois que le permet le réglage `delete_max_records` (5 par défaut) ; une suppression plus étendue est effectuée par un·e administrateur·rice.
+
 !!! danger "La suppression est définitive"
     Anton ne tient pas de corbeille. Sont supprimés la notice, toutes les unités
     de description subordonnées et leurs médias, fichiers compris. Une
