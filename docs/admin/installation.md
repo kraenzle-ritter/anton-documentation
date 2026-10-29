@@ -33,8 +33,9 @@ DEBUGBAR_ENABLED=false
 APP_KEY=AppKey
 APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
-SNEAKER_SILENT=true
 ```
+
+Fehlermails: Mit `EMAIL_EXCEPTION_ENABLED=true` gehen Exceptions als Mail an `EMAIL_EXCEPTION_TO`. Dieselbe Exception (Klasse, Datei, Zeile, Meldung) kommt höchstens einmal je `EMAIL_EXCEPTION_DEDUP_MINUTES` (Vorgabe 60, `0` schaltet das ab), auch wenn die Datenbank ausgefallen ist. `php artisan anton:exception-mail-test --env=<slug>` schickt eine Probemail.
 
 #### Datenbank Credentials
 ```

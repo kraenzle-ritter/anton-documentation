@@ -33,8 +33,9 @@ DEBUGBAR_ENABLED=false
 APP_KEY=AppKey
 APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
-SNEAKER_SILENT=true
 ```
+
+Error mails: with `EMAIL_EXCEPTION_ENABLED=true`, exceptions are mailed to `EMAIL_EXCEPTION_TO`. The same exception (class, file, line, message) is mailed at most once per `EMAIL_EXCEPTION_DEDUP_MINUTES` (default 60, `0` turns it off), also while the database is down. `php artisan anton:exception-mail-test --env=<slug>` sends a test mail.
 
 #### Database credentials
 ```

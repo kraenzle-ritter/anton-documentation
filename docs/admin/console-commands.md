@@ -411,7 +411,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (63)
+### anton: (64)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -431,6 +431,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:customdir` | Manage customers directory. |
 | `anton:db-info` | Print the active database driver, version, and resolved geo-axis order. |
 | `anton:doctor` | Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2… |
+| `anton:exception-mail-test` | Send a test exception mail as a real exception is mailed, past the switch, dedup and throttle … |
 | `anton:export` | Export metadata to a XML-File (EAD or EAD3) |
 | `anton:export-antonfields` | Export per-formset field labels, form order and controlled-vocabulary labels as antonfields.js… |
 | `anton:export-dip` | Export records with their subtree as a DIP: BagIt (default) or E-ARK DIP 2.2.0 (--format=eark,… |
