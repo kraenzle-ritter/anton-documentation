@@ -244,11 +244,7 @@ The most important distinction, and the one most easily confused:
     outwards**. A way back could be constructed with effort, but there is no
     tool for it.
 
-Anton keeps the provenance of a file (format identification, checks, format
-rules, ingest) in the database. The DIP, OCFL and native export also output it
-as **PREMIS 3**, one file per record with media; a receiving long-term archive
-thus takes over each file's history without Anton's database. The NARA
-assessment is not included; there is no METS.
+Anton keeps the provenance of a file (format identification, checks, format rules, migrations, ingest) in the database. The DIP, OCFL and native export also output it as **PREMIS 3**, one file per record with media; a receiving long-term archive thus takes over each file's history without Anton's database. A migration appears there as *migration* with the person who started it, and a replaced file that was not kept, with its checksums, as the medium's source. The NARA assessment is not included; there is no METS.
 
 Which data each format takes with it in detail, which is only in the SQL dump
 and who can trigger which artefact is shown by the

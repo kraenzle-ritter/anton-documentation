@@ -116,6 +116,8 @@ The file may contain additional columns; these are, however, not imported. For s
 
 ## Explanation and rules for the individual columns/fields
 
+A text longer than the database can hold stops the import with a message instead of being cut off silently. Free text such as event details holds 65,535 bytes, which is 16,000 to 65,000 characters depending on the script; for the other columns, the column's section gives the maximum length.
+
 ### parent
 
 The `parent` field specifies where the record to be imported is attached. The field must not be empty. It may contain at most 100 characters. It must contain a reference code that already exists in the database.
@@ -162,6 +164,8 @@ The same applies to the **text fields**: `scopecontent` writes into the content 
 
 ### Antonevents
 Antonevents link the units of description to the actors and the places. They consist of the following fields: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. To import an Antonevent, the EventType now has to be placed before the field name in the column designation, for example for the creation (date range):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+
+The date columns (`…_date_start`, `…_date_end`) take a year, a month or a day: `1900`, `1900-03`, `1900-03-12`, also `12.03.1900` or `3. März 1900`. «ca.» before the date (`ca. 1900`) sets the circa flag like a 1 in the `…_ca` column. The validation reports a date it cannot read and an end date before the start date; a year counts as the whole year, so `1923` does not end before `1923-05-15`. An empty field means: no date.
 
 There are numerous Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
 

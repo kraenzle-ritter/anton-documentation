@@ -1,7 +1,8 @@
 # User administration
 
 User accounts are managed on the admin page under **Users**. Creating, changing
-and deleting requires the `admin` role.
+and deleting requires the `admin` role and the capability **Manage users and
+capabilities**.
 
 ## Creating an account
 
@@ -23,11 +24,35 @@ exactly like this:
 | `blocked` | Nothing; access is barred |
 | `user` | See the catalogue like the public, plus profile and notifications |
 | `user_intern` | In addition, blocked content, locations (view only), loans, original media |
-| `loan_admin` | In addition, manage loans |
 | `editor` | Catalogue: create, change, move, delete (including locations); import; media |
 | `admin` | Settings, forms, user accounts, export, statistics |
 
-Each role includes the rights of the one below it.
+Each role includes the rights of the one below it. The former role
+`loan_admin` is gone: such accounts are `user_intern` with the capability
+**Manage loans**.
+
+## Capabilities
+
+Some tasks require a **capability** on top of the role, granted to one account
+at a time. Not everyone with the `admin` role has to be allowed everything. A
+right needs the minimum role **and** the capability.
+
+| Capability | Allows | from role |
+|---|---|---|
+| Manage loans | Record, change and delete loans | `user_intern` |
+| Change digital preservation | Change the format policy, the format list and image processing; start format identification again; in the QR upload dialog, the switches for HEIC→JPEG, images→PDF, OCR and «keep delivered files», which apply to the whole archive. All admins can view the pages. | `admin` |
+| Manage users and capabilities | Create, change, delete and invite accounts, end their sessions, reset 2FA and grant capabilities | `admin` |
+| Create API tokens for others | Create and revoke API tokens for other accounts | `admin` |
+| Create own API tokens | Create and revoke one's own API tokens on the profile (tab **Security**) | `user` |
+
+Capabilities are granted by superusers and by admins holding **Manage users and
+capabilities**, on an account's edit page. Nobody can change their own
+capabilities. Superusers hold all capabilities. Every change is recorded in the
+security log.
+
+At the changeover every admin received every capability and every editor
+**Manage loans**, so nothing changed until an archive withdraws capabilities. New
+accounts hold no capability until they are given one.
 
 !!! tip "Block accounts rather than delete them"
     `blocked` is the right approach for accounts that are no longer used. When
@@ -60,7 +85,8 @@ the internal detail view. Outside the branch it sees what guests see.
 ## API tokens
 
 For access via the [API](../api/authentication.md), tokens can be generated per
-account, each with a name and, if needed, an expiry date. A token is shown only
+account — for other accounts with the capability **Create API tokens for others**,
+for one's own on the profile with **Create own API tokens** — each with a name and, if needed, an expiry date. A token is shown only
 once, right after it was created; the detail page then lists name, last use and
 expiry and lets you revoke single tokens. A token receives the rights of the
 account; a token for read access therefore belongs to an account with a

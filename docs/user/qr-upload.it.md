@@ -40,7 +40,7 @@ Nella finestra modale è possibile attivare opzioni di elaborazione delle immagi
 
 Sotto si trova **Conservare il file consegnato**, disattivato per impostazione predefinita. HEIC → JPEG e OCR fanno parte della presa in carico (preingest, vedi [Conservazione a lungo termine](../admin/preservation.md#speicherung)): il loro risultato è il master, e il file consegnato viene sostituito. L'evento del media registra la conversione con lo strumento e le somme di controllo di entrambi i file. Con la spunta, il file così come è stato consegnato resta come versione del media. Con «Immagini → PDF» le immagini consegnate restano sempre.
 
-Queste impostazioni vengono salvate e valgono per tutti i caricamenti.
+Queste impostazioni vengono salvate e valgono per tutti i caricamenti dell’archivio. Possono modificarle solo gli account con l’autorizzazione **Modificare l’archiviazione digitale**; gli altri vedono gli interruttori senza poterli cambiare.
 
 Dopo il salvataggio, la pagina segnala che i file sono stati ricevuti. Vengono elaborati e archiviati in background e appaiono nell'oggetto non appena ciò è avvenuto, dopo alcuni minuti per molte scansioni con OCR. Un'esecuzione OCR si interrompe dopo 600 secondi (`OCRMYPDF_TIMEOUT`); il file viene allora archiviato senza livello di testo.
 

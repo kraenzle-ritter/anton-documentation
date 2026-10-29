@@ -31,7 +31,7 @@ dieser Einstellung — es zu verbergen würde die Ausleihe nicht rückgängig ma
 sondern nur unerreichbar.
 
 ### Rollen
-Ausleihen können von `editor`, `admin` und `loan_admin` verwaltet werden.
+Ausleihen verwaltet, wer die Befugnis **Ausleihe verwalten** hat, ab der Rolle `user_intern` (siehe [Benutzerverwaltung](../admin/users.md#befugnisse)). Die frühere Rolle `loan_admin` ist darin aufgegangen.
 
 <!-- 
 Zurzeit noch nicht möglich: Leihfristen setzen; dafür müsste wohl das Datenmodell für die Ausleihen geändert werden.

@@ -30,7 +30,7 @@ A record that already carries loans keeps its module whatever this setting says
 — hiding it would not undo the loan, only make it unreachable.
 
 ### Roles
-Loans can be managed by `editor`, `admin` and `loan_admin`.
+Loans are managed by accounts holding the capability **Manage loans**, from the role `user_intern` up (see [User administration](../admin/users.md#capabilities)). The former role `loan_admin` has gone into it.
 
 <!-- 
 Currently not yet possible: setting loan periods; that would probably require changing the data model for loans.

@@ -40,7 +40,7 @@ Image processing options can be activated in the modal:
 
 Below them is **Keep the delivered file**, off by default. HEIC → JPEG and OCR are part of taking the file in (preingest, see [Long-term preservation](../admin/preservation.md#speicherung)): their result is the master, and the delivered file is replaced. The event on the medium records the conversion with its tool and the checksums of both files. Ticked, the file as delivered stays as a kept original of the medium. With «images → PDF» the delivered images are always kept.
 
-These settings are saved and apply to all uploads.
+These settings are saved and apply to all uploads of the archive. Only accounts holding the capability **Change digital preservation** can change them (see [User administration](../admin/users.md#capabilities)); everyone else sees the switches without being able to change them.
 
 After saving, the page reports that the files have been received. They are processed and stored in the background and appear on the object once that is done, after a few minutes for many scans with OCR. An OCR run stops after 600 seconds (`OCRMYPDF_TIMEOUT`); the file is then stored without a text layer.
 

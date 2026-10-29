@@ -34,7 +34,7 @@ There is **one single setting** for this. Under *Administration → Settings*:
 
 | Setting | Values | Default |
 |---|---|---|
-| `comments_min_role` | empty, `user`, `user_intern`, `loan_admin`, `editor`, `admin` | **empty** |
+| `comments_min_role` | empty, `user`, `user_intern`, `editor`, `admin`; the older value `loan_admin` acts as `editor` | **empty** |
 
 **Empty means off.** No comment area, no work list, nothing to see. As soon as
 you enter a role, comments are switched on — and the role entered is at the same
@@ -58,7 +58,7 @@ not guess in the more permissive direction here.
 |---|---|---|---|---|
 | not logged in | – | – | – | – |
 | `user` (external) | only their own | from the minimum role | – | – |
-| `user_intern`, `loan_admin`, `editor` | all | from the minimum role | yes | yes |
+| `user_intern`, `editor` | all | from the minimum role | yes | yes |
 | `admin` | all | yes | yes | yes |
 
 Everyone may change and delete their own comments; only the administration may

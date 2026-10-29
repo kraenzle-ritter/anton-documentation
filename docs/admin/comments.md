@@ -35,7 +35,7 @@ Einstellungen*:
 
 | Einstellung | Werte | Vorgabe |
 |---|---|---|
-| `comments_min_role` | leer, `user`, `user_intern`, `loan_admin`, `editor`, `admin` | **leer** |
+| `comments_min_role` | leer, `user`, `user_intern`, `editor`, `admin`; der ältere Wert `loan_admin` wirkt wie `editor` | **leer** |
 
 **Leer heisst aus.** Kein Kommentarbereich, keine Arbeitsliste, nichts zu
 sehen. Sobald Sie eine Rolle eintragen, sind Kommentare eingeschaltet — und
@@ -60,7 +60,7 @@ Anton rät hier nicht auf die freizügigere Seite.
 |---|---|---|---|---|
 | nicht angemeldet | – | – | – | – |
 | `user` (extern) | nur eigene | ab Mindestrolle | – | – |
-| `user_intern`, `loan_admin`, `editor` | alle | ab Mindestrolle | ja | ja |
+| `user_intern`, `editor` | alle | ab Mindestrolle | ja | ja |
 | `admin` | alle | ja | ja | ja |
 
 Eigene Kommentare darf jede Person ändern und löschen, fremde nur die

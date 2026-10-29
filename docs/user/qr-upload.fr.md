@@ -40,7 +40,7 @@ Des options de traitement des images peuvent être activées dans la fenêtre mo
 
 En dessous figure **Conserver le fichier livré**, désactivé par défaut. HEIC → JPEG et OCR font partie de la prise en charge (préingest, voir [Préservation à long terme](../admin/preservation.md#speicherung)) : leur résultat est le master, et le fichier livré est remplacé. L'événement du média consigne la conversion avec l'outil et les sommes de contrôle des deux fichiers. Avec la coche, le fichier tel que livré est conservé comme version du média. Avec « Images → PDF », les images livrées sont toujours conservées.
 
-Ces réglages sont enregistrés et s'appliquent à tous les téléversements.
+Ces réglages sont enregistrés et s'appliquent à tous les téléversements des archives. Seuls les comptes qui ont l’autorisation **Modifier l’archivage numérique** peuvent les modifier ; les autres voient les interrupteurs sans pouvoir les changer.
 
 Après l'enregistrement, la page indique que les fichiers ont été reçus. Ils sont traités et déposés en arrière-plan et apparaissent dans l'objet dès que c'est fait, après quelques minutes pour de nombreuses numérisations avec OCR. Une exécution OCR s'arrête après 600 secondes (`OCRMYPDF_TIMEOUT`) ; le fichier est alors déposé sans couche de texte.
 

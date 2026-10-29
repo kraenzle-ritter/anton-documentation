@@ -40,7 +40,7 @@ Im Modal können Bildverarbeitungsoptionen aktiviert werden:
 
 Darunter steht **Gelieferte Datei behalten**, standardmässig ausgeschaltet. HEIC → JPEG und OCR gehören zur Übernahme (Preingest, siehe [Langzeitarchivierung](../admin/preservation.md#speicherung)): Ihr Ergebnis ist der Master, und die gelieferte Datei wird ersetzt. Das Ereignis am Medium hält die Umwandlung mit Werkzeug und den Prüfsummen beider Dateien fest. Mit Häkchen bleibt die Datei, wie sie geliefert wurde, als behaltene Fassung des Mediums erhalten. Bei «Bilder → PDF» bleiben die gelieferten Bilder immer erhalten.
 
-Diese Einstellungen werden gespeichert und gelten für alle Uploads.
+Diese Einstellungen werden gespeichert und gelten für alle Uploads des Archivs. Ändern kann sie deshalb nur, wer die Befugnis **Digitale Archivierung ändern** hat (siehe [Benutzerverwaltung](../admin/users.md#befugnisse)); allen anderen zeigt der Dialog die Schalter ohne Änderungsmöglichkeit.
 
 Nach dem Speichern meldet die Seite, dass die Dateien empfangen sind. Verarbeitet und abgelegt werden sie im Hintergrund; beim Objekt erscheinen sie, sobald das geschehen ist, bei vielen Scans mit OCR nach einigen Minuten. Ein OCR-Lauf bricht nach 600 Sekunden ab (`OCRMYPDF_TIMEOUT`), die Datei wird dann ohne Textebene abgelegt.
 

@@ -116,6 +116,8 @@ Il file può contenere colonne aggiuntive; queste però non vengono importate. P
 
 ## Spiegazione e regole per le singole colonne / campi
 
+Un testo più lungo di quanto la banca dati possa contenere interrompe l’importazione con un messaggio, invece di essere troncato senza avviso. Il testo libero, come i dettagli di un evento, contiene al massimo 65 535 byte, cioè da 16 000 a 65 000 caratteri a seconda della scrittura; per le altre colonne, la sezione della colonna indica la lunghezza massima.
+
 ### parent
 
 Il campo `parent` indica dove viene agganciata la scheda da importare. Il campo non deve essere vuoto. Può contenere al massimo 100 caratteri. Deve contenere una segnatura già esistente nella banca dati.
@@ -162,6 +164,8 @@ Lo stesso vale per i **campi di testo**: `scopecontent` scrive nella lingua dei 
 
 ### Antonevents
 Gli Antonevents collegano le unità di descrizione ad attori, attrici e luoghi. Sono composti dai campi seguenti: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Per importare un Antonevent, l'EventType va ora posto nella denominazione della colonna prima del nome del campo, ad esempio per la creazione (estremi cronologici):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+
+Le colonne delle date (`…_date_start`, `…_date_end`) accettano un anno, un mese o un giorno: `1900`, `1900-03`, `1900-03-12`, anche `12.03.1900` o `3. März 1900`. «ca.» davanti alla data (`ca. 1900`) imposta l'indicazione «circa» come un 1 nella colonna `…_ca`. La validazione segnala una data che non riesce a leggere e una data di fine anteriore alla data d'inizio; un anno vale come anno intero, quindi `1923` non finisce prima di `1923-05-15`. Un campo vuoto significa: nessuna data.
 
 Esistono numerosi Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
 

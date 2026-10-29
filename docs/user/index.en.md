@@ -40,7 +40,6 @@ untranslated; they appear exactly like this in the user administration:
 | (not logged in) | Search the public catalogue — provided the archive makes it available |
 | `user` | The same, logged in; own profile, notifications |
 | `user_intern` | In addition, see blocked content and locations, borrow items and download original media |
-| `loan_admin` | In addition, manage loans |
 | `editor` | Catalogue: create, modify, move and delete records (including locations); import; media |
 | `admin` | Settings, forms, user accounts, export, statistics |
 | `blocked` | Nothing — access is barred |
