@@ -4456,7 +4456,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/requirements/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-28</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -4510,10 +4510,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">MariaDB</p>
-<p>MySQL is the default. <strong>MariaDB 10.11+</strong> can be configured as an
-alternative for self-hosting. The two handle the axis order of
-geocoordinates differently; Anton detects the database at startup and
-adjusts accordingly.</p>
+<p>MySQL is the default. Anton also runs on <strong>MariaDB 10.11+</strong>. The two handle the axis order of geocoordinates differently; Anton detects the database at startup and adjusts accordingly. Backups with <code>anton:backup</code> work on MariaDB from Anton v0.113.5.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Without Supervisor, Anton stands still</p>
@@ -4626,6 +4623,10 @@ function is missing in each case — Anton keeps running.</p>
 <tr>
 <td><a href="https://typesense.org/">Typesense</a></td>
 <td>The <a href="../typesense/">instant search</a> and gallery V2. The classic full-text search and gallery work without it.</td>
+</tr>
+<tr>
+<td><a href="https://www.libreoffice.org/">LibreOffice</a> (<code>soffice</code>; packages <code>libreoffice-writer-nogui</code>, <code>libreoffice-impress-nogui</code>)</td>
+<td>The PDF access copy and the thumbnail of word processing documents and presentations (ODT, DOCX, DOC, RTF, ODP, PPTX, PPT). Without LibreOffice such a document stays a download under "Other files"; nothing is lost. The copy is a view: fonts, page breaks and tables may differ from the original.</td>
 </tr>
 </tbody>
 </table>

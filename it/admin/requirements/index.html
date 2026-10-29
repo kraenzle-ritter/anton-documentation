@@ -2268,7 +2268,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/requirements/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/requirements/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-28</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -2322,10 +2322,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">MariaDB</p>
-<p>MySQL ist die Vorgabe. <strong>MariaDB 10.11+</strong> lässt sich für Selbsthosting
-alternativ konfigurieren. Die beiden behandeln die Achsenreihenfolge von
-Geokoordinaten unterschiedlich; Anton erkennt die Datenbank beim Start und
-stellt sich darauf ein.</p>
+<p>MySQL ist die Vorgabe. Anton läuft auch mit <strong>MariaDB 10.11+</strong>. Die beiden behandeln die Achsenreihenfolge von Geokoordinaten unterschiedlich; Anton erkennt die Datenbank beim Start und stellt sich darauf ein. Sicherungen mit <code>anton:backup</code> funktionieren unter MariaDB ab Anton v0.113.5.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Ohne Supervisor steht Anton still</p>
@@ -2438,6 +2435,10 @@ eine bestimmte Funktion — Anton läuft weiter.</p>
 <tr>
 <td><a href="https://typesense.org/">Typesense</a></td>
 <td>Die <a href="../typesense/">schnelle Suche</a> und die Galerie V2. Die klassische Volltextsuche und Galerie funktionieren ohne.</td>
+</tr>
+<tr>
+<td><a href="https://www.libreoffice.org/">LibreOffice</a> (<code>soffice</code>; Pakete <code>libreoffice-writer-nogui</code>, <code>libreoffice-impress-nogui</code>)</td>
+<td>Die PDF-Nutzungskopie und das Vorschaubild von Textdokumenten und Präsentationen (ODT, DOCX, DOC, RTF, ODP, PPTX, PPT). Ohne LibreOffice bleibt ein solches Dokument ein Download unter «Weitere Dateien»; es geht nichts verloren. Die Kopie ist eine Ansicht: Schriften, Seitenumbrüche und Tabellen können vom Original abweichen.</td>
 </tr>
 </tbody>
 </table>
