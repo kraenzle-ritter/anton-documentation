@@ -15,10 +15,7 @@ Anton is a [Laravel](https://laravel.com/) 12 application.
 | Email dispatch | sendmail, for example |
 
 !!! note "MariaDB"
-    MySQL is the default. **MariaDB 10.11+** can be configured as an
-    alternative for self-hosting. The two handle the axis order of
-    geocoordinates differently; Anton detects the database at startup and
-    adjusts accordingly.
+    MySQL is the default. Anton also runs on **MariaDB 10.11+**. The two handle the axis order of geocoordinates differently; Anton detects the database at startup and adjusts accordingly. Backups with `anton:backup` work on MariaDB from Anton v0.113.5.
 
 !!! warning "Without Supervisor, Anton stands still"
     Uploads, conversions, import and export run as background jobs. If the
@@ -79,6 +76,7 @@ function is missing in each case — Anton keeps running.
 | [qpdf](https://qpdf.sourceforge.io/) | The quick PDF check; without qpdf Anton checks via `pdftocairo`, more slowly |
 | [Fido](https://github.com/openpreserve/fido) | Alternative for format identification; Anton uses whatever is present |
 | [Typesense](https://typesense.org/) | The [instant search](typesense.md) and gallery V2. The classic full-text search and gallery work without it. |
+| [LibreOffice](https://www.libreoffice.org/) (`soffice`; packages `libreoffice-writer-nogui`, `libreoffice-impress-nogui`) | The PDF access copy and the thumbnail of word processing documents and presentations (ODT, DOCX, DOC, RTF, ODP, PPTX, PPT). Without LibreOffice such a document stays a download under "Other files"; nothing is lost. The copy is a view: fonts, page breaks and tables may differ from the original. |
 
 !!! note "Siegfried comes from its own package repository"
     Siegfried is not in the Ubuntu sources. It is installed via the repository
