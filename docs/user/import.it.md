@@ -116,6 +116,8 @@ Il file può contenere colonne aggiuntive; queste però non vengono importate. P
 
 ## Spiegazione e regole per le singole colonne / campi
 
+Un testo più lungo di quanto la banca dati possa contenere interrompe l’importazione con un messaggio, invece di essere troncato senza avviso. Il testo libero, come i dettagli di un evento, contiene al massimo 65 535 byte, cioè da 16 000 a 65 000 caratteri a seconda della scrittura; per le altre colonne, la sezione della colonna indica la lunghezza massima.
+
 ### parent
 
 Il campo `parent` indica dove viene agganciata la scheda da importare. Il campo non deve essere vuoto. Può contenere al massimo 100 caratteri. Deve contenere una segnatura già esistente nella banca dati.

@@ -116,6 +116,8 @@ The file may contain additional columns; these are, however, not imported. For s
 
 ## Explanation and rules for the individual columns/fields
 
+A text longer than the database can hold stops the import with a message instead of being cut off silently. Free text such as event details holds 65,535 bytes, which is 16,000 to 65,000 characters depending on the script; for the other columns, the column's section gives the maximum length.
+
 ### parent
 
 The `parent` field specifies where the record to be imported is attached. The field must not be empty. It may contain at most 100 characters. It must contain a reference code that already exists in the database.

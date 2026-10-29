@@ -116,6 +116,8 @@ Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importie
 
 ## Erläuterung und Regeln für die einzelnen Spalten/Felder
 
+Ein Text, der länger ist, als die Datenbank fasst, bricht den Import mit einer Meldung ab, statt still gekürzt zu werden. Freitext wie Ereignisdetails fasst 65 535 Bytes, das sind je nach Schrift 16 000 bis 65 000 Zeichen; für die übrigen Spalten nennt der Abschnitt der Spalte die Höchstlänge.
+
 ### parent
 
 Das Feld `parent` gibt an, wo der zu importierende Datensatz angehängt wird. Das Feld darf nicht leer sein. Es darf höchstens 100 Zeichen enthalten. Es muss eine Signatur enthalten, die es bereits in der Datenbank gibt.

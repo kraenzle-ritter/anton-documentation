@@ -116,6 +116,8 @@ Le fichier peut contenir des colonnes supplémentaires ; celles-ci ne sont toute
 
 ## Explication et règles pour chaque colonne / champ
 
+Un texte plus long que ce que la base de données peut contenir interrompt l’import avec un message, au lieu d’être tronqué sans avertissement. Le texte libre, comme les détails d’un événement, contient au plus 65 535 octets, soit 16 000 à 65 000 caractères selon l’écriture ; pour les autres colonnes, la section de la colonne indique la longueur maximale.
+
 ### parent
 
 Le champ `parent` indique où la notice à importer est rattachée. Le champ ne doit pas être vide. Il peut contenir au maximum 100 caractères. Il doit contenir une cote existant déjà dans la base de données.
