@@ -15,10 +15,7 @@ Anton ist eine [Laravel](https://laravel.com/)-12-Anwendung.
 | E-Mail-Versand | z.B. sendmail |
 
 !!! note "MariaDB"
-    MySQL ist die Vorgabe. **MariaDB 10.11+** lässt sich für Selbsthosting
-    alternativ konfigurieren. Die beiden behandeln die Achsenreihenfolge von
-    Geokoordinaten unterschiedlich; Anton erkennt die Datenbank beim Start und
-    stellt sich darauf ein.
+    MySQL ist die Vorgabe. Anton läuft auch mit **MariaDB 10.11+**. Die beiden behandeln die Achsenreihenfolge von Geokoordinaten unterschiedlich; Anton erkennt die Datenbank beim Start und stellt sich darauf ein. Sicherungen mit `anton:backup` funktionieren unter MariaDB ab Anton v0.113.5.
 
 !!! warning "Ohne Supervisor steht Anton still"
     Uploads, Konversionen, Import und Export laufen als Hintergrundaufträge.
@@ -79,6 +76,7 @@ eine bestimmte Funktion — Anton läuft weiter.
 | [qpdf](https://qpdf.sourceforge.io/) | Die schnelle PDF-Prüfung; ohne qpdf prüft Anton über `pdftocairo`, langsamer |
 | [Fido](https://github.com/openpreserve/fido) | Alternative zur Formaterkennung; Anton nutzt, was vorhanden ist |
 | [Typesense](https://typesense.org/) | Die [schnelle Suche](typesense.md) und die Galerie V2. Die klassische Volltextsuche und Galerie funktionieren ohne. |
+| [LibreOffice](https://www.libreoffice.org/) (`soffice`; Pakete `libreoffice-writer-nogui`, `libreoffice-impress-nogui`) | Die PDF-Nutzungskopie und das Vorschaubild von Textdokumenten und Präsentationen (ODT, DOCX, DOC, RTF, ODP, PPTX, PPT). Ohne LibreOffice bleibt ein solches Dokument ein Download unter «Weitere Dateien»; es geht nichts verloren. Die Kopie ist eine Ansicht: Schriften, Seitenumbrüche und Tabellen können vom Original abweichen. |
 
 !!! note "Siegfried kommt aus einem eigenen Paket-Repository"
     Siegfried ist nicht in den Ubuntu-Quellen. Es wird über das Repository von
