@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **22 October 2026**. It is
+    This matrix reflects the state of **29 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -185,14 +185,7 @@ only institution, objects, instantiations and around eight text field types.
 
 **E-ARK DIP** (anton#697) comes in two scopes. *Access* is a publication view: what a guest may see, whoever exports — locked records and drafts are left out with their subtree, records under a protection period keep their description but not their media, private media are left out. The media are access copies (`web`) in representation `access`, described in EAD3 or EAD 2002 (setting `eark_dip_ead`), optionally also RiC-O and CIDOC CRM as Turtle (`eark_dip_rdf`). PREMIS names each representation's function and each file's source, without events and without persons. *Full* (`--full`, CLI only) is a hand-over like DIP and OCFL: every record, masters in `master`, kept originals in `original`, plus the native format (`anton-native`), PREMIS per record and the Word finding aid. Every package is validated before it is delivered; an invalid one is not delivered. See [DIP download](download-dip.md#e-ark-dip).
 
-**DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with
-media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL:
-`metadata/premis.xml`, native: `premis/<record>.xml`). It lists the files and
-kept originals with MD5/SHA-512, size and PRONOM format, every event on the
-media (virus check, integrity and format checks, format identification, format
-rules, transfer to the cloud, ingest with the person who acted) and the tools
-involved with their version. There is no METS. The ZH variant of the DIP
-contains only media files, no metadata and no PREMIS.
+**DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL: `metadata/premis.xml`, native: `premis/<record>.xml`). It lists the files and kept originals with MD5/SHA-512, size and PRONOM format, every event on the media (virus check, integrity and format checks, format identification, format rules, transfer to the cloud, ingest with the person who acted) and the tools involved with their version. A format rule at ingest is a *normalization* and names as implementer whoever added the medium; `media:migrate` is a *migration* and names the account that started the run, as `<account>@cli`. A file a format rule replaced without keeping it is an object of its own without a file, with the checksums, size and format the rule recorded before converting; the medium refers to it as its source (anton#751). There is no METS. The ZH variant of the DIP contains only media files, no metadata and no PREMIS.
 
 **The two Excel exports pursue opposite purposes.** The *full* export is an
 evaluation view: it takes along everything that can be represented flatly and

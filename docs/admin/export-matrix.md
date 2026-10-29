@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **22. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **29. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -187,15 +187,7 @@ RecordSets mit.
 
 **E-ARK DIP** (anton#697) gibt es in zwei Umfängen. *Zugang* ist eine Publikationssicht: Was ein Gast sehen darf, gleich wer exportiert — gesperrte Datensätze und Entwürfe fehlen samt Teilbaum, Datensätze mit laufender Schutzfrist behalten ihre Beschreibung, aber nicht ihre Medien, private Medien fehlen. Die Medien liegen als Nutzungskopien (`web`) in der Repräsentation `access`, beschrieben in EAD3 oder EAD 2002 (Einstellung `eark_dip_ead`), auf Wunsch zusätzlich RiC-O und CIDOC CRM als Turtle (`eark_dip_rdf`). PREMIS nennt die Funktion jeder Repräsentation und die Herkunft jeder Datei, ohne Ereignisse und ohne Personen. *Vollständig* (`--full`, nur CLI) ist eine Übergabe wie DIP und OCFL: alle Datensätze, Master in `master`, behaltene Originale in `original`, dazu das native Format (`anton-native`), PREMIS je Datensatz und das Word-Findbuch. Jedes Paket wird vor der Auslieferung geprüft; ein ungültiges wird nicht ausgeliefert. Siehe [DIP Download](download-dip.md#e-ark-dip).
 
-**DIP, OCFL und nativer Round-Trip** führen seit anton#661 je Datensatz mit
-Medien eine **PREMIS-3-Datei** mit (DIP: `data/meta/<Datensatz>.premis.xml`,
-OCFL: `metadata/premis.xml`, nativ: `premis/<Datensatz>.xml`). Darin stehen die
-Dateien und behaltenen Originale mit MD5/SHA-512, Grösse und PRONOM-Format, alle
-Ereignisse an den Medien (Virenprüfung, Integritäts- und Formatprüfung,
-Formaterkennung, Formatregeln, Übergabe an die Cloud, Übernahme mit der
-handelnden Person) und die beteiligten Werkzeuge mit Version. METS gibt es nicht.
-Die ZH-Variante des DIP enthält nur Mediendateien, keine Metadaten und kein
-PREMIS.
+**DIP, OCFL und nativer Round-Trip** führen seit anton#661 je Datensatz mit Medien eine **PREMIS-3-Datei** mit (DIP: `data/meta/<Datensatz>.premis.xml`, OCFL: `metadata/premis.xml`, nativ: `premis/<Datensatz>.xml`). Darin stehen die Dateien und behaltenen Originale mit MD5/SHA-512, Grösse und PRONOM-Format, alle Ereignisse an den Medien (Virenprüfung, Integritäts- und Formatprüfung, Formaterkennung, Formatregeln, Übergabe an die Cloud, Übernahme mit der handelnden Person) und die beteiligten Werkzeuge mit Version. Eine Formatregel bei der Übernahme ist eine *normalization* und nennt als ausführende Person, wer das Medium hinzugefügt hat; `media:migrate` ist eine *migration* und nennt das Konto, unter dem der Lauf gestartet wurde, als `<konto>@cli`. Eine Datei, die eine Formatregel ersetzt und nicht behalten hat, steht als eigenes Objekt ohne Datei darin, mit den Prüfsummen, der Grösse und dem Format, die die Regel vor der Umwandlung festgehalten hat; das Medium verweist auf sie als Quelle (anton#751). METS gibt es nicht. Die ZH-Variante des DIP enthält nur Mediendateien, keine Metadaten und kein PREMIS.
 
 **Die beiden Excel-Exporte verfolgen entgegengesetzte Zwecke.** Der *volle*
 Export ist eine Auswertungssicht: er nimmt alles mit, was sich flach darstellen

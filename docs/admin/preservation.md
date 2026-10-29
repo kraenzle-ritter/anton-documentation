@@ -254,11 +254,7 @@ Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
     exportiert wird: dieses Paket ist als **Migrationsweg hinaus** gedacht. Ein
     Rückweg wäre mit Aufwand konstruierbar, ein Werkzeug dafür gibt es nicht.
 
-Die Provenienz einer Datei (Formaterkennung, Prüfungen, Formatregeln, Übernahme)
-führt Anton in der Datenbank. DIP, OCFL und nativer Export geben sie zusätzlich
-als **PREMIS 3** aus, eine Datei je Datensatz mit Medien; ein empfangendes
-Langzeitarchiv übernimmt so die Vorgeschichte jeder Datei ohne Antons Datenbank.
-Nicht darin steht die NARA-Bewertung; METS gibt es nicht.
+Die Provenienz einer Datei (Formaterkennung, Prüfungen, Formatregeln, Migrationen, Übernahme) führt Anton in der Datenbank. DIP, OCFL und nativer Export geben sie zusätzlich als **PREMIS 3** aus, eine Datei je Datensatz mit Medien; ein empfangendes Langzeitarchiv übernimmt so die Vorgeschichte jeder Datei ohne Antons Datenbank. Eine Migration erscheint dort als *migration* mit der Person, die sie ausgelöst hat, und eine ersetzte, nicht behaltene Datei mit ihren Prüfsummen als Quelle des Mediums. Nicht darin steht die NARA-Bewertung; METS gibt es nicht.
 
 Welche Daten jedes Format im Einzelnen mitnimmt, welche nur im SQL-Dump stehen und
 wer welches Artefakt auslösen kann, zeigt die [Export-Matrix](export-matrix.md).
