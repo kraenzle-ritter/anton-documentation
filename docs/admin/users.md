@@ -40,7 +40,7 @@ hat, wer die Mindestrolle **und** die Befugnis hat.
 | Befugnis | Erlaubt | ab Rolle |
 |---|---|---|
 | Ausleihe verwalten | Ausleihen erfassen, ändern, löschen | `user_intern` |
-| Digitale Archivierung ändern | Formatrichtlinie, Formatliste und Bildverarbeitung ändern, die Formaterkennung neu auslösen. Ansehen können die Seiten alle Admins. | `admin` |
+| Digitale Archivierung ändern | Formatrichtlinie, Formatliste und Bildverarbeitung ändern, die Formaterkennung neu auslösen; im Upload-Dialog mit QR-Code die Schalter für HEIC→JPEG, Bilder→PDF, OCR und «gelieferte Originale behalten», die für das ganze Archiv gelten. Ansehen können die Seiten alle Admins. | `admin` |
 | Benutzer:innen und Befugnisse verwalten | Konten anlegen, ändern, löschen, einladen, ihre Sitzungen beenden, 2FA zurücksetzen und Befugnisse vergeben | `admin` |
 | API-Schlüssel für andere erstellen | API-Tokens für andere Konten erstellen und widerrufen | `admin` |
 | Eigene API-Schlüssel erstellen | Eigene API-Tokens im Profil (Tab **Sicherheit**) erstellen und widerrufen | `user` |

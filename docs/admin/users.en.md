@@ -40,7 +40,7 @@ right needs the minimum role **and** the capability.
 | Capability | Allows | from role |
 |---|---|---|
 | Manage loans | Record, change and delete loans | `user_intern` |
-| Change digital preservation | Change the format policy, the format list and image processing; start format identification again. All admins can view the pages. | `admin` |
+| Change digital preservation | Change the format policy, the format list and image processing; start format identification again; in the QR upload dialog, the switches for HEIC→JPEG, images→PDF, OCR and «keep delivered files», which apply to the whole archive. All admins can view the pages. | `admin` |
 | Manage users and capabilities | Create, change, delete and invite accounts, end their sessions, reset 2FA and grant capabilities | `admin` |
 | Create API tokens for others | Create and revoke API tokens for other accounts | `admin` |
 | Create own API tokens | Create and revoke one's own API tokens on the profile (tab **Security**) | `user` |
