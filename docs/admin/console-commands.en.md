@@ -173,11 +173,12 @@ is recorded as an event on the medium, written to the security log and
 reported; the file stays where it is. `--oldest=N` takes the N scanned longest
 ago, never scanned first; `--from-cloud` as above. If clamd does not answer in
 time for a file, it is recorded as not checked and the run goes on;
-`--timeout=` sets the wait for the run, otherwise `CLAMD_TIMEOUT` applies.
-Masters over 2 GB, and smaller ones where clamd stops at `MaxScanSize` or
-`MaxFileSize`, are scanned in overlapping parts (`VIRUS_SCAN_PART_SIZE`,
-256 MB; `VIRUS_SCAN_PART_OVERLAP`, 1 MB) and counted apart as «clean, scanned
-in parts».
+`--timeout=` sets the wait for the run, otherwise `CLAMD_TIMEOUT` applies; it
+grows with the size, by `VIRUS_SCAN_SECONDS_PER_GB` (240 s) per GB.
+Masters over 512 MB (`VIRUS_SCAN_WHOLE_MAX_SIZE`) are scanned in overlapping
+parts at once (`VIRUS_SCAN_PART_SIZE`, 256 MB; `VIRUS_SCAN_PART_OVERLAP`,
+1 MB), smaller ones too where clamd stops at `MaxScanSize` or `MaxFileSize`,
+and counted apart as «clean, scanned in parts».
 Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
 answers.
 
