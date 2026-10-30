@@ -222,6 +222,12 @@ Redundant storage is a matter for the infrastructure: Anton writes to a local
 store and optionally to a cloud store, and operations create the copies
 underneath. With **Anton as a Service**, the data is held in [four copies at three locations, two of them in Zurich](../faq/longterm_archives.md); **on premises**, the operating institution is responsible for this.
 
+## Lasting addresses {#dauerhafte-adressen}
+
+Records, media, actors, places and keywords carry a UUID that does not change with a move or a merge, unlike the number in a page's address. The address `https://<archive>/id/<uuid>` leads to the current page: a record's, an authority record's, and for a medium its record's (anton#784). Only what the page itself may show is reached; a locked record answers like an unknown one, with «not found».
+
+The «Permalink» field in a form shows this address. For actors, places and keywords it is in the default forms; for records it can be added to the form.
+
 ## Backup or publication? {#sicherung-oder-publikation}
 
 The most important distinction, and the one most easily confused:

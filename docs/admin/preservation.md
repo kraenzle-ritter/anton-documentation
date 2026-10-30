@@ -232,6 +232,12 @@ Die redundante Speicherung ist Sache der Infrastruktur: Anton schreibt in einen
 lokalen Speicher und optional in einen Cloud-Speicher, die Kopien darunter legt
 der Betrieb an. Bei **Anton as a Service** liegen die Daten in [vier Kopien an drei Standorten, zwei davon in Zürich](../faq/longterm_archives.md); **on Premises** verantwortet das die betreibende Institution.
 
+## Dauerhafte Adressen
+
+Datensätze, Medien, Akteur:innen, Orte und Schlagworte tragen eine UUID, die sich bei einem Umzug oder einer Zusammenlegung nicht ändert, anders als die Nummer in der Adresse einer Seite. Die Adresse `https://<archiv>/id/<uuid>` führt auf die aktuelle Seite: eines Datensatzes, einer Normdaten-Seite, bei einem Medium auf seinen Datensatz (anton#784). Sichtbar ist dabei nur, was die Seite selbst zeigen darf; ein gesperrter Datensatz antwortet wie ein unbekannter mit «nicht gefunden».
+
+Das Feld «Permalink» in einer Maske zeigt diese Adresse. Bei Akteur:innen, Orten und Schlagworten steht es in der Vorgabe; bei Datensätzen lässt es sich in der Maske hinzufügen.
+
 ## Sicherung oder Publikation?
 
 Die wichtigste Unterscheidung, und die am leichtesten zu verwechselnde:
