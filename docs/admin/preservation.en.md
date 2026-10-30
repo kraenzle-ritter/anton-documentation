@@ -226,7 +226,7 @@ underneath. With **Anton as a Service**, the data is held in [four copies at thr
 
 Records, media, actors, places and keywords carry a UUID that does not change with a move or a merge, unlike the number in a page's address. The address `https://<archive>/id/<uuid>` leads to the current page: a record's, an authority record's, and for a medium its record's (anton#784). Only what the page itself may show is reached; a locked record answers like an unknown one, with «not found».
 
-The «Permalink» field in a form shows this address. For actors, places and keywords it is in the default forms; for records it can be added to the form.
+The exports and the API name a record by this address ([export matrix](export-matrix.md#dauerhafte-adresse)). The «Permalink» field in a form shows it. For actors, places and keywords it is in the default forms; for records it can be added to the form.
 
 ## Backup or publication? {#sicherung-oder-publikation}
 

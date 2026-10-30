@@ -262,6 +262,10 @@ die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
     Rollenprüfung**. Der Download einer erzeugten RDF-Datei prüft ausser dem
     Dateinamen keine weiteren Berechtigungen.
 
+## Dauerhafte Adresse
+
+Seit anton#784 nennen die Exporte einen Datensatz bei seiner dauerhaften Adresse `https://<archiv>/id/<uuid>` statt bei der Seite seiner Datenbank-Nummer: EAD 2002 (`eadid/@url`, `unitid/extptr`), EAD3 (`recordid/@instanceurl`, `unitid/@identifier`), Dublin Core über OAI-PMH (`dc:identifier`, `dc:relation`), Memobase (`sameAs`), PREMIS (ein zweiter `objectIdentifier` vom Typ `URI`) und die API (`permalink`, auch bei Akteur:innen). RDF A+ und RiC-O behalten ihre eigenen IRIs und verweisen mit `rdfs:seeAlso` auf die Adresse, bei Datensätzen, Akteur:innen, Orten und Schlagworten. Der TEI-Export von zbz bleibt bei seinem Zitierformat.
+
 ## Medien ohne Datensatz
 
 Alle Exporte gehen nach Datensätzen. Ein Medium, dessen Datensatz gelöscht ist, das aber noch in der Datenbank und auf der Platte liegt, steht deshalb in keinem Paket. Damit es nicht still fehlt, legt Anton neben einen Export des ganzen Mandanten oder eines ganzen Baums eine Liste `…-media-without-record.csv` (Medien-ID, Datei, Grösse, Prüfsummen, Pfad, ob die Datei noch da ist; anton#786):

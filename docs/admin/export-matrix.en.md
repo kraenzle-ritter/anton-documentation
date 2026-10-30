@@ -256,6 +256,10 @@ and always the locked creators (anton#616).
     from the file name, downloading a generated RDF file checks no further
     permissions.
 
+## Lasting address {#dauerhafte-adresse}
+
+Since anton#784 the exports name a record by its lasting address `https://<archive>/id/<uuid>` instead of the page of its database number: EAD 2002 (`eadid/@url`, `unitid/extptr`), EAD3 (`recordid/@instanceurl`, `unitid/@identifier`), Dublin Core via OAI-PMH (`dc:identifier`, `dc:relation`), Memobase (`sameAs`), PREMIS (a second `objectIdentifier` of type `URI`) and the API (`permalink`, for actors too). RDF A+ and RiC-O keep their own IRIs and point to the address with `rdfs:seeAlso`, for records, actors, places and keywords. The zbz TEI export keeps its citation format.
+
 ## Media without a record {#medien-ohne-datensatz}
 
 Every export goes by record. A medium whose record has been deleted but which is still in the database and on disk is therefore in no package. So that it does not go missing silently, Anton puts a list `…-media-without-record.csv` (media id, file, size, checksums, path, whether the file is still there; anton#786) beside an export of the whole tenant or of a whole tree:
