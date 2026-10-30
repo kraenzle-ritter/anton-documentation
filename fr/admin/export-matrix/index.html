@@ -2307,6 +2307,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#medien-ohne-datensatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Medien ohne Datensatz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kernaussage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2334,7 +2345,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-10-30</span>
     </div>
   
   
@@ -2353,7 +2364,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>29. Oktober 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>30. Oktober 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -3013,6 +3024,14 @@ die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
 Rollenprüfung</strong>. Der Download einer erzeugten RDF-Datei prüft ausser dem
 Dateinamen keine weiteren Berechtigungen.</p>
 </div>
+<h2 id="medien-ohne-datensatz">Medien ohne Datensatz<a class="headerlink" href="#medien-ohne-datensatz" title="Permanent link">&para;</a></h2>
+<p>Alle Exporte gehen nach Datensätzen. Ein Medium, dessen Datensatz gelöscht ist, das aber noch in der Datenbank und auf der Platte liegt, steht deshalb in keinem Paket. Damit es nicht still fehlt, legt Anton neben einen Export des ganzen Mandanten oder eines ganzen Baums eine Liste <code>…-media-without-record.csv</code> (Medien-ID, Datei, Grösse, Prüfsummen, Pfad, ob die Datei noch da ist; anton#786):</p>
+<ul>
+<li><code>anton:export-native</code> ohne <code>--root</code> oder mit einem Datensatz an der Spitze eines Baums: neben dem ZIP.</li>
+<li>RDF-Bündel (<code>a-plus-bundle</code>) ebenso, auch wenn es über die Export-Seite entsteht; dort ist die Liste in der Dateiliste herunterzuladen.</li>
+<li><code>anton:export-dip --format=eark --full</code>: einmal je Lauf im Zielordner, <code>&lt;slug&gt;-media-without-record.csv</code>.</li>
+</ul>
+<p>Gibt es keine solchen Medien, entsteht keine Liste. Was mit den Dateien geschieht, entscheidet das Archiv; <code>anton:audit-orphans --only=media</code> zeigt sie jederzeit, und der tägliche Bericht <code>anton:review-logs</code> meldet Medien, die nach dem Löschen ihres Datensatzes übrig bleiben.</p>
 <h2 id="kernaussage">Kernaussage<a class="headerlink" href="#kernaussage" title="Permanent link">&para;</a></h2>
 <p><strong>Beschreibungsmetadaten</strong> sind über offene Standards exzellent abgedeckt und
 paketierbar. <strong>Normdaten</strong> haben genau einen eigenständigen Export (TEI).

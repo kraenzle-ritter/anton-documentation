@@ -4578,7 +4578,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-av/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-30</span>
     </div>
   
   
@@ -4817,7 +4817,7 @@
 <li>For recordings ingested before v0.111.1, the nightly run <code>media:validate-formats</code> adds the characteristics; until then the exports lack them too.</li>
 <li>There is no rule yet that converts sound or video. When one comes, <code>media:migrate</code> proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. <code>media:migrate</code> refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.</li>
 <li>Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.</li>
-<li>The upload does not accept subtitles as sidecar files; SRT and WebVTT are missing from the allowed extensions. Of a subtitle stream in the container, Anton measures only the stream, not its text.</li>
+<li>The upload accepts subtitles as sidecar files (SRT, WebVTT), but the player does not show them yet (anton#781). Of a subtitle stream in the container, Anton measures only the stream, not its text.</li>
 <li>«Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.</li>
 </ul>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>

@@ -3398,6 +3398,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#medien-ohne-datensatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media without a record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-essence" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4561,6 +4572,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#medien-ohne-datensatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media without a record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-essence" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4588,7 +4610,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-10-30</span>
     </div>
   
   
@@ -4608,7 +4630,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>29 October 2026</strong>. It is
+<p>This matrix reflects the state of <strong>30 October 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -5261,6 +5283,14 @@ and always the locked creators (anton#616).</p>
 from the file name, downloading a generated RDF file checks no further
 permissions.</p>
 </div>
+<h2 id="medien-ohne-datensatz">Media without a record<a class="headerlink" href="#medien-ohne-datensatz" title="Permanent link">&para;</a></h2>
+<p>Every export goes by record. A medium whose record has been deleted but which is still in the database and on disk is therefore in no package. So that it does not go missing silently, Anton puts a list <code>…-media-without-record.csv</code> (media id, file, size, checksums, path, whether the file is still there; anton#786) beside an export of the whole tenant or of a whole tree:</p>
+<ul>
+<li><code>anton:export-native</code> without <code>--root</code> or with a record at the top of a tree: beside the ZIP.</li>
+<li>RDF bundle (<code>a-plus-bundle</code>) likewise, also when it is made on the export page; there the list can be downloaded from the file list.</li>
+<li><code>anton:export-dip --format=eark --full</code>: once per run in the target folder, <code>&lt;slug&gt;-media-without-record.csv</code>.</li>
+</ul>
+<p>With no such media, no list is written. What happens to the files is the archive's decision; <code>anton:audit-orphans --only=media</code> shows them at any time, and the daily report <code>anton:review-logs</code> reports media left over after their record was deleted.</p>
 <h2 id="the-essence">The essence<a class="headerlink" href="#the-essence" title="Permanent link">&para;</a></h2>
 <p><strong>Descriptive metadata</strong> is excellently covered by open standards and can be
 packaged. <strong>Authority data</strong> has exactly one export of its own (TEI). <strong>File provenance</strong>
