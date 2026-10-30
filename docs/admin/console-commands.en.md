@@ -173,11 +173,12 @@ is recorded as an event on the medium, written to the security log and
 reported; the file stays where it is. `--oldest=N` takes the N scanned longest
 ago, never scanned first; `--from-cloud` as above. If clamd does not answer in
 time for a file, it is recorded as not checked and the run goes on;
-`--timeout=` sets the wait for the run, otherwise `CLAMD_TIMEOUT` applies.
-Masters over 2 GB, and smaller ones where clamd stops at `MaxScanSize` or
-`MaxFileSize`, are scanned in overlapping parts (`VIRUS_SCAN_PART_SIZE`,
-256 MB; `VIRUS_SCAN_PART_OVERLAP`, 1 MB) and counted apart as «clean, scanned
-in parts».
+`--timeout=` sets the wait for the run, otherwise `CLAMD_TIMEOUT` applies; it
+grows with the size, by `VIRUS_SCAN_SECONDS_PER_GB` (240 s) per GB.
+Masters over 512 MB (`VIRUS_SCAN_WHOLE_MAX_SIZE`) are scanned in overlapping
+parts at once (`VIRUS_SCAN_PART_SIZE`, 256 MB; `VIRUS_SCAN_PART_OVERLAP`,
+1 MB), smaller ones too where clamd stops at `MaxScanSize` or `MaxFileSize`,
+and counted apart as «clean, scanned in parts».
 Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
 answers.
 
@@ -406,7 +407,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (63)
+### anton: (64)
 
 | Command | Description |
 |---|---|
@@ -426,6 +427,7 @@ up to date with every change to the commands.
 | `anton:customdir` | Manage customers directory. |
 | `anton:db-info` | Print the active database driver, version, and resolved geo-axis order. |
 | `anton:doctor` | Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2… |
+| `anton:exception-mail-test` | Send a test exception mail as a real exception is mailed, past the switch, dedup and throttle … |
 | `anton:export` | Export metadata to a XML-File (EAD or EAD3) |
 | `anton:export-antonfields` | Export per-formset field labels, form order and controlled-vocabulary labels as antonfields.js… |
 | `anton:export-dip` | Export records with their subtree as a DIP: BagIt (default) or E-ARK DIP 2.2.0 (--format=eark,… |

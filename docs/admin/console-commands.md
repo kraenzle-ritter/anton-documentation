@@ -177,11 +177,12 @@ vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
 liegen. `--oldest=N` nimmt die N am längsten nicht geprüften, nie geprüfte
 zuerst; `--from-cloud` wie oben. Antwortet clamd für eine Datei nicht
 rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
-`--timeout=` setzt die Wartezeit für den Lauf, sonst gilt `CLAMD_TIMEOUT`.
-Master über 2 GB, und kleinere, bei denen clamd an `MaxScanSize` oder
-`MaxFileSize` aufhört, prüft er in überlappenden Teilen (`VIRUS_SCAN_PART_SIZE`,
-256 MB; `VIRUS_SCAN_PART_OVERLAP`, 1 MB) und zählt sie gesondert als «ohne
-Befund, in Teilen geprüft».
+`--timeout=` setzt die Wartezeit für den Lauf, sonst gilt `CLAMD_TIMEOUT`; sie
+wächst mit der Grösse, um `VIRUS_SCAN_SECONDS_PER_GB` (240 s) je GB.
+Master über 512 MB (`VIRUS_SCAN_WHOLE_MAX_SIZE`) prüft er gleich in
+überlappenden Teilen (`VIRUS_SCAN_PART_SIZE`, 256 MB; `VIRUS_SCAN_PART_OVERLAP`,
+1 MB), kleinere ebenso, wenn clamd an `MaxScanSize` oder `MaxFileSize` aufhört,
+und zählt sie gesondert als «ohne Befund, in Teilen geprüft».
 Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
 mehr antwortet.
 
@@ -411,7 +412,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (63)
+### anton: (64)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -431,6 +432,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:customdir` | Manage customers directory. |
 | `anton:db-info` | Print the active database driver, version, and resolved geo-axis order. |
 | `anton:doctor` | Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2… |
+| `anton:exception-mail-test` | Send a test exception mail as a real exception is mailed, past the switch, dedup and throttle … |
 | `anton:export` | Export metadata to a XML-File (EAD or EAD3) |
 | `anton:export-antonfields` | Export per-formset field labels, form order and controlled-vocabulary labels as antonfields.js… |
 | `anton:export-dip` | Export records with their subtree as a DIP: BagIt (default) or E-ARK DIP 2.2.0 (--format=eark,… |

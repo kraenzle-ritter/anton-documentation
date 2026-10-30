@@ -73,6 +73,8 @@ Il pulsante **Elimina** apre la finestra «Eliminare la scheda» con la richiest
 
 Nel campo **Motivo della cancellazione** si può annotare perché la scheda viene eliminata e su decisione di chi, ad esempio «Scarto secondo la decisione del …» o «Doppione di …». Il campo è facoltativo. Il motivo resta nel registro del fondo (**Amministrazione → Protocolli**) con la segnatura, il titolo, i campi di testo e le somme di controllo dei media, anche dopo l'eliminazione della scheda.
 
+Se il record ha record subordinati, la finestra indica quanti vengono eliminati con esso e quanti file, di quale dimensione. Per confermare occorre allora digitare anche la **segnatura** del record, oppure il numero di record se manca la segnatura. I redattori possono eliminare al massimo tanti record alla volta quanti ne consente l’impostazione `delete_max_records` (predefinito 5); un’eliminazione più ampia la effettua un amministratore.
+
 !!! danger "L'eliminazione è definitiva"
     Anton non dispone di un cestino. Vengono eliminati la scheda, tutte le unità
     di descrizione subordinate e i loro media, file compresi. Un ripristino è
