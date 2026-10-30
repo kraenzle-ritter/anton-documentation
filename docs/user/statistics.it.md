@@ -21,10 +21,7 @@ quindi anche alla domanda su quanto sia pieno l'archivio.
 le ordinazioni per anno e per fondo — con rimando al rispettivo fondo. È l'unica
 valutazione delle ordinazioni che Anton gestisce.
 
-**Ricerca** analizza le interrogazioni degli ultimi 30 giorni: per ogni tipo di
-ricerca il numero di interrogazioni, i risultati e il tasso di successo, oltre a
-un tasso complessivo. Un tasso di successo basso indica che chi consulta non
-trova ciò che cerca.
+**Ricerca** mostra le interrogazioni: come grafico, le interrogazioni al mese negli ultimi dodici mesi e quante hanno avuto risultati; come tabella, gli ultimi 30 giorni per tipo di ricerca con il numero di interrogazioni, i risultati e il tasso di successo; e come riepilogo, tutte le interrogazioni registrate con il totale, i risultati e il tasso di successo. Un tasso di successo basso indica che chi consulta non trova ciò che cerca. Le interrogazioni vengono contate solo finché l'impostazione `log_search_queries` è attiva; non lo è di default, perché la tabella cresce senza limite di tempo.
 
 **Fondi** elenca per ciascun fondo segnatura, titolo, numero di voci,
 consistenza in metri lineari e numero di media.

@@ -23,10 +23,7 @@ zurückgegeben, sowie die Bestellungen pro Jahr und Bestand — mit Verweis auf 
 jeweiligen Bestand. Das ist die einzige Auswertung der Bestellungen, die Anton
 führt.
 
-**Suche** wertet die Suchabfragen der letzten 30 Tage aus: pro Suchart die Zahl
-der Abfragen, die Treffer und die Erfolgsquote, dazu eine Gesamtquote. Eine tiefe
-Erfolgsquote ist ein Hinweis darauf, dass Benutzende nicht finden, was sie
-suchen.
+**Suche** zeigt die Suchabfragen: als Verlauf die Abfragen pro Monat über die letzten zwölf Monate und wie viele davon Treffer hatten; als Tabelle die letzten 30 Tage pro Suchart mit Zahl der Abfragen, Treffern und Erfolgsquote; und als Zusammenfassung alle gespeicherten Abfragen mit Gesamtzahl, Treffern und Erfolgsquote. Eine tiefe Erfolgsquote ist ein Hinweis darauf, dass Benutzende nicht finden, was sie suchen. Gezählt wird nur, solange die Einstellung `log_search_queries` eingeschaltet ist; sie ist es nicht von vornherein, weil die Tabelle ohne Frist wächst.
 
 **Bestände** listet je Bestand Signatur, Titel, Anzahl Einträge, Umfang in
 Laufmetern und Anzahl Medien.

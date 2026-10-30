@@ -84,7 +84,7 @@ Die gemessenen Werte stehen am Medium unter **Technische Merkmale**; die Bitrate
 - Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf `media:validate-formats` die Merkmale nach; bis dahin fehlen sie auch in den Exporten.
 - Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt `media:migrate` sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt `media:migrate` ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.
 - Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.
-- Untertitel als Begleitdatei nimmt der Upload nicht an; SRT und WebVTT fehlen unter den erlaubten Endungen. Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.
+- Untertitel als Begleitdatei (SRT, WebVTT) nimmt der Upload an; der Player zeigt sie aber noch nicht (anton#781). Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.
 - «Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.
 
 ## Was eine Migration prüfen muss

@@ -21,10 +21,7 @@ per year with a comparison of items lent out and returned, and the orders per
 year and fonds — with a link to the fonds concerned. This is the only evaluation
 of the orders that Anton keeps.
 
-**Search** evaluates the search queries of the last 30 days: for each type of
-search, the number of queries, the hits and the success rate, plus an overall
-rate. A low success rate is an indication that users are not finding what they
-are looking for.
+**Search** shows the search queries: as a chart, the queries per month over the last twelve months and how many of them had hits; as a table, the last 30 days per type of search with the number of queries, the hits and the success rate; and as a summary, all stored queries with total, hits and success rate. A low success rate is an indication that users are not finding what they are looking for. Queries are counted only while the setting `log_search_queries` is on; it is off by default, because the table grows without a time limit.
 
 **Fonds** lists, for each fonds, the reference code, title, number of entries,
 extent in linear metres and number of media.
