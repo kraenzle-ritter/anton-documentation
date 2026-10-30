@@ -2357,7 +2357,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/installation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/installation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -2388,8 +2388,8 @@ DEBUGBAR_ENABLED=false
 APP_KEY=AppKey
 APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
-SNEAKER_SILENT=true
 </code></pre></div>
+<p>Fehlermails: Mit <code>EMAIL_EXCEPTION_ENABLED=true</code> gehen Exceptions als Mail an <code>EMAIL_EXCEPTION_TO</code>. Dieselbe Exception (Klasse, Datei, Zeile, Meldung) kommt höchstens einmal je <code>EMAIL_EXCEPTION_DEDUP_MINUTES</code> (Vorgabe 60, <code>0</code> schaltet das ab), auch wenn die Datenbank ausgefallen ist. <code>php artisan anton:exception-mail-test --env=&lt;slug&gt;</code> schickt eine Probemail.</p>
 <h4 id="datenbank-credentials">Datenbank Credentials<a class="headerlink" href="#datenbank-credentials" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>DB_HOST=127.0.0.1
 DB_DATABASE=datenbankname

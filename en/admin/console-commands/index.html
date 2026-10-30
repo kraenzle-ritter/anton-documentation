@@ -3857,10 +3857,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-63" class="md-nav__link">
+  <a href="#anton-64" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (63)
+        anton: (64)
       
     </span>
   </a>
@@ -4689,10 +4689,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-63" class="md-nav__link">
+  <a href="#anton-64" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (63)
+        anton: (64)
       
     </span>
   </a>
@@ -4820,7 +4820,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-28</span>
+        <span class="page-meta__date">Last updated: 2026-10-30</span>
     </div>
   
   
@@ -4994,11 +4994,12 @@ is recorded as an event on the medium, written to the security log and
 reported; the file stays where it is. <code>--oldest=N</code> takes the N scanned longest
 ago, never scanned first; <code>--from-cloud</code> as above. If clamd does not answer in
 time for a file, it is recorded as not checked and the run goes on;
-<code>--timeout=</code> sets the wait for the run, otherwise <code>CLAMD_TIMEOUT</code> applies.
-Masters over 2 GB, and smaller ones where clamd stops at <code>MaxScanSize</code> or
-<code>MaxFileSize</code>, are scanned in overlapping parts (<code>VIRUS_SCAN_PART_SIZE</code>,
-256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) and counted apart as «clean, scanned
-in parts».
+<code>--timeout=</code> sets the wait for the run, otherwise <code>CLAMD_TIMEOUT</code> applies; it
+grows with the size, by <code>VIRUS_SCAN_SECONDS_PER_GB</code> (240 s) per GB.
+Masters over 512 MB (<code>VIRUS_SCAN_WHOLE_MAX_SIZE</code>) are scanned in overlapping
+parts at once (<code>VIRUS_SCAN_PART_SIZE</code>, 256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>,
+1 MB), smaller ones too where clamd stops at <code>MaxScanSize</code> or <code>MaxFileSize</code>,
+and counted apart as «clean, scanned in parts».
 Exit 1 on a finding, exit 2 when the virus check is off or clamd no longer
 answers.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
@@ -5260,7 +5261,7 @@ up to date with every change to the commands.</p>
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-63">anton: (63)<a class="headerlink" href="#anton-63" title="Permanent link">&para;</a></h3>
+<h3 id="anton-64">anton: (64)<a class="headerlink" href="#anton-64" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5332,6 +5333,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>anton:doctor</code></td>
 <td>Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2…</td>
+</tr>
+<tr>
+<td><code>anton:exception-mail-test</code></td>
+<td>Send a test exception mail as a real exception is mailed, past the switch, dedup and throttle …</td>
 </tr>
 <tr>
 <td><code>anton:export</code></td>

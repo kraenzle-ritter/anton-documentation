@@ -4634,7 +4634,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/installation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-24</span>
+        <span class="page-meta__date">Last updated: 2026-10-29</span>
     </div>
   
   
@@ -4665,8 +4665,8 @@ DEBUGBAR_ENABLED=false
 APP_KEY=AppKey
 APP_LOG_LEVEL=debug
 EMAIL_EXCEPTION_ENABLED=true
-SNEAKER_SILENT=true
 </code></pre></div>
+<p>Error mails: with <code>EMAIL_EXCEPTION_ENABLED=true</code>, exceptions are mailed to <code>EMAIL_EXCEPTION_TO</code>. The same exception (class, file, line, message) is mailed at most once per <code>EMAIL_EXCEPTION_DEDUP_MINUTES</code> (default 60, <code>0</code> turns it off), also while the database is down. <code>php artisan anton:exception-mail-test --env=&lt;slug&gt;</code> sends a test mail.</p>
 <h4 id="database-credentials">Database credentials<a class="headerlink" href="#database-credentials" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>DB_HOST=127.0.0.1
 DB_DATABASE=datenbankname

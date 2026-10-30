@@ -2319,10 +2319,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-63" class="md-nav__link">
+  <a href="#anton-64" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (63)
+        anton: (64)
       
     </span>
   </a>
@@ -2450,7 +2450,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-28</span>
+        <span class="page-meta__date">Last updated: 2026-10-30</span>
     </div>
   
   
@@ -2628,11 +2628,12 @@ vermerkt, ins Sicherheitsprotokoll geschrieben und gemeldet, die Datei bleibt
 liegen. <code>--oldest=N</code> nimmt die N am längsten nicht geprüften, nie geprüfte
 zuerst; <code>--from-cloud</code> wie oben. Antwortet clamd für eine Datei nicht
 rechtzeitig, wird sie als nicht geprüft vermerkt und der Lauf geht weiter;
-<code>--timeout=</code> setzt die Wartezeit für den Lauf, sonst gilt <code>CLAMD_TIMEOUT</code>.
-Master über 2 GB, und kleinere, bei denen clamd an <code>MaxScanSize</code> oder
-<code>MaxFileSize</code> aufhört, prüft er in überlappenden Teilen (<code>VIRUS_SCAN_PART_SIZE</code>,
-256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>, 1 MB) und zählt sie gesondert als «ohne
-Befund, in Teilen geprüft».
+<code>--timeout=</code> setzt die Wartezeit für den Lauf, sonst gilt <code>CLAMD_TIMEOUT</code>; sie
+wächst mit der Grösse, um <code>VIRUS_SCAN_SECONDS_PER_GB</code> (240 s) je GB.
+Master über 512 MB (<code>VIRUS_SCAN_WHOLE_MAX_SIZE</code>) prüft er gleich in
+überlappenden Teilen (<code>VIRUS_SCAN_PART_SIZE</code>, 256 MB; <code>VIRUS_SCAN_PART_OVERLAP</code>,
+1 MB), kleinere ebenso, wenn clamd an <code>MaxScanSize</code> oder <code>MaxFileSize</code> aufhört,
+und zählt sie gesondert als «ohne Befund, in Teilen geprüft».
 Exit 1 bei einem Fund, Exit 2, wenn die Virenprüfung aus ist oder clamd nicht
 mehr antwortet.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:virus-scan<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
@@ -2896,7 +2897,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-63">anton: (63)<a class="headerlink" href="#anton-63" title="Permanent link">&para;</a></h3>
+<h3 id="anton-64">anton: (64)<a class="headerlink" href="#anton-64" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2968,6 +2969,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:doctor</code></td>
 <td>Check an installation. You have to use the --env=slug option. What is checked: 1) check slug 2…</td>
+</tr>
+<tr>
+<td><code>anton:exception-mail-test</code></td>
+<td>Send a test exception mail as a real exception is mailed, past the switch, dedup and throttle …</td>
 </tr>
 <tr>
 <td><code>anton:export</code></td>
