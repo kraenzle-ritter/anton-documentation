@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **29. Oktober 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **30. Oktober 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -261,6 +261,16 @@ die erzeugende Person sehen durfte, und immer auch die gesperrten Urheber:innen
     Der Filter wertet das `private`-Kennzeichen aus — er ist **keine
     Rollenprüfung**. Der Download einer erzeugten RDF-Datei prüft ausser dem
     Dateinamen keine weiteren Berechtigungen.
+
+## Medien ohne Datensatz
+
+Alle Exporte gehen nach Datensätzen. Ein Medium, dessen Datensatz gelöscht ist, das aber noch in der Datenbank und auf der Platte liegt, steht deshalb in keinem Paket. Damit es nicht still fehlt, legt Anton neben einen Export des ganzen Mandanten oder eines ganzen Baums eine Liste `…-media-without-record.csv` (Medien-ID, Datei, Grösse, Prüfsummen, Pfad, ob die Datei noch da ist; anton#786):
+
+- `anton:export-native` ohne `--root` oder mit einem Datensatz an der Spitze eines Baums: neben dem ZIP.
+- RDF-Bündel (`a-plus-bundle`) ebenso, auch wenn es über die Export-Seite entsteht; dort ist die Liste in der Dateiliste herunterzuladen.
+- `anton:export-dip --format=eark --full`: einmal je Lauf im Zielordner, `<slug>-media-without-record.csv`.
+
+Gibt es keine solchen Medien, entsteht keine Liste. Was mit den Dateien geschieht, entscheidet das Archiv; `anton:audit-orphans --only=media` zeigt sie jederzeit, und der tägliche Bericht `anton:review-logs` meldet Medien, die nach dem Löschen ihres Datensatzes übrig bleiben.
 
 ## Kernaussage
 

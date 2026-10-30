@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **29 October 2026**. It is
+    This matrix reflects the state of **30 October 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -255,6 +255,16 @@ and always the locked creators (anton#616).
     The filter evaluates the `private` flag — it is **not a role check**. Apart
     from the file name, downloading a generated RDF file checks no further
     permissions.
+
+## Media without a record {#medien-ohne-datensatz}
+
+Every export goes by record. A medium whose record has been deleted but which is still in the database and on disk is therefore in no package. So that it does not go missing silently, Anton puts a list `…-media-without-record.csv` (media id, file, size, checksums, path, whether the file is still there; anton#786) beside an export of the whole tenant or of a whole tree:
+
+- `anton:export-native` without `--root` or with a record at the top of a tree: beside the ZIP.
+- RDF bundle (`a-plus-bundle`) likewise, also when it is made on the export page; there the list can be downloaded from the file list.
+- `anton:export-dip --format=eark --full`: once per run in the target folder, `<slug>-media-without-record.csv`.
+
+With no such media, no list is written. What happens to the files is the archive's decision; `anton:audit-orphans --only=media` shows them at any time, and the daily report `anton:review-logs` reports media left over after their record was deleted.
 
 ## The essence
 
