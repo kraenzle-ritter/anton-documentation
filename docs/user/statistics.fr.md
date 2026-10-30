@@ -22,10 +22,7 @@ utilisateur.
 ainsi que les commandes par année et par fonds — avec un renvoi vers le fonds
 concerné. C'est la seule analyse des commandes que tienne Anton.
 
-**Recherche** analyse les requêtes des 30 derniers jours : pour chaque type de
-recherche, le nombre de requêtes, les résultats et le taux de réussite, ainsi
-qu'un taux global. Un taux de réussite faible indique que les personnes ne
-trouvent pas ce qu'elles cherchent.
+**Recherche** montre les requêtes : en graphique, les requêtes par mois sur les douze derniers mois et combien ont eu des résultats ; en tableau, les 30 derniers jours par type de recherche avec le nombre de requêtes, les résultats et le taux de réussite ; et en résumé, toutes les requêtes enregistrées avec le total, les résultats et le taux de réussite. Un taux de réussite faible indique que les personnes ne trouvent pas ce qu'elles cherchent. Les requêtes ne sont comptées que tant que le paramètre `log_search_queries` est activé ; il ne l'est pas par défaut, car la table grandit sans limite de durée.
 
 **Fonds** liste pour chaque fonds la cote, le titre, le nombre d'entrées,
 l'importance matérielle en mètres linéaires et le nombre de médias.

@@ -84,7 +84,7 @@ Measured values appear on the medium under **Technical characteristics**; the bi
 - For recordings ingested before v0.111.1, the nightly run `media:validate-formats` adds the characteristics; until then the exports lack them too.
 - There is no rule yet that converts sound or video. When one comes, `media:migrate` proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. `media:migrate` refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.
 - Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.
-- The upload does not accept subtitles as sidecar files; SRT and WebVTT are missing from the allowed extensions. Of a subtitle stream in the container, Anton measures only the stream, not its text.
+- The upload accepts subtitles as sidecar files (SRT, WebVTT), but the player does not show them yet (anton#781). Of a subtitle stream in the container, Anton measures only the stream, not its text.
 - «Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.
 
 ## What a migration must check
