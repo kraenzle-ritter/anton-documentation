@@ -91,6 +91,7 @@ nav:
     - Anmeldung:
       - Zwei-Faktor-Authentifizierung: user/2FA.md
       - Passkey Authentifizierung: user/passkey.md
+      - Profil und Einstellungen: user/profile.md
   - Developer:
     - Architektur-Überblick: developer/index.md
     - Domänenmodell: developer/domain-model.md
@@ -246,6 +247,7 @@ plugins:
               - Login:
                 - Two-factor authentication: user/2FA.md
                 - Passkey authentication: user/passkey.md
+                - Profile and settings: user/profile.md
             - Developer:
               - Architecture overview: developer/index.md
               - Domain model: developer/domain-model.md
@@ -377,6 +379,7 @@ plugins:
               - Connexion:
                 - Authentification à deux facteurs: user/2FA.md
                 - Authentification par passkey: user/passkey.md
+                - Profil et paramètres: user/profile.md
             # Diese Bereiche gibt es auf Deutsch und Englisch, nicht auf
             # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
             - Developer (en): /en/developer/
@@ -445,6 +448,7 @@ plugins:
               - Autenticazione:
                 - Autenticazione a due fattori: user/2FA.md
                 - Autenticazione con passkey: user/passkey.md
+                - Profilo e impostazioni: user/profile.md
             # Diese Bereiche gibt es auf Deutsch und Englisch, nicht auf
             # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
             - Developer (en): /en/developer/
