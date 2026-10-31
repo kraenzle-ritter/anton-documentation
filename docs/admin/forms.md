@@ -62,6 +62,26 @@ Für die meisten Archive genügt deshalb: je einen Satz pro Verzeichnungsstufe
 pflegen. Eigene Sätze lohnen sich, wenn ein Bestandstyp andere Felder braucht —
 Fotografien, Pläne, Filme.
 
+## Vorlage «Publikation» {#vorlage-publikation}
+
+Für die Bücher und Broschüren einer Archivbibliothek gibt es einen fertigen Formularsatz **Publikation**. Er wird gezielt in einem Archiv eingerichtet, nicht bei einem Update:
+
+```bash
+php artisan anton:formset-template publication --env=<slug>
+```
+
+Der Befehl legt den Formularsatz mit einer eigenen Bearbeitungsmaske und je einer Detailansicht intern und extern an; die Trefferlisten sind die des Archivs. Die Maske enthält:
+
+- **Signatur**, **Titel**, **Untertitel**, **Autor:in** als Ereignis mit Verknüpfung ins Personenregister, **Verlag**, **Publikationsort**, **Erscheinungsjahr** (das Entstehungs-Ereignis), **Auflage**, **Reihe**, **ISBN**, **Umfang**
+- Verzeichnungsstufe, Objekttyp, Sprachen, Medien
+- **Form und Inhalt**, Akteur:innen, Schlagwörter
+- Schutzfrist, gesperrt, Standort, Standort (Detail), Swisscovery
+- Allgemeine Anmerkungen, archivinterne Bemerkungen, Änderungen, Ausleihe
+
+Die extern sichtbare Detailansicht lässt Schutzfrist, Standort, archivinterne Bemerkungen, Änderungen und Ausleihe weg. Untertitel, Auflage, Reihe und ISBN sind einzeilige Textfelder, die es ab dieser Version in jedem Archiv gibt; ohne Formular, das sie enthält, erscheinen sie nirgends.
+
+Ein Datensatz wird zur Publikation, indem man in der Maske unter **Formularsatz** «Publikation» wählt; üblich ist ein Zweig «Bibliothek» in der Tektonik mit den Publikationen als Einzelstücke. Der Befehl lässt einen bestehenden Formularsatz «publication» unverändert und lässt sich wiederholen. Ein Feld, das es im Archiv nicht gibt, lässt er aus und nennt es. Danach lässt sich der Satz wie jeder andere unter **Admin → Formulare** anpassen.
+
 ## Was sich pro Formular überschreiben lässt
 
 Dieselbe Felddefinition kann in jedem Formular anders auftreten. Überschreibbar

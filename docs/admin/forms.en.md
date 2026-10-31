@@ -61,6 +61,26 @@ For most archives it is therefore sufficient to maintain one set per level of
 description. Separate sets are worthwhile when a type of holding needs
 different fields — photographs, plans, films.
 
+## Template «Publication» {#vorlage-publikation}
+
+For the books and brochures of an archive library there is a ready form set **Publication**. It is set up on purpose in one archive, not by an update:
+
+```bash
+php artisan anton:formset-template publication --env=<slug>
+```
+
+The command creates the form set with an edit form of its own and one detail view each, internal and external; the result lists are the archive's. The form contains:
+
+- **Reference code**, **title**, **subtitle**, **author** as an event linked to the person register, **publisher**, **place of publication**, **year of publication** (the creation event), **edition**, **series**, **ISBN**, **extent**
+- level of description, object type, languages, media
+- **scope and content**, actors, keywords
+- protection period, locked, location, location details, Swisscovery
+- general note, internal note, updates, loan
+
+The externally visible detail view leaves out protection period, location, internal note, updates and loan. Subtitle, edition, series and ISBN are one-line text fields that exist in every archive from this version on; without a form that contains them they show nowhere.
+
+A record becomes a publication by choosing «Publication» under **Form set** in the form; usual is a branch «Library» in the arrangement with the publications as items. The command leaves an existing form set «publication» unchanged and can be repeated. A field the archive does not have is left out and named. Afterwards the set can be adapted under **Admin → Forms** like any other.
+
 ## What can be overridden per form
 
 The same field definition can appear differently in each form. Among the things
