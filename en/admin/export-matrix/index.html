@@ -3398,6 +3398,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dauerhafte-adresse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lasting address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#medien-ohne-datensatz" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4572,6 +4583,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dauerhafte-adresse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lasting address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#medien-ohne-datensatz" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5283,6 +5305,8 @@ and always the locked creators (anton#616).</p>
 from the file name, downloading a generated RDF file checks no further
 permissions.</p>
 </div>
+<h2 id="dauerhafte-adresse">Lasting address<a class="headerlink" href="#dauerhafte-adresse" title="Permanent link">&para;</a></h2>
+<p>Since anton#784 the exports name a record by its lasting address <code>https://&lt;archive&gt;/id/&lt;uuid&gt;</code> instead of the page of its database number: EAD 2002 (<code>eadid/@url</code>, <code>unitid/extptr</code>), EAD3 (<code>recordid/@instanceurl</code>, <code>unitid/@identifier</code>), Dublin Core via OAI-PMH (<code>dc:identifier</code>, <code>dc:relation</code>), Memobase (<code>sameAs</code>), PREMIS (a second <code>objectIdentifier</code> of type <code>URI</code>) and the API (<code>permalink</code>, for actors too). RDF A+ and RiC-O keep their own IRIs and point to the address with <code>rdfs:seeAlso</code>, for records, actors, places and keywords. The zbz TEI export keeps its citation format.</p>
 <h2 id="medien-ohne-datensatz">Media without a record<a class="headerlink" href="#medien-ohne-datensatz" title="Permanent link">&para;</a></h2>
 <p>Every export goes by record. A medium whose record has been deleted but which is still in the database and on disk is therefore in no package. So that it does not go missing silently, Anton puts a list <code>…-media-without-record.csv</code> (media id, file, size, checksums, path, whether the file is still there; anton#786) beside an export of the whole tenant or of a whole tree:</p>
 <ul>
