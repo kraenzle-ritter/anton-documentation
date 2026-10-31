@@ -2,7 +2,14 @@
 
 Anton fonctionne sur un serveur propre à l'institution.
 
-k & r n'est responsable que de la maintenance et du support de l'application Anton. La sécurisation du serveur, les sauvegardes, les mises à jour et mises à niveau du système d'exploitation et le cas échéant de certains paquets logiciels, ainsi que la configuration d'Apache incombent au mandant.
+La répartition des tâches entre l'informatique de l'institution et k & r est convenue au cas par cas ; nous nous adaptons à l'institution. k & r prend en charge au choix
+
+- **Anton seulement :** installation, mises à jour et support de l'application. L'informatique de l'institution gère le système d'exploitation, le serveur web et la base de données, et sécurise le serveur.
+- **l'administration complète :** système d'exploitation, serveur web, base de données et Anton, y compris les mises à jour et la surveillance.
+
+Les sauvegardes et les tâches analogues du centre de calcul restent en règle générale à l'informatique de l'institution, par exemple la sauvegarde de la machine virtuelle dans son propre système de sauvegarde. Cela aussi est convenu au cas par cas.
+
+Les prérequis du serveur sont décrits sous [Server requirements](../admin/requirements.md) (en allemand et en anglais).
 
 Lorsqu'une infrastructure informatique existe déjà, Anton on premises peut aussi être intéressant sur le plan économique — en particulier si un grand volume de données doit être géré avec Anton.
 
