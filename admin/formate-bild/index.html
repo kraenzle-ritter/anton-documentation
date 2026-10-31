@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profil und Einstellungen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2326,6 +2354,34 @@
     
   
     Schutzfristen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbausteine
   
 
     
@@ -4500,7 +4556,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/formate-bild/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4583,7 +4639,7 @@
 </table>
 <p><strong>Bevorzugt</strong> heisst: Das empfiehlt Anton Ablieferstellen, und dahin packt die Regel <a href="../preservation/#regeln-fuer-dateien"><code>tiff_zip</code></a> unkomprimierte TIFF und LZW ohne Predictor verlustfrei um. Deflate mit Predictor 2 spart gegenüber unkomprimiert 38–66 %, ohne dass sich ein Pixel ändert, und libtiff, ImageMagick, GIMP und Photoshop lesen es. Es gehört aber nicht zum Baseline-TIFF; die KOST empfiehlt Baseline mit LZW oder CCITT. Bitonale Bilder bleiben besser bei CCITT G4, das sie stärker verdichtet; <code>tiff_zip</code> lässt sie darum aus.</p>
 <p><strong>Akzeptiert</strong> ist, was sich mit verbreiteten, quelloffenen Werkzeugen lesen lässt und voraussichtlich lesbar bleibt. Anton übernimmt die Datei und behält sie in ihrem Format. Nach den <a href="../preservation/#formatentscheide">Formatentscheiden</a> migriert Anton erst, wenn sich eine Datei nicht mehr darstellen lässt. Bereits verlustbehaftet komprimierte Bilder (JPEG, JPEG-komprimiertes TIFF, verlustbehaftetes JP2) werden nicht in ein verlustfreies Format umgewandelt: Die verlorene Information kommt nicht zurück, die Datei würde nur grösser (so auch die KOST).</p>
-<p>Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene Formate zu führen, damit das Preservation Planning auf lange Sicht einfach bleibt: Jedes Format will beobachtet, geprüft und irgendwann vielleicht migriert werden (so auch die KOST). Die Liste der akzeptierten Formate sagt, was Anton erhalten kann, nicht, was ein Archiv sammeln soll. Wo ein Bestand viele Formate mitbringt, wird darum möglichst vor der Übernahme normalisiert: durch die Ablieferstelle oder mit den <a href="../preservation/#regeln-fuer-dateien">Regeln für Dateien</a>, die Anton anwendet, bevor die Datei zum Master wird. Ausgenommen sind verlustbehaftete Bilder (siehe oben).</p>
+<p>Grundsätzlich empfehlen wir, in einem Archiv möglichst wenige verschiedene Formate zu führen, damit das Preservation Planning auf lange Sicht einfach bleibt: Jedes Format will beobachtet, geprüft und irgendwann vielleicht migriert werden (so auch die KOST). Die Liste der akzeptierten Formate sagt, was Anton erhalten kann, nicht, was ein Archiv sammeln soll. Wo ein Bestand viele Formate mitbringt, wird darum möglichst vor der Übernahme normalisiert: durch die Ablieferstelle oder mit den <a href="../preservation/#regeln-fuer-dateien">Format Policy</a>, die Anton anwendet, bevor die Datei zum Master wird. Ausgenommen sind verlustbehaftete Bilder (siehe oben).</p>
 <p>PDF steht hier, weil manche Bildbestände als PDF ankommen. Sobald ein PDF Text, Formulare oder Links trägt, gilt die Seite für <a href="../formate-pdf/">PDF</a>.</p>
 <p>HEIC/HEIF, wie es Mobiltelefone liefern, bleibt als Master, wie es ist; Anton rechnet nur die Nutzungskopie in JPEG um. So empfiehlt es die NARA, solange sich die Datei gut darstellen lässt. HEIF ist ein offener ISO-Standard (ISO/IEC 23008-12), freie Werkzeuge (libheif, libde265) lesen es; der Haken ist die Kompression HEVC mit ihren Patentpools, weshalb Windows, Photoshop und manche Browser HEIC nicht ohne Weiteres öffnen. HEIC ist kleiner als ein JPEG daraus, und jede Umwandlung verliert, was neben dem Hauptbild in der Datei steckt (Tiefenkarte, HDR-Gain-Map). Bei der Übernahme lässt sich HEIC nach JPEG umwandeln, für Archive, bei denen Speicher teuer ist und die Datei überall aufgehen soll, mit einer zweiten verlustbehafteten Kodierung; das bietet heute der <a href="../../user/qr-upload/">QR-Upload</a> an (<code>heic2jpg</code>, voreingestellt aus). Das HEIC bleibt dabei als Version des Mediums erhalten, und die Umwandlung steht als Ereignis mit Werkzeug, Befehl und Prüfsummen im Protokoll. Nach TIFF lässt sich jederzeit später umwandeln, ohne weiteren Verlust, aber etwa zehnmal grösser, mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>. Die Regel dafür, und ebenso eine je Archiv wählbare Umwandlung nach TIFF oder JPEG bei der Übernahme, entsteht erst, wenn ein Archiv sie braucht (entschieden in anton#710).</p>
 <p>GIF, BMP und WebP lesen alle gängigen Werkzeuge und Browser. Die NARA rät bei BMP zur Umwandlung; nach dem Grundsatz oben bleibt es, bis sich das ändert. DNG ist eine offene Spezifikation von Adobe auf TIFF-Basis; die NARA stuft es als geringes Risiko ein, die KOST hält es für die Langzeitarchivierung nicht für geeignet. Kamera-RAW ist je Hersteller und Modell eigen und nicht offengelegt; quelloffen liest es LibRaw, das dafür seit vielen Jahren gepflegt wird. Die NARA rät zur Umwandlung, und wer kann, liefert besser DNG oder TIFF ab. Anton erkennt Kamera-RAW an der Endung, weil die Werkzeuge NEF, ARW und DNG für TIFF halten, und rechnet die Nutzungskopie über LibRaw aus dem ganzen Bild, nicht aus dem eingebetteten Vorschaubild. Der Upload nimmt DNG und Kamera-RAW mit ihrer Endung an; der QR-Upload begrenzt Dateien auf 10 MB, grössere wie ProRAW-DNG vom iPhone (25–75 MB) gehen über den gewöhnlichen Upload.</p>

@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profile and settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2326,6 +2354,34 @@
     
   
     Protection periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text snippets
   
 
     
@@ -4500,7 +4556,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-bild/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4583,7 +4639,7 @@
 </table>
 <p><strong>Preferred</strong> means: this is what Anton recommends to depositors, and it is the form into which the rule <a href="../preservation/#regeln-fuer-dateien"><code>tiff_zip</code></a> losslessly repacks uncompressed TIFF and LZW without a predictor. Deflate with predictor 2 saves 38–66 % over uncompressed without changing a single pixel, and libtiff, ImageMagick, GIMP and Photoshop read it. It is not part of baseline TIFF, however; KOST recommends baseline with LZW or CCITT. Bitonal images are better left in CCITT G4, which compresses them more; <code>tiff_zip</code> therefore skips them.</p>
 <p><strong>Accepted</strong> is what widespread open-source tools can read and will in all likelihood go on reading. Anton takes in the file and keeps it in its format. Following the <a href="../preservation/#formatentscheide">format decisions</a>, Anton migrates only when a file can no longer be rendered. Images already compressed with loss (JPEG, JPEG-compressed TIFF, lossy JP2) are not converted to a lossless format: the lost information does not come back, the file would only grow (KOST says the same).</p>
-<p>As a rule, we recommend keeping as few different formats as possible in one archive, so that preservation planning stays simple in the long run: every format has to be watched, checked and perhaps one day migrated (KOST says the same). The list of accepted formats says what Anton can preserve, not what an archive should collect. Where a holding brings many formats, it is therefore normalised before ingest where possible: by the depositor or with the <a href="../preservation/#regeln-fuer-dateien">file rules</a> that Anton applies before the file becomes the master. Lossy images are the exception (see above).</p>
+<p>As a rule, we recommend keeping as few different formats as possible in one archive, so that preservation planning stays simple in the long run: every format has to be watched, checked and perhaps one day migrated (KOST says the same). The list of accepted formats says what Anton can preserve, not what an archive should collect. Where a holding brings many formats, it is therefore normalised before ingest where possible: by the depositor or with the <a href="../preservation/#regeln-fuer-dateien">Format Policy</a> that Anton applies before the file becomes the master. Lossy images are the exception (see above).</p>
 <p>PDF is listed here because some image holdings arrive as PDF. As soon as a PDF carries text, forms or links, the page on <a href="../formate-pdf/">PDF</a> applies.</p>
 <p>HEIC/HEIF, as mobile phones deliver it, stays the master as it is; Anton converts only the access copy to JPEG. This is what NARA recommends as long as the file renders well. HEIF is an open ISO standard (ISO/IEC 23008-12), free tools (libheif, libde265) read it; the catch is HEVC compression with its patent pools, which is why Windows, Photoshop and some browsers do not open HEIC out of the box. HEIC is smaller than a JPEG made from it, and every conversion loses what the file holds besides the main image (depth map, HDR gain map). At ingest HEIC can be converted to JPEG, for archives where storage is expensive and the file should open everywhere, with a second lossy encoding; the <a href="../../user/qr-upload/">QR upload</a> offers this today (<code>heic2jpg</code>, off by default). The HEIC is kept as a version of the medium, and the conversion is logged as an event with tool, command and checksums. Conversion to TIFF is possible at any time later, without further loss but about ten times larger, with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>. The rule for this, and likewise a conversion to TIFF or JPEG at ingest chosen per archive, is built only when an archive needs it (decided in anton#710).</p>
 <p>GIF, BMP and WebP are read by all common tools and browsers. NARA advises converting BMP; under the principle above it stays until that changes. DNG is an open Adobe specification based on TIFF; NARA rates it low risk, KOST considers it unsuitable for long-term preservation. Camera raw is specific to each maker and model and undisclosed; the open-source LibRaw reads it and has been maintained for this for many years. NARA advises conversion, and depositors who can should rather deliver DNG or TIFF. Anton recognises camera raw by its extension, since the tools take NEF, ARW and DNG for TIFF, and makes the access copy through LibRaw from the whole image, not from the embedded preview. Upload takes DNG and camera raw with their extension; the QR upload limits files to 10 MB, so larger ones such as ProRAW DNG from an iPhone (25–75 MB) go through the regular upload.</p>

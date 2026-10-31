@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profil und Einstellungen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2357,6 +2385,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorlage-publikation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorlage «Publikation»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#was-sich-pro-formular-uberschreiben-lasst" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2485,6 +2524,34 @@
     
   
     Schutzfristen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbausteine
   
 
     
@@ -4495,6 +4562,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorlage-publikation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorlage «Publikation»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#was-sich-pro-formular-uberschreiben-lasst" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4588,7 +4666,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/forms/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4693,6 +4771,20 @@ Akteur:innen, Orte, Schlagwörter und Standorte.</p>
 <p>Für die meisten Archive genügt deshalb: je einen Satz pro Verzeichnungsstufe
 pflegen. Eigene Sätze lohnen sich, wenn ein Bestandstyp andere Felder braucht —
 Fotografien, Pläne, Filme.</p>
+<h2 id="vorlage-publikation">Vorlage «Publikation»<a class="headerlink" href="#vorlage-publikation" title="Permanent link">&para;</a></h2>
+<p>Für die Bücher und Broschüren einer Archivbibliothek gibt es einen fertigen Formularsatz <strong>Publikation</strong>. Er wird gezielt in einem Archiv eingerichtet, nicht bei einem Update:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:formset-template<span class="w"> </span>publication<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+</code></pre></div>
+<p>Der Befehl legt den Formularsatz mit einer eigenen Bearbeitungsmaske und je einer Detailansicht intern und extern an; die Trefferlisten sind die des Archivs. Die Maske enthält:</p>
+<ul>
+<li><strong>Signatur</strong>, <strong>Titel</strong>, <strong>Untertitel</strong>, <strong>Autor:in</strong> als Ereignis mit Verknüpfung ins Personenregister, <strong>Verlag</strong>, <strong>Publikationsort</strong>, <strong>Erscheinungsjahr</strong> (das Entstehungs-Ereignis), <strong>Auflage</strong>, <strong>Reihe</strong>, <strong>ISBN</strong>, <strong>Umfang</strong></li>
+<li>Verzeichnungsstufe, Objekttyp, Sprachen, Medien</li>
+<li><strong>Form und Inhalt</strong>, Akteur:innen, Schlagwörter</li>
+<li>Schutzfrist, gesperrt, Standort, Standort (Detail), Swisscovery</li>
+<li>Allgemeine Anmerkungen, archivinterne Bemerkungen, Änderungen, Ausleihe</li>
+</ul>
+<p>Die extern sichtbare Detailansicht lässt Schutzfrist, Standort, archivinterne Bemerkungen, Änderungen und Ausleihe weg. Untertitel, Auflage, Reihe und ISBN sind einzeilige Textfelder, die es ab dieser Version in jedem Archiv gibt; ohne Formular, das sie enthält, erscheinen sie nirgends.</p>
+<p>Ein Datensatz wird zur Publikation, indem man in der Maske unter <strong>Formularsatz</strong> «Publikation» wählt; üblich ist ein Zweig «Bibliothek» in der Tektonik mit den Publikationen als Einzelstücke. Der Befehl lässt einen bestehenden Formularsatz «publication» unverändert und lässt sich wiederholen. Ein Feld, das es im Archiv nicht gibt, lässt er aus und nennt es. Danach lässt sich der Satz wie jeder andere unter <strong>Admin → Formulare</strong> anpassen.</p>
 <h2 id="was-sich-pro-formular-uberschreiben-lasst">Was sich pro Formular überschreiben lässt<a class="headerlink" href="#was-sich-pro-formular-uberschreiben-lasst" title="Permanent link">&para;</a></h2>
 <p>Dieselbe Felddefinition kann in jedem Formular anders auftreten. Überschreibbar
 sind unter anderem:</p>

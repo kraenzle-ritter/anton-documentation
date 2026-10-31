@@ -1625,6 +1625,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifica di gruppo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#da-non-confondere-con-il-carrello-di-ordinazione" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1826,6 +1837,34 @@
     
   
     Autenticazione con passkey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profilo e impostazioni
   
 
     
@@ -2318,6 +2357,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifica di gruppo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#da-non-confondere-con-il-carrello-di-ordinazione" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2345,7 +2395,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/selection/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/selection/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/selection/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -2357,44 +2407,37 @@
 
 
 <h1 id="selezione-e-azioni-collettive">Selezione e azioni collettive<a class="headerlink" href="#selezione-e-azioni-collettive" title="Permanent link">&para;</a></h1>
-<p>Più unità di descrizione possono essere spuntate negli elenchi dei risultati ed
-elaborate insieme. Al momento esiste <strong>una</strong> azione a questo scopo: lo
-<a href="../hierarchy/">spostamento</a>.</p>
+<p>Più unità di descrizione possono essere spuntate negli elenchi dei risultati ed elaborate insieme. Esistono due azioni a questo scopo: lo <a href="../hierarchy/">spostamento</a>, dal ruolo <code>admin</code>, e la <a href="#sammelbearbeitung">modifica di gruppo</a>, dal ruolo <code>editor</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Solo in alcuni archivi</p>
-<p>Le azioni collettive devono essere abilitate e presuppongono il ruolo
-<code>admin</code>. Non sono uno standard; l'impostazione non è modificabile nell'area
-Admin e con Anton as a Service se ne occupa k &amp; r. Chi non ne ha bisogno può
-inoltre disattivarle nel proprio profilo.</p>
+<p>Le azioni collettive devono essere abilitate. Non sono uno standard; l'impostazione non è modificabile nell'area Admin e con Anton as a Service se ne occupa k &amp; r. Chi non ne ha bisogno può inoltre disattivarle nel proprio <a href="../profile/">profilo</a>.</p>
 </div>
 <h2 id="prima-lazione-poi-la-selezione">Prima l'azione, poi la selezione<a class="headerlink" href="#prima-lazione-poi-la-selezione" title="Permanent link">&para;</a></h2>
 <p>L'ordine è inverso rispetto all'abitudine ed è l'ostacolo più frequente:</p>
 <ol>
-<li><strong>Prima</strong> scegliere l'azione nel campo di selezione <strong>azioni</strong> — è
-   disponibile lo <strong>spostamento</strong>. Prima di ciò non si può spuntare nulla; le
-   caselle restano senza effetto.</li>
-<li><strong>Poi</strong> spuntare le unità. Con il simbolo dell'elenco con appunti sopra
-   l'elenco dei risultati — che mostra il numero di unità selezionate — è
-   possibile consultare in qualsiasi momento la selezione corrente.</li>
+<li><strong>Prima</strong> scegliere l'azione nel campo di selezione <strong>azioni</strong>: <strong>sposta</strong> o <strong>modifica</strong>. Prima di ciò non si può spuntare nulla; le caselle restano senza effetto.</li>
+<li><strong>Poi</strong> spuntare le unità. Con il simbolo dell'elenco con appunti sopra l'elenco dei risultati — che mostra il numero di unità selezionate — è possibile consultare in qualsiasi momento la selezione corrente.</li>
 <li>Eseguire l'azione. Con <strong>Svuota</strong> la selezione viene abbandonata.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Cambiare azione svuota la selezione</p>
-<p>Se il campo di selezione viene modificato successivamente, la selezione
-esistente viene abbandonata. L'azione va quindi definita prima di spuntare.</p>
+<p>Se il campo di selezione viene modificato successivamente, la selezione esistente viene abbandonata. L'azione va quindi definita prima di spuntare.</p>
 </div>
 <h2 id="che-cosa-si-puo-selezionare-insieme">Che cosa si può selezionare insieme<a class="headerlink" href="#che-cosa-si-puo-selezionare-insieme" title="Permanent link">&para;</a></h2>
-<p>Soltanto unità che <strong>potrebbero essere dello stesso livello</strong>. Non appena è
-spuntata un'unità archivistica, non è più possibile aggiungere un fondo — Anton
-impedisce selezioni che non potrebbero essere spostate insieme. Chi non riesce a
-spuntare un'unità dovrebbe quindi verificare i livelli già selezionati.</p>
-<p>Se è già in corso un'operazione di spostamento, la selezione è bloccata finché
-questa non è conclusa o annullata.</p>
+<p>Per lo <strong>spostamento</strong>, soltanto unità che <strong>potrebbero essere dello stesso livello</strong>. Non appena è spuntata un'unità archivistica, non è più possibile aggiungere un fondo — Anton impedisce selezioni che non potrebbero essere spostate insieme. Chi non riesce a spuntare un'unità dovrebbe quindi verificare i livelli già selezionati. Per la <strong>modifica</strong>, si possono selezionare insieme unità qualsiasi.</p>
+<p>Se è già in corso un'operazione di spostamento, la selezione è bloccata finché questa non è conclusa o annullata.</p>
+<h2 id="sammelbearbeitung">Modifica di gruppo<a class="headerlink" href="#sammelbearbeitung" title="Permanent link">&para;</a></h2>
+<p>Con l'azione <strong>modifica</strong>, il pulsante <strong>Modifica (numero)</strong> nella selezione porta alla pagina <strong>Modifica di gruppo</strong>. Una modifica vale lì per tutte le unità selezionate, al massimo 500 alla volta.</p>
+<ul>
+<li><strong>Impostare una lista di valori</strong>: collocazione, tipo di oggetto, stato o grado di dettaglio della descrizione, oppure svuotarla; a scelta <strong>solo dove vuoto</strong>.</li>
+<li><strong>Impostare un campo di testo</strong>: in una lingua, <strong>sostituire</strong>, riempire <strong>solo dove vuoto</strong> o <strong>aggiungere in fondo</strong> un testo (nuovo paragrafo).</li>
+<li><strong>Parola chiave</strong>: <strong>aggiungere</strong> o <strong>rimuovere</strong> una parola chiave esistente.</li>
+<li><strong>Cerca e sostituisci</strong>: nel titolo o in un campo di testo (tutte le lingue), a scelta rispettando maiuscole/minuscole e solo per parole intere.</li>
+</ul>
+<p>Sono proposti solo i campi dei formulari di modifica dell'archivio. La ricerca è letterale, senza caratteri jolly. Segnatura, livello di descrizione e termine di protezione non si modificano in gruppo.</p>
+<p>Lo svolgimento: prima l'<strong>anteprima</strong> (quante unità cambiano, le prime 20 modifiche prima e dopo; non scrive nulla), poi <strong>Eseguire</strong>, solo dopo un'anteprima di esattamente queste impostazioni. L'esecuzione avviene in background: Anton fa prima un <strong>backup della banca dati</strong>; se non riesce, nulla viene modificato. <strong>Ultime esecuzioni</strong> indica lo stato, il numero di unità modificate, gli errori e il nome del backup. Ogni modifica figura nella cronologia dell'unità, a nome della persona che ha avviato l'esecuzione; la si annulla tramite il backup, compito dell'amministrazione.</p>
 <h2 id="da-non-confondere-con-il-carrello-di-ordinazione">Da non confondere con il carrello di ordinazione<a class="headerlink" href="#da-non-confondere-con-il-carrello-di-ordinazione" title="Permanent link">&para;</a></h2>
-<p>La selezione e il <a href="../cart/">carrello di ordinazione</a> si assomigliano e sono
-tuttavia due elenchi distinti che non si influenzano mai. La selezione serve
-all'elaborazione, il carrello all'ordinazione. Una selezione non può essere
-trasferita nel carrello di ordinazione.</p>
+<p>La selezione e il <a href="../cart/">carrello di ordinazione</a> si assomigliano e sono tuttavia due elenchi distinti che non si influenzano mai. La selezione serve all'elaborazione, il carrello all'ordinazione. Una selezione non può essere trasferita nel carrello di ordinazione.</p>
 
 
 

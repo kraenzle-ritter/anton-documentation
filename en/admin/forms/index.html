@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profile and settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2357,6 +2385,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorlage-publikation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template «Publication»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-can-be-overridden-per-form" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2485,6 +2524,34 @@
     
   
     Protection periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text snippets
   
 
     
@@ -4495,6 +4562,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorlage-publikation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template «Publication»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-can-be-overridden-per-form" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4588,7 +4666,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/forms/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-09-26</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4692,6 +4770,20 @@ keywords and locations.</p>
 <p>For most archives it is therefore sufficient to maintain one set per level of
 description. Separate sets are worthwhile when a type of holding needs
 different fields — photographs, plans, films.</p>
+<h2 id="vorlage-publikation">Template «Publication»<a class="headerlink" href="#vorlage-publikation" title="Permanent link">&para;</a></h2>
+<p>For the books and brochures of an archive library there is a ready form set <strong>Publication</strong>. It is set up on purpose in one archive, not by an update:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>anton:formset-template<span class="w"> </span>publication<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+</code></pre></div>
+<p>The command creates the form set with an edit form of its own and one detail view each, internal and external; the result lists are the archive's. The form contains:</p>
+<ul>
+<li><strong>Reference code</strong>, <strong>title</strong>, <strong>subtitle</strong>, <strong>author</strong> as an event linked to the person register, <strong>publisher</strong>, <strong>place of publication</strong>, <strong>year of publication</strong> (the creation event), <strong>edition</strong>, <strong>series</strong>, <strong>ISBN</strong>, <strong>extent</strong></li>
+<li>level of description, object type, languages, media</li>
+<li><strong>scope and content</strong>, actors, keywords</li>
+<li>protection period, locked, location, location details, Swisscovery</li>
+<li>general note, internal note, updates, loan</li>
+</ul>
+<p>The externally visible detail view leaves out protection period, location, internal note, updates and loan. Subtitle, edition, series and ISBN are one-line text fields that exist in every archive from this version on; without a form that contains them they show nowhere.</p>
+<p>A record becomes a publication by choosing «Publication» under <strong>Form set</strong> in the form; usual is a branch «Library» in the arrangement with the publications as items. The command leaves an existing form set «publication» unchanged and can be repeated. A field the archive does not have is left out and named. Afterwards the set can be adapted under <strong>Admin → Forms</strong> like any other.</p>
 <h2 id="what-can-be-overridden-per-form">What can be overridden per form<a class="headerlink" href="#what-can-be-overridden-per-form" title="Permanent link">&para;</a></h2>
 <p>The same field definition can appear differently in each form. Among the things
 that can be overridden are:</p>

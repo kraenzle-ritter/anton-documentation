@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profile and settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2326,6 +2354,34 @@
     
   
     Protection periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text snippets
   
 
     
@@ -4578,7 +4634,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-av/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4817,7 +4873,7 @@
 <li>For recordings ingested before v0.111.1, the nightly run <code>media:validate-formats</code> adds the characteristics; until then the exports lack them too.</li>
 <li>There is no rule yet that converts sound or video. When one comes, <code>media:migrate</code> proves it stream by stream; if anything is lost, the master stays as it was. The check therefore suits only lossless targets. <code>media:migrate</code> refuses a rule that changes the file extension, so a change of container, for instance from MOV to MKV, is not possible today.</li>
 <li>Access copies are made as MP3 for sound and as MP4 with H.264, poster and thumbnail for video, from all formats above, FFV1 and ProRes included (anton#718). Upload takes them and keeps their extension.</li>
-<li>The upload accepts subtitles as sidecar files (SRT, WebVTT), but the player does not show them yet (anton#781). Of a subtitle stream in the container, Anton measures only the stream, not its text.</li>
+<li>The upload accepts subtitles as sidecar files (SRT, WebVTT), and the player shows them (anton#781): with a video as a subtitle track switched on through «CC», with a sound recording as a transcript below the player that jumps to a passage. A subtitle file belongs to the recording on the same record; where the record has several recordings, to the one whose name its own begins with (<code>interview.mp4</code> and <code>interview.de.srt</code>). The language is at the end of the name (<code>.de</code>, <code>_fr</code>, <code>-en</code>). An SRT file is turned into WebVTT when played; it stays stored as it came. Locked subtitles and subtitles of locked records stay hidden. Of a subtitle stream in the container, Anton measures only the stream, not its text.</li>
 <li>«Playable» means ffmpeg decodes the recording without an error message. It does not check whether picture and sound are good.</li>
 </ul>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>

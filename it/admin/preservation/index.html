@@ -1751,6 +1751,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profilo e impostazioni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2412,7 +2440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -2540,8 +2568,8 @@ Predictor 2 um. Vor dem Ersetzen prüft Anton, dass alle Pixel gleich geblieben
 sind; die Prüfsummen der gelieferten Datei stehen danach im Ereignis am Medium.
 SIPs bleiben unberührt, weil ihre eigenen Prüfsummen die unveränderte
 Ablieferung belegen.</p>
-<p>Welche Regeln gelten, legen Admins unter <strong>Admin → Einstellungen → Regeln für
-Dateien</strong> fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
+<p>Welche Regeln gelten, legen Admins unter <strong>Admin → Digitale Archivierung → Format
+Policy</strong> fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
 lässt sich keine Regel abwählen. Die Seite zeigt jede Regel als «Wenn …
 ausser … dann …»: für welche Formate sie gilt, wann sie eine Datei auslässt,
 welche Schritte sie ausführt und was mit der gelieferten Datei geschieht; die Befehle
@@ -2603,7 +2631,7 @@ Archiv. Heute kann <a href="../console-commands/#mediamigrate"><code>media:migra
 <p>«Richtig darstellen» prüft die Formatprüfung bei PDF über die
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.</p>
-<p>Normalisiert wird im Preingest nach den <a href="#regeln-fuer-dateien">Regeln für Dateien</a> und im Bestand durch eine Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, beides mit Prüfung. Bei einer Migration bleibt die übernommene Datei als <a href="#behaltene-originale">behaltene Fassung</a>, bitgenau und mit Prüfsumme. Verwerfen darf Anton sie nur, wo die Regel es erlaubt: <code>tiff_zip</code> prüft jedes Pixel, verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit <code>media:migrate --discard-original</code>. Am besten wird schon vor der Übernahme umgewandelt, bei der Ablieferstelle; dann ist die umgewandelte Datei die Ablieferung. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.</p>
+<p>Normalisiert wird im Preingest nach den <a href="#regeln-fuer-dateien">Format Policy</a> und im Bestand durch eine Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, beides mit Prüfung. Bei einer Migration bleibt die übernommene Datei als <a href="#behaltene-originale">behaltene Fassung</a>, bitgenau und mit Prüfsumme. Verwerfen darf Anton sie nur, wo die Regel es erlaubt: <code>tiff_zip</code> prüft jedes Pixel, verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit <code>media:migrate --discard-original</code>. Am besten wird schon vor der Übernahme umgewandelt, bei der Ablieferstelle; dann ist die umgewandelte Datei die Ablieferung. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.</p>
 <p>Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite: für <a href="../formate-bild/">Bilder</a>, <a href="../formate-pdf/">PDF</a>, <a href="../formate-text/">Text</a>, <a href="../formate-av/">Audio und Video</a> <a href="../formate-tabellen/">Tabellen und Präsentationen</a> sowie <a href="../formate-uebrige/">übrige Formate</a>, Container und XML.</p>
 <h3 id="abgabe">Abgabe<a class="headerlink" href="#abgabe" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="#sicherung-oder-publikation">Sicherung oder Publikation?</a> weiter unten.</p>

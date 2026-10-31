@@ -1625,6 +1625,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sammelbearbeitung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nicht-dasselbe-wie-der-bestellkorb" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1826,6 +1837,34 @@
     
   
     Passkey Authentifizierung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profil und Einstellungen
   
 
     
@@ -2408,6 +2447,34 @@
     
   
     Schutzfristen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbausteine
   
 
     
@@ -4407,6 +4474,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sammelbearbeitung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nicht-dasselbe-wie-der-bestellkorb" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4434,7 +4512,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/selection/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/selection/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/selection/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-07-17</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4446,44 +4524,64 @@
 
 
 <h1 id="auswahl-und-sammelaktionen">Auswahl und Sammelaktionen<a class="headerlink" href="#auswahl-und-sammelaktionen" title="Permanent link">&para;</a></h1>
-<p>Mehrere Verzeichnungseinheiten lassen sich in Trefferlisten ankreuzen und
-gemeinsam bearbeiten. Zurzeit gibt es dafür <strong>eine</strong> Aktion: das
-<a href="../hierarchy/">Verschieben</a>.</p>
+<p>Mehrere Verzeichnungseinheiten lassen sich in Trefferlisten ankreuzen und gemeinsam bearbeiten. Dafür gibt es zwei Aktionen: das <a href="../hierarchy/">Verschieben</a>, ab der Rolle <code>admin</code>, und die <a href="#sammelbearbeitung">Sammelbearbeitung</a>, ab der Rolle <code>editor</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nur in einzelnen Archiven</p>
-<p>Sammelaktionen müssen freigeschaltet sein und setzen die Rolle <code>admin</code>
-voraus. Sie sind kein Standard; die Einstellung ist im Admin-Bereich nicht
-änderbar, bei Anton as a Service ist dafür k &amp; r zuständig. Wer sie nicht
-braucht, kann sie im eigenen Profil zusätzlich abschalten.</p>
+<p>Sammelaktionen müssen freigeschaltet sein. Sie sind kein Standard; die Einstellung ist im Admin-Bereich nicht änderbar, bei Anton as a Service ist dafür k &amp; r zuständig. Wer sie nicht braucht, kann sie im eigenen <a href="../profile/">Profil</a> zusätzlich abschalten.</p>
 </div>
 <h2 id="zuerst-die-aktion-dann-die-auswahl">Zuerst die Aktion, dann die Auswahl<a class="headerlink" href="#zuerst-die-aktion-dann-die-auswahl" title="Permanent link">&para;</a></h2>
 <p>Die Reihenfolge ist umgekehrt zum Gewohnten und die häufigste Stolperstelle:</p>
 <ol>
-<li><strong>Zuerst</strong> die Aktion im Auswahlfeld <strong>Aktionen</strong> wählen — zur Verfügung
-   steht <strong>Verschieben</strong>. Vorher lässt sich nichts ankreuzen; die Kästchen
-   bleiben wirkungslos.</li>
-<li><strong>Dann</strong> die Einheiten ankreuzen. Über das Symbol mit der Klemmbrett-Liste
-   über der Trefferliste — es zeigt die Anzahl der gewählten Einheiten — lässt
-   sich die aktuelle Auswahl jederzeit einsehen.</li>
+<li><strong>Zuerst</strong> die Aktion im Auswahlfeld <strong>Aktionen</strong> wählen: <strong>Verschieben</strong> oder <strong>Bearbeiten</strong>. Vorher lässt sich nichts ankreuzen; die Kästchen bleiben wirkungslos.</li>
+<li><strong>Dann</strong> die Einheiten ankreuzen. Über das Symbol mit der Klemmbrett-Liste über der Trefferliste — es zeigt die Anzahl der gewählten Einheiten — lässt sich die aktuelle Auswahl jederzeit einsehen.</li>
 <li>Die Aktion ausführen. Mit <strong>Leeren</strong> wird die Auswahl verworfen.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Aktion wechseln leert die Auswahl</p>
-<p>Wird das Auswahlfeld nachträglich geändert, wird die bisherige Auswahl
-verworfen. Die Aktion ist also vor dem Ankreuzen festzulegen.</p>
+<p>Wird das Auswahlfeld nachträglich geändert, wird die bisherige Auswahl verworfen. Die Aktion ist also vor dem Ankreuzen festzulegen.</p>
 </div>
 <h2 id="was-sich-zusammen-auswahlen-lasst">Was sich zusammen auswählen lässt<a class="headerlink" href="#was-sich-zusammen-auswahlen-lasst" title="Permanent link">&para;</a></h2>
-<p>Nur Einheiten, die <strong>Geschwister sein könnten</strong>. Sobald ein Dossier angekreuzt
-ist, lässt sich kein Bestand mehr dazunehmen — Anton verhindert Auswahlen, die
-sich nicht gemeinsam verschieben liessen. Wer eine Einheit nicht ankreuzen kann,
-sollte deshalb die bereits gewählten Stufen prüfen.</p>
-<p>Ist bereits ein Verschiebevorgang im Gang, ist die Auswahl gesperrt, bis er
-abgeschlossen oder abgebrochen ist.</p>
+<p>Zum <strong>Verschieben</strong> nur Einheiten, die <strong>Geschwister sein könnten</strong>. Sobald ein Dossier angekreuzt ist, lässt sich kein Bestand mehr dazunehmen — Anton verhindert Auswahlen, die sich nicht gemeinsam verschieben liessen. Wer eine Einheit nicht ankreuzen kann, sollte deshalb die bereits gewählten Stufen prüfen. Zum <strong>Bearbeiten</strong> lassen sich beliebige Einheiten zusammen wählen.</p>
+<p>Ist bereits ein Verschiebevorgang im Gang, ist die Auswahl gesperrt, bis er abgeschlossen oder abgebrochen ist.</p>
+<h2 id="sammelbearbeitung">Sammelbearbeitung<a class="headerlink" href="#sammelbearbeitung" title="Permanent link">&para;</a></h2>
+<p>Mit der Aktion <strong>Bearbeiten</strong> führt der Knopf <strong>Bearbeiten (Anzahl)</strong> in der Auswahl auf die Seite <strong>Sammelbearbeitung</strong>. Dort gilt eine Änderung für alle gewählten Einheiten, höchstens 500 auf einmal.</p>
+<table>
+<thead>
+<tr>
+<th>Änderung</th>
+<th>Was sie tut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Werteliste setzen</strong></td>
+<td>Standort, Objekttyp, Status oder Detaillierungsgrad der Beschreibung auf einen Wert setzen oder leeren; wahlweise <strong>nur wo leer</strong></td>
+</tr>
+<tr>
+<td><strong>Textfeld setzen</strong></td>
+<td>ein Textfeld in einer Sprache <strong>ersetzen</strong>, <strong>nur wo leer</strong> füllen oder einen Text <strong>anhängen</strong> (als neuen Absatz)</td>
+</tr>
+<tr>
+<td><strong>Schlagwort</strong></td>
+<td>ein bestehendes Schlagwort <strong>hinzufügen</strong> oder <strong>entfernen</strong></td>
+</tr>
+<tr>
+<td><strong>Suchen und ersetzen</strong></td>
+<td>einen Text im Titel (alle Sprachen) oder in einem Textfeld (alle Sprachen) ersetzen; wahlweise Gross- und Kleinschreibung beachten und nur ganze Wörter</td>
+</tr>
+</tbody>
+</table>
+<p>Angeboten werden nur die Felder, die in den Bearbeitungsformularen des Archivs vorkommen. Gesucht wird wörtlich, ohne Platzhalter oder reguläre Ausdrücke. Signatur, Verzeichnungsstufe und Schutzfrist lassen sich nicht gesammelt ändern: die Signatur nicht, weil gleiche Signaturen kollidieren, Stufe und Schutzfrist nicht, weil sie über die Stellung im Baum und den Zugang auch der untergeordneten Einheiten entscheiden.</p>
+<p>So läuft eine Sammelbearbeitung ab:</p>
+<ol>
+<li><strong>Vorschau</strong>: Anton zeigt, wie viele Einheiten sich ändern, und die ersten 20 Änderungen mit vorher und nachher. Die Vorschau schreibt nichts.</li>
+<li><strong>Ausführen</strong>: erst nach einer Vorschau zu genau diesen Einstellungen. Wer danach etwas ändert, braucht eine neue Vorschau.</li>
+<li>Der Lauf geschieht im Hintergrund. Zuerst zieht Anton eine <strong>Sicherung der Datenbank</strong>; gelingt sie nicht, wird nichts geändert. Dann wird Einheit für Einheit geändert.</li>
+<li>Unter <strong>Letzte Läufe</strong> steht der Stand: wartet, läuft, fertig oder fehlgeschlagen, die Zahl der geänderten Einheiten, Fehler und der Name der Sicherung.</li>
+</ol>
+<p>Jede Änderung steht wie eine Bearbeitung in der Maske im Änderungsverlauf der Einheit und im <a href="../../admin/protokolle/">Bestandsprotokoll</a>, mit dem Namen der Person, die den Lauf gestartet hat. Rückgängig machen lässt sich ein Lauf über die Sicherung; dafür ist die Administration zuständig.</p>
 <h2 id="nicht-dasselbe-wie-der-bestellkorb">Nicht dasselbe wie der Bestellkorb<a class="headerlink" href="#nicht-dasselbe-wie-der-bestellkorb" title="Permanent link">&para;</a></h2>
-<p>Auswahl und <a href="../cart/">Bestellkorb</a> sehen ähnlich aus und sind doch zwei
-getrennte Listen, die einander nie beeinflussen. Die Auswahl dient dem
-Bearbeiten, der Bestellkorb dem Bestellen. Eine Auswahl lässt sich nicht in den
-Bestellkorb übernehmen.</p>
+<p>Auswahl und <a href="../cart/">Bestellkorb</a> sehen ähnlich aus und sind doch zwei getrennte Listen, die einander nie beeinflussen. Die Auswahl dient dem Bearbeiten, der Bestellkorb dem Bestellen. Eine Auswahl lässt sich nicht in den Bestellkorb übernehmen.</p>
 
 
 

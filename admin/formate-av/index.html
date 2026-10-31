@@ -1755,6 +1755,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profil und Einstellungen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2326,6 +2354,34 @@
     
   
     Schutzfristen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbausteine
   
 
     
@@ -4578,7 +4634,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/formate-av/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-30</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4817,7 +4873,7 @@
 <li>Für Aufnahmen, die vor v0.111.1 übernommen wurden, trägt der nächtliche Lauf <code>media:validate-formats</code> die Merkmale nach; bis dahin fehlen sie auch in den Exporten.</li>
 <li>Eine Regel, die Ton oder Video umwandelt, gibt es noch nicht. Kommt eine, belegt <code>media:migrate</code> sie Spur für Spur; geht dabei etwas verloren, bleibt der Master, wie er war. Damit taugt die Prüfung nur für verlustfreie Ziele. Eine Regel, die die Endung ändert, lehnt <code>media:migrate</code> ab; ein Containerwechsel etwa von MOV nach MKV geht darum heute nicht.</li>
 <li>Nutzungskopien entstehen als MP3 für Ton und als MP4 mit H.264, Posterbild und Vorschaubild für Video, aus allen Formaten oben, auch FFV1 und ProRes (anton#718). Der Upload nimmt sie an und behält ihre Endung.</li>
-<li>Untertitel als Begleitdatei (SRT, WebVTT) nimmt der Upload an; der Player zeigt sie aber noch nicht (anton#781). Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.</li>
+<li>Untertitel als Begleitdatei (SRT, WebVTT) nimmt der Upload an, und der Player zeigt sie (anton#781): bei einem Video als Untertitelspur, die man über «CC» einschaltet, bei einer Tonaufnahme als Transkript unter dem Player, von dem aus man an eine Stelle springt. Eine Untertiteldatei gehört zur Aufnahme am selben Datensatz; hat der Datensatz mehrere Aufnahmen, zu der, mit deren Namen ihr Name beginnt (<code>interview.mp4</code> und <code>interview.de.srt</code>). Die Sprache steht am Ende des Namens (<code>.de</code>, <code>_fr</code>, <code>-en</code>). Eine SRT-Datei wird beim Abspielen in WebVTT umgewandelt; gespeichert bleibt sie, wie sie kam. Gesperrte Untertitel und Untertitel gesperrter Datensätze bleiben verborgen. Eine Untertitelspur im Container misst Anton nur als Spur, ihren Text nicht.</li>
 <li>«Abspielbar» heisst, ffmpeg dekodiert die Aufnahme ohne Fehlermeldung. Ob Bild und Ton gut sind, prüft es nicht.</li>
 </ul>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>

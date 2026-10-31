@@ -1625,6 +1625,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk edit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#not-the-same-as-the-order-basket" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1826,6 +1837,34 @@
     
   
     Passkey authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profile and settings
   
 
     
@@ -2408,6 +2447,34 @@
     
   
     Protection periods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/text-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text snippets
   
 
     
@@ -4407,6 +4474,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sammelbearbeitung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk edit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#not-the-same-as-the-order-basket" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4434,7 +4512,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/selection/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/selection/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/selection/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-10-31</span>
     </div>
   
   
@@ -4446,42 +4524,64 @@
 
 
 <h1 id="selection-and-bulk-actions">Selection and bulk actions<a class="headerlink" href="#selection-and-bulk-actions" title="Permanent link">&para;</a></h1>
-<p>Several units of description can be ticked in result lists and processed
-together. At present there is <strong>one</strong> action for this: <a href="../hierarchy/">moving</a>.</p>
+<p>Several units of description can be ticked in result lists and processed together. There are two actions for this: <a href="../hierarchy/">moving</a>, from the role <code>admin</code>, and the <a href="#sammelbearbeitung">bulk edit</a>, from the role <code>editor</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Only in some archives</p>
-<p>Bulk actions have to be enabled and require the <code>admin</code> role. They are not a
-standard feature; the setting cannot be changed in the admin area, and with
-Anton as a Service, k &amp; r is responsible for it. Anyone who does not need
-them can additionally switch them off in their own profile.</p>
+<p>Bulk actions have to be enabled. They are not a standard feature; the setting cannot be changed in the admin area, and with Anton as a Service, k &amp; r is responsible for it. Anyone who does not need them can additionally switch them off in their own <a href="../profile/">profile</a>.</p>
 </div>
 <h2 id="first-the-action-then-the-selection">First the action, then the selection<a class="headerlink" href="#first-the-action-then-the-selection" title="Permanent link">&para;</a></h2>
-<p>The order is the reverse of what one is used to and is the most common stumbling
-block:</p>
+<p>The order is the reverse of what one is used to and is the most common stumbling block:</p>
 <ol>
-<li><strong>First</strong> choose the action in the <strong>actions</strong> selection field — available is
-   <strong>move</strong>. Before that, nothing can be ticked; the boxes have no effect.</li>
-<li><strong>Then</strong> tick the units. The icon with the clipboard list above the result
-   list — it shows the number of units selected — allows the current selection to
-   be inspected at any time.</li>
+<li><strong>First</strong> choose the action in the <strong>actions</strong> selection field: <strong>move</strong> or <strong>edit</strong>. Before that, nothing can be ticked; the boxes have no effect.</li>
+<li><strong>Then</strong> tick the units. The icon with the clipboard list above the result list — it shows the number of units selected — allows the current selection to be inspected at any time.</li>
 <li>Carry out the action. <strong>Clear</strong> discards the selection.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Changing the action clears the selection</p>
-<p>If the selection field is changed afterwards, the previous selection is
-discarded. The action therefore has to be determined before ticking.</p>
+<p>If the selection field is changed afterwards, the previous selection is discarded. The action therefore has to be determined before ticking.</p>
 </div>
 <h2 id="what-can-be-selected-together">What can be selected together<a class="headerlink" href="#what-can-be-selected-together" title="Permanent link">&para;</a></h2>
-<p>Only units that <strong>could be siblings</strong>. As soon as a file is ticked, a fonds can
-no longer be added — Anton prevents selections that could not be moved together.
-Anyone unable to tick a unit should therefore check the levels already selected.</p>
-<p>If a move operation is already under way, the selection is locked until it has
-been completed or cancelled.</p>
+<p>For <strong>moving</strong>, only units that <strong>could be siblings</strong>. As soon as a file is ticked, a fonds can no longer be added — Anton prevents selections that could not be moved together. Anyone unable to tick a unit should therefore check the levels already selected. For <strong>editing</strong>, any units can be selected together.</p>
+<p>If a move operation is already under way, the selection is locked until it has been completed or cancelled.</p>
+<h2 id="sammelbearbeitung">Bulk edit<a class="headerlink" href="#sammelbearbeitung" title="Permanent link">&para;</a></h2>
+<p>With the action <strong>edit</strong>, the button <strong>Edit (number)</strong> in the selection leads to the page <strong>Bulk edit</strong>. There a change applies to all selected units, at most 500 at a time.</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set a value list</strong></td>
+<td>set location, object type, status or level of detail of the description to a value or clear it; optionally <strong>only where empty</strong></td>
+</tr>
+<tr>
+<td><strong>Set a text field</strong></td>
+<td><strong>replace</strong> a text field in one language, fill it <strong>only where empty</strong>, or <strong>append</strong> a text (as a new paragraph)</td>
+</tr>
+<tr>
+<td><strong>Keyword</strong></td>
+<td><strong>add</strong> or <strong>remove</strong> an existing keyword</td>
+</tr>
+<tr>
+<td><strong>Search and replace</strong></td>
+<td>replace a text in the title (all languages) or in a text field (all languages); optionally match case and whole words only</td>
+</tr>
+</tbody>
+</table>
+<p>Only the fields that occur in the archive's edit forms are offered. The search is literal, without wildcards or regular expressions. Reference code, level of description and protection period cannot be changed in bulk: the reference code because equal codes collide, level and protection period because they decide the place in the tree and the access to the units below as well.</p>
+<p>A bulk edit runs like this:</p>
+<ol>
+<li><strong>Preview</strong>: Anton shows how many units change and the first 20 changes, before and after. The preview writes nothing.</li>
+<li><strong>Run</strong>: only after a preview of exactly these settings. Anyone who changes something afterwards needs a new preview.</li>
+<li>The run happens in the background. First Anton takes a <strong>backup of the database</strong>; if it fails, nothing is changed. Then the units are changed one by one.</li>
+<li><strong>Last runs</strong> shows the status: waiting, running, done or failed, the number of changed units, errors and the name of the backup.</li>
+</ol>
+<p>Every change stands in the unit's edit history and in the <a href="../../admin/protokolle/">holdings log</a> like an edit in the form, with the name of the person who started the run. A run can be undone through the backup; the administration is responsible for that.</p>
 <h2 id="not-the-same-as-the-order-basket">Not the same as the order basket<a class="headerlink" href="#not-the-same-as-the-order-basket" title="Permanent link">&para;</a></h2>
-<p>The selection and the <a href="../cart/">order basket</a> look similar and are nevertheless
-two separate lists that never influence one another. The selection serves
-editing, the order basket ordering. A selection cannot be transferred into the
-order basket.</p>
+<p>The selection and the <a href="../cart/">order basket</a> look similar and are nevertheless two separate lists that never influence one another. The selection serves editing, the order basket ordering. A selection cannot be transferred into the order basket.</p>
 
 
 
