@@ -25,6 +25,7 @@ archivio; di regola vi si trovano:
   ruolo.
 - **Aiuto** — la guida integrata nell'applicazione; mostra i campi, le liste di
   valori e le regole di descrizione di **questo** archivio
+- **?** accanto ad «Aiuto» — porta alla pagina di questa documentazione che spiega la pagina in cui ci si trova: nella maschera di modifica alla modifica dei record, nell’importazione all’importazione e così via. Senza una pagina dedicata porta alla pagina iniziale. Si può nascondere nel proprio profilo sotto **Impostazioni**.
 - la **ricerca** in alto a destra
 
 !!! note "Le etichette possono differire"

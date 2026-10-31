@@ -83,8 +83,8 @@ sind; die Prüfsummen der gelieferten Datei stehen danach im Ereignis am Medium.
 SIPs bleiben unberührt, weil ihre eigenen Prüfsummen die unveränderte
 Ablieferung belegen.
 
-Welche Regeln gelten, legen Admins unter **Admin → Einstellungen → Regeln für
-Dateien** fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
+Welche Regeln gelten, legen Admins unter **Admin → Digitale Archivierung → Format
+Policy** fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
 lässt sich keine Regel abwählen. Die Seite zeigt jede Regel als «Wenn …
 ausser … dann …»: für welche Formate sie gilt, wann sie eine Datei auslässt,
 welche Schritte sie ausführt und was mit der gelieferten Datei geschieht; die Befehle
@@ -159,7 +159,7 @@ Archiv. Heute kann [`media:migrate`](console-commands.md#mediamigrate) nur verlu
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
 Ersatzschriften und sieht anders aus, ohne dass es jemand merkt.
 
-Normalisiert wird im Preingest nach den [Regeln für Dateien](#regeln-fuer-dateien) und im Bestand durch eine Migration mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Bei einer Migration bleibt die übernommene Datei als [behaltene Fassung](#behaltene-originale), bitgenau und mit Prüfsumme. Verwerfen darf Anton sie nur, wo die Regel es erlaubt: `tiff_zip` prüft jedes Pixel, verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit `media:migrate --discard-original`. Am besten wird schon vor der Übernahme umgewandelt, bei der Ablieferstelle; dann ist die umgewandelte Datei die Ablieferung. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
+Normalisiert wird im Preingest nach den [Format Policy](#regeln-fuer-dateien) und im Bestand durch eine Migration mit [`media:migrate`](console-commands.md#mediamigrate), beides mit Prüfung. Bei einer Migration bleibt die übernommene Datei als [behaltene Fassung](#behaltene-originale), bitgenau und mit Prüfsumme. Verwerfen darf Anton sie nur, wo die Regel es erlaubt: `tiff_zip` prüft jedes Pixel, verwirft die gelieferte Datei und hält ihre Prüfsummen im Ereignis fest, im Bestand mit `media:migrate --discard-original`. Am besten wird schon vor der Übernahme umgewandelt, bei der Ablieferstelle; dann ist die umgewandelte Datei die Ablieferung. Grundlage für Entscheide ist das Preservation Planning: Es zeigt, welche Formate im Bestand liegen, welches Risiko NARA ihnen zuweist und welche Handlung NARA empfiehlt.
 
 Welche Formate bevorzugt und akzeptiert sind und welche Eigenschaften erhalten bleiben müssen, steht je Formatkategorie auf einer eigenen Seite: für [Bilder](formate-bild.md), [PDF](formate-pdf.md), [Text](formate-text.md), [Audio und Video](formate-av.md) [Tabellen und Präsentationen](formate-tabellen.md) sowie [übrige Formate](formate-uebrige.md), Container und XML.
 

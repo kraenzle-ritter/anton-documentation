@@ -22,6 +22,7 @@ it contains:
   **import / export** and **settings**. Which cards appear depends on the role.
 - **Help** — the in-application help; it shows the fields, value lists and
   cataloguing rules of **this** archive
+- **?** beside «Help» — leads to the page of this documentation that explains the page one is on: in the edit form to editing records, in the import to the import and so on. Where no page explains it, it leads to the start page. It can be hidden in one's own profile under **Settings**.
 - the **search** at the top right
 
 !!! note "Labels may differ"

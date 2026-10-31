@@ -78,8 +78,8 @@ replacing the file, Anton checks that every pixel stayed the same; the
 checksums of the delivered file are then kept in the event on the medium.
 SIPs are left alone, because their own checksums prove an untouched delivery.
 
-Which rules hold is set by admins under **Admin → Settings → Rules for
-files**, once for the whole archive. No rule can be left out when uploading or
+Which rules hold is set by admins under **Admin → Digital preservation → Format
+Policy**, once for the whole archive. No rule can be left out when uploading or
 importing. The page shows each rule as «if … except … then …»: the formats it
 applies to, when it leaves a file alone, the steps it runs and what becomes of
 the original; the commands with tool and version are in a collapsed section
@@ -152,7 +152,7 @@ For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.
 
-Normalisation happens in preingest under the [file rules](#regeln-fuer-dateien) and in the holdings by a migration with [`media:migrate`](console-commands.md#mediamigrate), both verified. In a migration the file taken in stays as a [kept original](#behaltene-originale), bit for bit and with a checksum. Anton may discard it only where the rule allows it: `tiff_zip` verifies every pixel, discards the delivered file and records its checksums in the event, in the holdings with `media:migrate --discard-original`. Converting is best done before Anton takes the file in, by whoever delivers it; the converted file is then the delivery. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
+Normalisation happens in preingest under the [Format Policy](#regeln-fuer-dateien) and in the holdings by a migration with [`media:migrate`](console-commands.md#mediamigrate), both verified. In a migration the file taken in stays as a [kept original](#behaltene-originale), bit for bit and with a checksum. Anton may discard it only where the rule allows it: `tiff_zip` verifies every pixel, discards the delivered file and records its checksums in the event, in the holdings with `media:migrate --discard-original`. Converting is best done before Anton takes the file in, by whoever delivers it; the converted file is then the delivery. Preservation planning is the basis for decisions: it shows which formats are in the holdings, which risk NARA assigns to them and which action NARA recommends.
 
 Which formats are preferred and accepted, and which properties must be preserved, is set out per format category on a page of its own: for [images](formate-bild.md), [PDF](formate-pdf.md), [text](formate-text.md), [audio and video](formate-av.md), [spreadsheets and presentations](formate-tabellen.md), and [other formats](formate-uebrige.md), containers and XML.
 

@@ -108,6 +108,7 @@ nav:
       - Formulare und Formularsätze: admin/forms.md
       - Wertelisten: admin/valuelists.md
       - Schutzfristen: admin/protection-periods.md
+      - Textbausteine: admin/text-snippets.md
       - Suchfelder: admin/searchfields.md
       - Startseite und Navigation: admin/home.md
       - Archivbeschreibung (ISDIAH): admin/isdiah.md
@@ -262,6 +263,7 @@ plugins:
                 - Forms and form sets: admin/forms.md
                 - Value lists: admin/valuelists.md
                 - Protection periods: admin/protection-periods.md
+                - Text snippets: admin/text-snippets.md
                 - Search fields: admin/searchfields.md
                 - Home page and navigation: admin/home.md
                 - Archive description (ISDIAH): admin/isdiah.md

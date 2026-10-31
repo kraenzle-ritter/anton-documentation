@@ -23,6 +23,7 @@ Regel finden sich dort:
   **Einstellungen**. Welche Karten erscheinen, hängt von der Rolle ab.
 - **Hilfe** — die Hilfe in der Anwendung; sie zeigt die Felder, Wertelisten und
   Erschliessungsregeln **dieses** Archivs
+- **?** neben «Hilfe» — führt auf die Seite dieser Dokumentation, die die aktuelle Seite erklärt: in der Bearbeitungsmaske auf das Bearbeiten von Datensätzen, im Import auf den Import und so weiter. Ohne eigene Seite führt es auf die Startseite. Es lässt sich im eigenen Profil unter **Einstellungen** ausblenden.
 - die **Suche** rechts oben
 
 !!! note "Beschriftungen weichen ab"

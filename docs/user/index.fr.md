@@ -27,6 +27,7 @@ trouve en règle générale :
   rôle.
 - **Aide** — l'aide intégrée à l'application ; elle présente les champs, les
   listes de valeurs et les règles de description de **ce** service d'archives
+- **?** à côté de «Aide» — mène à la page de cette documentation qui explique la page affichée : dans le masque d’édition, à l’édition des enregistrements, dans l’import, à l’import, etc. Sans page dédiée, il mène à la page d’accueil. Il peut être masqué dans son propre profil sous **Paramètres**.
 - la **recherche** en haut à droite
 
 !!! note "Les libellés peuvent différer"
