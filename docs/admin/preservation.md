@@ -68,9 +68,13 @@ prüft Anton sie, bevor sie zum Medium wird:
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) prüft
   den Bestand regelmässig gründlicher.
 
-Jede Prüfung steht als Ereignis am Medium. Interne Benutzer:innen sehen sie auf
-der Medienseite eines Datensatzes: oben die letzte Prüfung je Art, darunter die
-ganze Liste. Alle Formatprüfungen des Archivs, Tag für Tag gezählt und nach
+Jede Prüfung steht als Ereignis am Medium, seit Version 0.117.0 mit dem, der
+sie ausgelöst hat: die Person, der Befehl mit dem Konto, unter dem er lief
+(`<konto>@cli:<befehl>`), oder der Hintergrundauftrag (`job:<klasse>`). Wird
+ein Medium gelöscht, bleiben seine Ereignisse; der Grabstein im
+Bestandsprotokoll trägt dieselbe Medien-Nummer (anton#794). Interne
+Benutzer:innen sehen die Ereignisse auf der Medienseite eines Datensatzes: oben
+die letzte Prüfung je Art, darunter die ganze Liste. Alle Formatprüfungen des Archivs, Tag für Tag gezählt und nach
 Ergebnis filterbar, finden Admins unter **Administration → Protokolle →
 Formatprüfung**.
 

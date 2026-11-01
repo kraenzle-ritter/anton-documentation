@@ -65,8 +65,12 @@ before it becomes a medium:
   [`media:validate-formats`](console-commands.md#mediavalidate-formats) checks
   the holdings more thoroughly at regular intervals.
 
-Every check is recorded as an event on the medium. Internal users see them on
-a record's media page: the latest check of each kind at the top, the full list
+Every check is recorded as an event on the medium, since version 0.117.0 with
+whoever set it off: the person, the command with the account it ran under
+(`<account>@cli:<command>`), or the background job (`job:<class>`). When a
+medium is deleted, its events stay; the tombstone in the holdings log carries
+the same medium number (anton#794). Internal users see the events on a
+record's media page: the latest check of each kind at the top, the full list
 below. All format validations of the archive, counted day by day and filterable
 by result, are under **Administration → Logs → Format validation** for admins.
 
