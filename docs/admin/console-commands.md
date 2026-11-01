@@ -170,6 +170,22 @@ ungültige Dateien gefunden wurden.
 php artisan media:validate-formats --env=besenval --oldest=500
 ```
 
+**`media:watch-formats`**{#mediawatch-formats} beobachtet das Veralten der
+Formate (anton#675). Ist die NARA-Tabelle eine andere als beim letzten Lauf
+(verglichen über ihre SHA-256), bewertet er jedes Format des Bestands neu und
+hält bei jedem Medium, dessen Bewertung sich ändert, ein Ereignis
+`risk-assessment` mit altem und neuem Wert fest; Medien ohne Bewertung bewertet
+er in jedem Fall. Die Formatnamen gleicht er mit PRONOM in der Fassung ab, die
+`sf -version` nennt; die Signaturdatei dazu holt er einmal bei The National
+Archives (`PRONOM_DOWNLOAD=false` auf Servern ohne Internet, dann die Datei
+nach `storage/app/pronom/` legen). `--dry-run` sagt nur, was sich änderte,
+`--force` bewertet auch bei unveränderter Tabelle neu. Bleibt die Tabelle
+gleich, ist der Lauf kurz; er gehört als Cron je Mandant in anton-ansible.
+
+```bash
+php artisan media:watch-formats --env=besenval
+```
+
 **`media:virus-scan`**{#mediavirus-scan} prüft die Master und aufbewahrten
 Fassungen des Bestands mit ClamAV, mit den jeweils neuesten Signaturen. Bei der
 Übernahme wird jede Datei ohnehin geprüft; der Befehl erreicht, was vor der
@@ -506,7 +522,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (19)
+### media: (20)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -529,6 +545,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 | `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |
+| `media:watch-formats` | Re-assess media formats when NARA changes a rating, and follow PRONOM's format names (#675) |
 
 ### notification: (3)
 

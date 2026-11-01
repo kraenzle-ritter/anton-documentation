@@ -142,6 +142,16 @@ hält die **PRONOM-ID** fest; daraus leitet es die Risikobewertung nach dem
 [`media:identify`](console-commands.md#mediaidentify) nachtragen. Ausgewertet wird das im
 [Preservation Planning](preservation-planning.md).
 
+Das Veralten der Formate beobachtet
+[`media:watch-formats`](console-commands.md#mediawatch-formats) (anton#675):
+Lädt Anton eine neue NARA-Tabelle (alle 28 Tage), bewertet der Befehl jedes
+Format des Bestands neu. Ändert sich eine Bewertung, erhält jedes betroffene
+Medium ein Ereignis «Risikobewertung» mit dem alten und dem neuen Wert. Die
+Formatnamen folgen PRONOM in der Fassung, mit der Siegfried erkennt.
+Preservation Planning zeigt, wann zuletzt bewertet wurde und womit; der
+[Monatsbericht](protokolle.md) nennt gestiegene Risiken, neue Formate, Formate
+mit Handlungsbedarf und die nicht erkannten Medien.
+
 !!! note "Siegfried oder Fido auf dem Server"
     Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert
     sind. Fehlt das Programm, gelingt der Upload trotzdem, nur bleibt die

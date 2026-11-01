@@ -136,6 +136,15 @@ supplied retrospectively with
 [`media:identify`](console-commands.md#mediaidentify). It is evaluated in
 [preservation planning](preservation-planning.md).
 
+[`media:watch-formats`](console-commands.md#mediawatch-formats) watches the
+formats for obsolescence (anton#675): when Anton loads a new NARA table (every
+28 days), the command assesses every format of the holdings again. Where a
+rating changes, each medium concerned gets a «risk assessment» event with the
+old and the new value. Format names follow PRONOM in the release Siegfried
+identifies with. Preservation planning shows when the holdings were last
+assessed and with what; the [monthly report](protokolle.md) names risks that
+went up, new formats, formats that need an action and the unidentified media.
+
 !!! note "Siegfried or Fido on the server"
     Identification uses Siegfried or Fido installed on the server. If the
     program is missing, uploads still succeed, only identification stays empty;

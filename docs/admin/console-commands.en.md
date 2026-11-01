@@ -168,6 +168,22 @@ invalid files were found.
 php artisan media:validate-formats --env=besenval --oldest=500
 ```
 
+**`media:watch-formats`**{#mediawatch-formats} watches the formats for
+obsolescence (anton#675). When the NARA table differs from the one of the last
+run (compared by its SHA-256), it assesses every format of the holdings again
+and records a `risk-assessment` event with the old and the new value at each
+medium whose rating changes; media without a rating are assessed in any case.
+It compares the format names with PRONOM in the release `sf -version` names,
+fetching that signature file once from The National Archives
+(`PRONOM_DOWNLOAD=false` on servers without internet; then place the file in
+`storage/app/pronom/`). `--dry-run` only says what would change, `--force`
+assesses again also with an unchanged table. With the same table the run is
+short; it belongs in a per-tenant cron in anton-ansible.
+
+```bash
+php artisan media:watch-formats --env=besenval
+```
+
 **`media:virus-scan`**{#mediavirus-scan} scans the masters and kept versions of
 the holdings with ClamAV, against the latest signatures. Every file is scanned
 at ingest anyway; the command reaches what came before clamd was set up, and
@@ -502,7 +518,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (19)
+### media: (20)
 
 | Command | Description |
 |---|---|
@@ -525,6 +541,7 @@ up to date with every change to the commands.
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 | `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |
+| `media:watch-formats` | Re-assess media formats when NARA changes a rating, and follow PRONOM's format names (#675) |
 
 ### notification: (3)
 

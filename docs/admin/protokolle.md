@@ -38,4 +38,4 @@ php artisan anton:doctor --logs --month=2026-09 --env=<slug>       # ein bestimm
 php artisan anton:doctor --logs --only-if-actionable --mail=<adresse> --env=<slug>
 ```
 
-`--only-if-actionable` schickt den Bericht nur, wenn der Monat zu bestätigen ist oder eine Prüfung einen Fehler meldet. `anton:review-logs` ([Console Commands](console-commands.md)) prüft täglich und meldet sich nur bei Auffälligkeiten.
+Seit Version 0.117.0 enthält der Bericht auch die Formate des Monats: gestiegene Risiken, neue Formate, Formate mit Handlungsbedarf und die nicht erkannten Medien (anton#675; allein mit `--formats`). `--only-if-actionable` schickt den Bericht nur, wenn der Monat zu bestätigen ist, ein Risiko gestiegen oder ein Format mit Handlungsbedarf neu ist, oder eine Prüfung einen Fehler meldet. `anton:review-logs` ([Console Commands](console-commands.md)) prüft täglich und meldet sich nur bei Auffälligkeiten.

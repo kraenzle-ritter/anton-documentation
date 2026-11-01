@@ -31,6 +31,8 @@ Die Tabelle listet die PUIDs nach Häufigkeit, mit Formatname, Anteil und der h�
 
 ## Risikobewertung
 
+Über den Reitern steht, wann [`media:watch-formats`](console-commands.md#mediawatch-formats) den Bestand zuletzt bewertet hat, mit welcher NARA-Tabelle, welcher PRONOM-Fassung und welchem Siegfried. Ohne diese Zeile stammen die Bewertungen von der Übernahme der Medien (anton#675).
+
 Eine Kreuztabelle zählt die Medien nach NARA-Risiko und empfohlener Aktion, zwei Kreisdiagramme zeigen die Verteilung der Risiko-Stufen und der Aktionen. Darunter stehen bis zu 50 Medien mit Handlungsbedarf: nicht identifizierte zuerst, dann die übrigen ausser **Retain**, nach Risiko geordnet.
 
 ## Formatprüfung {#formatpruefung}

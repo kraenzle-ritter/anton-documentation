@@ -31,6 +31,8 @@ The table lists the PUIDs by frequency, with format name, share and the most fre
 
 ## Risk assessment
 
+Above the tabs it says when [`media:watch-formats`](console-commands.md#mediawatch-formats) last assessed the holdings, with which NARA table, which PRONOM release and which Siegfried. Without that line, the ratings are those of the media's ingest (anton#675).
+
 A cross table counts the media by NARA risk and recommended action; two pie charts show the distribution of risk levels and of actions. Below are up to 50 media that need action: unidentified ones first, then all others except **Retain**, ordered by risk.
 
 ## Format validation {#formatpruefung}
