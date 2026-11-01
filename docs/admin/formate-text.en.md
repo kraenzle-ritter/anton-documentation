@@ -49,12 +49,12 @@ Not to be preserved are macros and fields that update when the document is opene
 
 ## What Anton measures and checks
 
-As of version 0.111.1.
+As of version 0.116.1.
 
 | Property | Measured | Checked |
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning |
-| Can be opened | – | only indirectly: format validation does not cover text formats, but for ODT, DOCX, DOC and RTF LibreOffice must read the document to make the access copy, which is validated like a PDF |
+| Can be opened | – | format validation (anton#795): ODT and DOCX as a ZIP with their required parts, those well-formed, in the nightly run every entry against its checksum; DOC is opened and saved by LibreOffice; TXT and Markdown readable throughout in the measured encoding, otherwise a warning. RTF is not checked; there the access copy LibreOffice has to make remains |
 | Character encoding (TXT) | encoding, byte order mark and line endings with libmagic at ingest | – |
 | Text | for full text: ODT and DOCX directly, DOC and RTF from the PDF access copy (with `fulltext-from-webpdf` DOCX too); TXT and Markdown, converted to UTF-8 | no |
 | all other properties | no | no |
@@ -66,7 +66,7 @@ As of version 0.111.1.
 - Upload takes ODT, DOCX, DOC, RTF and TXT; the QR upload only images and PDF.
 - For TXT ingested before version 0.111.1 the encoding is not recorded; full text and access copy detect it when they are made.
 - libmagic detects an encoding only by likelihood. Anton reads ISO-8859-1 and unknown 8-bit encodings as Windows-1252, which matches ISO-8859-1 wherever that is defined and adds typographic quotes and dashes.
-- Format validation does not cover text formats. Anton notices a damaged DOCX or ODT only when it cannot be opened.
+- Format validation checks how a document is built, not how it looks. A DOCX with complete, well-formed parts counts as valid even if LibreOffice breaks its lines otherwise than Word. RTF is not checked.
 - Whether a document contains macros, automatic fields, tracked changes or embedded objects, Anton does not measure.
 
 ## What a migration must check

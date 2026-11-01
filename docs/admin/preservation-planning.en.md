@@ -35,7 +35,7 @@ A cross table counts the media by NARA risk and recommended action; two pie char
 
 ## Format validation {#formatpruefung}
 
-Where the holdings stand in the [format validation](preservation.md), each master by its latest check: per format group (PDF, TIFF, other images, audio and video) invalid, valid with warnings, valid, not validated, never checked. Also how far the nightly run has come (latest check thorough, at ingest only, never), PDF risks and PDF/A claims, contradictions between extension, format and PRONOM ID, and the list of media invalid in their latest check, with a link to the record. What was checked when is under **Administration → Logs → Format validation**.
+Where the holdings stand in the [format validation](preservation.md), each master by its latest check: per format group (PDF, TIFF, other images, audio and video, text, office documents, packages) invalid, valid with warnings, valid, not validated, never checked. Also how far the nightly run has come (latest check thorough, at ingest only, never), PDF risks and PDF/A claims, contradictions between extension, format and PRONOM ID, and the list of media invalid in their latest check, with a link to the record. What was checked when is under **Administration → Logs → Format validation**.
 
 ## Virus check {#virenpruefung}
 

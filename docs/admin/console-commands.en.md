@@ -152,7 +152,10 @@ on INGE — run it at a quiet time.
 **`media:validate-formats`**{#mediavalidate-formats} checks the media of the
 holdings with the tool for their format: PDF with qpdf and pdftocairo (plus
 veraPDF for a claimed PDF/A, if installed), TIFF with `tiffinfo -D`, other images
-with ImageMagick, audio and video with a full ffmpeg decode. A shorter form of
+with ImageMagick, audio and video with a full ffmpeg decode; text, office
+documents and packages by their structure (encoding, CSV, XML and JSON; OOXML
+and ODF as ZIP, DOC, XLS and PPT with LibreOffice; ZIP, TAR and GZ with their
+own checksums). A shorter form of
 the same check already runs at ingest. Every result is recorded as an event on
 the medium (valid, invalid, not checked), as are contradictions between
 extension, format and PRONOM ID and, for PDF, preservation risks (fonts not
@@ -518,7 +521,7 @@ up to date with every change to the commands.
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
-| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
+| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg; text, office and packages… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 | `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |

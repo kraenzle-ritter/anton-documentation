@@ -35,7 +35,7 @@ Eine Kreuztabelle zählt die Medien nach NARA-Risiko und empfohlener Aktion, zwe
 
 ## Formatprüfung {#formatpruefung}
 
-Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter **Administration → Protokolle → Formatprüfung**.
+Wo der Bestand in der [Formatprüfung](preservation.md) steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video, Text, Office-Dokumente, Pakete) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter **Administration → Protokolle → Formatprüfung**.
 
 ## Virenprüfung {#virenpruefung}
 

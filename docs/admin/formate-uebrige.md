@@ -11,7 +11,7 @@ Diese Seite ergänzt die Reihe je Formatkategorie (anton#687) um das, was in kei
 
 Ein Container ist kein Archivformat, sondern eine Verpackung. Was zählt, ist sein Inhalt: Für ihn gelten die Seiten der jeweiligen Kategorie. Die NARA stuft ZIP und TAR mit mittlerem, GZIP mit geringem Risiko ein und rät bei allen dreien, den Container zu behalten, die Dateien aber herauszuholen («Retain but extract files from the container»). Die KOST führt Container nicht als Format; sie rät allgemein von Kompression mit nicht offengelegten Verfahren und vom erneuten Komprimieren schon komprimierter Daten ab. ZIP, GZIP und TAR sind offengelegt und verlustfrei.
 
-Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Anton fragt bei jedem Paket; vorgeschlagen ist das Entpacken, wie es k & r empfiehlt (anton#737). Beim Speichern als Datei sieht Anton nicht hinein: kein Format, keine Formatprüfung, keine Nutzungskopie für den Inhalt. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.
+Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Anton fragt bei jedem Paket; vorgeschlagen ist das Entpacken, wie es k & r empfiehlt (anton#737). Beim Speichern als Datei sieht Anton nicht hinein: Die Formatprüfung testet nur die Prüfsummen des Pakets; für den Inhalt gibt es kein Format, keine Prüfung und keine Nutzungskopie. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.
 
 Wie Anton ein Paket behandelt, hängt vom Weg ab:
 
@@ -33,20 +33,21 @@ XML ist für strukturierte Daten das dauerhafteste Format; die KOST empfiehlt es
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.112.0.
+Stand: Version 0.116.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Format | PRONOM-PUID mit Siegfried, wie bei allen Dateien | Widerspruch zwischen Endung, MIME-Typ und PUID als Warnung; ein MIME-Typ «application/zip» gilt dabei als nichtssagend, weil auch DOCX, XLSX und ODT ZIP sind |
 | Container: lässt sich entpacken | – | vor dem Entpacken eines Uploads oder SIP: nicht zu viele Einträge, nicht zu gross, keine Verweise unter den Einträgen (anton#726) |
+| Container, der gepackt bleibt | – | Formatprüfung (anton#795): die Prüfsummen des Archivs selbst, ohne zu entpacken (`unzip -t`, `gzip -t`, `tar -t`); verschlüsselte Einträge nicht |
 | Inhalt eines gepackten Containers | nein | nein |
-| XML | nein | nein |
+| XML und JSON | – | Formatprüfung (anton#795): XML wohlgeformt (libxml, ohne DTD und ohne Netz), JSON lesbar; was nicht lesbar ist, ist ungültig |
 
 ## Grenzen
 
-- In einen Container, der gepackt bleibt, sieht die Formatprüfung nicht hinein. Was darin liegt, welches Format es hat und ob es noch lesbar ist, weiss Anton nicht.
+- In einen Container, der gepackt bleibt, sieht die Formatprüfung nur so weit hinein, wie die Prüfsummen des Archivs reichen: Ob jeder Eintrag unversehrt ist, prüft sie. Welches Format er hat und ob er sich öffnen lässt, weiss Anton nicht.
 - Über den Upload nimmt Anton XML nicht an. Browser führen XML wie HTML und SVG als Dokument aus; Anton zeigt solche Dateien darum nie direkt an, sondern bietet sie nur zum Herunterladen (anton#640).
-- Ob XML wohlgeformt ist oder seinem Schema folgt, prüft Anton nicht.
+- Ob XML seinem Schema folgt, prüft Anton nicht: Ein Medium liegt allein, und ein Schema im Web lädt Anton nicht.
 
 ## Quellen {#quellen}
 

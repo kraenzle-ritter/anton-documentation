@@ -155,7 +155,9 @@ belastet INGE — in einem ruhigen Moment laufen lassen.
 Bestands mit dem Werkzeug ihres Formats: PDF mit qpdf und pdftocairo (dazu
 veraPDF bei behauptetem PDF/A, sofern installiert), TIFF mit `tiffinfo -D`,
 andere Bilder mit ImageMagick, Ton und Video mit einer vollständigen
-ffmpeg-Dekodierung. Bei der Übernahme läuft dieselbe Prüfung in kürzerer Form
+ffmpeg-Dekodierung; Text, Office-Dokumente und Pakete nach ihrem Aufbau
+(Kodierung, CSV, XML und JSON; OOXML und ODF als ZIP, DOC, XLS und PPT mit
+LibreOffice; ZIP, TAR und GZ mit ihren eigenen Prüfsummen). Bei der Übernahme läuft dieselbe Prüfung in kürzerer Form
 schon. Jedes Ergebnis wird als Ereignis am Medium festgehalten (gültig,
 ungültig, nicht geprüft), ebenso Widersprüche zwischen Endung, Format und
 PRONOM-ID und bei PDF Erhaltungsrisiken (nicht eingebettete Schriften,
@@ -523,7 +525,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:set-to-private` | Set media to private |
 | `media:size` | Get the size of media and save it into the media table. |
 | `media:snapshot` | Reference checksum lists of all media (git), and the integrity check of all or the N least rec… |
-| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME… |
+| `media:validate-formats` | Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg; text, office and packages… |
 | `media:validate-pdfs` | Validate PDF media (master + web conversion). Records results in media.custom_properties.event… |
 | `media:versions-to-cloud` | Send kept versions (originals) to DIMAG when MEDIA_ORIGINALS_LOCATION=cloud and cloud = inge (… |
 | `media:virus-scan` | Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662) |

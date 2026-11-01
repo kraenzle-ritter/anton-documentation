@@ -71,14 +71,14 @@ Sprechernotizen zählen, wenn sie enthalten, was nicht auf den Folien steht; das
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111.1.
+Stand: Version 0.116.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Format | PRONOM-PUID mit Siegfried, wie bei allen Dateien | Widerspruch zwischen Endung, MIME-Typ und PUID als Warnung |
-| Öffnen lässt es sich | – | nur mittelbar bei Präsentationen: LibreOffice muss sie lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft; bei Tabellen nein |
+| Öffnen lässt es sich | – | Formatprüfung (anton#795): XLSX, ODS, PPTX und ODP als ZIP mit ihren Pflichtteilen, diese wohlgeformt, im Nachtlauf jeder Eintrag mit seiner Prüfsumme; XLS und PPT öffnet und speichert LibreOffice |
 | Text | für den Volltext: XLSX, ODS, PPTX, ODP und CSV direkt, PPT aus der PDF-Nutzungskopie; XLS nicht | nein |
-| Zeichenkodierung und Dialekt (CSV) | Kodierung, Byte Order Mark, Zeilenenden, Trennzeichen (Komma, Semikolon, Tab, senkrechter Strich) und Zahl der Felder der ersten Zeile, mit libmagic bei der Übernahme | – |
+| Zeichenkodierung und Dialekt (CSV) | Kodierung, Byte Order Mark, Zeilenenden, Trennzeichen (Komma, Semikolon, Tab, senkrechter Strich) und Zahl der Felder der ersten Zeile, mit libmagic bei der Übernahme | Formatprüfung (anton#795): ganz lesbar in der gemessenen Kodierung, jeder Datensatz mit so vielen Feldern wie der erste; eine Abweichung ist eine Warnung |
 | alle übrigen Eigenschaften | nein | nein |
 
 ## Grenzen
@@ -88,6 +88,7 @@ Stand: Version 0.111.1.
 - XLS kommt nicht in den Volltext.
 - Bei CSV ist das Trennzeichen erschlossen: dasjenige, das die erste Zeile, Anführungszeichen beachtet, in die meisten Felder teilt. Die Beschreibung der Ablieferstelle ersetzt es nicht.
 - Ob eine Tabelle Formeln, versteckte Zeilen, Makros oder Verweise auf andere Dateien enthält, misst Anton nicht.
+- Die Formatprüfung prüft den Aufbau, nicht den Inhalt: Ob die Formeln einer Tabelle rechnen und ihre Werte stimmen, sieht sie nicht.
 
 ## Was eine Migration prüfen muss
 

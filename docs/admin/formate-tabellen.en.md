@@ -71,14 +71,14 @@ Speaker notes count when they hold what is not on the slides; that is often the 
 
 ## What Anton measures and checks
 
-As of version 0.111.1.
+As of version 0.116.1.
 
 | Property | Measured | Checked |
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning |
-| Can be opened | – | only indirectly for presentations: LibreOffice must read them to make the access copy, which is validated like a PDF; for spreadsheets no |
+| Can be opened | – | format validation (anton#795): XLSX, ODS, PPTX and ODP as a ZIP with their required parts, those well-formed, in the nightly run every entry against its checksum; XLS and PPT are opened and saved by LibreOffice |
 | Text | for full text: XLSX, ODS, PPTX, ODP and CSV directly, PPT from the PDF access copy; XLS not | no |
-| Character encoding and dialect (CSV) | encoding, byte order mark, line endings, delimiter (comma, semicolon, tab, pipe) and number of fields in the first line, with libmagic at ingest | – |
+| Character encoding and dialect (CSV) | encoding, byte order mark, line endings, delimiter (comma, semicolon, tab, pipe) and number of fields in the first line, with libmagic at ingest | format validation (anton#795): readable throughout in the measured encoding, every record with as many fields as the first; a deviation is a warning |
 | all other properties | no | no |
 
 ## Limits
@@ -88,6 +88,7 @@ As of version 0.111.1.
 - XLS does not reach the full-text index.
 - For CSV the delimiter is inferred: the one that splits the first line, quotes respected, into the most fields. It does not replace the depositor's description.
 - Whether a spreadsheet contains formulas, hidden rows, macros or links to other files, Anton does not measure.
+- Format validation checks the structure, not the content: whether a spreadsheet's formulas calculate and its values are right, it does not see.
 
 ## What a migration must check
 

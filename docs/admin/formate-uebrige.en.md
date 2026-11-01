@@ -11,7 +11,7 @@ This page completes the series per format category (anton#687) with what falls i
 
 A container is not an archival format but a wrapping. What counts is its content, and for that the pages of the respective category apply. NARA rates ZIP and TAR moderate risk, GZIP low risk, and for all three advises keeping the container but extracting the files («Retain but extract files from the container»). KOST does not list containers as a format; in general it advises against compression with undisclosed algorithms and against compressing data that is already compressed. ZIP, GZIP and TAR are disclosed and lossless.
 
-When a container is uploaded to an object, Anton asks what to do with it: **Import as directory** extracts it and the files enter the archive one by one; **Save as file** stores it unopened. Anton asks for every package; extracting is the suggested way, as k & r recommends (anton#737). Saved as a file, Anton does not look inside: no format, no format check, no access copy for the content. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.
+When a container is uploaded to an object, Anton asks what to do with it: **Import as directory** extracts it and the files enter the archive one by one; **Save as file** stores it unopened. Anton asks for every package; extracting is the suggested way, as k & r recommends (anton#737). Saved as a file, Anton does not look inside: format validation tests only the package's checksums; for the content there is no format, no check and no access copy. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.
 
 How Anton treats a package depends on the way it comes in:
 
@@ -33,20 +33,21 @@ XML is the most durable format for structured data; KOST recommends it for that,
 
 ## What Anton measures and checks
 
-As of version 0.112.0.
+As of version 0.116.1.
 
 | Property | Measured | Checked |
 |---|---|---|
 | Format | PRONOM PUID with Siegfried, as for all files | mismatch between extension, MIME type and PUID as a warning; a MIME type «application/zip» counts as saying nothing, since DOCX, XLSX and ODT are ZIP as well |
 | Container: can be extracted | – | before an upload or SIP is extracted: not too many entries, not too large, no links among the entries (anton#726) |
+| Container that stays packed | – | format validation (anton#795): the archive's own checksums, without extracting (`unzip -t`, `gzip -t`, `tar -t`); encrypted entries not |
 | Content of a packed container | no | no |
-| XML | no | no |
+| XML and JSON | – | format validation (anton#795): XML well-formed (libxml, without DTD and without network), JSON readable; what cannot be read is invalid |
 
 ## Limits
 
 - The format check does not look inside a container that stays packed. What it holds, in which format, and whether it can still be read, Anton does not know.
 - The upload does not accept XML. Browsers run XML, like HTML and SVG, as a document; Anton therefore never shows such files directly but only offers them for download (anton#640).
-- Whether XML is well-formed or follows its schema, Anton does not check.
+- Whether XML follows its schema, Anton does not check: a medium is stored alone, and Anton does not fetch a schema from the web.
 
 ## Sources {#quellen}
 

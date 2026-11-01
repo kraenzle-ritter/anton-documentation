@@ -51,7 +51,8 @@ before it becomes a medium:
 - **Checksums:** If a delivery brings checksums, they are compared with the
   files; after storing, Anton recalculates the copy.
 - **Format:** Every file is checked with the tool for its format (PDF, TIFF,
-  other images, audio and video), and extension, format and PRONOM ID are
+  other images, audio and video), text, office documents and packages by their
+  structure, and extension, format and PRONOM ID are
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
   encryption, JavaScript, references to programs or other files, and links to
   the web. Fonts that occur only in the invisible OCR text of a scan are no

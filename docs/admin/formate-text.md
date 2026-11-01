@@ -49,12 +49,12 @@ Nicht erhalten werden müssen Makros und Felder, die sich beim Öffnen aktualisi
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111.1.
+Stand: Version 0.116.1.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Format | PRONOM-PUID mit Siegfried, wie bei allen Dateien | Widerspruch zwischen Endung, MIME-Typ und PUID als Warnung |
-| Öffnen lässt es sich | – | nur mittelbar: Die Formatprüfung kennt keine Textformate, aber für ODT, DOCX, DOC und RTF muss LibreOffice das Dokument lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft |
+| Öffnen lässt es sich | – | Formatprüfung (anton#795): ODT und DOCX als ZIP mit ihren Pflichtteilen, diese wohlgeformt, im Nachtlauf jeder Eintrag mit seiner Prüfsumme; DOC öffnet und speichert LibreOffice; TXT und Markdown in der gemessenen Kodierung ganz lesbar, sonst Warnung. RTF prüft sie nicht; dort bleibt die Nutzungskopie, die LibreOffice erzeugen muss |
 | Zeichenkodierung (TXT) | Kodierung, Byte Order Mark und Zeilenenden mit libmagic bei der Übernahme | – |
 | Text | für den Volltext: ODT und DOCX direkt, DOC und RTF aus der PDF-Nutzungskopie (mit `fulltext-from-webpdf` auch DOCX); TXT und Markdown, nach UTF-8 gewandelt | nein |
 | alle übrigen Eigenschaften | nein | nein |
@@ -66,7 +66,7 @@ Stand: Version 0.111.1.
 - Der Upload nimmt ODT, DOCX, DOC, RTF und TXT an; der QR-Upload nur Bilder und PDF.
 - Für TXT, das vor Version 0.111.1 übernommen wurde, ist die Kodierung nicht festgehalten; Volltext und Nutzungskopie bestimmen sie, wenn sie entstehen.
 - libmagic erkennt eine Kodierung nur nach Wahrscheinlichkeit. ISO-8859-1 und unbekannte 8-Bit-Kodierungen liest Anton als Windows-1252, das mit ISO-8859-1 übereinstimmt, wo dieses definiert ist, und dazu typografische Anführungszeichen und Striche kennt.
-- Die Formatprüfung erfasst Textformate nicht. Ob ein DOCX oder ODT beschädigt ist, merkt Anton erst, wenn es sich nicht öffnen lässt.
+- Die Formatprüfung prüft den Aufbau eines Dokuments, nicht seine Darstellung. Ein DOCX mit vollständigen, wohlgeformten Teilen gilt als gültig, auch wenn LibreOffice es anders umbricht als Word. RTF prüft sie nicht.
 - Ob ein Dokument Makros, automatische Felder, Änderungsverfolgung oder eingebettete Objekte enthält, misst Anton nicht.
 
 ## Was eine Migration prüfen muss

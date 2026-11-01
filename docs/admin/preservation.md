@@ -52,7 +52,8 @@ prüft Anton sie, bevor sie zum Medium wird:
 - **Prüfsummen:** Bringt eine Ablieferung Prüfsummen mit, werden sie mit den
   Dateien verglichen; nach dem Ablegen rechnet Anton die Kopie nach.
 - **Format:** Jede Datei wird mit dem Werkzeug ihres Formats geprüft (PDF,
-  TIFF, andere Bilder, Ton und Video), und Endung, Format und PRONOM-ID werden
+  TIFF, andere Bilder, Ton und Video), Text, Office-Dokumente und Pakete nach
+  ihrem Aufbau, und Endung, Format und PRONOM-ID werden
   verglichen. Bei PDF hält Anton zusätzlich Erhaltungsrisiken fest: nicht
   eingebettete Schriften, Verschlüsselung, JavaScript, Verweise auf Programme
   oder andere Dateien und Links ins Web. Schriften, die nur in der
