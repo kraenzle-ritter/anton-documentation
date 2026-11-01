@@ -92,6 +92,7 @@ Geändert wird nur, was das PDF über sich selbst sagt:
 
 - Die PDF/X-Angabe (`GTS_PDFXVersion`, `GTS_PDFXConformance`) fällt weg, in den Dokumentinformationen und in XMP. Eine Datei, die sich zugleich als PDF/X und PDF/A ausgibt, erkennt Siegfried als PDF/X, und die Empfehlung der NARA bliebe.
 - XMP erhält die Kennung PDF/A-2b und die Deklarationen, die PDF/A für Felder verlangt, die es nicht kennt; fehlt XMP, legt Anton es aus den Dokumentinformationen an.
+- XMP an einzelnen Objekten, etwa an einer Seite, verliert ebenso die PDF/X-Angabe und erhält die Deklarationen. Das XMP, das InDesign am Strukturelement des Dokuments ablegt (Bearbeitungsverlauf, verknüpfte Dateien), fällt weg: Es enthält Felder, die PDF/A-2 nicht zulässt. In der behaltenen PDF/X-Fassung steht es weiterhin.
 - Das Druckprofil des PDF/X dient zusätzlich als Ausgabeprofil für PDF/A.
 - Unvollständige Zeichensatzangaben der Schriften (`CharSet`, `CIDSet`) fallen weg; PDF/A-2 verlangt sie nicht.
 - Bilder werden nicht mehr geglättet dargestellt (`Interpolate`).
