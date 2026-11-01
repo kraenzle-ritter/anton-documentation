@@ -53,12 +53,12 @@ Die Fassung (PDF 1.4, PDF/A-2b) ist keine Eigenschaft, die erhalten bleiben muss
 
 ## Was Anton misst und prüft
 
-Stand: Version 0.111.1.
+Stand: Version 0.117.0.
 
 | Eigenschaft | Gemessen | Geprüft |
 |---|---|---|
 | Fassung | PDF-Version, bei der Übernahme mit poppler | – |
-| Zahl der Seiten | bei der Übernahme mit poppler, bei jeder Formatprüfung mit qpdf bzw. pdftocairo | nein, es gibt noch keine Migration von PDF |
+| Zahl der Seiten | bei der Übernahme mit poppler, bei jeder Formatprüfung mit qpdf bzw. pdftocairo | bei der [Migration PDF/X → PDF/A-2b](#pdfx): gleich viele Seiten mit gleichen Seitenrahmen, jede Seite gleich gerendert |
 | Darstellbar | – | bei der Übernahme und nächtlich mit [`media:validate-formats`](console-commands.md#mediavalidate-formats): qpdf; gründlich mit pdftocairo Seite für Seite, Fehler bei JPEG 2000 prüft MuPDF nach; auch beim Erzeugen der Nutzungskopie |
 | Schriften eingebettet | Zahl der Schriften | Warnung, wo das PDF Text zeigt, der eine nicht eingebettete Schrift braucht (pdffonts) |
 | Seitengrösse und Ausrichtung | häufigste Seitengrösse in mm, Zahl der verschiedenen Grössen, Seiten im Querformat und gedrehte Seiten | nein |
@@ -84,9 +84,34 @@ Die Merkmale stehen am Medium unter **Technische Merkmale**; für ältere PDF tr
 - Die Nutzungskopie (Ghostscript, `/ebook`) verkleinert Bilder für die Ansicht. Sie ist keine Normalisierung und kein Ersatz für den Master.
 - «Darstellbar» heisst, die Werkzeuge lesen und rendern jede Seite ohne Fehler. Ob die Seite richtig aussieht, prüfen sie nicht.
 
+## Migration PDF/X → PDF/A-2b {#pdfx}
+
+PDF/X ist ein Standard der Druckvorstufe, kein Archivformat; die NARA empfiehlt für PDF/X «Transform». Seit Version 0.117.0 macht die Regel `pdfx_pdfa2b` aus einem PDF/X-1a (fmt/157), PDF/X-3:2002 (fmt/158) oder PDF/X-3:2003 (fmt/148) ein PDF/A-2b (fmt/477), **ohne den Seiteninhalt neu zu schreiben** (anton#565). Sie läuft nur über [`media:migrate`](console-commands.md#mediamigrate), nie bei der Übernahme.
+
+Geändert wird nur, was das PDF über sich selbst sagt:
+
+- Die PDF/X-Angabe (`GTS_PDFXVersion`, `GTS_PDFXConformance`) fällt weg, in den Dokumentinformationen und in XMP. Eine Datei, die sich zugleich als PDF/X und PDF/A ausgibt, erkennt Siegfried als PDF/X, und die Empfehlung der NARA bliebe.
+- XMP erhält die Kennung PDF/A-2b und die Deklarationen, die PDF/A für Felder verlangt, die es nicht kennt; fehlt XMP, legt Anton es aus den Dokumentinformationen an.
+- Das Druckprofil des PDF/X dient zusätzlich als Ausgabeprofil für PDF/A.
+- Unvollständige Zeichensatzangaben der Schriften (`CharSet`, `CIDSet`) fallen weg; PDF/A-2 verlangt sie nicht.
+- Bilder werden nicht mehr geglättet dargestellt (`Interpolate`).
+
+Inhaltsströme, Schriften und Bilder bleiben byte-gleich. Das Ergebnis gilt nur, wenn veraPDF es als PDF/A-2b bestätigt und jede Seite, bei 100 dpi gerendert, genau dieselben Pixel hat wie vorher; sonst bleibt der Master unverändert. Danach erkennt Anton das Format neu und bewertet es mit NARA neu. Das PDF/X bleibt als [behaltene Fassung](preservation.md#behaltene-originale).
+
+Nicht umgewandelt werden PDF/X, die schon PDF/A beanspruchen, verschlüsselt sind oder kein Druckprofil haben, und solche, deren Mängel im Inhalt liegen: Überdruck bei CMYK, Zeichenbreiten, die nicht zur Schrift passen, Transparenz ohne Ausgabeprofil, Bilder im Inhaltsstrom. Sie scheitern an veraPDF und bleiben; eine Umwandlung, die den Inhalt neu schreibt, gibt es dafür noch nicht.
+
+Vor einem Lauf zeigt der Probelauf an Kopien, was geschähe:
+
+```bash
+php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --probe --report=/tmp/pdfx-rz.csv
+php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --write --limit=20
+```
+
+Auf dem Server braucht die Regel qpdf, veraPDF und poppler; fehlt veraPDF, lehnt `media:migrate` sie ab.
+
 ## Was eine Migration prüfen muss
 
-Anton kennt noch keine Regel, die PDF umwandelt. Kommt eine, etwa PDF nach PDF/A-2, muss danach gelten:
+Für eine Regel, die PDF umwandelt, muss danach gelten:
 
 - Die Zahl der Seiten ist gleich.
 - Seitengrösse und Ausrichtung jeder Seite sind gleich.
@@ -95,6 +120,8 @@ Anton kennt noch keine Regel, die PDF umwandelt. Kommt eine, etwa PDF nach PDF/A
 - veraPDF bestätigt die Ziel-Fassung.
 - Formulare, Anmerkungen, Lesezeichen und Metadaten sind übernommen, oder ihr Wegfall ist im Ereignis festgehalten.
 - Die abgelieferte Datei bleibt als [Original](preservation.md#behaltene-originale), denn Ghostscript schreibt Schriften und Bilder neu.
+
+`pdfx_pdfa2b` erfüllt das so: Seitenzahl und Seitenrahmen sind gleich, jede Seite sieht pixelgleich aus; der Text ist derselbe, weil die Inhaltsströme unverändert bleiben; veraPDF bestätigt PDF/A-2b und damit auch die eingebetteten Schriften; Formulare, Anmerkungen und Lesezeichen bleiben unberührt, die geänderten Angaben stehen im Ereignis; das PDF/X bleibt als Fassung.
 
 ## Quellen
 

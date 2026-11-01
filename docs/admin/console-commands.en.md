@@ -226,7 +226,8 @@ php artisan format-policy:enable tiff_zip --env=gosteli
 ```
 
 The first rule, `tiff_zip`, repacks TIFF files losslessly as Deflate with
-predictor 2; it is off everywhere and does not apply to SIPs. Admins can also
+predictor 2; it is off everywhere and does not apply to SIPs. The second,
+`pdfx_pdfa2b`, turns PDF/X into PDF/A-2b and applies only to `media:migrate`. Admins can also
 switch the rules in the interface, under
 [Format Policy](preservation.md#regeln-fuer-dateien).
 
@@ -248,6 +249,9 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --limit=             At most this many media
     --discard-original   Discard the original instead of keeping it (only rules
                          that may replace it, e.g. tiff_zip)
+    --probe              Try the rule on copies of the masters, report per
+                         medium; changes nothing
+    --report=            With --probe: write the report as CSV as well
     --write              Repack (without: report only)
 ```
 
@@ -255,7 +259,15 @@ Without `--write` the command only says how many media the rule would touch.
 With `--write` it puts the result next to the master, verifies it, and swaps
 file and checksums in one step; if anything fails, the old master stays. Every
 repacked medium gets a `format-normalization` event (category `migration`) with
-the tool versions and the checksums before and after.
+the tool versions and the checksums before and after. When the rule changes the
+format, as `pdfx_pdfa2b` does (PDF/X → PDF/A-2b, [PDF](formate-pdf.md#pdfx)),
+Anton identifies the format again afterwards and assesses it with NARA anew.
+
+`--probe` applies the rule to copies of the masters and writes a line per
+medium: would be taken, fails with a finding, size before and after, PRONOM ID
+after; at the end it says how much room the kept originals need. The probe
+writes no events and no versions and checks afterwards that every master is
+unchanged. `--report=<file>` stores the same lines as CSV.
 
 **The original stays.** It moves to the medium's `original/` folder and is kept and checked as a [kept original](preservation.md#behaltene-originale); what counts is the file as it was taken over. Only a rule that may replace the original discards it, and only with `--discard-original`: today `tiff_zip`, which verifies every pixel. A discarded original remains only in the local [backup](#sicherung-und-wiederherstellung) until its yearly snapshots rotate; its checksums are in the event. For any other rule the command refuses `--discard-original`. `--keep-original`, the way to keep it up to version 0.113, is still accepted and no longer changes anything.
 

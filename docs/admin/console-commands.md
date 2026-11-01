@@ -229,7 +229,8 @@ php artisan format-policy:enable tiff_zip --env=gosteli
 ```
 
 Die erste Regel, `tiff_zip`, packt TIFF-Dateien verlustfrei nach Deflate mit
-Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Admins schalten
+Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Die zweite,
+`pdfx_pdfa2b`, macht PDF/X zu PDF/A-2b und gilt nur für `media:migrate`. Admins schalten
 die Regeln auch in der Oberfläche, unter
 [Format Policy](preservation.md#regeln-fuer-dateien).
 
@@ -251,6 +252,9 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --limit=             Höchstens so viele Medien
     --discard-original   Original verwerfen statt behalten (nur Regeln, die es
                          ersetzen dürfen, z. B. tiff_zip)
+    --probe              Die Regel an Kopien der Master ausprobieren, je Medium
+                         berichten; ändert nichts
+    --report=            Mit --probe: den Bericht zusätzlich als CSV schreiben
     --write              Umpacken (ohne: nur berichten)
 ```
 
@@ -259,6 +263,16 @@ Ohne `--write` sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis `format-normalization` (Kategorie
 `migration`) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
+Wechselt die Regel das Format, wie `pdfx_pdfa2b` (PDF/X → PDF/A-2b,
+[PDF](formate-pdf.md#pdfx)), erkennt Anton das Format danach neu und bewertet es
+mit NARA neu.
+
+`--probe` wendet die Regel auf Kopien der Master an und schreibt je Medium eine
+Zeile: übernommen würde, scheitert mit Befund, Grösse vorher und nachher,
+PRONOM-Kennung nachher; am Ende steht, wie viel Platz die behaltenen Originale
+brauchen. Der Probelauf schreibt weder Ereignisse noch Fassungen und prüft
+danach, dass jeder Master unverändert ist. `--report=<datei>` legt dieselben
+Zeilen als CSV ab.
 
 **Das Original bleibt.** Es wandert in den Ordner `original/` des Mediums und wird als [behaltenes Original](preservation.md#behaltene-originale) geführt und geprüft; massgebend ist die Datei, wie sie übernommen wurde. Nur eine Regel, die das Original ersetzen darf, verwirft es, und nur mit `--discard-original`: heute `tiff_zip`, die jedes Pixel prüft. Ein verworfenes Original bleibt nur in der lokalen [Sicherung](#sicherung-und-wiederherstellung), bis deren Jahresstände rotieren; seine Prüfsummen stehen im Ereignis. Bei jeder anderen Regel lehnt der Befehl `--discard-original` ab. `--keep-original`, bis Version 0.113 der Weg zum Behalten, nimmt er weiter an; es ändert nichts mehr.
 

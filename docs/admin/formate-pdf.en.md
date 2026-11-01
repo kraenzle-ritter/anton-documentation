@@ -53,12 +53,12 @@ The version (PDF 1.4, PDF/A-2b) is not a property that must be preserved. It is 
 
 ## What Anton measures and checks
 
-As of version 0.111.1.
+As of version 0.117.0.
 
 | Property | Measured | Checked |
 |---|---|---|
 | Version | PDF version, at ingest with poppler | – |
-| Number of pages | at ingest with poppler, at every format validation with qpdf or pdftocairo | no, there is no migration of PDF yet |
+| Number of pages | at ingest with poppler, at every format validation with qpdf or pdftocairo | in the [migration PDF/X → PDF/A-2b](#pdfx): as many pages with the same page boxes, every page rendered alike |
 | Renderable | – | at ingest and nightly with [`media:validate-formats`](console-commands.md#mediavalidate-formats): qpdf; thorough with pdftocairo page by page, JPEG 2000 errors rechecked with MuPDF; also when the access copy is made |
 | Fonts embedded | number of fonts | warning where the PDF shows text that needs a font not embedded (pdffonts) |
 | Page size and orientation | most common page size in mm, number of different sizes, landscape pages and rotated pages | no |
@@ -84,9 +84,34 @@ The characteristics appear on the medium under **Technical characteristics**; fo
 - The access copy (Ghostscript, `/ebook`) shrinks images for viewing. It is no normalisation and no replacement for the master.
 - «Renderable» means the tools read and render every page without error. They do not check whether the page looks right.
 
+## Migration PDF/X → PDF/A-2b {#pdfx}
+
+PDF/X is a prepress standard, not an archival format; NARA advises «Transform» for PDF/X. Since version 0.117.0 the rule `pdfx_pdfa2b` turns a PDF/X-1a (fmt/157), PDF/X-3:2002 (fmt/158) or PDF/X-3:2003 (fmt/148) into PDF/A-2b (fmt/477), **without rewriting the page content** (anton#565). It runs only through [`media:migrate`](console-commands.md#mediamigrate), never at ingest.
+
+Only what the PDF says about itself changes:
+
+- The PDF/X claim (`GTS_PDFXVersion`, `GTS_PDFXConformance`) goes, in the document information and in XMP. Siegfried identifies a file that claims both PDF/X and PDF/A as PDF/X, and NARA's advice would stay.
+- XMP gets the PDF/A-2b identification and the declarations PDF/A wants for fields it does not know; a PDF without XMP gets it from the document information.
+- The PDF/X printing profile serves as PDF/A's output profile as well.
+- Incomplete character set entries of the fonts (`CharSet`, `CIDSet`) go; PDF/A-2 does not ask for them.
+- Images are no longer drawn smoothed (`Interpolate`).
+
+Content streams, fonts and images stay the same bytes. The result counts only when veraPDF confirms PDF/A-2b and every page, rendered at 100 dpi, has exactly the pixels it had; otherwise the master stays unchanged. Anton then identifies the format again and assesses it with NARA anew. The PDF/X stays as a [kept version](preservation.md#behaltene-originale).
+
+Not converted are PDF/X that already claim PDF/A, are encrypted or have no printing profile, and those whose defects are in the content: overprint on CMYK, character widths that do not match the font, transparency without an output profile, images inline in the content stream. They fail at veraPDF and stay; a conversion that rewrites content does not exist for them yet.
+
+Before a run, the probe on copies shows what would happen:
+
+```bash
+php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --probe --report=/tmp/pdfx-rz.csv
+php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --write --limit=20
+```
+
+On the server the rule needs qpdf, veraPDF and poppler; without veraPDF, `media:migrate` refuses it.
+
 ## What a migration must check
 
-Anton has no rule yet that converts PDF. When one comes, for instance PDF to PDF/A-2, afterwards:
+For a rule that converts PDF, afterwards:
 
 - The number of pages is the same.
 - Page size and orientation of every page are the same.
@@ -95,6 +120,8 @@ Anton has no rule yet that converts PDF. When one comes, for instance PDF to PDF
 - veraPDF confirms the target version.
 - Forms, annotations, bookmarks and metadata are carried over, or their loss is recorded in the event.
 - The delivered file stays as an [original](preservation.md#behaltene-originale), since Ghostscript rewrites fonts and images.
+
+`pdfx_pdfa2b` meets this so: page count and page boxes are the same, every page looks the same to the pixel; the text is the same because the content streams are unchanged; veraPDF confirms PDF/A-2b and with it the embedded fonts; forms, annotations and bookmarks are untouched, the changed entries are in the event; the PDF/X stays as a version.
 
 ## Sources {#quellen}
 

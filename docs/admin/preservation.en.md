@@ -82,6 +82,10 @@ and LZW without a predictor losslessly as Deflate with predictor 2. Before
 replacing the file, Anton checks that every pixel stayed the same; the
 checksums of the delivered file are then kept in the event on the medium.
 SIPs are left alone, because their own checksums prove an untouched delivery.
+The second rule, `pdfx_pdfa2b` (PDF/X → PDF/A-2b, [PDF](formate-pdf.md#pdfx)),
+applies only to media in the holdings and runs only through
+[`media:migrate`](console-commands.md#mediamigrate); its switch has no effect on
+new files, and agate does not know it yet.
 
 Which rules hold is set by admins under **Admin → Digital preservation → Format
 Policy**, once for the whole archive. No rule can be left out when uploading or
@@ -160,7 +164,7 @@ correctly and the access copy is made without errors. A migration is
 triggered by a failure: in the recurring check whether the file still renders
 or decodes ([`media:validate-formats`](console-commands.md#mediavalidate-formats)),
 or when the access copy is made. Whether and into what a file is migrated is
-decided by the archive. Today [`media:migrate`](console-commands.md#mediamigrate) can only repack losslessly, in the same format and with the same extension; the only rule is `tiff_zip`. Migration into another format follows (anton#565).
+decided by the archive. [`media:migrate`](console-commands.md#mediamigrate) knows two rules: `tiff_zip` repacks TIFF losslessly, in the same format; since version 0.117.0 `pdfx_pdfa2b` turns PDF/X into PDF/A-2b without rewriting the content ([PDF](formate-pdf.md#pdfx), anton#565). A migration that changes the extension does not exist yet.
 
 For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks

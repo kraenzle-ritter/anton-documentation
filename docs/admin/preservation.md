@@ -86,7 +86,10 @@ unkomprimierte TIFF und LZW ohne Predictor verlustfrei nach Deflate mit
 Predictor 2 um. Vor dem Ersetzen prüft Anton, dass alle Pixel gleich geblieben
 sind; die Prüfsummen der gelieferten Datei stehen danach im Ereignis am Medium.
 SIPs bleiben unberührt, weil ihre eigenen Prüfsummen die unveränderte
-Ablieferung belegen.
+Ablieferung belegen. Die zweite Regel, `pdfx_pdfa2b` (PDF/X → PDF/A-2b,
+[PDF](formate-pdf.md#pdfx)), gilt nur für Medien im Bestand und läuft nur über
+[`media:migrate`](console-commands.md#mediamigrate); ihr Schalter wirkt nicht auf
+neue Dateien, und agate kennt sie noch nicht.
 
 Welche Regeln gelten, legen Admins unter **Admin → Digitale Archivierung → Format
 Policy** fest, einmal für das ganze Archiv. Beim Hochladen und Importieren
@@ -168,7 +171,7 @@ Anlass für eine Migration ist ein Fehlschlag: bei der wiederkehrenden Prüfung,
 ob sich die Datei darstellen oder dekodieren lässt
 ([`media:validate-formats`](console-commands.md#mediavalidate-formats)), oder
 beim Erstellen der Nutzungskopie. Ob und wohin migriert wird, entscheidet das
-Archiv. Heute kann [`media:migrate`](console-commands.md#mediamigrate) nur verlustfrei umpacken, im selben Format und mit derselben Endung; einzige Regel ist `tiff_zip`. Die Migration in ein anderes Format folgt (anton#565).
+Archiv. [`media:migrate`](console-commands.md#mediamigrate) kennt zwei Regeln: `tiff_zip` packt TIFF verlustfrei um, im selben Format; `pdfx_pdfa2b` macht seit Version 0.117.0 aus PDF/X ein PDF/A-2b, ohne den Inhalt neu zu schreiben ([PDF](formate-pdf.md#pdfx), anton#565). Eine Migration, die die Endung ändert, gibt es noch nicht.
 
 «Richtig darstellen» prüft die Formatprüfung bei PDF über die
 Erhaltungsrisiken: Ein PDF ohne eingebettete Schriften etwa erscheint mit
