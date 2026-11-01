@@ -2280,6 +2280,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pdfx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration PDF/X → PDF/A-2b
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#was-eine-migration-prufen-muss" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2318,7 +2329,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/formate-pdf/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/formate-pdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -2474,7 +2485,7 @@
 <p>Nicht erhalten werden müssen JavaScript, Aktionen, die Programme starten (<code>/Launch</code>), und Verweise auf andere Dateien (<code>/GoToR</code>) oder ins Web (<code>/URI</code>). Sie führen aus der Datei hinaus, und ihr Ziel bewahrt das Archiv nicht. Anton hält sie als Risiko fest, damit sichtbar ist, was in einer Migration wegfällt. Dasselbe gilt für die Verschlüsselung.</p>
 <p>Die Fassung (PDF 1.4, PDF/A-2b) ist keine Eigenschaft, die erhalten bleiben muss. Sie wird festgehalten, weil sie sagt, was das PDF verspricht und wogegen es geprüft wird.</p>
 <h2 id="was-anton-misst-und-pruft">Was Anton misst und prüft<a class="headerlink" href="#was-anton-misst-und-pruft" title="Permanent link">&para;</a></h2>
-<p>Stand: Version 0.111.1.</p>
+<p>Stand: Version 0.117.0.</p>
 <table>
 <thead>
 <tr>
@@ -2492,7 +2503,7 @@
 <tr>
 <td>Zahl der Seiten</td>
 <td>bei der Übernahme mit poppler, bei jeder Formatprüfung mit qpdf bzw. pdftocairo</td>
-<td>nein, es gibt noch keine Migration von PDF</td>
+<td>bei der <a href="#pdfx">Migration PDF/X → PDF/A-2b</a>: gleich viele Seiten mit gleichen Seitenrahmen, jede Seite gleich gerendert</td>
 </tr>
 <tr>
 <td>Darstellbar</td>
@@ -2567,8 +2578,25 @@
 <li>Die Nutzungskopie (Ghostscript, <code>/ebook</code>) verkleinert Bilder für die Ansicht. Sie ist keine Normalisierung und kein Ersatz für den Master.</li>
 <li>«Darstellbar» heisst, die Werkzeuge lesen und rendern jede Seite ohne Fehler. Ob die Seite richtig aussieht, prüfen sie nicht.</li>
 </ul>
+<h2 id="pdfx">Migration PDF/X → PDF/A-2b<a class="headerlink" href="#pdfx" title="Permanent link">&para;</a></h2>
+<p>PDF/X ist ein Standard der Druckvorstufe, kein Archivformat; die NARA empfiehlt für PDF/X «Transform». Seit Version 0.117.0 macht die Regel <code>pdfx_pdfa2b</code> aus einem PDF/X-1a (fmt/157), PDF/X-3:2002 (fmt/158) oder PDF/X-3:2003 (fmt/148) ein PDF/A-2b (fmt/477), <strong>ohne den Seiteninhalt neu zu schreiben</strong> (anton#565). Sie läuft nur über <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, nie bei der Übernahme.</p>
+<p>Geändert wird nur, was das PDF über sich selbst sagt:</p>
+<ul>
+<li>Die PDF/X-Angabe (<code>GTS_PDFXVersion</code>, <code>GTS_PDFXConformance</code>) fällt weg, in den Dokumentinformationen und in XMP. Eine Datei, die sich zugleich als PDF/X und PDF/A ausgibt, erkennt Siegfried als PDF/X, und die Empfehlung der NARA bliebe.</li>
+<li>XMP erhält die Kennung PDF/A-2b und die Deklarationen, die PDF/A für Felder verlangt, die es nicht kennt; fehlt XMP, legt Anton es aus den Dokumentinformationen an.</li>
+<li>Das Druckprofil des PDF/X dient zusätzlich als Ausgabeprofil für PDF/A.</li>
+<li>Unvollständige Zeichensatzangaben der Schriften (<code>CharSet</code>, <code>CIDSet</code>) fallen weg; PDF/A-2 verlangt sie nicht.</li>
+<li>Bilder werden nicht mehr geglättet dargestellt (<code>Interpolate</code>).</li>
+</ul>
+<p>Inhaltsströme, Schriften und Bilder bleiben byte-gleich. Das Ergebnis gilt nur, wenn veraPDF es als PDF/A-2b bestätigt und jede Seite, bei 100 dpi gerendert, genau dieselben Pixel hat wie vorher; sonst bleibt der Master unverändert. Danach erkennt Anton das Format neu und bewertet es mit NARA neu. Das PDF/X bleibt als <a href="../preservation/#behaltene-originale">behaltene Fassung</a>.</p>
+<p>Nicht umgewandelt werden PDF/X, die schon PDF/A beanspruchen, verschlüsselt sind oder kein Druckprofil haben, und solche, deren Mängel im Inhalt liegen: Überdruck bei CMYK, Zeichenbreiten, die nicht zur Schrift passen, Transparenz ohne Ausgabeprofil, Bilder im Inhaltsstrom. Sie scheitern an veraPDF und bleiben; eine Umwandlung, die den Inhalt neu schreibt, gibt es dafür noch nicht.</p>
+<p>Vor einem Lauf zeigt der Probelauf an Kopien, was geschähe:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--probe<span class="w"> </span>--report<span class="o">=</span>/tmp/pdfx-rz.csv
+php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span>
+</code></pre></div>
+<p>Auf dem Server braucht die Regel qpdf, veraPDF und poppler; fehlt veraPDF, lehnt <code>media:migrate</code> sie ab.</p>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>
-<p>Anton kennt noch keine Regel, die PDF umwandelt. Kommt eine, etwa PDF nach PDF/A-2, muss danach gelten:</p>
+<p>Für eine Regel, die PDF umwandelt, muss danach gelten:</p>
 <ul>
 <li>Die Zahl der Seiten ist gleich.</li>
 <li>Seitengrösse und Ausrichtung jeder Seite sind gleich.</li>
@@ -2578,6 +2606,7 @@
 <li>Formulare, Anmerkungen, Lesezeichen und Metadaten sind übernommen, oder ihr Wegfall ist im Ereignis festgehalten.</li>
 <li>Die abgelieferte Datei bleibt als <a href="../preservation/#behaltene-originale">Original</a>, denn Ghostscript schreibt Schriften und Bilder neu.</li>
 </ul>
+<p><code>pdfx_pdfa2b</code> erfüllt das so: Seitenzahl und Seitenrahmen sind gleich, jede Seite sieht pixelgleich aus; der Text ist derselbe, weil die Inhaltsströme unverändert bleiben; veraPDF bestätigt PDF/A-2b und damit auch die eingebetteten Schriften; Formulare, Anmerkungen und Lesezeichen bleiben unberührt, die geänderten Angaben stehen im Ereignis; das PDF/X bleibt als Fassung.</p>
 <h2 id="quellen">Quellen<a class="headerlink" href="#quellen" title="Permanent link">&para;</a></h2>
 <ul>
 <li>National Archives and Records Administration (NARA), Digital Preservation Framework: <a href="https://github.com/usnationalarchives/digital-preservation/blob/master/Digital_Preservation_Record_Categories/NARA_PreservationActionPlan_TextualAndWordProcessing.md">Preservation Action Plan for Textual and Word Processing</a>, Plan Date 2023-11-22. Wesentliche Eigenschaften in vier Gruppen, die Unterscheidung nach Inhalt und Beweiswert, bevorzugte und akzeptierte Übernahmeformate.</li>

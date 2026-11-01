@@ -3957,10 +3957,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-19" class="md-nav__link">
+  <a href="#media-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (19)
+        media: (20)
       
     </span>
   </a>
@@ -4789,10 +4789,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-19" class="md-nav__link">
+  <a href="#media-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (19)
+        media: (20)
       
     </span>
   </a>
@@ -5047,6 +5047,19 @@ geprüften Medien — so läuft der Bestand nachts in Portionen durch, wie bei
 ungültige Dateien gefunden wurden.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:validate-formats<span class="w"> </span>--env<span class="o">=</span>besenval<span class="w"> </span>--oldest<span class="o">=</span><span class="m">500</span>
 </code></pre></div>
+<p><strong id="mediawatch-formats"><code>media:watch-formats</code></strong> beobachtet das Veralten der
+Formate (anton#675). Ist die NARA-Tabelle eine andere als beim letzten Lauf
+(verglichen über ihre SHA-256), bewertet er jedes Format des Bestands neu und
+hält bei jedem Medium, dessen Bewertung sich ändert, ein Ereignis
+<code>risk-assessment</code> mit altem und neuem Wert fest; Medien ohne Bewertung bewertet
+er in jedem Fall. Die Formatnamen gleicht er mit PRONOM in der Fassung ab, die
+<code>sf -version</code> nennt; die Signaturdatei dazu holt er einmal bei The National
+Archives (<code>PRONOM_DOWNLOAD=false</code> auf Servern ohne Internet, dann die Datei
+nach <code>storage/app/pronom/</code> legen). <code>--dry-run</code> sagt nur, was sich änderte,
+<code>--force</code> bewertet auch bei unveränderter Tabelle neu. Bleibt die Tabelle
+gleich, ist der Lauf kurz; er gehört als Cron je Mandant in anton-ansible.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:watch-formats<span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
 <p><strong id="mediavirus-scan"><code>media:virus-scan</code></strong> prüft die Master und aufbewahrten
 Fassungen des Bestands mit ClamAV, mit den jeweils neuesten Signaturen. Bei der
 Übernahme wird jede Datei ohnehin geprüft; der Befehl erreicht, was vor der
@@ -5080,7 +5093,8 @@ unabhängig von ihrer Vorgabe:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>format-policy:enable<span class="w"> </span>tiff_zip<span class="w"> </span>--env<span class="o">=</span>gosteli
 </code></pre></div>
 <p>Die erste Regel, <code>tiff_zip</code>, packt TIFF-Dateien verlustfrei nach Deflate mit
-Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Admins schalten
+Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Die zweite,
+<code>pdfx_pdfa2b</code>, macht PDF/X zu PDF/A-2b und gilt nur für <code>media:migrate</code>. Admins schalten
 die Regeln auch in der Oberfläche, unter
 <a href="../preservation/#regeln-fuer-dateien">Format Policy</a>.</p>
 <p><strong id="mediamigrate"><code>media:migrate</code></strong> wendet eine dieser Regeln auf Medien an, die
@@ -5097,13 +5111,25 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --limit=             Höchstens so viele Medien
     --discard-original   Original verwerfen statt behalten (nur Regeln, die es
                          ersetzen dürfen, z. B. tiff_zip)
+    --probe              Die Regel an Kopien der Master ausprobieren, je Medium
+                         berichten; ändert nichts
+    --report=            Mit --probe: den Bericht zusätzlich als CSV schreiben
     --write              Umpacken (ohne: nur berichten)
 </code></pre></div>
 <p>Ohne <code>--write</code> sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 <code>--write</code> legt er das Ergebnis neben den Master, prüft es und tauscht Datei und
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
 umgepackte Medium bekommt ein Ereignis <code>format-normalization</code> (Kategorie
-<code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.</p>
+<code>migration</code>) mit Werkzeugversionen und den Prüfsummen vorher und nachher.
+Wechselt die Regel das Format, wie <code>pdfx_pdfa2b</code> (PDF/X → PDF/A-2b,
+<a href="../formate-pdf/#pdfx">PDF</a>), erkennt Anton das Format danach neu und bewertet es
+mit NARA neu.</p>
+<p><code>--probe</code> wendet die Regel auf Kopien der Master an und schreibt je Medium eine
+Zeile: übernommen würde, scheitert mit Befund, Grösse vorher und nachher,
+PRONOM-Kennung nachher; am Ende steht, wie viel Platz die behaltenen Originale
+brauchen. Der Probelauf schreibt weder Ereignisse noch Fassungen und prüft
+danach, dass jeder Master unverändert ist. <code>--report=&lt;datei&gt;</code> legt dieselben
+Zeilen als CSV ab.</p>
 <p><strong>Das Original bleibt.</strong> Es wandert in den Ordner <code>original/</code> des Mediums und wird als <a href="../preservation/#behaltene-originale">behaltenes Original</a> geführt und geprüft; massgebend ist die Datei, wie sie übernommen wurde. Nur eine Regel, die das Original ersetzen darf, verwirft es, und nur mit <code>--discard-original</code>: heute <code>tiff_zip</code>, die jedes Pixel prüft. Ein verworfenes Original bleibt nur in der lokalen <a href="#sicherung-und-wiederherstellung">Sicherung</a>, bis deren Jahresstände rotieren; seine Prüfsummen stehen im Ereignis. Bei jeder anderen Regel lehnt der Befehl <code>--discard-original</code> ab. <code>--keep-original</code>, bis Version 0.113 der Weg zum Behalten, nimmt er weiter an; es ändert nichts mehr.</p>
 <p>Folgen, die man kennen sollte:</p>
 <ul>
@@ -5657,7 +5683,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-19">media: (19)<a class="headerlink" href="#media-19" title="Permanent link">&para;</a></h3>
+<h3 id="media-20">media: (20)<a class="headerlink" href="#media-20" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5741,6 +5767,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:virus-scan</code></td>
 <td>Scan masters and kept versions with ClamAV; records virus-check events, moves nothing (#662)</td>
+</tr>
+<tr>
+<td><code>media:watch-formats</code></td>
+<td>Re-assess media formats when NARA changes a rating, and follow PRONOM's format names (#675)</td>
 </tr>
 </tbody>
 </table>

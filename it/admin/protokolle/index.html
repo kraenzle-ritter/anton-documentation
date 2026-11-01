@@ -2296,7 +2296,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/protokolle/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/protokolle/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -2335,7 +2335,7 @@
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--logs<span class="w"> </span>--month<span class="o">=</span><span class="m">2026</span>-09<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w">       </span><span class="c1"># ein bestimmter Monat</span>
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--logs<span class="w"> </span>--only-if-actionable<span class="w"> </span>--mail<span class="o">=</span>&lt;adresse&gt;<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 </code></pre></div>
-<p><code>--only-if-actionable</code> schickt den Bericht nur, wenn der Monat zu bestätigen ist oder eine Prüfung einen Fehler meldet. <code>anton:review-logs</code> (<a href="../console-commands/">Console Commands</a>) prüft täglich und meldet sich nur bei Auffälligkeiten.</p>
+<p>Seit Version 0.117.0 enthält der Bericht auch die Formate des Monats: gestiegene Risiken, neue Formate, Formate mit Handlungsbedarf und die nicht erkannten Medien (anton#675; allein mit <code>--formats</code>). <code>--only-if-actionable</code> schickt den Bericht nur, wenn der Monat zu bestätigen ist, ein Risiko gestiegen oder ein Format mit Handlungsbedarf neu ist, oder eine Prüfung einen Fehler meldet. <code>anton:review-logs</code> (<a href="../console-commands/">Console Commands</a>) prüft täglich und meldet sich nur bei Auffälligkeiten.</p>
 
 
 

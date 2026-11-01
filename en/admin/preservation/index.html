@@ -4913,8 +4913,12 @@ before it becomes a medium:</p>
   <a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a> checks
   the holdings more thoroughly at regular intervals.</li>
 </ul>
-<p>Every check is recorded as an event on the medium. Internal users see them on
-a record's media page: the latest check of each kind at the top, the full list
+<p>Every check is recorded as an event on the medium, since version 0.117.0 with
+whoever set it off: the person, the command with the account it ran under
+(<code>&lt;account&gt;@cli:&lt;command&gt;</code>), or the background job (<code>job:&lt;class&gt;</code>). When a
+medium is deleted, its events stay; the tombstone in the holdings log carries
+the same medium number (anton#794). Internal users see the events on a
+record's media page: the latest check of each kind at the top, the full list
 below. All format validations of the archive, counted day by day and filterable
 by result, are under <strong>Administration → Logs → Format validation</strong> for admins.</p>
 <h3 id="regeln-fuer-dateien">Format Policy<a class="headerlink" href="#regeln-fuer-dateien" title="Permanent link">&para;</a></h3>
@@ -4923,7 +4927,11 @@ archive has switched on. The first rule, <code>tiff_zip</code>, repacks uncompre
 and LZW without a predictor losslessly as Deflate with predictor 2. Before
 replacing the file, Anton checks that every pixel stayed the same; the
 checksums of the delivered file are then kept in the event on the medium.
-SIPs are left alone, because their own checksums prove an untouched delivery.</p>
+SIPs are left alone, because their own checksums prove an untouched delivery.
+The second rule, <code>pdfx_pdfa2b</code> (PDF/X → PDF/A-2b, <a href="../formate-pdf/#pdfx">PDF</a>),
+applies only to media in the holdings and runs only through
+<a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>; its switch has no effect on
+new files, and agate does not know it yet.</p>
 <p>Which rules hold is set by admins under <strong>Admin → Digital preservation → Format
 Policy</strong>, once for the whole archive. No rule can be left out when uploading or
 importing. The page shows each rule as «if … except … then …»: the formats it
@@ -4966,6 +4974,14 @@ the <strong>PRONOM ID</strong>; from this it derives the risk assessment accordi
 supplied retrospectively with
 <a href="../console-commands/#mediaidentify"><code>media:identify</code></a>. It is evaluated in
 <a href="../preservation-planning/">preservation planning</a>.</p>
+<p><a href="../console-commands/#mediawatch-formats"><code>media:watch-formats</code></a> watches the
+formats for obsolescence (anton#675): when Anton loads a new NARA table (every
+28 days), the command assesses every format of the holdings again. Where a
+rating changes, each medium concerned gets a «risk assessment» event with the
+old and the new value. Format names follow PRONOM in the release Siegfried
+identifies with. Preservation planning shows when the holdings were last
+assessed and with what; the <a href="../protokolle/">monthly report</a> names risks that
+went up, new formats, formats that need an action and the unidentified media.</p>
 <div class="admonition note">
 <p class="admonition-title">Siegfried or Fido on the server</p>
 <p>Identification uses Siegfried or Fido installed on the server. If the
@@ -4981,7 +4997,7 @@ correctly and the access copy is made without errors. A migration is
 triggered by a failure: in the recurring check whether the file still renders
 or decodes (<a href="../console-commands/#mediavalidate-formats"><code>media:validate-formats</code></a>),
 or when the access copy is made. Whether and into what a file is migrated is
-decided by the archive. Today <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> can only repack losslessly, in the same format and with the same extension; the only rule is <code>tiff_zip</code>. Migration into another format follows (anton#565).</p>
+decided by the archive. <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> knows two rules: <code>tiff_zip</code> repacks TIFF losslessly, in the same format; since version 0.117.0 <code>pdfx_pdfa2b</code> turns PDF/X into PDF/A-2b without rewriting the content (<a href="../formate-pdf/#pdfx">PDF</a>, anton#565). A migration that changes the extension does not exist yet.</p>
 <p>For PDF, the format check judges «correctly» by the preservation risks: a PDF
 without embedded fonts, for example, appears with substitute fonts and looks
 different without anyone noticing.</p>

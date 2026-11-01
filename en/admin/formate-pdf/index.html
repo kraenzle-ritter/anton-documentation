@@ -3483,6 +3483,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pdfx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration PDF/X → PDF/A-2b
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-a-migration-must-check" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4518,6 +4529,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pdfx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration PDF/X → PDF/A-2b
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-a-migration-must-check" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4556,7 +4578,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-pdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4712,7 +4734,7 @@
 <p>Not to be preserved are JavaScript, actions that start programs (<code>/Launch</code>), and links to other files (<code>/GoToR</code>) or to the web (<code>/URI</code>). They lead out of the file, and the archive does not keep their targets. Anton records them as a risk, so that it is visible what a migration drops. The same applies to encryption.</p>
 <p>The version (PDF 1.4, PDF/A-2b) is not a property that must be preserved. It is recorded because it says what the PDF promises and what it is checked against.</p>
 <h2 id="what-anton-measures-and-checks">What Anton measures and checks<a class="headerlink" href="#what-anton-measures-and-checks" title="Permanent link">&para;</a></h2>
-<p>As of version 0.111.1.</p>
+<p>As of version 0.117.0.</p>
 <table>
 <thead>
 <tr>
@@ -4730,7 +4752,7 @@
 <tr>
 <td>Number of pages</td>
 <td>at ingest with poppler, at every format validation with qpdf or pdftocairo</td>
-<td>no, there is no migration of PDF yet</td>
+<td>in the <a href="#pdfx">migration PDF/X → PDF/A-2b</a>: as many pages with the same page boxes, every page rendered alike</td>
 </tr>
 <tr>
 <td>Renderable</td>
@@ -4805,8 +4827,25 @@
 <li>The access copy (Ghostscript, <code>/ebook</code>) shrinks images for viewing. It is no normalisation and no replacement for the master.</li>
 <li>«Renderable» means the tools read and render every page without error. They do not check whether the page looks right.</li>
 </ul>
+<h2 id="pdfx">Migration PDF/X → PDF/A-2b<a class="headerlink" href="#pdfx" title="Permanent link">&para;</a></h2>
+<p>PDF/X is a prepress standard, not an archival format; NARA advises «Transform» for PDF/X. Since version 0.117.0 the rule <code>pdfx_pdfa2b</code> turns a PDF/X-1a (fmt/157), PDF/X-3:2002 (fmt/158) or PDF/X-3:2003 (fmt/148) into PDF/A-2b (fmt/477), <strong>without rewriting the page content</strong> (anton#565). It runs only through <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, never at ingest.</p>
+<p>Only what the PDF says about itself changes:</p>
+<ul>
+<li>The PDF/X claim (<code>GTS_PDFXVersion</code>, <code>GTS_PDFXConformance</code>) goes, in the document information and in XMP. Siegfried identifies a file that claims both PDF/X and PDF/A as PDF/X, and NARA's advice would stay.</li>
+<li>XMP gets the PDF/A-2b identification and the declarations PDF/A wants for fields it does not know; a PDF without XMP gets it from the document information.</li>
+<li>The PDF/X printing profile serves as PDF/A's output profile as well.</li>
+<li>Incomplete character set entries of the fonts (<code>CharSet</code>, <code>CIDSet</code>) go; PDF/A-2 does not ask for them.</li>
+<li>Images are no longer drawn smoothed (<code>Interpolate</code>).</li>
+</ul>
+<p>Content streams, fonts and images stay the same bytes. The result counts only when veraPDF confirms PDF/A-2b and every page, rendered at 100 dpi, has exactly the pixels it had; otherwise the master stays unchanged. Anton then identifies the format again and assesses it with NARA anew. The PDF/X stays as a <a href="../preservation/#behaltene-originale">kept version</a>.</p>
+<p>Not converted are PDF/X that already claim PDF/A, are encrypted or have no printing profile, and those whose defects are in the content: overprint on CMYK, character widths that do not match the font, transparency without an output profile, images inline in the content stream. They fail at veraPDF and stay; a conversion that rewrites content does not exist for them yet.</p>
+<p>Before a run, the probe on copies shows what would happen:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--probe<span class="w"> </span>--report<span class="o">=</span>/tmp/pdfx-rz.csv
+php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span>
+</code></pre></div>
+<p>On the server the rule needs qpdf, veraPDF and poppler; without veraPDF, <code>media:migrate</code> refuses it.</p>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>
-<p>Anton has no rule yet that converts PDF. When one comes, for instance PDF to PDF/A-2, afterwards:</p>
+<p>For a rule that converts PDF, afterwards:</p>
 <ul>
 <li>The number of pages is the same.</li>
 <li>Page size and orientation of every page are the same.</li>
@@ -4816,6 +4855,7 @@
 <li>Forms, annotations, bookmarks and metadata are carried over, or their loss is recorded in the event.</li>
 <li>The delivered file stays as an <a href="../preservation/#behaltene-originale">original</a>, since Ghostscript rewrites fonts and images.</li>
 </ul>
+<p><code>pdfx_pdfa2b</code> meets this so: page count and page boxes are the same, every page looks the same to the pixel; the text is the same because the content streams are unchanged; veraPDF confirms PDF/A-2b and with it the embedded fonts; forms, annotations and bookmarks are untouched, the changed entries are in the event; the PDF/X stays as a version.</p>
 <h2 id="quellen">Sources<a class="headerlink" href="#quellen" title="Permanent link">&para;</a></h2>
 <ul>
 <li>National Archives and Records Administration (NARA), Digital Preservation Framework: <a href="https://github.com/usnationalarchives/digital-preservation/blob/master/Digital_Preservation_Record_Categories/NARA_PreservationActionPlan_TextualAndWordProcessing.md">Preservation Action Plan for Textual and Word Processing</a>, plan date 2023-11-22. Significant properties in four groups, the distinction between content and evidential value, preferred and acceptable transfer formats.</li>

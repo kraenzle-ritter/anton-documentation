@@ -4512,7 +4512,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/protokolle/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4551,7 +4551,7 @@
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--logs<span class="w"> </span>--month<span class="o">=</span><span class="m">2026</span>-09<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w">       </span><span class="c1"># a given month</span>
 php<span class="w"> </span>artisan<span class="w"> </span>anton:doctor<span class="w"> </span>--logs<span class="w"> </span>--only-if-actionable<span class="w"> </span>--mail<span class="o">=</span>&lt;address&gt;<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
 </code></pre></div>
-<p><code>--only-if-actionable</code> sends the report only when the month must be acknowledged or a check reports an error. <code>anton:review-logs</code> (<a href="../console-commands/">console commands</a>) checks daily and writes only when something stands out.</p>
+<p>Since version 0.117.0 the report also covers the month's formats: risks that went up, new formats, formats that need an action and the unidentified media (anton#675; alone with <code>--formats</code>). <code>--only-if-actionable</code> sends the report only when the month must be acknowledged, a risk went up or a new format needs an action, or a check reports an error. <code>anton:review-logs</code> (<a href="../console-commands/">console commands</a>) checks daily and writes only when something stands out.</p>
 
 
 
