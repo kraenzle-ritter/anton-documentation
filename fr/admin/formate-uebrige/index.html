@@ -2307,7 +2307,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/formate-uebrige/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/formate-uebrige/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -2343,7 +2343,7 @@
 </tbody>
 </table>
 <p>Ein Container ist kein Archivformat, sondern eine Verpackung. Was zählt, ist sein Inhalt: Für ihn gelten die Seiten der jeweiligen Kategorie. Die NARA stuft ZIP und TAR mit mittlerem, GZIP mit geringem Risiko ein und rät bei allen dreien, den Container zu behalten, die Dateien aber herauszuholen («Retain but extract files from the container»). Die KOST führt Container nicht als Format; sie rät allgemein von Kompression mit nicht offengelegten Verfahren und vom erneuten Komprimieren schon komprimierter Daten ab. ZIP, GZIP und TAR sind offengelegt und verlustfrei.</p>
-<p>Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Anton fragt bei jedem Paket; vorgeschlagen ist das Entpacken, wie es k &amp; r empfiehlt (anton#737). Beim Speichern als Datei sieht Anton nicht hinein: kein Format, keine Formatprüfung, keine Nutzungskopie für den Inhalt. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.</p>
+<p>Lädt man einen Container zu einem Objekt hoch, fragt Anton, was damit geschehen soll: als Verzeichnis importieren, dann entpackt Anton ihn und die Dateien kommen einzeln ins Archiv, oder als Datei speichern, dann bleibt er ungeöffnet. Anton fragt bei jedem Paket; vorgeschlagen ist das Entpacken, wie es k &amp; r empfiehlt (anton#737). Beim Speichern als Datei sieht Anton nicht hinein: Die Formatprüfung testet nur die Prüfsummen des Pakets; für den Inhalt gibt es kein Format, keine Prüfung und keine Nutzungskopie. Gepackt bleibt eine Sendung nur, wo sie als Ganzes gilt und ihre Teile einzeln nichts aussagen; bei KBA etwa liegen so seit 2018 der Abzug der Datenbank und der Quellcode der Vorgängeranwendung.</p>
 <p>Wie Anton ein Paket behandelt, hängt vom Weg ab:</p>
 <table>
 <thead>
@@ -2394,7 +2394,7 @@
 </table>
 <p>XML ist für strukturierte Daten das dauerhafteste Format; die KOST empfiehlt es dafür, die NARA stuft es mit geringem Risiko ein. In Anton kommt XML heute aber nur als Metadaten vor, in den SIPs (eCH-0160, EAD, METS), und der Import macht daraus Verzeichnungseinheiten; das gehört zu den Metadaten, nicht zum Bestand. Will ein Archiv XML als Inhalt ablegen, etwa eine Edition in TEI oder einen Export aus einer Fachanwendung, liefert die Ablieferstelle das Schema mit, als XSD, nicht als DTD (KOST), und beschreibt, was die Elemente bedeuten. Das ist abzusprechen; eine eigene Seite folgt, wenn es so weit ist.</p>
 <h2 id="was-anton-misst-und-pruft">Was Anton misst und prüft<a class="headerlink" href="#was-anton-misst-und-pruft" title="Permanent link">&para;</a></h2>
-<p>Stand: Version 0.112.0.</p>
+<p>Stand: Version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -2415,22 +2415,27 @@
 <td>vor dem Entpacken eines Uploads oder SIP: nicht zu viele Einträge, nicht zu gross, keine Verweise unter den Einträgen (anton#726)</td>
 </tr>
 <tr>
+<td>Container, der gepackt bleibt</td>
+<td>–</td>
+<td>Formatprüfung (anton#795): die Prüfsummen des Archivs selbst, ohne zu entpacken (<code>unzip -t</code>, <code>gzip -t</code>, <code>tar -t</code>); verschlüsselte Einträge nicht</td>
+</tr>
+<tr>
 <td>Inhalt eines gepackten Containers</td>
 <td>nein</td>
 <td>nein</td>
 </tr>
 <tr>
-<td>XML</td>
-<td>nein</td>
-<td>nein</td>
+<td>XML und JSON</td>
+<td>–</td>
+<td>Formatprüfung (anton#795): XML wohlgeformt (libxml, ohne DTD und ohne Netz), JSON lesbar; was nicht lesbar ist, ist ungültig</td>
 </tr>
 </tbody>
 </table>
 <h2 id="grenzen">Grenzen<a class="headerlink" href="#grenzen" title="Permanent link">&para;</a></h2>
 <ul>
-<li>In einen Container, der gepackt bleibt, sieht die Formatprüfung nicht hinein. Was darin liegt, welches Format es hat und ob es noch lesbar ist, weiss Anton nicht.</li>
+<li>In einen Container, der gepackt bleibt, sieht die Formatprüfung nur so weit hinein, wie die Prüfsummen des Archivs reichen: Ob jeder Eintrag unversehrt ist, prüft sie. Welches Format er hat und ob er sich öffnen lässt, weiss Anton nicht.</li>
 <li>Über den Upload nimmt Anton XML nicht an. Browser führen XML wie HTML und SVG als Dokument aus; Anton zeigt solche Dateien darum nie direkt an, sondern bietet sie nur zum Herunterladen (anton#640).</li>
-<li>Ob XML wohlgeformt ist oder seinem Schema folgt, prüft Anton nicht.</li>
+<li>Ob XML seinem Schema folgt, prüft Anton nicht: Ein Medium liegt allein, und ein Schema im Web lädt Anton nicht.</li>
 </ul>
 <h2 id="quellen">Quellen<a class="headerlink" href="#quellen" title="Permanent link">&para;</a></h2>
 <ul>

@@ -4556,7 +4556,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-text/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4711,7 +4711,7 @@
 <p>Tracked changes and comments are often invisible when the document is opened, but can be content: a deleted passage, an objection in the margin. A conversion to PDF loses them or prints them along, depending on the settings.</p>
 <p>Not to be preserved are macros and fields that update when the document is opened (date, page number, table of contents). They run code or change the document; what is preserved is the value they showed at deposit. NARA advises checking macros for their function before removing them. NARA's counts (words, characters, paragraphs, tables, graphics) are not properties to be preserved but an aid for checking completeness after a conversion.</p>
 <h2 id="what-anton-measures-and-checks">What Anton measures and checks<a class="headerlink" href="#what-anton-measures-and-checks" title="Permanent link">&para;</a></h2>
-<p>As of version 0.111.1.</p>
+<p>As of version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -4729,7 +4729,7 @@
 <tr>
 <td>Can be opened</td>
 <td>–</td>
-<td>only indirectly: format validation does not cover text formats, but for ODT, DOCX, DOC and RTF LibreOffice must read the document to make the access copy, which is validated like a PDF</td>
+<td>format validation (anton#795): ODT and DOCX as a ZIP with their required parts, those well-formed, in the nightly run every entry against its checksum; DOC is opened and saved by LibreOffice; TXT and Markdown readable throughout in the measured encoding, otherwise a warning. RTF is not checked; there the access copy LibreOffice has to make remains</td>
 </tr>
 <tr>
 <td>Character encoding (TXT)</td>
@@ -4755,7 +4755,7 @@
 <li>Upload takes ODT, DOCX, DOC, RTF and TXT; the QR upload only images and PDF.</li>
 <li>For TXT ingested before version 0.111.1 the encoding is not recorded; full text and access copy detect it when they are made.</li>
 <li>libmagic detects an encoding only by likelihood. Anton reads ISO-8859-1 and unknown 8-bit encodings as Windows-1252, which matches ISO-8859-1 wherever that is defined and adds typographic quotes and dashes.</li>
-<li>Format validation does not cover text formats. Anton notices a damaged DOCX or ODT only when it cannot be opened.</li>
+<li>Format validation checks how a document is built, not how it looks. A DOCX with complete, well-formed parts counts as valid even if LibreOffice breaks its lines otherwise than Word. RTF is not checked.</li>
 <li>Whether a document contains macros, automatic fields, tracked changes or embedded objects, Anton does not measure.</li>
 </ul>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>

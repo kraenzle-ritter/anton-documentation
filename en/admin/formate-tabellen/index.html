@@ -4668,7 +4668,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-tabellen/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4875,7 +4875,7 @@
 </table>
 <p>Speaker notes count when they hold what is not on the slides; that is often the case. Animations and transitions need not be preserved, as long as the slides are complete and legible without them (NARA).</p>
 <h2 id="what-anton-measures-and-checks">What Anton measures and checks<a class="headerlink" href="#what-anton-measures-and-checks" title="Permanent link">&para;</a></h2>
-<p>As of version 0.111.1.</p>
+<p>As of version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -4893,7 +4893,7 @@
 <tr>
 <td>Can be opened</td>
 <td>–</td>
-<td>only indirectly for presentations: LibreOffice must read them to make the access copy, which is validated like a PDF; for spreadsheets no</td>
+<td>format validation (anton#795): XLSX, ODS, PPTX and ODP as a ZIP with their required parts, those well-formed, in the nightly run every entry against its checksum; XLS and PPT are opened and saved by LibreOffice</td>
 </tr>
 <tr>
 <td>Text</td>
@@ -4903,7 +4903,7 @@
 <tr>
 <td>Character encoding and dialect (CSV)</td>
 <td>encoding, byte order mark, line endings, delimiter (comma, semicolon, tab, pipe) and number of fields in the first line, with libmagic at ingest</td>
-<td>–</td>
+<td>format validation (anton#795): readable throughout in the measured encoding, every record with as many fields as the first; a deviation is a warning</td>
 </tr>
 <tr>
 <td>all other properties</td>
@@ -4919,6 +4919,7 @@
 <li>XLS does not reach the full-text index.</li>
 <li>For CSV the delimiter is inferred: the one that splits the first line, quotes respected, into the most fields. It does not replace the depositor's description.</li>
 <li>Whether a spreadsheet contains formulas, hidden rows, macros or links to other files, Anton does not measure.</li>
+<li>Format validation checks the structure, not the content: whether a spreadsheet's formulas calculate and its values are right, it does not see.</li>
 </ul>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>
 <p>Anton has no rule yet that converts spreadsheets or presentations. When one comes, for instance XLS to XLSX, afterwards:</p>

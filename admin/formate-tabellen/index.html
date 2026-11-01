@@ -4668,7 +4668,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/formate-tabellen/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4875,7 +4875,7 @@
 </table>
 <p>Sprechernotizen zählen, wenn sie enthalten, was nicht auf den Folien steht; das ist oft so. Animationen und Übergänge müssen nicht erhalten bleiben, solange die Folien ohne sie vollständig und lesbar sind (NARA).</p>
 <h2 id="was-anton-misst-und-pruft">Was Anton misst und prüft<a class="headerlink" href="#was-anton-misst-und-pruft" title="Permanent link">&para;</a></h2>
-<p>Stand: Version 0.111.1.</p>
+<p>Stand: Version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -4893,7 +4893,7 @@
 <tr>
 <td>Öffnen lässt es sich</td>
 <td>–</td>
-<td>nur mittelbar bei Präsentationen: LibreOffice muss sie lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft; bei Tabellen nein</td>
+<td>Formatprüfung (anton#795): XLSX, ODS, PPTX und ODP als ZIP mit ihren Pflichtteilen, diese wohlgeformt, im Nachtlauf jeder Eintrag mit seiner Prüfsumme; XLS und PPT öffnet und speichert LibreOffice</td>
 </tr>
 <tr>
 <td>Text</td>
@@ -4903,7 +4903,7 @@
 <tr>
 <td>Zeichenkodierung und Dialekt (CSV)</td>
 <td>Kodierung, Byte Order Mark, Zeilenenden, Trennzeichen (Komma, Semikolon, Tab, senkrechter Strich) und Zahl der Felder der ersten Zeile, mit libmagic bei der Übernahme</td>
-<td>–</td>
+<td>Formatprüfung (anton#795): ganz lesbar in der gemessenen Kodierung, jeder Datensatz mit so vielen Feldern wie der erste; eine Abweichung ist eine Warnung</td>
 </tr>
 <tr>
 <td>alle übrigen Eigenschaften</td>
@@ -4919,6 +4919,7 @@
 <li>XLS kommt nicht in den Volltext.</li>
 <li>Bei CSV ist das Trennzeichen erschlossen: dasjenige, das die erste Zeile, Anführungszeichen beachtet, in die meisten Felder teilt. Die Beschreibung der Ablieferstelle ersetzt es nicht.</li>
 <li>Ob eine Tabelle Formeln, versteckte Zeilen, Makros oder Verweise auf andere Dateien enthält, misst Anton nicht.</li>
+<li>Die Formatprüfung prüft den Aufbau, nicht den Inhalt: Ob die Formeln einer Tabelle rechnen und ihre Werte stimmen, sieht sie nicht.</li>
 </ul>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>
 <p>Anton kennt noch keine Regel, die Tabellen oder Präsentationen umwandelt. Kommt eine, etwa XLS nach XLSX, muss danach gelten:</p>

@@ -2318,7 +2318,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/formate-text/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/formate-text/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-23</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -2473,7 +2473,7 @@
 <p>Änderungsverfolgung und Kommentare sind oft unsichtbar, wenn man das Dokument öffnet, können aber Inhalt sein: eine gestrichene Passage, ein Einwand am Rand. Eine Umwandlung nach PDF verliert sie oder druckt sie mit, je nach Einstellung.</p>
 <p>Nicht erhalten werden müssen Makros und Felder, die sich beim Öffnen aktualisieren (Datum, Seitenzahl, Verzeichnis). Sie führen Code aus oder verändern das Dokument; erhalten bleibt der Wert, den sie bei der Ablieferung zeigten. Die NARA rät, Makros vor dem Entfernen auf ihre Funktion zu prüfen. Die Zählwerte der NARA (Wörter, Zeichen, Absätze, Tabellen, Grafiken) sind keine Eigenschaften, die erhalten bleiben müssen, sondern ein Hilfsmittel, um nach einer Umwandlung die Vollständigkeit zu prüfen.</p>
 <h2 id="was-anton-misst-und-pruft">Was Anton misst und prüft<a class="headerlink" href="#was-anton-misst-und-pruft" title="Permanent link">&para;</a></h2>
-<p>Stand: Version 0.111.1.</p>
+<p>Stand: Version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -2491,7 +2491,7 @@
 <tr>
 <td>Öffnen lässt es sich</td>
 <td>–</td>
-<td>nur mittelbar: Die Formatprüfung kennt keine Textformate, aber für ODT, DOCX, DOC und RTF muss LibreOffice das Dokument lesen, um die Nutzungskopie zu erzeugen, und diese wird wie ein PDF geprüft</td>
+<td>Formatprüfung (anton#795): ODT und DOCX als ZIP mit ihren Pflichtteilen, diese wohlgeformt, im Nachtlauf jeder Eintrag mit seiner Prüfsumme; DOC öffnet und speichert LibreOffice; TXT und Markdown in der gemessenen Kodierung ganz lesbar, sonst Warnung. RTF prüft sie nicht; dort bleibt die Nutzungskopie, die LibreOffice erzeugen muss</td>
 </tr>
 <tr>
 <td>Zeichenkodierung (TXT)</td>
@@ -2517,7 +2517,7 @@
 <li>Der Upload nimmt ODT, DOCX, DOC, RTF und TXT an; der QR-Upload nur Bilder und PDF.</li>
 <li>Für TXT, das vor Version 0.111.1 übernommen wurde, ist die Kodierung nicht festgehalten; Volltext und Nutzungskopie bestimmen sie, wenn sie entstehen.</li>
 <li>libmagic erkennt eine Kodierung nur nach Wahrscheinlichkeit. ISO-8859-1 und unbekannte 8-Bit-Kodierungen liest Anton als Windows-1252, das mit ISO-8859-1 übereinstimmt, wo dieses definiert ist, und dazu typografische Anführungszeichen und Striche kennt.</li>
-<li>Die Formatprüfung erfasst Textformate nicht. Ob ein DOCX oder ODT beschädigt ist, merkt Anton erst, wenn es sich nicht öffnen lässt.</li>
+<li>Die Formatprüfung prüft den Aufbau eines Dokuments, nicht seine Darstellung. Ein DOCX mit vollständigen, wohlgeformten Teilen gilt als gültig, auch wenn LibreOffice es anders umbricht als Word. RTF prüft sie nicht.</li>
 <li>Ob ein Dokument Makros, automatische Felder, Änderungsverfolgung oder eingebettete Objekte enthält, misst Anton nicht.</li>
 </ul>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>

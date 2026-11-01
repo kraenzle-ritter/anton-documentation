@@ -4534,7 +4534,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-uebrige/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -4570,7 +4570,7 @@
 </tbody>
 </table>
 <p>A container is not an archival format but a wrapping. What counts is its content, and for that the pages of the respective category apply. NARA rates ZIP and TAR moderate risk, GZIP low risk, and for all three advises keeping the container but extracting the files («Retain but extract files from the container»). KOST does not list containers as a format; in general it advises against compression with undisclosed algorithms and against compressing data that is already compressed. ZIP, GZIP and TAR are disclosed and lossless.</p>
-<p>When a container is uploaded to an object, Anton asks what to do with it: <strong>Import as directory</strong> extracts it and the files enter the archive one by one; <strong>Save as file</strong> stores it unopened. Anton asks for every package; extracting is the suggested way, as k &amp; r recommends (anton#737). Saved as a file, Anton does not look inside: no format, no format check, no access copy for the content. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.</p>
+<p>When a container is uploaded to an object, Anton asks what to do with it: <strong>Import as directory</strong> extracts it and the files enter the archive one by one; <strong>Save as file</strong> stores it unopened. Anton asks for every package; extracting is the suggested way, as k &amp; r recommends (anton#737). Saved as a file, Anton does not look inside: format validation tests only the package's checksums; for the content there is no format, no check and no access copy. A delivery stays packed only where it counts as a whole and its parts say nothing on their own; at KBA, for instance, the database dump and the source code of the predecessor application have been kept this way since 2018.</p>
 <p>How Anton treats a package depends on the way it comes in:</p>
 <table>
 <thead>
@@ -4621,7 +4621,7 @@
 </table>
 <p>XML is the most durable format for structured data; KOST recommends it for that, NARA rates it low risk. In Anton, however, XML today occurs only as metadata, in SIPs (eCH-0160, EAD, METS), and the import turns it into records; that belongs to metadata, not to the holdings. If an archive wants to keep XML as content, for instance an edition in TEI or an export from a specialised application, the depositor supplies the schema, as XSD, not as DTD (KOST), and describes what the elements mean. This is to be arranged; a page of its own follows when the time comes.</p>
 <h2 id="what-anton-measures-and-checks">What Anton measures and checks<a class="headerlink" href="#what-anton-measures-and-checks" title="Permanent link">&para;</a></h2>
-<p>As of version 0.112.0.</p>
+<p>As of version 0.116.1.</p>
 <table>
 <thead>
 <tr>
@@ -4642,14 +4642,19 @@
 <td>before an upload or SIP is extracted: not too many entries, not too large, no links among the entries (anton#726)</td>
 </tr>
 <tr>
+<td>Container that stays packed</td>
+<td>–</td>
+<td>format validation (anton#795): the archive's own checksums, without extracting (<code>unzip -t</code>, <code>gzip -t</code>, <code>tar -t</code>); encrypted entries not</td>
+</tr>
+<tr>
 <td>Content of a packed container</td>
 <td>no</td>
 <td>no</td>
 </tr>
 <tr>
-<td>XML</td>
-<td>no</td>
-<td>no</td>
+<td>XML and JSON</td>
+<td>–</td>
+<td>format validation (anton#795): XML well-formed (libxml, without DTD and without network), JSON readable; what cannot be read is invalid</td>
 </tr>
 </tbody>
 </table>
@@ -4657,7 +4662,7 @@
 <ul>
 <li>The format check does not look inside a container that stays packed. What it holds, in which format, and whether it can still be read, Anton does not know.</li>
 <li>The upload does not accept XML. Browsers run XML, like HTML and SVG, as a document; Anton therefore never shows such files directly but only offers them for download (anton#640).</li>
-<li>Whether XML is well-formed or follows its schema, Anton does not check.</li>
+<li>Whether XML follows its schema, Anton does not check: a medium is stored alone, and Anton does not fetch a schema from the web.</li>
 </ul>
 <h2 id="quellen">Sources<a class="headerlink" href="#quellen" title="Permanent link">&para;</a></h2>
 <ul>

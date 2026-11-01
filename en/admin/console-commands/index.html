@@ -4876,7 +4876,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-31</span>
+        <span class="page-meta__date">Last updated: 2026-11-01</span>
     </div>
   
   
@@ -5032,7 +5032,10 @@ on INGE — run it at a quiet time.</p>
 <p><strong id="mediavalidate-formats"><code>media:validate-formats</code></strong> checks the media of the
 holdings with the tool for their format: PDF with qpdf and pdftocairo (plus
 veraPDF for a claimed PDF/A, if installed), TIFF with <code>tiffinfo -D</code>, other images
-with ImageMagick, audio and video with a full ffmpeg decode. A shorter form of
+with ImageMagick, audio and video with a full ffmpeg decode; text, office
+documents and packages by their structure (encoding, CSV, XML and JSON; OOXML
+and ODF as ZIP, DOC, XLS and PPT with LibreOffice; ZIP, TAR and GZ with their
+own checksums). A shorter form of
 the same check already runs at ingest. Every result is recorded as an event on
 the medium (valid, invalid, not checked), as are contradictions between
 extension, format and PRONOM ID and, for PDF, preservation risks (fonts not
@@ -5720,7 +5723,7 @@ up to date with every change to the commands.</p>
 </tr>
 <tr>
 <td><code>media:validate-formats</code></td>
-<td>Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg) and check extension, MIME…</td>
+<td>Validate media formats (qpdf/veraPDF, tiffinfo, ImageMagick, ffmpeg; text, office and packages…</td>
 </tr>
 <tr>
 <td><code>media:validate-pdfs</code></td>
