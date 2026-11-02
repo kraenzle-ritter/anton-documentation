@@ -254,7 +254,7 @@ der Betrieb an. Bei **Anton as a Service** liegen die Daten in [vier Kopien an d
 
 Datensätze, Medien, Akteur:innen, Orte und Schlagworte tragen eine UUID, die sich bei einem Umzug oder einer Zusammenlegung nicht ändert, anders als die Nummer in der Adresse einer Seite. Die Adresse `https://<archiv>/id/<uuid>` führt auf die aktuelle Seite: eines Datensatzes, einer Normdaten-Seite, bei einem Medium auf seinen Datensatz (anton#784). Sichtbar ist dabei nur, was die Seite selbst zeigen darf; ein gesperrter Datensatz antwortet wie ein unbekannter mit «nicht gefunden».
 
-Die Exporte und die API nennen einen Datensatz bei dieser Adresse ([Export-Matrix](export-matrix.md#dauerhafte-adresse)). Das Feld «Permalink» in einer Maske zeigt sie. Bei Akteur:innen, Orten und Schlagworten steht es in der Vorgabe; bei Datensätzen lässt es sich in der Maske hinzufügen.
+Die Exporte und die API nennen einen Datensatz bei dieser Adresse ([Export-Matrix](export-matrix.md#dauerhafte-adresse)). Das Feld «Permalink» in einer Maske zeigt nach Vorgabe die Adresse der Seite mit der Nummer (`/objects/143`); die Einstellung `permalink` stellt es auf die dauerhafte Adresse (`uuid`) oder auf beide (`both`) um (anton#798). Bei Akteur:innen, Orten und Schlagworten steht es in der Vorgabe; bei Datensätzen lässt es sich in der Maske hinzufügen.
 
 ## Sicherung oder Publikation?
 
