@@ -1,6 +1,6 @@
 # Protokolle
 
-Anton hält fest, wer was am Bestand getan hat (Bestandsprotokoll) und wer sich angemeldet hat oder abgewiesen wurde (Sicherheitsprotokoll). Die Durchsicht dieser Protokolle liegt beim Archiv. Festgehalten wird sie als **Durchsicht**: wer, wann, welcher Zeitraum (anton#670, anton#739; NDSA Co-4.1).
+Anton hält fest, wer was am Bestand getan hat (Bestandsprotokoll) und wer sich angemeldet hat oder abgewiesen wurde (Sicherheitsprotokoll). Die Durchsicht dieser Protokolle liegt beim Archiv, mit dem Paket «Technische Betreuung» bei Kränzle & Ritter ([Erhaltungsauftrag](preservation-mandate.md)). Festgehalten wird sie als **Durchsicht**: wer, wann, welcher Zeitraum (anton#670, anton#739; NDSA Co-4.1).
 
 ## Die Seite
 
@@ -24,7 +24,7 @@ Archive, die den Monatsbericht erhalten, können darin die Protokolle des Vormon
 - Nach der Anmeldung geht dasselbe unter **Admin › Protokolle**: Solange der Vormonat offen ist, steht dort ein Hinweis. Unter **Durchsichten** stehen die Zusammenfassung, Links in beide Protokolle und der Knopf **«Durchsicht bestätigen»**.
 - War nichts zu bestätigen, sagt der Bericht das, und Anton trägt den Monat selbst ein, als **automatisch**. So bleibt die Reihe der Durchsichten lückenlos. Ein solcher Eintrag gilt nie als Durchsicht durch eine Person.
 
-Die Liste der Durchsichten zeigt bei jedem Eintrag, wie er entstand: in Anton, per Link oder automatisch.
+Die Liste der Durchsichten zeigt bei jedem Eintrag, wie er entstand: in Anton, per Link, automatisch oder, unter dem Erhaltungsauftrag «Technische Betreuung», durch Kränzle & Ritter im Namen des Archivs (seit v0.118.0).
 
 ## Wann durchsehen
 

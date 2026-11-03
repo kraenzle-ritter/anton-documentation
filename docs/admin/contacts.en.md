@@ -15,6 +15,12 @@ Each function takes several people, as an **account** of this installation or as
 
 All admins see the page. Accounts holding **Contract and contacts** name and remove people (see [User administration](users.md#capabilities)). Every change is recorded in the security log and mailed to everyone named for the function, to the person added or removed and to Kränzle & Ritter.
 
+## Billing address
+
+The same page holds where the invoices go: institution, department, attention, street, postcode, city, country, address for invoices, order or reference number, cost centre, UID/VAT number, delivery (by mail as PDF, by post or eBill) and a note. With delivery by mail the address is required.
+
+Accounts holding **Contract and contacts** keep the address. Every change is recorded in the security log and mailed with old and new value to the contact persons for billing and the overall responsibility and to Kränzle & Ritter. The accounts of Kränzle & Ritter take the address from here (`GET /api/billing-address`, with an admin account's token).
+
 ## Confirmation by mail
 
 1. Anton sends the request to each person of the function who can confirm, with a link of their own. The mail gives the wording in question.
@@ -26,5 +32,4 @@ At the bottom of the page «Contact persons» the requests are listed with their
 
 A superuser of Kränzle & Ritter cannot confirm for the archive unless named as a contact person.
 
-!!! note "No requests yet"
-    Since v0.118.0 the contact persons can be named. Anton asks for confirmations only with the bookings and the preservation mandate, which follow.
+Since v0.118.0 Anton asks for the [preservation mandate](preservation-mandate.md) and for approvals of single migrations. Bookings follow.

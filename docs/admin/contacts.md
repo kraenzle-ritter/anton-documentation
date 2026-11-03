@@ -15,6 +15,12 @@ Pro Funktion lassen sich mehrere Personen eintragen, als **Konto** dieser Instal
 
 Alle Admins sehen die Seite. Personen eintragen und entfernen können Konten mit der Befugnis **Vertrag und Ansprechpersonen** (siehe [Benutzerverwaltung](users.md#befugnisse)). Jede Änderung steht im Sicherheitsprotokoll und geht per Mail an alle Personen der Funktion, an die eingetragene oder entfernte Person und an Kränzle & Ritter.
 
+## Rechnungsadresse
+
+Auf derselben Seite steht, wohin die Rechnungen gehen: Institution, Abteilung, zu Handen, Strasse, PLZ, Ort, Land, Mailadresse für Rechnungen, Bestell- oder Referenznummer, Kostenstelle, UID/MWST-Nummer, Versand (per Mail als PDF, per Post oder eBill) und eine Bemerkung. Bei Versand per Mail ist die Mailadresse Pflicht.
+
+Die Adresse pflegen Konten mit der Befugnis **Vertrag und Ansprechpersonen**. Jede Änderung steht im Sicherheitsprotokoll und geht mit altem und neuem Wert per Mail an die Ansprechpersonen für Rechnung und Gesamtverantwortung und an Kränzle & Ritter. Die Buchhaltung von Kränzle & Ritter übernimmt die Adresse von hier (`GET /api/billing-address`, mit dem Token eines Admin-Kontos).
+
 ## Bestätigung per Mail
 
 1. Anton schickt die Anfrage an jede Person der Funktion, die bestätigen kann, mit einem eigenen Link. Die Mail nennt den Wortlaut, um den es geht.
@@ -26,5 +32,4 @@ Unten auf der Seite «Ansprechpersonen» stehen die Anfragen mit Stand (offen, b
 
 Ein Superuser von Kränzle & Ritter kann nicht für das Archiv bestätigen, solange er nicht als Ansprechperson eingetragen ist.
 
-!!! note "Noch keine Anfragen"
-    Seit v0.118.0 lassen sich die Ansprechpersonen eintragen. Anfragen stellt Anton erst mit den Buchungen und dem Erhaltungsauftrag, die folgen.
+Angefragt werden seit v0.118.0 der [Erhaltungsauftrag](preservation-mandate.md) und die Freigabe einzelner Migrationen. Buchungen folgen.

@@ -47,6 +47,8 @@ tags:
     description: AI-cataloging control plane (consumed by external producers, e.g. agate)
   - name: format-policy
     description: Format rules applied before ingest (consumed by agate)
+  - name: contract
+    description: Contract data the archive keeps itself (consumed by anton-ansible and kr-facturas)
   - name: system
     description: System / counts / authenticated user
 
@@ -1093,6 +1095,48 @@ paths:
                     retired: false
         401:
           description: invalid token
+
+  /billing-address:
+    get:
+      tags:
+        - contract
+      summary: Where the archive's invoices go
+      description: >
+        The billing address the archive keeps on its page «Ansprechpersonen»
+        (anton#806). anton-ansible and kr-facturas fetch it per installation.
+        `address` is null until the archive has entered one; `delivery` is
+        `mail`, `post` or `ebill`, `country` an ISO 3166-1 alpha-2 code.
+        Requires the token of an admin account. Tenant resolution is implicit
+        from the hit domain + token.
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              example:
+                slug: musterhausen
+                address:
+                  institution: Stadtarchiv Musterhausen
+                  department: Finanzen
+                  attention: Frau Muster
+                  street: Hauptstrasse 1
+                  postal_code: '8000'
+                  city: Zürich
+                  country: CH
+                  email: rechnungen@example.org
+                  reference: PO-2026-17
+                  cost_center: '4711'
+                  vat_number: CHE-123.456.789 MWST
+                  delivery: mail
+                  note: null
+                updated_at: '2026-11-03T14:00:00+01:00'
+                updated_by: muster
+        401:
+          description: invalid token
+        403:
+          description: the token's account is no admin
 
 components:
   parameters:

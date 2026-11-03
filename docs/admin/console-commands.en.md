@@ -252,8 +252,21 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --probe              Try the rule on copies of the masters, report per
                          medium; changes nothing
     --report=            With --probe: write the report as CSV as well
+    --request-approval   Ask the archive by mail to approve this measure;
+                         changes nothing
+    --approval=          With --write: the id of the confirmed approval
+    --agreement=         With --write: where an agreement made outside Anton
+                         is recorded, e.g. "mail of 02.11.2026"
     --write              Repack (without: report only)
 ```
+
+**Only on a ground.** Since v0.118.0 `--write` runs only when something covers the measure (anton#807):
+
+- the [preservation mandate](preservation-mandate.md) «Technical care». It covers a measure that keeps the original (or discards it, if the archive included that), leaves out excluded formats and fonds and holds only while the booked storage (`maximum_storage`) suffices. The additional storage is estimated as the size of the masters concerned when the original is kept;
+- an order from the archive for exactly these media, asked for by mail with `--request-approval` and confirmed by a contact person (`--approval=<id>`). The request goes to the contacts for digital preservation, to the overall responsibility when the measure goes beyond the booked storage;
+- an agreement made outside Anton, which the run names with `--agreement`.
+
+Without a ground the command stops and changes nothing. Each event names the ground under `migration.authorization`; the [monthly report](protokolle.md) counts the measures per rule and ground.
 
 Without `--write` the command only says how many media the rule would touch.
 With `--write` it puts the result next to the master, verifies it, and swaps

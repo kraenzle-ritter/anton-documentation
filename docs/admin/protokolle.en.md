@@ -1,6 +1,6 @@
 # Logs
 
-Anton records who did what to the holdings (holdings log) and who signed in or was turned away (security log). Looking through these logs is the archive's task. It is recorded as a **review**: who, when, which period (anton#670, anton#739; NDSA Co-4.1).
+Anton records who did what to the holdings (holdings log) and who signed in or was turned away (security log). Looking through these logs is the archive's task, with the package «Technical care» that of Kränzle & Ritter ([preservation mandate](preservation-mandate.md)). It is recorded as a **review**: who, when, which period (anton#670, anton#739; NDSA Co-4.1).
 
 ## The page
 
@@ -24,7 +24,7 @@ A month **must be acknowledged** when it has a finding, an account change, delet
 - After signing in, the same works under **Admin › Logs**: while the previous month is open, a notice says so. Under **Reviews** are the summary, links into both logs and the button **«Acknowledge review»**.
 - If there was nothing to acknowledge, the report says so and Anton enters the month itself, as **automatic**. That keeps the series of reviews without gaps. Such an entry never counts as a review by a person.
 
-The list of reviews shows for each entry how it came about: in Anton, by link or automatic.
+The list of reviews shows for each entry how it came about: in Anton, by link, automatic or, under the preservation mandate «Technical care», by Kränzle & Ritter on the archive's behalf (since v0.118.0).
 
 ## When to review
 

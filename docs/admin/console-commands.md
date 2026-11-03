@@ -255,8 +255,21 @@ php artisan media:migrate --env=gosteli --rule=tiff_zip --collection=image --wri
     --probe              Die Regel an Kopien der Master ausprobieren, je Medium
                          berichten; ändert nichts
     --report=            Mit --probe: den Bericht zusätzlich als CSV schreiben
+    --request-approval   Das Archiv per Mail um Freigabe dieser Massnahme
+                         bitten; ändert nichts
+    --approval=          Mit --write: die Nummer der bestätigten Freigabe
+    --agreement=         Mit --write: wo eine Vereinbarung ausserhalb von Anton
+                         festgehalten ist, z. B. "Mail vom 02.11.2026"
     --write              Umpacken (ohne: nur berichten)
 ```
+
+**Nur mit Grundlage.** Seit v0.118.0 läuft `--write` nur, wenn etwas die Massnahme deckt (anton#807):
+
+- der [Erhaltungsauftrag](preservation-mandate.md) «Technische Betreuung». Er deckt eine Massnahme, die das Original behält (oder die es verwirft, wenn das Archiv das eingeschlossen hat), lässt ausgenommene Formate und Bestände aus und gilt nur, solange der gebuchte Speicher (`maximum_storage`) reicht. Geschätzt wird der Mehrbedarf mit der Grösse der betroffenen Master, wenn das Original bleibt;
+- ein Auftrag des Archivs für genau diese Medien, den `--request-approval` per Mail angefragt und eine Ansprechperson bestätigt hat (`--approval=<nummer>`). Die Anfrage geht an die Ansprechpersonen für digitale Archivierung, an die Gesamtverantwortung, wenn die Massnahme über den gebuchten Speicher hinausgeht;
+- eine Vereinbarung ausserhalb von Anton, die der Lauf mit `--agreement` nennt.
+
+Ohne Grundlage bricht der Befehl ab und ändert nichts. Jedes Ereignis nennt die Grundlage unter `migration.authorization`; der [Monatsbericht](protokolle.md) zählt die Massnahmen je Regel und Grundlage.
 
 Ohne `--write` sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 `--write` legt er das Ergebnis neben den Master, prüft es und tauscht Datei und
