@@ -115,6 +115,7 @@ nav:
       - Archivbeschreibung (ISDIAH): admin/isdiah.md
     - Benutzerverwaltung: admin/users.md
     - Ansprechpersonen: admin/contacts.md
+    - Vertrag: admin/contract.md
     - Kommentare: admin/comments.md
     - Medien:
       - Mediengalerie: admin/gallery.md
@@ -273,6 +274,7 @@ plugins:
                 - Archive description (ISDIAH): admin/isdiah.md
               - User administration: admin/users.md
               - Contact persons: admin/contacts.md
+              - Contract: admin/contract.md
               - Comments: admin/comments.md
               - Media:
                 - Media gallery: admin/gallery.md

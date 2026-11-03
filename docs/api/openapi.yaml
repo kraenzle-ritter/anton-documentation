@@ -1138,6 +1138,50 @@ paths:
         403:
           description: the token's account is no admin
 
+  /usage-statements:
+    get:
+      tags:
+        - contract
+      summary: The archive's monthly usage statements
+      description: >
+        What the archive used each month and what was booked (anton#805), the
+        ground for the invoice in kr-facturas. A month is written once, early
+        in the following month, by `contract:usage-statement`. Bytes are
+        masters and kept versions from the database; `disk_bytes` is the whole
+        directory as measured at night, if known. Requires the token of an
+        admin account.
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: only this month (YYYY-MM) and later
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              example:
+                slug: musterhausen
+                statements:
+                  - month: 2026-10
+                    plan: pro
+                    items: [oai, mcp, technical_care]
+                    booked_bytes: 53687091200
+                    masters_bytes: 21474836480
+                    versions_bytes: 1073741824
+                    disk_bytes: 26843545600
+                    media: 48211
+                    accounts: 17
+                    ai_cost_chf: 12.4
+        401:
+          description: invalid token
+        403:
+          description: the token's account is no admin
+
 components:
   parameters:
     formatParam:
