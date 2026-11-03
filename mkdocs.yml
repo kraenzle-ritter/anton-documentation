@@ -114,6 +114,7 @@ nav:
       - Startseite und Navigation: admin/home.md
       - Archivbeschreibung (ISDIAH): admin/isdiah.md
     - Benutzerverwaltung: admin/users.md
+    - Ansprechpersonen: admin/contacts.md
     - Kommentare: admin/comments.md
     - Medien:
       - Mediengalerie: admin/gallery.md
@@ -270,6 +271,7 @@ plugins:
                 - Home page and navigation: admin/home.md
                 - Archive description (ISDIAH): admin/isdiah.md
               - User administration: admin/users.md
+              - Contact persons: admin/contacts.md
               - Comments: admin/comments.md
               - Media:
                 - Media gallery: admin/gallery.md

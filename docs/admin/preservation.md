@@ -153,7 +153,7 @@ Medium ein Ereignis «Risikobewertung» mit dem alten und dem neuen Wert. Die
 Formatnamen folgen PRONOM in der Fassung, mit der Siegfried erkennt.
 Preservation Planning zeigt, wann zuletzt bewertet wurde und womit; der
 [Monatsbericht](protokolle.md) nennt gestiegene Risiken, neue Formate, Formate
-mit Handlungsbedarf und die nicht erkannten Medien.
+mit Handlungsbedarf und die nicht erkannten Medien. Er geht auch an die [Ansprechpersonen](contacts.md) für digitale Archivierung.
 
 !!! note "Siegfried oder Fido auf dem Server"
     Die Erkennung nutzt Siegfried oder Fido, die auf dem Server installiert

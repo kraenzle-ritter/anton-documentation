@@ -44,6 +44,7 @@ right needs the minimum role **and** the capability.
 | Manage users and capabilities | Create, change, delete and invite accounts, end their sessions, reset 2FA and grant capabilities | `admin` |
 | Create API tokens for others | Create and revoke API tokens for other accounts | `admin` |
 | Create own API tokens | Create and revoke one's own API tokens on the profile (tab **Security**) | `user` |
+| Contract and contacts | Name the [contact persons](contacts.md) and confirm for the overall responsibility (since v0.118.0) | `admin` |
 
 Capabilities are granted by superusers and by admins holding **Manage users and
 capabilities**, on an account's edit page. Nobody can change their own
@@ -53,6 +54,8 @@ security log.
 At the changeover every admin received every capability and every editor
 **Manage loans**, so nothing changed until an archive withdraws capabilities. New
 accounts hold no capability until they are given one.
+
+**Contract and contacts** stands for the overall responsibility and is granted differently: only by superusers and by accounts holding it; **Manage users and capabilities** alone is not enough. It cannot be withdrawn from the last account holding it. Nobody receives it with the update; Kränzle & Ritter names the first person together with the archive.
 
 !!! tip "Block accounts rather than delete them"
     `blocked` is the right approach for accounts that are no longer used. When

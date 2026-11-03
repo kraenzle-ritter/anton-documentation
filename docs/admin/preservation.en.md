@@ -147,7 +147,7 @@ rating changes, each medium concerned gets a «risk assessment» event with the
 old and the new value. Format names follow PRONOM in the release Siegfried
 identifies with. Preservation planning shows when the holdings were last
 assessed and with what; the [monthly report](protokolle.md) names risks that
-went up, new formats, formats that need an action and the unidentified media.
+went up, new formats, formats that need an action and the unidentified media. It also goes to the [contact persons](contacts.md) for digital preservation.
 
 !!! note "Siegfried or Fido on the server"
     Identification uses Siegfried or Fido installed on the server. If the

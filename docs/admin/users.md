@@ -44,6 +44,7 @@ hat, wer die Mindestrolle **und** die Befugnis hat.
 | Benutzer:innen und Befugnisse verwalten | Konten anlegen, ändern, löschen, einladen, ihre Sitzungen beenden, 2FA zurücksetzen und Befugnisse vergeben | `admin` |
 | API-Schlüssel für andere erstellen | API-Tokens für andere Konten erstellen und widerrufen | `admin` |
 | Eigene API-Schlüssel erstellen | Eigene API-Tokens im Profil (Tab **Sicherheit**) erstellen und widerrufen | `user` |
+| Vertrag und Ansprechpersonen | Die [Ansprechpersonen](contacts.md) bestimmen und für die Gesamtverantwortung bestätigen (seit v0.118.0) | `admin` |
 
 Befugnisse vergeben Superuser und Admins mit der Befugnis **Benutzer:innen und
 Befugnisse verwalten**, auf der Bearbeitungsseite eines Kontos. Die eigenen
@@ -53,6 +54,8 @@ steht im Sicherheitsprotokoll.
 Bei der Umstellung erhielten alle Admins alle Befugnisse und alle Editor:innen
 **Ausleihe verwalten**; es änderte sich also nichts, bis ein Archiv Befugnisse
 entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.
+
+**Vertrag und Ansprechpersonen** steht für die Gesamtverantwortung und wird anders vergeben: nur von Superusern und Konten, die sie selbst haben; die Befugnis **Benutzer:innen und Befugnisse verwalten** allein genügt nicht. Dem letzten Konto, das sie hat, lässt sie sich nicht entziehen. Mit dem Update erhält sie niemand; die erste Person bestimmt Kränzle & Ritter mit dem Archiv.
 
 !!! tip "Konto sperren statt löschen"
     `blocked` ist der richtige Weg für Konten, die nicht mehr genutzt werden.
