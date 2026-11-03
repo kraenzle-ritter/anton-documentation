@@ -49,7 +49,7 @@ def pages() -> list[tuple[Path, str]]:
 # ide-helper: …) oder kundenspezifisch (gf:, gosteli:, ballyana: …).
 ADMIN_NAMESPACES = {
     "anton", "media", "sip", "typesense", "resources",
-    "inge", "notification", "storage", "format-policy",
+    "inge", "notification", "storage", "format-policy", "contract",
 }
 # Admin-relevante Befehle ohne Namespace. Namenlose Befehle sind sonst
 # ausgeschlossen, weil dort Laravels eigene liegen (migrate, serve, tinker …).
