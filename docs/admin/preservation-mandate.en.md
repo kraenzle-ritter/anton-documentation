@@ -17,7 +17,7 @@ The following applies:
 - Formats (PRONOM IDs) and fonds (with everything below them) can be excluded.
 - Kränzle & Ritter asks only when a measure needs more storage than booked, and then the overall responsibility.
 
-Since the package costs, the **overall responsibility** confirms this decision.
+Since the package costs, the **overall responsibility** confirms this decision. Its confirmation counts as ordering the package on the page [Contract](contract.md), revoking as cancelling.
 
 **Own preservation strategy.** The archive carries digital preservation itself and describes its strategy (briefly, with a link to the document). Kränzle & Ritter does not look through the logs or evaluate format risks and migrates only on the archive's order. A contact person for **digital preservation** confirms this decision.
 

@@ -15,6 +15,8 @@ Die Vertragsdaten pflegt Kränzle & Ritter in anton-ansible; Anton liest sie nur
 
 Buchen, Kündigen und eine Speicherstufe gehen als [Bestätigung per Mail](contacts.md#bestatigung-per-mail) an die Ansprechpersonen für die Gesamtverantwortung. Die Bestellung gilt, sobald eine von ihnen bestätigt; die Mail nennt Modul, Preis und den Hinweis auf die Bedingungen der Offerte. Kränzle & Ritter richtet danach ein, was bestellt ist, und führt die Vertragsdaten nach. Bis dahin steht das Modul als «bestellt».
 
+Das Paket **Technische Betreuung** bucht man nicht hier, sondern mit dem [Erhaltungsauftrag](preservation-mandate.md) «Technische Betreuung»: Die Seite zeigt seinen Stand und verweist dorthin. Die Bestätigung des Auftrags gilt zugleich als Bestellung des Pakets, der Widerruf als Kündigung; die Gesamtverantwortung bestätigt also nur einmal.
+
 ## Nutzungsauszug
 
 Jeden Monat hält Anton einen Nutzungsauszug fest: belegter und gebuchter Speicher, Zahl der Medien und Konten, Kosten der [KI-Erschliessung](ai-cataloging.md) im Monat, Abo und was in Kraft war. Ein Monat wird einmal geschrieben und danach nicht mehr geändert. Die Auszüge stehen auf der Seite und lassen sich als CSV herunterladen; die Buchhaltung von Kränzle & Ritter holt sie über `GET /api/usage-statements`.

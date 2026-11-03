@@ -17,7 +17,7 @@ Dabei gilt:
 - Formate (PRONOM-IDs) und Bestände (mit allem darunter) lassen sich ausnehmen.
 - Nachgefragt wird nur, wenn eine Massnahme mehr Speicher braucht als gebucht; dann bei der Gesamtverantwortung.
 
-Weil das Paket kostet, bestätigt die **Gesamtverantwortung** diese Festlegung.
+Weil das Paket kostet, bestätigt die **Gesamtverantwortung** diese Festlegung. Ihre Bestätigung gilt zugleich als Bestellung des Pakets auf der Seite [Vertrag](contract.md), der Widerruf als Kündigung.
 
 **Eigene Erhaltungsstrategie.** Das Archiv trägt die digitale Archivierung selbst und beschreibt seine Strategie (kurz, mit Link auf das Dokument). Kränzle & Ritter sieht keine Protokolle durch, wertet keine Formatrisiken aus und migriert nur im Auftrag des Archivs. Diese Festlegung bestätigt eine Ansprechperson für **digitale Archivierung**.
 

@@ -15,6 +15,8 @@ Kränzle & Ritter keeps the contract data in anton-ansible; Anton only reads the
 
 Booking, cancelling and a storage tier go as a [confirmation by mail](contacts.md#confirmation-by-mail) to the contact persons for the overall responsibility. The order holds once one of them confirms; the mail names the module, the price and refers to the terms of the offer. Kränzle & Ritter then sets up what was ordered and updates the contract data. Until then the module shows as «ordered».
 
+The package **Technical care** is not booked here but with the [preservation mandate](preservation-mandate.md) «Technical care»: the page shows its state and links there. Confirming the mandate counts as ordering the package, revoking it as cancelling; the overall responsibility confirms once.
+
 ## Usage statement
 
 Every month Anton records a usage statement: storage in use and booked, number of media and accounts, the month's cost of [AI cataloguing](ai-cataloging.md), the plan and what was in force. A month is written once and not changed afterwards. The statements are on the page and can be downloaded as CSV; the accounts of Kränzle & Ritter fetch them over `GET /api/usage-statements`.
