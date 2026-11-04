@@ -1,6 +1,6 @@
 # Contract
 
-Under **Administration › Users and loans › Contract** the archive sees what it has booked, what it uses and what it ordered (since v0.118.0, anton#805). The page is for the overall responsibility: only accounts holding **Contract and contacts** see it and order there; everyone else does not see it in the menu either.
+Under **Administration › Responsibility and contract › Contract** the archive sees what it has booked, what it uses and what it ordered (since v0.118.0, anton#805). The page is for the overall responsibility: only accounts holding **Contract and contacts** see it and order there; everyone else does not see it in the menu either.
 
 ## What the page shows
 

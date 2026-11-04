@@ -1,6 +1,6 @@
 # Ansprechpersonen
 
-Unter **Administration › Benutzer und Ausleihen › Ansprechpersonen** hält das Archiv fest, wer wofür zuständig ist. Was Kosten verursacht oder die Erhaltung der Dateien betrifft, gilt erst, wenn eine dieser Personen es per Mail bestätigt hat.
+Unter **Administration › Zuständigkeit und Vertrag › Ansprechpersonen** hält das Archiv fest, wer wofür zuständig ist. Was Kosten verursacht oder die Erhaltung der Dateien betrifft, gilt erst, wenn eine dieser Personen es per Mail bestätigt hat.
 
 ## Funktionen
 

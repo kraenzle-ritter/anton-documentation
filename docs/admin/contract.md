@@ -1,6 +1,6 @@
 # Vertrag
 
-Unter **Administration › Benutzer und Ausleihen › Vertrag** steht, was das Archiv gebucht hat, was es belegt und was es bestellt hat (seit v0.118.0, anton#805). Die Seite ist für die Gesamtverantwortung: Sehen und bestellen können nur Konten mit der Befugnis **Vertrag und Ansprechpersonen**, alle anderen sehen sie auch im Menü nicht.
+Unter **Administration › Zuständigkeit und Vertrag › Vertrag** steht, was das Archiv gebucht hat, was es belegt und was es bestellt hat (seit v0.118.0, anton#805). Die Seite ist für die Gesamtverantwortung: Sehen und bestellen können nur Konten mit der Befugnis **Vertrag und Ansprechpersonen**, alle anderen sehen sie auch im Menü nicht.
 
 ## Was die Seite zeigt
 

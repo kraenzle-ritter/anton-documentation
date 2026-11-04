@@ -1,6 +1,6 @@
 # Preservation mandate
 
-Under **Administration › Digital preservation › Preservation mandate** the archive decides who looks after its files. Storage, backup, checks and reports belong to the base offer either way; the mandate settles who acts on the reports.
+Under **Administration › Responsibility and contract › Preservation mandate** the archive decides who looks after its files. Storage, backup, checks and reports belong to the base offer either way; the mandate settles who acts on the reports.
 
 ## Two decisions
 

@@ -1,6 +1,6 @@
 # Erhaltungsauftrag
 
-Unter **Administration › Digitale Archivierung › Erhaltungsauftrag** legt das Archiv fest, wer seine Dateien betreut. Speicher, Sicherung, Prüfungen und Berichte gehören in beiden Fällen zum Grundangebot; der Auftrag regelt, wer aus den Berichten heraus handelt.
+Unter **Administration › Zuständigkeit und Vertrag › Erhaltungsauftrag** legt das Archiv fest, wer seine Dateien betreut. Speicher, Sicherung, Prüfungen und Berichte gehören in beiden Fällen zum Grundangebot; der Auftrag regelt, wer aus den Berichten heraus handelt.
 
 ## Zwei Festlegungen
 

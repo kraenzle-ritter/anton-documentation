@@ -1,6 +1,6 @@
 # Contact persons
 
-Under **Administration › Users and loans › Contact persons** the archive records who answers for what. Whatever costs money or concerns the keeping of the files holds only once one of these people has confirmed it by mail.
+Under **Administration › Responsibility and contract › Contact persons** the archive records who answers for what. Whatever costs money or concerns the keeping of the files holds only once one of these people has confirmed it by mail.
 
 ## Functions
 
