@@ -229,7 +229,9 @@ The first rule, `tiff_zip`, repacks TIFF files losslessly as Deflate with
 predictor 2; it is off everywhere and does not apply to SIPs. The second,
 `pdfx_pdfa2b`, turns PDF/X into PDF/A-2b and applies only to `media:migrate`. Admins can also
 switch the rules in the interface, under
-[Format Policy](preservation.md#regeln-fuer-dateien).
+[Format Policy](preservation.md#regeln-fuer-dateien). Under the preservation mandate «Technical care» every switch, here
+or in the interface, writes a new version of the
+[strategy document](preservation-mandate.md#strategy-document), without a new confirmation.
 
 **`media:migrate`**{#mediamigrate} applies one of these rules to media already
 in Anton — TIFF masters ingested as LZW before the rule existed, say. The rule

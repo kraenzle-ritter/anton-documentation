@@ -232,7 +232,9 @@ Die erste Regel, `tiff_zip`, packt TIFF-Dateien verlustfrei nach Deflate mit
 Predictor 2 um; sie ist überall aus und gilt nicht für SIPs. Die zweite,
 `pdfx_pdfa2b`, macht PDF/X zu PDF/A-2b und gilt nur für `media:migrate`. Admins schalten
 die Regeln auch in der Oberfläche, unter
-[Format Policy](preservation.md#regeln-fuer-dateien).
+[Format Policy](preservation.md#regeln-fuer-dateien). Unter dem Erhaltungsauftrag «Technische Betreuung» schreibt jedes
+Umschalten, hier wie in der Oberfläche, eine neue Fassung des
+[Strategiedokuments](preservation-mandate.md#strategiedokument), ohne neue Bestätigung.
 
 **`media:migrate`**{#mediamigrate} wendet eine dieser Regeln auf Medien an, die
 schon in Anton liegen — etwa TIFF-Master, die vor der Regel als LZW eingeliefert
