@@ -38,7 +38,7 @@ anton-ansible legt die Daten je Installation als `customers/<slug>/contract.json
            "term": {"de": "jährlich, Kündigung drei Monate vor Ablauf"}},
   "operating_model": "A",
   "show_prices": true,
-  "storage": {"booked_gb": 50, "tiers": [{"gb": 100, "yearly": 300}]},
+  "storage": {"booked_gb": 250, "tiers": [{"gb": 500, "yearly": 2500}, {"gb": 1000, "yearly": 5000}]},
   "items": [
     {"key": "oai", "label": "OAI-PMH", "status": "included", "bookable": true, "price": {"yearly": 500}},
     {"key": "sru", "label": "Archives Online", "status": "available", "bookable": true, "price": {"once": 2500, "yearly": 500}},
@@ -53,4 +53,5 @@ anton-ansible legt die Daten je Installation als `customers/<slug>/contract.json
 | `bookable` | ob sich der Posten auf der Seite buchen oder kündigen lässt |
 | `price.once`, `price.yearly` | CHF; ohne Angabe «nach Offerte» |
 | `storage.booked_gb` | gebuchter Speicher; ohne Datei gilt die Einstellung `maximum_storage` |
+| `storage.tiers` | bestellbare Speicherstufen: `gb` ist der Speicher insgesamt, `yearly` der Aufpreis pro Jahr zum Abo. Die Rechnung ist immer Abo plus Speicherpaket; der Aufpreis ist der Preis dieser Speichermenge nach der Preistabelle abzüglich des Abopreises (Pro mit 250 GB: 500 GB für 7'500.– ergibt 2'500.–) |
 | `technical_care` | der Posten, an dem der [Erhaltungsauftrag](preservation-mandate.md) «Technische Betreuung» hängt |

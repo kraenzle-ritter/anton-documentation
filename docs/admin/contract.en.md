@@ -38,7 +38,7 @@ anton-ansible places the data per installation as `customers/<slug>/contract.jso
            "term": {"de": "jährlich, Kündigung drei Monate vor Ablauf"}},
   "operating_model": "A",
   "show_prices": true,
-  "storage": {"booked_gb": 50, "tiers": [{"gb": 100, "yearly": 300}]},
+  "storage": {"booked_gb": 250, "tiers": [{"gb": 500, "yearly": 2500}, {"gb": 1000, "yearly": 5000}]},
   "items": [
     {"key": "oai", "label": "OAI-PMH", "status": "included", "bookable": true, "price": {"yearly": 500}},
     {"key": "sru", "label": "Archives Online", "status": "available", "bookable": true, "price": {"once": 2500, "yearly": 500}},
@@ -53,4 +53,5 @@ anton-ansible places the data per installation as `customers/<slug>/contract.jso
 | `bookable` | whether the item can be booked or cancelled on the page |
 | `price.once`, `price.yearly` | CHF; without, «as offered» |
 | `storage.booked_gb` | booked storage; without a file the setting `maximum_storage` applies |
+| `storage.tiers` | storage tiers that can be ordered: `gb` is the storage in all, `yearly` the surcharge per year on top of the plan. The bill is always plan plus storage package; the surcharge is the price of that storage in the price table less the plan's price (Pro with 250 GB: 500 GB at 7,500.– gives 2,500.–) |
 | `technical_care` | the item the [preservation mandate](preservation-mandate.md) «Technical care» depends on |
