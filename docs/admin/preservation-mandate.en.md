@@ -16,10 +16,25 @@ The following applies:
 - Measures that discard the delivered file (such as `tiff_zip`) are included only if the archive ticks them.
 - Formats (PRONOM IDs) and fonds (with everything below them) can be excluded.
 - Kränzle & Ritter asks only when a measure needs more storage than booked, and then the overall responsibility.
+- For ingest the archive decides whether the delivered file is kept beside a conversion (default: no, the conversion replaces it where the rule says so) and whether damaged or unreadable files are taken in and reported or refused (default: taken in and reported).
+- Kränzle & Ritter reports damaged or missing files within a period the archive sets in days (default: 5 days).
 
 Since the package costs, the **overall responsibility** confirms this decision. Its confirmation counts as ordering the package on the page [Contract](contract.md), revoking as cancelling.
 
-**Own preservation strategy.** The archive carries digital preservation itself and describes its strategy (briefly, with a link to the document). Kränzle & Ritter does not look through the logs or evaluate format risks and migrates only on the archive's order. A contact person for **digital preservation** confirms this decision.
+**Own preservation strategy.** The archive carries digital preservation itself and describes its strategy: briefly, with a link to the document, or as a [strategy document](#strategy-document) in JSON. Kränzle & Ritter does not look through the logs or evaluate format risks and migrates only on the archive's order. A contact person for **digital preservation** confirms this decision.
+
+## Strategy document
+
+Every decision has a machine-readable strategy document following schema 1 of [kraenzle-ritter/preservation-strategy](https://github.com/kraenzle-ritter/preservation-strategy). Anton keeps it byte for byte as it was confirmed, together with its SHA-256 checksum.
+
+- **Technical care:** Anton writes the document itself, from Kränzle & Ritter's template, the archive's choices on the page, the booked packages and the format rules as they apply to the archive. A rule that works on ingest appears as an ingest rule, in force as its switch stands; a rule `media:migrate` may apply appears as a preservation rule.
+- **Own preservation strategy:** The archive can upload its document as a JSON file (at most 1 MB). The short description is then optional. Anton checks the file against the schema and refuses it with the errors found if it is invalid, written for the other decision (`variant` must be `own`) or excludes fonds this Anton does not hold. The document names fonds by their permanent address `https://<archive>/id/<uuid>`. Exclusions, lossy measures and the version are taken from the file.
+
+The confirmation mail summarises the document and names its version and checksum. All admins can download the document of the decision in force and of every earlier one (JSON, with the checksum in the header `X-Content-SHA256`). Every migration resting on the preservation mandate names, in the [PREMIS rights statement](export-matrix.md), the version and checksum of the document in force at that time.
+
+Under technical care a new confirmation is needed only when the archive changes its choices: decision, lossy measures, exclusions, ingest or reporting period. When Kränzle & Ritter changes or switches a format rule, Anton writes a new version of the document under the same confirmation; the list of decisions shows it as a row of its own. The security log records every new version. If nothing changes, no new version is written.
+
+Decisions from Anton 0.118.0 have no document yet. They keep holding and get one with their next confirmation.
 
 ## Granting, confirming, revoking
 

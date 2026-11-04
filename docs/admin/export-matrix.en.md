@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **3 November 2026**. It is
+    This matrix reflects the state of **4 November 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -34,6 +34,7 @@ or exchange view.**
 | Excel (update table) | XLSX | Result list, **only writable fields**, re-importable | Result list → Export → Update |
 | Word / PDF | DOCX / PDF | Finding aid per object | Button on the record |
 | Paper | HTML print view | Result list (max. 1000) | Result list |
+| Preservation strategy | `preservation-strategy` schema 1 (JSON) | one decision of the preservation mandate, **bytes as confirmed**, with SHA-256 | Admin → Digital preservation → Preservation mandate |
 | **SQL dump** | mysqldump (gzip) | **whole tenant database** — without sessions, job queues and caches, API and upload tokens empty | Admin → Export |
 
 ## Entity matrix
@@ -160,6 +161,7 @@ host it publicly.
 |---|---|
 | SQL dump | **yes** — Admin → Export |
 | EAD, TEI, RDF (standard), A+ bundle (standard), DIP, E-ARK DIP (access), OCFL, Excel, Word/PDF | **yes** |
+| Preservation strategy (JSON) | **yes** — all admins, Admin → Digital preservation → Preservation mandate |
 | E-ARK DIP full (`--full`) | **no** — CLI only |
 | A+ bundle with `--include-protected` / `--include-originals` | **no** — the UI and the API do not pass the switches through, CLI only |
 | Native round trip (`anton:export-native` / `anton:import-native`) | **no** — a pure CLI command |
@@ -185,7 +187,7 @@ only institution, objects, instantiations and around eight text field types.
 
 **E-ARK DIP** (anton#697) comes in two scopes. *Access* is a publication view: what a guest may see, whoever exports — locked records and drafts are left out with their subtree, records under a protection period keep their description but not their media, private media are left out. The media are access copies (`web`) in representation `access`, described in EAD3 or EAD 2002 (setting `eark_dip_ead`), optionally also RiC-O and CIDOC CRM as Turtle (`eark_dip_rdf`). PREMIS names each representation's function and each file's source, without events and without persons. *Full* (`--full`, CLI only) is a hand-over like DIP and OCFL: every record, masters in `master`, kept originals in `original`, plus the native format (`anton-native`), PREMIS per record and the Word finding aid. Every package is validated before it is delivered; an invalid one is not delivered. See [DIP download](download-dip.md#e-ark-dip).
 
-**DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL: `metadata/premis.xml`, native: `premis/<record>.xml`). It lists the files and kept originals with MD5/SHA-512, size and PRONOM format, every event on the media (virus check, integrity and format checks, format identification, format rules, transfer to the cloud, ingest with the person who acted) and the tools involved with their version. A format rule at ingest is a *normalization* and names as implementer whoever added the medium; `media:migrate` is a *migration* and names the account that started the run, as `<account>@cli`. Every other event names, since version 0.117.0, whoever set it off (person, `<account>@cli:<command>` or `job:<class>`); older events name only the tool (anton#794). A file a format rule replaced without keeping it is an object of its own without a file, with the checksums, size and format the rule recorded before converting; the medium refers to it as its source (anton#751). Since version 0.118.0 each migration has a rights statement (*rightsStatement*, act «migrate») naming its ground: preservation mandate, confirmation by mail or agreement made outside Anton, linked to the migrated files, with the archive as grantor and Kränzle & Ritter as grantee (anton#807). There is no METS. The ZH variant of the DIP contains only media files, no metadata and no PREMIS.
+**DIP, OCFL and native round trip** carry a **PREMIS 3 file** per record with media since anton#661 (DIP: `data/meta/<record>.premis.xml`, OCFL: `metadata/premis.xml`, native: `premis/<record>.xml`). It lists the files and kept originals with MD5/SHA-512, size and PRONOM format, every event on the media (virus check, integrity and format checks, format identification, format rules, transfer to the cloud, ingest with the person who acted) and the tools involved with their version. A format rule at ingest is a *normalization* and names as implementer whoever added the medium; `media:migrate` is a *migration* and names the account that started the run, as `<account>@cli`. Every other event names, since version 0.117.0, whoever set it off (person, `<account>@cli:<command>` or `job:<class>`); older events name only the tool (anton#794). A file a format rule replaced without keeping it is an object of its own without a file, with the checksums, size and format the rule recorded before converting; the medium refers to it as its source (anton#751). Since version 0.118.0 each migration has a rights statement (*rightsStatement*, act «migrate») naming its ground: preservation mandate, confirmation by mail or agreement made outside Anton, linked to the migrated files, with the archive as grantor and Kränzle & Ritter as grantee (anton#807). Since version 0.119.0 a statement resting on the preservation mandate also names the version and SHA-256 of the strategy document in force at the time of the migration (`strategy <version> sha256 <checksum>`); for decisions without a document this is left out. There is no METS. The ZH variant of the DIP contains only media files, no metadata and no PREMIS.
 
 **The two Excel exports pursue opposite purposes.** The *full* export is an
 evaluation view: it takes along everything that can be represented flatly and
@@ -269,6 +271,8 @@ Every export goes by record. A medium whose record has been deleted but which is
 - `anton:export-dip --format=eark --full`: once per run in the target folder, `<slug>-media-without-record.csv`.
 
 With no such media, no list is written. What happens to the files is the archive's decision; `anton:audit-orphans --only=media` shows them at any time, and the daily report `anton:review-logs` reports media left over after their record was deleted.
+
+**Preservation strategy** (anton#807): For every decision of the [preservation mandate](preservation-mandate.md#strategy-document) Anton hands out the strategy document as JSON, byte for byte as it was confirmed; the header `X-Content-SHA256` carries the checksum that also stands in the PREMIS rights statement. The document describes the decision, not the holdings, and is therefore no backup of the data. The confirmation itself (who, when) is held only in the database.
 
 ## The essence
 
