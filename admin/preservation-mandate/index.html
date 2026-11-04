@@ -3674,6 +3674,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#strategiedokument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategiedokument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#erteilen-bestatigen-widerrufen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4536,6 +4547,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#strategiedokument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategiedokument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#erteilen-bestatigen-widerrufen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4574,7 +4596,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation-mandate/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-03</span>
+        <span class="page-meta__date">Last updated: 2026-11-04</span>
     </div>
   
   
@@ -4600,9 +4622,20 @@
 <li>Massnahmen, die die übernommene Datei verwerfen (etwa <code>tiff_zip</code>), gehören nur dazu, wenn das Archiv das ankreuzt.</li>
 <li>Formate (PRONOM-IDs) und Bestände (mit allem darunter) lassen sich ausnehmen.</li>
 <li>Nachgefragt wird nur, wenn eine Massnahme mehr Speicher braucht als gebucht; dann bei der Gesamtverantwortung.</li>
+<li>Für die Übernahme legt das Archiv fest, ob die gelieferte Datei neben einer Umwandlung erhalten bleibt (Vorgabe: nein, die Umwandlung ersetzt sie, wo die Regel es vorsieht) und ob beschädigte oder unlesbare Dateien übernommen und gemeldet oder zurückgewiesen werden (Vorgabe: übernehmen und melden).</li>
+<li>Beschädigte oder fehlende Dateien meldet Kränzle &amp; Ritter innert einer Frist, die das Archiv in Tagen festlegt (Vorgabe: 5 Tage).</li>
 </ul>
 <p>Weil das Paket kostet, bestätigt die <strong>Gesamtverantwortung</strong> diese Festlegung. Ihre Bestätigung gilt zugleich als Bestellung des Pakets auf der Seite <a href="../contract/">Vertrag</a>, der Widerruf als Kündigung.</p>
-<p><strong>Eigene Erhaltungsstrategie.</strong> Das Archiv trägt die digitale Archivierung selbst und beschreibt seine Strategie (kurz, mit Link auf das Dokument). Kränzle &amp; Ritter sieht keine Protokolle durch, wertet keine Formatrisiken aus und migriert nur im Auftrag des Archivs. Diese Festlegung bestätigt eine Ansprechperson für <strong>digitale Archivierung</strong>.</p>
+<p><strong>Eigene Erhaltungsstrategie.</strong> Das Archiv trägt die digitale Archivierung selbst und beschreibt seine Strategie: kurz, mit Link auf das Dokument, oder als <a href="#strategiedokument">Strategiedokument</a> im JSON-Format. Kränzle &amp; Ritter sieht keine Protokolle durch, wertet keine Formatrisiken aus und migriert nur im Auftrag des Archivs. Diese Festlegung bestätigt eine Ansprechperson für <strong>digitale Archivierung</strong>.</p>
+<h2 id="strategiedokument">Strategiedokument<a class="headerlink" href="#strategiedokument" title="Permanent link">&para;</a></h2>
+<p>Jede Festlegung hat ein maschinenlesbares Strategiedokument nach dem Schema 1 von <a href="https://github.com/kraenzle-ritter/preservation-strategy">kraenzle-ritter/preservation-strategy</a>. Anton bewahrt es Byte für Byte auf, wie es bestätigt wurde, zusammen mit seiner SHA-256-Prüfsumme.</p>
+<ul>
+<li><strong>Technische Betreuung:</strong> Anton schreibt das Dokument selbst, aus der Vorlage von Kränzle &amp; Ritter, den Angaben des Archivs auf der Seite, den gebuchten Paketen und den Formatregeln, wie sie für das Archiv gelten. Eine Regel, die bei der Übernahme wirkt, steht darin als Regel der Übernahme, so wie ihr Schalter steht; eine Regel, die <code>media:migrate</code> anwenden darf, als Regel der Erhaltung.</li>
+<li><strong>Eigene Erhaltungsstrategie:</strong> Das Archiv kann sein Dokument als JSON-Datei hochladen (höchstens 1 MB). Dann ist die Kurzbeschreibung wahlfrei. Anton prüft die Datei gegen das Schema und weist sie mit den gefundenen Fehlern zurück, wenn sie ungültig ist, für die andere Festlegung geschrieben ist (<code>variant</code> muss <code>own</code> sein) oder Bestände ausnimmt, die es in diesem Anton nicht gibt. Bestände nennt das Dokument mit ihrer dauerhaften Adresse <code>https://&lt;archiv&gt;/id/&lt;uuid&gt;</code>. Ausschlüsse, verlustbehaftete Massnahmen und die Fassung übernimmt Anton aus der Datei.</li>
+</ul>
+<p>Die Bestätigungsmail fasst das Dokument zusammen und nennt Fassung und Prüfsumme. Alle Admins können das Dokument der geltenden und jeder früheren Festlegung herunterladen (JSON, mit der Prüfsumme im Kopf <code>X-Content-SHA256</code>). Jede Migration, die auf dem Erhaltungsauftrag beruht, nennt im <a href="../export-matrix/">PREMIS-Rechte-Eintrag</a> Fassung und Prüfsumme des Dokuments, das zu diesem Zeitpunkt galt.</p>
+<p>Bei der technischen Betreuung braucht es eine neue Bestätigung nur, wenn das Archiv etwas an seinen Angaben ändert: Festlegung, verlustbehaftete Massnahmen, Ausschlüsse, Übernahme oder Meldefrist. Ändert Kränzle &amp; Ritter eine Formatregel oder schaltet eine um, schreibt Anton eine neue Fassung des Dokuments unter derselben Bestätigung; die Liste der Festlegungen zeigt sie als eigene Zeile. Das Sicherheitsprotokoll hält jede neue Fassung fest. Bleibt alles gleich, entsteht keine neue Fassung.</p>
+<p>Festlegungen aus Anton 0.118.0 haben noch kein Dokument. Sie gelten weiter und erhalten eines mit der nächsten Bestätigung.</p>
 <h2 id="erteilen-bestatigen-widerrufen">Erteilen, bestätigen, widerrufen<a class="headerlink" href="#erteilen-bestatigen-widerrufen" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Festlegen können Konten mit der Befugnis <strong>Digitale Archivierung ändern</strong>; ansehen können die Seite alle Admins.</li>
