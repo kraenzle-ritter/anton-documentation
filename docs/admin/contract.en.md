@@ -1,10 +1,10 @@
 # Contract
 
-Under **Administration › Users and loans › Contract** the archive sees what it has booked, what it uses and what it ordered (since v0.118.0, anton#805). All admins see the page; accounts holding **Contract and contacts** can order.
+Under **Administration › Users and loans › Contract** the archive sees what it has booked, what it uses and what it ordered (since v0.118.0, anton#805). The page is for the overall responsibility: only accounts holding **Contract and contacts** see it and order there; everyone else does not see it in the menu either.
 
 ## What the page shows
 
-- **Plan:** tier, since when, term and notice, operation (Anton as a Service, own server, DIMAG).
+- **Plan:** tier, since when, term and notice, operation (Anton as a Service, own server, DIMAG), and the next plan with its storage and price.
 - **Storage:** booked and in use. Counted are the masters and the [kept versions](preservation.md#behaltene-originale), from the database. Beside it stands the whole directory as Anton measures it at night, with derivatives and caches.
 - **Modules and packages:** each with its status (included, booked, available) and price.
 - **Orders** and **usage statements**.
@@ -13,9 +13,11 @@ Kränzle & Ritter keeps the contract data in anton-ansible; Anton only reads the
 
 ## Ordering
 
-Booking, cancelling and a storage tier go as a [confirmation by mail](contacts.md#confirmation-by-mail) to the contact persons for the overall responsibility. The order holds once one of them confirms; the mail names the module, the price and refers to the terms of the offer. Kränzle & Ritter then sets up what was ordered and updates the contract data. Until then the module shows as «ordered».
+Booking, cancelling, a storage tier and the switch to the next plan go as a [confirmation by mail](contacts.md#confirmation-by-mail) to the contact persons for the overall responsibility. The order holds once one of them confirms; the mail names the module, the price and refers to the terms of the offer. Kränzle & Ritter then sets up what was ordered and updates the contract data. Until then the module shows as «ordered».
 
 The package **Technical care** is not booked here but with the [preservation mandate](preservation-mandate.md) «Technical care»: the page shows its state and links there. Confirming the mandate counts as ordering the package, revoking it as cancelling; the overall responsibility confirms once.
+
+A storage tier names the storage in all and its price in all per year, as the price list has it. The page splits it into plan and storage package, for instance «500 GB storage in all – CHF 7’500.– per year (plan CHF 5’000.–, storage package CHF 2’500.–)».
 
 ## Usage statement
 
@@ -34,11 +36,14 @@ anton-ansible places the data per installation as `customers/<slug>/contract.jso
 {
   "schema": 1,
   "updated": "2026-11-03",
-  "plan": {"key": "pro", "label": {"de": "Pro"}, "since": "2024-01-01",
+  "plan": {"key": "standard", "label": {"de": "Standard"}, "since": "2024-01-01", "yearly": 3000,
            "term": {"de": "jährlich, Kündigung drei Monate vor Ablauf"}},
+  "plans": [{"key": "basic", "label": "Basic", "gb": 5, "yearly": 1000},
+            {"key": "standard", "label": "Standard", "gb": 50, "yearly": 3000},
+            {"key": "pro", "label": "Pro", "gb": 250, "yearly": 5000}],
   "operating_model": "A",
   "show_prices": true,
-  "storage": {"booked_gb": 250, "tiers": [{"gb": 500, "yearly": 2500}, {"gb": 1000, "yearly": 5000}]},
+  "storage": {"booked_gb": 50, "tiers": [{"gb": 100, "yearly": 4800}, {"gb": 500, "yearly": 7500}]},
   "items": [
     {"key": "oai", "label": "OAI-PMH", "status": "included", "bookable": true, "price": {"yearly": 500}},
     {"key": "sru", "label": "Archives Online", "status": "available", "bookable": true, "price": {"once": 2500, "yearly": 500}},
@@ -53,5 +58,7 @@ anton-ansible places the data per installation as `customers/<slug>/contract.jso
 | `bookable` | whether the item can be booked or cancelled on the page |
 | `price.once`, `price.yearly` | CHF; without, «as offered» |
 | `storage.booked_gb` | booked storage; without a file the setting `maximum_storage` applies |
-| `storage.tiers` | storage tiers that can be ordered: `gb` is the storage in all, `yearly` the surcharge per year on top of the plan. The bill is always plan plus storage package; the surcharge is the price of that storage in the price table less the plan's price (Pro with 250 GB: 500 GB at 7,500.– gives 2,500.–) |
+| `plan.yearly` | the plan's price per year; with it the page splits a storage tier's price into plan and storage package |
+| `plans` | the plans in their order, each with `gb` and `yearly`; the page offers the one after the current plan |
+| `storage.tiers` | storage tiers that can be ordered: `gb` is the storage in all, `yearly` its price in all per year from the price list (`anton_preise.xlsx`) |
 | `technical_care` | the item the [preservation mandate](preservation-mandate.md) «Technical care» depends on |
