@@ -2358,6 +2358,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#contract-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        contract: (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#format-policy-3" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2478,7 +2489,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-01</span>
+        <span class="page-meta__date">Last updated: 2026-11-03</span>
     </div>
   
   
@@ -2716,8 +2727,20 @@ php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span cla
     --probe              Die Regel an Kopien der Master ausprobieren, je Medium
                          berichten; ändert nichts
     --report=            Mit --probe: den Bericht zusätzlich als CSV schreiben
+    --request-approval   Das Archiv per Mail um Freigabe dieser Massnahme
+                         bitten; ändert nichts
+    --approval=          Mit --write: die Nummer der bestätigten Freigabe
+    --agreement=         Mit --write: wo eine Vereinbarung ausserhalb von Anton
+                         festgehalten ist, z. B. "Mail vom 02.11.2026"
     --write              Umpacken (ohne: nur berichten)
 </code></pre></div>
+<p><strong>Nur mit Grundlage.</strong> Seit v0.118.0 läuft <code>--write</code> nur, wenn etwas die Massnahme deckt (anton#807):</p>
+<ul>
+<li>der <a href="../preservation-mandate/">Erhaltungsauftrag</a> «Technische Betreuung». Er deckt eine Massnahme, die das Original behält (oder die es verwirft, wenn das Archiv das eingeschlossen hat), lässt ausgenommene Formate und Bestände aus und gilt nur, solange der gebuchte Speicher (<code>maximum_storage</code>) reicht. Geschätzt wird der Mehrbedarf mit der Grösse der betroffenen Master, wenn das Original bleibt;</li>
+<li>ein Auftrag des Archivs für genau diese Medien, den <code>--request-approval</code> per Mail angefragt und eine Ansprechperson bestätigt hat (<code>--approval=&lt;nummer&gt;</code>). Die Anfrage geht an die Ansprechpersonen für digitale Archivierung, an die Gesamtverantwortung, wenn die Massnahme über den gebuchten Speicher hinausgeht;</li>
+<li>eine Vereinbarung ausserhalb von Anton, die der Lauf mit <code>--agreement</code> nennt.</li>
+</ul>
+<p>Ohne Grundlage bricht der Befehl ab und ändert nichts. Jedes Ereignis nennt die Grundlage unter <code>migration.authorization</code>; der <a href="../protokolle/">Monatsbericht</a> zählt die Massnahmen je Regel und Grundlage.</p>
 <p>Ohne <code>--write</code> sagt der Befehl nur, wie viele Medien die Regel träfe. Mit
 <code>--write</code> legt er das Ergebnis neben den Master, prüft es und tauscht Datei und
 Prüfsummen in einem Schritt; schlägt etwas fehl, bleibt der alte Master. Jedes
@@ -3221,6 +3244,21 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:upwd</code></td>
 <td>Set the password of an account; without the password argument it is asked for hidden.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="contract-1">contract: (1)<a class="headerlink" href="#contract-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Befehl</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract:usage-statement</code></td>
+<td>Write the monthly usage statement for the invoice: storage, media, accounts, AI cost, booked i…</td>
 </tr>
 </tbody>
 </table>

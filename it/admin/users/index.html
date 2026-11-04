@@ -2329,7 +2329,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/users/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-11-03</span>
     </div>
   
   
@@ -2425,6 +2425,11 @@ hat, wer die Mindestrolle <strong>und</strong> die Befugnis hat.</p>
 <td>Eigene API-Tokens im Profil (Tab <strong>Sicherheit</strong>) erstellen und widerrufen</td>
 <td><code>user</code></td>
 </tr>
+<tr>
+<td>Vertrag und Ansprechpersonen</td>
+<td>Die <a href="../contacts/">Ansprechpersonen</a> bestimmen und für die Gesamtverantwortung bestätigen (seit v0.118.0)</td>
+<td><code>admin</code></td>
+</tr>
 </tbody>
 </table>
 <p>Befugnisse vergeben Superuser und Admins mit der Befugnis <strong>Benutzer:innen und
@@ -2434,6 +2439,7 @@ steht im Sicherheitsprotokoll.</p>
 <p>Bei der Umstellung erhielten alle Admins alle Befugnisse und alle Editor:innen
 <strong>Ausleihe verwalten</strong>; es änderte sich also nichts, bis ein Archiv Befugnisse
 entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.</p>
+<p><strong>Vertrag und Ansprechpersonen</strong> steht für die Gesamtverantwortung und wird anders vergeben: nur von Superusern und Konten, die sie selbst haben; die Befugnis <strong>Benutzer:innen und Befugnisse verwalten</strong> allein genügt nicht. Dem letzten Konto, das sie hat, lässt sie sich nicht entziehen. Mit dem Update erhält sie niemand; die erste Person bestimmt Kränzle &amp; Ritter mit dem Archiv.</p>
 <div class="admonition tip">
 <p class="admonition-title">Konto sperren statt löschen</p>
 <p><code>blocked</code> ist der richtige Weg für Konten, die nicht mehr genutzt werden.
