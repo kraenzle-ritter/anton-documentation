@@ -4608,7 +4608,7 @@
 
 
 <h1 id="preservation-mandate">Preservation mandate<a class="headerlink" href="#preservation-mandate" title="Permanent link">&para;</a></h1>
-<p>Under <strong>Administration › Digital preservation › Preservation mandate</strong> the archive decides who looks after its files. Storage, backup, checks and reports belong to the base offer either way; the mandate settles who acts on the reports.</p>
+<p>Under <strong>Administration › Responsibility and contract › Preservation mandate</strong> the archive decides who looks after its files. Storage, backup, checks and reports belong to the base offer either way; the mandate settles who acts on the reports.</p>
 <h2 id="two-decisions">Two decisions<a class="headerlink" href="#two-decisions" title="Permanent link">&para;</a></h2>
 <p><strong>Technical care by Kränzle &amp; Ritter</strong> (package «Technical care»). Kränzle &amp; Ritter</p>
 <ul>
@@ -4623,10 +4623,10 @@
 <li>Formats (PRONOM IDs) and fonds (with everything below them) can be excluded.</li>
 <li>Kränzle &amp; Ritter asks only when a measure needs more storage than booked, and then the overall responsibility.</li>
 <li>For ingest the archive decides whether the delivered file is kept beside a conversion (default: no, the conversion replaces it where the rule says so) and whether damaged or unreadable files are taken in and reported or refused (default: taken in and reported).</li>
-<li>Kränzle &amp; Ritter reports damaged or missing files within a period the archive sets in days (default: 5 days).</li>
 </ul>
+<p>The principle: Anton keeps every file as it was taken in. Kränzle &amp; Ritter migrates formats at risk into archival formats, such as print files to PDF/A, and only once the risk calls for it; migrations held in reserve cost storage and computing time without making the files any safer. The file taken in stays as a kept version, and the migration can be undone. Kränzle &amp; Ritter checks every migration page by page and image by image, with checksums recorded before and after. A deliberate exception, which the archive can allow, is the lossless repacking of TIFF files (Deflate with predictor): Anton compares the pixels of every page before and after, and since the image content verifiably stays the same, it does not keep the delivered file. That saves storage and so costs.</p>
 <p>Since the package costs, the <strong>overall responsibility</strong> confirms this decision. Its confirmation counts as ordering the package on the page <a href="../contract/">Contract</a>, revoking as cancelling.</p>
-<p><strong>Own preservation strategy.</strong> The archive carries digital preservation itself and describes its strategy: briefly, with a link to the document, or as a <a href="#strategy-document">strategy document</a> in JSON. Kränzle &amp; Ritter does not look through the logs or evaluate format risks and migrates only on the archive's order. A contact person for <strong>digital preservation</strong> confirms this decision.</p>
+<p><strong>Own preservation strategy.</strong> The archive carries digital preservation itself and describes its strategy: briefly, with a link to the document, or as a <a href="#strategy-document">strategy document</a> in JSON. Kränzle &amp; Ritter does not look through the logs or evaluate format risks and migrates only on the archive's order. If asked, Kränzle &amp; Ritter helps to work out and file the strategy. A contact person for <strong>digital preservation</strong> confirms this decision.</p>
 <h2 id="strategy-document">Strategy document<a class="headerlink" href="#strategy-document" title="Permanent link">&para;</a></h2>
 <p>Every decision has a machine-readable strategy document following schema 1 of <a href="https://github.com/kraenzle-ritter/preservation-strategy">kraenzle-ritter/preservation-strategy</a>. Anton keeps it byte for byte as it was confirmed, together with its SHA-256 checksum.</p>
 <ul>
@@ -4634,7 +4634,7 @@
 <li><strong>Own preservation strategy:</strong> The archive can upload its document as a JSON file (at most 1 MB). The short description is then optional. Anton checks the file against the schema and refuses it with the errors found if it is invalid, written for the other decision (<code>variant</code> must be <code>own</code>) or excludes fonds this Anton does not hold. The document names fonds by their permanent address <code>https://&lt;archive&gt;/id/&lt;uuid&gt;</code>. Exclusions, lossy measures and the version are taken from the file.</li>
 </ul>
 <p>The confirmation mail summarises the document and names its version and checksum. All admins can download the document of the decision in force and of every earlier one (JSON, with the checksum in the header <code>X-Content-SHA256</code>). Every migration resting on the preservation mandate names, in the <a href="../export-matrix/">PREMIS rights statement</a>, the version and checksum of the document in force at that time.</p>
-<p>Under technical care a new confirmation is needed only when the archive changes its choices: decision, lossy measures, exclusions, ingest or reporting period. When Kränzle &amp; Ritter changes or switches a format rule, Anton writes a new version of the document under the same confirmation; the list of decisions shows it as a row of its own. The security log records every new version. If nothing changes, no new version is written.</p>
+<p>Under technical care a new confirmation is needed only when the archive changes its choices: decision, lossy measures, exclusions or ingest. When Kränzle &amp; Ritter changes or switches a format rule, Anton writes a new version of the document under the same confirmation; the list of decisions shows it as a row of its own. The security log records every new version. If nothing changes, no new version is written.</p>
 <p>Decisions from Anton 0.118.0 have no document yet. They keep holding and get one with their next confirmation.</p>
 <h2 id="granting-confirming-revoking">Granting, confirming, revoking<a class="headerlink" href="#granting-confirming-revoking" title="Permanent link">&para;</a></h2>
 <ul>
