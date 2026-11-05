@@ -92,7 +92,7 @@ décrite ci-dessus. Aucune démarche manuelle par lien n'est nécessaire ; la
 synchronisation récurrente récupère automatiquement les associations
 nouvellement disponibles.
 
-## Notices provisoires {#provisional-records}
+## Notices provisoires {#vorlaufige-eintrage}
 
 Lorsqu'un import SIP ne trouve pas un acteur, un lieu ou un mot-clé, il crée la notice à titre provisoire. Le journal d'import la mentionne. Dans les listes des notices d'autorité, l'interrupteur « Seulement les notices provisoires » affiche ces notices ; il apparaît dès qu'il en existe.
 

@@ -86,7 +86,7 @@ allineamento** – ossia grazie all'esecuzione pianificata descritta sopra. Non 
 richiesta alcuna procedura manuale per singolo link; l'allineamento ricorrente
 recupera automaticamente i collegamenti resi disponibili.
 
-## Record provvisori {#provisional-records}
+## Record provvisori {#vorlaufige-eintrage}
 
 Se un'importazione SIP non trova un attore, un luogo o una parola chiave, crea il record come provvisorio. Il protocollo d'importazione lo elenca. Negli elenchi dei dati d'autorità, l'interruttore «Solo i record provvisori» mostra questi record; compare non appena ve ne sono.
 
