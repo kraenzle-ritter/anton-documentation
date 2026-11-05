@@ -83,6 +83,12 @@ beschriebenen, geplanten Lauf. Es ist kein manuelles Vorgehen pro Link
 erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
 Verknüpfungen automatisch nach.
 
+## Vorläufige Einträge
+
+Findet ein SIP-Import eine Akteur:in, einen Ort oder ein Schlagwort nicht, legt er den Eintrag als vorläufig an. Das Importprotokoll listet ihn auf. In den Listen der Normdaten zeigt der Schalter «Nur vorläufige Einträge» diese Einträge; er erscheint, sobald es solche gibt.
+
+Auf der Seite des Eintrags steht der Hinweis, dass er mit einer Lieferung kam und noch nicht geprüft ist. Mit «Bestätigen» entfernt eine Bearbeiter:in die Markierung. Der Hinweis und der Schalter sind für die Öffentlichkeit nicht sichtbar. Der native Export trägt die Markierung nicht mit: Nach einem Wiederimport ist sie weg.
+
 ## Zusammengefasst
 
 - Externe Links werden lokal gespeichert und von dort angezeigt.

@@ -49,8 +49,9 @@ coppia di frecce (↑ ↓). Un clic sposta il media di una posizione all'interno
 della propria raccolta. Per il primo e per l'ultimo media la rispettiva freccia
 è disattivata.
 
-L'ordine vale per la visualizzazione nel catalogo, nella galleria e nel
-visualizzatore — è lo stesso ordine attribuito al momento del caricamento.
+L'ordine vale per la galleria dell'unità di descrizione e per l'anteprima nell'elenco: entrambe iniziano con il primo media. Un media appena caricato va in fondo.
+
+La galleria generale di tutte le unità di descrizione mostra per primi i più recenti. L'anteprima nei risultati della ricerca V2 non segue ancora le frecce.
 
 Immagini e documenti vengono ordinati separatamente: un'immagine non può
 scambiare il proprio posto con un documento.

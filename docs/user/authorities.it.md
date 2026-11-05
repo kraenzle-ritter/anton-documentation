@@ -86,6 +86,12 @@ allineamento** – ossia grazie all'esecuzione pianificata descritta sopra. Non 
 richiesta alcuna procedura manuale per singolo link; l'allineamento ricorrente
 recupera automaticamente i collegamenti resi disponibili.
 
+## Record provvisori {#vorlaufige-eintrage}
+
+Se un'importazione SIP non trova un attore, un luogo o una parola chiave, crea il record come provvisorio. Il protocollo d'importazione lo elenca. Negli elenchi dei dati d'autorità, l'interruttore «Solo i record provvisori» mostra questi record; compare non appena ve ne sono.
+
+La pagina del record indica che proviene da una consegna e non è ancora stata verificata. Con «Conferma», chi modifica rimuove il contrassegno. L'avviso e l'interruttore non sono visibili al pubblico. L'esportazione nativa non riporta il contrassegno: dopo una reimportazione è sparito.
+
 ## In sintesi
 
 - I link esterni vengono salvati localmente e mostrati a partire da lì.

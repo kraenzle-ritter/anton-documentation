@@ -92,6 +92,12 @@ décrite ci-dessus. Aucune démarche manuelle par lien n'est nécessaire ; la
 synchronisation récurrente récupère automatiquement les associations
 nouvellement disponibles.
 
+## Notices provisoires {#vorlaufige-eintrage}
+
+Lorsqu'un import SIP ne trouve pas un acteur, un lieu ou un mot-clé, il crée la notice à titre provisoire. Le journal d'import la mentionne. Dans les listes des notices d'autorité, l'interrupteur « Seulement les notices provisoires » affiche ces notices ; il apparaît dès qu'il en existe.
+
+La page de la notice indique qu'elle provient d'une livraison et n'a pas encore été vérifiée. Avec « Confirmer », la personne qui édite retire le marquage. L'indication et l'interrupteur ne sont pas visibles du public. L'export natif ne reprend pas ce marquage : après une réimportation, il a disparu.
+
 ## En résumé
 
 - Les liens externes sont enregistrés localement et affichés depuis là.
