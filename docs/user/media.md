@@ -49,8 +49,9 @@ Pfeiltasten (↑ ↓). Ein Klick verschiebt das Medium um eine Position innerhal
 seiner Sammlung. Beim ersten und beim letzten Medium ist die jeweilige Taste
 deaktiviert.
 
-Die Reihenfolge gilt für die Anzeige im Katalog, in der Galerie und im
-Viewer — es ist dieselbe Reihenfolge, die beim Hochladen vergeben wird.
+Die Reihenfolge gilt für die Galerie der Verzeichnungseinheit und für das Vorschaubild in der Liste: Beide beginnen mit dem ersten Medium. Ein neu hochgeladenes Medium kommt ans Ende.
+
+Die allgemeine Galerie über alle Verzeichnungseinheiten zeigt das Neueste zuerst. Das Vorschaubild in den Suchergebnissen von Suche V2 folgt den Pfeiltasten noch nicht.
 
 Bilder und Dokumente werden getrennt sortiert: Ein Bild kann nicht mit einem
 Dokument den Platz tauschen.

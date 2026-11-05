@@ -151,6 +151,19 @@ Ab anton-import-format 0.6 kann ein SIP zu einer Datei mehr als den Master liefe
 - **Prüfung:** Original und Nutzungskopie werden vor dem Import geprüft wie der Master: Virenprüfung, Prüfsumme, bei E-ARK gegen das METS ihrer Repräsentation (`representations/<source>/data/`). Ein Fehler bricht den Import ab, bevor etwas geschrieben ist.
 - **Formatversion:** agate fragt Anton über `GET /api/import-format`, welche Version des Formats sein Import liest, und schreibt Original und Nutzungskopie nur, wenn Anton 0.6 oder neuer meldet. Ein `metadata.json` in einer neueren Version, als Anton liest, weist Anton ab.
 
+## Was der Import übernimmt
+
+Der Import übernimmt die Beschreibung aus `metadata.json` weitgehend wie der native Import: alle Sprachen des Titels, Verzeichnungsstufe, Objekttyp, Altsignaturen, Umfang, Sprachen, alle Textfeldarten, die das Archiv kennt, alle Ereignisse mit Akteur:in und Ort, Schlagwörter, Orte und Feldwerte.
+
+Nicht übernommen werden `identifier` (die Signatur vergibt Anton) sowie `private`, `release_year`, `vacat` und `formset_id` (Zugang und Formular bestimmt Anton). Das Protokoll des Laufs nennt solche Felder, ebenso unbekannte Sprachen, Textfeld- und Ereignisarten.
+
+Wird eine Lieferung wiederholt, verdoppelt sich nichts. An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichender Text bleibt stehen und wird gemeldet.
+
+- **Normdaten suchen:** Eine Referenz kann unter `resources` Kennungen tragen, zum Beispiel GND oder Wikidata. Anton sucht zuerst über die Kennung, dann über den Namen. Trägt ein Eintrag gleichen Namens eine andere Kennung desselben Anbieters, entsteht ein eigener Eintrag, und das Protokoll nennt ihn. Beim Import gibt es keinen Netzzugriff.
+- **Unbekannte Normdaten:** Anton legt sie als vorläufig an (siehe [Normdaten](../user/authorities.md#vorlaufige-eintrage)). Steht `create-actors`, `create-places` oder `create-keywords` auf aus, wird nichts angelegt: Die Verknüpfung entfällt mit einer Warnung, der Import läuft weiter.
+- **Ziel über die API:** Der Dateiname `sip-agate-<id>.zip` startet den Import unter diesem Datensatz. Ohne ihn nimmt `POST /api/sips/import` das Ziel aus `parent` der obersten Einträge (`uuid`, `identifier` oder `id`). Nennen sie keinen Datensatz, wartet das Paket im Eingangskorb. Nennen sie verschiedene oder einen unbekannten Datensatz oder liegt das Ziel im Akzessionsarchiv, wartet es ebenfalls dort, und die Antwort nennt den Grund in `target_problem`.
+- **Protokoll über die API:** `GET /api/sips/{id}/status` liefert `warnings` und `notes`. `GET /api/import-format` meldet unter `delivery`, was die Instanz übernimmt.
+
 ## Konfigurations-Checkliste
 
 Damit agate-Imports funktionieren:
