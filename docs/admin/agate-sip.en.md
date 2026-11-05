@@ -148,6 +148,19 @@ From anton-import-format 0.6 on, a SIP may deliver more than the master for a fi
 - **Checks:** original and access copy are checked before the import like the master: virus check, checksum, and for E-ARK against the METS of their representation (`representations/<source>/data/`). A failure stops the import before anything is written.
 - **Format version:** agate asks Anton through `GET /api/import-format` which version of the format its import reads, and writes original and access copy only when Anton reports 0.6 or later. Anton refuses a `metadata.json` in a newer version than it reads.
 
+## What the import takes over
+
+The import takes the description from `metadata.json` much as the native import does: all languages of the title, level of description, object type, former signatures, extent, languages, every text field type the archive knows, all events with actor and place, keywords, places and field values.
+
+It does not take `identifier` (Anton assigns the signature), nor `private`, `release_year`, `vacat` and `formset_id` (Anton decides access and form). The log of the run names such fields, as well as unknown languages, text field types and event types.
+
+Repeating a delivery duplicates nothing. On existing authority records the import only fills empty text fields; a differing text stays and is reported.
+
+- **Finding authority records:** a reference can carry identifiers under `resources`, for example GND or Wikidata. Anton searches by identifier first, then by name. If a record of the same name carries another identifier of the same provider, a record of its own is created and the log names it. The import does not access the network.
+- **Unknown authority records:** Anton creates them as provisional (see [Authority data](../user/authorities.md#provisional-records)). With `create-actors`, `create-places` or `create-keywords` off, nothing is created: the link is dropped with a warning and the import continues.
+- **Target through the API:** the file name `sip-agate-<id>.zip` starts the import under that record. Without it, `POST /api/sips/import` takes the target from `parent` of the top entries (`uuid`, `identifier` or `id`). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in `target_problem`.
+- **Log through the API:** `GET /api/sips/{id}/status` returns `warnings` and `notes`. `GET /api/import-format` reports under `delivery` what the instance takes.
+
 ## Configuration checklist
 
 For agate imports to work:

@@ -79,6 +79,12 @@ next synchronisation** – that is, through the scheduled run described above. N
 manual procedure per link is required; the recurring synchronisation pulls in the
 newly available links automatically.
 
+## Provisional records
+
+If a SIP import does not find an actor, place or keyword, it creates the record as provisional. The import log lists it. In the lists of authority records, the switch «Provisional records only» shows these records; it appears as soon as there are any.
+
+The page of the record says that it came with a delivery and has not been checked yet. With «Confirm», an editor removes the mark. The notice and the switch are not visible to the public. The native export does not carry the mark: after a re-import it is gone.
+
 ## In summary
 
 - External links are stored locally and displayed from there.
