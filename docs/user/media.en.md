@@ -48,8 +48,9 @@ In the **media tab** of the unit of description, each medium has a pair of arrow
 buttons (↑ ↓). A click moves the medium one position within its collection. On
 the first and the last medium, the respective button is disabled.
 
-The order applies to the display in the catalogue, in the gallery and in the
-viewer — it is the same order that is assigned on upload.
+The order applies to the gallery of the unit of description and to the thumbnail in the list: both start with the first medium. A newly uploaded medium goes last.
+
+The general gallery across all units of description shows the newest first. The thumbnail in the results of Search V2 does not follow the arrow buttons yet.
 
 Images and documents are sorted separately: an image cannot swap places with a
 document.

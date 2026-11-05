@@ -50,8 +50,9 @@ d'une paire de flèches (↑ ↓). Un clic déplace le média d'une position à
 l'intérieur de sa collection. Pour le premier et le dernier média, la flèche
 correspondante est désactivée.
 
-L'ordre s'applique à l'affichage dans le catalogue, dans la galerie et dans la
-visionneuse — c'est le même ordre que celui attribué lors du téléversement.
+L'ordre s'applique à la galerie de l'unité de description et à la vignette dans la liste : toutes deux commencent par le premier média. Un média nouvellement téléversé se place à la fin.
+
+La galerie générale de toutes les unités de description affiche les plus récents en premier. La vignette dans les résultats de la recherche V2 ne suit pas encore les flèches.
 
 Les images et les documents sont triés séparément : une image ne peut pas
 échanger sa place avec un document.
