@@ -83,7 +83,7 @@ beschriebenen, geplanten Lauf. Es ist kein manuelles Vorgehen pro Link
 erforderlich; der wiederkehrende Abgleich zieht die neu verfügbaren
 Verknüpfungen automatisch nach.
 
-## Vorläufige Einträge
+## Vorläufige Einträge {#provisional-records}
 
 Findet ein SIP-Import eine Akteur:in, einen Ort oder ein Schlagwort nicht, legt er den Eintrag als vorläufig an. Das Importprotokoll listet ihn auf. In den Listen der Normdaten zeigt der Schalter «Nur vorläufige Einträge» diese Einträge; er erscheint, sobald es solche gibt.
 

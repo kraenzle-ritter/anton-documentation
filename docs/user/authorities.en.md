@@ -79,7 +79,7 @@ next synchronisation** – that is, through the scheduled run described above. N
 manual procedure per link is required; the recurring synchronisation pulls in the
 newly available links automatically.
 
-## Provisional records
+## Provisional records {#provisional-records}
 
 If a SIP import does not find an actor, place or keyword, it creates the record as provisional. The import log lists it. In the lists of authority records, the switch «Provisional records only» shows these records; it appears as soon as there are any.
 
