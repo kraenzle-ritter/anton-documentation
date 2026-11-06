@@ -123,7 +123,7 @@ data = response.json()
 
 ## Public API
 
-If the setting `public_api` is activated, certain endpoints can be queried without a token — **for reading only** (`GET`, `HEAD`). The protected endpoints continue to require authentication.
+If the setting `public_api` is activated, certain endpoints can be queried without a token — **for reading only** (`GET`, `HEAD`). The protected endpoints continue to require authentication. Without `public_api`, a read without a token too is answered **401**, and a session without the role **403**, both as JSON (anton#822).
 
 **Writing always takes the token of an account with the editor role or higher**, public API or not: creating and changing persons and organisations (`POST /api/actors`, `PUT /api/actors/{id}`), places (`POST /api/places`, `POST /api/places/{id}`), SIP submissions (`POST /api/sips/import`), ingest callbacks (`POST /api/ingest/confirm|failed/{id}`) and `POST /api/ai-cataloging/usage`. Without a token they answer `401`, with the token of an account lacking that role `403`.
 

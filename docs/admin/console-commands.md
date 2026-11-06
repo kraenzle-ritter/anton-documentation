@@ -386,6 +386,10 @@ Termwerte, Upload-Token und Beziehungen in polymorphen Tabellen; fällt der
 Besitzer weg, nimmt ihn nichts mit. Sichtbar ist davon nichts — eine Zeile ohne
 Besitzer stellt niemand dar —, und genau deshalb muss man sie suchen.
 
+Seit anton#821 gehört auch `anton image` dazu: ein Bildlink an einem Schlagwort,
+einer Person oder einem Ort, dessen Datensatz gelöscht ist. Neue entstehen nicht
+mehr, ein Löschen nimmt sie mit.
+
 Ohne `--write` wird nur berichtet. `--only=` grenzt auf eine Stelle ein, und
 jeder Fund bringt die ersten Ids mit, damit man hinsehen kann, bevor man
 entscheidet. **Medien werden gemeldet und nie entfernt**: eine Medienzeile ist
@@ -597,13 +601,14 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `resources:sync` | Anton-specific resources (external links) management |
 | `resources:test-resources` | Check that every configured resource provider still answers |
 
-### sip: (5)
+### sip: (6)
 
 | Befehl | Beschreibung |
 |---|---|
 | `sip:check` | Some function for debugging the SIP-Ingest / import array. It checks the package (zip) and sho… |
 | `sip:check-import` | Check the import of a SIP after it was done. Revert it if something failed downstream (INGE, D… |
 | `sip:import-agate` | Run an agate-driven SIP import for an existing Importevent (issue #190). |
+| `sip:import-file` | Import a large package in anton-import-format that lies on the server (#818). |
 | `sip:load-xml` | Transform a metadata.xml to LoadXml which can be fed to Dimag |
 | `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-run media counts and flags disc… |
 

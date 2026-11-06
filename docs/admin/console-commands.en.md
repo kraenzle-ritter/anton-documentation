@@ -381,6 +381,9 @@ upload tokens and relations in polymorphic tables; when the owner goes, nothing
 takes them with it. None of it is visible — nothing renders a row whose owner is
 missing — which is exactly why it has to be looked for.
 
+Since anton#821 this includes `anton image`: an image link on a keyword, person or
+place whose record was deleted. No new ones arise, a delete takes them along.
+
 Without `--write` it only reports. `--only=` narrows it to one place, and every
 finding comes with the first few ids so you can look before deciding. **Media is
 reported and never removed**: a media row is the registration of a file on disk,
@@ -591,13 +594,14 @@ up to date with every change to the commands.
 | `resources:sync` | Anton-specific resources (external links) management |
 | `resources:test-resources` | Check that every configured resource provider still answers |
 
-### sip: (5)
+### sip: (6)
 
 | Command | Description |
 |---|---|
 | `sip:check` | Some function for debugging the SIP-Ingest / import array. It checks the package (zip) and sho… |
 | `sip:check-import` | Check the import of a SIP after it was done. Revert it if something failed downstream (INGE, D… |
 | `sip:import-agate` | Run an agate-driven SIP import for an existing Importevent (issue #190). |
+| `sip:import-file` | Import a large package in anton-import-format that lies on the server (#818). |
 | `sip:load-xml` | Transform a metadata.xml to LoadXml which can be fed to Dimag |
 | `sip:reconcile` | Reconcile SIP state across Anton DB, Inge and Dimag. Shows per-run media counts and flags disc… |
 

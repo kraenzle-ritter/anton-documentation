@@ -448,8 +448,8 @@ Sono proprio gli ultimi due punti a rendere gli eventi inutilizzabili in un aggi
 
 Non sono inoltre rappresentati il campo di datazione a testo libero (`datierung_text`, in nessuna direzione) e l'indirizzo del luogo (`<typ>_place_address`, solo all'importazione e solo se è impostata l'opzione `import_addresses`).
 
-!!! note "Solo tramite l'`id` interno"
-    L'aggiornamento nel browser trova le schede sempre tramite l'`id` interno, mai tramite la segnatura. Un aggiornamento tramite la segnatura è possibile solo da riga di comando (`--update --default-excel-column=identifier`, vedi sotto).
+!!! note "Tramite l'`id` o l'`uuid`"
+    L'aggiornamento nel browser trova le schede tramite l'`id` interno o, se la tabella non ha una colonna `id`, tramite l'`uuid`, mai tramite la segnatura. Una riga con un `id` o un `uuid` sconosciuto, o con due valori che indicano schede diverse, viene respinta; un aggiornamento non crea nulla. I file che la scheda porta già non vengono allegati di nuovo, quindi la stessa tabella si può ripetere. Un aggiornamento tramite la segnatura è possibile solo da riga di comando (`--update --default-excel-column=identifier`, vedi sotto).
 
 ## Importazione da riga di comando
 
@@ -476,7 +476,7 @@ Il comando `anton:import` offre alcune opzioni che possono essere utili in situa
 |--import                  |really start import|
 |--locale=                 |lingua dei contenuti dell'esecuzione (ad es. `de`, `fr`). Senza indicazione vale l'impostazione d'archivio, altrimenti la lingua principale dell'archivio — vedi [lingua dei contenuti dell'importazione](#lingua-dei-contenuti-dellimportazione)|
 |--update                  |aggiornare schede esistenti invece di crearne di nuove; confronto per impostazione predefinita tramite l'`id`|
-|--default-excel-column=   |`id` (predefinito) oppure `identifier` — determina, con `--update`, in base a che cosa vengono trovate le schede|
+|--default-excel-column=   |`id` (predefinito), `uuid` oppure `identifier` — determina, con `--update`, in base a che cosa vengono trovate le schede|
 |--dont-validate           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|

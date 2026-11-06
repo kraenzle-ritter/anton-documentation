@@ -124,7 +124,7 @@ data = response.json()
 
 ## Öffentliche API
 
-Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden — **nur lesend** (`GET`, `HEAD`). Die geschützten Endpunkte erfordern weiterhin Authentifizierung.
+Falls das Setting `public_api` aktiviert ist, können bestimmte Endpunkte ohne Token abgefragt werden — **nur lesend** (`GET`, `HEAD`). Die geschützten Endpunkte erfordern weiterhin Authentifizierung. Ohne `public_api` antwortet auch ein lesender Aufruf ohne Token mit **401**, eine Sitzung ohne passende Rolle mit **403**, beides als JSON (anton#822).
 
 **Schreiben verlangt immer ein Token mit Rolle Redaktor:in oder höher**, auch bei aktivierter öffentlicher API: Personen und Organisationen anlegen und ändern (`POST /api/actors`, `PUT /api/actors/{id}`), Orte (`POST /api/places`, `POST /api/places/{id}`), SIP-Ablieferungen (`POST /api/sips/import`), Ingest-Rückmeldungen (`POST /api/ingest/confirm|failed/{id}`) und `POST /api/ai-cataloging/usage`. Ohne Token antworten sie mit `401`, mit dem Token eines Kontos ohne diese Rolle mit `403`.
 

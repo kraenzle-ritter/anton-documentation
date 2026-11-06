@@ -150,16 +150,34 @@ From anton-import-format 0.6 on, a SIP may deliver more than the master for a fi
 
 ## What the import takes over
 
-The import takes the description from `metadata.json` much as the native import does: all languages of the title, level of description, object type, former signatures, extent, languages, every text field type the archive knows, all events with actor and place, keywords, places and field values.
+The import takes the description from `metadata.json` much as the native import does: all languages of the title, level of description, object type, former signatures, extent, languages, every text field type the archive knows, all events with actor and place, keywords, places, actors as descriptors (`actors`, without date or place) and field values.
 
 It does not take `identifier` (Anton assigns the signature), nor `private`, `release_year`, `vacat` and `formset_id` (Anton decides access and form). The log of the run names such fields, as well as unknown languages, text field types and event types.
 
-Repeating a delivery duplicates nothing. On existing authority records the import only fills empty text fields; a differing text stays and is reported.
+On existing authority records the import only fills empty text fields; a differing text stays and is reported.
+
+**An import only creates.** A package naming a UUID that is already in Anton is refused before anything is written and before the database is backed up. This includes a corrected delivery from agate, whose UUIDs stay the same: corrections go through the [update table](../user/import.md), which finds records by `uuid` as well, or the delivery is deleted in Anton first. `GET /api/sips/{id}/status` gives the reason in `refusal`: `code` is `existing_records`, with `count` and up to 100 `records` with `id`, `uuid` and `identifier`.
 
 - **Finding authority records:** a reference can carry identifiers under `resources`, for example GND or Wikidata. Anton searches by identifier first, then by name. If a record of the same name carries another identifier of the same provider, a record of its own is created and the log names it. The import does not access the network.
 - **Unknown authority records:** Anton creates them as provisional (see [Authority data](../user/authorities.md#vorlaufige-eintrage)). With `create-actors`, `create-places` or `create-keywords` off, nothing is created: the link is dropped with a warning and the import continues.
 - **Target through the API:** the file name `sip-agate-<id>.zip` starts the import under that record. Without it, `POST /api/sips/import` takes the target from `parent` of the top entries (`uuid`, `identifier` or `id`). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in `target_problem`.
 - **Log through the API:** `GET /api/sips/{id}/status` returns `warnings` and `notes`. `GET /api/import-format` reports under `delivery` what the instance takes.
+
+## A large package on the server
+
+The API takes a package up to 5 GB. A larger one, `.zip` or `.tar`, is placed on the server over SSH and imported there:
+
+```bash
+php artisan sip:import-file --env=<slug> /path/disk-7.zip --parent=123 --dry-run
+php artisan sip:import-file --env=<slug> /path/disk-7.zip --parent=123 --user=<account>
+```
+
+`--dry-run` only checks and writes nothing: format, target, existing UUIDs, duplicates, number of entries and space. Without `--parent`, `parent` of the top entries in `metadata.json` applies. The run appears in the import log like any other, and the package stays where it lies.
+
+Two things differ from the API:
+
+- **A file fails** on its checksum, format or virus check: it is not attached, the log names it, and the run goes on and ends as "Completed with errors" (`with_errors`, exit code 2).
+- **The run breaks off** because the database or the disk fails: the database is not restored, so that nothing entered meanwhile is lost. `--resume=<run>` continues it, skipping existing records and attached files. Restoring is a deliberate decision: `anton:restore --file=<backup of the run>`.
 
 ## Configuration checklist
 

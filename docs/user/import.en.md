@@ -447,8 +447,8 @@ The last two points in particular make events unusable in an update: it would on
 
 Also not represented are the free-text dating field (`datierung_text`, in neither direction) and the place address (`<type>_place_address`, only on import and only if the `import_addresses` setting is set).
 
-!!! note "Only via the internal `id`"
-    The update in the browser always finds the records via the internal `id`, never via the reference code. An update via the reference code is only possible from the command line (`--update --default-excel-column=identifier`, see below).
+!!! note "Via the `id` or the `uuid`"
+    The update in the browser finds the records via the internal `id` or, if the table has no `id` column, via the `uuid`, never via the reference code. A row with an unknown `id` or `uuid`, or with two values naming different records, is refused; an update creates nothing. Files the record already carries are not attached again, so the same table can be run again. An update via the reference code is only possible from the command line (`--update --default-excel-column=identifier`, see below).
 
 ## Import from the command line
 
@@ -475,7 +475,7 @@ The `anton:import` command offers a number of options that can be useful in spec
 |--import                  |really start import|
 |--locale=                 |content language of the run (e.g. `de`, `fr`). Without a specification, the archive setting applies, otherwise the main language of the archive — see [content language of the import](#content-language-of-the-import)|
 |--update                  |update existing records instead of creating new ones; matching by default via the `id`|
-|--default-excel-column=   |`id` (default) or `identifier` — determines, with `--update`, what the records are found by|
+|--default-excel-column=   |`id` (default), `uuid` or `identifier` — determines, with `--update`, what the records are found by|
 |--dont-validate           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|

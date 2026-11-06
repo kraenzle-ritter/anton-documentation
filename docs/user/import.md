@@ -448,8 +448,8 @@ Gerade die letzten beiden Punkte machen Ereignisse in einem Update unbrauchbar: 
 
 Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (`datierung_text`, in keiner Richtung) und die Ortsadresse (`<typ>_place_address`, nur beim Import und nur wenn die Einstellung `import_addresses` gesetzt ist).
 
-!!! note "Nur über die interne `id`"
-    Das Update im Browser findet die Datensätze immer über die interne `id`, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
+!!! note "Über die `id` oder die `uuid`"
+    Das Update im Browser findet die Datensätze über die interne `id` oder, wenn die Tabelle keine `id`-Spalte hat, über die `uuid`, nie über die Signatur. Eine Zeile mit einer unbekannten `id` oder `uuid` oder mit zwei Angaben, die verschiedene Datensätze nennen, wird abgewiesen; ein Update legt nichts an. Dateien, die der Datensatz schon trägt, werden nicht noch einmal angehängt; dieselbe Tabelle lässt sich also wiederholen. Ein Update über die Signatur ist nur über die Kommandozeile möglich (`--update --default-excel-column=identifier`, siehe unten).
 
 ## Import über die Kommandozeile
 
@@ -476,7 +476,7 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |--import                  |really start import|
 |--locale=                 |Inhaltssprache des Laufs (z.B. `de`, `fr`). Ohne Angabe gilt die Archiv-Einstellung, sonst die Hauptsprache des Archivs — siehe [Inhaltssprache des Imports](#inhaltssprache-des-imports)|
 |--update                  |bestehende Datensätze aktualisieren statt neu anlegen; Match standardmässig über die `id`|
-|--default-excel-column=   |`id` (Standard) oder `identifier` — bestimmt beim `--update`, worüber die Datensätze gefunden werden|
+|--default-excel-column=   |`id` (Standard), `uuid` oder `identifier` — bestimmt beim `--update`, worüber die Datensätze gefunden werden|
 |--dont-validate           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|

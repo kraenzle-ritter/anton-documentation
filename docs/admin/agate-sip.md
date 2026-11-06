@@ -153,16 +153,34 @@ Ab anton-import-format 0.6 kann ein SIP zu einer Datei mehr als den Master liefe
 
 ## Was der Import übernimmt
 
-Der Import übernimmt die Beschreibung aus `metadata.json` weitgehend wie der native Import: alle Sprachen des Titels, Verzeichnungsstufe, Objekttyp, Altsignaturen, Umfang, Sprachen, alle Textfeldarten, die das Archiv kennt, alle Ereignisse mit Akteur:in und Ort, Schlagwörter, Orte und Feldwerte.
+Der Import übernimmt die Beschreibung aus `metadata.json` weitgehend wie der native Import: alle Sprachen des Titels, Verzeichnungsstufe, Objekttyp, Altsignaturen, Umfang, Sprachen, alle Textfeldarten, die das Archiv kennt, alle Ereignisse mit Akteur:in und Ort, Schlagwörter, Orte, Akteur:innen als Schlagwort (`actors`, ohne Datum und Ort) und Feldwerte.
 
 Nicht übernommen werden `identifier` (die Signatur vergibt Anton) sowie `private`, `release_year`, `vacat` und `formset_id` (Zugang und Formular bestimmt Anton). Das Protokoll des Laufs nennt solche Felder, ebenso unbekannte Sprachen, Textfeld- und Ereignisarten.
 
-Wird eine Lieferung wiederholt, verdoppelt sich nichts. An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichender Text bleibt stehen und wird gemeldet.
+An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichender Text bleibt stehen und wird gemeldet.
+
+**Ein Import legt nur an.** Nennt ein Paket eine UUID, die es in Anton schon gibt, wird es abgewiesen, bevor etwas geschrieben und bevor die Datenbank gesichert wird. Das gilt auch für eine korrigierte Lieferung aus agate, deren UUIDs gleich bleiben: Korrigiert wird über die [Update-Tabelle](../user/import.md), die Datensätze auch über die `uuid` findet, oder man löscht die Lieferung vorher in Anton. `GET /api/sips/{id}/status` nennt den Grund in `refusal`: `code` ist `existing_records`, dazu `count` und bis zu 100 `records` mit `id`, `uuid` und `identifier`.
 
 - **Normdaten suchen:** Eine Referenz kann unter `resources` Kennungen tragen, zum Beispiel GND oder Wikidata. Anton sucht zuerst über die Kennung, dann über den Namen. Trägt ein Eintrag gleichen Namens eine andere Kennung desselben Anbieters, entsteht ein eigener Eintrag, und das Protokoll nennt ihn. Beim Import gibt es keinen Netzzugriff.
 - **Unbekannte Normdaten:** Anton legt sie als vorläufig an (siehe [Normdaten](../user/authorities.md#vorlaufige-eintrage)). Steht `create-actors`, `create-places` oder `create-keywords` auf aus, wird nichts angelegt: Die Verknüpfung entfällt mit einer Warnung, der Import läuft weiter.
 - **Ziel über die API:** Der Dateiname `sip-agate-<id>.zip` startet den Import unter diesem Datensatz. Ohne ihn nimmt `POST /api/sips/import` das Ziel aus `parent` der obersten Einträge (`uuid`, `identifier` oder `id`). Nennen sie keinen Datensatz, wartet das Paket im Eingangskorb. Nennen sie verschiedene oder einen unbekannten Datensatz oder liegt das Ziel im Akzessionsarchiv, wartet es ebenfalls dort, und die Antwort nennt den Grund in `target_problem`.
 - **Protokoll über die API:** `GET /api/sips/{id}/status` liefert `warnings` und `notes`. `GET /api/import-format` meldet unter `delivery`, was die Instanz übernimmt.
+
+## Grosses Paket auf dem Server
+
+Die API nimmt ein Paket bis 5 GB an. Ein grösseres, `.zip` oder `.tar`, legt man per SSH auf den Server und startet den Import dort:
+
+```bash
+php artisan sip:import-file --env=<slug> /pfad/platte-7.zip --parent=123 --dry-run
+php artisan sip:import-file --env=<slug> /pfad/platte-7.zip --parent=123 --user=<konto>
+```
+
+`--dry-run` prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge und Platz. Ohne `--parent` gilt `parent` der obersten Einträge in `metadata.json`. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.
+
+Zwei Dinge sind anders als bei der API:
+
+- **Eine Datei scheitert** an Prüfsumme, Format oder Virenprüfung: Sie wird nicht angehängt, das Protokoll nennt sie, der Lauf geht weiter und endet als «Mit Fehlern abgeschlossen» (`with_errors`, Exit-Code 2).
+- **Der Lauf bricht ab**, weil die Datenbank oder der Speicher versagt: Die Datenbank wird nicht zurückgesetzt, damit nichts verloren geht, was in der Zwischenzeit erfasst wurde. Mit `--resume=<lauf>` geht es weiter; vorhandene Datensätze und angehängte Dateien werden übersprungen. Zurücksetzen ist eine bewusste Entscheidung: `anton:restore --file=<Sicherung des Laufs>`.
 
 ## Konfigurations-Checkliste
 

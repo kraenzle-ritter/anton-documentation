@@ -451,8 +451,8 @@ Ce sont surtout les deux derniers points qui rendent les événements inutilisab
 
 Ne sont en outre pas représentés le champ de datation en texte libre (`datierung_text`, dans aucun sens) et l'adresse du lieu (`<typ>_place_address`, uniquement à l'import et uniquement si le réglage `import_addresses` est défini).
 
-!!! note "Uniquement par l'`id` interne"
-    La mise à jour dans le navigateur trouve toujours les notices par l'`id` interne, jamais par la cote. Une mise à jour par la cote n'est possible qu'en ligne de commande (`--update --default-excel-column=identifier`, voir ci-dessous).
+!!! note "Via l'`id` ou l'`uuid`"
+    La mise à jour dans le navigateur trouve les notices par l'`id` interne ou, si le tableau n'a pas de colonne `id`, par l'`uuid`, jamais par la cote. Une ligne avec un `id` ou un `uuid` inconnu, ou avec deux valeurs désignant des notices différentes, est refusée ; une mise à jour ne crée rien. Les fichiers que la notice porte déjà ne sont pas joints une nouvelle fois ; le même tableau peut donc être relancé. Une mise à jour par la cote n'est possible qu'en ligne de commande (`--update --default-excel-column=identifier`, voir ci-dessous).
 
 ## Import en ligne de commande
 
@@ -479,7 +479,7 @@ La commande `anton:import` offre plusieurs options qui peuvent être utiles dans
 |--import                  |really start import|
 |--locale=                 |langue de contenu de l'exécution (p. ex. `de`, `fr`). Sans indication, le réglage d'archive s'applique, sinon la langue principale du service — voir [langue de contenu de l'import](#langue-de-contenu-de-limport)|
 |--update                  |mettre à jour des notices existantes au lieu d'en créer ; rapprochement par défaut via l'`id`|
-|--default-excel-column=   |`id` (par défaut) ou `identifier` — détermine, avec `--update`, par quoi les notices sont trouvées|
+|--default-excel-column=   |`id` (par défaut), `uuid` ou `identifier` — détermine, avec `--update`, par quoi les notices sont trouvées|
 |--dont-validate           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|
