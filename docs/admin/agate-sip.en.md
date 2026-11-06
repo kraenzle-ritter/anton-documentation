@@ -163,7 +163,7 @@ On existing authority records the import only fills empty text fields; a differi
 - **Target through the API:** the file name `sip-agate-<id>.zip` starts the import under that record. Without it, `POST /api/sips/import` takes the target from `parent` of the top entries (`uuid`, `identifier` or `id`). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in `target_problem`.
 - **Log through the API:** `GET /api/sips/{id}/status` returns `warnings` and `notes`. `GET /api/import-format` reports under `delivery` what the instance takes.
 
-## Proposals rather than facts
+## Proposals rather than facts {#vorschlage-statt-tatsachen}
 
 A package can deliver links as proposals (`suggestions` on an entry, from `anton-import-format` 0.9). They are only stored: nothing reaches the record and no authority record is created before someone has decided. There is no mode that takes proposals over on its own above a certain confidence.
 
