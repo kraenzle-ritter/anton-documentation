@@ -45,6 +45,10 @@ hat, wer die Mindestrolle **und** die Befugnis hat.
 | API-Schlüssel für andere erstellen | API-Tokens für andere Konten erstellen und widerrufen | `admin` |
 | Eigene API-Schlüssel erstellen | Eigene API-Tokens im Profil (Tab **Sicherheit**) erstellen und widerrufen | `user` |
 | Vertrag und Ansprechpersonen | Die [Ansprechpersonen](contacts.md) bestimmen und für die Gesamtverantwortung bestätigen (seit v0.118.0) | `admin` |
+| Vorschläge prüfen und bestätigen | Die [Prüfliste für Vorschläge](agate-sip.md#vorschlage-statt-tatsachen) | `editor` |
+| Bulk-Aktionen | Datensätze im Stapel [bearbeiten](../user/selection.md), als Admin auch im Stapel verschieben | `editor` |
+
+Wer Admin wird, erhält «Vorschläge prüfen und bestätigen» und «Bulk-Aktionen» von selbst; beide lassen sich wieder entziehen und Editor:innen einzeln geben.
 
 Befugnisse vergeben Superuser und Admins mit der Befugnis **Benutzer:innen und
 Befugnisse verwalten**, auf der Bearbeitungsseite eines Kontos. Die eigenen

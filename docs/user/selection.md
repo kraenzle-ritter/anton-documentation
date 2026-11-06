@@ -2,6 +2,8 @@
 
 Mehrere Verzeichnungseinheiten lassen sich in Trefferlisten ankreuzen und gemeinsam bearbeiten. Dafür gibt es zwei Aktionen: das [Verschieben](hierarchy.md), ab der Rolle `admin`, und die [Sammelbearbeitung](#sammelbearbeitung), ab der Rolle `editor`.
 
+Die Aktionen brauchen die Befugnis «Bulk-Aktionen»: Admins haben sie, Editor:innen bekommen sie einzeln. Verschieben dürfen nur Admins.
+
 !!! note "Nur in einzelnen Archiven"
     Sammelaktionen müssen freigeschaltet sein. Sie sind kein Standard; die Einstellung ist im Admin-Bereich nicht änderbar, bei Anton as a Service ist dafür k & r zuständig. Wer sie nicht braucht, kann sie im eigenen [Profil](profile.md) zusätzlich abschalten.
 

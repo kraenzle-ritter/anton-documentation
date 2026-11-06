@@ -2,6 +2,8 @@
 
 Several units of description can be ticked in result lists and processed together. There are two actions for this: [moving](hierarchy.md), from the role `admin`, and the [bulk edit](#sammelbearbeitung), from the role `editor`.
 
+The actions need the capability "Bulk actions": admins have it, editors get it one by one. Only admins can move.
+
 !!! note "Only in some archives"
     Bulk actions have to be enabled. They are not a standard feature; the setting cannot be changed in the admin area, and with Anton as a Service, k & r is responsible for it. Anyone who does not need them can additionally switch them off in their own [profile](profile.md).
 

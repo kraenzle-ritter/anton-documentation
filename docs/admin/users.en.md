@@ -45,6 +45,10 @@ right needs the minimum role **and** the capability.
 | Create API tokens for others | Create and revoke API tokens for other accounts | `admin` |
 | Create own API tokens | Create and revoke one's own API tokens on the profile (tab **Security**) | `user` |
 | Contract and contacts | Name the [contact persons](contacts.md) and confirm for the overall responsibility (since v0.118.0) | `admin` |
+| Review and confirm proposals | The [review list for proposals](agate-sip.md#vorschlage-statt-tatsachen) | `editor` |
+| Bulk actions | Edit records [in bulk](../user/selection.md), as an admin also move them in bulk | `editor` |
+
+An account becoming an admin gets "Review and confirm proposals" and "Bulk actions" on its own; both can be withdrawn again and granted to editors one by one.
 
 Capabilities are granted by superusers and by admins holding **Manage users and
 capabilities**, on an account's edit page. Nobody can change their own
