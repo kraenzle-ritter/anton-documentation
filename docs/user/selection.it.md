@@ -2,10 +2,10 @@
 
 Più unità di descrizione possono essere spuntate negli elenchi dei risultati ed elaborate insieme. Esistono due azioni a questo scopo: lo [spostamento](hierarchy.md), dal ruolo `admin`, e la [modifica di gruppo](#sammelbearbeitung), dal ruolo `editor`.
 
-Queste azioni richiedono la competenza «Azioni di massa»: gli admin l’hanno, a redattori e redattrici viene assegnata singolarmente. Solo gli admin possono spostare.
+Queste azioni richiedono la competenza «Azioni collettive»: gli admin l’hanno, a redattori e redattrici viene assegnata singolarmente. Solo gli admin possono spostare.
 
-!!! note "Solo in alcuni archivi"
-    Le azioni collettive devono essere abilitate. Non sono uno standard; l'impostazione non è modificabile nell'area Admin e con Anton as a Service se ne occupa k & r. Chi non ne ha bisogno può inoltre disattivarle nel proprio [profilo](profile.md).
+!!! note "Disattivare"
+    Chi non ne ha bisogno può disattivarle nel proprio [profilo](profile.md).
 
 ## Prima l'azione, poi la selezione
 

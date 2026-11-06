@@ -4,8 +4,8 @@ Plusieurs unités de description peuvent être cochées dans les listes de résu
 
 Ces actions nécessitent la compétence « Actions groupées » : les admins l’ont, les éditeur·rices la reçoivent individuellement. Seuls les admins peuvent déplacer.
 
-!!! note "Seulement dans certains services"
-    Les actions groupées doivent être activées. Elles ne constituent pas un standard ; le paramètre n'est pas modifiable dans la section Admin, et avec Anton as a Service, k & r s'en charge. Qui n'en a pas besoin peut en outre les désactiver dans son propre [profil](profile.md).
+!!! note "Désactiver"
+    Qui n'en a pas besoin peut les désactiver dans son propre [profil](profile.md).
 
 ## D'abord l'action, ensuite la sélection
 

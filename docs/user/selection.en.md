@@ -4,8 +4,8 @@ Several units of description can be ticked in result lists and processed togethe
 
 The actions need the capability "Bulk actions": admins have it, editors get it one by one. Only admins can move.
 
-!!! note "Only in some archives"
-    Bulk actions have to be enabled. They are not a standard feature; the setting cannot be changed in the admin area, and with Anton as a Service, k & r is responsible for it. Anyone who does not need them can additionally switch them off in their own [profile](profile.md).
+!!! note "Switching off"
+    Anyone who does not need them can switch them off in their own [profile](profile.md).
 
 ## First the action, then the selection
 
