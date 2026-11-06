@@ -1,10 +1,10 @@
-# Langzeitarchivierung: Überblick
+# Digitales Archiv: Überblick
 
 Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe [Speicherung](#speicherung)). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
 
 ## Aufgabenteilung
 
-Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
+Das Digitale Archiv besteht aus mehreren Schichten. Anton deckt
 die fachlichen ab, der Betrieb die Speicherung:
 
 | Aufgabe | Anton | Betrieb | Angebundenes Langzeitarchiv |

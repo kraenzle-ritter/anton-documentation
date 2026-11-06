@@ -53,7 +53,7 @@ Einstellung benannt, nicht der Kern verändert. Siehe
 | Formular-Engine | Konfigurierbare Felder und Ansichten | [Formularsystem](forms.md) |
 | Ereignis-/Job-Schicht | Konsistenz der abgeleiteten Felder | [Nebenläufigkeit](events-jobs.md) |
 | Export-Schicht | EAD, RDF, TEI, DIP, OCFL, nativer Round-Trip | [Export-Matrix](../admin/export-matrix.md) |
-| Medien-Pipeline | Upload, Formaterkennung, Konversionen, Cloud/DIMAG | [Langzeitarchivierung](../admin/preservation.md) |
+| Medien-Pipeline | Upload, Formaterkennung, Konversionen, Cloud/DIMAG | [Digitales Archiv](../admin/preservation.md) |
 | Suche | MySQL-Volltext und Typesense | [Schnelle Suche](../admin/typesense.md) |
 
 ## Arbeiten am Code

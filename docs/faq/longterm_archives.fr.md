@@ -1,4 +1,4 @@
-# Anton comme archive numérique à long terme
+# Anton comme archive numérique
 
 Anton prend en charge les documents numériques avec vérification, identifie et valide leurs formats et consigne dans quelle mesure ils peuvent être conservés. Anton ne modifie un master que là où l'archive l'a configuré ou demandé, par exemple par une règle de format lors de la prise en charge ou par une migration ; les deux sont vérifiées et consignées sur le média. Cela vaut pour Anton [comme service](anton_as_service.md) comme pour l'exploitation [on premises](anton_on_premises.md).
 

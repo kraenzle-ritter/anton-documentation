@@ -97,7 +97,7 @@ GEONAMES_USERNAME
 
 Optional. [`media:repair`](console-commands.md#mediarepair) brings media files
 that fail the integrity check back from a local rsnapshot backup (see
-[long-term preservation](preservation.md#wenn-die-prufung-anschlagt)). Only
+[digital archive](preservation.md#wenn-die-prufung-anschlagt)). Only
 useful where that backup contains the media files.
 
 ```

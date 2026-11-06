@@ -38,7 +38,7 @@ Image processing options can be activated in the modal:
 | **Images → PDF** | Combine several uploaded images losslessly into one PDF | `img2pdf` |
 | **OCR** | Perform text recognition (makes PDFs searchable); scans become PDF/A-2b, a PDF with text stays PDF; the PDF with its text layer becomes the master, the delivered PDF stays only with «Keep the delivered file» | `ocrmypdf` + Tesseract (deu+eng) |
 
-Below them is **Keep the delivered file**, off by default. HEIC → JPEG and OCR are part of taking the file in (preingest, see [Long-term preservation](../admin/preservation.md#speicherung)): their result is the master, and the delivered file is replaced. The event on the medium records the conversion with its tool and the checksums of both files. Ticked, the file as delivered stays as a kept original of the medium. With «images → PDF» the delivered images are always kept.
+Below them is **Keep the delivered file**, off by default. HEIC → JPEG and OCR are part of taking the file in (preingest, see [digital archive](../admin/preservation.md#speicherung)): their result is the master, and the delivered file is replaced. The event on the medium records the conversion with its tool and the checksums of both files. Ticked, the file as delivered stays as a kept original of the medium. With «images → PDF» the delivered images are always kept.
 
 These settings are saved and apply to all uploads of the archive. Only accounts holding the capability **Change digital preservation** can change them (see [User administration](../admin/users.md#capabilities)); everyone else sees the switches without being able to change them.
 

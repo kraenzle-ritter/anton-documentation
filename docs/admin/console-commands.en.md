@@ -82,7 +82,7 @@ Level 4 verifies the **checksum** of every file against the database (SHA-512
 where available, MD5 otherwise) — the actual fixity check, with the same logic
 as `media:snapshot --verify`. On DIMAG installations it is skipped (the masters are held
 there). For details see [Inge and DIMAG](inge.md) and
-[long-term preservation](preservation.md#integritat-prufen).
+[digital archive](preservation.md#integritat-prufen).
 
 **`media:snapshot`**{#mediasnapshot} combines two jobs in one pass:
 
@@ -131,7 +131,7 @@ php artisan media:repair --env=besenval --dry-run
 Exit 0: nothing to do or all repaired; 1: not repairable or threshold exceeded
 (then nothing was repaired); 2: backup missing, empty or writable. Setup see
 [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung),
-procedure see [long-term preservation](preservation.md#wenn-die-prufung-anschlagt).
+procedure see [digital archive](preservation.md#wenn-die-prufung-anschlagt).
 
 **`media:identify`**{#mediaidentify} determines the file format
 (Siegfried/Fido → PRONOM ID) and derives the NARA risk assessment from it. With

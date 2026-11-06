@@ -1,4 +1,4 @@
-# Long-term preservation: overview
+# Digital archive: overview
 
 Anton ingests digital records with verification, identifies their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it: at ingest through a format rule or the processing of a QR upload, afterwards through a migration (see [Storage](#speicherung)). Storage itself and its redundancy are provided by the operating infrastructure; in installations with a connected long-term archive, that archive takes over bitstream preservation. This page shows how the tasks are divided and refers to the detail pages. It also answers the question of which artefact is a **backup** and which is a **publication view**.
 

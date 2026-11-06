@@ -1,4 +1,4 @@
-# Anton als digitales Langzeitarchiv 
+# Anton als Digitales Archiv 
 
 Anton übernimmt digitale Unterlagen geprüft, erkennt und prüft ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat, etwa durch eine Format-Regel bei der Übernahme oder durch eine Migration; beides wird geprüft und am Medium festgehalten. Das gilt für Anton [as a Service](anton_as_service.md) wie für den Betrieb [on Premises](anton_on_premises.md).
 

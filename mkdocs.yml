@@ -137,7 +137,7 @@ nav:
       - Statische Publikation und Round-Trip: admin/statische-publikation.md
       - Mastodon: admin/mastodon.md
       - KI-Assistenten (MCP): admin/mcp.md
-    - Langzeitarchivierung:
+    - Digitales Archiv:
       - Überblick: admin/preservation.md
       - Export-Matrix: admin/export-matrix.md
       - Preservation Planning: admin/preservation-planning.md
@@ -169,7 +169,7 @@ nav:
     - Anton on Premises: faq/anton_on_premises.md
     - Allgemeine FAQs: faq/index.md
     - Open Source: faq/open_source.md
-    - Langzeitarchivierung: faq/longterm_archives.md
+    - Digitales Archiv: faq/longterm_archives.md
     - Erschliessung: faq/erschliessung.md
     - Migration/Import: faq/import.md
     - Recherche und Benutzung: faq/recherche.md
@@ -297,7 +297,7 @@ plugins:
                 - Static publication and round trip: admin/statische-publikation.md
                 - Mastodon: admin/mastodon.md
                 - AI assistants (MCP): admin/mcp.md
-              - Long-term preservation:
+              - Digital archive:
                 - Overview: admin/preservation.md
                 - Export matrix: admin/export-matrix.md
                 - Preservation planning: admin/preservation-planning.md
@@ -329,7 +329,7 @@ plugins:
               - Anton as a Service: faq/anton_as_service.md
               - Anton on Premises: faq/anton_on_premises.md
               - Open Source: faq/open_source.md
-              - Digital Preservation: faq/longterm_archives.md
+              - Digital archive: faq/longterm_archives.md
               - Cataloguing: faq/erschliessung.md
               - Migration and Import: faq/import.md
               - Search and Use: faq/recherche.md
@@ -398,7 +398,7 @@ plugins:
               - Anton as a Service: faq/anton_as_service.md
               - Anton on Premises: faq/anton_on_premises.md
               - Open Source: faq/open_source.md
-              - Archivage à long terme: faq/longterm_archives.md
+              - Archive numérique: faq/longterm_archives.md
               - Description archivistique: faq/erschliessung.md
               - Migration et import: faq/import.md
               - Recherche et consultation: faq/recherche.md
@@ -467,7 +467,7 @@ plugins:
               - Anton as a Service: faq/anton_as_service.md
               - Anton on Premises: faq/anton_on_premises.md
               - Open Source: faq/open_source.md
-              - Archiviazione a lungo termine: faq/longterm_archives.md
+              - Archivio digitale: faq/longterm_archives.md
               - Descrizione archivistica: faq/erschliessung.md
               - Migrazione e importazione: faq/import.md
               - Ricerca e consultazione: faq/recherche.md
