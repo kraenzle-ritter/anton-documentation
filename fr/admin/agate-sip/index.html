@@ -2363,6 +2363,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#grosses-paket-auf-dem-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grosses Paket auf dem Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#konfigurations-checkliste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2412,7 +2423,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-05</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -2572,14 +2583,26 @@ erhalten.</p>
 <li><strong>Formatversion:</strong> agate fragt Anton über <code>GET /api/import-format</code>, welche Version des Formats sein Import liest, und schreibt Original und Nutzungskopie nur, wenn Anton 0.6 oder neuer meldet. Ein <code>metadata.json</code> in einer neueren Version, als Anton liest, weist Anton ab.</li>
 </ul>
 <h2 id="was-der-import-ubernimmt">Was der Import übernimmt<a class="headerlink" href="#was-der-import-ubernimmt" title="Permanent link">&para;</a></h2>
-<p>Der Import übernimmt die Beschreibung aus <code>metadata.json</code> weitgehend wie der native Import: alle Sprachen des Titels, Verzeichnungsstufe, Objekttyp, Altsignaturen, Umfang, Sprachen, alle Textfeldarten, die das Archiv kennt, alle Ereignisse mit Akteur:in und Ort, Schlagwörter, Orte und Feldwerte.</p>
+<p>Der Import übernimmt die Beschreibung aus <code>metadata.json</code> weitgehend wie der native Import: alle Sprachen des Titels, Verzeichnungsstufe, Objekttyp, Altsignaturen, Umfang, Sprachen, alle Textfeldarten, die das Archiv kennt, alle Ereignisse mit Akteur:in und Ort, Schlagwörter, Orte, Akteur:innen als Schlagwort (<code>actors</code>, ohne Datum und Ort) und Feldwerte.</p>
 <p>Nicht übernommen werden <code>identifier</code> (die Signatur vergibt Anton) sowie <code>private</code>, <code>release_year</code>, <code>vacat</code> und <code>formset_id</code> (Zugang und Formular bestimmt Anton). Das Protokoll des Laufs nennt solche Felder, ebenso unbekannte Sprachen, Textfeld- und Ereignisarten.</p>
-<p>Wird eine Lieferung wiederholt, verdoppelt sich nichts. An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichender Text bleibt stehen und wird gemeldet.</p>
+<p>An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichender Text bleibt stehen und wird gemeldet.</p>
+<p><strong>Ein Import legt nur an.</strong> Nennt ein Paket eine UUID, die es in Anton schon gibt, wird es abgewiesen, bevor etwas geschrieben und bevor die Datenbank gesichert wird. Das gilt auch für eine korrigierte Lieferung aus agate, deren UUIDs gleich bleiben: Korrigiert wird über die <a href="../../user/import/">Update-Tabelle</a>, die Datensätze auch über die <code>uuid</code> findet, oder man löscht die Lieferung vorher in Anton. <code>GET /api/sips/{id}/status</code> nennt den Grund in <code>refusal</code>: <code>code</code> ist <code>existing_records</code>, dazu <code>count</code> und bis zu 100 <code>records</code> mit <code>id</code>, <code>uuid</code> und <code>identifier</code>.</p>
 <ul>
 <li><strong>Normdaten suchen:</strong> Eine Referenz kann unter <code>resources</code> Kennungen tragen, zum Beispiel GND oder Wikidata. Anton sucht zuerst über die Kennung, dann über den Namen. Trägt ein Eintrag gleichen Namens eine andere Kennung desselben Anbieters, entsteht ein eigener Eintrag, und das Protokoll nennt ihn. Beim Import gibt es keinen Netzzugriff.</li>
 <li><strong>Unbekannte Normdaten:</strong> Anton legt sie als vorläufig an (siehe <a href="../../user/authorities/#vorlaufige-eintrage">Normdaten</a>). Steht <code>create-actors</code>, <code>create-places</code> oder <code>create-keywords</code> auf aus, wird nichts angelegt: Die Verknüpfung entfällt mit einer Warnung, der Import läuft weiter.</li>
 <li><strong>Ziel über die API:</strong> Der Dateiname <code>sip-agate-&lt;id&gt;.zip</code> startet den Import unter diesem Datensatz. Ohne ihn nimmt <code>POST /api/sips/import</code> das Ziel aus <code>parent</code> der obersten Einträge (<code>uuid</code>, <code>identifier</code> oder <code>id</code>). Nennen sie keinen Datensatz, wartet das Paket im Eingangskorb. Nennen sie verschiedene oder einen unbekannten Datensatz oder liegt das Ziel im Akzessionsarchiv, wartet es ebenfalls dort, und die Antwort nennt den Grund in <code>target_problem</code>.</li>
 <li><strong>Protokoll über die API:</strong> <code>GET /api/sips/{id}/status</code> liefert <code>warnings</code> und <code>notes</code>. <code>GET /api/import-format</code> meldet unter <code>delivery</code>, was die Instanz übernimmt.</li>
+</ul>
+<h2 id="grosses-paket-auf-dem-server">Grosses Paket auf dem Server<a class="headerlink" href="#grosses-paket-auf-dem-server" title="Permanent link">&para;</a></h2>
+<p>Die API nimmt ein Paket bis 5 GB an. Ein grösseres, <code>.zip</code> oder <code>.tar</code>, legt man per SSH auf den Server und startet den Import dort:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/pfad/platte-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--dry-run
+php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/pfad/platte-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--user<span class="o">=</span>&lt;konto&gt;
+</code></pre></div>
+<p><code>--dry-run</code> prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge und Platz. Ohne <code>--parent</code> gilt <code>parent</code> der obersten Einträge in <code>metadata.json</code>. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.</p>
+<p>Zwei Dinge sind anders als bei der API:</p>
+<ul>
+<li><strong>Eine Datei scheitert</strong> an Prüfsumme, Format oder Virenprüfung: Sie wird nicht angehängt, das Protokoll nennt sie, der Lauf geht weiter und endet als «Mit Fehlern abgeschlossen» (<code>with_errors</code>, Exit-Code 2).</li>
+<li><strong>Der Lauf bricht ab</strong>, weil die Datenbank oder der Speicher versagt: Die Datenbank wird nicht zurückgesetzt, damit nichts verloren geht, was in der Zwischenzeit erfasst wurde. Mit <code>--resume=&lt;lauf&gt;</code> geht es weiter; vorhandene Datensätze und angehängte Dateien werden übersprungen. Zurücksetzen ist eine bewusste Entscheidung: <code>anton:restore --file=&lt;Sicherung des Laufs&gt;</code>.</li>
 </ul>
 <h2 id="konfigurations-checkliste">Konfigurations-Checkliste<a class="headerlink" href="#konfigurations-checkliste" title="Permanent link">&para;</a></h2>
 <p>Damit agate-Imports funktionieren:</p>

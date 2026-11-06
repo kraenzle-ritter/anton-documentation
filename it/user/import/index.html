@@ -3197,7 +3197,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -3592,8 +3592,8 @@ Form und Inhalt (note.scopecontent)
 <p>Sono proprio gli ultimi due punti a rendere gli eventi inutilizzabili in un aggiornamento: si potrebbe solo aggiungere, mai correggere — e caricamenti ripetuti moltiplicherebbero gli eventi. Gli eventi vengono perciò curati in Anton stesso, non tramite la tabella.</p>
 <p>Non sono inoltre rappresentati il campo di datazione a testo libero (<code>datierung_text</code>, in nessuna direzione) e l'indirizzo del luogo (<code>&lt;typ&gt;_place_address</code>, solo all'importazione e solo se è impostata l'opzione <code>import_addresses</code>).</p>
 <div class="admonition note">
-<p class="admonition-title">Solo tramite l'<code>id</code> interno</p>
-<p>L'aggiornamento nel browser trova le schede sempre tramite l'<code>id</code> interno, mai tramite la segnatura. Un aggiornamento tramite la segnatura è possibile solo da riga di comando (<code>--update --default-excel-column=identifier</code>, vedi sotto).</p>
+<p class="admonition-title">Tramite l'<code>id</code> o l'<code>uuid</code></p>
+<p>L'aggiornamento nel browser trova le schede tramite l'<code>id</code> interno o, se la tabella non ha una colonna <code>id</code>, tramite l'<code>uuid</code>, mai tramite la segnatura. Una riga con un <code>id</code> o un <code>uuid</code> sconosciuto, o con due valori che indicano schede diverse, viene respinta; un aggiornamento non crea nulla. I file che la scheda porta già non vengono allegati di nuovo, quindi la stessa tabella si può ripetere. Un aggiornamento tramite la segnatura è possibile solo da riga di comando (<code>--update --default-excel-column=identifier</code>, vedi sotto).</p>
 </div>
 <h2 id="importazione-da-riga-di-comando">Importazione da riga di comando<a class="headerlink" href="#importazione-da-riga-di-comando" title="Permanent link">&para;</a></h2>
 <h3 id="importazione-semplice">Importazione semplice<a class="headerlink" href="#importazione-semplice" title="Permanent link">&para;</a></h3>
@@ -3630,7 +3630,7 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--default-excel-column=</td>
-<td style="text-align: left;"><code>id</code> (predefinito) oppure <code>identifier</code> — determina, con <code>--update</code>, in base a che cosa vengono trovate le schede</td>
+<td style="text-align: left;"><code>id</code> (predefinito), <code>uuid</code> oppure <code>identifier</code> — determina, con <code>--update</code>, in base a che cosa vengono trovate le schede</td>
 </tr>
 <tr>
 <td style="text-align: left;">--dont-validate</td>

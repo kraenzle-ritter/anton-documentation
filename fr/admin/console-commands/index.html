@@ -2435,10 +2435,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sip-5" class="md-nav__link">
+  <a href="#sip-6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        sip: (5)
+        sip: (6)
       
     </span>
   </a>
@@ -2489,7 +2489,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-04</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -2921,6 +2921,9 @@ nicht mehr gibt. Anton führt Textfelder, externe Identifikatoren, Kommentare,
 Termwerte, Upload-Token und Beziehungen in polymorphen Tabellen; fällt der
 Besitzer weg, nimmt ihn nichts mit. Sichtbar ist davon nichts — eine Zeile ohne
 Besitzer stellt niemand dar —, und genau deshalb muss man sie suchen.</p>
+<p>Seit anton#821 gehört auch <code>anton image</code> dazu: ein Bildlink an einem Schlagwort,
+einer Person oder einem Ort, dessen Datensatz gelöscht ist. Neue entstehen nicht
+mehr, ein Löschen nimmt sie mit.</p>
 <p>Ohne <code>--write</code> wird nur berichtet. <code>--only=</code> grenzt auf eine Stelle ein, und
 jeder Fund bringt die ersten Ids mit, damit man hinsehen kann, bevor man
 entscheidet. <strong>Medien werden gemeldet und nie entfernt</strong>: eine Medienzeile ist
@@ -3458,7 +3461,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="sip-5">sip: (5)<a class="headerlink" href="#sip-5" title="Permanent link">&para;</a></h3>
+<h3 id="sip-6">sip: (6)<a class="headerlink" href="#sip-6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3478,6 +3481,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>sip:import-agate</code></td>
 <td>Run an agate-driven SIP import for an existing Importevent (issue #190).</td>
+</tr>
+<tr>
+<td><code>sip:import-file</code></td>
+<td>Import a large package in anton-import-format that lies on the server (#818).</td>
 </tr>
 <tr>
 <td><code>sip:load-xml</code></td>

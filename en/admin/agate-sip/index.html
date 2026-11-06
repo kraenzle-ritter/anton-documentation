@@ -3148,6 +3148,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-large-package-on-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A large package on the server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4779,6 +4790,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-large-package-on-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A large package on the server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4828,7 +4850,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-05</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -4985,14 +5007,26 @@ the checksum of the file as agate received it stays on record.</p>
 <li><strong>Format version:</strong> agate asks Anton through <code>GET /api/import-format</code> which version of the format its import reads, and writes original and access copy only when Anton reports 0.6 or later. Anton refuses a <code>metadata.json</code> in a newer version than it reads.</li>
 </ul>
 <h2 id="what-the-import-takes-over">What the import takes over<a class="headerlink" href="#what-the-import-takes-over" title="Permanent link">&para;</a></h2>
-<p>The import takes the description from <code>metadata.json</code> much as the native import does: all languages of the title, level of description, object type, former signatures, extent, languages, every text field type the archive knows, all events with actor and place, keywords, places and field values.</p>
+<p>The import takes the description from <code>metadata.json</code> much as the native import does: all languages of the title, level of description, object type, former signatures, extent, languages, every text field type the archive knows, all events with actor and place, keywords, places, actors as descriptors (<code>actors</code>, without date or place) and field values.</p>
 <p>It does not take <code>identifier</code> (Anton assigns the signature), nor <code>private</code>, <code>release_year</code>, <code>vacat</code> and <code>formset_id</code> (Anton decides access and form). The log of the run names such fields, as well as unknown languages, text field types and event types.</p>
-<p>Repeating a delivery duplicates nothing. On existing authority records the import only fills empty text fields; a differing text stays and is reported.</p>
+<p>On existing authority records the import only fills empty text fields; a differing text stays and is reported.</p>
+<p><strong>An import only creates.</strong> A package naming a UUID that is already in Anton is refused before anything is written and before the database is backed up. This includes a corrected delivery from agate, whose UUIDs stay the same: corrections go through the <a href="../../user/import/">update table</a>, which finds records by <code>uuid</code> as well, or the delivery is deleted in Anton first. <code>GET /api/sips/{id}/status</code> gives the reason in <code>refusal</code>: <code>code</code> is <code>existing_records</code>, with <code>count</code> and up to 100 <code>records</code> with <code>id</code>, <code>uuid</code> and <code>identifier</code>.</p>
 <ul>
 <li><strong>Finding authority records:</strong> a reference can carry identifiers under <code>resources</code>, for example GND or Wikidata. Anton searches by identifier first, then by name. If a record of the same name carries another identifier of the same provider, a record of its own is created and the log names it. The import does not access the network.</li>
 <li><strong>Unknown authority records:</strong> Anton creates them as provisional (see <a href="../../user/authorities/#vorlaufige-eintrage">Authority data</a>). With <code>create-actors</code>, <code>create-places</code> or <code>create-keywords</code> off, nothing is created: the link is dropped with a warning and the import continues.</li>
 <li><strong>Target through the API:</strong> the file name <code>sip-agate-&lt;id&gt;.zip</code> starts the import under that record. Without it, <code>POST /api/sips/import</code> takes the target from <code>parent</code> of the top entries (<code>uuid</code>, <code>identifier</code> or <code>id</code>). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in <code>target_problem</code>.</li>
 <li><strong>Log through the API:</strong> <code>GET /api/sips/{id}/status</code> returns <code>warnings</code> and <code>notes</code>. <code>GET /api/import-format</code> reports under <code>delivery</code> what the instance takes.</li>
+</ul>
+<h2 id="a-large-package-on-the-server">A large package on the server<a class="headerlink" href="#a-large-package-on-the-server" title="Permanent link">&para;</a></h2>
+<p>The API takes a package up to 5 GB. A larger one, <code>.zip</code> or <code>.tar</code>, is placed on the server over SSH and imported there:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/path/disk-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--dry-run
+php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/path/disk-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--user<span class="o">=</span>&lt;account&gt;
+</code></pre></div>
+<p><code>--dry-run</code> only checks and writes nothing: format, target, existing UUIDs, duplicates, number of entries and space. Without <code>--parent</code>, <code>parent</code> of the top entries in <code>metadata.json</code> applies. The run appears in the import log like any other, and the package stays where it lies.</p>
+<p>Two things differ from the API:</p>
+<ul>
+<li><strong>A file fails</strong> on its checksum, format or virus check: it is not attached, the log names it, and the run goes on and ends as "Completed with errors" (<code>with_errors</code>, exit code 2).</li>
+<li><strong>The run breaks off</strong> because the database or the disk fails: the database is not restored, so that nothing entered meanwhile is lost. <code>--resume=&lt;run&gt;</code> continues it, skipping existing records and attached files. Restoring is a deliberate decision: <code>anton:restore --file=&lt;backup of the run&gt;</code>.</li>
 </ul>
 <h2 id="configuration-checklist">Configuration checklist<a class="headerlink" href="#configuration-checklist" title="Permanent link">&para;</a></h2>
 <p>For agate imports to work:</p>

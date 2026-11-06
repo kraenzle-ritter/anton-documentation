@@ -3197,7 +3197,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -3595,8 +3595,8 @@ Form und Inhalt (note.scopecontent)
 <p>Ce sont surtout les deux derniers points qui rendent les événements inutilisables dans une mise à jour : on ne pourrait qu'ajouter, jamais corriger — et un chargement répété multiplierait les événements. Les événements sont donc gérés dans Anton même, non via le tableau.</p>
 <p>Ne sont en outre pas représentés le champ de datation en texte libre (<code>datierung_text</code>, dans aucun sens) et l'adresse du lieu (<code>&lt;typ&gt;_place_address</code>, uniquement à l'import et uniquement si le réglage <code>import_addresses</code> est défini).</p>
 <div class="admonition note">
-<p class="admonition-title">Uniquement par l'<code>id</code> interne</p>
-<p>La mise à jour dans le navigateur trouve toujours les notices par l'<code>id</code> interne, jamais par la cote. Une mise à jour par la cote n'est possible qu'en ligne de commande (<code>--update --default-excel-column=identifier</code>, voir ci-dessous).</p>
+<p class="admonition-title">Via l'<code>id</code> ou l'<code>uuid</code></p>
+<p>La mise à jour dans le navigateur trouve les notices par l'<code>id</code> interne ou, si le tableau n'a pas de colonne <code>id</code>, par l'<code>uuid</code>, jamais par la cote. Une ligne avec un <code>id</code> ou un <code>uuid</code> inconnu, ou avec deux valeurs désignant des notices différentes, est refusée ; une mise à jour ne crée rien. Les fichiers que la notice porte déjà ne sont pas joints une nouvelle fois ; le même tableau peut donc être relancé. Une mise à jour par la cote n'est possible qu'en ligne de commande (<code>--update --default-excel-column=identifier</code>, voir ci-dessous).</p>
 </div>
 <h2 id="import-en-ligne-de-commande">Import en ligne de commande<a class="headerlink" href="#import-en-ligne-de-commande" title="Permanent link">&para;</a></h2>
 <h3 id="import-simple">Import simple<a class="headerlink" href="#import-simple" title="Permanent link">&para;</a></h3>
@@ -3633,7 +3633,7 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--default-excel-column=</td>
-<td style="text-align: left;"><code>id</code> (par défaut) ou <code>identifier</code> — détermine, avec <code>--update</code>, par quoi les notices sont trouvées</td>
+<td style="text-align: left;"><code>id</code> (par défaut), <code>uuid</code> ou <code>identifier</code> — détermine, avec <code>--update</code>, par quoi les notices sont trouvées</td>
 </tr>
 <tr>
 <td style="text-align: left;">--dont-validate</td>

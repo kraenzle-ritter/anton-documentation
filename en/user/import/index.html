@@ -5398,7 +5398,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/import/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -5792,8 +5792,8 @@ Form und Inhalt (note.scopecontent)
 <p>The last two points in particular make events unusable in an update: it would only be possible to add, never to correct — and repeated loading would multiply events. Events are therefore maintained in Anton itself, not via the table.</p>
 <p>Also not represented are the free-text dating field (<code>datierung_text</code>, in neither direction) and the place address (<code>&lt;type&gt;_place_address</code>, only on import and only if the <code>import_addresses</code> setting is set).</p>
 <div class="admonition note">
-<p class="admonition-title">Only via the internal <code>id</code></p>
-<p>The update in the browser always finds the records via the internal <code>id</code>, never via the reference code. An update via the reference code is only possible from the command line (<code>--update --default-excel-column=identifier</code>, see below).</p>
+<p class="admonition-title">Via the <code>id</code> or the <code>uuid</code></p>
+<p>The update in the browser finds the records via the internal <code>id</code> or, if the table has no <code>id</code> column, via the <code>uuid</code>, never via the reference code. A row with an unknown <code>id</code> or <code>uuid</code>, or with two values naming different records, is refused; an update creates nothing. Files the record already carries are not attached again, so the same table can be run again. An update via the reference code is only possible from the command line (<code>--update --default-excel-column=identifier</code>, see below).</p>
 </div>
 <h2 id="import-from-the-command-line">Import from the command line<a class="headerlink" href="#import-from-the-command-line" title="Permanent link">&para;</a></h2>
 <h3 id="simple-import">Simple import<a class="headerlink" href="#simple-import" title="Permanent link">&para;</a></h3>
@@ -5830,7 +5830,7 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--default-excel-column=</td>
-<td style="text-align: left;"><code>id</code> (default) or <code>identifier</code> — determines, with <code>--update</code>, what the records are found by</td>
+<td style="text-align: left;"><code>id</code> (default), <code>uuid</code> or <code>identifier</code> — determines, with <code>--update</code>, what the records are found by</td>
 </tr>
 <tr>
 <td style="text-align: left;">--dont-validate</td>

@@ -5398,7 +5398,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/import/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/import/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/import/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-29</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -5793,8 +5793,8 @@ Form und Inhalt (note.scopecontent)
 <p>Gerade die letzten beiden Punkte machen Ereignisse in einem Update unbrauchbar: es liesse sich nur ergänzen, nie korrigieren — und wiederholtes Einspielen würde Ereignisse vermehren. Ereignisse werden darum in Anton selbst gepflegt, nicht über die Tabelle.</p>
 <p>Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (<code>datierung_text</code>, in keiner Richtung) und die Ortsadresse (<code>&lt;typ&gt;_place_address</code>, nur beim Import und nur wenn die Einstellung <code>import_addresses</code> gesetzt ist).</p>
 <div class="admonition note">
-<p class="admonition-title">Nur über die interne <code>id</code></p>
-<p>Das Update im Browser findet die Datensätze immer über die interne <code>id</code>, nie über die Signatur. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
+<p class="admonition-title">Über die <code>id</code> oder die <code>uuid</code></p>
+<p>Das Update im Browser findet die Datensätze über die interne <code>id</code> oder, wenn die Tabelle keine <code>id</code>-Spalte hat, über die <code>uuid</code>, nie über die Signatur. Eine Zeile mit einer unbekannten <code>id</code> oder <code>uuid</code> oder mit zwei Angaben, die verschiedene Datensätze nennen, wird abgewiesen; ein Update legt nichts an. Dateien, die der Datensatz schon trägt, werden nicht noch einmal angehängt; dieselbe Tabelle lässt sich also wiederholen. Ein Update über die Signatur ist nur über die Kommandozeile möglich (<code>--update --default-excel-column=identifier</code>, siehe unten).</p>
 </div>
 <h2 id="import-uber-die-kommandozeile">Import über die Kommandozeile<a class="headerlink" href="#import-uber-die-kommandozeile" title="Permanent link">&para;</a></h2>
 <h3 id="einfacher-import">Einfacher Import<a class="headerlink" href="#einfacher-import" title="Permanent link">&para;</a></h3>
@@ -5831,7 +5831,7 @@ Form und Inhalt (note.scopecontent)
 </tr>
 <tr>
 <td style="text-align: left;">--default-excel-column=</td>
-<td style="text-align: left;"><code>id</code> (Standard) oder <code>identifier</code> — bestimmt beim <code>--update</code>, worüber die Datensätze gefunden werden</td>
+<td style="text-align: left;"><code>id</code> (Standard), <code>uuid</code> oder <code>identifier</code> — bestimmt beim <code>--update</code>, worüber die Datensätze gefunden werden</td>
 </tr>
 <tr>
 <td style="text-align: left;">--dont-validate</td>

@@ -4772,7 +4772,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-04</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -4791,7 +4791,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>4. November 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>6. November 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -4861,7 +4861,7 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td><strong>Nativer Round-Trip</strong></td>
-<td><code>anton-import-format</code> v0.5 (JSON) <strong>+ Master-Medien</strong> als ZIP</td>
+<td><code>anton-import-format</code> v0.8 (JSON) <strong>+ Master-Medien</strong> als ZIP</td>
 <td>Objekt-Baum, <strong>verlustfrei re-importierbar</strong></td>
 <td><code>anton:export-native</code> / <code>anton:import-native</code></td>
 </tr>
@@ -5424,10 +5424,11 @@ lässt sich kein Anton-Mandant rekonstruieren: Es fehlen die UUIDs, der
 Formularsatz, die Rohwerte und die Schutzfristen.</p>
 <p>Für den verlustfreien Weg gibt es den <strong>nativen Round-Trip</strong>
 (<code>anton:export-native</code> → <code>anton:import-native</code>): ein Paket im
-<code>anton-import-format</code> v0.5 samt Master-Medien, das Anton wieder einliest.
+<code>anton-import-format</code> v0.8 samt Master-Medien, das Anton wieder einliest.
 Verankert über UUIDs (unbekannt → neu anlegen, bekannt → überspringen, mit
 <code>--update</code> aktualisieren), Hierarchie über die UUID der übergeordneten Einheit,
 alle Sprachen, Ereignisse, Textfelder <strong>aller</strong> Träger einschliesslich privater,
+Akteur:innen als Schlagwort (anton#825; vorher gingen sie beim Re-Import verloren),
 Termselect-Werte, Formularsatz und die Wiederanbindung der Medien. Vor jedem
 Schreibvorgang wird das ganze Paket validiert; schlägt es fehl, wird
 zurückgerollt.</p>
