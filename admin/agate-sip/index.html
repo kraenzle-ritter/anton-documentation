@@ -3148,6 +3148,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorschlage-statt-tatsachen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorschläge statt Tatsachen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#grosses-paket-auf-dem-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4295,6 +4306,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/openrefine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRefine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4790,6 +4829,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorschlage-statt-tatsachen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vorschläge statt Tatsachen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#grosses-paket-auf-dem-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5019,6 +5069,14 @@ erhalten.</p>
 <li><strong>Unbekannte Normdaten:</strong> Anton legt sie als vorläufig an (siehe <a href="../../user/authorities/#vorlaufige-eintrage">Normdaten</a>). Steht <code>create-actors</code>, <code>create-places</code> oder <code>create-keywords</code> auf aus, wird nichts angelegt: Die Verknüpfung entfällt mit einer Warnung, der Import läuft weiter.</li>
 <li><strong>Ziel über die API:</strong> Der Dateiname <code>sip-agate-&lt;id&gt;.zip</code> startet den Import unter diesem Datensatz. Ohne ihn nimmt <code>POST /api/sips/import</code> das Ziel aus <code>parent</code> der obersten Einträge (<code>uuid</code>, <code>identifier</code> oder <code>id</code>). Nennen sie keinen Datensatz, wartet das Paket im Eingangskorb. Nennen sie verschiedene oder einen unbekannten Datensatz oder liegt das Ziel im Akzessionsarchiv, wartet es ebenfalls dort, und die Antwort nennt den Grund in <code>target_problem</code>.</li>
 <li><strong>Protokoll über die API:</strong> <code>GET /api/sips/{id}/status</code> liefert <code>warnings</code> und <code>notes</code>. <code>GET /api/import-format</code> meldet unter <code>delivery</code>, was die Instanz übernimmt.</li>
+</ul>
+<h2 id="vorschlage-statt-tatsachen">Vorschläge statt Tatsachen<a class="headerlink" href="#vorschlage-statt-tatsachen" title="Permanent link">&para;</a></h2>
+<p>Ein Paket kann Verknüpfungen als Vorschlag liefern (<code>suggestions</code> an einem Eintrag, ab <code>anton-import-format</code> 0.9). Sie werden nur abgelegt: Nichts kommt an den Datensatz und kein Normdatensatz entsteht, bevor jemand entschieden hat. Einen Modus, der Vorschläge ab einer bestimmten Sicherheit selbst übernimmt, gibt es nicht.</p>
+<p>Entschieden wird in der <strong>Prüfliste für Vorschläge</strong> unter <strong>Daten-Import</strong>. Sie braucht die Befugnis «Vorschläge prüfen und bestätigen», die sich Konten ab der Rolle Editor geben lässt. Die Liste filtert nach Stand, Art, Bestand, Einstufung und Quelle und zeigt je Vorschlag den Datensatz, die Textstelle und die Einträge ähnlichen Namens.</p>
+<ul>
+<li><strong>Bestätigen</strong> schreibt die Verknüpfung als Schlagwort oder als Ereignis, wie der Vorschlag es sagt, einzeln oder für alle ausgewählten. Ist nicht klar, welcher Eintrag gemeint ist, bleibt der Vorschlag offen, bis jemand wählt.</li>
+<li><strong>Neu anlegen</strong> erstellt einen eigenen Eintrag, auch neben einem gleichnamigen. Er bleibt <a href="../../user/authorities/#vorlaufige-eintrage">vorläufig</a>, bestätigt ist die Verknüpfung, nicht der Eintrag.</li>
+<li><strong>Verwerfen</strong> behält den Vorschlag mit Person und Zeitpunkt. Eine spätere Lieferung schlägt ihn nicht noch einmal vor.</li>
 </ul>
 <h2 id="grosses-paket-auf-dem-server">Grosses Paket auf dem Server<a class="headerlink" href="#grosses-paket-auf-dem-server" title="Permanent link">&para;</a></h2>
 <p>Die API nimmt ein Paket bis 5 GB an. Ein grösseres, <code>.zip</code> oder <code>.tar</code>, legt man per SSH auf den Server und startet den Import dort:</p>

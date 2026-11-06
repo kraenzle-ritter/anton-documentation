@@ -4256,6 +4256,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/openrefine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRefine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4862,7 +4890,7 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td><strong>Native round trip</strong></td>
-<td><code>anton-import-format</code> v0.8 (JSON) <strong>+ master media</strong> as a ZIP</td>
+<td><code>anton-import-format</code> v0.9 (JSON) <strong>+ master media</strong> as a ZIP</td>
 <td>Object tree, <strong>losslessly re-importable</strong></td>
 <td><code>anton:export-native</code> / <code>anton:import-native</code></td>
 </tr>
@@ -5422,7 +5450,7 @@ reconstructed from the bundle alone: the UUIDs, the form set, the raw values and
 the protection periods are missing.</p>
 <p>For the lossless route there is the <strong>native round trip</strong>
 (<code>anton:export-native</code> → <code>anton:import-native</code>): a package in the
-<code>anton-import-format</code> v0.8 together with master media, which Anton reads back in.
+<code>anton-import-format</code> v0.9 together with master media, which Anton reads back in.
 Anchored via UUIDs (unknown → create new, known → skip, update with <code>--update</code>),
 hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of <strong>all</strong> carriers including private ones, actors as descriptors (anton#825; a re-import used to lose them), termselect values, form set

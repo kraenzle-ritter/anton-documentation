@@ -3148,6 +3148,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorschlage-statt-tatsachen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposals rather than facts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-large-package-on-the-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4295,6 +4306,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/openrefine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRefine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4790,6 +4829,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vorschlage-statt-tatsachen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposals rather than facts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-large-package-on-the-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5016,6 +5066,14 @@ the checksum of the file as agate received it stays on record.</p>
 <li><strong>Unknown authority records:</strong> Anton creates them as provisional (see <a href="../../user/authorities/#vorlaufige-eintrage">Authority data</a>). With <code>create-actors</code>, <code>create-places</code> or <code>create-keywords</code> off, nothing is created: the link is dropped with a warning and the import continues.</li>
 <li><strong>Target through the API:</strong> the file name <code>sip-agate-&lt;id&gt;.zip</code> starts the import under that record. Without it, <code>POST /api/sips/import</code> takes the target from <code>parent</code> of the top entries (<code>uuid</code>, <code>identifier</code> or <code>id</code>). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in <code>target_problem</code>.</li>
 <li><strong>Log through the API:</strong> <code>GET /api/sips/{id}/status</code> returns <code>warnings</code> and <code>notes</code>. <code>GET /api/import-format</code> reports under <code>delivery</code> what the instance takes.</li>
+</ul>
+<h2 id="vorschlage-statt-tatsachen">Proposals rather than facts<a class="headerlink" href="#vorschlage-statt-tatsachen" title="Permanent link">&para;</a></h2>
+<p>A package can deliver links as proposals (<code>suggestions</code> on an entry, from <code>anton-import-format</code> 0.9). They are only stored: nothing reaches the record and no authority record is created before someone has decided. There is no mode that takes proposals over on its own above a certain confidence.</p>
+<p>The decision is taken in the <strong>review list for proposals</strong> under <strong>data import</strong>. It needs the capability "Review and confirm proposals", which can be granted to accounts from the role editor. The list filters by status, kind, holding, rating and source and shows each proposal's record, passage and the records of similar name.</p>
+<ul>
+<li><strong>Confirm</strong> writes the link as a keyword or as an event, as the proposal says, one by one or for all selected. If it is not clear which record is meant, the proposal stays open until someone chooses.</li>
+<li><strong>Create new</strong> creates a record of its own, also beside one of the same name. It stays <a href="../../user/authorities/#vorlaufige-eintrage">provisional</a>: what was confirmed is the link, not the record.</li>
+<li><strong>Discard</strong> keeps the proposal with person and time. A later delivery does not propose it again.</li>
 </ul>
 <h2 id="a-large-package-on-the-server">A large package on the server<a class="headerlink" href="#a-large-package-on-the-server" title="Permanent link">&para;</a></h2>
 <p>The API takes a package up to 5 GB. A larger one, <code>.zip</code> or <code>.tar</code>, is placed on the server over SSH and imported there:</p>

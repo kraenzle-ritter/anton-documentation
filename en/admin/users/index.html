@@ -4199,6 +4199,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/openrefine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRefine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4660,7 +4688,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-03</span>
+        <span class="page-meta__date">Last updated: 2026-11-06</span>
     </div>
   
   
@@ -4761,8 +4789,19 @@ right needs the minimum role <strong>and</strong> the capability.</p>
 <td>Name the <a href="../contacts/">contact persons</a> and confirm for the overall responsibility (since v0.118.0)</td>
 <td><code>admin</code></td>
 </tr>
+<tr>
+<td>Review and confirm proposals</td>
+<td>The <a href="../agate-sip/#vorschlage-statt-tatsachen">review list for proposals</a></td>
+<td><code>editor</code></td>
+</tr>
+<tr>
+<td>Bulk actions</td>
+<td>Edit records <a href="../../user/selection/">in bulk</a>, as an admin also move them in bulk</td>
+<td><code>editor</code></td>
+</tr>
 </tbody>
 </table>
+<p>An account becoming an admin gets "Review and confirm proposals" and "Bulk actions" on its own; both can be withdrawn again and granted to editors one by one.</p>
 <p>Capabilities are granted by superusers and by admins holding <strong>Manage users and
 capabilities</strong>, on an account's edit page. Nobody can change their own
 capabilities. Superusers hold all capabilities. Every change is recorded in the

@@ -2341,6 +2341,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#token-nur-fur-rechnungsdaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token nur für Rechnungsdaten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sicherheitshinweise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2474,6 +2485,8 @@ abgelaufener Token ist als «abgelaufen» markiert und wird abgewiesen.</p>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="token-nur-fur-rechnungsdaten">Token nur für Rechnungsdaten<a class="headerlink" href="#token-nur-fur-rechnungsdaten" title="Permanent link">&para;</a></h2>
+<p><code>php artisan contract:read-token --env=&lt;slug&gt; --days=365</code> erzeugt ein Token, das nur <code>GET /api/billing-address</code> und <code>GET /api/usage-statements</code> öffnet. Auf jeder anderen Route hinter dem Token antwortet es mit <strong>403</strong>, gleich was sein Konto darf. Es hängt am Dienstkonto <code>svc-contract-read</code>, das sich nicht anmelden kann. Der Klartext erscheint einmal in der Ausgabe; gespeichert wird nur der Hash. Abgelaufen antwortet das Token mit <strong>401</strong>.</p>
 <h2 id="sicherheitshinweise">Sicherheitshinweise<a class="headerlink" href="#sicherheitshinweise" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

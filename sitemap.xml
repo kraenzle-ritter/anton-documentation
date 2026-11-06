@@ -505,6 +505,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/authentication/"/>
     </url>
     <url>
+        <loc>Noneapi/openrefine/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneapi/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/openrefine/"/>
+    </url>
+    <url>
         <loc>Nonecustomers/asla/</loc>
         <lastmod>2026-11-06</lastmod>
         <changefreq>daily</changefreq>
@@ -1610,6 +1619,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneapi/authentication/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/authentication/"/>
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/authentication/"/>
+    </url>
+    <url>
+        <loc>Noneen/api/openrefine/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneapi/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/openrefine/"/>
     </url>
     <url>
         <loc>Noneen/customers/asla/</loc>
@@ -2719,6 +2737,15 @@
         <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/authentication/"/>
     </url>
     <url>
+        <loc>Nonefr/api/openrefine/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneapi/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/openrefine/"/>
+    </url>
+    <url>
         <loc>Nonefr/customers/asla/</loc>
         <lastmod>2026-11-06</lastmod>
         <changefreq>daily</changefreq>
@@ -3824,6 +3851,15 @@
         <xhtml:link rel="alternate" hreflang="de" href="Noneapi/authentication/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneen/api/authentication/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/authentication/"/>
+    </url>
+    <url>
+        <loc>Noneit/api/openrefine/</loc>
+        <lastmod>2026-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="Noneit/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Noneapi/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/api/openrefine/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="Nonefr/api/openrefine/"/>
     </url>
     <url>
         <loc>Noneit/customers/asla/</loc>

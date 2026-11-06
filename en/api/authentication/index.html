@@ -4191,6 +4191,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-token-for-billing-data-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A token for billing data only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4236,6 +4247,34 @@
     
   
     Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openrefine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRefine
   
 
     
@@ -4722,6 +4761,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-token-for-billing-data-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A token for billing data only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#security-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4854,6 +4904,8 @@ date. <strong>Revoke</strong> invalidates a token immediately. An expired token 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="a-token-for-billing-data-only">A token for billing data only<a class="headerlink" href="#a-token-for-billing-data-only" title="Permanent link">&para;</a></h2>
+<p><code>php artisan contract:read-token --env=&lt;slug&gt; --days=365</code> creates a token that opens only <code>GET /api/billing-address</code> and <code>GET /api/usage-statements</code>. On every other route behind the token it answers <strong>403</strong>, whatever its account may do. It hangs on the service account <code>svc-contract-read</code>, which cannot sign in. The plain text appears once in the output; only the hash is stored. Once expired the token answers <strong>401</strong>.</p>
 <h2 id="security-notes">Security notes<a class="headerlink" href="#security-notes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
