@@ -166,6 +166,16 @@ An bestehenden Normdaten füllt der Import nur leere Textfelder; ein abweichende
 - **Ziel über die API:** Der Dateiname `sip-agate-<id>.zip` startet den Import unter diesem Datensatz. Ohne ihn nimmt `POST /api/sips/import` das Ziel aus `parent` der obersten Einträge (`uuid`, `identifier` oder `id`). Nennen sie keinen Datensatz, wartet das Paket im Eingangskorb. Nennen sie verschiedene oder einen unbekannten Datensatz oder liegt das Ziel im Akzessionsarchiv, wartet es ebenfalls dort, und die Antwort nennt den Grund in `target_problem`.
 - **Protokoll über die API:** `GET /api/sips/{id}/status` liefert `warnings` und `notes`. `GET /api/import-format` meldet unter `delivery`, was die Instanz übernimmt.
 
+## Vorschläge statt Tatsachen
+
+Ein Paket kann Verknüpfungen als Vorschlag liefern (`suggestions` an einem Eintrag, ab `anton-import-format` 0.9). Sie werden nur abgelegt: Nichts kommt an den Datensatz und kein Normdatensatz entsteht, bevor jemand entschieden hat. Einen Modus, der Vorschläge ab einer bestimmten Sicherheit selbst übernimmt, gibt es nicht.
+
+Entschieden wird in der **Prüfliste für Vorschläge** unter **Daten-Import**. Sie braucht die Befugnis «Vorschläge prüfen und bestätigen», die sich Konten ab der Rolle Editor geben lässt. Die Liste filtert nach Stand, Art, Bestand, Einstufung und Quelle und zeigt je Vorschlag den Datensatz, die Textstelle und die Einträge ähnlichen Namens.
+
+- **Bestätigen** schreibt die Verknüpfung als Schlagwort oder als Ereignis, wie der Vorschlag es sagt, einzeln oder für alle ausgewählten. Ist nicht klar, welcher Eintrag gemeint ist, bleibt der Vorschlag offen, bis jemand wählt.
+- **Neu anlegen** erstellt einen eigenen Eintrag, auch neben einem gleichnamigen. Er bleibt [vorläufig](../user/authorities.md#vorlaufige-eintrage), bestätigt ist die Verknüpfung, nicht der Eintrag.
+- **Verwerfen** behält den Vorschlag mit Person und Zeitpunkt. Eine spätere Lieferung schlägt ihn nicht noch einmal vor.
+
 ## Grosses Paket auf dem Server
 
 Die API nimmt ein Paket bis 5 GB an. Ein grösseres, `.zip` oder `.tar`, legt man per SSH auf den Server und startet den Import dort:

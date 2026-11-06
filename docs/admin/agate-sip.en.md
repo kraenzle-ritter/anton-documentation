@@ -163,6 +163,16 @@ On existing authority records the import only fills empty text fields; a differi
 - **Target through the API:** the file name `sip-agate-<id>.zip` starts the import under that record. Without it, `POST /api/sips/import` takes the target from `parent` of the top entries (`uuid`, `identifier` or `id`). If they name no record, the package waits in the inbox. If they name different records or an unknown one, or the target lies in the accession archive, it waits there too and the response gives the reason in `target_problem`.
 - **Log through the API:** `GET /api/sips/{id}/status` returns `warnings` and `notes`. `GET /api/import-format` reports under `delivery` what the instance takes.
 
+## Proposals rather than facts
+
+A package can deliver links as proposals (`suggestions` on an entry, from `anton-import-format` 0.9). They are only stored: nothing reaches the record and no authority record is created before someone has decided. There is no mode that takes proposals over on its own above a certain confidence.
+
+The decision is taken in the **review list for proposals** under **data import**. It needs the capability "Review and confirm proposals", which can be granted to accounts from the role editor. The list filters by status, kind, holding, rating and source and shows each proposal's record, passage and the records of similar name.
+
+- **Confirm** writes the link as a keyword or as an event, as the proposal says, one by one or for all selected. If it is not clear which record is meant, the proposal stays open until someone chooses.
+- **Create new** creates a record of its own, also beside one of the same name. It stays [provisional](../user/authorities.md#vorlaufige-eintrage): what was confirmed is the link, not the record.
+- **Discard** keeps the proposal with person and time. A later delivery does not propose it again.
+
 ## A large package on the server
 
 The API takes a package up to 5 GB. A larger one, `.zip` or `.tar`, is placed on the server over SSH and imported there:

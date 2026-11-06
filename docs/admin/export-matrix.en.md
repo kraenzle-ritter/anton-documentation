@@ -25,7 +25,7 @@ or exchange view.**
 | RDF RiC | pure RiC-O 1.1 (JSON-LD) | Object tree | Admin → Export |
 | RDF Memobase | RiC-O subset (JSON-LD) | Object tree (lossy) | Admin → Export |
 | RDF «A+» bundle | CIDOC CRM + RiC-O **+ media files** as a ZIP | Object tree, viewable offline without Anton; with `--include-protected --include-originals` a **migration package** (see below) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
-| **Native round trip** | `anton-import-format` v0.8 (JSON) **+ master media** as a ZIP | Object tree, **losslessly re-importable** | `anton:export-native` / `anton:import-native` |
+| **Native round trip** | `anton-import-format` v0.9 (JSON) **+ master media** as a ZIP | Object tree, **losslessly re-importable** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | per object (embedded only) | Building block in DIP / OCFL |
 | DIP | BagIt | Package: media + metadata (subtree) | «DIP» button on the record |
 | E-ARK DIP | E-ARK DIP 2.2.0 (CSIP) | Package of a record and its subtree: *access* = public view with access copies, *full* = everything with masters and originals | «E-ARK DIP» button on the record (access), `anton:export-dip --format=eark [--full]` |
@@ -220,7 +220,7 @@ the protection periods are missing.
 
 For the lossless route there is the **native round trip**
 (`anton:export-native` → `anton:import-native`): a package in the
-`anton-import-format` v0.8 together with master media, which Anton reads back in.
+`anton-import-format` v0.9 together with master media, which Anton reads back in.
 Anchored via UUIDs (unknown → create new, known → skip, update with `--update`),
 hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of **all** carriers including private ones, actors as descriptors (anton#825; a re-import used to lose them), termselect values, form set
