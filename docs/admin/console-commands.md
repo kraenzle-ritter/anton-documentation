@@ -533,10 +533,11 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:update-release-year` | Materialize release_year_calculated (the single effective release year) for all objects (#256). |
 | `anton:upwd` | Set the password of an account; without the password argument it is asked for hidden. |
 
-### contract: (1)
+### contract: (2)
 
 | Befehl | Beschreibung |
 |---|---|
+| `contract:read-token` | Create an API token that reads only the billing address and the usage statements. |
 | `contract:usage-statement` | Write the monthly usage statement for the invoice: storage, media, accounts, AI cost, booked i… |
 
 ### format-policy: (3)

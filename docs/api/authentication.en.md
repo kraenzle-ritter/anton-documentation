@@ -110,6 +110,10 @@ response = requests.get(url, headers=headers)
 data = response.json()
 ```
 
+## A token for billing data only
+
+`php artisan contract:read-token --env=<slug> --days=365` creates a token that opens only `GET /api/billing-address` and `GET /api/usage-statements`. On every other route behind the token it answers **403**, whatever its account may do. It hangs on the service account `svc-contract-read`, which cannot sign in. The plain text appears once in the output; only the hash is stored. Once expired the token answers **401**.
+
 ## Security notes
 
 | Recommendation | Description |
