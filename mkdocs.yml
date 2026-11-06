@@ -163,6 +163,7 @@ nav:
   - API: 
     - Authentication: api/authentication.md
     - Endpoints: api/index.md
+    - OpenRefine: api/openrefine.md
   - FAQ:
     - Anton as Service: faq/anton_as_service.md
     - Anton on Premises: faq/anton_on_premises.md
@@ -322,6 +323,7 @@ plugins:
             - API:
               - Authentication: api/authentication.md
               - Endpoints: api/index.md
+              - OpenRefine: api/openrefine.md
             - FAQ:
               - General FAQs: faq/index.md
               - Anton as a Service: faq/anton_as_service.md
