@@ -52,6 +52,7 @@ writes — the AI only makes suggestions, the human decides.
   It is made in the job `TranscribeAudioJob` (up to 1,200 s), not in the request, and stored on the medium; a suggestion made before goes without it.
 - **Video** — 5 ffmpeg stills, evenly spaced across the running time
 - **The existing title** of the record as context
+- **The existing description** as context: level, titles above, dating, place of creation and scope and content. Only what the archive's public detail form shows; internal text fields and actors do not go out, and of a private record only the title. Drafts count. A profile switches this off with `context_config.record_context = false`.
 
 ## Actors, places, keywords: two patterns
 

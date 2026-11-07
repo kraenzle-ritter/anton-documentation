@@ -56,6 +56,7 @@ Mensch entscheidet.
   Es entsteht im Job `TranscribeAudioJob` (bis 1 200 s), nicht im Request, und wird am Medium gespeichert; ein Vorschlag, der vorher kommt, geht ohne es.
 - **Video** — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit
 - **Bestehender Titel** des Datensatzes als Kontext
+- **Vorhandene Erschliessung** als Kontext: Stufe, übergeordnete Titel, Datierung, Entstehungsort und Inhaltsangabe. Nur, was das öffentliche Detailformular des Archivs zeigt; interne Textfelder und Akteur:innen gehen nicht hinaus, von gesperrten Datensätzen nur der Titel. Entwürfe zählen mit. Ein Profil schaltet das mit `context_config.record_context = false` ab.
 
 ## Akteur:innen, Orte, Schlagwörter: zwei Pattern
 
