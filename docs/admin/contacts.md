@@ -17,7 +17,7 @@ Alle Admins sehen die Seite. Personen eintragen und entfernen können Konten mit
 
 ## Rechnungsadresse
 
-Auf derselben Seite steht, wohin die Rechnungen gehen: Institution, Abteilung, zu Handen, Strasse, PLZ, Ort, Land, Mailadresse für Rechnungen, Bestell- oder Referenznummer, Kostenstelle, UID/MWST-Nummer, Versand (per Mail als PDF, per Post oder eBill) und eine Bemerkung. Bei Versand per Mail ist die Mailadresse Pflicht.
+Auf derselben Seite steht, wohin die Rechnungen gehen: Institution, Abteilung, zu Handen, Strasse, PLZ, Ort, Land, Mailadresse für Rechnungen, Bestell- oder Referenznummer, Kostenstelle, UID/MWST-Nummer und eine Bemerkung. Die Rechnung kommt immer per Mail als PDF, die Mailadresse ist darum Pflicht.
 
 Die Adresse pflegen Konten mit der Befugnis **Vertrag und Ansprechpersonen**. Jede Änderung steht im Sicherheitsprotokoll und geht mit altem und neuem Wert per Mail an die Ansprechpersonen für Rechnung und Gesamtverantwortung und an Kränzle & Ritter. Die Buchhaltung von Kränzle & Ritter übernimmt die Adresse von hier (`GET /api/billing-address`, mit dem Token eines Admin-Kontos).
 

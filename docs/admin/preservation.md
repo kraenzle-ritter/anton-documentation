@@ -124,8 +124,9 @@ Der Master ist nicht in jedem Fall die gelieferte Datei. Massgebend ist die Date
 
 Neben manchen Mastern liegt eine **behaltene Fassung** im Ordner `original/` des Mediums: nach einer Migration mit [`media:migrate`](console-commands.md#mediamigrate) die übernommene Datei (ausser mit `--discard-original`, das nur eine Regel wie `tiff_zip` erlaubt), nach dem Preingest die gelieferte Datei, wo das Archiv sie behält: beim QR-Upload mit «Gelieferte Datei behalten» und die Bilder von «Bilder → PDF». Seit Version 0.105 führt Anton jede solche Datei als
 **Fassung** des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
-Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
-Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.
+Ereignis, das festhält, woher es kommt. Listen, Galerie, Download und Export zeigen die aktuelle Fassung. Konten mit der
+Befugnis **Digitale Archivierung** und Superuser können eine behaltene Fassung auf der
+Medienseite des Datensatzes herunterladen; das Bestandsprotokoll hält es fest.
 
 Behaltene Fassungen aus der Zeit davor trägt
 [`media:register-originals`](console-commands.md#mediaregister-originals) nach.
