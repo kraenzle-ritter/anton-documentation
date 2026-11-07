@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **6 November 2026**. It is
+    This matrix reflects the state of **7 November 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -124,7 +124,7 @@ This data survives **no** format export:
 
 - **User accounts and authentication** — which does not belong in an archival
   export anyway
-- **Settings, form definitions, locations, orders, notifications**
+- **Settings, form definitions, locations, orders, notifications** — for locations also the arrangement of the magazine: levels, the place above and capacity (anton#832)
 - **NARA risk assessment** of the files — the rest of the file provenance
   (formats, checksums, events) travels as PREMIS in the DIP, OCFL and native
   round trip since anton#661
@@ -196,7 +196,7 @@ deliberately contains only what a data update is allowed to write, and leaves
 out hierarchy (`parent`) and events, because these would be blocked on
 re-import. The location is included: it is written on update,
 and rearranging the stacks is one of the most frequent reasons for a bulk
-update. Taking the narrower file therefore does not lose information by
+update. The update table carries it as an ID, the full export since version 0.123.0 as its path in the magazine («Room 1 › Shelf 3 › Compartment 4»), a flat location still by its name (anton#832). Taking the narrower file therefore does not lose information by
 accident; it deliberately limits the scope of effect, and the download dialogue
 allows this to be narrowed further.
 

@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **6. November 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **7. November 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -123,7 +123,7 @@ nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
 Diese Daten überleben **keinen** Formatexport:
 
 - **Benutzerkonten und Authentifizierung** — gehört auch nicht in einen Archivexport
-- **Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten**
+- **Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten** — bei Standorten auch die Gliederung des Magazins: Stufen, übergeordneter Platz und Kapazität (anton#832)
 - **NARA-Risikobewertung** der Dateien — die übrige Datei-Provenienz (Formate,
   Prüfsummen, Ereignisse) reist seit anton#661 als PREMIS in DIP, OCFL und nativem
   Round-Trip mit
@@ -198,7 +198,7 @@ Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf,
 lässt Hierarchie (`parent`) und Ereignisse weg, weil diese beim Zurückspielen
 blockiert würden. Der Standort ist enthalten: er wird beim Update
 geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
-Massen-Update. Wer die schmalere Datei
+Massen-Update. Die Update-Tabelle führt ihn als ID, der volle Export seit Version 0.123.0 als Pfad im Magazin («Raum 1 › Regal 3 › Fach 4»), bei flachen Standorten wie bisher als Name (anton#832). Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.
 
