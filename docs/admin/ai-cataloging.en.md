@@ -44,7 +44,7 @@ writes — the AI only makes suggestions, the human decides.
 
 ## What the AI receives as input
 
-- **Images** (photographs, scans) directly as vision input
+- **Images** (photographs, scans) directly as vision input; TIFF and other formats the models do not read, and files above 2 MB or 2048 pixels on an edge, go as a smaller JPEG without metadata, and the master stays as it is. Limits: `AI_IMAGE_MAX_BYTES`, `AI_IMAGE_MAX_EDGE`. An image that cannot be prepared is left out and the note with the suggestion says so; with nothing left to look at, an error appears and nothing goes to the provider.
 - **PDFs** — page images; additionally the OCR text layer if present (for
   better quality with typed documents)
 - **Audio** — Whisper V3 transcript via the Infomaniak async batch API. The

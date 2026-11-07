@@ -48,7 +48,7 @@ Mensch entscheidet.
 
 ## Was die KI als Input bekommt
 
-- **Bilder** (Fotos, Scans) direkt als Vision-Input
+- **Bilder** (Fotos, Scans) direkt als Vision-Input; TIFF und andere Formate, die Modelle nicht lesen, sowie Dateien über 2 MB oder 2048 Pixel Kantenlänge gehen als verkleinertes JPEG ohne Metadaten hinaus, der Master bleibt unverändert. Grenzen: `AI_IMAGE_MAX_BYTES`, `AI_IMAGE_MAX_EDGE`. Ein Bild, das sich nicht vorbereiten lässt, fällt weg, und der Hinweis beim Vorschlag nennt das; bleibt gar nichts zum Ansehen, kommt eine Fehlermeldung und keine Anfrage an den Anbieter.
 - **PDFs** — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
   (für bessere Qualität bei getippten Dokumenten)
 - **Audio** — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
