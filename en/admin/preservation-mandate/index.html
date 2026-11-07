@@ -3294,7 +3294,7 @@
   <span class="md-ellipsis">
     
   
-    Long-term preservation
+    Digital archive
   
 
     
@@ -3310,7 +3310,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Long-term preservation
+    Digital archive
   
 
           </label>
@@ -4376,7 +4376,7 @@
   <span class="md-ellipsis">
     
   
-    Digital Preservation
+    Digital archive
   
 
     
@@ -4624,7 +4624,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation-mandate/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-04</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4673,6 +4673,7 @@
 </ul>
 <h2 id="single-migrations">Single migrations<a class="headerlink" href="#single-migrations" title="Permanent link">&para;</a></h2>
 <p>Without a decision, with an own strategy, or outside what the technical care covers, each migration needs an order from the archive: a confirmation by mail (<code>media:migrate --request-approval</code>, see <a href="../console-commands/#mediamigrate">console commands</a>) or an agreement made outside Anton. The request names the rule, the number of files, their size and the estimated additional storage; the confirmation holds for exactly these files.</p>
+<p>Under a shared account of the server (<code>archivar</code>, <code>www-data</code>, <code>root</code>) a migration runs only with <code>--by=&lt;person&gt;</code>. The preservation event names this person, the reason (<code>--reason</code>, otherwise the rule's description) and the version of the rule: the versions of format-policy and Anton and a SHA-256 checksum over what the rule does. In PREMIS the person is the <code>implementer</code>, version and reason are in <code>eventDetail</code>, and the medium links to the rights statement.</p>
 <p>The <a href="../protokolle/">monthly report</a> names every migration carried out with the number of files, the additional storage and the ground: preservation mandate, confirmation by mail or agreement.</p>
 <div class="admonition note">
 <p class="admonition-title">DIMAG</p>

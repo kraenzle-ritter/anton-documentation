@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#long-term-preservation-overview" class="md-skip">
+        <a href="#digital-archive-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -3294,7 +3294,7 @@
   <span class="md-ellipsis">
     
   
-    Long-term preservation
+    Digital archive
   
 
     
@@ -3310,7 +3310,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Long-term preservation
+    Digital archive
   
 
           </label>
@@ -4520,7 +4520,7 @@
   <span class="md-ellipsis">
     
   
-    Digital Preservation
+    Digital archive
   
 
     
@@ -4912,7 +4912,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-03</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4923,7 +4923,7 @@
   
 
 
-<h1 id="long-term-preservation-overview">Long-term preservation: overview<a class="headerlink" href="#long-term-preservation-overview" title="Permanent link">&para;</a></h1>
+<h1 id="digital-archive-overview">Digital archive: overview<a class="headerlink" href="#digital-archive-overview" title="Permanent link">&para;</a></h1>
 <p>Anton ingests digital records with verification, identifies their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it: at ingest through a format rule or the processing of a QR upload, afterwards through a migration (see <a href="#speicherung">Storage</a>). Storage itself and its redundancy are provided by the operating infrastructure; in installations with a connected long-term archive, that archive takes over bitstream preservation. This page shows how the tasks are divided and refers to the detail pages. It also answers the question of which artefact is a <strong>backup</strong> and which is a <strong>publication view</strong>.</p>
 <h2 id="aufgabenteilung">Division of tasks<a class="headerlink" href="#aufgabenteilung" title="Permanent link">&para;</a></h2>
 <p>Digital preservation consists of several layers. Anton covers the archival
@@ -5070,8 +5070,8 @@ computes SHA-512 afterwards — checking every file against its MD5 as it goes. 
 <h3 id="behaltene-originale">Kept originals<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
 <p>Next to some masters lies a <strong>kept original</strong> in the medium's <code>original/</code> folder: after a migration with <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> the file taken in (unless with <code>--discard-original</code>, which only a rule such as <code>tiff_zip</code> allows), after preingest the delivered file where the archive keeps it: on the QR upload with «Keep the delivered file», and the images of «images → PDF». Since version 0.105 Anton keeps every such file as a <strong>version</strong> of
 the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
-records where it came from. Versions appear nowhere in the interface; lists,
-gallery, download and export show the current version.</p>
+records where it came from. Lists, gallery, download and export show the
+current version. Accounts with the capability <strong>Digital preservation</strong> and superusers can download a kept version on the record's media page; the holdings log records it.</p>
 <p>Originals from before that are registered by
 <a href="../console-commands/#mediaregister-originals"><code>media:register-originals</code></a>. Their
 checksum is then the one taken on the day of registration, and the event says

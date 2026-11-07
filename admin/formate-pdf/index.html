@@ -3294,7 +3294,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -3310,7 +3310,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
           </label>
@@ -4409,7 +4409,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -4690,7 +4690,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/formate-pdf/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-01</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4954,7 +4954,7 @@
 <p>Nicht umgewandelt werden PDF/X, die schon PDF/A beanspruchen, verschlüsselt sind oder kein Druckprofil haben, und solche, deren Mängel im Inhalt liegen: Überdruck bei CMYK, Zeichenbreiten, die nicht zur Schrift passen, Transparenz ohne Ausgabeprofil, Bilder im Inhaltsstrom. Sie scheitern an veraPDF und bleiben; eine Umwandlung, die den Inhalt neu schreibt, gibt es dafür noch nicht.</p>
 <p>Vor einem Lauf zeigt der Probelauf an Kopien, was geschähe:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--probe<span class="w"> </span>--report<span class="o">=</span>/tmp/pdfx-rz.csv
-php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span><span class="w"> </span>--by<span class="o">=</span><span class="s2">"Name der Person"</span>
 </code></pre></div>
 <p>Auf dem Server braucht die Regel qpdf, veraPDF und poppler; fehlt veraPDF, lehnt <code>media:migrate</code> sie ab.</p>
 <h2 id="was-eine-migration-prufen-muss">Was eine Migration prüfen muss<a class="headerlink" href="#was-eine-migration-prufen-muss" title="Permanent link">&para;</a></h2>

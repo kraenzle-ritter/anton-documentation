@@ -3292,7 +3292,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -3308,7 +3308,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
           </label>
@@ -4429,7 +4429,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -4732,7 +4732,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/ai-cataloging/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4785,7 +4785,7 @@ versteckten DB-Schreibvorgänge — die KI macht nur Vorschläge, der
 Mensch entscheidet.</p>
 <h2 id="was-die-ki-als-input-bekommt">Was die KI als Input bekommt<a class="headerlink" href="#was-die-ki-als-input-bekommt" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Bilder</strong> (Fotos, Scans) direkt als Vision-Input</li>
+<li><strong>Bilder</strong> (Fotos, Scans) direkt als Vision-Input; TIFF und andere Formate, die Modelle nicht lesen, sowie Dateien über 2 MB oder 2048 Pixel Kantenlänge gehen als verkleinertes JPEG ohne Metadaten hinaus, der Master bleibt unverändert. Grenzen: <code>AI_IMAGE_MAX_BYTES</code>, <code>AI_IMAGE_MAX_EDGE</code>. Ein Bild, das sich nicht vorbereiten lässt, fällt weg, und der Hinweis beim Vorschlag nennt das; bleibt gar nichts zum Ansehen, kommt eine Fehlermeldung und keine Anfrage an den Anbieter.</li>
 <li><strong>PDFs</strong> — Seitenbilder; zusätzlich der OCR-Textlayer wenn vorhanden
   (für bessere Qualität bei getippten Dokumenten)</li>
 <li><strong>Audio</strong> — Whisper-V3-Transkript über Infomaniak Async-Batch-API.
@@ -4793,6 +4793,7 @@ Mensch entscheidet.</p>
   Es entsteht im Job <code>TranscribeAudioJob</code> (bis 1 200 s), nicht im Request, und wird am Medium gespeichert; ein Vorschlag, der vorher kommt, geht ohne es.</li>
 <li><strong>Video</strong> — 5 ffmpeg-Standbilder evenly-spaced über die Laufzeit</li>
 <li><strong>Bestehender Titel</strong> des Datensatzes als Kontext</li>
+<li><strong>Vorhandene Erschliessung</strong> als Kontext: Stufe, übergeordnete Titel, Datierung, Entstehungsort und Inhaltsangabe. Nur, was das öffentliche Detailformular des Archivs zeigt; interne Textfelder und Akteur:innen gehen nicht hinaus, von gesperrten Datensätzen nur der Titel. Entwürfe zählen mit. Ein Profil schaltet das mit <code>context_config.record_context = false</code> ab.</li>
 </ul>
 <h2 id="akteurinnen-orte-schlagworter-zwei-pattern">Akteur:innen, Orte, Schlagwörter: zwei Pattern<a class="headerlink" href="#akteurinnen-orte-schlagworter-zwei-pattern" title="Permanent link">&para;</a></h2>
 <p>Die KI unterscheidet zwischen Schöpfer- und Inhalts-Bezügen:</p>

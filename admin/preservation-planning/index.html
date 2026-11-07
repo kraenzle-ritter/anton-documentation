@@ -3294,7 +3294,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -3310,7 +3310,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
           </label>
@@ -4464,7 +4464,7 @@
   <span class="md-ellipsis">
     
   
-    Langzeitarchivierung
+    Digitales Archiv
   
 
     
@@ -4800,7 +4800,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/preservation-planning/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-01</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4859,6 +4859,7 @@
 <p>Eine Kreuztabelle zählt die Medien nach NARA-Risiko und empfohlener Aktion, zwei Kreisdiagramme zeigen die Verteilung der Risiko-Stufen und der Aktionen. Darunter stehen bis zu 50 Medien mit Handlungsbedarf: nicht identifizierte zuerst, dann die übrigen ausser <strong>Retain</strong>, nach Risiko geordnet.</p>
 <h2 id="formatpruefung">Formatprüfung<a class="headerlink" href="#formatpruefung" title="Permanent link">&para;</a></h2>
 <p>Wo der Bestand in der <a href="../preservation/">Formatprüfung</a> steht, je Master nach seiner letzten Prüfung: je Formatgruppe (PDF, TIFF, andere Bilder, Ton und Video, Text, Office-Dokumente, Pakete) ungültig, gültig mit Warnungen, gültig, nicht geprüft, noch nie geprüft. Dazu, wie weit der Nachtlauf ist (zuletzt gründlich, nur bei der Übernahme, nie), die PDF-Risiken und der PDF/A-Anspruch, Widersprüche zwischen Endung, Format und PRONOM-ID, und die Liste der Medien, die zuletzt ungültig waren, mit Link zum Datensatz. Was wann geprüft wurde, steht unter <strong>Administration → Protokolle → Formatprüfung</strong>.</p>
+<p>Ein ungültiges Medium, das bleiben soll, lässt sich quittieren: In der Liste auswählen, begründen und «Als geprüft quittieren» wählen, mit der Befugnis <strong>Digitale Archivierung</strong>; auf der Kommandozeile <code>media:validate-formats --acknowledge --ids=… --reason="…"</code>, unter einem gemeinsamen Konto dazu <code>--by="…"</code>. Der Befund bleibt stehen, nichts wird dadurch gültig. Das Medium zählt nun unter «Ungültig, geprüft», mit Person, Datum und Begründung, und <code>--only-failures</code> meldet es nicht mehr. Die Quittung gilt für diese Datei und diesen Befund: Ändert sich eines davon, zählt das Medium wieder als offen. Sie steht im PREMIS-Export und lässt sich aufheben (<code>--withdraw</code>).</p>
 <h2 id="virenpruefung">Virenprüfung<a class="headerlink" href="#virenpruefung" title="Permanent link">&para;</a></h2>
 <p>Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB oder über der Grenze, bis zu der ClamAV am Stück prüft), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.</p>
 <h2 id="formatliste">Formatliste<a class="headerlink" href="#formatliste" title="Permanent link">&para;</a></h2>

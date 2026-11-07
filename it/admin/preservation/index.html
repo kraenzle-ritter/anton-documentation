@@ -29,7 +29,7 @@
     
     
       
-        <title>Langzeitarchivierung: Überblick - Anton – Documentazione</title>
+        <title>Digitales Archiv: Überblick - Anton – Documentazione</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#langzeitarchivierung-uberblick" class="md-skip">
+        <a href="#digitales-archiv-uberblick" class="md-skip">
           Vai al contenuto
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Langzeitarchivierung: Überblick
+              Digitales Archiv: Überblick
             
           </span>
         </div>
@@ -2048,7 +2048,7 @@
   <span class="md-ellipsis">
     
   
-    Archiviazione a lungo termine
+    Archivio digitale
   
 
     
@@ -2440,7 +2440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-03</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -2451,10 +2451,10 @@
   
 
 
-<h1 id="langzeitarchivierung-uberblick">Langzeitarchivierung: Überblick<a class="headerlink" href="#langzeitarchivierung-uberblick" title="Permanent link">&para;</a></h1>
+<h1 id="digitales-archiv-uberblick">Digitales Archiv: Überblick<a class="headerlink" href="#digitales-archiv-uberblick" title="Permanent link">&para;</a></h1>
 <p>Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe <a href="#speicherung">Speicherung</a>). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine <strong>Sicherung</strong> ist und welches eine <strong>Publikationsansicht</strong>.</p>
 <h2 id="aufgabenteilung">Aufgabenteilung<a class="headerlink" href="#aufgabenteilung" title="Permanent link">&para;</a></h2>
-<p>Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
+<p>Das Digitale Archiv besteht aus mehreren Schichten. Anton deckt
 die fachlichen ab, der Betrieb die Speicherung:</p>
 <table>
 <thead>
@@ -2603,8 +2603,9 @@ dabei jede Datei gegen ihre MD5. <code>web</code> und <code>thumb</code> sind Nu
 <h3 id="behaltene-originale">Behaltene Fassungen<a class="headerlink" href="#behaltene-originale" title="Permanent link">&para;</a></h3>
 <p>Neben manchen Mastern liegt eine <strong>behaltene Fassung</strong> im Ordner <code>original/</code> des Mediums: nach einer Migration mit <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a> die übernommene Datei (ausser mit <code>--discard-original</code>, das nur eine Regel wie <code>tiff_zip</code> erlaubt), nach dem Preingest die gelieferte Datei, wo das Archiv sie behält: beim QR-Upload mit «Gelieferte Datei behalten» und die Bilder von «Bilder → PDF». Seit Version 0.105 führt Anton jede solche Datei als
 <strong>Fassung</strong> des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
-Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
-Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.</p>
+Ereignis, das festhält, woher es kommt. Listen, Galerie, Download und Export zeigen die aktuelle Fassung. Konten mit der
+Befugnis <strong>Digitale Archivierung</strong> und Superuser können eine behaltene Fassung auf der
+Medienseite des Datensatzes herunterladen; das Bestandsprotokoll hält es fest.</p>
 <p>Behaltene Fassungen aus der Zeit davor trägt
 <a href="../console-commands/#mediaregister-originals"><code>media:register-originals</code></a> nach.
 Ihre Prüfsumme ist dann die vom Tag der Erfassung, und das Ereignis hält das

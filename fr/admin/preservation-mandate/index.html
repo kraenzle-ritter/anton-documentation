@@ -2048,7 +2048,7 @@
   <span class="md-ellipsis">
     
   
-    Archivage à long terme
+    Archive numérique
   
 
     
@@ -2296,7 +2296,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/preservation-mandate/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation-mandate/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-04</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -2345,6 +2345,7 @@
 </ul>
 <h2 id="einzelne-migrationen">Einzelne Migrationen<a class="headerlink" href="#einzelne-migrationen" title="Permanent link">&para;</a></h2>
 <p>Ohne Festlegung, bei eigener Strategie oder ausserhalb dessen, was die Betreuung deckt, braucht jede Migration einen Auftrag des Archivs: eine Bestätigung per Mail (<code>media:migrate --request-approval</code>, siehe <a href="../console-commands/#mediamigrate">Konsolenbefehle</a>) oder eine Vereinbarung ausserhalb von Anton. Die Anfrage nennt die Regel, die Zahl der Dateien, ihre Grösse und den geschätzten zusätzlichen Speicher; die Bestätigung gilt für genau diese Dateien.</p>
+<p>Unter einem gemeinsamen Konto des Servers (<code>archivar</code>, <code>www-data</code>, <code>root</code>) läuft eine Migration nur mit <code>--by=&lt;Person&gt;</code>. Das Erhaltungsereignis nennt diese Person, den Grund (<code>--reason</code>, sonst die Beschreibung der Regel) und die Fassung der Regel: Version von format-policy und Anton und eine SHA-256-Prüfsumme über das, was die Regel tut. Im PREMIS steht die Person als <code>implementer</code>, die Fassung und der Grund stehen in <code>eventDetail</code>, und das Medium verweist auf die Rechteangabe.</p>
 <p>Der <a href="../protokolle/">Monatsbericht</a> nennt jede durchgeführte Migration mit der Zahl der Dateien, dem zusätzlichen Speicher und der Grundlage: Erhaltungsauftrag, Bestätigung per Mail oder Vereinbarung.</p>
 <div class="admonition note">
 <p class="admonition-title">DIMAG</p>

@@ -3292,7 +3292,7 @@
   <span class="md-ellipsis">
     
   
-    Long-term preservation
+    Digital archive
   
 
     
@@ -3308,7 +3308,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Long-term preservation
+    Digital archive
   
 
           </label>
@@ -4429,7 +4429,7 @@
   <span class="md-ellipsis">
     
   
-    Digital Preservation
+    Digital archive
   
 
     
@@ -4732,7 +4732,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4781,7 +4781,7 @@ file is attached).</p>
 writes — the AI only makes suggestions, the human decides.</p>
 <h2 id="what-the-ai-receives-as-input">What the AI receives as input<a class="headerlink" href="#what-the-ai-receives-as-input" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Images</strong> (photographs, scans) directly as vision input</li>
+<li><strong>Images</strong> (photographs, scans) directly as vision input; TIFF and other formats the models do not read, and files above 2 MB or 2048 pixels on an edge, go as a smaller JPEG without metadata, and the master stays as it is. Limits: <code>AI_IMAGE_MAX_BYTES</code>, <code>AI_IMAGE_MAX_EDGE</code>. An image that cannot be prepared is left out and the note with the suggestion says so; with nothing left to look at, an error appears and nothing goes to the provider.</li>
 <li><strong>PDFs</strong> — page images; additionally the OCR text layer if present (for
   better quality with typed documents)</li>
 <li><strong>Audio</strong> — Whisper V3 transcript via the Infomaniak async batch API. The
@@ -4789,6 +4789,7 @@ writes — the AI only makes suggestions, the human decides.</p>
   It is made in the job <code>TranscribeAudioJob</code> (up to 1,200 s), not in the request, and stored on the medium; a suggestion made before goes without it.</li>
 <li><strong>Video</strong> — 5 ffmpeg stills, evenly spaced across the running time</li>
 <li><strong>The existing title</strong> of the record as context</li>
+<li><strong>The existing description</strong> as context: level, titles above, dating, place of creation and scope and content. Only what the archive's public detail form shows; internal text fields and actors do not go out, and of a private record only the title. Drafts count. A profile switches this off with <code>context_config.record_context = false</code>.</li>
 </ul>
 <h2 id="actors-places-keywords-two-patterns">Actors, places, keywords: two patterns<a class="headerlink" href="#actors-places-keywords-two-patterns" title="Permanent link">&para;</a></h2>
 <p>The AI distinguishes between creator relationships and content relationships:</p>

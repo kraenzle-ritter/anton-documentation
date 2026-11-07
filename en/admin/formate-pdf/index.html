@@ -3294,7 +3294,7 @@
   <span class="md-ellipsis">
     
   
-    Long-term preservation
+    Digital archive
   
 
     
@@ -3310,7 +3310,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Long-term preservation
+    Digital archive
   
 
           </label>
@@ -4409,7 +4409,7 @@
   <span class="md-ellipsis">
     
   
-    Digital Preservation
+    Digital archive
   
 
     
@@ -4690,7 +4690,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/formate-pdf/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-01</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4953,7 +4953,7 @@
 <p>Not converted are PDF/X that already claim PDF/A, are encrypted or have no printing profile, and those whose defects are in the content: overprint on CMYK, character widths that do not match the font, transparency without an output profile, images inline in the content stream. They fail at veraPDF and stay; a conversion that rewrites content does not exist for them yet.</p>
 <p>Before a run, the probe on copies shows what would happen:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--probe<span class="w"> </span>--report<span class="o">=</span>/tmp/pdfx-rz.csv
-php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span>
+php<span class="w"> </span>artisan<span class="w"> </span>media:migrate<span class="w"> </span>--env<span class="o">=</span>rz<span class="w"> </span>--rule<span class="o">=</span>pdfx_pdfa2b<span class="w"> </span>--write<span class="w"> </span>--limit<span class="o">=</span><span class="m">20</span><span class="w"> </span>--by<span class="o">=</span><span class="s2">"Name of the person"</span>
 </code></pre></div>
 <p>On the server the rule needs qpdf, veraPDF and poppler; without veraPDF, <code>media:migrate</code> refuses it.</p>
 <h2 id="what-a-migration-must-check">What a migration must check<a class="headerlink" href="#what-a-migration-must-check" title="Permanent link">&para;</a></h2>
