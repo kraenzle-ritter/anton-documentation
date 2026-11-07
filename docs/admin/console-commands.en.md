@@ -456,7 +456,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (65)
+### anton: (66)
 
 | Command | Description |
 |---|---|
@@ -492,6 +492,7 @@ up to date with every change to the commands.
 | `anton:import-native` | Restore an Anton subtree from a native round-trip package (anton-import-format + media). |
 | `anton:import-pages` | Import an excel file with metadata for pages |
 | `anton:install` | Install Anton for a .env file with --env |
+| `anton:local-login` | Local development only: print a one-time link that signs an account in without a password. |
 | `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |
 | `anton:measure-disk-usage` | Measure and cache storage disk usage in the background (feeds anton:doctor CheckDiskSpace, #293) |
 | `anton:merge` | Merge multiple records into one (actors, places, or keywords) |
