@@ -7,10 +7,8 @@ den [Akteur:innen](actors.md), geografische Angaben zu den [Orten](places.md).
 Zu finden sind sie über **Admin → Schlagwörter**; verknüpft werden sie im
 Objektformular im Feld **Schlagwörter (Sachen)**.
 
-!!! note "Keine Hierarchie"
-    Schlagwörter stehen nebeneinander. Anton führt keinen Thesaurus: Es gibt
-    keine Ober- und Unterbegriffe und keine Verweisungen zwischen
-    Schlagwörtern. Der **Typ** gruppiert sie lediglich.
+!!! note "Hierarchie nur auf Wunsch"
+    Ohne weiteres stehen Schlagwörter nebeneinander, der **Typ** gruppiert sie lediglich. Ober- und Unterbegriffe und «siehe auch» lassen sich pro Archiv einschalten, siehe [Ober- und Unterbegriffe](#ober-und-unterbegriffe).
 
 ## Typen
 
@@ -39,6 +37,18 @@ der Auswahlliste im Feld **Schlagwörter** steht ein **+**, das ein Fenster mit
 demselben Anlege-Formular öffnet. Nach dem Erstellen ist das neue Schlagwort
 ausgewählt — die Verzeichnungseinheit selbst muss danach noch gespeichert
 werden.
+
+## Ober- und Unterbegriffe
+
+Ist die Einstellung `keyword_relations` unter **Admin → Einstellungen** eingeschaltet, führt jedes Schlagwort **Oberbegriffe**, **Unterbegriffe** und **Siehe auch**. Ausgeschaltet, die Vorgabe, bleibt alles wie bisher.
+
+Im Formular des Schlagworts sucht man die Begriffe in drei Feldern wie im Objektformular aus. Ein Unterbegriff lässt sich vom Ober- wie vom Unterbegriff aus eintragen; Anton speichert die Beziehung einmal und zeigt sie auf beiden Seiten.
+
+Ein Schlagwort darf **mehrere Oberbegriffe** haben. Einer davon ist die **Hauptstelle**: Unter ihr steht das Schlagwort im **Pfad**, der auf der Detailseite oben erscheint, etwa «Schrift › Brief». Der erste Oberbegriff wird zur Hauptstelle; hat ein Schlagwort mehrere, wählt man sie im Formular unter **Hauptstelle**.
+
+Anton lässt keinen Kreis zu: Ein Schlagwort kann nicht unter einem seiner eigenen Unterbegriffe stehen und nicht mit sich selbst verknüpft werden. Das Formular kommt dann mit einer Meldung zurück und speichert nichts.
+
+Wird ein Schlagwort gelöscht, verschwinden seine Beziehungen mit. Werden zwei Schlagwörter zusammengeführt, übernimmt das bleibende die Beziehungen des anderen.
 
 ## Normdaten
 

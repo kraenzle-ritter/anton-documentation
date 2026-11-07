@@ -7,10 +7,8 @@ techniques, works. Persons and organisations, by contrast, belong with the
 They are found under **Admin → Keywords**; they are linked in the object form in
 the **keywords (subjects)** field.
 
-!!! note "No hierarchy"
-    Keywords stand side by side. Anton maintains no thesaurus: there are no
-    broader and narrower terms and no cross-references between keywords. The
-    **type** merely groups them.
+!!! note "Hierarchy only on request"
+    By default keywords stand side by side; the **type** merely groups them. Broader and narrower terms and «see also» can be switched on per archive, see [Broader and narrower terms](#broader-and-narrower-terms).
 
 ## Types
 
@@ -38,6 +36,18 @@ Keywords can also be created **directly from the object form**: next to the
 selection list in the **keywords** field there is a **+** which opens a window
 with the same creation form. After creation the new keyword is selected — the
 unit of description itself still has to be saved afterwards.
+
+## Broader and narrower terms
+
+With the setting `keyword_relations` switched on under **Admin → Settings**, every keyword carries **broader terms**, **narrower terms** and **see also**. Switched off, the default, everything stays as it was.
+
+In the keyword's form the terms are picked in three fields, as in the object form. A narrower term can be entered from either end; Anton stores the relation once and shows it on both sides.
+
+A keyword may have **several broader terms**. One of them is the **primary** one: the keyword sits under it in the **path** shown at the top of the detail page, for instance «Writing › Letter». The first broader term becomes the primary one; where there are several, it is chosen in the form under **Primary**.
+
+Anton allows no circle: a keyword cannot sit under one of its own narrower terms, nor be related to itself. The form then comes back with a message and saves nothing.
+
+Deleting a keyword removes its relations. Merging two keywords hands the relations of the one that goes to the one that stays.
 
 ## Authority data
 

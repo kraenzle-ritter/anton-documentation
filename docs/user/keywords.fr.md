@@ -8,10 +8,8 @@ géographiques des [lieux](places.md).
 On les trouve sous **Admin → Mots-clés** ; ils se rattachent dans le formulaire
 de l'objet, au champ **mots-clés (matières)**.
 
-!!! note "Pas de hiérarchie"
-    Les mots-clés sont juxtaposés. Anton ne gère pas de thésaurus : il n'y a ni
-    termes génériques ni termes spécifiques, ni renvois entre mots-clés. Le
-    **type** ne fait que les regrouper.
+!!! note "Hiérarchie sur demande"
+    Par défaut, les mots-clés sont juxtaposés ; le **type** ne fait que les regrouper. Les termes génériques et spécifiques et « voir aussi » s'activent par archive, voir [Termes génériques et spécifiques](#termes-generiques-et-specifiques).
 
 ## Types
 
@@ -41,6 +39,18 @@ l'objet** : à côté de la liste de sélection du champ **mots-clés** figure u
 **+** qui ouvre une fenêtre avec le même formulaire de création. Après la
 création, le nouveau mot-clé est sélectionné — l'unité de description elle-même
 doit encore être enregistrée ensuite.
+
+## Termes génériques et spécifiques
+
+Si le paramètre `keyword_relations` est activé sous **Admin → Paramètres**, chaque mot-clé porte des **termes génériques**, des **termes spécifiques** et **voir aussi**. Désactivé, ce qui est la valeur par défaut, tout reste comme avant.
+
+Dans le formulaire du mot-clé, on choisit les termes dans trois champs, comme dans le formulaire de l'objet. Un terme spécifique se saisit depuis l'un ou l'autre côté ; Anton enregistre la relation une fois et l'affiche des deux côtés.
+
+Un mot-clé peut avoir **plusieurs termes génériques**. L'un d'eux est le **terme principal** : le mot-clé figure sous lui dans le **chemin** affiché en haut de la page de détail, par exemple « Écriture › Lettre ». Le premier terme générique devient le terme principal ; s'il y en a plusieurs, on le choisit dans le formulaire sous **Terme principal**.
+
+Anton n'admet pas de cercle : un mot-clé ne peut pas se trouver sous l'un de ses propres termes spécifiques, ni être lié à lui-même. Le formulaire revient alors avec un message et n'enregistre rien.
+
+La suppression d'un mot-clé supprime ses relations. Lors de la fusion de deux mots-clés, celui qui reste reprend les relations de l'autre.
 
 ## Données d'autorité
 

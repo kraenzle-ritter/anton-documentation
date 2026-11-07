@@ -8,10 +8,8 @@ eventi, tecniche, opere. Persone e organizzazioni rientrano invece tra gli
 Si trovano in **Admin → Parole chiave**; il collegamento avviene nel formulario
 dell'oggetto, nel campo **parole chiave (soggetti)**.
 
-!!! note "Nessuna gerarchia"
-    Le parole chiave stanno l'una accanto all'altra. Anton non gestisce un
-    thesaurus: non esistono termini sovraordinati e subordinati né rimandi tra
-    parole chiave. Il **tipo** si limita a raggrupparle.
+!!! note "Gerarchia su richiesta"
+    Di norma le parole chiave stanno l'una accanto all'altra; il **tipo** si limita a raggrupparle. Termini più ampi e più specifici e «vedi anche» si attivano per archivio, vedi [Termini più ampi e più specifici](#termini-piu-ampi-e-piu-specifici).
 
 ## Tipi
 
@@ -40,6 +38,18 @@ dell'oggetto**: accanto all'elenco di selezione nel campo **parole chiave** si
 trova un **+** che apre una finestra con lo stesso formulario di creazione. Dopo
 la creazione la nuova parola chiave risulta selezionata — l'unità di descrizione
 stessa va ancora salvata.
+
+## Termini più ampi e più specifici
+
+Se l'impostazione `keyword_relations` è attiva in **Admin → Impostazioni**, ogni parola chiave ha **termini più ampi**, **termini più specifici** e **vedi anche**. Disattivata, come di norma, tutto resta come prima.
+
+Nel formulario della parola chiave i termini si scelgono in tre campi, come nel formulario dell'oggetto. Un termine più specifico si inserisce dall'una o dall'altra parte; Anton salva la relazione una volta e la mostra da entrambi i lati.
+
+Una parola chiave può avere **più termini più ampi**. Uno di essi è il **termine principale**: sotto di esso la parola chiave compare nel **percorso** in cima alla pagina di dettaglio, per esempio «Scrittura › Lettera». Il primo termine più ampio diventa quello principale; se ce ne sono diversi, lo si sceglie nel formulario sotto **Termine principale**.
+
+Anton non ammette cerchi: una parola chiave non può stare sotto uno dei propri termini più specifici, né essere collegata a sé stessa. Il formulario torna allora con un messaggio e non salva nulla.
+
+L'eliminazione di una parola chiave elimina le sue relazioni. Unendo due parole chiave, quella che resta riprende le relazioni dell'altra.
 
 ## Dati di autorità
 
