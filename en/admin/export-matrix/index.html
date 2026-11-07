@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4800,7 +4800,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-06</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4820,7 +4820,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>6 November 2026</strong>. It is
+<p>This matrix reflects the state of <strong>7 November 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -5335,7 +5335,7 @@ dissolution of corporate bodies (from Anton v0.103.0).</p>
 <ul>
 <li><strong>User accounts and authentication</strong> — which does not belong in an archival
   export anyway</li>
-<li><strong>Settings, form definitions, locations, orders, notifications</strong></li>
+<li><strong>Settings, form definitions, locations, orders, notifications</strong> — for locations also the arrangement of the magazine: levels, the place above and capacity (anton#832)</li>
 <li><strong>NARA risk assessment</strong> of the files — the rest of the file provenance
   (formats, checksums, events) travels as PREMIS in the DIP, OCFL and native
   round trip since anton#661</li>
@@ -5431,7 +5431,7 @@ deliberately contains only what a data update is allowed to write, and leaves
 out hierarchy (<code>parent</code>) and events, because these would be blocked on
 re-import. The location is included: it is written on update,
 and rearranging the stacks is one of the most frequent reasons for a bulk
-update. Taking the narrower file therefore does not lose information by
+update. The update table carries it as an ID, the full export since version 0.123.0 as its path in the magazine («Room 1 › Shelf 3 › Compartment 4»), a flat location still by its name (anton#832). Taking the narrower file therefore does not lose information by
 accident; it deliberately limits the scope of effect, and the download dialogue
 allows this to be narrowed further.</p>
 <p>The update table of a <strong>multilingual</strong> archive carries the title
@@ -5586,7 +5586,7 @@ be secured through the complete SQL dump.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

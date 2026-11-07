@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -838,6 +838,17 @@
     <span class="md-ellipsis">
       
         Attribuer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#magazin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magasin
       
     </span>
   </a>
@@ -2368,6 +2379,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#magazin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magasin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-qui-se-trouve-dans-un-lieu-de-conservation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2417,7 +2439,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/locations/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/locations/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/locations/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -2474,8 +2496,7 @@ alors, au besoin, être retiré des formulaires externes via les
 </tr>
 </tbody>
 </table>
-<p>Pas de types, pas de coordonnées, pas de
-<a href="../authorities/">données d'autorité</a>.</p>
+<p>Pas de coordonnées, pas de <a href="../authorities/">données d'autorité</a>. La place d’un lieu de conservation dans le magasin, son niveau, l’emplacement supérieur et sa capacité, figure dans l’encadré <a href="#magazin">Magasin</a> de sa page.</p>
 <div class="admonition note">
 <p class="admonition-title">Autorisation</p>
 <p>Créer, modifier et supprimer des lieux de conservation suppose le rôle
@@ -2501,14 +2522,18 @@ le dossier, la série et la pièce le portent, mais pas les archives ni le fonds
   complémentaires, sans lien.</li>
 </ul>
 </div>
+<h2 id="magazin">Magasin<a class="headerlink" href="#magazin" title="Permanent link">&para;</a></h2>
+<p>Les lieux de conservation peuvent être structurés en magasin : salle, étagère, segment, case et carton, ou selon la manière dont l’archive divise son magasin. Le paramètre <code>locations_mode</code> sous <strong>Admin → Paramètres</strong> décide de ce qu’une archive en utilise : <code>list</code> garde la liste plate des lieux de conservation telle qu’elle était et constitue la valeur par défaut ; <code>magazine</code> active le magasin ; <code>off</code> masque entièrement les lieux de conservation.</p>
+<p><strong>Définir les niveaux.</strong> Sous <strong>Admin → Configuration → Niveaux du magasin</strong>, l’administration définit les niveaux, de haut en bas, avec une désignation par langue. Un niveau peut être marqué comme <strong>contenant</strong>, par exemple le carton : un contenant occupe toute sa capacité sur l’emplacement où il se trouve, plein ou vide. Un niveau attribué à des emplacements ne peut pas être supprimé.</p>
+<p><strong>Créer des emplacements.</strong> Un lieu de conservation a un seul formulaire. Dans le magasin, sa page affiche en plus le chemin, le niveau, l’occupation et les niveaux inférieurs ; <strong>Ajouter un niveau inférieur</strong> crée un nouveau lieu en dessous, et Anton propose le niveau suivant. En modification, l’emplacement supérieur (« Se trouve dans »), le niveau, la capacité en centimètres linéaires et l’ordre suivent le nom et la description. Un emplacement ne peut pas se trouver en lui-même ni dans l’un de ses propres niveaux inférieurs.</p>
+<p><strong>Chemin.</strong> Partout où un lieu de conservation est nommé figure son chemin, p. ex. « Salle 1 › Étagère 3 › Case 4 › Carton 17 » : dans l’unité de description, dans la liste de sélection du masque et de l’édition groupée, dans le courriel de commande et dans l’export Excel complet.</p>
+<p><strong>Occupation.</strong> On compte l’étendue des unités de description attribuées à l’emplacement lui-même, sur tous les niveaux inférieurs : leur propre étendue ou, à défaut, l’étendue en dessous, telle que la page de détail l’affiche. Un fonds dont les dossiers se trouvent dans des cartons compte par les cartons, pas deux fois. Un contenant avec une capacité compte sur sa case avec toute sa capacité. Sans capacité, Anton indique seulement l’occupation.</p>
+<p><strong>Structure et emplacements libres.</strong> Dans le magasin, la page <strong>Lieux</strong> a trois onglets : <strong>Liste</strong>, <strong>Structure</strong> avec le magasin sous forme d’arbre, l’occupation et le nombre d’unités de description par emplacement, et <strong>Emplacements libres</strong> avec les emplacements dotés d’une capacité où il reste de la place, les plus vides d’abord, au besoin d’un seul niveau et avec un minimum.</p>
+<p><strong>Attribuer en masse.</strong> Les unités de description arrivent à leur place par l’édition groupée ou le tableau Excel. La colonne <code>standort</code> accepte l’ID, la désignation ou le chemin, avec <code>›</code>, <code>&gt;</code> ou <code>/</code> entre les niveaux. Une désignation que portent plusieurs emplacements, p. ex. « Case 4 », est refusée comme ambiguë au lieu d’être devinée ; un chemin inexistant n’est pas créé comme nouveau lieu.</p>
 <h2 id="ce-qui-se-trouve-dans-un-lieu-de-conservation">Ce qui se trouve dans un lieu de conservation<a class="headerlink" href="#ce-qui-se-trouve-dans-un-lieu-de-conservation" title="Permanent link">&para;</a></h2>
-<p>La page de détail d'un lieu de conservation liste — comme pour les
-acteur·trice·s et les lieux — toutes les unités de description qui lui sont
-rattachées.</p>
+<p>La page de détail d’un lieu de conservation liste les unités de description qui lui sont attribuées ou qui le sont à un emplacement en dessous : une étagère montre aussi ce qui se trouve dans ses cartons.</p>
 <h2 id="supprimer">Supprimer<a class="headerlink" href="#supprimer" title="Permanent link">&para;</a></h2>
-<p>Si des unités de description sont encore rattachées à un lieu de conservation,
-Anton refuse la suppression et le signale. Les rattachements doivent d'abord
-être défaits.</p>
+<p>Si des unités de description sont encore attribuées à un lieu de conservation, Anton refuse la suppression et le signale. Les attributions doivent d’abord être levées. De même, un lieu sous lequel se trouvent encore des emplacements est conservé ; ceux-ci doivent d’abord être supprimés ou déplacés.</p>
 <h2 id="cotes-integrant-le-lieu-de-conservation">Cotes intégrant le lieu de conservation<a class="headerlink" href="#cotes-integrant-le-lieu-de-conservation" title="Permanent link">&para;</a></h2>
 <p>Dans certains services, l'abréviation du lieu de conservation entre dans la
 <a href="../identifiers/">cote</a>. Lorsque cela est configuré, un champ de sélection
@@ -2607,7 +2632,7 @@ installation donnée dispose d'une telle formation des cotes.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

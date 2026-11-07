@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -2384,7 +2384,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-06</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -2403,7 +2403,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>6. November 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>7. November 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -2918,7 +2918,7 @@ nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
 <p>Diese Daten überleben <strong>keinen</strong> Formatexport:</p>
 <ul>
 <li><strong>Benutzerkonten und Authentifizierung</strong> — gehört auch nicht in einen Archivexport</li>
-<li><strong>Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten</strong></li>
+<li><strong>Einstellungen, Formulardefinitionen, Standorte, Bestellungen, Nachrichten</strong> — bei Standorten auch die Gliederung des Magazins: Stufen, übergeordneter Platz und Kapazität (anton#832)</li>
 <li><strong>NARA-Risikobewertung</strong> der Dateien — die übrige Datei-Provenienz (Formate,
   Prüfsummen, Ereignisse) reist seit anton#661 als PREMIS in DIP, OCFL und nativem
   Round-Trip mit</li>
@@ -3017,7 +3017,7 @@ Gegenteil — sie enthält bewusst nur, was ein Datenupdate auch schreiben darf,
 lässt Hierarchie (<code>parent</code>) und Ereignisse weg, weil diese beim Zurückspielen
 blockiert würden. Der Standort ist enthalten: er wird beim Update
 geschrieben, und Umräumen im Magazin ist einer der häufigsten Gründe für ein
-Massen-Update. Wer die schmalere Datei
+Massen-Update. Die Update-Tabelle führt ihn als ID, der volle Export seit Version 0.123.0 als Pfad im Magazin («Raum 1 › Regal 3 › Fach 4»), bei flachen Standorten wie bisher als Name (anton#832). Wer die schmalere Datei
 nimmt, verliert also keine Information versehentlich, sondern begrenzt absichtlich
 den Wirkungsbereich; im Download-Dialog lässt sich das noch weiter einschränken.</p>
 <p>Die Update-Tabelle eines <strong>mehrsprachigen</strong> Archivs führt den Titel
@@ -3178,7 +3178,7 @@ sichern.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

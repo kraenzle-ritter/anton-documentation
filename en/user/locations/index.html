@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -838,6 +838,17 @@
     <span class="md-ellipsis">
       
         Assigning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#magazin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magazine
       
     </span>
   </a>
@@ -4597,6 +4608,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#magazin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magazine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-is-held-at-a-location" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4646,7 +4668,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/locations/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/locations/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/locations/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-18</span>
+        <span class="page-meta__date">Last updated: 2026-11-07</span>
     </div>
   
   
@@ -4700,7 +4722,7 @@ from the external forms via the <a href="../../admin/forms/">forms</a> where req
 </tr>
 </tbody>
 </table>
-<p>No types, no coordinates, no <a href="../authorities/">authority data</a>.</p>
+<p>No coordinates, no <a href="../authorities/">authority data</a>. Where a location stands in the magazine, its level, the place above it and its capacity, is kept in the <a href="#magazin">Magazine</a> box on its page.</p>
 <div class="admonition note">
 <p class="admonition-title">Permission</p>
 <p>Creating, changing and deleting locations requires the <code>editor</code> role.
@@ -4723,12 +4745,18 @@ carry it, but not collection and fonds.</p>
   without a link.</li>
 </ul>
 </div>
+<h2 id="magazin">Magazine<a class="headerlink" href="#magazin" title="Permanent link">&para;</a></h2>
+<p>Locations can be arranged into a magazine: room, shelf, segment, compartment and box, or however the archive divides its magazine. How much of it an archive uses is decided by the setting <code>locations_mode</code> under <strong>Admin → Settings</strong>: <code>list</code> keeps the flat list of locations as it was and is the default; <code>magazine</code> switches the magazine on; <code>off</code> hides the locations altogether.</p>
+<p><strong>Defining levels.</strong> Under <strong>Admin → Configuration → Magazine levels</strong> the administration defines the levels, from the top down, with a name per language. A level can be marked as a <strong>container</strong>, such as the box: a container takes its whole capacity on the place it stands on, full or empty. A level assigned to places cannot be deleted.</p>
+<p><strong>Adding places.</strong> A location has a single form. In the magazine its page also shows the path, level, occupancy and the places below; <strong>Add a place below</strong> creates a new location under it, and Anton suggests the next level. When editing, the place above («Located in»), the level, the capacity in running centimetres and the order follow name and description. A place cannot lie in itself or in one of its own places below.</p>
+<p><strong>Path.</strong> Wherever a location is named, its path is shown, such as «Room 1 › Shelf 3 › Compartment 4 › Box 17»: on the record, in the select of the mask and of bulk editing, in the order mail and in the full Excel export.</p>
+<p><strong>Occupancy.</strong> What counts is the extent of the records assigned to a place itself, over all levels below it: their own extent or, where none is recorded, the extent below them, as the detail page shows it. A fonds whose files stand in boxes counts through the boxes, not twice. A container with a capacity counts on its compartment with its whole capacity. Without a capacity Anton only shows how much is used.</p>
+<p><strong>Structure and free places.</strong> In the magazine the <strong>Locations</strong> page has three tabs: <strong>List</strong>, <strong>Structure</strong> with the magazine as a tree, with occupancy and the number of records per place, and <strong>Free places</strong> with the places with a capacity that still have room, the emptiest first, optionally of one level only and with a minimum.</p>
+<p><strong>Assigning in bulk.</strong> Records reach their place through bulk editing or the Excel table. The column <code>standort</code> takes the ID, the name or the path, with <code>›</code>, <code>&gt;</code> or <code>/</code> between the levels. A name several places carry, such as «Compartment 4», is refused as ambiguous instead of guessed; a path that does not exist is not created as a new location.</p>
 <h2 id="what-is-held-at-a-location">What is held at a location<a class="headerlink" href="#what-is-held-at-a-location" title="Permanent link">&para;</a></h2>
-<p>The detail page of a location lists — as with actors and places — all units of
-description assigned to it.</p>
+<p>The detail page of a location lists the records assigned to it or to a place below it: a shelf also shows what lies in its boxes.</p>
 <h2 id="deleting">Deleting<a class="headerlink" href="#deleting" title="Permanent link">&para;</a></h2>
-<p>If units of description are still attached to a location, Anton refuses deletion
-and reports this. The assignments have to be released first.</p>
+<p>If records are still attached to a location, Anton refuses to delete it and says so. The assignments must be removed first. Likewise a location with places below it stays; they must be deleted or moved first.</p>
 <h2 id="reference-codes-with-location">Reference codes with location<a class="headerlink" href="#reference-codes-with-location" title="Permanent link">&para;</a></h2>
 <p>In some archives, the abbreviation of the location forms part of the
 <a href="../identifiers/">reference code</a>. Where this is set up, an additional
@@ -4826,7 +4854,7 @@ given installation comes with such a scheme.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>
