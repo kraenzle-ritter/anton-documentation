@@ -55,17 +55,17 @@ archivio e fondo.
 
 ## Magazzino {#magazin}
 
-Le collocazioni si possono strutturare in un magazzino: sala, scaffale, segmento, ripiano e scatola, o come l’archivio suddivide il proprio magazzino. Un archivio che non struttura le proprie collocazioni non nota nulla; un elenco piatto resta un elenco piatto.
+Le collocazioni si possono strutturare in un magazzino: sala, scaffale, segmento, ripiano e scatola, o come l’archivio suddivide il proprio magazzino. Quanto un archivio ne usa lo decide l’impostazione `locations_mode` in **Admin → Impostazioni**: `list` mantiene l’elenco piatto delle collocazioni com’era ed è il valore predefinito; `magazine` attiva il magazzino; `off` nasconde del tutto le collocazioni.
 
-**Definire i livelli.** In **Admin → Livelli del magazzino** l’amministrazione definisce i livelli, dall’alto in basso, con una denominazione per lingua. Un livello può essere contrassegnato come **contenitore**, ad esempio la scatola: un contenitore occupa tutta la sua capacità sul posto in cui si trova, pieno o vuoto. Un livello assegnato a dei posti non può essere eliminato.
+**Definire i livelli.** In **Admin → Configurazione → Livelli del magazzino** l’amministrazione definisce i livelli, dall’alto in basso, con una denominazione per lingua. Un livello può essere contrassegnato come **contenitore**, ad esempio la scatola: un contenitore occupa tutta la sua capacità sul posto in cui si trova, pieno o vuoto. Un livello assegnato a dei posti non può essere eliminato.
 
-**Creare posti.** La pagina di una collocazione contiene il riquadro **Magazzino** con percorso, livello, occupazione e livelli sottostanti. **Aggiungi un livello sottostante** crea una nuova collocazione al di sotto; Anton propone il livello successivo. **Modifica i dati del magazzino** permette di cambiare livello, posto superiore («Si trova in»), capacità in centimetri lineari e ordine. Un posto non può trovarsi in sé stesso né in uno dei propri livelli sottostanti.
+**Creare posti.** Una collocazione ha un solo modulo. Nel magazzino la sua pagina mostra inoltre percorso, livello, occupazione e livelli sottostanti; **Aggiungi un livello sottostante** crea una nuova collocazione al di sotto, e Anton propone il livello successivo. In modifica, dopo nome e descrizione seguono il posto superiore («Si trova in»), il livello, la capacità in centimetri lineari e l’ordine. Un posto non può trovarsi in sé stesso né in uno dei propri livelli sottostanti.
 
 **Percorso.** Ovunque una collocazione sia indicata compare il suo percorso, p. es. «Sala 1 › Scaffale 3 › Ripiano 4 › Scatola 17»: nell’unità di descrizione, nell’elenco di selezione della maschera e della modifica in blocco, nella mail d’ordine e nell’esportazione Excel completa.
 
 **Occupazione.** Si conta l’estensione delle unità di descrizione assegnate al posto stesso, su tutti i livelli sottostanti: la loro estensione o, se non è registrata, l’estensione sottostante, come la mostra la pagina di dettaglio. Un fondo i cui fascicoli si trovano in scatole conta attraverso le scatole, non due volte. Un contenitore con capacità conta sul suo ripiano con tutta la capacità. Senza capacità Anton indica solo l’occupazione.
 
-**Panoramica del magazzino.** In **Admin → Panoramica del magazzino** il magazzino appare come albero con l’occupazione e il numero di unità di descrizione per posto. La scheda **Posti liberi** elenca i posti con capacità in cui c’è ancora spazio, i più vuoti per primi, se si vuole di un solo livello e con un minimo.
+**Struttura e posti liberi.** Nel magazzino la pagina **Posizioni** ha tre schede: **Elenco**, **Struttura** con il magazzino come albero, l’occupazione e il numero di unità di descrizione per posto, e **Posti liberi** con i posti con capacità in cui c’è ancora spazio, i più vuoti per primi, se si vuole di un solo livello e con un minimo.
 
 **Assegnare in blocco.** Le unità di descrizione arrivano al loro posto tramite la modifica in blocco o la tabella Excel. La colonna `standort` accetta l’ID, la denominazione o il percorso, con `›`, `>` o `/` tra i livelli. Una denominazione portata da più posti, p. es. «Ripiano 4», viene respinta come ambigua invece di essere indovinata; un percorso inesistente non viene creato come nuova collocazione.
 

@@ -52,17 +52,17 @@ carry it, but not collection and fonds.
 
 ## Magazine {#magazin}
 
-Locations can be arranged into a magazine: room, shelf, segment, compartment and box, or however the archive divides its magazine. An archive that does not arrange its locations notices nothing; a flat list stays a flat list.
+Locations can be arranged into a magazine: room, shelf, segment, compartment and box, or however the archive divides its magazine. How much of it an archive uses is decided by the setting `locations_mode` under **Admin → Settings**: `list` keeps the flat list of locations as it was and is the default; `magazine` switches the magazine on; `off` hides the locations altogether.
 
-**Defining levels.** Under **Admin → Magazine levels** the administration defines the levels, from the top down, with a name per language. A level can be marked as a **container**, such as the box: a container takes its whole capacity on the place it stands on, full or empty. A level assigned to places cannot be deleted.
+**Defining levels.** Under **Admin → Configuration → Magazine levels** the administration defines the levels, from the top down, with a name per language. A level can be marked as a **container**, such as the box: a container takes its whole capacity on the place it stands on, full or empty. A level assigned to places cannot be deleted.
 
-**Adding places.** The page of a location carries the **Magazine** box with the path, level, occupancy and the places below. **Add a place below** creates a new location under it; Anton suggests the next level. **Edit magazine details** changes the level, the place above («Located in»), the capacity in running centimetres and the order. A place cannot lie in itself or in one of its own places below.
+**Adding places.** A location has a single form. In the magazine its page also shows the path, level, occupancy and the places below; **Add a place below** creates a new location under it, and Anton suggests the next level. When editing, the place above («Located in»), the level, the capacity in running centimetres and the order follow name and description. A place cannot lie in itself or in one of its own places below.
 
 **Path.** Wherever a location is named, its path is shown, such as «Room 1 › Shelf 3 › Compartment 4 › Box 17»: on the record, in the select of the mask and of bulk editing, in the order mail and in the full Excel export.
 
 **Occupancy.** What counts is the extent of the records assigned to a place itself, over all levels below it: their own extent or, where none is recorded, the extent below them, as the detail page shows it. A fonds whose files stand in boxes counts through the boxes, not twice. A container with a capacity counts on its compartment with its whole capacity. Without a capacity Anton only shows how much is used.
 
-**Magazine overview.** Under **Admin → Magazine overview** the magazine is shown as a tree with occupancy and the number of records per place. The tab **Free places** lists the places with a capacity that still have room, the emptiest first, optionally of one level only and with a minimum.
+**Structure and free places.** In the magazine the **Locations** page has three tabs: **List**, **Structure** with the magazine as a tree, with occupancy and the number of records per place, and **Free places** with the places with a capacity that still have room, the emptiest first, optionally of one level only and with a minimum.
 
 **Assigning in bulk.** Records reach their place through bulk editing or the Excel table. The column `standort` takes the ID, the name or the path, with `›`, `>` or `/` between the levels. A name several places carry, such as «Compartment 4», is refused as ambiguous instead of guessed; a path that does not exist is not created as a new location.
 
