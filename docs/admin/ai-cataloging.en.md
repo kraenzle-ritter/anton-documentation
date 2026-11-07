@@ -44,7 +44,7 @@ writes — the AI only makes suggestions, the human decides.
 
 ## What the AI receives as input
 
-- **Images** (photographs, scans) directly as vision input
+- **Images** (photographs, scans) directly as vision input; TIFF and other formats the models do not read, and files above 2 MB or 2048 pixels on an edge, go as a smaller JPEG without metadata, and the master stays as it is. Limits: `AI_IMAGE_MAX_BYTES`, `AI_IMAGE_MAX_EDGE`. An image that cannot be prepared is left out and the note with the suggestion says so; with nothing left to look at, an error appears and nothing goes to the provider.
 - **PDFs** — page images; additionally the OCR text layer if present (for
   better quality with typed documents)
 - **Audio** — Whisper V3 transcript via the Infomaniak async batch API. The
@@ -52,6 +52,7 @@ writes — the AI only makes suggestions, the human decides.
   It is made in the job `TranscribeAudioJob` (up to 1,200 s), not in the request, and stored on the medium; a suggestion made before goes without it.
 - **Video** — 5 ffmpeg stills, evenly spaced across the running time
 - **The existing title** of the record as context
+- **The existing description** as context: level, titles above, dating, place of creation and scope and content. Only what the archive's public detail form shows; internal text fields and actors do not go out, and of a private record only the title. Drafts count. A profile switches this off with `context_config.record_context = false`.
 
 ## Actors, places, keywords: two patterns
 

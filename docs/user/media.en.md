@@ -39,6 +39,10 @@ The values also go into the RDF export (Memobase, RiC and A+ profiles) as
 EBUcore properties, see [RDF export](../admin/download-rdf.md). For photographs
 only the picture size goes along.
 
+## Alternative text {#alternativtext}
+
+On the record's media page an alternative text can be entered for each image, one per language. It describes the image for people who cannot see it, for instance with a screen reader. Without one, the title of the record is used.
+
 ## Changing the order of media
 
 The order of the media of a unit of description can be changed without

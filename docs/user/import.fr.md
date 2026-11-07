@@ -514,3 +514,6 @@ schéma avant l'import ; un fichier non valide n'importe rien.
 `anton:import-ead <fichier>` contrôle un fichier et affiche ses lignes sans
 importer.
 
+## Comparer des cotes {#signaturenabgleich}
+
+Sous **Admin → Import / Export → Comparaison de cotes**, une liste de cotes peut être comparée avec le fonds : collez-la ou téléversez un tableau (CSV, Excel, ODS, la première colonne est lue), au plus 50 000 cotes. Le résultat figure sur la page ou se télécharge en CSV. Ce que vous ne pouvez pas voir compte comme introuvable.

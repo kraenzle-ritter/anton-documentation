@@ -11,7 +11,7 @@ nicht übersetzt und erscheinen englisch.
     Er prüft die Datenbank und ob Dateien **vorhanden** sind — er vergleicht
     **keine Prüfsummen**. Ob eine Datei unverändert ist, beantwortet
     [`media:check --levels=4`](console-commands.md#mediacheck); siehe
-    [Langzeitarchivierung](preservation.md#integritat-prufen).
+    [Digitales Archiv](preservation.md#integritat-prufen).
 
 ## Die Reiter
 

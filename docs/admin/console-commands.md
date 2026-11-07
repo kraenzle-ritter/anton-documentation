@@ -83,7 +83,7 @@ Ebene 4 verifiziert die **Prüfsumme** jeder Datei gegen die Datenbank (SHA-512,
 vorhanden, sonst MD5) — die eigentliche Fixity-Prüfung, mit derselben Logik wie
 `media:snapshot --verify`. Auf DIMAG-Installationen wird sie übersprungen
 (die Master liegen dort). Details siehe [Inge und DIMAG](inge.md) und
-[Langzeitarchivierung](preservation.md#integritat-prufen).
+[Digitales Archiv](preservation.md#integritat-prufen).
 
 **`media:snapshot`**{#mediasnapshot} vereint zwei Aufgaben in einem Durchgang:
 
@@ -134,7 +134,7 @@ Exit 0: nichts zu tun oder alles repariert; 1: nicht reparierbar oder Schwelle
 überschritten (dann wurde nichts repariert); 2: Sicherung fehlt, ist leer oder
 beschreibbar. Einrichtung siehe
 [Installation](installation.md#selbstreparatur-aus-der-lokalen-sicherung), Ablauf
-siehe [Langzeitarchivierung](preservation.md#wenn-die-prufung-anschlagt).
+siehe [Digitales Archiv](preservation.md#wenn-die-prufung-anschlagt).
 
 **`media:identify`**{#mediaidentify} bestimmt das Dateiformat (Siegfried/Fido → PRONOM-ID) und
 leitet daraus die NARA-Risikobewertung ab. Bei neuen Uploads läuft das

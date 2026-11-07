@@ -48,6 +48,8 @@ Decisions from Anton 0.118.0 have no document yet. They keep holding and get one
 
 Without a decision, with an own strategy, or outside what the technical care covers, each migration needs an order from the archive: a confirmation by mail (`media:migrate --request-approval`, see [console commands](console-commands.md#mediamigrate)) or an agreement made outside Anton. The request names the rule, the number of files, their size and the estimated additional storage; the confirmation holds for exactly these files.
 
+Under a shared account of the server (`archivar`, `www-data`, `root`) a migration runs only with `--by=<person>`. The preservation event names this person, the reason (`--reason`, otherwise the rule's description) and the version of the rule: the versions of format-policy and Anton and a SHA-256 checksum over what the rule does. In PREMIS the person is the `implementer`, version and reason are in `eventDetail`, and the medium links to the rights statement.
+
 The [monthly report](protokolle.md) names every migration carried out with the number of files, the additional storage and the ground: preservation mandate, confirmation by mail or agreement.
 
 !!! note "DIMAG"

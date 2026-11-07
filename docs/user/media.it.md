@@ -39,6 +39,10 @@ I valori vengono forniti anche nell'esportazione RDF (profili Memobase, RiC e
 A+) come proprietà EBUcore, vedi [Esportazione RDF](../admin/download-rdf.md).
 Per le fotografie viene fornita solo la dimensione dell'immagine.
 
+## Testo alternativo {#alternativtext}
+
+Nella pagina dei media del record si può inserire un testo alternativo per ogni immagine, uno per lingua. Descrive l’immagine per chi non può vederla, per esempio con uno screen reader. In mancanza, si usa il titolo del record.
+
 ## Modificare l'ordine dei media
 
 L'ordine dei media di un'unità di descrizione può essere modificato senza

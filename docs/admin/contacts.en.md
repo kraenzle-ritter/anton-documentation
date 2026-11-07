@@ -17,7 +17,7 @@ All admins see the page. Accounts holding **Contract and contacts** name and rem
 
 ## Billing address
 
-The same page holds where the invoices go: institution, department, attention, street, postcode, city, country, address for invoices, order or reference number, cost centre, UID/VAT number, delivery (by mail as PDF, by post or eBill) and a note. With delivery by mail the address is required.
+The same page holds where the invoices go: institution, department, attention, street, postcode, city, country, address for invoices, order or reference number, cost centre, UID/VAT number and a note. The invoice always comes by mail as a PDF, so the mail address is required.
 
 Accounts holding **Contract and contacts** keep the address. Every change is recorded in the security log and mailed with old and new value to the contact persons for billing and the overall responsibility and to Kränzle & Ritter. The accounts of Kränzle & Ritter take the address from here (`GET /api/billing-address`, with an admin account's token).
 

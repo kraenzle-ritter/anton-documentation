@@ -105,7 +105,7 @@ Vor einem Lauf zeigt der Probelauf an Kopien, was geschähe:
 
 ```bash
 php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --probe --report=/tmp/pdfx-rz.csv
-php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --write --limit=20
+php artisan media:migrate --env=rz --rule=pdfx_pdfa2b --write --limit=20 --by="Name der Person"
 ```
 
 Auf dem Server braucht die Regel qpdf, veraPDF und poppler; fehlt veraPDF, lehnt `media:migrate` sie ab.

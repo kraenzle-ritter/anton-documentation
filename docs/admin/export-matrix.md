@@ -3,7 +3,7 @@
 Übersicht, welche Anton-Daten über welches Export-Format ausgegeben werden — und
 welche sich nur über den vollständigen SQL-Dump rekonstruieren lassen.
 
-Wozu welches Artefakt taugt, ordnet [Langzeitarchivierung: Überblick](preservation.md)
+Wozu welches Artefakt taugt, ordnet [Digitales Archiv: Überblick](preservation.md)
 ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 

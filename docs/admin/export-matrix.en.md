@@ -4,7 +4,7 @@ An overview of which Anton data is output via which export format — and which 
 only be reconstructed from the complete SQL dump.
 
 What each artefact is good for is set out in
-[Long-term preservation: overview](preservation.md). The short version: **the
+[Digital archive: overview](preservation.md). The short version: **the
 native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 

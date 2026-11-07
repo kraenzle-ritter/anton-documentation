@@ -1,4 +1,4 @@
-# Anton come archivio digitale a lungo termine
+# Anton come archivio digitale
 
 Anton acquisisce i documenti digitali con verifica, ne riconosce e valida i formati e registra quanto bene possono essere conservati. Anton modifica un master solo dove l'archivio lo ha configurato o richiesto, ad esempio tramite una regola di formato all'acquisizione o tramite una migrazione; entrambe vengono verificate e registrate sul media. Ciò vale per Anton [come servizio](anton_as_service.md) come per l'esercizio [on premises](anton_on_premises.md).
 

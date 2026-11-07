@@ -48,6 +48,8 @@ Festlegungen aus Anton 0.118.0 haben noch kein Dokument. Sie gelten weiter und e
 
 Ohne Festlegung, bei eigener Strategie oder ausserhalb dessen, was die Betreuung deckt, braucht jede Migration einen Auftrag des Archivs: eine Bestätigung per Mail (`media:migrate --request-approval`, siehe [Konsolenbefehle](console-commands.md#mediamigrate)) oder eine Vereinbarung ausserhalb von Anton. Die Anfrage nennt die Regel, die Zahl der Dateien, ihre Grösse und den geschätzten zusätzlichen Speicher; die Bestätigung gilt für genau diese Dateien.
 
+Unter einem gemeinsamen Konto des Servers (`archivar`, `www-data`, `root`) läuft eine Migration nur mit `--by=<Person>`. Das Erhaltungsereignis nennt diese Person, den Grund (`--reason`, sonst die Beschreibung der Regel) und die Fassung der Regel: Version von format-policy und Anton und eine SHA-256-Prüfsumme über das, was die Regel tut. Im PREMIS steht die Person als `implementer`, die Fassung und der Grund stehen in `eventDetail`, und das Medium verweist auf die Rechteangabe.
+
 Der [Monatsbericht](protokolle.md) nennt jede durchgeführte Migration mit der Zahl der Dateien, dem zusätzlichen Speicher und der Grundlage: Erhaltungsauftrag, Bestätigung per Mail oder Vereinbarung.
 
 !!! note "DIMAG"

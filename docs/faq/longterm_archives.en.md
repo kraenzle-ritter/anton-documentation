@@ -1,4 +1,4 @@
-# Anton as a digital long-term archive
+# Anton as a digital archive
 
 Anton ingests digital records with verification, identifies and validates their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it, for example through a format rule at ingest or through a migration; both are verified and recorded on the medium. This applies to Anton [as a service](anton_as_service.md) as well as to operation [on premises](anton_on_premises.md).
 

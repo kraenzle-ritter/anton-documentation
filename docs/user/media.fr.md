@@ -40,6 +40,10 @@ Les valeurs sont aussi livrées dans l'export RDF (profils Memobase, RiC et A+)
 sous forme de propriétés EBUcore, voir [Export RDF](../admin/download-rdf.md).
 Pour les photographies, seule la taille de l'image est livrée.
 
+## Texte alternatif {#alternativtext}
+
+Sur la page des médias de la notice, un texte alternatif peut être saisi pour chaque image, un par langue. Il décrit l’image pour les personnes qui ne la voient pas, par exemple avec un lecteur d’écran. À défaut, le titre de la notice est utilisé.
+
 ## Modifier l'ordre des médias
 
 L'ordre des médias d'une unité de description peut être modifié sans devoir

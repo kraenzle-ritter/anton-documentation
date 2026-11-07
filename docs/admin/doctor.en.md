@@ -11,7 +11,7 @@ translated and appear in English.
     It checks the database and whether files are **present** — it does **not**
     compare checksums. Whether a file is unchanged is answered by
     [`media:check --levels=4`](console-commands.md#mediacheck); see
-    [long-term preservation](preservation.md#integritat-prufen).
+    [digital archive](preservation.md#integritat-prufen).
 
 ## The tabs
 

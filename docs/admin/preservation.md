@@ -1,10 +1,10 @@
-# Langzeitarchivierung: Überblick
+# Digitales Archiv: Überblick
 
 Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe [Speicherung](#speicherung)). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
 
 ## Aufgabenteilung
 
-Die digitale Langzeitarchivierung besteht aus mehreren Schichten. Anton deckt
+Das Digitale Archiv besteht aus mehreren Schichten. Anton deckt
 die fachlichen ab, der Betrieb die Speicherung:
 
 | Aufgabe | Anton | Betrieb | Angebundenes Langzeitarchiv |
@@ -124,8 +124,9 @@ Der Master ist nicht in jedem Fall die gelieferte Datei. Massgebend ist die Date
 
 Neben manchen Mastern liegt eine **behaltene Fassung** im Ordner `original/` des Mediums: nach einer Migration mit [`media:migrate`](console-commands.md#mediamigrate) die übernommene Datei (ausser mit `--discard-original`, das nur eine Regel wie `tiff_zip` erlaubt), nach dem Preingest die gelieferte Datei, wo das Archiv sie behält: beim QR-Upload mit «Gelieferte Datei behalten» und die Bilder von «Bilder → PDF». Seit Version 0.105 führt Anton jede solche Datei als
 **Fassung** des Mediums: mit eigener MD5 und SHA-512, Format (PRONOM) und einem
-Ereignis, das festhält, woher es kommt. Die Fassungen erscheinen nirgends in der
-Oberfläche; Listen, Galerie, Download und Export zeigen die aktuelle Fassung.
+Ereignis, das festhält, woher es kommt. Listen, Galerie, Download und Export zeigen die aktuelle Fassung. Konten mit der
+Befugnis **Digitale Archivierung** und Superuser können eine behaltene Fassung auf der
+Medienseite des Datensatzes herunterladen; das Bestandsprotokoll hält es fest.
 
 Behaltene Fassungen aus der Zeit davor trägt
 [`media:register-originals`](console-commands.md#mediaregister-originals) nach.

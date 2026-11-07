@@ -53,7 +53,7 @@ via a setting, rather than the core being changed. See
 | Form engine | Configurable fields and views | [Form system](forms.md) |
 | Event/job layer | Consistency of the derived fields | [Concurrency](events-jobs.md) |
 | Export layer | EAD, RDF, TEI, DIP, OCFL, native round trip | [Export matrix](../admin/export-matrix.md) |
-| Media pipeline | Upload, format identification, conversions, cloud/DIMAG | [Long-term preservation](../admin/preservation.md) |
+| Media pipeline | Upload, format identification, conversions, cloud/DIMAG | [digital archive](../admin/preservation.md) |
 | Search | MySQL full text and Typesense | [Instant search](../admin/typesense.md) |
 
 ## Working on the code

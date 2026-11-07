@@ -1,4 +1,4 @@
-# Long-term preservation: overview
+# Digital archive: overview
 
 Anton ingests digital records with verification, identifies their formats and records how well they can be preserved. Anton changes a master only where the archive has set it up or asked for it: at ingest through a format rule or the processing of a QR upload, afterwards through a migration (see [Storage](#speicherung)). Storage itself and its redundancy are provided by the operating infrastructure; in installations with a connected long-term archive, that archive takes over bitstream preservation. This page shows how the tasks are divided and refers to the detail pages. It also answers the question of which artefact is a **backup** and which is a **publication view**.
 
@@ -119,8 +119,8 @@ The master is not always the delivered file. What counts is the file at the time
 
 Next to some masters lies a **kept original** in the medium's `original/` folder: after a migration with [`media:migrate`](console-commands.md#mediamigrate) the file taken in (unless with `--discard-original`, which only a rule such as `tiff_zip` allows), after preingest the delivered file where the archive keeps it: on the QR upload with «Keep the delivered file», and the images of «images → PDF». Since version 0.105 Anton keeps every such file as a **version** of
 the medium: with its own MD5 and SHA-512, its format (PRONOM) and an event that
-records where it came from. Versions appear nowhere in the interface; lists,
-gallery, download and export show the current version.
+records where it came from. Lists, gallery, download and export show the
+current version. Accounts with the capability **Digital preservation** and superusers can download a kept version on the record's media page; the holdings log records it.
 
 Originals from before that are registered by
 [`media:register-originals`](console-commands.md#mediaregister-originals). Their

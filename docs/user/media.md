@@ -39,6 +39,10 @@ Die Werte gehen auch in den RDF-Export (Memobase-, RiC- und A+-Profil) als
 EBUcore-Properties, siehe [RDF-Export](../admin/download-rdf.md). Bei Fotos
 geht nur die Bildgrösse mit.
 
+## Alternativtext {#alternativtext}
+
+Auf der Medienseite des Datensatzes lässt sich zu jedem Bild ein Alternativtext je Sprache eintragen. Er beschreibt das Bild für Menschen, die es nicht sehen, etwa mit einem Screenreader. Ohne Eintrag gilt der Titel des Datensatzes.
+
 ## Reihenfolge der Medien ändern
 
 Die Reihenfolge der Medien einer Verzeichnungseinheit lässt sich ändern,
