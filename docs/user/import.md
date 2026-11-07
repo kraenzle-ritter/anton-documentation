@@ -510,3 +510,6 @@ Vor dem Import wird die Datei gegen ihr Schema geprüft; eine ungültige Datei
 importiert nichts. `anton:import-ead <datei>` prüft eine Datei und zeigt ihre
 Zeilen, ohne zu importieren.
 
+## Signaturen abgleichen {#signaturenabgleich}
+
+Unter **Admin → Import / Export → Signaturenabgleich** lässt sich eine Liste von Signaturen mit dem Bestand vergleichen: einfügen oder eine Tabelle hochladen (CSV, Excel, ODS, gelesen wird die erste Spalte), höchstens 50 000 Signaturen. Das Ergebnis steht auf der Seite oder kommt als CSV zum Herunterladen. Was Sie nicht sehen dürfen, gilt als nicht gefunden.

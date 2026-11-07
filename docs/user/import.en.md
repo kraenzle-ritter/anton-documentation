@@ -508,3 +508,6 @@ rather than created again. The file is checked against its schema before the
 import; an invalid file imports nothing. `anton:import-ead <file>` checks a file
 and shows its rows without importing.
 
+## Comparing signatures {#signaturenabgleich}
+
+Under **Admin → Import / Export → Signature check** a list of signatures can be compared with the holdings: paste it or upload a table (CSV, Excel, ODS, the first column is read), at most 50,000 signatures. The result is on the page or comes as a CSV to download. What you may not see counts as not found.

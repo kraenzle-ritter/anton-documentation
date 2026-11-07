@@ -510,3 +510,6 @@ nuovo. Il file viene verificato rispetto al suo schema prima dell'importazione;
 un file non valido non importa nulla. `anton:import-ead <file>` verifica un
 file e ne mostra le righe senza importare.
 
+## Confrontare le segnature {#signaturenabgleich}
+
+In **Admin → Import / Export → Confronto di segnature** è possibile confrontare un elenco di segnature con il fondo: incollalo o carica una tabella (CSV, Excel, ODS, viene letta la prima colonna), al massimo 50 000 segnature. Il risultato appare nella pagina o si scarica in CSV. Ciò che non puoi vedere conta come non trovato.
