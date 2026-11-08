@@ -69,6 +69,20 @@ Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés 
 
 Lorsque les termes génériques et spécifiques sont activés, le personnel connecté trouve le bouton **Télécharger en SKOS** sur la liste des mots-clés et **Sous-arborescence en SKOS** sur chaque mot-clé. Le fichier contient tous les mots-clés, ou le mot-clé avec tout ce qui se trouve en dessous, en Turtle, RDF/XML ou N-Triples : libellés dans toutes les langues, autres noms, termes génériques et spécifiques, «&nbsp;voir aussi&nbsp;» et les données d'autorité liées. Chaque mot-clé figure sous son adresse pérenne. La [matrice des exports](../admin/export-matrix.md) indique ce qui est exporté.
 
+## Schémas de concepts et import de thésaurus
+
+Sous **Admin → Schémas de concepts**, l'archive tient ses thésaurus : ceux qu'elle importe (par exemple un thésaurus spécialisé en SKOS) et ceux qu'elle entretient elle-même. Un mot-clé peut appartenir à plusieurs schémas et porte dans chacun l'URI et la notation du concept. La page de détail affiche les deux sous **Schéma de concepts**.
+
+L'import accepte un fichier SKOS (Turtle, RDF/XML ou N-Triples) ou un tableau (XLSX, CSV) avec les colonnes **Term**, **Broader**, **Use for**, **Use**, **Related**, **Notation** et **Definition** (les noms allemands fonctionnent aussi). Plusieurs termes dans une cellule se séparent par « ; ». L'import s'exécute en arrière-plan ; le résultat s'affiche ensuite sur la même page.
+
+- **Pas de doublon :** s'il existe déjà un mot-clé du même nom, l'import s'y rattache. Il garde son libellé et ne reçoit que les langues qui lui manquaient. Si plusieurs mots-clés portent ce nom, l'import en crée un nouveau et signale le nom.
+- **Un second import** du même fichier met à jour au lieu de doubler.
+- **Sont repris** les autres noms, les définitions, les termes génériques et spécifiques, « voir aussi » et les liens vers des données d'autorité (Wikidata, GND, VIAF, Library of Congress, GeoNames). Rien de ce que l'archive a écrit n'est écrasé.
+- **Les termes non préférentiels** d'un tableau (« utiliser … ») deviennent d'autres noms du terme. Un renvoi combiné (« utiliser A, B ») est inscrit aux deux et figure dans le résultat.
+- **Les cercles** sont omis et signalés.
+
+Un schéma peut être téléchargé en SKOS. Le supprimer conserve les mots-clés avec leurs relations et liens ; seule l'appartenance au schéma disparaît. En ligne de commande, `anton:import-skos` fait de même.
+
 ## Où un mot-clé est utilisé
 
 Sous «&nbsp;apparaît dans&nbsp;», la page de détail affiche toutes les unités de

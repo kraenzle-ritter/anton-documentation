@@ -65,6 +65,20 @@ Like actors and places, keywords can be linked to
 
 With broader and narrower terms switched on, signed-in staff find the button **Download SKOS** on the keyword list and **Subtree as SKOS** on every keyword. The file holds all keywords, or the keyword with everything below it, as Turtle, RDF/XML or N-Triples: labels in every language, other names, broader and narrower terms, «see also» and the linked authority data. Every keyword appears under its lasting address. The [export matrix](../admin/export-matrix.md) lists what exactly goes out.
 
+## Concept schemes and thesaurus import
+
+Under **Admin → Concept schemes** the archive keeps its thesauri: those it brings in (such as a subject thesaurus in SKOS) and those it maintains itself. A keyword may belong to several schemes and carries the concept's URI and notation in each. The detail page lists both under **Concept scheme**.
+
+The import takes a SKOS file (Turtle, RDF/XML or N-Triples) or a table (XLSX, CSV) with the columns **Term**, **Broader**, **Use for**, **Use**, **Related**, **Notation** and **Definition** (German column names work too). Separate several terms in a cell with «;». The import runs in the background; its result shows on the same page.
+
+- **No doubles:** where a keyword of the same name exists, the import links to it. It keeps its label and gains only the languages it lacked. Where several keywords carry the name, the import creates a new one and reports the name.
+- **A second import** of the same file updates instead of doubling.
+- **Taken over** are other names, definitions, broader and narrower terms, «see also» and links to authority data (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nothing the archive wrote is overwritten.
+- **Non-preferred terms** of a table («use …») become other names of the term. A compound reference («use A, B») goes to both and is listed in the result.
+- **Circles** are left out and reported.
+
+A scheme can be downloaded as SKOS. Removing it keeps the keywords with their relations and links; only the membership goes. On the command line, `anton:import-skos` does the same.
+
 ## Where a keyword is used
 
 Under «appears in», the detail page shows all units of description that carry

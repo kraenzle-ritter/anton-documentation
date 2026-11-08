@@ -20,7 +20,7 @@ andere sind Publikations- und Austauschsichten.**
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
 | TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
-| SKOS – Schlagwörter | SKOS (Turtle, RDF/XML, N-Triples) | alle Schlagwörter oder ein Schlagwort mit allem darunter: Bezeichnungen, Ober- und Unterbegriffe, «siehe auch», Normdaten-Abgleich⁵ | Schlagwortliste und Schlagwort → «SKOS herunterladen», `/skos/keywords.{ttl,rdf,nt}`; nur mit `keyword_relations` |
+| SKOS – Schlagwörter | SKOS (Turtle, RDF/XML, N-Triples) | alle Schlagwörter, ein Schlagwort mit allem darunter oder ein Begriffsschema (mit Notation und der URI im Thesaurus): Bezeichnungen, Ober- und Unterbegriffe, «siehe auch», Normdaten-Abgleich⁵ | Schlagwortliste und Schlagwort → «SKOS herunterladen», Admin → Begriffsschemata, `/skos/keywords.{ttl,rdf,nt}`, `/skos/schemes/{id}.{ttl,rdf,nt}`; nur mit `keyword_relations` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Objekt-Baum, alle Entitäten | Admin → Export, `anton:export-rdf` |
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
@@ -239,7 +239,7 @@ zurückgerollt.
 Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
 
-Seit anton#706 kommen die Normdatensätze vollständig zurück: weitere Namen, Varianten und Abkürzungen, Typ und Untertyp, die verknüpften Normdaten (GND, Wikidata …), das Merkmal «vorläufig», bei Akteur:innen «privat» und die Datumsart, bei Orten Land und Koordinaten. Dazu die Beziehungen zwischen ihnen und zu Datensätzen. Vorher fehlten diese Felder, und **private Akteur:innen** gingen beim Export ganz verloren, aus Ereignissen wie aus den Deskriptoren, weil der Export auf der Konsole ohne Anmeldung läuft. Sicherungen, die vor v0.124.0 mit `anton:export-native` geschrieben wurden, haben diese Lücke.
+Seit anton#706 kommen die Normdatensätze vollständig zurück: weitere Namen, Varianten und Abkürzungen, Typ und Untertyp, die verknüpften Normdaten (GND, Wikidata …), die Begriffsschemata mit URI und Notation, das Merkmal «vorläufig», bei Akteur:innen «privat» und die Datumsart, bei Orten Land und Koordinaten. Dazu die Beziehungen zwischen ihnen und zu Datensätzen. Vorher fehlten diese Felder, und **private Akteur:innen** gingen beim Export ganz verloren, aus Ereignissen wie aus den Deskriptoren, weil der Export auf der Konsole ohne Anmeldung läuft. Sicherungen, die vor v0.124.0 mit `anton:export-native` geschrieben wurden, haben diese Lücke.
 
 !!! warning "Kommentare gehen beim Round-Trip verloren"
     «Verlustfrei» bezieht sich auf die Erschliessung. Interne

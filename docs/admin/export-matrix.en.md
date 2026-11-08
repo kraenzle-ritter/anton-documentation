@@ -21,7 +21,7 @@ or exchange view.**
 | EAD holding guide | apeEAD `type=holdings_guide` | Holdings overview | Admin → Export |
 | TEI – authority lists | TEI-P5 `standOff` | Actors / places / keywords (all) | `/api/tei/{actors,places,keywords}` |
 | TEI – per object | TEI-P5 | one record | API with `?format=tei` |
-| SKOS – keywords | SKOS (Turtle, RDF/XML, N-Triples) | all keywords, or a keyword with everything below it: labels, broader and narrower terms, «see also», authority matches⁵ | keyword list and keyword → «Download SKOS», `/skos/keywords.{ttl,rdf,nt}`; only with `keyword_relations` |
+| SKOS – keywords | SKOS (Turtle, RDF/XML, N-Triples) | all keywords, a keyword with everything below it, or a concept scheme (with notation and the thesaurus URI): labels, broader and narrower terms, «see also», authority matches⁵ | keyword list and keyword → «Download SKOS», Admin → Concept schemes, `/skos/keywords.{ttl,rdf,nt}`, `/skos/schemes/{id}.{ttl,rdf,nt}`; only with `keyword_relations` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Object tree, all entities | Admin → Export, `anton:export-rdf` |
 | RDF RiC | pure RiC-O 1.1 (JSON-LD) | Object tree | Admin → Export |
 | RDF Memobase | RiC-O subset (JSON-LD) | Object tree (lossy) | Admin → Export |
@@ -235,7 +235,7 @@ is validated; if it fails, it is rolled back.
 Actors, places and keywords carry a portable UUID too — a re-import anchors them
 to it instead of merging authority records that happen to share a name.
 
-Since anton#706 authority records come back whole: other names, variants and abbreviations, type and subtype, the linked authority data (GND, Wikidata …), the provisional mark, an actor's privacy and date type, a place's country and coordinates. With them the relations between them and to records. Before, these fields were missing, and **private actors** were lost from the export altogether, from events and descriptors alike, because the export runs on the console signed in as nobody. Backups written with `anton:export-native` before v0.124.0 have this gap.
+Since anton#706 authority records come back whole: other names, variants and abbreviations, type and subtype, the linked authority data (GND, Wikidata …), the concept schemes with URI and notation, the provisional mark, an actor's privacy and date type, a place's country and coordinates. With them the relations between them and to records. Before, these fields were missing, and **private actors** were lost from the export altogether, from events and descriptors alike, because the export runs on the console signed in as nobody. Backups written with `anton:export-native` before v0.124.0 have this gap.
 
 !!! warning "Comments are lost in the round trip"
     «Lossless» refers to the description. Internal

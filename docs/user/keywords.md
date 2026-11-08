@@ -66,6 +66,20 @@ verknüpfen — etwa mit Wikidata oder der GND.
 
 Sind Ober- und Unterbegriffe eingeschaltet, finden angemeldete Mitarbeitende auf der Liste der Schlagwörter den Knopf **SKOS herunterladen** und auf jedem Schlagwort **Teilbaum als SKOS**. Die Datei enthält alle Schlagwörter oder das Schlagwort mit allem darunter, als Turtle, RDF/XML oder N-Triples: Bezeichnungen in allen Sprachen, weitere Namen, Ober- und Unterbegriffe, «siehe auch» und die verknüpften Normdaten. Jedes Schlagwort steht unter seiner bleibenden Adresse. Welche Daten genau hinausgehen, zeigt die [Export-Matrix](../admin/export-matrix.md).
 
+## Begriffsschemata und Thesaurus-Import
+
+Unter **Admin → Begriffsschemata** führt das Archiv seine Thesauri: solche, die es einspielt (etwa einen Fachthesaurus im Format SKOS), und solche, die es selbst pflegt. Ein Schlagwort kann zu mehreren Schemata gehören und trägt in jedem die URI und die Notation des Begriffs. Auf der Detailseite steht beides unter **Begriffsschema**.
+
+Eingespielt wird eine SKOS-Datei (Turtle, RDF/XML oder N-Triples) oder eine Tabelle (XLSX, CSV) mit den Spalten **Begriff**, **Oberbegriffe**, **Benutzt für**, **Verwende**, **Siehe auch**, **Notation** und **Definition**. Mehrere Begriffe in einer Zelle trennt man mit «;». Der Import läuft im Hintergrund; das Ergebnis steht danach auf derselben Seite.
+
+- **Kein Doppel:** Gibt es ein Schlagwort mit derselben Bezeichnung schon, knüpft der Import daran an. Es behält seine Bezeichnung und bekommt nur die fehlenden Sprachen dazu. Tragen mehrere Schlagwörter denselben Namen, legt der Import ein neues an und meldet den Namen.
+- **Ein zweiter Import** derselben Datei führt nach, statt zu verdoppeln.
+- **Übernommen werden** weitere Namen, Definitionen, Ober- und Unterbegriffe, «siehe auch» und Normdaten-Links (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nichts, was das Archiv geschrieben hat, wird überschrieben.
+- **Nicht-Vorzugsbegriffe** einer Tabelle («Verwende …») werden zu weiteren Namen des Begriffs. Ein Kombinationsverweis («Verwende A, B») wird bei beiden eingetragen und im Ergebnis aufgeführt.
+- **Kreise** lässt der Import weg und meldet sie.
+
+Ein Schema lässt sich als SKOS herunterladen. Wird es entfernt, bleiben die Schlagwörter mit ihren Beziehungen und Verknüpfungen; nur die Zugehörigkeit zum Schema geht. Dasselbe leistet auf der Kommandozeile `anton:import-skos`.
+
 ## Wo ein Schlagwort verwendet wird
 
 Die Detailseite zeigt unter «erscheint in» alle Verzeichnungseinheiten, die das
