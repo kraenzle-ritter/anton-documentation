@@ -85,7 +85,7 @@ Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
 `--include-originals` kommen die Master-Dateien dazu, siehe
 [Migrations-Export](#migrations-export-das-bundle-als-weg-hinaus).
 
-⁵ **Ober- und Unterbegriffe, «siehe auch»** (anton#706, #707) gibt vollständig nur der **SKOS-Export** aus, zwischen Schlagwörtern: jeder Oberbegriff, nicht nur die Hauptstelle, `skos:related` für «siehe auch», `skos:exactMatch` für verknüpfte Normdateien (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; Lexika, Wikipedia und Bilder nicht). Begriffs-URI ist die bleibende Adresse `/id/{uuid}`. Der **RiC-Export** schreibt `skos:broader`, `skos:narrower` und `skos:related` zwischen den Begriffen, die er enthält, und nimmt die Oberbegriffe der verwendeten Schlagwörter mit. «Siehe auch» zu Akteur:innen, Orten, Datensätzen und Seiten steht in keinem Format, und der **native Round-Trip nimmt die Beziehungen nicht mit**: Gesichert sind sie nur im SQL-Dump.
+⁵ **Ober- und Unterbegriffe, «siehe auch»** (anton#706, #707) gibt vollständig nur der **SKOS-Export** aus, zwischen Schlagwörtern: jeder Oberbegriff, nicht nur die Hauptstelle, `skos:related` für «siehe auch», `skos:exactMatch` für verknüpfte Normdateien (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; Lexika, Wikipedia und Bilder nicht). Begriffs-URI ist die bleibende Adresse `/id/{uuid}`. Der **RiC-Export** schreibt `skos:broader`, `skos:narrower` und `skos:related` zwischen den Begriffen, die er enthält, und nimmt die Oberbegriffe der verwendeten Schlagwörter mit. Der **native Round-Trip** (ab Format v0.10) nimmt alle Beziehungen zwischen Schlagwörtern, Akteur:innen, Orten und Datensätzen verlustfrei mit; ein Teilbaum die Beziehungen dessen, was er enthält, samt den Oberbegriffen darüber. Beziehungen zu Seiten stehen nur im SQL-Dump.
 
 ⁴ **PREMIS 3** je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
 behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
@@ -134,7 +134,7 @@ Diese Daten überleben **keinen** Formatexport:
 - **KI-Erschliessungsdaten** — Profile, Verbrauch, Budgets, Audit-Stichproben
 - **Editionen** und **Korrespondenzen**
 - **Volltext-Index**
-- **Beziehungen zwischen Normdaten** — Ober- und Unterbegriffe und «siehe auch» der Schlagwörter stehen als Publikation im SKOS-Export, aber in keinem Format, das sich wieder einspielen lässt; «siehe auch» zu Akteur:innen, Orten, Datensätzen und Seiten nirgends (anton#706)
+- **Beziehungen zu Seiten** — die übrigen Beziehungen trägt der native Round-Trip (anton#706)
 - **Der Ereignis-Graph als Relation** — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)
 

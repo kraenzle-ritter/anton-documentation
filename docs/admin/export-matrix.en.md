@@ -87,7 +87,7 @@ additionally places the derivatives (`thumb`/`web`) alongside — in the standar
 case **not the masters**. With `--include-originals` the master files are added,
 see [migration export](#migrations-export-das-bundle-als-weg-hinaus).
 
-⁵ **Broader and narrower terms, «see also»** (anton#706, #707) go out in full only in the **SKOS export**, between keywords: every broader term, not only the primary one, `skos:related` for «see also», `skos:exactMatch` for linked authority files (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; not encyclopaedias, Wikipedia or images). The concept URI is the lasting address `/id/{uuid}`. The **RiC export** writes `skos:broader`, `skos:narrower` and `skos:related` between the concepts it holds and brings along the broader terms of the keywords in use. «See also» to actors, places, records and pages is in no format, and the **native round-trip does not carry the relations**: only the SQL dump keeps them.
+⁵ **Broader and narrower terms, «see also»** (anton#706, #707) go out in full only in the **SKOS export**, between keywords: every broader term, not only the primary one, `skos:related` for «see also», `skos:exactMatch` for linked authority files (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; not encyclopaedias, Wikipedia or images). The concept URI is the lasting address `/id/{uuid}`. The **RiC export** writes `skos:broader`, `skos:narrower` and `skos:related` between the concepts it holds and brings along the broader terms of the keywords in use. The **native round-trip** (format v0.10 on) carries every relation between keywords, actors, places and records without loss; a subtree carries the relations of what it holds, with the broader terms above. Relations to pages are only in the SQL dump.
 
 ⁴ **PREMIS 3** per record with media (anton#661): formats (PRONOM), checksums,
 kept originals and every event on the media with tool and version. The NARA
@@ -135,7 +135,7 @@ This data survives **no** format export:
 - **AI cataloguing data** — profiles, consumption, budgets, audit samples
 - **Editions** and **correspondences**
 - **The full-text index**
-- **Relations between authority records** — broader and narrower terms and «see also» of keywords go out as a publication in the SKOS export, but in no format that can be imported again; «see also» to actors, places, records and pages nowhere (anton#706)
+- **Relations to pages** — the native round-trip carries the other relations (anton#706)
 - **The event graph as a relation** — events appear only flattened (Excel) or
   implicitly (EAD, RDF)
 
