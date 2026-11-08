@@ -48,6 +48,8 @@ Ein Schlagwort darf **mehrere Oberbegriffe** haben. Einer davon ist die **Haupts
 
 Anton lässt keinen Kreis zu: Ein Schlagwort kann nicht unter einem seiner eigenen Unterbegriffe stehen und nicht mit sich selbst verknüpft werden. Das Formular kommt dann mit einer Meldung zurück und speichert nichts.
 
+Der Knopf **Begriffsbaum** auf der Liste der Schlagwörter und neben dem Pfad eines Schlagworts zeigt die Ober- und Unterbegriffe als Baum. Er lädt nach, wie der Archivplan, und öffnet von einem Schlagwort aus den Weg zu ihm. Ein Schlagwort mit mehreren Oberbegriffen lässt sich nur unter seiner Hauptstelle aufklappen; unter den übrigen steht ein Verweis, etwa «Brief (siehe Schrift)».
+
 Wird ein Schlagwort gelöscht, verschwinden seine Beziehungen mit. Werden zwei Schlagwörter zusammengeführt, übernimmt das bleibende die Beziehungen des anderen.
 
 ## Normdaten
@@ -64,6 +66,8 @@ verknüpfen — etwa mit Wikidata oder der GND.
 
 Die Detailseite zeigt unter «erscheint in» alle Verzeichnungseinheiten, die das
 Schlagwort führen.
+
+Hat das Schlagwort Unterbegriffe, nimmt der Schalter **Mit Unterbegriffen** deren Verzeichnungseinheiten in die Liste auf. Derselbe Schalter steht in der Suche neben den gewählten Filtern, sobald nach einem Schlagwort gefiltert wird.
 
 ## Löschen
 

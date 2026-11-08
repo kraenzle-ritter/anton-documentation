@@ -47,6 +47,8 @@ A keyword may have **several broader terms**. One of them is the **primary** one
 
 Anton allows no circle: a keyword cannot sit under one of its own narrower terms, nor be related to itself. The form then comes back with a message and saves nothing.
 
+The **Term tree** button on the keyword list and beside the path of a keyword shows broader and narrower terms as a tree. It loads as you go, like the archive plan, and opens the way to the keyword you start from. A keyword with several broader terms opens only under its primary term; under the others it appears as a reference, such as «letter (see writing)».
+
 Deleting a keyword removes its relations. Merging two keywords hands the relations of the one that goes to the one that stays.
 
 ## Authority data
@@ -63,6 +65,8 @@ Like actors and places, keywords can be linked to
 
 Under «appears in», the detail page shows all units of description that carry
 the keyword.
+
+If the keyword has narrower terms, the switch **Including narrower terms** adds their units of description to the list. The same switch appears in the search beside the chosen filters as soon as you filter by a keyword.
 
 ## Deleting
 

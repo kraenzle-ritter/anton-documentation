@@ -50,6 +50,8 @@ Un mot-clé peut avoir **plusieurs termes génériques**. L'un d'eux est le **te
 
 Anton n'admet pas de cercle : un mot-clé ne peut pas se trouver sous l'un de ses propres termes spécifiques, ni être lié à lui-même. Le formulaire revient alors avec un message et n'enregistre rien.
 
+Le bouton **Arborescence des termes**, sur la liste des mots-clés et à côté du chemin d'un mot-clé, montre les termes génériques et spécifiques sous forme d'arbre. Il se charge au fur et à mesure, comme le plan d'archives, et ouvre le chemin vers le mot-clé de départ. Un mot-clé à plusieurs termes génériques ne se déplie que sous son terme principal ; sous les autres, il figure comme renvoi, par exemple «&nbsp;lettre (voir écriture)&nbsp;».
+
 La suppression d'un mot-clé supprime ses relations. Lors de la fusion de deux mots-clés, celui qui reste reprend les relations de l'autre.
 
 ## Données d'autorité
@@ -67,6 +69,8 @@ Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés 
 
 Sous «&nbsp;apparaît dans&nbsp;», la page de détail affiche toutes les unités de
 description qui portent le mot-clé.
+
+Si le mot-clé a des termes spécifiques, le commutateur **Avec les termes spécifiques** ajoute leurs unités de description à la liste. Le même commutateur figure dans la recherche à côté des filtres choisis dès que l'on filtre par un mot-clé.
 
 ## Supprimer
 

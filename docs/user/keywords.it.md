@@ -49,6 +49,8 @@ Una parola chiave può avere **più termini più ampi**. Uno di essi è il **ter
 
 Anton non ammette cerchi: una parola chiave non può stare sotto uno dei propri termini più specifici, né essere collegata a sé stessa. Il formulario torna allora con un messaggio e non salva nulla.
 
+Il pulsante **Albero dei termini**, sulla lista delle parole chiave e accanto al percorso di una parola chiave, mostra i termini più ampi e più specifici come albero. Si carica man mano, come il piano d'archivio, e apre il percorso fino alla parola chiave di partenza. Una parola chiave con più termini più ampi si apre solo sotto il termine principale; sotto gli altri compare come rinvio, per esempio «lettera (vedi scrittura)».
+
 L'eliminazione di una parola chiave elimina le sue relazioni. Unendo due parole chiave, quella che resta riprende le relazioni dell'altra.
 
 ## Dati di autorità
@@ -66,6 +68,8 @@ Come attori e luoghi, anche le parole chiave possono essere collegate a
 
 Sotto «compare in» la pagina di dettaglio mostra tutte le unità di descrizione
 che recano la parola chiave.
+
+Se la parola chiave ha termini più specifici, l'interruttore **Con i termini più specifici** aggiunge le loro unità di descrizione alla lista. Lo stesso interruttore compare nella ricerca accanto ai filtri scelti non appena si filtra per una parola chiave.
 
 ## Eliminare
 
