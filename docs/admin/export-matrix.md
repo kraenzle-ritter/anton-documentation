@@ -25,7 +25,7 @@ andere sind Publikations- und Austauschsichten.**
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
 | RDF «A+» Bundle | CIDOC CRM + RiC-O **+ Mediendateien** als ZIP | Objekt-Baum, offline anzeigbar ohne Anton; mit `--include-protected --include-originals` ein **Migrationspaket** (siehe unten) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
-| **Nativer Round-Trip** | `anton-import-format` v0.9 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
+| **Nativer Round-Trip** | `anton-import-format` v0.10 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | pro Objekt (nur eingebettet) | Baustein in DIP / OCFL |
 | DIP | BagIt | Paket: Medien + Metadaten (Teilbaum) | Taste «DIP» am Datensatz |
 | E-ARK DIP | E-ARK DIP 2.2.0 (CSIP) | Paket ab Datensatz samt Teilbaum: *Zugang* = öffentliche Sicht mit Nutzungskopien, *vollständig* = alles mit Mastern und Originalen | Taste «E-ARK DIP» am Datensatz (Zugang), `anton:export-dip --format=eark [--full]` |
@@ -227,7 +227,7 @@ Formularsatz, die Rohwerte und die Schutzfristen.
 
 Für den verlustfreien Weg gibt es den **nativen Round-Trip**
 (`anton:export-native` → `anton:import-native`): ein Paket im
-`anton-import-format` v0.9 samt Master-Medien, das Anton wieder einliest.
+`anton-import-format` v0.10 samt Master-Medien, das Anton wieder einliest.
 Verankert über UUIDs (unbekannt → neu anlegen, bekannt → überspringen, mit
 `--update` aktualisieren), Hierarchie über die UUID der übergeordneten Einheit,
 alle Sprachen, Ereignisse, Textfelder **aller** Träger einschliesslich privater,
@@ -238,6 +238,8 @@ zurückgerollt.
 
 Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
+
+Seit anton#706 kommen die Normdatensätze vollständig zurück: weitere Namen, Varianten und Abkürzungen, Typ und Untertyp, die verknüpften Normdaten (GND, Wikidata …), das Merkmal «vorläufig», bei Akteur:innen «privat» und die Datumsart, bei Orten Land und Koordinaten. Dazu die Beziehungen zwischen ihnen und zu Datensätzen. Vorher fehlten diese Felder, und **private Akteur:innen** gingen beim Export ganz verloren, aus Ereignissen wie aus den Deskriptoren, weil der Export auf der Konsole ohne Anmeldung läuft. Sicherungen, die vor v0.124.0 mit `anton:export-native` geschrieben wurden, haben diese Lücke.
 
 !!! warning "Kommentare gehen beim Round-Trip verloren"
     «Verlustfrei» bezieht sich auf die Erschliessung. Interne
