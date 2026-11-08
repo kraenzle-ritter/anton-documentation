@@ -817,10 +817,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#termes-generiques-et-specifiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termes génériques et spécifiques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#donnees-dautorite" class="md-nav__link">
     <span class="md-ellipsis">
       
         Données d'autorité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telecharger-comme-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Télécharger comme thésaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemas-de-concepts-et-import-de-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schémas de concepts et import de thésaurus
       
     </span>
   </a>
@@ -2368,10 +2401,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#termes-generiques-et-specifiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termes génériques et spécifiques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#donnees-dautorite" class="md-nav__link">
     <span class="md-ellipsis">
       
         Données d'autorité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telecharger-comme-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Télécharger comme thésaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemas-de-concepts-et-import-de-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schémas de concepts et import de thésaurus
       
     </span>
   </a>
@@ -2417,7 +2483,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/keywords/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/keywords/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/keywords/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -2436,10 +2502,8 @@ géographiques des <a href="../places/">lieux</a>.</p>
 <p>On les trouve sous <strong>Admin → Mots-clés</strong> ; ils se rattachent dans le formulaire
 de l'objet, au champ <strong>mots-clés (matières)</strong>.</p>
 <div class="admonition note">
-<p class="admonition-title">Pas de hiérarchie</p>
-<p>Les mots-clés sont juxtaposés. Anton ne gère pas de thésaurus : il n'y a ni
-termes génériques ni termes spécifiques, ni renvois entre mots-clés. Le
-<strong>type</strong> ne fait que les regrouper.</p>
+<p class="admonition-title">Hiérarchie sur demande</p>
+<p>Par défaut, les mots-clés sont juxtaposés ; le <strong>type</strong> ne fait que les regrouper. Les termes génériques et spécifiques et « voir aussi » s'activent par archive, voir <a href="#termes-generiques-et-specifiques">Termes génériques et spécifiques</a>.</p>
 </div>
 <h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
 <p>Les types sont librement définissables par archive et varient fortement d'un
@@ -2463,6 +2527,13 @@ l'objet</strong> : à côté de la liste de sélection du champ <strong>mots-cl�
 <strong>+</strong> qui ouvre une fenêtre avec le même formulaire de création. Après la
 création, le nouveau mot-clé est sélectionné — l'unité de description elle-même
 doit encore être enregistrée ensuite.</p>
+<h2 id="termes-generiques-et-specifiques">Termes génériques et spécifiques<a class="headerlink" href="#termes-generiques-et-specifiques" title="Permanent link">&para;</a></h2>
+<p>Si le paramètre <code>keyword_relations</code> est activé sous <strong>Admin → Paramètres</strong>, chaque mot-clé porte des <strong>termes génériques</strong>, des <strong>termes spécifiques</strong> et <strong>voir aussi</strong>. Désactivé, ce qui est la valeur par défaut, tout reste comme avant.</p>
+<p>Dans le formulaire du mot-clé, on choisit les termes dans trois champs, comme dans le formulaire de l'objet. Un terme spécifique se saisit depuis l'un ou l'autre côté ; Anton enregistre la relation une fois et l'affiche des deux côtés.</p>
+<p>Un mot-clé peut avoir <strong>plusieurs termes génériques</strong>. L'un d'eux est le <strong>terme principal</strong> : le mot-clé figure sous lui dans le <strong>chemin</strong> affiché en haut de la page de détail, par exemple « Écriture › Lettre ». Le premier terme générique devient le terme principal ; s'il y en a plusieurs, on le choisit dans le formulaire sous <strong>Terme principal</strong>.</p>
+<p>Anton n'admet pas de cercle : un mot-clé ne peut pas se trouver sous l'un de ses propres termes spécifiques, ni être lié à lui-même. Le formulaire revient alors avec un message et n'enregistre rien.</p>
+<p>Le bouton <strong>Arborescence des termes</strong>, sur la liste des mots-clés et à côté du chemin d'un mot-clé, montre les termes génériques et spécifiques sous forme d'arbre. Il se charge au fur et à mesure, comme le plan d'archives, et ouvre le chemin vers le mot-clé de départ. Un mot-clé à plusieurs termes génériques ne se déplie que sous son terme principal ; sous les autres, il figure comme renvoi, par exemple «&nbsp;lettre (voir écriture)&nbsp;».</p>
+<p>La suppression d'un mot-clé supprime ses relations. Lors de la fusion de deux mots-clés, celui qui reste reprend les relations de l'autre.</p>
 <h2 id="donnees-dautorite">Données d'autorité<a class="headerlink" href="#donnees-dautorite" title="Permanent link">&para;</a></h2>
 <p>Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés à des
 <a href="../authorities/">données d'autorité</a> — par exemple à Wikidata ou à la GND.</p>
@@ -2473,9 +2544,24 @@ fournisseurs sont configurés pour le service. Si le paramètre manque, aucune
 association n'est possible pour le mot-clé — alors qu'elle le reste pour les
 acteur·trice·s et les lieux.</p>
 </div>
+<h2 id="telecharger-comme-thesaurus">Télécharger comme thésaurus<a class="headerlink" href="#telecharger-comme-thesaurus" title="Permanent link">&para;</a></h2>
+<p>Lorsque les termes génériques et spécifiques sont activés, le personnel connecté trouve le bouton <strong>Télécharger en SKOS</strong> sur la liste des mots-clés et <strong>Sous-arborescence en SKOS</strong> sur chaque mot-clé. Le fichier contient tous les mots-clés, ou le mot-clé avec tout ce qui se trouve en dessous, en Turtle, RDF/XML ou N-Triples : libellés dans toutes les langues, autres noms, termes génériques et spécifiques, «&nbsp;voir aussi&nbsp;» et les données d'autorité liées. Chaque mot-clé figure sous son adresse pérenne. La <a href="../../admin/export-matrix/">matrice des exports</a> indique ce qui est exporté.</p>
+<h2 id="schemas-de-concepts-et-import-de-thesaurus">Schémas de concepts et import de thésaurus<a class="headerlink" href="#schemas-de-concepts-et-import-de-thesaurus" title="Permanent link">&para;</a></h2>
+<p>Sous <strong>Admin → Schémas de concepts</strong>, l'archive tient ses thésaurus : ceux qu'elle importe (par exemple un thésaurus spécialisé en SKOS) et ceux qu'elle entretient elle-même. Un mot-clé peut appartenir à plusieurs schémas et porte dans chacun l'URI et la notation du concept. La page de détail affiche les deux sous <strong>Schéma de concepts</strong>.</p>
+<p>L'import accepte un fichier SKOS (Turtle, RDF/XML ou N-Triples) ou un tableau (XLSX, CSV) avec les colonnes <strong>Term</strong>, <strong>Broader</strong>, <strong>Use for</strong>, <strong>Use</strong>, <strong>Related</strong>, <strong>Notation</strong> et <strong>Definition</strong> (les noms allemands fonctionnent aussi). Plusieurs termes dans une cellule se séparent par « ; ». L'import s'exécute en arrière-plan ; le résultat s'affiche ensuite sur la même page.</p>
+<ul>
+<li><strong>Pas de doublon :</strong> s'il existe déjà un mot-clé du même nom, l'import s'y rattache. Il garde son libellé et ne reçoit que les langues qui lui manquaient. Si plusieurs mots-clés portent ce nom, l'import en crée un nouveau et signale le nom.</li>
+<li><strong>Un second import</strong> du même fichier met à jour au lieu de doubler.</li>
+<li><strong>Sont repris</strong> les autres noms, les définitions, les termes génériques et spécifiques, « voir aussi » et les liens vers des données d'autorité (Wikidata, GND, VIAF, Library of Congress, GeoNames). Rien de ce que l'archive a écrit n'est écrasé.</li>
+<li><strong>Les termes non préférentiels</strong> d'un tableau (« utiliser … ») deviennent d'autres noms du terme. Un renvoi combiné (« utiliser A, B ») est inscrit aux deux et figure dans le résultat.</li>
+<li><strong>Les cercles</strong> sont omis et signalés.</li>
+<li><strong>Les concepts obsolètes</strong> d'un thésaurus ne sont pas créés. Leurs noms vont au concept qui les remplace, si bien que la recherche par l'ancien nom aboutit toujours.</li>
+</ul>
+<p>Un schéma peut être téléchargé en SKOS. Le supprimer conserve les mots-clés avec leurs relations et liens ; seule l'appartenance au schéma disparaît. En ligne de commande, <code>anton:import-skos</code> fait de même.</p>
 <h2 id="ou-un-mot-cle-est-utilise">Où un mot-clé est utilisé<a class="headerlink" href="#ou-un-mot-cle-est-utilise" title="Permanent link">&para;</a></h2>
 <p>Sous «&nbsp;apparaît dans&nbsp;», la page de détail affiche toutes les unités de
 description qui portent le mot-clé.</p>
+<p>Si le mot-clé a des termes spécifiques, le commutateur <strong>Avec les termes spécifiques</strong> ajoute leurs unités de description à la liste. Le même commutateur figure dans la recherche à côté des filtres choisis dès que l'on filtre par un mot-clé.</p>
 <h2 id="supprimer">Supprimer<a class="headerlink" href="#supprimer" title="Permanent link">&para;</a></h2>
 <p>Un mot-clé ne peut être supprimé que tant qu'il n'est enregistré sur <strong>aucune
 unité de description</strong>. Dans le cas contraire, Anton refuse la suppression et en

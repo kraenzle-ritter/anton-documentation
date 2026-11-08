@@ -817,10 +817,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#termini-piu-ampi-e-piu-specifici" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termini più ampi e più specifici
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dati-di-autorita" class="md-nav__link">
     <span class="md-ellipsis">
       
         Dati di autorità
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaricare-come-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaricare come thesaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemi-di-concetti-e-importazione-di-thesauri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemi di concetti e importazione di thesauri
       
     </span>
   </a>
@@ -2368,10 +2401,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#termini-piu-ampi-e-piu-specifici" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Termini più ampi e più specifici
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dati-di-autorita" class="md-nav__link">
     <span class="md-ellipsis">
       
         Dati di autorità
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaricare-come-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaricare come thesaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemi-di-concetti-e-importazione-di-thesauri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemi di concetti e importazione di thesauri
       
     </span>
   </a>
@@ -2417,7 +2483,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/keywords/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/keywords/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/keywords/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -2436,10 +2502,8 @@ eventi, tecniche, opere. Persone e organizzazioni rientrano invece tra gli
 <p>Si trovano in <strong>Admin → Parole chiave</strong>; il collegamento avviene nel formulario
 dell'oggetto, nel campo <strong>parole chiave (soggetti)</strong>.</p>
 <div class="admonition note">
-<p class="admonition-title">Nessuna gerarchia</p>
-<p>Le parole chiave stanno l'una accanto all'altra. Anton non gestisce un
-thesaurus: non esistono termini sovraordinati e subordinati né rimandi tra
-parole chiave. Il <strong>tipo</strong> si limita a raggrupparle.</p>
+<p class="admonition-title">Gerarchia su richiesta</p>
+<p>Di norma le parole chiave stanno l'una accanto all'altra; il <strong>tipo</strong> si limita a raggrupparle. Termini più ampi e più specifici e «vedi anche» si attivano per archivio, vedi <a href="#termini-piu-ampi-e-piu-specifici">Termini più ampi e più specifici</a>.</p>
 </div>
 <h2 id="tipi">Tipi<a class="headerlink" href="#tipi" title="Permanent link">&para;</a></h2>
 <p>I tipi sono liberamente definibili per archivio e variano notevolmente da un
@@ -2462,6 +2526,13 @@ dell'oggetto</strong>: accanto all'elenco di selezione nel campo <strong>parole 
 trova un <strong>+</strong> che apre una finestra con lo stesso formulario di creazione. Dopo
 la creazione la nuova parola chiave risulta selezionata — l'unità di descrizione
 stessa va ancora salvata.</p>
+<h2 id="termini-piu-ampi-e-piu-specifici">Termini più ampi e più specifici<a class="headerlink" href="#termini-piu-ampi-e-piu-specifici" title="Permanent link">&para;</a></h2>
+<p>Se l'impostazione <code>keyword_relations</code> è attiva in <strong>Admin → Impostazioni</strong>, ogni parola chiave ha <strong>termini più ampi</strong>, <strong>termini più specifici</strong> e <strong>vedi anche</strong>. Disattivata, come di norma, tutto resta come prima.</p>
+<p>Nel formulario della parola chiave i termini si scelgono in tre campi, come nel formulario dell'oggetto. Un termine più specifico si inserisce dall'una o dall'altra parte; Anton salva la relazione una volta e la mostra da entrambi i lati.</p>
+<p>Una parola chiave può avere <strong>più termini più ampi</strong>. Uno di essi è il <strong>termine principale</strong>: sotto di esso la parola chiave compare nel <strong>percorso</strong> in cima alla pagina di dettaglio, per esempio «Scrittura › Lettera». Il primo termine più ampio diventa quello principale; se ce ne sono diversi, lo si sceglie nel formulario sotto <strong>Termine principale</strong>.</p>
+<p>Anton non ammette cerchi: una parola chiave non può stare sotto uno dei propri termini più specifici, né essere collegata a sé stessa. Il formulario torna allora con un messaggio e non salva nulla.</p>
+<p>Il pulsante <strong>Albero dei termini</strong>, sulla lista delle parole chiave e accanto al percorso di una parola chiave, mostra i termini più ampi e più specifici come albero. Si carica man mano, come il piano d'archivio, e apre il percorso fino alla parola chiave di partenza. Una parola chiave con più termini più ampi si apre solo sotto il termine principale; sotto gli altri compare come rinvio, per esempio «lettera (vedi scrittura)».</p>
+<p>L'eliminazione di una parola chiave elimina le sue relazioni. Unendo due parole chiave, quella che resta riprende le relazioni dell'altra.</p>
 <h2 id="dati-di-autorita">Dati di autorità<a class="headerlink" href="#dati-di-autorita" title="Permanent link">&para;</a></h2>
 <p>Come attori e luoghi, anche le parole chiave possono essere collegate a
 <a href="../authorities/">dati di autorità</a> — ad esempio a Wikidata o alla GND.</p>
@@ -2472,9 +2543,24 @@ l'archivio sono configurati dei provider. Se l'impostazione manca, per la
 parola chiave non esiste alcuna possibilità di collegamento — mentre per
 attori e luoghi sì.</p>
 </div>
+<h2 id="scaricare-come-thesaurus">Scaricare come thesaurus<a class="headerlink" href="#scaricare-come-thesaurus" title="Permanent link">&para;</a></h2>
+<p>Con i termini più ampi e più specifici attivati, il personale connesso trova il pulsante <strong>Scarica SKOS</strong> sulla lista delle parole chiave e <strong>Sottoalbero in SKOS</strong> su ogni parola chiave. Il file contiene tutte le parole chiave, oppure la parola chiave con tutto ciò che sta sotto, in Turtle, RDF/XML o N-Triples: denominazioni in tutte le lingue, altri nomi, termini più ampi e più specifici, «vedi anche» e i dati di autorità collegati. Ogni parola chiave compare sotto il suo indirizzo permanente. La <a href="../../admin/export-matrix/">matrice delle esportazioni</a> indica che cosa viene esportato.</p>
+<h2 id="schemi-di-concetti-e-importazione-di-thesauri">Schemi di concetti e importazione di thesauri<a class="headerlink" href="#schemi-di-concetti-e-importazione-di-thesauri" title="Permanent link">&para;</a></h2>
+<p>In <strong>Admin → Schemi di concetti</strong> l'archivio gestisce i suoi thesauri: quelli che importa (per esempio un thesaurus specialistico in SKOS) e quelli che cura in proprio. Una parola chiave può appartenere a più schemi e porta in ciascuno l'URI e la notazione del concetto. La pagina di dettaglio li mostra sotto <strong>Schema di concetti</strong>.</p>
+<p>L'importazione accetta un file SKOS (Turtle, RDF/XML o N-Triples) o una tabella (XLSX, CSV) con le colonne <strong>Term</strong>, <strong>Broader</strong>, <strong>Use for</strong>, <strong>Use</strong>, <strong>Related</strong>, <strong>Notation</strong> e <strong>Definition</strong> (funzionano anche i nomi tedeschi). Più termini in una cella si separano con «;». L'importazione avviene in background; il risultato appare poi sulla stessa pagina.</p>
+<ul>
+<li><strong>Niente doppioni:</strong> se esiste già una parola chiave con lo stesso nome, l'importazione vi si collega. Essa conserva la sua denominazione e riceve solo le lingue mancanti. Se più parole chiave portano quel nome, l'importazione ne crea una nuova e segnala il nome.</li>
+<li><strong>Una seconda importazione</strong> dello stesso file aggiorna invece di duplicare.</li>
+<li><strong>Vengono ripresi</strong> altri nomi, definizioni, termini più ampi e più specifici, «vedi anche» e collegamenti a dati di autorità (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nulla di ciò che l'archivio ha scritto viene sovrascritto.</li>
+<li><strong>I termini non preferiti</strong> di una tabella («usa …») diventano altri nomi del termine. Un rinvio combinato («usa A, B») viene registrato presso entrambi e figura nel risultato.</li>
+<li><strong>I cerchi</strong> vengono omessi e segnalati.</li>
+<li><strong>I concetti dismessi</strong> di un thesaurus non vengono creati. I loro nomi passano al concetto che li sostituisce, così la ricerca con il vecchio nome continua a trovarlo.</li>
+</ul>
+<p>Uno schema si può scaricare in SKOS. Rimuoverlo lascia le parole chiave con le loro relazioni e i collegamenti; si perde solo l'appartenenza allo schema. Da riga di comando fa lo stesso <code>anton:import-skos</code>.</p>
 <h2 id="dove-viene-utilizzata-una-parola-chiave">Dove viene utilizzata una parola chiave<a class="headerlink" href="#dove-viene-utilizzata-una-parola-chiave" title="Permanent link">&para;</a></h2>
 <p>Sotto «compare in» la pagina di dettaglio mostra tutte le unità di descrizione
 che recano la parola chiave.</p>
+<p>Se la parola chiave ha termini più specifici, l'interruttore <strong>Con i termini più specifici</strong> aggiunge le loro unità di descrizione alla lista. Lo stesso interruttore compare nella ricerca accanto ai filtri scelti non appena si filtra per una parola chiave.</p>
 <h2 id="eliminare">Eliminare<a class="headerlink" href="#eliminare" title="Permanent link">&para;</a></h2>
 <p>Una parola chiave può essere eliminata solo finché non è registrata presso
 <strong>alcuna unità di descrizione</strong>. In caso contrario Anton rifiuta l'eliminazione

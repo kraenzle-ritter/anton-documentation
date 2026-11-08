@@ -817,10 +817,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ober-und-unterbegriffe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ober- und Unterbegriffe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#normdaten" class="md-nav__link">
     <span class="md-ellipsis">
       
         Normdaten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#als-thesaurus-herunterladen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Als Thesaurus herunterladen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#begriffsschemata-und-thesaurus-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Begriffsschemata und Thesaurus-Import
       
     </span>
   </a>
@@ -4597,10 +4630,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ober-und-unterbegriffe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ober- und Unterbegriffe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#normdaten" class="md-nav__link">
     <span class="md-ellipsis">
       
         Normdaten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#als-thesaurus-herunterladen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Als Thesaurus herunterladen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#begriffsschemata-und-thesaurus-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Begriffsschemata und Thesaurus-Import
       
     </span>
   </a>
@@ -4646,7 +4712,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/keywords/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/keywords/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/keywords/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -4664,10 +4730,8 @@ den <a href="../actors/">Akteur:innen</a>, geografische Angaben zu den <a href="
 <p>Zu finden sind sie über <strong>Admin → Schlagwörter</strong>; verknüpft werden sie im
 Objektformular im Feld <strong>Schlagwörter (Sachen)</strong>.</p>
 <div class="admonition note">
-<p class="admonition-title">Keine Hierarchie</p>
-<p>Schlagwörter stehen nebeneinander. Anton führt keinen Thesaurus: Es gibt
-keine Ober- und Unterbegriffe und keine Verweisungen zwischen
-Schlagwörtern. Der <strong>Typ</strong> gruppiert sie lediglich.</p>
+<p class="admonition-title">Hierarchie nur auf Wunsch</p>
+<p>Ohne weiteres stehen Schlagwörter nebeneinander, der <strong>Typ</strong> gruppiert sie lediglich. Ober- und Unterbegriffe und «siehe auch» lassen sich pro Archiv einschalten, siehe <a href="#ober-und-unterbegriffe">Ober- und Unterbegriffe</a>.</p>
 </div>
 <h2 id="typen">Typen<a class="headerlink" href="#typen" title="Permanent link">&para;</a></h2>
 <p>Die Typen sind pro Archiv frei bestimmbar und weichen zwischen den Archiven
@@ -4690,6 +4754,13 @@ der Auswahlliste im Feld <strong>Schlagwörter</strong> steht ein <strong>+</str
 demselben Anlege-Formular öffnet. Nach dem Erstellen ist das neue Schlagwort
 ausgewählt — die Verzeichnungseinheit selbst muss danach noch gespeichert
 werden.</p>
+<h2 id="ober-und-unterbegriffe">Ober- und Unterbegriffe<a class="headerlink" href="#ober-und-unterbegriffe" title="Permanent link">&para;</a></h2>
+<p>Ist die Einstellung <code>keyword_relations</code> unter <strong>Admin → Einstellungen</strong> eingeschaltet, führt jedes Schlagwort <strong>Oberbegriffe</strong>, <strong>Unterbegriffe</strong> und <strong>Siehe auch</strong>. Ausgeschaltet, die Vorgabe, bleibt alles wie bisher.</p>
+<p>Im Formular des Schlagworts sucht man die Begriffe in drei Feldern wie im Objektformular aus. Ein Unterbegriff lässt sich vom Ober- wie vom Unterbegriff aus eintragen; Anton speichert die Beziehung einmal und zeigt sie auf beiden Seiten.</p>
+<p>Ein Schlagwort darf <strong>mehrere Oberbegriffe</strong> haben. Einer davon ist die <strong>Hauptstelle</strong>: Unter ihr steht das Schlagwort im <strong>Pfad</strong>, der auf der Detailseite oben erscheint, etwa «Schrift › Brief». Der erste Oberbegriff wird zur Hauptstelle; hat ein Schlagwort mehrere, wählt man sie im Formular unter <strong>Hauptstelle</strong>.</p>
+<p>Anton lässt keinen Kreis zu: Ein Schlagwort kann nicht unter einem seiner eigenen Unterbegriffe stehen und nicht mit sich selbst verknüpft werden. Das Formular kommt dann mit einer Meldung zurück und speichert nichts.</p>
+<p>Der Knopf <strong>Begriffsbaum</strong> auf der Liste der Schlagwörter und neben dem Pfad eines Schlagworts zeigt die Ober- und Unterbegriffe als Baum. Er lädt nach, wie der Archivplan, und öffnet von einem Schlagwort aus den Weg zu ihm. Ein Schlagwort mit mehreren Oberbegriffen lässt sich nur unter seiner Hauptstelle aufklappen; unter den übrigen steht ein Verweis, etwa «Brief (siehe Schrift)».</p>
+<p>Wird ein Schlagwort gelöscht, verschwinden seine Beziehungen mit. Werden zwei Schlagwörter zusammengeführt, übernimmt das bleibende die Beziehungen des anderen.</p>
 <h2 id="normdaten">Normdaten<a class="headerlink" href="#normdaten" title="Permanent link">&para;</a></h2>
 <p>Schlagwörter lassen sich wie Akteur:innen und Orte mit <a href="../authorities/">Normdaten</a>
 verknüpfen — etwa mit Wikidata oder der GND.</p>
@@ -4699,9 +4770,24 @@ verknüpfen — etwa mit Wikidata oder der GND.</p>
 Provider konfiguriert sind. Fehlt die Einstellung, gibt es beim Schlagwort
 keine Verknüpfungsmöglichkeit — bei Akteur:innen und Orten dagegen schon.</p>
 </div>
+<h2 id="als-thesaurus-herunterladen">Als Thesaurus herunterladen<a class="headerlink" href="#als-thesaurus-herunterladen" title="Permanent link">&para;</a></h2>
+<p>Sind Ober- und Unterbegriffe eingeschaltet, finden angemeldete Mitarbeitende auf der Liste der Schlagwörter den Knopf <strong>SKOS herunterladen</strong> und auf jedem Schlagwort <strong>Teilbaum als SKOS</strong>. Die Datei enthält alle Schlagwörter oder das Schlagwort mit allem darunter, als Turtle, RDF/XML oder N-Triples: Bezeichnungen in allen Sprachen, weitere Namen, Ober- und Unterbegriffe, «siehe auch» und die verknüpften Normdaten. Jedes Schlagwort steht unter seiner bleibenden Adresse. Welche Daten genau hinausgehen, zeigt die <a href="../../admin/export-matrix/">Export-Matrix</a>.</p>
+<h2 id="begriffsschemata-und-thesaurus-import">Begriffsschemata und Thesaurus-Import<a class="headerlink" href="#begriffsschemata-und-thesaurus-import" title="Permanent link">&para;</a></h2>
+<p>Unter <strong>Admin → Begriffsschemata</strong> führt das Archiv seine Thesauri: solche, die es einspielt (etwa einen Fachthesaurus im Format SKOS), und solche, die es selbst pflegt. Ein Schlagwort kann zu mehreren Schemata gehören und trägt in jedem die URI und die Notation des Begriffs. Auf der Detailseite steht beides unter <strong>Begriffsschema</strong>.</p>
+<p>Eingespielt wird eine SKOS-Datei (Turtle, RDF/XML oder N-Triples) oder eine Tabelle (XLSX, CSV) mit den Spalten <strong>Begriff</strong>, <strong>Oberbegriffe</strong>, <strong>Benutzt für</strong>, <strong>Verwende</strong>, <strong>Siehe auch</strong>, <strong>Notation</strong> und <strong>Definition</strong>. Mehrere Begriffe in einer Zelle trennt man mit «;». Der Import läuft im Hintergrund; das Ergebnis steht danach auf derselben Seite.</p>
+<ul>
+<li><strong>Kein Doppel:</strong> Gibt es ein Schlagwort mit derselben Bezeichnung schon, knüpft der Import daran an. Es behält seine Bezeichnung und bekommt nur die fehlenden Sprachen dazu. Tragen mehrere Schlagwörter denselben Namen, legt der Import ein neues an und meldet den Namen.</li>
+<li><strong>Ein zweiter Import</strong> derselben Datei führt nach, statt zu verdoppeln.</li>
+<li><strong>Übernommen werden</strong> weitere Namen, Definitionen, Ober- und Unterbegriffe, «siehe auch» und Normdaten-Links (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nichts, was das Archiv geschrieben hat, wird überschrieben.</li>
+<li><strong>Nicht-Vorzugsbegriffe</strong> einer Tabelle («Verwende …») werden zu weiteren Namen des Begriffs. Ein Kombinationsverweis («Verwende A, B») wird bei beiden eingetragen und im Ergebnis aufgeführt.</li>
+<li><strong>Kreise</strong> lässt der Import weg und meldet sie.</li>
+<li><strong>Stillgelegte Begriffe</strong> eines Thesaurus legt der Import nicht an. Ihre Namen kommen zum Begriff, der sie ersetzt, damit die Suche nach dem alten Namen weiterhin trifft.</li>
+</ul>
+<p>Ein Schema lässt sich als SKOS herunterladen. Wird es entfernt, bleiben die Schlagwörter mit ihren Beziehungen und Verknüpfungen; nur die Zugehörigkeit zum Schema geht. Dasselbe leistet auf der Kommandozeile <code>anton:import-skos</code>.</p>
 <h2 id="wo-ein-schlagwort-verwendet-wird">Wo ein Schlagwort verwendet wird<a class="headerlink" href="#wo-ein-schlagwort-verwendet-wird" title="Permanent link">&para;</a></h2>
 <p>Die Detailseite zeigt unter «erscheint in» alle Verzeichnungseinheiten, die das
 Schlagwort führen.</p>
+<p>Hat das Schlagwort Unterbegriffe, nimmt der Schalter <strong>Mit Unterbegriffen</strong> deren Verzeichnungseinheiten in die Liste auf. Derselbe Schalter steht in der Suche neben den gewählten Filtern, sobald nach einem Schlagwort gefiltert wird.</p>
 <h2 id="loschen">Löschen<a class="headerlink" href="#loschen" title="Permanent link">&para;</a></h2>
 <p>Ein Schlagwort lässt sich nur löschen, solange es <strong>bei keiner
 Verzeichnungseinheit</strong> eingetragen ist. Andernfalls verweigert Anton das Löschen

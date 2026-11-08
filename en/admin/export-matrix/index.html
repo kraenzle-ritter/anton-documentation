@@ -4800,7 +4800,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/export-matrix/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-07</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -4820,7 +4820,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Status</p>
-<p>This matrix reflects the state of <strong>7 November 2026</strong>. It is
+<p>This matrix reflects the state of <strong>8 November 2026</strong>. It is
 maintained together with the exporters.</p>
 </div>
 <h2 id="available-formats">Available formats<a class="headerlink" href="#available-formats" title="Permanent link">&para;</a></h2>
@@ -4865,6 +4865,12 @@ maintained together with the exporters.</p>
 <td>API with <code>?format=tei</code></td>
 </tr>
 <tr>
+<td>SKOS – keywords</td>
+<td>SKOS (Turtle, RDF/XML, N-Triples)</td>
+<td>all keywords, a keyword with everything below it, or a concept scheme (with notation and the thesaurus URI): labels, broader and narrower terms, «see also», authority matches⁵</td>
+<td>keyword list and keyword → «Download SKOS», Admin → Concept schemes, <code>/skos/keywords.{ttl,rdf,nt}</code>, <code>/skos/schemes/{id}.{ttl,rdf,nt}</code>; only with <code>keyword_relations</code></td>
+</tr>
+<tr>
 <td>RDF «A+»</td>
 <td>CIDOC CRM + RiC-O (dual)</td>
 <td>Object tree, all entities</td>
@@ -4890,7 +4896,7 @@ maintained together with the exporters.</p>
 </tr>
 <tr>
 <td><strong>Native round trip</strong></td>
-<td><code>anton-import-format</code> v0.9 (JSON) <strong>+ master media</strong> as a ZIP</td>
+<td><code>anton-import-format</code> v0.10 (JSON) <strong>+ master media</strong> as a ZIP</td>
 <td>Object tree, <strong>losslessly re-importable</strong></td>
 <td><code>anton:export-native</code> / <code>anton:import-native</code></td>
 </tr>
@@ -5117,6 +5123,20 @@ maintained together with the exporters.</p>
 <td>●</td>
 </tr>
 <tr>
+<td>Keyword relations⁵</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+</tr>
+<tr>
 <td>Events (graph)</td>
 <td>◐</td>
 <td>◐</td>
@@ -5302,6 +5322,7 @@ references, image dimensions, AV duration and OCR full text in the graph; the ZI
 additionally places the derivatives (<code>thumb</code>/<code>web</code>) alongside — in the standard
 case <strong>not the masters</strong>. With <code>--include-originals</code> the master files are added,
 see <a href="#migrations-export-das-bundle-als-weg-hinaus">migration export</a>.</p>
+<p>⁵ <strong>Broader and narrower terms, «see also»</strong> (anton#706, #707) go out in full only in the <strong>SKOS export</strong>, between keywords: every broader term, not only the primary one, <code>skos:related</code> for «see also», <code>skos:exactMatch</code> for linked authority files (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; not encyclopaedias, Wikipedia or images). The concept URI is the lasting address <code>/id/{uuid}</code>. The <strong>RiC export</strong> writes <code>skos:broader</code>, <code>skos:narrower</code> and <code>skos:related</code> between the concepts it holds and brings along the broader terms of the keywords in use. The <strong>native round-trip</strong> (format v0.10 on) carries every relation between keywords, actors, places and records without loss; a subtree carries the relations of what it holds, with the broader terms above. Relations to pages are only in the SQL dump.</p>
 <p>⁴ <strong>PREMIS 3</strong> per record with media (anton#661): formats (PRONOM), checksums,
 kept originals and every event on the media with tool and version. The NARA
 risk assessment is not included. Applies to the native round trip too, not to
@@ -5342,6 +5363,7 @@ dissolution of corporate bodies (from Anton v0.103.0).</p>
 <li><strong>AI cataloguing data</strong> — profiles, consumption, budgets, audit samples</li>
 <li><strong>Editions</strong> and <strong>correspondences</strong></li>
 <li><strong>The full-text index</strong></li>
+<li><strong>Relations to pages</strong> — the native round-trip carries the other relations (anton#706)</li>
 <li><strong>The event graph as a relation</strong> — events appear only flattened (Excel) or
   implicitly (EAD, RDF)</li>
 </ul>
@@ -5450,7 +5472,7 @@ reconstructed from the bundle alone: the UUIDs, the form set, the raw values and
 the protection periods are missing.</p>
 <p>For the lossless route there is the <strong>native round trip</strong>
 (<code>anton:export-native</code> → <code>anton:import-native</code>): a package in the
-<code>anton-import-format</code> v0.9 together with master media, which Anton reads back in.
+<code>anton-import-format</code> v0.10 together with master media, which Anton reads back in.
 Anchored via UUIDs (unknown → create new, known → skip, update with <code>--update</code>),
 hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of <strong>all</strong> carriers including private ones, actors as descriptors (anton#825; a re-import used to lose them), termselect values, form set
@@ -5458,6 +5480,7 @@ and the reconnection of the media. Before every write operation the whole packag
 is validated; if it fails, it is rolled back.</p>
 <p>Actors, places and keywords carry a portable UUID too — a re-import anchors them
 to it instead of merging authority records that happen to share a name.</p>
+<p>Since anton#706 authority records come back whole: other names, variants and abbreviations, type and subtype, the linked authority data (GND, Wikidata …), the concept schemes with URI and notation, the provisional mark, an actor's privacy and date type, a place's country and coordinates. With them the relations between them and to records. Before, these fields were missing, and <strong>private actors</strong> were lost from the export altogether, from events and descriptors alike, because the export runs on the console signed in as nobody. Backups written with <code>anton:export-native</code> before v0.124.0 have this gap.</p>
 <div class="admonition warning">
 <p class="admonition-title">Comments are lost in the round trip</p>
 <p>«Lossless» refers to the description. Internal

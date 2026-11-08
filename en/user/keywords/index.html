@@ -817,10 +817,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#broader-and-narrower-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broader and narrower terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#authority-data" class="md-nav__link">
     <span class="md-ellipsis">
       
         Authority data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-as-a-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading as a thesaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-schemes-and-thesaurus-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept schemes and thesaurus import
       
     </span>
   </a>
@@ -4597,10 +4630,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#broader-and-narrower-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broader and narrower terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#authority-data" class="md-nav__link">
     <span class="md-ellipsis">
       
         Authority data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-as-a-thesaurus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading as a thesaurus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-schemes-and-thesaurus-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept schemes and thesaurus import
       
     </span>
   </a>
@@ -4646,7 +4712,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/keywords/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/keywords/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/keywords/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-08-24</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -4664,10 +4730,8 @@ techniques, works. Persons and organisations, by contrast, belong with the
 <p>They are found under <strong>Admin → Keywords</strong>; they are linked in the object form in
 the <strong>keywords (subjects)</strong> field.</p>
 <div class="admonition note">
-<p class="admonition-title">No hierarchy</p>
-<p>Keywords stand side by side. Anton maintains no thesaurus: there are no
-broader and narrower terms and no cross-references between keywords. The
-<strong>type</strong> merely groups them.</p>
+<p class="admonition-title">Hierarchy only on request</p>
+<p>By default keywords stand side by side; the <strong>type</strong> merely groups them. Broader and narrower terms and «see also» can be switched on per archive, see <a href="#broader-and-narrower-terms">Broader and narrower terms</a>.</p>
 </div>
 <h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
 <p>The types can be defined freely per archive and differ considerably between
@@ -4689,6 +4753,13 @@ instead of creating duplicates.</p>
 selection list in the <strong>keywords</strong> field there is a <strong>+</strong> which opens a window
 with the same creation form. After creation the new keyword is selected — the
 unit of description itself still has to be saved afterwards.</p>
+<h2 id="broader-and-narrower-terms">Broader and narrower terms<a class="headerlink" href="#broader-and-narrower-terms" title="Permanent link">&para;</a></h2>
+<p>With the setting <code>keyword_relations</code> switched on under <strong>Admin → Settings</strong>, every keyword carries <strong>broader terms</strong>, <strong>narrower terms</strong> and <strong>see also</strong>. Switched off, the default, everything stays as it was.</p>
+<p>In the keyword's form the terms are picked in three fields, as in the object form. A narrower term can be entered from either end; Anton stores the relation once and shows it on both sides.</p>
+<p>A keyword may have <strong>several broader terms</strong>. One of them is the <strong>primary</strong> one: the keyword sits under it in the <strong>path</strong> shown at the top of the detail page, for instance «Writing › Letter». The first broader term becomes the primary one; where there are several, it is chosen in the form under <strong>Primary</strong>.</p>
+<p>Anton allows no circle: a keyword cannot sit under one of its own narrower terms, nor be related to itself. The form then comes back with a message and saves nothing.</p>
+<p>The <strong>Term tree</strong> button on the keyword list and beside the path of a keyword shows broader and narrower terms as a tree. It loads as you go, like the archive plan, and opens the way to the keyword you start from. A keyword with several broader terms opens only under its primary term; under the others it appears as a reference, such as «letter (see writing)».</p>
+<p>Deleting a keyword removes its relations. Merging two keywords hands the relations of the one that goes to the one that stays.</p>
 <h2 id="authority-data">Authority data<a class="headerlink" href="#authority-data" title="Permanent link">&para;</a></h2>
 <p>Like actors and places, keywords can be linked to
 <a href="../authorities/">authority data</a> — to Wikidata or the GND, for example.</p>
@@ -4698,9 +4769,24 @@ unit of description itself still has to be saved afterwards.</p>
 configured for the archive. If the setting is missing, there is no way to
 link a keyword — whereas actors and places can still be linked.</p>
 </div>
+<h2 id="downloading-as-a-thesaurus">Downloading as a thesaurus<a class="headerlink" href="#downloading-as-a-thesaurus" title="Permanent link">&para;</a></h2>
+<p>With broader and narrower terms switched on, signed-in staff find the button <strong>Download SKOS</strong> on the keyword list and <strong>Subtree as SKOS</strong> on every keyword. The file holds all keywords, or the keyword with everything below it, as Turtle, RDF/XML or N-Triples: labels in every language, other names, broader and narrower terms, «see also» and the linked authority data. Every keyword appears under its lasting address. The <a href="../../admin/export-matrix/">export matrix</a> lists what exactly goes out.</p>
+<h2 id="concept-schemes-and-thesaurus-import">Concept schemes and thesaurus import<a class="headerlink" href="#concept-schemes-and-thesaurus-import" title="Permanent link">&para;</a></h2>
+<p>Under <strong>Admin → Concept schemes</strong> the archive keeps its thesauri: those it brings in (such as a subject thesaurus in SKOS) and those it maintains itself. A keyword may belong to several schemes and carries the concept's URI and notation in each. The detail page lists both under <strong>Concept scheme</strong>.</p>
+<p>The import takes a SKOS file (Turtle, RDF/XML or N-Triples) or a table (XLSX, CSV) with the columns <strong>Term</strong>, <strong>Broader</strong>, <strong>Use for</strong>, <strong>Use</strong>, <strong>Related</strong>, <strong>Notation</strong> and <strong>Definition</strong> (German column names work too). Separate several terms in a cell with «;». The import runs in the background; its result shows on the same page.</p>
+<ul>
+<li><strong>No doubles:</strong> where a keyword of the same name exists, the import links to it. It keeps its label and gains only the languages it lacked. Where several keywords carry the name, the import creates a new one and reports the name.</li>
+<li><strong>A second import</strong> of the same file updates instead of doubling.</li>
+<li><strong>Taken over</strong> are other names, definitions, broader and narrower terms, «see also» and links to authority data (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nothing the archive wrote is overwritten.</li>
+<li><strong>Non-preferred terms</strong> of a table («use …») become other names of the term. A compound reference («use A, B») goes to both and is listed in the result.</li>
+<li><strong>Circles</strong> are left out and reported.</li>
+<li><strong>Deprecated concepts</strong> of a thesaurus are not created. Their names go to the concept that replaces them, so a search for the old name still finds it.</li>
+</ul>
+<p>A scheme can be downloaded as SKOS. Removing it keeps the keywords with their relations and links; only the membership goes. On the command line, <code>anton:import-skos</code> does the same.</p>
 <h2 id="where-a-keyword-is-used">Where a keyword is used<a class="headerlink" href="#where-a-keyword-is-used" title="Permanent link">&para;</a></h2>
 <p>Under «appears in», the detail page shows all units of description that carry
 the keyword.</p>
+<p>If the keyword has narrower terms, the switch <strong>Including narrower terms</strong> adds their units of description to the list. The same switch appears in the search beside the chosen filters as soon as you filter by a keyword.</p>
 <h2 id="deleting">Deleting<a class="headerlink" href="#deleting" title="Permanent link">&para;</a></h2>
 <p>A keyword can only be deleted as long as it is entered on <strong>no unit of
 description</strong>. Otherwise Anton refuses deletion and reports the reason. Which

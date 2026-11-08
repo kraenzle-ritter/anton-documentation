@@ -4800,7 +4800,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/export-matrix/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-07</span>
+        <span class="page-meta__date">Last updated: 2026-11-08</span>
     </div>
   
   
@@ -4819,7 +4819,7 @@ ein. Die Kurzfassung: <strong>Nativer Round-Trip und SQL-Dump sind Sicherungen, 
 andere sind Publikations- und Austauschsichten.</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Stand</p>
-<p>Diese Matrix bildet den Stand vom <strong>7. November 2026</strong> ab. Sie wird
+<p>Diese Matrix bildet den Stand vom <strong>8. November 2026</strong> ab. Sie wird
 zusammen mit den Exportern gepflegt.</p>
 </div>
 <h2 id="verfugbare-formate">Verfügbare Formate<a class="headerlink" href="#verfugbare-formate" title="Permanent link">&para;</a></h2>
@@ -4864,6 +4864,12 @@ zusammen mit den Exportern gepflegt.</p>
 <td>API mit <code>?format=tei</code></td>
 </tr>
 <tr>
+<td>SKOS – Schlagwörter</td>
+<td>SKOS (Turtle, RDF/XML, N-Triples)</td>
+<td>alle Schlagwörter, ein Schlagwort mit allem darunter oder ein Begriffsschema (mit Notation und der URI im Thesaurus): Bezeichnungen, Ober- und Unterbegriffe, «siehe auch», Normdaten-Abgleich⁵</td>
+<td>Schlagwortliste und Schlagwort → «SKOS herunterladen», Admin → Begriffsschemata, <code>/skos/keywords.{ttl,rdf,nt}</code>, <code>/skos/schemes/{id}.{ttl,rdf,nt}</code>; nur mit <code>keyword_relations</code></td>
+</tr>
+<tr>
 <td>RDF «A+»</td>
 <td>CIDOC CRM + RiC-O (dual)</td>
 <td>Objekt-Baum, alle Entitäten</td>
@@ -4889,7 +4895,7 @@ zusammen mit den Exportern gepflegt.</p>
 </tr>
 <tr>
 <td><strong>Nativer Round-Trip</strong></td>
-<td><code>anton-import-format</code> v0.9 (JSON) <strong>+ Master-Medien</strong> als ZIP</td>
+<td><code>anton-import-format</code> v0.10 (JSON) <strong>+ Master-Medien</strong> als ZIP</td>
 <td>Objekt-Baum, <strong>verlustfrei re-importierbar</strong></td>
 <td><code>anton:export-native</code> / <code>anton:import-native</code></td>
 </tr>
@@ -5116,6 +5122,20 @@ zusammen mit den Exportern gepflegt.</p>
 <td>●</td>
 </tr>
 <tr>
+<td>Schlagwort-Beziehungen⁵</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+</tr>
+<tr>
 <td>Ereignisse (Graph)</td>
 <td>◐</td>
 <td>◐</td>
@@ -5300,6 +5320,7 @@ Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (<code>thumb</code>/<code>web</code>) daneben — im Standardfall <strong>nicht die Master</strong>. Mit
 <code>--include-originals</code> kommen die Master-Dateien dazu, siehe
 <a href="#migrations-export-das-bundle-als-weg-hinaus">Migrations-Export</a>.</p>
+<p>⁵ <strong>Ober- und Unterbegriffe, «siehe auch»</strong> (anton#706, #707) gibt vollständig nur der <strong>SKOS-Export</strong> aus, zwischen Schlagwörtern: jeder Oberbegriff, nicht nur die Hauptstelle, <code>skos:related</code> für «siehe auch», <code>skos:exactMatch</code> für verknüpfte Normdateien (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; Lexika, Wikipedia und Bilder nicht). Begriffs-URI ist die bleibende Adresse <code>/id/{uuid}</code>. Der <strong>RiC-Export</strong> schreibt <code>skos:broader</code>, <code>skos:narrower</code> und <code>skos:related</code> zwischen den Begriffen, die er enthält, und nimmt die Oberbegriffe der verwendeten Schlagwörter mit. Der <strong>native Round-Trip</strong> (ab Format v0.10) nimmt alle Beziehungen zwischen Schlagwörtern, Akteur:innen, Orten und Datensätzen verlustfrei mit; ein Teilbaum die Beziehungen dessen, was er enthält, samt den Oberbegriffen darüber. Beziehungen zu Seiten stehen nur im SQL-Dump.</p>
 <p>⁴ <strong>PREMIS 3</strong> je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
 behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
 Nicht enthalten ist die NARA-Risikobewertung. Gilt auch für den nativen
@@ -5341,6 +5362,7 @@ nehmen sie mit. CIDOC CRM gibt bei Körperschaften Gründung und Auflösung aus
 <li><strong>KI-Erschliessungsdaten</strong> — Profile, Verbrauch, Budgets, Audit-Stichproben</li>
 <li><strong>Editionen</strong> und <strong>Korrespondenzen</strong></li>
 <li><strong>Volltext-Index</strong></li>
+<li><strong>Beziehungen zu Seiten</strong> — die übrigen Beziehungen trägt der native Round-Trip (anton#706)</li>
 <li><strong>Der Ereignis-Graph als Relation</strong> — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)</li>
 </ul>
@@ -5452,7 +5474,7 @@ lässt sich kein Anton-Mandant rekonstruieren: Es fehlen die UUIDs, der
 Formularsatz, die Rohwerte und die Schutzfristen.</p>
 <p>Für den verlustfreien Weg gibt es den <strong>nativen Round-Trip</strong>
 (<code>anton:export-native</code> → <code>anton:import-native</code>): ein Paket im
-<code>anton-import-format</code> v0.9 samt Master-Medien, das Anton wieder einliest.
+<code>anton-import-format</code> v0.10 samt Master-Medien, das Anton wieder einliest.
 Verankert über UUIDs (unbekannt → neu anlegen, bekannt → überspringen, mit
 <code>--update</code> aktualisieren), Hierarchie über die UUID der übergeordneten Einheit,
 alle Sprachen, Ereignisse, Textfelder <strong>aller</strong> Träger einschliesslich privater,
@@ -5462,6 +5484,7 @@ Schreibvorgang wird das ganze Paket validiert; schlägt es fehl, wird
 zurückgerollt.</p>
 <p>Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.</p>
+<p>Seit anton#706 kommen die Normdatensätze vollständig zurück: weitere Namen, Varianten und Abkürzungen, Typ und Untertyp, die verknüpften Normdaten (GND, Wikidata …), die Begriffsschemata mit URI und Notation, das Merkmal «vorläufig», bei Akteur:innen «privat» und die Datumsart, bei Orten Land und Koordinaten. Dazu die Beziehungen zwischen ihnen und zu Datensätzen. Vorher fehlten diese Felder, und <strong>private Akteur:innen</strong> gingen beim Export ganz verloren, aus Ereignissen wie aus den Deskriptoren, weil der Export auf der Konsole ohne Anmeldung läuft. Sicherungen, die vor v0.124.0 mit <code>anton:export-native</code> geschrieben wurden, haben diese Lücke.</p>
 <div class="admonition warning">
 <p class="admonition-title">Kommentare gehen beim Round-Trip verloren</p>
 <p>«Verlustfrei» bezieht sich auf die Erschliessung. Interne
