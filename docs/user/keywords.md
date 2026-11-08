@@ -62,6 +62,10 @@ verknüpfen — etwa mit Wikidata oder der GND.
     Provider konfiguriert sind. Fehlt die Einstellung, gibt es beim Schlagwort
     keine Verknüpfungsmöglichkeit — bei Akteur:innen und Orten dagegen schon.
 
+## Als Thesaurus herunterladen
+
+Sind Ober- und Unterbegriffe eingeschaltet, finden angemeldete Mitarbeitende auf der Liste der Schlagwörter den Knopf **SKOS herunterladen** und auf jedem Schlagwort **Teilbaum als SKOS**. Die Datei enthält alle Schlagwörter oder das Schlagwort mit allem darunter, als Turtle, RDF/XML oder N-Triples: Bezeichnungen in allen Sprachen, weitere Namen, Ober- und Unterbegriffe, «siehe auch» und die verknüpften Normdaten. Jedes Schlagwort steht unter seiner bleibenden Adresse. Welche Daten genau hinausgehen, zeigt die [Export-Matrix](../admin/export-matrix.md).
+
 ## Wo ein Schlagwort verwendet wird
 
 Die Detailseite zeigt unter «erscheint in» alle Verzeichnungseinheiten, die das

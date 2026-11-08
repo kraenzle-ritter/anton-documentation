@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **7. November 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **8. November 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -20,6 +20,7 @@ andere sind Publikations- und Austauschsichten.**
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
 | TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
+| SKOS – Schlagwörter | SKOS (Turtle, RDF/XML, N-Triples) | alle Schlagwörter oder ein Schlagwort mit allem darunter: Bezeichnungen, Ober- und Unterbegriffe, «siehe auch», Normdaten-Abgleich⁵ | Schlagwortliste und Schlagwort → «SKOS herunterladen», `/skos/keywords.{ttl,rdf,nt}`; nur mit `keyword_relations` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Objekt-Baum, alle Entitäten | Admin → Export, `anton:export-rdf` |
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
@@ -52,6 +53,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Orte (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Schlagwörter | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Schlagwort-Beziehungen⁵ | ○ | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
 | Textfelder (ISAD-Felder) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
@@ -82,6 +84,8 @@ Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
 `--include-originals` kommen die Master-Dateien dazu, siehe
 [Migrations-Export](#migrations-export-das-bundle-als-weg-hinaus).
+
+⁵ **Ober- und Unterbegriffe, «siehe auch»** (anton#706, #707) gibt vollständig nur der **SKOS-Export** aus, zwischen Schlagwörtern: jeder Oberbegriff, nicht nur die Hauptstelle, `skos:related` für «siehe auch», `skos:exactMatch` für verknüpfte Normdateien (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; Lexika, Wikipedia und Bilder nicht). Begriffs-URI ist die bleibende Adresse `/id/{uuid}`. Der **RiC-Export** schreibt `skos:broader`, `skos:narrower` und `skos:related` zwischen den Begriffen, die er enthält, und nimmt die Oberbegriffe der verwendeten Schlagwörter mit. «Siehe auch» zu Akteur:innen, Orten, Datensätzen und Seiten steht in keinem Format, und der **native Round-Trip nimmt die Beziehungen nicht mit**: Gesichert sind sie nur im SQL-Dump.
 
 ⁴ **PREMIS 3** je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
 behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
@@ -130,6 +134,7 @@ Diese Daten überleben **keinen** Formatexport:
 - **KI-Erschliessungsdaten** — Profile, Verbrauch, Budgets, Audit-Stichproben
 - **Editionen** und **Korrespondenzen**
 - **Volltext-Index**
+- **Beziehungen zwischen Normdaten** — Ober- und Unterbegriffe und «siehe auch» der Schlagwörter stehen als Publikation im SKOS-Export, aber in keinem Format, das sich wieder einspielen lässt; «siehe auch» zu Akteur:innen, Orten, Datensätzen und Seiten nirgends (anton#706)
 - **Der Ereignis-Graph als Relation** — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)
 

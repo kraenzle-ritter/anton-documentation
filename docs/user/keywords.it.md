@@ -64,6 +64,10 @@ Come attori e luoghi, anche le parole chiave possono essere collegate a
     parola chiave non esiste alcuna possibilità di collegamento — mentre per
     attori e luoghi sì.
 
+## Scaricare come thesaurus
+
+Con i termini più ampi e più specifici attivati, il personale connesso trova il pulsante **Scarica SKOS** sulla lista delle parole chiave e **Sottoalbero in SKOS** su ogni parola chiave. Il file contiene tutte le parole chiave, oppure la parola chiave con tutto ciò che sta sotto, in Turtle, RDF/XML o N-Triples: denominazioni in tutte le lingue, altri nomi, termini più ampi e più specifici, «vedi anche» e i dati di autorità collegati. Ogni parola chiave compare sotto il suo indirizzo permanente. La [matrice delle esportazioni](../admin/export-matrix.md) indica che cosa viene esportato.
+
 ## Dove viene utilizzata una parola chiave
 
 Sotto «compare in» la pagina di dettaglio mostra tutte le unità di descrizione

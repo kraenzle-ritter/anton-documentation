@@ -61,6 +61,10 @@ Like actors and places, keywords can be linked to
     configured for the archive. If the setting is missing, there is no way to
     link a keyword — whereas actors and places can still be linked.
 
+## Downloading as a thesaurus
+
+With broader and narrower terms switched on, signed-in staff find the button **Download SKOS** on the keyword list and **Subtree as SKOS** on every keyword. The file holds all keywords, or the keyword with everything below it, as Turtle, RDF/XML or N-Triples: labels in every language, other names, broader and narrower terms, «see also» and the linked authority data. Every keyword appears under its lasting address. The [export matrix](../admin/export-matrix.md) lists what exactly goes out.
+
 ## Where a keyword is used
 
 Under «appears in», the detail page shows all units of description that carry

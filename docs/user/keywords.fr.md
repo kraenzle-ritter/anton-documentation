@@ -65,6 +65,10 @@ Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés 
     association n'est possible pour le mot-clé — alors qu'elle le reste pour les
     acteur·trice·s et les lieux.
 
+## Télécharger comme thésaurus
+
+Lorsque les termes génériques et spécifiques sont activés, le personnel connecté trouve le bouton **Télécharger en SKOS** sur la liste des mots-clés et **Sous-arborescence en SKOS** sur chaque mot-clé. Le fichier contient tous les mots-clés, ou le mot-clé avec tout ce qui se trouve en dessous, en Turtle, RDF/XML ou N-Triples : libellés dans toutes les langues, autres noms, termes génériques et spécifiques, «&nbsp;voir aussi&nbsp;» et les données d'autorité liées. Chaque mot-clé figure sous son adresse pérenne. La [matrice des exports](../admin/export-matrix.md) indique ce qui est exporté.
+
 ## Où un mot-clé est utilisé
 
 Sous «&nbsp;apparaît dans&nbsp;», la page de détail affiche toutes les unités de
