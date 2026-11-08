@@ -80,6 +80,7 @@ L'import accepte un fichier SKOS (Turtle, RDF/XML ou N-Triples) ou un tableau (X
 - **Sont repris** les autres noms, les définitions, les termes génériques et spécifiques, « voir aussi » et les liens vers des données d'autorité (Wikidata, GND, VIAF, Library of Congress, GeoNames). Rien de ce que l'archive a écrit n'est écrasé.
 - **Les termes non préférentiels** d'un tableau (« utiliser … ») deviennent d'autres noms du terme. Un renvoi combiné (« utiliser A, B ») est inscrit aux deux et figure dans le résultat.
 - **Les cercles** sont omis et signalés.
+- **Les concepts obsolètes** d'un thésaurus ne sont pas créés. Leurs noms vont au concept qui les remplace, si bien que la recherche par l'ancien nom aboutit toujours.
 
 Un schéma peut être téléchargé en SKOS. Le supprimer conserve les mots-clés avec leurs relations et liens ; seule l'appartenance au schéma disparaît. En ligne de commande, `anton:import-skos` fait de même.
 

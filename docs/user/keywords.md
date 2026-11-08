@@ -77,6 +77,7 @@ Eingespielt wird eine SKOS-Datei (Turtle, RDF/XML oder N-Triples) oder eine Tabe
 - **Übernommen werden** weitere Namen, Definitionen, Ober- und Unterbegriffe, «siehe auch» und Normdaten-Links (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nichts, was das Archiv geschrieben hat, wird überschrieben.
 - **Nicht-Vorzugsbegriffe** einer Tabelle («Verwende …») werden zu weiteren Namen des Begriffs. Ein Kombinationsverweis («Verwende A, B») wird bei beiden eingetragen und im Ergebnis aufgeführt.
 - **Kreise** lässt der Import weg und meldet sie.
+- **Stillgelegte Begriffe** eines Thesaurus legt der Import nicht an. Ihre Namen kommen zum Begriff, der sie ersetzt, damit die Suche nach dem alten Namen weiterhin trifft.
 
 Ein Schema lässt sich als SKOS herunterladen. Wird es entfernt, bleiben die Schlagwörter mit ihren Beziehungen und Verknüpfungen; nur die Zugehörigkeit zum Schema geht. Dasselbe leistet auf der Kommandozeile `anton:import-skos`.
 

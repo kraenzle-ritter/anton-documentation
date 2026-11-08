@@ -79,6 +79,7 @@ L'importazione accetta un file SKOS (Turtle, RDF/XML o N-Triples) o una tabella 
 - **Vengono ripresi** altri nomi, definizioni, termini più ampi e più specifici, «vedi anche» e collegamenti a dati di autorità (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nulla di ciò che l'archivio ha scritto viene sovrascritto.
 - **I termini non preferiti** di una tabella («usa …») diventano altri nomi del termine. Un rinvio combinato («usa A, B») viene registrato presso entrambi e figura nel risultato.
 - **I cerchi** vengono omessi e segnalati.
+- **I concetti dismessi** di un thesaurus non vengono creati. I loro nomi passano al concetto che li sostituisce, così la ricerca con il vecchio nome continua a trovarlo.
 
 Uno schema si può scaricare in SKOS. Rimuoverlo lascia le parole chiave con le loro relazioni e i collegamenti; si perde solo l'appartenenza allo schema. Da riga di comando fa lo stesso `anton:import-skos`.
 

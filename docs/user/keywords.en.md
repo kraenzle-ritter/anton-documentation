@@ -76,6 +76,7 @@ The import takes a SKOS file (Turtle, RDF/XML or N-Triples) or a table (XLSX, CS
 - **Taken over** are other names, definitions, broader and narrower terms, «see also» and links to authority data (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nothing the archive wrote is overwritten.
 - **Non-preferred terms** of a table («use …») become other names of the term. A compound reference («use A, B») goes to both and is listed in the result.
 - **Circles** are left out and reported.
+- **Deprecated concepts** of a thesaurus are not created. Their names go to the concept that replaces them, so a search for the old name still finds it.
 
 A scheme can be downloaded as SKOS. Removing it keeps the keywords with their relations and links; only the membership goes. On the command line, `anton:import-skos` does the same.
 
