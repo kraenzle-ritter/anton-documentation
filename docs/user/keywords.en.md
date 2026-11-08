@@ -7,10 +7,8 @@ techniques, works. Persons and organisations, by contrast, belong with the
 They are found under **Admin → Keywords**; they are linked in the object form in
 the **keywords (subjects)** field.
 
-!!! note "No hierarchy"
-    Keywords stand side by side. Anton maintains no thesaurus: there are no
-    broader and narrower terms and no cross-references between keywords. The
-    **type** merely groups them.
+!!! note "Hierarchy only on request"
+    By default keywords stand side by side; the **type** merely groups them. Broader and narrower terms and «see also» can be switched on per archive, see [Broader and narrower terms](#broader-and-narrower-terms).
 
 ## Types
 
@@ -39,6 +37,20 @@ selection list in the **keywords** field there is a **+** which opens a window
 with the same creation form. After creation the new keyword is selected — the
 unit of description itself still has to be saved afterwards.
 
+## Broader and narrower terms
+
+With the setting `keyword_relations` switched on under **Admin → Settings**, every keyword carries **broader terms**, **narrower terms** and **see also**. Switched off, the default, everything stays as it was.
+
+In the keyword's form the terms are picked in three fields, as in the object form. A narrower term can be entered from either end; Anton stores the relation once and shows it on both sides.
+
+A keyword may have **several broader terms**. One of them is the **primary** one: the keyword sits under it in the **path** shown at the top of the detail page, for instance «Writing › Letter». The first broader term becomes the primary one; where there are several, it is chosen in the form under **Primary**.
+
+Anton allows no circle: a keyword cannot sit under one of its own narrower terms, nor be related to itself. The form then comes back with a message and saves nothing.
+
+The **Term tree** button on the keyword list and beside the path of a keyword shows broader and narrower terms as a tree. It loads as you go, like the archive plan, and opens the way to the keyword you start from. A keyword with several broader terms opens only under its primary term; under the others it appears as a reference, such as «letter (see writing)».
+
+Deleting a keyword removes its relations. Merging two keywords hands the relations of the one that goes to the one that stays.
+
 ## Authority data
 
 Like actors and places, keywords can be linked to
@@ -49,10 +61,31 @@ Like actors and places, keywords can be linked to
     configured for the archive. If the setting is missing, there is no way to
     link a keyword — whereas actors and places can still be linked.
 
+## Downloading as a thesaurus
+
+With broader and narrower terms switched on, signed-in staff find the button **Download SKOS** on the keyword list and **Subtree as SKOS** on every keyword. The file holds all keywords, or the keyword with everything below it, as Turtle, RDF/XML or N-Triples: labels in every language, other names, broader and narrower terms, «see also» and the linked authority data. Every keyword appears under its lasting address. The [export matrix](../admin/export-matrix.md) lists what exactly goes out.
+
+## Concept schemes and thesaurus import
+
+Under **Admin → Concept schemes** the archive keeps its thesauri: those it brings in (such as a subject thesaurus in SKOS) and those it maintains itself. A keyword may belong to several schemes and carries the concept's URI and notation in each. The detail page lists both under **Concept scheme**.
+
+The import takes a SKOS file (Turtle, RDF/XML or N-Triples) or a table (XLSX, CSV) with the columns **Term**, **Broader**, **Use for**, **Use**, **Related**, **Notation** and **Definition** (German column names work too). Separate several terms in a cell with «;». The import runs in the background; its result shows on the same page.
+
+- **No doubles:** where a keyword of the same name exists, the import links to it. It keeps its label and gains only the languages it lacked. Where several keywords carry the name, the import creates a new one and reports the name.
+- **A second import** of the same file updates instead of doubling.
+- **Taken over** are other names, definitions, broader and narrower terms, «see also» and links to authority data (Wikidata, GND, VIAF, Library of Congress, GeoNames). Nothing the archive wrote is overwritten.
+- **Non-preferred terms** of a table («use …») become other names of the term. A compound reference («use A, B») goes to both and is listed in the result.
+- **Circles** are left out and reported.
+- **Deprecated concepts** of a thesaurus are not created. Their names go to the concept that replaces them, so a search for the old name still finds it.
+
+A scheme can be downloaded as SKOS. Removing it keeps the keywords with their relations and links; only the membership goes. On the command line, `anton:import-skos` does the same.
+
 ## Where a keyword is used
 
 Under «appears in», the detail page shows all units of description that carry
 the keyword.
+
+If the keyword has narrower terms, the switch **Including narrower terms** adds their units of description to the list. The same switch appears in the search beside the chosen filters as soon as you filter by a keyword.
 
 ## Deleting
 

@@ -463,7 +463,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (66)
+### anton: (67)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -498,6 +498,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:import-directory` | Scan a directory and list all contents in a flat array with parent information |
 | `anton:import-native` | Restore an Anton subtree from a native round-trip package (anton-import-format + media). |
 | `anton:import-pages` | Import an excel file with metadata for pages |
+| `anton:import-skos` | Import a thesaurus (SKOS or table) into a concept scheme of keywords. |
 | `anton:install` | Install Anton for a .env file with --env |
 | `anton:local-login` | Local development only: print a one-time link that signs an account in without a password. |
 | `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |

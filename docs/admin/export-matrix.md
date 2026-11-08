@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **7. November 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **8. November 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -20,11 +20,12 @@ andere sind Publikations- und Austauschsichten.**
 | EAD Holding Guide | apeEAD `type=holdings_guide` | Bestandsübersicht | Admin → Export |
 | TEI – Normdaten-Listen | TEI-P5 `standOff` | Akteur:innen / Orte / Schlagwörter (gesamt) | `/api/tei/{actors,places,keywords}` |
 | TEI – pro Objekt | TEI-P5 | ein Datensatz | API mit `?format=tei` |
+| SKOS – Schlagwörter | SKOS (Turtle, RDF/XML, N-Triples) | alle Schlagwörter, ein Schlagwort mit allem darunter oder ein Begriffsschema (mit Notation und der URI im Thesaurus): Bezeichnungen, Ober- und Unterbegriffe, «siehe auch», Normdaten-Abgleich⁵ | Schlagwortliste und Schlagwort → «SKOS herunterladen», Admin → Begriffsschemata, `/skos/keywords.{ttl,rdf,nt}`, `/skos/schemes/{id}.{ttl,rdf,nt}`; nur mit `keyword_relations` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Objekt-Baum, alle Entitäten | Admin → Export, `anton:export-rdf` |
 | RDF RiC | reines RiC-O 1.1 (JSON-LD) | Objekt-Baum | Admin → Export |
 | RDF Memobase | RiC-O-Subset (JSON-LD) | Objekt-Baum (verlustbehaftet) | Admin → Export |
 | RDF «A+» Bundle | CIDOC CRM + RiC-O **+ Mediendateien** als ZIP | Objekt-Baum, offline anzeigbar ohne Anton; mit `--include-protected --include-originals` ein **Migrationspaket** (siehe unten) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
-| **Nativer Round-Trip** | `anton-import-format` v0.9 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
+| **Nativer Round-Trip** | `anton-import-format` v0.10 (JSON) **+ Master-Medien** als ZIP | Objekt-Baum, **verlustfrei re-importierbar** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | pro Objekt (nur eingebettet) | Baustein in DIP / OCFL |
 | DIP | BagIt | Paket: Medien + Metadaten (Teilbaum) | Taste «DIP» am Datensatz |
 | E-ARK DIP | E-ARK DIP 2.2.0 (CSIP) | Paket ab Datensatz samt Teilbaum: *Zugang* = öffentliche Sicht mit Nutzungskopien, *vollständig* = alles mit Mastern und Originalen | Taste «E-ARK DIP» am Datensatz (Zugang), `anton:export-dip --format=eark [--full]` |
@@ -52,6 +53,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Orte (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Schlagwörter | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Schlagwort-Beziehungen⁵ | ○ | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Ereignisse (Graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
 | Textfelder (ISAD-Felder) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect-Werte | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
@@ -82,6 +84,8 @@ Bildmasse, AV-Dauer und OCR-Volltext im Graphen; das ZIP legt zusätzlich die
 Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
 `--include-originals` kommen die Master-Dateien dazu, siehe
 [Migrations-Export](#migrations-export-das-bundle-als-weg-hinaus).
+
+⁵ **Ober- und Unterbegriffe, «siehe auch»** (anton#706, #707) gibt vollständig nur der **SKOS-Export** aus, zwischen Schlagwörtern: jeder Oberbegriff, nicht nur die Hauptstelle, `skos:related` für «siehe auch», `skos:exactMatch` für verknüpfte Normdateien (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; Lexika, Wikipedia und Bilder nicht). Begriffs-URI ist die bleibende Adresse `/id/{uuid}`. Der **RiC-Export** schreibt `skos:broader`, `skos:narrower` und `skos:related` zwischen den Begriffen, die er enthält, und nimmt die Oberbegriffe der verwendeten Schlagwörter mit. Der **native Round-Trip** (ab Format v0.10) nimmt alle Beziehungen zwischen Schlagwörtern, Akteur:innen, Orten und Datensätzen verlustfrei mit; ein Teilbaum die Beziehungen dessen, was er enthält, samt den Oberbegriffen darüber. Beziehungen zu Seiten stehen nur im SQL-Dump.
 
 ⁴ **PREMIS 3** je Datensatz mit Medien (anton#661): Formate (PRONOM), Prüfsummen,
 behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
@@ -130,6 +134,7 @@ Diese Daten überleben **keinen** Formatexport:
 - **KI-Erschliessungsdaten** — Profile, Verbrauch, Budgets, Audit-Stichproben
 - **Editionen** und **Korrespondenzen**
 - **Volltext-Index**
+- **Beziehungen zu Seiten** — die übrigen Beziehungen trägt der native Round-Trip (anton#706)
 - **Der Ereignis-Graph als Relation** — Ereignisse erscheinen nur abgeflacht (Excel)
   oder implizit (EAD, RDF)
 
@@ -222,7 +227,7 @@ Formularsatz, die Rohwerte und die Schutzfristen.
 
 Für den verlustfreien Weg gibt es den **nativen Round-Trip**
 (`anton:export-native` → `anton:import-native`): ein Paket im
-`anton-import-format` v0.9 samt Master-Medien, das Anton wieder einliest.
+`anton-import-format` v0.10 samt Master-Medien, das Anton wieder einliest.
 Verankert über UUIDs (unbekannt → neu anlegen, bekannt → überspringen, mit
 `--update` aktualisieren), Hierarchie über die UUID der übergeordneten Einheit,
 alle Sprachen, Ereignisse, Textfelder **aller** Träger einschliesslich privater,
@@ -233,6 +238,8 @@ zurückgerollt.
 
 Auch Akteur:innen, Orte und Schlagwörter tragen eine portable UUID — ein
 Re-Import verankert sie daran, statt gleichnamige Normdatensätze zu verschmelzen.
+
+Seit anton#706 kommen die Normdatensätze vollständig zurück: weitere Namen, Varianten und Abkürzungen, Typ und Untertyp, die verknüpften Normdaten (GND, Wikidata …), die Begriffsschemata mit URI und Notation, das Merkmal «vorläufig», bei Akteur:innen «privat» und die Datumsart, bei Orten Land und Koordinaten. Dazu die Beziehungen zwischen ihnen und zu Datensätzen. Vorher fehlten diese Felder, und **private Akteur:innen** gingen beim Export ganz verloren, aus Ereignissen wie aus den Deskriptoren, weil der Export auf der Konsole ohne Anmeldung läuft. Sicherungen, die vor v0.124.0 mit `anton:export-native` geschrieben wurden, haben diese Lücke.
 
 !!! warning "Kommentare gehen beim Round-Trip verloren"
     «Verlustfrei» bezieht sich auf die Erschliessung. Interne

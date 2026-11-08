@@ -8,10 +8,8 @@ géographiques des [lieux](places.md).
 On les trouve sous **Admin → Mots-clés** ; ils se rattachent dans le formulaire
 de l'objet, au champ **mots-clés (matières)**.
 
-!!! note "Pas de hiérarchie"
-    Les mots-clés sont juxtaposés. Anton ne gère pas de thésaurus : il n'y a ni
-    termes génériques ni termes spécifiques, ni renvois entre mots-clés. Le
-    **type** ne fait que les regrouper.
+!!! note "Hiérarchie sur demande"
+    Par défaut, les mots-clés sont juxtaposés ; le **type** ne fait que les regrouper. Les termes génériques et spécifiques et « voir aussi » s'activent par archive, voir [Termes génériques et spécifiques](#termes-generiques-et-specifiques).
 
 ## Types
 
@@ -42,6 +40,20 @@ l'objet** : à côté de la liste de sélection du champ **mots-clés** figure u
 création, le nouveau mot-clé est sélectionné — l'unité de description elle-même
 doit encore être enregistrée ensuite.
 
+## Termes génériques et spécifiques
+
+Si le paramètre `keyword_relations` est activé sous **Admin → Paramètres**, chaque mot-clé porte des **termes génériques**, des **termes spécifiques** et **voir aussi**. Désactivé, ce qui est la valeur par défaut, tout reste comme avant.
+
+Dans le formulaire du mot-clé, on choisit les termes dans trois champs, comme dans le formulaire de l'objet. Un terme spécifique se saisit depuis l'un ou l'autre côté ; Anton enregistre la relation une fois et l'affiche des deux côtés.
+
+Un mot-clé peut avoir **plusieurs termes génériques**. L'un d'eux est le **terme principal** : le mot-clé figure sous lui dans le **chemin** affiché en haut de la page de détail, par exemple « Écriture › Lettre ». Le premier terme générique devient le terme principal ; s'il y en a plusieurs, on le choisit dans le formulaire sous **Terme principal**.
+
+Anton n'admet pas de cercle : un mot-clé ne peut pas se trouver sous l'un de ses propres termes spécifiques, ni être lié à lui-même. Le formulaire revient alors avec un message et n'enregistre rien.
+
+Le bouton **Arborescence des termes**, sur la liste des mots-clés et à côté du chemin d'un mot-clé, montre les termes génériques et spécifiques sous forme d'arbre. Il se charge au fur et à mesure, comme le plan d'archives, et ouvre le chemin vers le mot-clé de départ. Un mot-clé à plusieurs termes génériques ne se déplie que sous son terme principal ; sous les autres, il figure comme renvoi, par exemple «&nbsp;lettre (voir écriture)&nbsp;».
+
+La suppression d'un mot-clé supprime ses relations. Lors de la fusion de deux mots-clés, celui qui reste reprend les relations de l'autre.
+
 ## Données d'autorité
 
 Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés à des
@@ -53,10 +65,31 @@ Comme les acteur·trice·s et les lieux, les mots-clés peuvent être associés 
     association n'est possible pour le mot-clé — alors qu'elle le reste pour les
     acteur·trice·s et les lieux.
 
+## Télécharger comme thésaurus
+
+Lorsque les termes génériques et spécifiques sont activés, le personnel connecté trouve le bouton **Télécharger en SKOS** sur la liste des mots-clés et **Sous-arborescence en SKOS** sur chaque mot-clé. Le fichier contient tous les mots-clés, ou le mot-clé avec tout ce qui se trouve en dessous, en Turtle, RDF/XML ou N-Triples : libellés dans toutes les langues, autres noms, termes génériques et spécifiques, «&nbsp;voir aussi&nbsp;» et les données d'autorité liées. Chaque mot-clé figure sous son adresse pérenne. La [matrice des exports](../admin/export-matrix.md) indique ce qui est exporté.
+
+## Schémas de concepts et import de thésaurus
+
+Sous **Admin → Schémas de concepts**, l'archive tient ses thésaurus : ceux qu'elle importe (par exemple un thésaurus spécialisé en SKOS) et ceux qu'elle entretient elle-même. Un mot-clé peut appartenir à plusieurs schémas et porte dans chacun l'URI et la notation du concept. La page de détail affiche les deux sous **Schéma de concepts**.
+
+L'import accepte un fichier SKOS (Turtle, RDF/XML ou N-Triples) ou un tableau (XLSX, CSV) avec les colonnes **Term**, **Broader**, **Use for**, **Use**, **Related**, **Notation** et **Definition** (les noms allemands fonctionnent aussi). Plusieurs termes dans une cellule se séparent par « ; ». L'import s'exécute en arrière-plan ; le résultat s'affiche ensuite sur la même page.
+
+- **Pas de doublon :** s'il existe déjà un mot-clé du même nom, l'import s'y rattache. Il garde son libellé et ne reçoit que les langues qui lui manquaient. Si plusieurs mots-clés portent ce nom, l'import en crée un nouveau et signale le nom.
+- **Un second import** du même fichier met à jour au lieu de doubler.
+- **Sont repris** les autres noms, les définitions, les termes génériques et spécifiques, « voir aussi » et les liens vers des données d'autorité (Wikidata, GND, VIAF, Library of Congress, GeoNames). Rien de ce que l'archive a écrit n'est écrasé.
+- **Les termes non préférentiels** d'un tableau (« utiliser … ») deviennent d'autres noms du terme. Un renvoi combiné (« utiliser A, B ») est inscrit aux deux et figure dans le résultat.
+- **Les cercles** sont omis et signalés.
+- **Les concepts obsolètes** d'un thésaurus ne sont pas créés. Leurs noms vont au concept qui les remplace, si bien que la recherche par l'ancien nom aboutit toujours.
+
+Un schéma peut être téléchargé en SKOS. Le supprimer conserve les mots-clés avec leurs relations et liens ; seule l'appartenance au schéma disparaît. En ligne de commande, `anton:import-skos` fait de même.
+
 ## Où un mot-clé est utilisé
 
 Sous «&nbsp;apparaît dans&nbsp;», la page de détail affiche toutes les unités de
 description qui portent le mot-clé.
+
+Si le mot-clé a des termes spécifiques, le commutateur **Avec les termes spécifiques** ajoute leurs unités de description à la liste. Le même commutateur figure dans la recherche à côté des filtres choisis dès que l'on filtre par un mot-clé.
 
 ## Supprimer
 

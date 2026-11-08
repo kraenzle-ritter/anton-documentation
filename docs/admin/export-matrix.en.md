@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **7 November 2026**. It is
+    This matrix reflects the state of **8 November 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -21,11 +21,12 @@ or exchange view.**
 | EAD holding guide | apeEAD `type=holdings_guide` | Holdings overview | Admin → Export |
 | TEI – authority lists | TEI-P5 `standOff` | Actors / places / keywords (all) | `/api/tei/{actors,places,keywords}` |
 | TEI – per object | TEI-P5 | one record | API with `?format=tei` |
+| SKOS – keywords | SKOS (Turtle, RDF/XML, N-Triples) | all keywords, a keyword with everything below it, or a concept scheme (with notation and the thesaurus URI): labels, broader and narrower terms, «see also», authority matches⁵ | keyword list and keyword → «Download SKOS», Admin → Concept schemes, `/skos/keywords.{ttl,rdf,nt}`, `/skos/schemes/{id}.{ttl,rdf,nt}`; only with `keyword_relations` |
 | RDF «A+» | CIDOC CRM + RiC-O (dual) | Object tree, all entities | Admin → Export, `anton:export-rdf` |
 | RDF RiC | pure RiC-O 1.1 (JSON-LD) | Object tree | Admin → Export |
 | RDF Memobase | RiC-O subset (JSON-LD) | Object tree (lossy) | Admin → Export |
 | RDF «A+» bundle | CIDOC CRM + RiC-O **+ media files** as a ZIP | Object tree, viewable offline without Anton; with `--include-protected --include-originals` a **migration package** (see below) | Admin → Export, `anton:export-rdf --profile=a-plus-bundle` |
-| **Native round trip** | `anton-import-format` v0.9 (JSON) **+ master media** as a ZIP | Object tree, **losslessly re-importable** | `anton:export-native` / `anton:import-native` |
+| **Native round trip** | `anton-import-format` v0.10 (JSON) **+ master media** as a ZIP | Object tree, **losslessly re-importable** | `anton:export-native` / `anton:import-native` |
 | Dublin Core | OAI-DC | per object (embedded only) | Building block in DIP / OCFL |
 | DIP | BagIt | Package: media + metadata (subtree) | «DIP» button on the record |
 | E-ARK DIP | E-ARK DIP 2.2.0 (CSIP) | Package of a record and its subtree: *access* = public view with access copies, *full* = everything with masters and originals | «E-ARK DIP» button on the record (access), `anton:export-dip --format=eark [--full]` |
@@ -53,6 +54,7 @@ Key: ● full · ◐ partial / embedded · ○ not included
 | Places (embedded) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Places (authority file) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Keywords | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
+| Keyword relations⁵ | ○ | ○ | ○ | ○ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Events (graph) | ◐ | ◐ | ◐ | ● | ● | ○ | ○ | ○ | ◐ | ○ | ● |
 | Text fields (ISAD fields) | ● | ● | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | ● |
 | Termselect values | ◐ | ○ | ○ | ● | ○ | ○ | ○ | ◐ | ○ | ○ | ● |
@@ -84,6 +86,8 @@ references, image dimensions, AV duration and OCR full text in the graph; the ZI
 additionally places the derivatives (`thumb`/`web`) alongside — in the standard
 case **not the masters**. With `--include-originals` the master files are added,
 see [migration export](#migrations-export-das-bundle-als-weg-hinaus).
+
+⁵ **Broader and narrower terms, «see also»** (anton#706, #707) go out in full only in the **SKOS export**, between keywords: every broader term, not only the primary one, `skos:related` for «see also», `skos:exactMatch` for linked authority files (Wikidata, GND, LCNAF, VIAF, BnF, IdRef, GeoNames, SUDOC; not encyclopaedias, Wikipedia or images). The concept URI is the lasting address `/id/{uuid}`. The **RiC export** writes `skos:broader`, `skos:narrower` and `skos:related` between the concepts it holds and brings along the broader terms of the keywords in use. The **native round-trip** (format v0.10 on) carries every relation between keywords, actors, places and records without loss; a subtree carries the relations of what it holds, with the broader terms above. Relations to pages are only in the SQL dump.
 
 ⁴ **PREMIS 3** per record with media (anton#661): formats (PRONOM), checksums,
 kept originals and every event on the media with tool and version. The NARA
@@ -131,6 +135,7 @@ This data survives **no** format export:
 - **AI cataloguing data** — profiles, consumption, budgets, audit samples
 - **Editions** and **correspondences**
 - **The full-text index**
+- **Relations to pages** — the native round-trip carries the other relations (anton#706)
 - **The event graph as a relation** — events appear only flattened (Excel) or
   implicitly (EAD, RDF)
 
@@ -220,7 +225,7 @@ the protection periods are missing.
 
 For the lossless route there is the **native round trip**
 (`anton:export-native` → `anton:import-native`): a package in the
-`anton-import-format` v0.9 together with master media, which Anton reads back in.
+`anton-import-format` v0.10 together with master media, which Anton reads back in.
 Anchored via UUIDs (unknown → create new, known → skip, update with `--update`),
 hierarchy via the UUID of the superordinate unit, all languages, events, text
 fields of **all** carriers including private ones, actors as descriptors (anton#825; a re-import used to lose them), termselect values, form set
@@ -229,6 +234,8 @@ is validated; if it fails, it is rolled back.
 
 Actors, places and keywords carry a portable UUID too — a re-import anchors them
 to it instead of merging authority records that happen to share a name.
+
+Since anton#706 authority records come back whole: other names, variants and abbreviations, type and subtype, the linked authority data (GND, Wikidata …), the concept schemes with URI and notation, the provisional mark, an actor's privacy and date type, a place's country and coordinates. With them the relations between them and to records. Before, these fields were missing, and **private actors** were lost from the export altogether, from events and descriptors alike, because the export runs on the console signed in as nobody. Backups written with `anton:export-native` before v0.124.0 have this gap.
 
 !!! warning "Comments are lost in the round trip"
     «Lossless» refers to the description. Internal
