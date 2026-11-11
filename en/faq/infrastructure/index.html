@@ -2030,7 +2030,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/faq/infrastructure/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/faq/infrastructure/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/faq/infrastructure/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-10-22</span>
+<span class="page-meta__date">Last updated: 2026-11-11</span>
 </div>
 <h1 id="anton-server-infrastructure-diagram">Anton server infrastructure diagram<a class="headerlink" href="#anton-server-infrastructure-diagram" title="Permanent link">¶</a></h1>
 <pre class="mermaid"><code>---
@@ -2052,6 +2052,7 @@ flowchart TB
     U --&gt; UB
     UB --&gt;|PULL| A
     UB --&gt;|PULL| L
+    U -.-&gt;|PUSH, encrypted| Z["Additional backup (full package), other provider"]
 
     %% Monitoring
     G -.-&gt; U
@@ -2062,31 +2063,34 @@ flowchart TB
     %% Styling
     classDef production fill:#e1f5fe,stroke:#01579b,stroke-width:3px
     classDef backup fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef extra fill:#fff8e1,stroke:#e65100,stroke-width:2px,stroke-dasharray: 5 5
     classDef monitoring fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef notification fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
     classDef main fill:#e1f5fe,stroke:#01579b,stroke-width:4px,font-size:16px,font-weight:bold
 
     class UB production
     class A,L backup
+    class Z extra
     class G monitoring
     class E notification
     class U main
 </code></pre>
 <h2 id="security-features">Security features<a class="headerlink" href="#security-features" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Local data storage</strong>: all data is stored in Switzerland</li>
+<li><strong>Local data storage</strong>: all data is stored in Switzerland; the full Digital Archive package adds a backup in Germany (in Switzerland on request)</li>
 <li><strong>Multi-level backups</strong>: <ul>
 <li>Hourly metadata backups (business hours)</li>
 <li>Daily full backups (metadata + digitised objects)</li>
 </ul>
 </li>
-<li><strong>Geographical distribution</strong>: two backup servers at two locations in Zurich; with the production data and the local backup on the ANTON SERVER, four copies at three locations. The two Zurich locations share the regional risks; there is no further, independent location for now</li>
+<li><strong>Geographical distribution</strong>: two backup servers at two locations in Zurich; with the production data and the local backup on the ANTON SERVER, four copies at three locations. The two Zurich locations share the regional risks; the additional backup of the full package adds a location independent of them</li>
 <li><strong>Mirroring</strong>: both backup servers run as RAID 1; this protects against the failure of a disk but is not a further copy</li>
 <li><strong>Encryption</strong>: all backups are stored and transmitted encrypted</li>
 <li><strong>Pull-based backups</strong>: the backup servers fetch the data (no push)<ul>
 <li>protection against compromise of the production server</li>
 </ul>
 </li>
+<li><strong>Additional backup</strong> (with the <a href="../longterm_archives/#basic-offer-and-full-package">full Digital Archive package</a>): every night a further backup with different software (restic) to object storage at a different provider. The production server encrypts it before it leaves the server and writes it itself; in return, no backup state can be deleted or overwritten for 30 days. In trial operation since November 2026</li>
 <li><strong>Continuous monitoring</strong>: separate monitoring server</li>
 <li><strong>Proactive notification</strong>: email alerts in case of problems</li>
 </ul>

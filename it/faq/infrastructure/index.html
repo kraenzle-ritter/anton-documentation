@@ -1048,7 +1048,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/faq/infrastructure/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/faq/infrastructure/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/faq/infrastructure/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-<span class="page-meta__date">Last updated: 2026-10-22</span>
+<span class="page-meta__date">Last updated: 2026-11-11</span>
 </div>
 <h1 id="schema-dellinfrastruttura-server-di-anton">Schema dell'infrastruttura server di Anton<a class="headerlink" href="#schema-dellinfrastruttura-server-di-anton" title="Permanent link">¶</a></h1>
 <pre class="mermaid"><code>---
@@ -1070,6 +1070,7 @@ flowchart TB
     U --&gt; UB
     UB --&gt;|PULL| A
     UB --&gt;|PULL| L
+    U -.-&gt;|PUSH, cifrato| Z["Backup aggiuntivo (offerta completa), altro fornitore"]
 
     %% Sorveglianza
     G -.-&gt; U
@@ -1080,31 +1081,34 @@ flowchart TB
     %% Styling
     classDef production fill:#e1f5fe,stroke:#01579b,stroke-width:3px
     classDef backup fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef extra fill:#fff8e1,stroke:#e65100,stroke-width:2px,stroke-dasharray: 5 5
     classDef monitoring fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef notification fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
     classDef main fill:#e1f5fe,stroke:#01579b,stroke-width:4px,font-size:16px,font-weight:bold
 
     class UB production
     class A,L backup
+    class Z extra
     class G monitoring
     class E notification
     class U main
 </code></pre>
 <h2 id="caratteristiche-di-sicurezza">Caratteristiche di sicurezza<a class="headerlink" href="#caratteristiche-di-sicurezza" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Memorizzazione locale dei dati</strong>: tutti i dati sono conservati in Svizzera</li>
+<li><strong>Memorizzazione locale dei dati</strong>: tutti i dati sono conservati in Svizzera; l'offerta completa Archivio digitale aggiunge un backup in Germania (in Svizzera su richiesta)</li>
 <li><strong>Backup a più livelli</strong>: <ul>
 <li>backup orari dei metadati (orari lavorativi)</li>
 <li>backup completi giornalieri (metadati + digitalizzazioni)</li>
 </ul>
 </li>
-<li><strong>Distribuzione geografica</strong>: due server di backup in due ubicazioni a Zurigo; con i dati di produzione e il backup locale sul SERVER ANTON, quattro copie in tre ubicazioni. Le due ubicazioni zurighesi condividono i rischi regionali; per ora non esiste un'ulteriore ubicazione indipendente</li>
+<li><strong>Distribuzione geografica</strong>: due server di backup in due ubicazioni a Zurigo; con i dati di produzione e il backup locale sul SERVER ANTON, quattro copie in tre ubicazioni. Le due ubicazioni zurighesi condividono i rischi regionali; il backup aggiuntivo dell'offerta completa aggiunge un luogo indipendente da esse</li>
 <li><strong>Mirroring</strong>: entrambi i server di backup funzionano in RAID 1; ciò protegge dal guasto di un disco, ma non costituisce un'ulteriore copia</li>
 <li><strong>Cifratura</strong>: tutti i backup vengono conservati e trasmessi in forma cifrata</li>
 <li><strong>Backup basati su pull</strong>: sono i server di backup a prelevare i dati (nessun push)<ul>
 <li>protezione da una compromissione del server di produzione</li>
 </ul>
 </li>
+<li><strong>Backup aggiuntivo</strong> (con l'<a href="../longterm_archives/#offerta-di-base-e-offerta-completa">offerta completa Archivio digitale</a>): ogni notte un ulteriore backup con un altro software (restic) verso uno storage a oggetti presso un altro fornitore. Il server di produzione lo cifra prima che lasci il server e lo scrive esso stesso; in compenso nessuno stato di backup può essere cancellato o sovrascritto per 30 giorni. In esercizio di prova da novembre 2026</li>
 <li><strong>Sorveglianza continua</strong>: server di sorveglianza separato</li>
 <li><strong>Notifica proattiva</strong>: avvisi via e-mail in caso di problemi</li>
 </ul>
