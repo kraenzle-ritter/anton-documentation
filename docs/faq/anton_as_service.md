@@ -2,7 +2,7 @@
 
 Anton läuft auf einem von k & r bei einem führenden Anbieter gemieteten Server (Standort Schweiz). k & r ist sowohl für die Einrichtung und Pflege des Servers (Absicherung des Servers, Monitoring, Updates und Upgrade des Betriebssystems) als auch für die Einrichtung und Pflege von Anton (Updates und Upgrades) verantwortlich.
 
-Vom Produktiv-Server holen zwei Backupserver an zwei Standorten in Zürich täglich ein verschlüsseltes Backup ab. Beide laufen als RAID 1. Zusammen mit den Produktionsdaten und dem verschlüsselten lokalen Backup auf dem Produktiv-Server liegen die Daten damit in vier Kopien an drei Standorten vor, zwei davon in Zürich (siehe [Infrastruktur](infrastructure.md)). Von einem weiteren Server werden die involvierten Rechner laufend auf ihre Funktionalität hin beobachtet (Monitoring), so dass k & r bei Problemen jederzeit informiert ist und schnell eingreifen kann.
+Vom Produktiv-Server holen zwei Backupserver an zwei Standorten in Zürich täglich ein verschlüsseltes Backup ab. Beide laufen als RAID 1. Zusammen mit den Produktionsdaten und dem verschlüsselten lokalen Backup auf dem Produktiv-Server liegen die Daten damit in vier Kopien an drei Standorten vor, zwei davon in Zürich (siehe [Infrastruktur](infrastructure.md)). Mit dem [Vollausbau Digitales Archiv](longterm_archives.md#grundangebot-und-vollausbau) kommt eine weitere, unabhängige Sicherung bei einem anderen Anbieter in Deutschland dazu (auf Anfrage in der Schweiz). Von einem weiteren Server werden die involvierten Rechner laufend auf ihre Funktionalität hin beobachtet (Monitoring), so dass k & r bei Problemen jederzeit informiert ist und schnell eingreifen kann.
 
 ## Vorteile
 

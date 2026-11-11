@@ -2,7 +2,7 @@
 
 Anton fonctionne sur un serveur loué par k & r auprès d'un hébergeur reconnu (site en Suisse). k & r assure aussi bien la mise en place et la maintenance du serveur (sécurisation, monitoring, mises à jour et mises à niveau du système d'exploitation) que la mise en place et la maintenance d'Anton (mises à jour et mises à niveau).
 
-Deux serveurs de sauvegarde situés sur deux sites à Zurich récupèrent quotidiennement une sauvegarde chiffrée du serveur de production. Tous deux fonctionnent en RAID 1. Avec les données de production et la sauvegarde locale chiffrée sur le serveur de production, les données existent ainsi en quatre copies sur trois sites, dont deux à Zurich (voir [Infrastructure](infrastructure.md)). Un serveur supplémentaire surveille en permanence le fonctionnement des machines concernées (monitoring), de sorte que k & r est informé à tout moment en cas de problème et peut intervenir rapidement.
+Deux serveurs de sauvegarde situés sur deux sites à Zurich récupèrent quotidiennement une sauvegarde chiffrée du serveur de production. Tous deux fonctionnent en RAID 1. Avec les données de production et la sauvegarde locale chiffrée sur le serveur de production, les données existent ainsi en quatre copies sur trois sites, dont deux à Zurich (voir [Infrastructure](infrastructure.md)). L'[offre complète Archive numérique](longterm_archives.md#offre-de-base-et-offre-complete) ajoute une sauvegarde supplémentaire et indépendante chez un autre fournisseur en Allemagne (en Suisse sur demande). Un serveur supplémentaire surveille en permanence le fonctionnement des machines concernées (monitoring), de sorte que k & r est informé à tout moment en cas de problème et peut intervenir rapidement.
 
 ## Avantages
 

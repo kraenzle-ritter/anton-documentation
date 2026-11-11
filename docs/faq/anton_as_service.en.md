@@ -2,7 +2,7 @@
 
 Anton runs on a server rented by k & r from a leading provider (located in Switzerland). k & r is responsible both for setting up and maintaining the server (hardening, monitoring, operating-system updates and upgrades) and for setting up and maintaining Anton (updates and upgrades).
 
-Two backup servers at two locations in Zurich fetch an encrypted backup from the production server daily. Both run as RAID 1. Together with the production data and the encrypted local backup on the production server, the data therefore exists in four copies at three locations, two of them in Zurich (see [Infrastructure](infrastructure.md)). A further server continuously monitors the machines involved, so that k & r is informed of any problem at all times and can intervene quickly.
+Two backup servers at two locations in Zurich fetch an encrypted backup from the production server daily. Both run as RAID 1. Together with the production data and the encrypted local backup on the production server, the data therefore exists in four copies at three locations, two of them in Zurich (see [Infrastructure](infrastructure.md)). The [full Digital Archive package](longterm_archives.md#basic-offer-and-full-package) adds a further, independent backup at a different provider in Germany (in Switzerland on request). A further server continuously monitors the machines involved, so that k & r is informed of any problem at all times and can intervene quickly.
 
 ## Advantages
 
