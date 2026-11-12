@@ -2329,7 +2329,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/users/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/users/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-06</span>
+        <span class="page-meta__date">Last updated: 2026-11-12</span>
     </div>
   
   
@@ -2440,9 +2440,14 @@ hat, wer die Mindestrolle <strong>und</strong> die Befugnis hat.</p>
 <td>Datensätze im Stapel <a href="../../user/selection/">bearbeiten</a>, als Admin auch im Stapel verschieben</td>
 <td><code>editor</code></td>
 </tr>
+<tr>
+<td>Schutzfristen ändern</td>
+<td>Am Datensatz die Felder <strong>Schutzfrist</strong> und <strong>Frei ab</strong> ändern, und beim Import, der bestehende Datensätze aktualisiert, die Schutzfrist. Ohne sie sind die beiden Felder im Formular gesperrt, und der Import weist Zeilen zurück, die eine Schutzfrist ändern. Die Typen selbst pflegen nur Superuser (siehe <a href="../protection-periods/">Schutzfristen</a>).</td>
+<td><code>editor</code></td>
+</tr>
 </tbody>
 </table>
-<p>Wer Admin wird, erhält «Vorschläge prüfen und bestätigen» und «Bulk-Aktionen» von selbst; beide lassen sich wieder entziehen und Editor:innen einzeln geben.</p>
+<p>Wer Admin wird, erhält «Vorschläge prüfen und bestätigen», «Bulk-Aktionen» und «Schutzfristen ändern» von selbst; wer Editor:in wird, erhält «Schutzfristen ändern». Alle drei lassen sich wieder entziehen und Editor:innen auch einzeln geben. Mit dem Update erhalten alle bestehenden Editor:innen und Admins «Schutzfristen ändern»; es ändert sich also nichts, bis ein Archiv sie entzieht.</p>
 <p>Befugnisse vergeben Superuser und Admins mit der Befugnis <strong>Benutzer:innen und
 Befugnisse verwalten</strong>, auf der Bearbeitungsseite eines Kontos. Die eigenen
 Befugnisse kann niemand ändern. Superuser haben alle Befugnisse. Jede Änderung
@@ -2457,6 +2462,7 @@ entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.</p>
 Beim Löschen gehen die Bezüge verloren — in der Verzeichnungskontrolle steht
 dann ein Name ohne Konto.</p>
 </div>
+<p>Ein Konto mit <strong>offenen Ausleihen</strong> lässt sich nicht löschen; die Meldung nennt deren Zahl. Zuerst werden sie zurückgegeben, auf der Seite des Kontos auch alle auf einmal (siehe <a href="../../user/loans/#ruckgabe-von-objekten">Ausleihe</a>). Zurückgegebene Ausleihen hindern das Löschen nicht: Sie bleiben erhalten, und in der Ausleihliste des Datensatzes steht weiter der Name der Person, ohne Link auf das Konto.</p>
 <h2 id="superuser">Superuser<a class="headerlink" href="#superuser" title="Permanent link">&para;</a></h2>
 <p>Über <code>admin</code> hinaus gibt es Superuser für systemnahe Eingriffe: Feldtypen,
 Wertelisten, <a href="../protection-periods/">Schutzfristen</a>, Deskriptoren, Logs und das
