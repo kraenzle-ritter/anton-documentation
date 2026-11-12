@@ -5,7 +5,7 @@ Per vedere i prestiti presso l'oggetto e poter contrassegnare un oggetto come pr
 
 Dopo aver fatto clic sul più è possibile registrare un prestito a un'utenza. Con il prestito questa viene collegata all'oggetto. Si registra inoltre il giorno del prestito. In un commento si possono annotare ulteriori indicazioni (scopo del prestito, data di restituzione prevista).
 
-### Restituzione degli oggetti
+### Restituzione degli oggetti {#ruckgabe-von-objekten}
 Solo alla restituzione viene compilata la data finale. Il prestito è così concluso.
 
 ### Elenco dei prestiti aperti

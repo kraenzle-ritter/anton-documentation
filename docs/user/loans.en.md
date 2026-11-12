@@ -5,7 +5,7 @@ In order to see loans on an object and to be able to mark an object as lent out,
 
 After clicking the plus, a loan to a user can be entered. In doing so, that user is linked to the object. The day of the loan is entered as well. Further information can be recorded in a comment (purpose of the loan, expected return date).
 
-### Return of objects
+### Return of objects {#ruckgabe-von-objekten}
 Only on return is the «to» date filled in. This completes the loan.
 
 ### List of open loans
