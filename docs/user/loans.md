@@ -8,6 +8,8 @@ Nach dem Klick auf das Plus kann eine Ausleihe an einen User eingetragen werden.
 ### Rückgabe von Objekten
 Erst bei der Rückgabe wird das Bis-Datum ausgefüllt. Damit ist die Ausleihe abgeschlossen.
 
+Hat eine Person mehrere Objekte offen, gibt **Alle offenen zurückgeben** in ihrer Ausleihliste (`/users/{user_id}`) alle auf einmal zurück. Der Knopf erscheint ab zwei offenen Ausleihen und nur mit der Befugnis **Ausleihe verwalten**; Anton fragt vorher nach. Jede Ausleihe erhält das heutige Datum als Bis-Datum und bleibt erhalten, wie bei der Rückgabe einer einzelnen.
+
 ### Liste Offener Ausleihen
 Im Admin Bereich gibt es eine Liste der offenen Ausleihen (`/loans`), also der Ausleihen die kein Rückgabedatum besitzen. Von dort kann einerseits auf die User gesprungen werden, um etwa Ausleihen eines Users als zurückgegeben einzutragen oder auf die ausgeliehenen Objekte. 
 

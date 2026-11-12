@@ -47,8 +47,9 @@ hat, wer die Mindestrolle **und** die Befugnis hat.
 | Vertrag und Ansprechpersonen | Die [Ansprechpersonen](contacts.md) bestimmen und für die Gesamtverantwortung bestätigen (seit v0.118.0) | `admin` |
 | Vorschläge prüfen und bestätigen | Die [Prüfliste für Vorschläge](agate-sip.md#vorschlage-statt-tatsachen) | `editor` |
 | Bulk-Aktionen | Datensätze im Stapel [bearbeiten](../user/selection.md), als Admin auch im Stapel verschieben | `editor` |
+| Schutzfristen ändern | Am Datensatz die Felder **Schutzfrist** und **Frei ab** ändern, und beim Import, der bestehende Datensätze aktualisiert, die Schutzfrist. Ohne sie sind die beiden Felder im Formular gesperrt, und der Import weist Zeilen zurück, die eine Schutzfrist ändern. Die Typen selbst pflegen nur Superuser (siehe [Schutzfristen](protection-periods.md)). | `editor` |
 
-Wer Admin wird, erhält «Vorschläge prüfen und bestätigen» und «Bulk-Aktionen» von selbst; beide lassen sich wieder entziehen und Editor:innen einzeln geben.
+Wer Admin wird, erhält «Vorschläge prüfen und bestätigen», «Bulk-Aktionen» und «Schutzfristen ändern» von selbst; wer Editor:in wird, erhält «Schutzfristen ändern». Alle drei lassen sich wieder entziehen und Editor:innen auch einzeln geben. Mit dem Update erhalten alle bestehenden Editor:innen und Admins «Schutzfristen ändern»; es ändert sich also nichts, bis ein Archiv sie entzieht.
 
 Befugnisse vergeben Superuser und Admins mit der Befugnis **Benutzer:innen und
 Befugnisse verwalten**, auf der Bearbeitungsseite eines Kontos. Die eigenen
@@ -65,6 +66,8 @@ entzieht. Neue Konten haben keine Befugnis, bis sie eine erhalten.
     `blocked` ist der richtige Weg für Konten, die nicht mehr genutzt werden.
     Beim Löschen gehen die Bezüge verloren — in der Verzeichnungskontrolle steht
     dann ein Name ohne Konto.
+
+Ein Konto mit **offenen Ausleihen** lässt sich nicht löschen; die Meldung nennt deren Zahl. Zuerst werden sie zurückgegeben, auf der Seite des Kontos auch alle auf einmal (siehe [Ausleihe](../user/loans.md#ruckgabe-von-objekten)). Zurückgegebene Ausleihen hindern das Löschen nicht: Sie bleiben erhalten, und in der Ausleihliste des Datensatzes steht weiter der Name der Person, ohne Link auf das Konto.
 
 ## Superuser
 
