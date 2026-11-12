@@ -95,6 +95,29 @@ Admin-Settings-Oberfläche.
 | `search_per_page` | Treffer pro Seite (Default: 25) |
 | `search_weights` | Feldgewichte der Suche, z. B. `{"title":5,"full_text":3,"signature":4}` |
 | `typesense_synonyms_extra` | Zusätzliche Synonymgruppen (wirkt nach `typesense:setup`) |
+| `record_search_index` | Volltext der [Suche über der Liste](../user/record-search.md) aus dem Suchindex statt aus der Datenbank. Default: aus. |
+
+## Volltext der Katalogsuche aus dem Suchindex
+
+Mit `record_search_index` holt die [Suche über der Liste](../user/record-search.md) nur den Volltext aus Typesense; Archivbaum, Filter, Zeitraum, Sortierung und Seiten bleiben bei der Datenbank. Jede Volltext-Bedingung holt ihre vollständige Treffermenge. Archive mit `search_typesense_enabled` erhalten dasselbe.
+
+Damit Index und Datenbank dasselbe finden, sucht der Index hier so wie die Datenbank: nicht im Pfad der übergeordneten Stufen, alle Wörter zu einem Wortanfang, Wörter mit `-` oder `/` als Phrase, ohne Synonyme.
+
+| Wert | Wirkung | Default |
+|---|---|---|
+| `SEARCH_INDEX_MAX_HITS` (`.env`, `search.index_max_hits`) | Findet der Index mehr Treffer, sucht die Datenbank: eine abgeschnittene Treffermenge verlöre Treffer. Antwortet der Index nicht, sucht ebenfalls die Datenbank. | `5000` |
+
+Vor dem Einschalten lohnt ein Vergleich. Der Befehl ändert nichts; er zeigt je Begriff, wie viele Verzeichnungseinheiten Datenbank und Index finden und wie viele nur einer von beiden:
+
+```bash
+php artisan typesense:compare-search brief "Propaganda-Briefe" Zürich --env=<slug>
+php artisan typesense:compare-search brief --user=<benutzername> --env=<slug>   # als dieses Konto
+```
+
+Ohne `--user` vergleicht er die öffentliche Sicht.
+
+!!! warning "Neu aufbauen: Trennung an Bindestrich und Schrägstrich"
+    Die Collections trennen Wörter an `-` und `/`: «Propaganda-Briefe» wird über «Briefe» gefunden, wie in der Datenbank. Bestehende Archive brauchen dafür einmal `php artisan typesense:reindex --fresh --env=<slug>`; `typesense:setup` meldet eine Collection mit anderen Trennzeichen als abweichend.
 
 Die **Trefferkarte** wird über das Formular-System (Formtypes `search`
 und `search_intern`) gestaltet — mit demselben Editor wie Listen- und
