@@ -5,7 +5,7 @@ Pour voir les prêts sur un objet et pouvoir marquer un objet comme prêté, le 
 
 Après un clic sur le plus, un prêt à un·e utilisateur·trice peut être enregistré. Cette personne est alors liée à l'objet. Le jour du prêt est saisi à cette occasion. Des indications complémentaires peuvent être consignées dans un commentaire (but du prêt, date de retour prévue).
 
-### Retour des objets
+### Retour des objets {#ruckgabe-von-objekten}
 Ce n'est qu'au retour que la date de fin est renseignée. Le prêt est ainsi clos.
 
 ### Liste des prêts en cours

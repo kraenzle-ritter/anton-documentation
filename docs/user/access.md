@@ -65,6 +65,8 @@ ergänzen und in der Dauer ändern; ebenso ist «dauernd geschützt» möglich. 
 Pflege ist Superusern vorbehalten; bei Anton as a Service ist dafür k & r
 zuständig.
 
+Die Felder **Schutzfrist** und **Frei ab** an einem Datensatz ändert, wer die Befugnis **Schutzfristen ändern** hat (siehe [Benutzerverwaltung](../admin/users.md#befugnisse)); ohne sie sind die beiden Felder im Formular gesperrt.
+
 !!! note "«Frei ab» ist das erste freie Jahr"
     Bei Entstehung 1990 und 30 Jahren Frist steht dort 2021: ab 2021 sind die
     Unterlagen frei. Bis 0.107 hiess das Feld «Sperrfrist bis» oder «Schutzfrist bis» — der Wert war
