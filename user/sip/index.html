@@ -712,6 +712,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#offentlichkeitsstatus">
+<span class="md-ellipsis">
+      
+        Öffentlichkeitsstatus
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#ereignisse">
 <span class="md-ellipsis">
       
@@ -2169,6 +2178,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#offentlichkeitsstatus">
+<span class="md-ellipsis">
+      
+        Öffentlichkeitsstatus
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#ereignisse">
 <span class="md-ellipsis">
       
@@ -2239,7 +2257,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/sip/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/sip/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/sip/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-10-24</span>
+<span class="page-meta__date">Last updated: 2026-11-13</span>
 </div>
 <h1 id="sip-import-in-anton">SIP-Import in Anton<a class="headerlink" href="#sip-import-in-anton" title="Permanent link">¶</a></h1>
 <h2 id="ubersicht">Übersicht<a class="headerlink" href="#ubersicht" title="Permanent link">¶</a></h2>
@@ -2308,6 +2326,31 @@
 <p>Ein SIP mit mehr als 100 000 Dateien, mit Links oder eines, das entpackt ein Vielfaches seiner Grösse belegen würde, wird in Schritt 1 abgewiesen, bevor etwas entpackt ist.</p>
 <p>Ein Fehler in Schritt 1 bis 3 beendet die Prüfung; die folgenden Schritte stehen dann auf «nicht erreicht». Am Ende stehen die Befunde je Art mit Erklärung und Empfehlung. Ist das SIP gültig, lässt es sich von dort aus importieren.</p>
 <p>Eine Prüfung, die länger als ihre Zeitgrenze läuft, gilt als «abgebrochen» und muss neu gestartet werden.</p>
+<h3 id="offentlichkeitsstatus">Öffentlichkeitsstatus<a class="headerlink" href="#offentlichkeitsstatus" title="Permanent link">¶</a></h3>
+<p>Anton übernimmt den Öffentlichkeitsstatus der Ablieferung so:</p>
+<table>
+<thead>
+<tr>
+<th>Status im SIP</th>
+<th>Schutzfrist</th>
+<th>Gesperrt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«öffentlich», «Öffentlichkeitsprinzip», «Einsehbar»</td>
+<td>öffentlich</td>
+<td>nein</td>
+</tr>
+<tr>
+<td>«Nicht geprüft»</td>
+<td>öffentlich</td>
+<td>ja</td>
+</tr>
+</tbody>
+</table>
+<p>Die Schreibweise spielt keine Rolle: «NichtGeprueft» gilt wie «Nicht geprüft». Ein anderer Status weist die Prüfung in Schritt 4 ab. Ein Datensatz, den niemand geprüft hat, kommt gesperrt herein; Sperre und Schutzfrist vergibt das Archiv bei der Erschliessung. Wird das Dossier entsperrt, gehen seine Dokumente mit.</p>
+<p>Steht der Status nur an der Ordnungssystemposition und nicht am Dossier, übernimmt das Dossier den Status der Position darüber. Darunter erben die Dokumente vom Dossier.</p>
 <h3 id="ereignisse">Ereignisse<a class="headerlink" href="#ereignisse" title="Permanent link">¶</a></h3>
 <p>Unter der Tabelle stehen alle Ereignisse der SIPs: Hochladen (auch ersetzt oder verworfen), Prüfung, Import, Verschieben nach dem Import und Löschen – mit Zeitpunkt, Datei, Ergebnis und Benutzer:in. Eine Prüfung führt zu ihrer Prüfseite, ein Import zu seinem Lauf.</p>
 <h2 id="importierte-sips">Importierte SIPs<a class="headerlink" href="#importierte-sips" title="Permanent link">¶</a></h2>

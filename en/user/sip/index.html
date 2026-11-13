@@ -712,6 +712,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#public-access-status">
+<span class="md-ellipsis">
+      
+        Public access status
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#events">
 <span class="md-ellipsis">
       
@@ -2169,6 +2178,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#public-access-status">
+<span class="md-ellipsis">
+      
+        Public access status
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#events">
 <span class="md-ellipsis">
       
@@ -2239,7 +2257,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/user/sip/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span><a class="page-meta__lang" href="/fr/user/sip/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/sip/" hreflang="it" lang="it">Italiano</a></span>
-<span class="page-meta__date">Last updated: 2026-10-24</span>
+<span class="page-meta__date">Last updated: 2026-11-13</span>
 </div>
 <h1 id="sip-import-in-anton">SIP import in Anton<a class="headerlink" href="#sip-import-in-anton" title="Permanent link">¶</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
@@ -2308,6 +2326,31 @@
 <p>A SIP with more than 100,000 files, with links, or one that would take many times its size once extracted is refused in step 1, before anything is extracted.</p>
 <p>An error in steps 1 to 3 ends the check; the following steps then show «not reached». At the end, the findings are listed by kind with an explanation and advice. If the SIP is valid, it can be imported from there.</p>
 <p>A check that runs longer than its time limit counts as «broken off» and has to be started again.</p>
+<h3 id="public-access-status">Public access status<a class="headerlink" href="#public-access-status" title="Permanent link">¶</a></h3>
+<p>Anton takes over the public access status of the delivery like this:</p>
+<table>
+<thead>
+<tr>
+<th>Status in the SIP</th>
+<th>Protection period</th>
+<th>Locked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«öffentlich», «Öffentlichkeitsprinzip», «Einsehbar»</td>
+<td>public</td>
+<td>no</td>
+</tr>
+<tr>
+<td>«Nicht geprüft»</td>
+<td>public</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>The spelling does not matter: «NichtGeprueft» counts as «Nicht geprüft». Any other status fails the check in step 4. A record that nobody has checked comes in locked; the archive sets lock and protection period while cataloguing. Unlocking the dossier unlocks its documents with it.</p>
+<p>If the status is given only on the classification position and not on the dossier, the dossier takes the status of the position above it. Below it, the documents inherit from the dossier.</p>
 <h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">¶</a></h3>
 <p>Below the table are all events of the SIPs: upload (also replaced or discarded), check, import, move after the import and deletion – with time, file, result and user. A check leads to its check page, an import to its run.</p>
 <h2 id="imported-sips">Imported SIPs<a class="headerlink" href="#imported-sips" title="Permanent link">¶</a></h2>

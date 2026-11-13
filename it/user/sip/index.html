@@ -712,6 +712,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#stato-di-accessibilita">
+<span class="md-ellipsis">
+      
+        Stato di accessibilità
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#eventi">
 <span class="md-ellipsis">
       
@@ -1187,6 +1196,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#stato-di-accessibilita">
+<span class="md-ellipsis">
+      
+        Stato di accessibilità
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#eventi">
 <span class="md-ellipsis">
       
@@ -1257,7 +1275,7 @@
 <div class="page-meta">
 <span class="page-meta__langs">
 <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/sip/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/sip/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-<span class="page-meta__date">Last updated: 2026-10-24</span>
+<span class="page-meta__date">Last updated: 2026-11-13</span>
 </div>
 <h1 id="importazione-sip-in-anton">Importazione SIP in Anton<a class="headerlink" href="#importazione-sip-in-anton" title="Permanent link">¶</a></h1>
 <h2 id="panoramica">Panoramica<a class="headerlink" href="#panoramica" title="Permanent link">¶</a></h2>
@@ -1326,6 +1344,31 @@
 <p>Un SIP con più di 100 000 file, con collegamenti, o che una volta estratto occuperebbe un multiplo delle sue dimensioni viene respinto al passo 1, prima di estrarre qualsiasi cosa.</p>
 <p>Un errore nei passi da 1 a 3 termina il controllo; i passi successivi mostrano allora «non raggiunto». Alla fine le constatazioni sono elencate per tipo, con spiegazione e raccomandazione. Se il SIP è valido, può essere importato da lì.</p>
 <p>Un controllo che supera il suo limite di tempo è considerato «interrotto» e va riavviato.</p>
+<h3 id="stato-di-accessibilita">Stato di accessibilità<a class="headerlink" href="#stato-di-accessibilita" title="Permanent link">¶</a></h3>
+<p>Anton riprende lo stato di accessibilità del versamento così:</p>
+<table>
+<thead>
+<tr>
+<th>Stato nel SIP</th>
+<th>Termine di protezione</th>
+<th>Bloccato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«öffentlich», «Öffentlichkeitsprinzip», «Einsehbar»</td>
+<td>pubblico</td>
+<td>no</td>
+</tr>
+<tr>
+<td>«Nicht geprüft»</td>
+<td>pubblico</td>
+<td>sì</td>
+</tr>
+</tbody>
+</table>
+<p>La grafia non conta: «NichtGeprueft» vale come «Nicht geprüft». Qualsiasi altro stato fa fallire il controllo al passo 4. Un’unità che nessuno ha verificato viene importata bloccata; l’archivio stabilisce blocco e termine di protezione durante la descrizione. Sbloccando il dossier si sbloccano anche i suoi documenti.</p>
+<p>Se lo stato è indicato solo sulla posizione del piano di classificazione e non sul dossier, il dossier riprende lo stato della posizione superiore. Più in basso, i documenti ereditano dal dossier.</p>
 <h3 id="eventi">Eventi<a class="headerlink" href="#eventi" title="Permanent link">¶</a></h3>
 <p>Sotto la tabella si trovano tutti gli eventi dei SIP: caricamento (anche sostituito o scartato), controllo, importazione, spostamento dopo l’importazione ed eliminazione – con momento, file, risultato e utente. Un controllo porta alla sua pagina, un’importazione al suo svolgimento.</p>
 <h2 id="sip-importati">SIP importati<a class="headerlink" href="#sip-importati" title="Permanent link">¶</a></h2>
