@@ -57,6 +57,19 @@ An error in steps 1 to 3 ends the check; the following steps then show «not rea
 
 A check that runs longer than its time limit counts as «broken off» and has to be started again.
 
+### Public access status
+
+Anton takes over the public access status of the delivery like this:
+
+| Status in the SIP | Protection period | Locked |
+|---|---|---|
+| «öffentlich», «Öffentlichkeitsprinzip», «Einsehbar» | public | no |
+| «Nicht geprüft» | public | yes |
+
+The spelling does not matter: «NichtGeprueft» counts as «Nicht geprüft». Any other status fails the check in step 4. A record that nobody has checked comes in locked; the archive sets lock and protection period while cataloguing. Unlocking the dossier unlocks its documents with it.
+
+If the status is given only on the classification position and not on the dossier, the dossier takes the status of the position above it. Below it, the documents inherit from the dossier.
+
 ### Events
 
 Below the table are all events of the SIPs: upload (also replaced or discarded), check, import, move after the import and deletion – with time, file, result and user. A check leads to its check page, an import to its run.

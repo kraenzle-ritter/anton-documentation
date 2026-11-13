@@ -57,6 +57,19 @@ Ein Fehler in Schritt 1 bis 3 beendet die Prüfung; die folgenden Schritte stehe
 
 Eine Prüfung, die länger als ihre Zeitgrenze läuft, gilt als «abgebrochen» und muss neu gestartet werden.
 
+### Öffentlichkeitsstatus
+
+Anton übernimmt den Öffentlichkeitsstatus der Ablieferung so:
+
+| Status im SIP | Schutzfrist | Gesperrt |
+|---|---|---|
+| «öffentlich», «Öffentlichkeitsprinzip», «Einsehbar» | öffentlich | nein |
+| «Nicht geprüft» | öffentlich | ja |
+
+Die Schreibweise spielt keine Rolle: «NichtGeprueft» gilt wie «Nicht geprüft». Ein anderer Status weist die Prüfung in Schritt 4 ab. Ein Datensatz, den niemand geprüft hat, kommt gesperrt herein; Sperre und Schutzfrist vergibt das Archiv bei der Erschliessung. Wird das Dossier entsperrt, gehen seine Dokumente mit.
+
+Steht der Status nur an der Ordnungssystemposition und nicht am Dossier, übernimmt das Dossier den Status der Position darüber. Darunter erben die Dokumente vom Dossier.
+
 ### Ereignisse
 
 Unter der Tabelle stehen alle Ereignisse der SIPs: Hochladen (auch ersetzt oder verworfen), Prüfung, Import, Verschieben nach dem Import und Löschen – mit Zeitpunkt, Datei, Ergebnis und Benutzer:in. Eine Prüfung führt zu ihrer Prüfseite, ein Import zu seinem Lauf.

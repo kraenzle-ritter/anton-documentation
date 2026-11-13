@@ -57,6 +57,19 @@ Une erreur aux étapes 1 à 3 met fin au contrôle ; les étapes suivantes affic
 
 Un contrôle qui dépasse sa durée maximale est considéré comme « interrompu » et doit être relancé.
 
+### Statut d’accessibilité
+
+Anton reprend le statut d’accessibilité du versement ainsi :
+
+| Statut dans le SIP | Délai de protection | Verrouillé |
+|---|---|---|
+| « öffentlich », « Öffentlichkeitsprinzip », « Einsehbar » | public | non |
+| « Nicht geprüft » | public | oui |
+
+L’orthographe ne joue aucun rôle : « NichtGeprueft » vaut « Nicht geprüft ». Tout autre statut fait échouer le contrôle à l’étape 4. Une unité que personne n’a vérifiée est importée verrouillée ; l’archive fixe le verrouillage et le délai de protection lors de la description. Déverrouiller le dossier déverrouille aussi ses documents.
+
+Si le statut ne figure que sur la position du plan de classement et non sur le dossier, le dossier reprend le statut de la position supérieure. En dessous, les documents héritent du dossier.
+
 ### Événements
 
 Sous le tableau figurent tous les événements des SIP : téléversement (y compris remplacé ou rejeté), contrôle, importation, déplacement après l’importation et suppression – avec moment, fichier, résultat et utilisateur·rice. Un contrôle mène à sa page de contrôle, une importation à son déroulement.
