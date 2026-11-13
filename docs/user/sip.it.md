@@ -57,6 +57,19 @@ Un errore nei passi da 1 a 3 termina il controllo; i passi successivi mostrano a
 
 Un controllo che supera il suo limite di tempo è considerato «interrotto» e va riavviato.
 
+### Stato di accessibilità
+
+Anton riprende lo stato di accessibilità del versamento così:
+
+| Stato nel SIP | Termine di protezione | Bloccato |
+|---|---|---|
+| «öffentlich», «Öffentlichkeitsprinzip», «Einsehbar» | pubblico | no |
+| «Nicht geprüft» | pubblico | sì |
+
+La grafia non conta: «NichtGeprueft» vale come «Nicht geprüft». Qualsiasi altro stato fa fallire il controllo al passo 4. Un’unità che nessuno ha verificato viene importata bloccata; l’archivio stabilisce blocco e termine di protezione durante la descrizione. Sbloccando il dossier si sbloccano anche i suoi documenti.
+
+Se lo stato è indicato solo sulla posizione del piano di classificazione e non sul dossier, il dossier riprende lo stato della posizione superiore. Più in basso, i documenti ereditano dal dossier.
+
 ### Eventi
 
 Sotto la tabella si trovano tutti gli eventi dei SIP: caricamento (anche sostituito o scartato), controllo, importazione, spostamento dopo l’importazione ed eliminazione – con momento, file, risultato e utente. Un controllo porta alla sua pagina, un’importazione al suo svolgimento.
