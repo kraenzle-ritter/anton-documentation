@@ -56,7 +56,8 @@ before it becomes a medium:
   compared. For PDF, Anton also records preservation risks: fonts not embedded,
   encryption, JavaScript, references to programs or other files, and links to
   the web. Fonts that occur only in the invisible OCR text of a scan are no
-  risk. «Invalid» means damaged or unreadable. Such a file is taken in and
+  risk. «Invalid» means damaged or unreadable, for a JPEG also: image data is
+  missing, for instance because the file is cut short. Such a file is taken in and
   recorded as invalid; on request Anton refuses it. What does not damage the
   file counts as valid with a warning: an error the tool renders past (such as
   a faulty colour profile or a reconstructed cross-reference), a PDF that

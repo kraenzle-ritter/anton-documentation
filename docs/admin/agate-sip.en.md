@@ -182,7 +182,7 @@ php artisan sip:import-file --env=<slug> /path/disk-7.zip --parent=123 --dry-run
 php artisan sip:import-file --env=<slug> /path/disk-7.zip --parent=123 --user=<account>
 ```
 
-`--dry-run` only checks and writes nothing: format, target, existing UUIDs, duplicates, number of entries and space. Without `--parent`, `parent` of the top entries in `metadata.json` applies. The run appears in the import log like any other, and the package stays where it lies.
+`--dry-run` only checks and writes nothing: format, target, existing UUIDs, duplicates, number of entries, links and space, for a ZIP as for a TAR. Without `--parent`, `parent` of the top entries in `metadata.json` applies. The run appears in the import log like any other, and the package stays where it lies.
 
 Two things differ from the API:
 
