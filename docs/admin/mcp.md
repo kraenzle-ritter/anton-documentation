@@ -64,10 +64,12 @@ Konto ist für einen späteren Ausbau vorgesehen.
 
 ## Anfragen begrenzen
 
-Pro Adresse sind **60 Anfragen pro Minute** zugelassen; darüber antwortet die
-Schnittstelle mit 429. Eine Recherche braucht meist ein paar Dutzend Aufrufe.
-Der Wert steht in `config/ratelimiting.php` unter `mcp`; `0` hebt die Grenze
-auf.
+Zwei Grenzen gelten nebeneinander, beide pro Minute:
+
+- **Pro Adresse 60 Anfragen.** Eine Recherche braucht meist ein paar Dutzend Aufrufe. Der Wert steht in `config/ratelimiting.php` unter `mcp`.
+- **Pro Archiv 120 Anfragen, alle Adressen zusammen.** Eine Ernte verteilt sich auf Tausende Adressen mit je einer Anfrage und erreicht die erste Grenze nie. Der Wert ist je Archiv einstellbar (`MCP_TENANT_LIMIT` in `.env.<slug>`, über anton-ansible).
+
+`0` hebt eine Grenze auf. Darüber antwortet die Schnittstelle mit 429, `Retry-After` und einer JSON-RPC-Fehlermeldung in Worten, die der Assistent weitergibt. Sie sagt, ob die eigene Adresse oder das Archiv die Grenze erreicht hat (`error.data.limit`: `address` oder `archive`). Greift die Grenze des Archivs, steht das höchstens einmal pro Minute als Warnung im Log («MCP: the archive-wide limit was reached»).
 
 ## Betrieb hinter Anubis und Cookie-Sperre
 

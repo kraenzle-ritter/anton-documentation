@@ -86,8 +86,7 @@ L'assistant choisit lui-même les outils. Il suffit de demander :
   donne rien, un début de mot avec `*` ou une autre graphie aide souvent.
 - **Lecture seule.** Commander, modifier ou créer n'est pas possible par
   l'interface.
-- **Nombre de requêtes :** 60 par minute et par adresse. Une recherche en
-  demande généralement quelques dizaines.
+- **Nombre de requêtes :** 60 par minute et par adresse, plus une limite commune à tout le fonds d'archives. Une recherche en demande généralement quelques dizaines. Lorsqu'une limite est atteinte, l'assistant indique de réessayer dans une minute, et si c'est sa propre adresse ou les archives qui reçoivent beaucoup de requêtes.
 
 Les réponses de l'assistant restent les siennes. Ce qui compte, c'est la notice
 liée — en cas de doute, s'y reporter.

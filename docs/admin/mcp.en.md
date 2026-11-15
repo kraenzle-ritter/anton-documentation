@@ -60,9 +60,12 @@ account is planned for a later stage.
 
 ## Limiting requests
 
-**60 requests per minute** are allowed per address; above that the interface
-answers 429. A research question usually needs a few dozen calls. The value is
-in `config/ratelimiting.php` under `mcp`; `0` removes the limit.
+Two limits apply side by side, both per minute:
+
+- **60 requests per address.** A research question usually needs a few dozen calls. The value is in `config/ratelimiting.php` under `mcp`.
+- **120 requests per archive, all addresses together.** A harvest spreads over thousands of addresses with one request each and never meets the first limit. The value can be set per archive (`MCP_TENANT_LIMIT` in `.env.<slug>`, through anton-ansible).
+
+`0` removes a limit. Above it the interface answers 429 with `Retry-After` and a JSON-RPC error in words, which the assistant passes on. It says whether the address or the archive reached its limit (`error.data.limit`: `address` or `archive`). When the archive's limit applies, a warning is logged at most once a minute («MCP: the archive-wide limit was reached»).
 
 ## Operating behind Anubis and the cookie gate
 
