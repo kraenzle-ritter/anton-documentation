@@ -4624,7 +4624,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/mcp/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-15</span>
     </div>
   
   
@@ -4686,9 +4686,12 @@ Before switching on, it is worth looking at the public detail page of a few
 records and at the fields of the external detail form.</p>
 </div>
 <h2 id="limiting-requests">Limiting requests<a class="headerlink" href="#limiting-requests" title="Permanent link">&para;</a></h2>
-<p><strong>60 requests per minute</strong> are allowed per address; above that the interface
-answers 429. A research question usually needs a few dozen calls. The value is
-in <code>config/ratelimiting.php</code> under <code>mcp</code>; <code>0</code> removes the limit.</p>
+<p>Two limits apply side by side, both per minute:</p>
+<ul>
+<li><strong>60 requests per address.</strong> A research question usually needs a few dozen calls. The value is in <code>config/ratelimiting.php</code> under <code>mcp</code>.</li>
+<li><strong>120 requests per archive, all addresses together.</strong> A harvest spreads over thousands of addresses with one request each and never meets the first limit. The value can be set per archive (<code>MCP_TENANT_LIMIT</code> in <code>.env.&lt;slug&gt;</code>, through anton-ansible).</li>
+</ul>
+<p><code>0</code> removes a limit. Above it the interface answers 429 with <code>Retry-After</code> and a JSON-RPC error in words, which the assistant passes on. It says whether the address or the archive reached its limit (<code>error.data.limit</code>: <code>address</code> or <code>archive</code>). When the archive's limit applies, a warning is logged at most once a minute («MCP: the archive-wide limit was reached»).</p>
 <h2 id="operating-behind-anubis-and-the-cookie-gate">Operating behind Anubis and the cookie gate<a class="headerlink" href="#operating-behind-anubis-and-the-cookie-gate" title="Permanent link">&para;</a></h2>
 <p>An MCP client sends single requests without a cookie and without a browser —
 exactly the pattern Anubis and the cookie gate turn away. The path <code>/api/mcp</code>

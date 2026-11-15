@@ -2296,7 +2296,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/mcp/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/mcp/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-15</span>
     </div>
   
   
@@ -2362,10 +2362,12 @@ wird damit tatsächlich gelesen. Vor dem Einschalten lohnt ein Blick auf die
 Detailformulars.</p>
 </div>
 <h2 id="anfragen-begrenzen">Anfragen begrenzen<a class="headerlink" href="#anfragen-begrenzen" title="Permanent link">&para;</a></h2>
-<p>Pro Adresse sind <strong>60 Anfragen pro Minute</strong> zugelassen; darüber antwortet die
-Schnittstelle mit 429. Eine Recherche braucht meist ein paar Dutzend Aufrufe.
-Der Wert steht in <code>config/ratelimiting.php</code> unter <code>mcp</code>; <code>0</code> hebt die Grenze
-auf.</p>
+<p>Zwei Grenzen gelten nebeneinander, beide pro Minute:</p>
+<ul>
+<li><strong>Pro Adresse 60 Anfragen.</strong> Eine Recherche braucht meist ein paar Dutzend Aufrufe. Der Wert steht in <code>config/ratelimiting.php</code> unter <code>mcp</code>.</li>
+<li><strong>Pro Archiv 120 Anfragen, alle Adressen zusammen.</strong> Eine Ernte verteilt sich auf Tausende Adressen mit je einer Anfrage und erreicht die erste Grenze nie. Der Wert ist je Archiv einstellbar (<code>MCP_TENANT_LIMIT</code> in <code>.env.&lt;slug&gt;</code>, über anton-ansible).</li>
+</ul>
+<p><code>0</code> hebt eine Grenze auf. Darüber antwortet die Schnittstelle mit 429, <code>Retry-After</code> und einer JSON-RPC-Fehlermeldung in Worten, die der Assistent weitergibt. Sie sagt, ob die eigene Adresse oder das Archiv die Grenze erreicht hat (<code>error.data.limit</code>: <code>address</code> oder <code>archive</code>). Greift die Grenze des Archivs, steht das höchstens einmal pro Minute als Warnung im Log («MCP: the archive-wide limit was reached»).</p>
 <h2 id="betrieb-hinter-anubis-und-cookie-sperre">Betrieb hinter Anubis und Cookie-Sperre<a class="headerlink" href="#betrieb-hinter-anubis-und-cookie-sperre" title="Permanent link">&para;</a></h2>
 <p>Ein MCP-Client schickt einzelne Anfragen ohne Cookie und ohne Browser — genau
 das Muster, das Anubis und die Cookie-Sperre abweisen. Der Pfad <code>/api/mcp</code> muss

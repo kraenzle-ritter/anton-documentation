@@ -4900,7 +4900,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-06</span>
+        <span class="page-meta__date">Last updated: 2026-11-14</span>
     </div>
   
   
@@ -5083,7 +5083,7 @@ erhalten.</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/pfad/platte-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--dry-run
 php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/pfad/platte-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--user<span class="o">=</span>&lt;konto&gt;
 </code></pre></div>
-<p><code>--dry-run</code> prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge und Platz. Ohne <code>--parent</code> gilt <code>parent</code> der obersten Einträge in <code>metadata.json</code>. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.</p>
+<p><code>--dry-run</code> prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge, Links und Platz, bei ZIP wie bei TAR. Ohne <code>--parent</code> gilt <code>parent</code> der obersten Einträge in <code>metadata.json</code>. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.</p>
 <p>Zwei Dinge sind anders als bei der API:</p>
 <ul>
 <li><strong>Eine Datei scheitert</strong> an Prüfsumme, Format oder Virenprüfung: Sie wird nicht angehängt, das Protokoll nennt sie, der Lauf geht weiter und endet als «Mit Fehlern abgeschlossen» (<code>with_errors</code>, Exit-Code 2).</li>
