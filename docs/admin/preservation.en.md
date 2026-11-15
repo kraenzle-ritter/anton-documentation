@@ -141,6 +141,8 @@ supplied retrospectively with
 [`media:identify`](console-commands.md#mediaidentify). It is evaluated in
 [preservation planning](preservation-planning.md).
 
+When no PRONOM signature matches, Anton records Siegfried's result as `UNKNOWN`, for instance for a JPEG with zero bytes after its end marker. NARA rates an unknown format «Moderate» with the action «Identify». Such a medium counts as identified and appears in preservation planning as a row of its own, `UNKNOWN`; «unidentified» there means identification never ran. If a later run with newer signatures recognises the format, it replaces `UNKNOWN`. A run without a match does not overwrite a known PRONOM ID (anton#849).
+
 [`media:watch-formats`](console-commands.md#mediawatch-formats) watches the
 formats for obsolescence (anton#675): when Anton loads a new NARA table (every
 28 days), the command assesses every format of the holdings again. Where a

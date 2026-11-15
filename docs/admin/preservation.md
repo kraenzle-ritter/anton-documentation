@@ -147,6 +147,8 @@ hält die **PRONOM-ID** fest; daraus leitet es die Risikobewertung nach dem
 [`media:identify`](console-commands.md#mediaidentify) nachtragen. Ausgewertet wird das im
 [Preservation Planning](preservation-planning.md).
 
+Passt keine PRONOM-Signatur, hält Anton das Ergebnis von Siegfried als `UNKNOWN` fest, etwa bei einem JPEG mit Nullbytes hinter dem Endmarker. NARA bewertet ein unbekanntes Format mit «Moderate» und der Handlung «Identify». Ein solches Medium gilt als identifiziert und erscheint im Preservation Planning als eigene Zeile `UNKNOWN`; «nicht identifiziert» heisst dort, dass die Erkennung nie gelaufen ist. Erkennt ein späterer Lauf mit neueren Signaturen das Format, ersetzt er `UNKNOWN`. Eine bekannte PRONOM-ID überschreibt ein Lauf ohne Treffer nicht (anton#849).
+
 Das Veralten der Formate beobachtet
 [`media:watch-formats`](console-commands.md#mediawatch-formats) (anton#675):
 Lädt Anton eine neue NARA-Tabelle (alle 28 Tage), bewertet der Befehl jedes
