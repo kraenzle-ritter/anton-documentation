@@ -86,8 +86,7 @@ L'assistente sceglie gli strumenti da sé. Basta chiedere:
   non dà risultati, spesso aiuta un inizio di parola con `*` o un'altra grafia.
 - **Solo lettura.** Ordinare, modificare o creare non è possibile tramite
   l'interfaccia.
-- **Numero di richieste:** 60 al minuto per indirizzo. Una ricerca ne richiede
-  di solito qualche decina.
+- **Numero di richieste:** 60 al minuto per indirizzo, più un limite comune per l'intero archivio. Una ricerca ne richiede di solito qualche decina. Quando un limite è raggiunto, l'assistente dice di riprovare tra un minuto e se è il proprio indirizzo o l'archivio a ricevere moltissime richieste.
 
 Le risposte dell'assistente restano sue. Ciò che conta è la scheda collegata —
 in caso di dubbio, controllare lì.

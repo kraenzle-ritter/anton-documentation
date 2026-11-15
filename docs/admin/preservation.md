@@ -58,7 +58,8 @@ prüft Anton sie, bevor sie zum Medium wird:
   eingebettete Schriften, Verschlüsselung, JavaScript, Verweise auf Programme
   oder andere Dateien und Links ins Web. Schriften, die nur in der
   unsichtbaren Texterkennung eines Scans vorkommen, sind kein Risiko.
-  «Ungültig» heisst beschädigt oder nicht lesbar. Eine solche Datei wird
+  «Ungültig» heisst beschädigt oder nicht lesbar, beim JPEG auch: Bilddaten
+  fehlen, etwa weil die Datei abgeschnitten ist. Eine solche Datei wird
   übernommen und als ungültig vermerkt; auf Wunsch weist Anton sie ab. Was die
   Datei nicht beschädigt, gilt als gültig mit Warnung: ein Fehler, über den
   das Werkzeug hinweg darstellt (etwa ein fehlerhaftes Farbprofil oder ein

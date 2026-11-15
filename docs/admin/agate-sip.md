@@ -185,7 +185,7 @@ php artisan sip:import-file --env=<slug> /pfad/platte-7.zip --parent=123 --dry-r
 php artisan sip:import-file --env=<slug> /pfad/platte-7.zip --parent=123 --user=<konto>
 ```
 
-`--dry-run` prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge und Platz. Ohne `--parent` gilt `parent` der obersten Einträge in `metadata.json`. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.
+`--dry-run` prüft nur und schreibt nichts: Format, Ziel, vorhandene UUIDs, Dubletten, Anzahl Einträge, Links und Platz, bei ZIP wie bei TAR. Ohne `--parent` gilt `parent` der obersten Einträge in `metadata.json`. Der Lauf steht im Importprotokoll wie jeder andere, das Paket bleibt liegen, wo es ist.
 
 Zwei Dinge sind anders als bei der API:
 

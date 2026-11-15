@@ -83,8 +83,7 @@ The assistant picks the tools itself. Just ask:
   prefix with `*` or a different spelling often helps.
 - **Read only.** Ordering, editing or creating is not possible through the
   interface.
-- **Number of requests:** 60 per minute per address. A research question
-  usually needs a few dozen.
+- **Number of requests:** 60 per minute per address, plus a shared limit for the whole archive. A research question usually needs a few dozen. When a limit is reached, the assistant says to try again in a minute, and whether it is the own address or the archive that has very many requests.
 
 The assistant's answers remain its own. What counts is the linked record — when
 in doubt, check there.

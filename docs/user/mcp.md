@@ -84,8 +84,7 @@ Der Assistent wählt die Werkzeuge selbst. Man fragt einfach:
   oft ein Wortanfang mit `*` oder eine andere Schreibweise.
 - **Nur Lesen.** Bestellen, Ändern oder Anlegen geht über die Schnittstelle
   nicht.
-- **Anzahl Anfragen:** 60 pro Minute und Adresse. Eine Recherche braucht
-  meist ein paar Dutzend.
+- **Anzahl Anfragen:** 60 pro Minute und Adresse, dazu eine gemeinsame Grenze für das ganze Archiv. Eine Recherche braucht meist ein paar Dutzend. Ist eine Grenze erreicht, sagt der Assistent, man solle es in einer Minute wieder versuchen, und ob die eigene Adresse oder das Archiv gerade sehr viele Anfragen hat.
 
 Die Antworten des Assistenten bleiben seine eigenen. Was zählt, ist der
 verlinkte Datensatz — im Zweifel dort nachsehen.
