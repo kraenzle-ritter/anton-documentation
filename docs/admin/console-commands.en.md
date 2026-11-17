@@ -616,11 +616,10 @@ up to date with every change to the commands.
 | `storage:link` | Create the symbolic links configured for the application |
 | `storage:unlink` | Delete existing symbolic links configured for the application |
 
-### typesense: (10)
+### typesense: (9)
 
 | Command | Description |
 |---|---|
-| `typesense:compare-search` | Compare the full-text hits of the database and the search index for some terms. |
 | `typesense:flush` | Delete all documents from the active tenant's Typesense collection (keeps the collection schem… |
 | `typesense:gallery-index` | Index gallery media into the active tenant's Typesense gallery collection. |
 | `typesense:index` | Index AntonObjects into the active tenant's Typesense collection. |
