@@ -135,6 +135,12 @@ normalen Spalten-Editor übergibt. Ab da lassen sich Spalten und Beschriftungen
 wie bei jedem anderen Formular ändern. Blosses Ansehen ändert nichts — erst
 **Konfigurieren** legt das editierbare Formular an.
 
+## Beziehungen zwischen Datensätzen {#beziehungen-zwischen-datensaetzen}
+
+Ein Datensatz kann in einen anderen **eingebunden** sein, etwa ein Blatt in ein gebundenes Exemplar. Im Archivbaum bleibt das Blatt, wo es ist; das Exemplar führt im Modul **Beziehungen** unter **enthält** alle eingebundenen Blätter auf, mit Signatur, Titel (ohne eigenen Titel der des übergeordneten Datensatzes) und alter Signatur, nach der alten Signatur geordnet. Das Blatt nennt unter **eingebunden in** das Exemplar. Datensätze, die jemand nicht sehen darf, fehlen in seiner Liste.
+
+Dafür muss die Einstellung `object_relations` unter **Admin → Einstellungen** eingeschaltet sein (Vorgabe: aus) und das Modul **Beziehungen** in der Detailansicht der betreffenden Formulare stehen. Anton setzt es in kein Objektformular von selbst; man fügt es im Formular-Editor hinzu. Die Beziehungen selbst werden heute über Importe und Befehle gesetzt, nicht im Formular (anton#706).
+
 ## Standard-Sortierung
 
 In Listenformularen, also den Objektlisten und den eingebetteten Tabellen, hat

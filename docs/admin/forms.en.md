@@ -133,6 +133,12 @@ column editor. From then on, columns and labels can be changed as in any other
 form. Merely looking changes nothing — only **Configure** creates the editable
 form.
 
+## Relations between records {#beziehungen-zwischen-datensaetzen}
+
+A record can be **bound into** another one, a print into a bound copy for instance. The print stays where it is in the archive tree; the copy lists every print bound into it in the module **Relations** under **contains**, with identifier, title (the parent's where the print has none) and old identifier, ordered by the old identifier. The print names the copy under **bound in**. Records a person may not see are left out of their list.
+
+This needs the setting `object_relations` under **Admin → Settings** switched on (default: off) and the module **Relations** in the detail view of the forms concerned. Anton places it in no record form by itself; add it in the form editor. The relations themselves come from imports and commands for now, not from the form (anton#706).
+
 ## Default sort {#standard-sortierung}
 
 In list forms — the object lists and the embedded tables — the column editor has
