@@ -2440,7 +2440,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/preservation/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-14</span>
+        <span class="page-meta__date">Last updated: 2026-11-15</span>
     </div>
   
   
@@ -2621,6 +2621,7 @@ hält die <strong>PRONOM-ID</strong> fest; daraus leitet es die Risikobewertung 
 <strong>NARA Digital Preservation Framework</strong> ab. Für Altbestände lässt sich das mit
 <a href="../console-commands/#mediaidentify"><code>media:identify</code></a> nachtragen. Ausgewertet wird das im
 <a href="../preservation-planning/">Preservation Planning</a>.</p>
+<p>Passt keine PRONOM-Signatur, hält Anton das Ergebnis von Siegfried als <code>UNKNOWN</code> fest, etwa bei einem JPEG mit Nullbytes hinter dem Endmarker. NARA bewertet ein unbekanntes Format mit «Moderate» und der Handlung «Identify». Ein solches Medium gilt als identifiziert und erscheint im Preservation Planning als eigene Zeile <code>UNKNOWN</code>; «nicht identifiziert» heisst dort, dass die Erkennung nie gelaufen ist. Erkennt ein späterer Lauf mit neueren Signaturen das Format, ersetzt er <code>UNKNOWN</code>. Eine bekannte PRONOM-ID überschreibt ein Lauf ohne Treffer nicht (anton#849).</p>
 <p>Das Veralten der Formate beobachtet
 <a href="../console-commands/#mediawatch-formats"><code>media:watch-formats</code></a> (anton#675):
 Lädt Anton eine neue NARA-Tabelle (alle 28 Tage), bewertet der Befehl jedes

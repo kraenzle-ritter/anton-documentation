@@ -4912,7 +4912,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-14</span>
+        <span class="page-meta__date">Last updated: 2026-11-15</span>
     </div>
   
   
@@ -5087,6 +5087,7 @@ the <strong>PRONOM ID</strong>; from this it derives the risk assessment accordi
 supplied retrospectively with
 <a href="../console-commands/#mediaidentify"><code>media:identify</code></a>. It is evaluated in
 <a href="../preservation-planning/">preservation planning</a>.</p>
+<p>When no PRONOM signature matches, Anton records Siegfried's result as <code>UNKNOWN</code>, for instance for a JPEG with zero bytes after its end marker. NARA rates an unknown format «Moderate» with the action «Identify». Such a medium counts as identified and appears in preservation planning as a row of its own, <code>UNKNOWN</code>; «unidentified» there means identification never ran. If a later run with newer signatures recognises the format, it replaces <code>UNKNOWN</code>. A run without a match does not overwrite a known PRONOM ID (anton#849).</p>
 <p><a href="../console-commands/#mediawatch-formats"><code>media:watch-formats</code></a> watches the
 formats for obsolescence (anton#675): when Anton loads a new NARA table (every
 28 days), the command assesses every format of the holdings again. Where a
