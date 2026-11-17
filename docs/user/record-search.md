@@ -11,7 +11,7 @@ Die Suche über der Liste ersetzt die Seite der erweiterten Suche: Ein Klick auf
 | **Liste filtern** | Text, der in der Liste vorkommen muss |
 | **Zeitraum** (von, bis) | Verzeichnungseinheiten, deren Entstehungszeitraum diesen Zeitraum berührt; Einheiten ohne Datierung fallen heraus |
 
-Beide Filter grenzen nur die Liste darunter ein, nicht die übrige Seite. Wie viele Zeilen eine Liste zeigt, steht nicht mehr über der Liste, sondern im [Profil](profile.md) unter «Einträge pro Seite».
+Beide Filter grenzen nur die Liste darunter ein, nicht die übrige Seite. Den Zeitraum zeigt Anton nur, wo das Archiv ihn gewählt hat (`list_filters`, siehe [Einstellungen](#einstellungen)); sonst steht der Textfilter allein. Wie viele Zeilen eine Liste zeigt, steht nicht mehr über der Liste, sondern im [Profil](profile.md) unter «Einträge pro Seite».
 
 ## Suchen
 
@@ -39,8 +39,8 @@ Findet der Suchindex mehr als 5000 Treffer oder antwortet er nicht, sucht die Da
 |---|---|---|
 | `record_search` | Suche über der Liste statt Seite der erweiterten Suche | aus |
 | `record_search_index` | Volltext dieser Suche aus dem Suchindex (setzt Typesense voraus) | aus |
-| `list_filters` | Filter über den Listen für Mitarbeitende, in Reihenfolge: `search` (Text), `period` (Zeitraum); leer = keine | beide |
-| `list_filters_extern` | dasselbe für die Öffentlichkeit | beide |
+| `list_filters` | Filter über den Listen für Mitarbeitende, in Reihenfolge: `search` (Text), `period` (Zeitraum); leer = keine | `search` (nur Text) |
+| `list_filters_extern` | dasselbe für die Öffentlichkeit | `search` (nur Text) |
 | `search_facets_extern` | Filter der Suche für die Öffentlichkeit, Schlüssel wie `search_facets` | wie `search_facets` |
 
 Archive, deren Suche ganz auf Typesense umgestellt ist (`search_typesense_enabled`), holen den Volltext ebenfalls aus dem Suchindex.

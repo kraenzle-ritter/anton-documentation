@@ -11,7 +11,7 @@ Sopra ogni elenco di unità di descrizione ci sono due filtri:
 | **Filtrare la lista** | Testo che deve comparire nell’elenco |
 | **Periodo** (da, a) | Unità il cui periodo di creazione tocca questo periodo; le unità senza data vengono escluse |
 
-Entrambi i filtri restringono solo l’elenco sottostante, non il resto della pagina. Il numero di righe di un elenco non si sceglie più sopra l’elenco, ma nel [profilo](profile.md) alla voce «Elementi per pagina».
+Entrambi i filtri restringono solo l’elenco sottostante, non il resto della pagina. Anton mostra il periodo solo dove l’archivio l’ha scelto (`list_filters`, vedi [Impostazioni](#impostazioni)); altrimenti il filtro di testo resta da solo. Il numero di righe di un elenco non si sceglie più sopra l’elenco, ma nel [profilo](profile.md) alla voce «Elementi per pagina».
 
 ## Cercare
 
@@ -39,8 +39,8 @@ Se l’indice trova più di 5000 risultati o non risponde, cerca la banca dati. 
 |---|---|---|
 | `record_search` | Ricerca sopra l’elenco al posto della pagina della ricerca avanzata | disattivato |
 | `record_search_index` | Testo completo di questa ricerca dall’indice (richiede Typesense) | disattivato |
-| `list_filters` | Filtri sopra gli elenchi per il personale, nell’ordine: `search` (testo), `period` (periodo); vuoto = nessuno | entrambi |
-| `list_filters_extern` | lo stesso per il pubblico | entrambi |
+| `list_filters` | Filtri sopra gli elenchi per il personale, nell’ordine: `search` (testo), `period` (periodo); vuoto = nessuno | `search` (solo testo) |
+| `list_filters_extern` | lo stesso per il pubblico | `search` (solo testo) |
 | `search_facets_extern` | Filtri della ricerca per il pubblico, chiavi come in `search_facets` | come `search_facets` |
 
 Gli archivi la cui ricerca è passata interamente a Typesense (`search_typesense_enabled`) prendono anch’essi il testo completo dall’indice.

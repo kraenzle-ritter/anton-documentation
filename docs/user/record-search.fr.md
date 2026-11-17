@@ -11,7 +11,7 @@ Au-dessus de chaque liste d’unités de description figurent deux filtres :
 | **Filtrer la liste** | Texte qui doit figurer dans la liste |
 | **Période** (de, à) | Unités dont la période de création touche cette période ; les unités sans date sont écartées |
 
-Les deux filtres ne restreignent que la liste en dessous, pas le reste de la page. Le nombre de lignes d’une liste ne se choisit plus au-dessus de la liste, mais dans le [profil](profile.md) sous « Éléments par page ».
+Les deux filtres ne restreignent que la liste en dessous, pas le reste de la page. Anton n’affiche la période que là où l’archive l’a choisie (`list_filters`, voir [Paramètres](#parametres)) ; sinon, le filtre de texte reste seul. Le nombre de lignes d’une liste ne se choisit plus au-dessus de la liste, mais dans le [profil](profile.md) sous « Éléments par page ».
 
 ## Rechercher
 
@@ -39,8 +39,8 @@ Si l’index trouve plus de 5000 résultats ou ne répond pas, la base de donné
 |---|---|---|
 | `record_search` | Recherche au-dessus de la liste au lieu de la page de la recherche avancée | désactivé |
 | `record_search_index` | Texte intégral de cette recherche depuis l’index (requiert Typesense) | désactivé |
-| `list_filters` | Filtres au-dessus des listes pour le personnel, dans l’ordre : `search` (texte), `period` (période) ; vide = aucun | les deux |
-| `list_filters_extern` | idem pour le public | les deux |
+| `list_filters` | Filtres au-dessus des listes pour le personnel, dans l’ordre : `search` (texte), `period` (période) ; vide = aucun | `search` (texte seul) |
+| `list_filters_extern` | idem pour le public | `search` (texte seul) |
 | `search_facets_extern` | Filtres de la recherche pour le public, clés comme dans `search_facets` | comme `search_facets` |
 
 Les archives dont la recherche est entièrement passée à Typesense (`search_typesense_enabled`) tirent elles aussi le texte intégral de l’index.

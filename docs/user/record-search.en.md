@@ -11,7 +11,7 @@ Above every list of records there are two filters:
 | **Filter list** | Text that must occur in the list |
 | **Time range** (from, to) | Records whose period of creation touches this period; records without a date drop out |
 
-Both filters narrow only the list below them, not the rest of the page. How many rows a list shows is no longer chosen above the list but in the [profile](profile.md) under «Items per page».
+Both filters narrow only the list below them, not the rest of the page. Anton shows the time range only where the archive has chosen it (`list_filters`, see [Settings](#settings)); otherwise the text filter stands alone. How many rows a list shows is no longer chosen above the list but in the [profile](profile.md) under «Items per page».
 
 ## Searching
 
@@ -39,8 +39,8 @@ If the search index finds more than 5000 hits or does not answer, the database s
 |---|---|---|
 | `record_search` | Search above the list instead of the page of the advanced search | off |
 | `record_search_index` | Full text of this search from the search index (requires Typesense) | off |
-| `list_filters` | Filters above the lists for staff, in order: `search` (text), `period`; empty = none | both |
-| `list_filters_extern` | the same for the public | both |
+| `list_filters` | Filters above the lists for staff, in order: `search` (text), `period`; empty = none | `search` (text only) |
+| `list_filters_extern` | the same for the public | `search` (text only) |
 | `search_facets_extern` | Filters of the search for the public, keys as in `search_facets` | as `search_facets` |
 
 Archives whose search is switched over to Typesense entirely (`search_typesense_enabled`) also take the full text from the search index.
