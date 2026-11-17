@@ -17,7 +17,7 @@ Booking, cancelling, a storage tier and the switch to the next plan go as a [con
 
 The package **Technical care** is not booked here but with the [preservation mandate](preservation-mandate.md) «Technical care»: the page shows its state and links there. Confirming the mandate counts as ordering the package, revoking it as cancelling; the overall responsibility confirms once.
 
-A storage tier names the storage in all and its price in all per year, as the price list has it. The page splits it into plan and storage package, for instance «500 GB storage in all – CHF 7’500.– per year (plan CHF 5’000.–, storage package CHF 2’500.–)».
+A storage tier names the storage in all and its price in all per year, as the price list has it. The page splits it into plan and storage package, for instance «500 GB storage in all – CHF 8’055.– per year (plan CHF 5’555.–, storage package CHF 2’500.–)».
 
 ## Usage statement
 

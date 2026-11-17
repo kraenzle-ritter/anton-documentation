@@ -17,7 +17,7 @@ Buchen, Kündigen, eine Speicherstufe und der Wechsel zum nächsten Abo gehen al
 
 Das Paket **Technische Betreuung** bucht man nicht hier, sondern mit dem [Erhaltungsauftrag](preservation-mandate.md) «Technische Betreuung»: Die Seite zeigt seinen Stand und verweist dorthin. Die Bestätigung des Auftrags gilt zugleich als Bestellung des Pakets, der Widerruf als Kündigung; die Gesamtverantwortung bestätigt also nur einmal.
 
-Eine Speicherstufe nennt den Speicher insgesamt und den Preis insgesamt pro Jahr, wie ihn die Preisliste hat. Die Seite teilt ihn in Abo und Speicherpaket auf, zum Beispiel «500 GB Speicher insgesamt – CHF 7’500.– pro Jahr (Abo CHF 5’000.–, Speicherpaket CHF 2’500.–)».
+Eine Speicherstufe nennt den Speicher insgesamt und den Preis insgesamt pro Jahr, wie ihn die Preisliste hat. Die Seite teilt ihn in Abo und Speicherpaket auf, zum Beispiel «500 GB Speicher insgesamt – CHF 8’055.– pro Jahr (Abo CHF 5’555.–, Speicherpaket CHF 2’500.–)».
 
 ## Nutzungsauszug
 
