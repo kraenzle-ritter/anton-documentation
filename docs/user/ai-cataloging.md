@@ -30,7 +30,9 @@ Für eine Ablieferung mit vielen Einzelstücken gibt es den **KI-Lauf**: In der 
 
 Der Lauf arbeitet im Hintergrund Datensatz für Datensatz, mit denselben Regeln wie die Taste im Formular: Interne Notizen gehen nicht an den Anbieter, von gesperrten Datensätzen keine Angaben. Er hält an, wenn die Obergrenze oder das Budget erreicht ist, und lässt sich abbrechen; **Fortsetzen** macht beim nächsten Datensatz weiter.
 
-In die Datensätze schreibt der Lauf nichts. Schlagwörter, Akteur:innen und Orte landen als Vorschläge in der Prüfliste (Daten-Import › Prüfliste für Vorschläge) mit der Quelle «KI-Erschliessung»; dort lassen sie sich nach Quelle und Bestand filtern und einzeln oder gesammelt bestätigen. Ist ein Eintrag schon in Anton vorhanden, ist er vorausgewählt. Titel, Textfelder und Datierungen schlägt der Lauf nicht vor; dafür bleibt die Taste im Formular.
+In die Datensätze schreibt der Lauf nichts. Titel, Textfelder (etwa «Form und Inhalt»), Datierung, Sprachen, Schlagwörter, Akteur:innen und Orte landen als Vorschläge in der Prüfliste (Daten-Import › Prüfliste für Vorschläge) mit der Quelle «KI-Erschliessung»; dort lassen sie sich nach Quelle und Bestand filtern und einzeln oder gesammelt bestätigen. Ist ein Eintrag schon in Anton vorhanden, ist er vorausgewählt.
+
+Bei Titel, Textfeld und Datierung steht neben dem Vorschlag, was der Datensatz bisher enthält. Ist das Feld leer, übernimmt Bestätigen den Vorschlag. Steht schon etwas darin, muss man in der Zeile wählen: **Bisherigen Wert ersetzen** oder, bei einem Textfeld, **An bisherigen Text anhängen**. Ohne diese Wahl bleibt der bisherige Wert stehen, auch beim gesammelten Bestätigen.
 
 ## Was Anton von sich aus übernimmt — und was nicht
 
