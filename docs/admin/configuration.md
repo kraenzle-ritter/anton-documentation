@@ -56,6 +56,8 @@ Die meisten Einstellungen gehören zu einem Thema und sind dort beschrieben:
 - [Wertelisten](valuelists.md) und [Schutzfristen](protection-periods.md)
 - [Suchfelder](searchfields.md), [Schnelle Suche](typesense.md),
   [Gewichtete Suche](weighted-search.md)
+- [Suche über der Liste](../user/record-search.md) — Filter über den Listen
+  und die Suche über der Verzeichnungstabelle
 - [Mediengalerie](gallery.md), [Wasserzeichen](watermarks.md),
   [Dokumente](documents.md)
 - [Startseite und Navigation](home.md), [Logo und Favicons](logo.md)

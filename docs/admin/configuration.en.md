@@ -55,6 +55,8 @@ Most settings belong to a topic and are described there:
 - [Value lists](valuelists.md) and [protection periods](protection-periods.md)
 - [Search fields](searchfields.md), [instant search](typesense.md),
   [weighted search](weighted-search.md)
+- [Search above the list](../user/record-search.md): filters above the lists
+  and the search above the record table
 - [Media gallery](gallery.md), [watermarks](watermarks.md),
   [documents](documents.md)
 - [Home page and navigation](home.md), [logo and favicons](logo.md)

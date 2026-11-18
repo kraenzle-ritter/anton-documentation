@@ -90,6 +90,29 @@ reindexing. Editable in the admin settings interface.
 | `search_per_page` | Hits per page (default: 25) |
 | `search_weights` | Field weights of the search, e.g. `{"title":5,"full_text":3,"signature":4}` |
 | `typesense_synonyms_extra` | Additional synonym groups (takes effect after `typesense:setup`) |
+| `record_search_index` | Full text of the [search above the list](../user/record-search.md) from the search index instead of the database. Default: off. |
+
+## Full text of the catalogue search from the index
+
+With `record_search_index` the [search above the list](../user/record-search.md) takes only its full text from Typesense; archive tree, filters, period, sort order and pages stay with the database. Each full-text condition fetches its complete hit set. Archives with `search_typesense_enabled` get the same.
+
+So that index and database find the same, the index searches here as the database does: not in the path of the levels above, every word a beginning expands to, words joined by `-` or `/` as a phrase, without synonyms.
+
+| Value | Effect | Default |
+|---|---|---|
+| `SEARCH_INDEX_MAX_HITS` (`.env`, `search.index_max_hits`) | If the index finds more hits, the database searches: a truncated hit set would lose hits. If the index does not answer, the database searches as well. | `5000` |
+
+Compare before switching it on. The command changes nothing; per term it shows how many records the database and the index find, and how many only one of them finds:
+
+```bash
+php artisan typesense:compare-search brief "Propaganda-Briefe" Zürich --env=<slug>
+php artisan typesense:compare-search brief --user=<username> --env=<slug>   # as this account
+```
+
+Without `--user` it compares the public view.
+
+!!! warning "Rebuild: words split at hyphen and slash"
+    The collections split words at `-` and `/`: «Propaganda-Briefe» is found by «Briefe», as in the database. Existing archives need `php artisan typesense:reindex --fresh --env=<slug>` once; `typesense:setup` reports a collection with other separators as diverged.
 
 The **hit card** is designed via the form system (form types `search` and
 `search_intern`) — with the same editor as list and detail views.

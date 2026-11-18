@@ -73,6 +73,7 @@ nav:
     - Recherche:
       - Volltextsuche: user/search.md
       - Schnelle Suche: user/search-v2.md
+      - Suche über der Liste: user/record-search.md
       - Gewichtete Suche: user/weighted-search.md
       - Korrespondenzen: user/correspondences.md
       - Warenkorb: user/cart.md
@@ -233,6 +234,7 @@ plugins:
               - Search:
                 - Full-text search: user/search.md
                 - Instant search: user/search-v2.md
+                - Search above the list: user/record-search.md
                 - Weighted search: user/weighted-search.md
                 - Correspondences: user/correspondences.md
                 - Cart: user/cart.md
@@ -369,6 +371,7 @@ plugins:
               - Recherche:
                 - Recherche plein texte: user/search.md
                 - Recherche instantanée: user/search-v2.md
+                - Recherche au-dessus de la liste: user/record-search.md
                 - Recherche pondérée: user/weighted-search.md
                 - Correspondances: user/correspondences.md
                 - Panier: user/cart.md
@@ -438,6 +441,7 @@ plugins:
               - Ricerca:
                 - Ricerca full text: user/search.md
                 - Ricerca rapida: user/search-v2.md
+                - Ricerca sopra l’elenco: user/record-search.md
                 - Ricerca ponderata: user/weighted-search.md
                 - Corrispondenze: user/correspondences.md
                 - Carrello: user/cart.md
