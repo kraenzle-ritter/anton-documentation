@@ -24,6 +24,14 @@ generazione presuppone il ruolo `editor`.
 
 Ogni account ha dei limiti: al massimo 30 proposte all'ora e al massimo un quarto del budget mensile al giorno. L'esercizio fissa i valori per ogni archivio. Le registrazioni audio e l'audio dei video vengono trascritti in background; finché ciò avviene, la proposta arriva senza di essi, con un avviso. Richiedendo più tardi, la trascrizione è inclusa.
 
+## Per tutto ciò che sta sotto un'unità di descrizione
+
+Per un versamento con molti pezzi c'è il **ciclo IA**: nella vista di dettaglio di un'unità di descrizione, il pulsante **Ciclo IA** porta a una pagina in cui si scelgono il profilo, l'ambito (solo schede con media, o tutte) e il limite di chiamate. Sotto si vede quanto costerà probabilmente il ciclo, fatturato in base al consumo, e quanto resta del budget mensile e della propria quota giornaliera. Per avviarlo occorre il ruolo `editor`.
+
+Il ciclo lavora in background, scheda per scheda, con le stesse regole del pulsante nel modulo: le note interne non vanno al fornitore, né alcun dato delle schede bloccate. Si ferma quando è raggiunto il limite o il budget e può essere annullato; **Riprendi** continua con la scheda successiva.
+
+Il ciclo non scrive nulla nelle schede. Parole chiave, attori e luoghi finiscono come proposte nella lista di verifica, con la fonte «KI-Erschliessung»; lì si possono filtrare per fonte e fondo e confermare una per una o insieme. Se una voce esiste già in Anton, è preselezionata. Il ciclo non propone titoli, campi di testo né datazioni; per questi resta il pulsante nel modulo.
+
 ## Che cosa Anton riprende da sé — e che cosa no
 
 Le impostazioni predefinite sono volutamente disuguali:

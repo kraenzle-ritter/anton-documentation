@@ -24,6 +24,14 @@ requires the `editor` role.
 
 Each account has limits: at most 30 suggestions per hour and at most a quarter of the monthly budget per day. Operations sets the values per archive. Audio recordings and the sound of videos are transcribed in the background; while that runs, the suggestion comes without them, with a notice. Ask again later and the transcript is included.
 
+## For everything below a unit of description
+
+For a delivery with many items there is the **AI run**: on the detail view of a unit of description, the **AI run** button leads to a page where you choose the profile, the scope (only records with media, or all) and the limit of calls. Below it you see what the run will probably cost, charged by use, and what is left of the monthly budget and of your share of the day. Starting a run requires the `editor` role.
+
+The run works in the background, record by record, with the same rules as the button in the form: internal notes do not go to the provider, nor any details of restricted records. It stops when the limit or the budget is reached and can be cancelled; **Resume** goes on with the next record.
+
+The run writes nothing to the records. Keywords, actors and places go to the review list as suggestions with the source «KI-Erschliessung»; there they can be filtered by source and fonds and confirmed one by one or together. Where an entry already exists in Anton, it is preselected. The run does not propose titles, text fields or dates; for those, use the button in the form.
+
 ## What Anton adopts on its own — and what it does not
 
 The defaults are deliberately unequal:
