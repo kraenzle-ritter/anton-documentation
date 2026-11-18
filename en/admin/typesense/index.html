@@ -1177,6 +1177,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/record-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search above the list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2926,6 +2954,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#full-text-of-the-catalogue-search-from-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full text of the catalogue search from the index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#settings-gallery-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4630,6 +4669,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#full-text-of-the-catalogue-search-from-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full text of the catalogue search from the index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#settings-gallery-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4668,7 +4718,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/typesense/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-17</span>
     </div>
   
   
@@ -4826,8 +4876,40 @@ reindexing. Editable in the admin settings interface.</p>
 <td><code>typesense_synonyms_extra</code></td>
 <td>Additional synonym groups (takes effect after <code>typesense:setup</code>)</td>
 </tr>
+<tr>
+<td><code>record_search_index</code></td>
+<td>Full text of the <a href="../../user/record-search/">search above the list</a> from the search index instead of the database. Default: off.</td>
+</tr>
 </tbody>
 </table>
+<h2 id="full-text-of-the-catalogue-search-from-the-index">Full text of the catalogue search from the index<a class="headerlink" href="#full-text-of-the-catalogue-search-from-the-index" title="Permanent link">&para;</a></h2>
+<p>With <code>record_search_index</code> the <a href="../../user/record-search/">search above the list</a> takes only its full text from Typesense; archive tree, filters, period, sort order and pages stay with the database. Each full-text condition fetches its complete hit set. Archives with <code>search_typesense_enabled</code> get the same.</p>
+<p>So that index and database find the same, the index searches here as the database does: not in the path of the levels above, every word a beginning expands to, words joined by <code>-</code> or <code>/</code> as a phrase, without synonyms.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Effect</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEARCH_INDEX_MAX_HITS</code> (<code>.env</code>, <code>search.index_max_hits</code>)</td>
+<td>If the index finds more hits, the database searches: a truncated hit set would lose hits. If the index does not answer, the database searches as well.</td>
+<td><code>5000</code></td>
+</tr>
+</tbody>
+</table>
+<p>Compare before switching it on. The command changes nothing; per term it shows how many records the database and the index find, and how many only one of them finds:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>typesense:compare-search<span class="w"> </span>brief<span class="w"> </span><span class="s2">"Propaganda-Briefe"</span><span class="w"> </span>Zürich<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+php<span class="w"> </span>artisan<span class="w"> </span>typesense:compare-search<span class="w"> </span>brief<span class="w"> </span>--user<span class="o">=</span>&lt;username&gt;<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w">   </span><span class="c1"># as this account</span>
+</code></pre></div>
+<p>Without <code>--user</code> it compares the public view.</p>
+<div class="admonition warning">
+<p class="admonition-title">Rebuild: words split at hyphen and slash</p>
+<p>The collections split words at <code>-</code> and <code>/</code>: «Propaganda-Briefe» is found by «Briefe», as in the database. Existing archives need <code>php artisan typesense:reindex --fresh --env=&lt;slug&gt;</code> once; <code>typesense:setup</code> reports a collection with other separators as diverged.</p>
+</div>
 <p>The <strong>hit card</strong> is designed via the form system (form types <code>search</code> and
 <code>search_intern</code>) — with the same editor as list and detail views.</p>
 <h2 id="settings-gallery-v2">Settings: Gallery V2<a class="headerlink" href="#settings-gallery-v2" title="Permanent link">&para;</a></h2>

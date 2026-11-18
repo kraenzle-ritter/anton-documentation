@@ -1177,6 +1177,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/record-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suche über der Liste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2444,6 +2472,17 @@
     <span class="md-ellipsis">
       
         Konfigurierbare eingebettete Tabellen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beziehungen-zwischen-datensaetzen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beziehungen zwischen Datensätzen
       
     </span>
   </a>
@@ -4740,6 +4779,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beziehungen-zwischen-datensaetzen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beziehungen zwischen Datensätzen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#standard-sortierung" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4778,7 +4828,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/admin/forms/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-31</span>
+        <span class="page-meta__date">Last updated: 2026-11-17</span>
     </div>
   
   
@@ -4940,6 +4990,9 @@ die die eingebaute Vorgabe in ein editierbares Formular überführt und an den
 normalen Spalten-Editor übergibt. Ab da lassen sich Spalten und Beschriftungen
 wie bei jedem anderen Formular ändern. Blosses Ansehen ändert nichts — erst
 <strong>Konfigurieren</strong> legt das editierbare Formular an.</p>
+<h2 id="beziehungen-zwischen-datensaetzen">Beziehungen zwischen Datensätzen<a class="headerlink" href="#beziehungen-zwischen-datensaetzen" title="Permanent link">&para;</a></h2>
+<p>Ein Datensatz kann in einen anderen <strong>eingebunden</strong> sein, etwa ein Blatt in ein gebundenes Exemplar. Im Archivbaum bleibt das Blatt, wo es ist; das Exemplar führt im Modul <strong>Beziehungen</strong> unter <strong>enthält</strong> alle eingebundenen Blätter auf, mit Signatur, Titel (ohne eigenen Titel der des übergeordneten Datensatzes) und alter Signatur, nach der alten Signatur geordnet. Das Blatt nennt unter <strong>eingebunden in</strong> das Exemplar. Datensätze, die jemand nicht sehen darf, fehlen in seiner Liste.</p>
+<p>Dafür muss die Einstellung <code>object_relations</code> unter <strong>Admin → Einstellungen</strong> eingeschaltet sein (Vorgabe: aus) und das Modul <strong>Beziehungen</strong> in der Detailansicht der betreffenden Formulare stehen. Anton setzt es in kein Objektformular von selbst; man fügt es im Formular-Editor hinzu. Die Beziehungen selbst werden heute über Importe und Befehle gesetzt, nicht im Formular (anton#706).</p>
 <h2 id="standard-sortierung">Standard-Sortierung<a class="headerlink" href="#standard-sortierung" title="Permanent link">&para;</a></h2>
 <p>In Listenformularen, also den Objektlisten und den eingebetteten Tabellen, hat
 der Spalten-Editor eine Spalte <strong>Standard-Sortierung</strong>. Wählen Sie dort bei

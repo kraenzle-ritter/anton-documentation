@@ -1173,6 +1173,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user/record-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ricerca sopra l’elenco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user/weighted-search/" class="md-nav__link">
         
   
@@ -2280,6 +2308,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#volltext-der-katalogsuche-aus-dem-suchindex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volltext der Katalogsuche aus dem Suchindex
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#einstellungen-galerie-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2318,7 +2357,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/typesense/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/typesense/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-17</span>
     </div>
   
   
@@ -2481,8 +2520,40 @@ Admin-Settings-Oberfläche.</p>
 <td><code>typesense_synonyms_extra</code></td>
 <td>Zusätzliche Synonymgruppen (wirkt nach <code>typesense:setup</code>)</td>
 </tr>
+<tr>
+<td><code>record_search_index</code></td>
+<td>Volltext der <a href="../../user/record-search/">Suche über der Liste</a> aus dem Suchindex statt aus der Datenbank. Default: aus.</td>
+</tr>
 </tbody>
 </table>
+<h2 id="volltext-der-katalogsuche-aus-dem-suchindex">Volltext der Katalogsuche aus dem Suchindex<a class="headerlink" href="#volltext-der-katalogsuche-aus-dem-suchindex" title="Permanent link">&para;</a></h2>
+<p>Mit <code>record_search_index</code> holt die <a href="../../user/record-search/">Suche über der Liste</a> nur den Volltext aus Typesense; Archivbaum, Filter, Zeitraum, Sortierung und Seiten bleiben bei der Datenbank. Jede Volltext-Bedingung holt ihre vollständige Treffermenge. Archive mit <code>search_typesense_enabled</code> erhalten dasselbe.</p>
+<p>Damit Index und Datenbank dasselbe finden, sucht der Index hier so wie die Datenbank: nicht im Pfad der übergeordneten Stufen, alle Wörter zu einem Wortanfang, Wörter mit <code>-</code> oder <code>/</code> als Phrase, ohne Synonyme.</p>
+<table>
+<thead>
+<tr>
+<th>Wert</th>
+<th>Wirkung</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEARCH_INDEX_MAX_HITS</code> (<code>.env</code>, <code>search.index_max_hits</code>)</td>
+<td>Findet der Index mehr Treffer, sucht die Datenbank: eine abgeschnittene Treffermenge verlöre Treffer. Antwortet der Index nicht, sucht ebenfalls die Datenbank.</td>
+<td><code>5000</code></td>
+</tr>
+</tbody>
+</table>
+<p>Vor dem Einschalten lohnt ein Vergleich. Der Befehl ändert nichts; er zeigt je Begriff, wie viele Verzeichnungseinheiten Datenbank und Index finden und wie viele nur einer von beiden:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>typesense:compare-search<span class="w"> </span>brief<span class="w"> </span><span class="s2">"Propaganda-Briefe"</span><span class="w"> </span>Zürich<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;
+php<span class="w"> </span>artisan<span class="w"> </span>typesense:compare-search<span class="w"> </span>brief<span class="w"> </span>--user<span class="o">=</span>&lt;benutzername&gt;<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w">   </span><span class="c1"># als dieses Konto</span>
+</code></pre></div>
+<p>Ohne <code>--user</code> vergleicht er die öffentliche Sicht.</p>
+<div class="admonition warning">
+<p class="admonition-title">Neu aufbauen: Trennung an Bindestrich und Schrägstrich</p>
+<p>Die Collections trennen Wörter an <code>-</code> und <code>/</code>: «Propaganda-Briefe» wird über «Briefe» gefunden, wie in der Datenbank. Bestehende Archive brauchen dafür einmal <code>php artisan typesense:reindex --fresh --env=&lt;slug&gt;</code>; <code>typesense:setup</code> meldet eine Collection mit anderen Trennzeichen als abweichend.</p>
+</div>
 <p>Die <strong>Trefferkarte</strong> wird über das Formular-System (Formtypes <code>search</code>
 und <code>search_intern</code>) gestaltet — mit demselben Editor wie Listen- und
 Detailansichten.</p>
