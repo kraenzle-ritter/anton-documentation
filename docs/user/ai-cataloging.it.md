@@ -30,7 +30,7 @@ Per un versamento con molti pezzi c'è il **ciclo IA**: nella vista di dettaglio
 
 Il ciclo lavora in background, scheda per scheda, con le stesse regole del pulsante nel modulo: le note interne non vanno al fornitore, né alcun dato delle schede bloccate. Si ferma quando è raggiunto il limite o il budget e può essere annullato; **Riprendi** continua con la scheda successiva.
 
-Con l’ambito «solo schede con media», il ciclo salta le schede di cui nessun file può essere inviato all’IA, per esempio file Word o file mancanti; non costano nulla e compaiono nella pagina come «saltate».
+Con l’ambito «solo schede con media», il ciclo salta le schede di cui nessun file può essere inviato all’IA, per esempio file Word o file mancanti; non costano nulla e compaiono nella pagina come «saltate». Se il fornitore è sovraccarico, il ciclo richiede la stessa scheda dopo una pausa, fino a tre volte.
 
 Il ciclo non scrive nulla nelle schede. Titoli, campi di testo (ad esempio portata e contenuto), datazione, lingue, parole chiave, attori e luoghi finiscono come proposte nella lista di verifica, con la fonte «KI-Erschliessung»; lì si possono filtrare per fonte e fondo e confermare una per una o insieme. Se una voce esiste già in Anton, è preselezionata. Il ciclo non propone segnaposto come «Unbekannt» o «Nicht angegeben», e una datazione solo dove la scheda non ne ha ancora una per quell’evento. Scrive «ß» come «ss»; ogni archivio può disattivarlo con l’impostazione `ai_swiss_spelling`.
 
