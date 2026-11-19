@@ -24,6 +24,8 @@ ansprechbar ist:
 Ohne diese drei Schritte: kein Button, keine Dashboard-Links, kein
 Risiko von Provider-Fehlern. Tenants ohne KI-Vertrag merken nichts.
 
+Die Einstellung `ai_swiss_spelling` (Standard an) lässt einen KI-Lauf «ß» als «ss» schreiben, in allen Vorschlägen für die Prüfliste. Wo ein Archiv deutsche Rechtschreibung will, schaltet man sie aus.
+
 ## Der Operator-Workflow
 
 Beim Bearbeiten eines Datensatzes erscheint oben in der Aktionsleiste

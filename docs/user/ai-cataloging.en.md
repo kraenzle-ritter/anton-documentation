@@ -30,7 +30,9 @@ For a delivery with many items there is the **AI run**: on the detail view of a 
 
 The run works in the background, record by record, with the same rules as the button in the form: internal notes do not go to the provider, nor any details of restricted records. It stops when the limit or the budget is reached and can be cancelled; **Resume** goes on with the next record.
 
-The run writes nothing to the records. Titles, text fields (such as scope and content), dating, languages, keywords, actors and places go to the review list as suggestions with the source «KI-Erschliessung»; there they can be filtered by source and fonds and confirmed one by one or together. Where an entry already exists in Anton, it is preselected.
+With the scope «records with media only», the run skips records none of whose files can go to the AI, such as Word files or missing files; they cost nothing and are listed on the page as «skipped».
+
+The run writes nothing to the records. Titles, text fields (such as scope and content), dating, languages, keywords, actors and places go to the review list as suggestions with the source «KI-Erschliessung»; there they can be filtered by source and fonds and confirmed one by one or together. Where an entry already exists in Anton, it is preselected. The run proposes no placeholders such as «Unbekannt» or «Nicht angegeben», and a dating only where the record has none for that event. It writes «ß» as «ss»; an archive can turn that off with the setting `ai_swiss_spelling`.
 
 For title, text field and dating, the list shows what the record holds so far beside the suggestion. Where the field is empty, confirming takes the suggestion over. Where it has a value, you choose in the row: **Replace the current value** or, for a text field, **Append to the current text**. Without that choice the current value stays, also when confirming several together.
 
