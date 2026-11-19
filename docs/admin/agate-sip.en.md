@@ -173,6 +173,8 @@ The decision is taken in the **review list for proposals** under **data import**
 - **Create new** creates a record of its own, also beside one of the same name. It stays [provisional](../user/authorities.md#vorlaufige-eintrage): what was confirmed is the link, not the record.
 - **Discard** keeps the proposal with person and time. A later delivery does not propose it again.
 
+At the top the list can be shown **by record**: one row per record with open proposals, in the order of the tree. **Review proposals** opens the record with all its proposals; there it is confirmed or discarded as a whole and the next one follows (see [AI cataloguing](../user/ai-cataloging.en.md)).
+
 ## A large package on the server
 
 The API takes a package up to 5 GB. A larger one, `.zip` or `.tar`, is placed on the server over SSH and imported there:

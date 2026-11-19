@@ -36,6 +36,8 @@ Il ciclo non scrive nulla nelle schede. Titoli, campi di testo (ad esempio porta
 
 Per titolo, campo di testo e datazione, accanto alla proposta la lista mostra ciò che la scheda contiene finora. Se il campo è vuoto, la conferma riprende la proposta. Se contiene già un valore, occorre scegliere nella riga: **Sostituire il valore attuale** oppure, per un campo di testo, **Aggiungere al testo attuale**. Senza questa scelta il valore attuale resta, anche confermando più proposte insieme.
 
+Poiché un passaggio fa più proposte per scheda, la lista di controllo mostra quelle con la fonte «KI-Erschliessung» **per scheda**: una riga per scheda con il numero di proposte aperte per tipo, nell'ordine dell'albero. In alto si può passare a **per proposta**. **Verificare le proposte** apre la scheda con tutte le sue proposte: i valori accanto a ciò che la scheda contiene finora, le lingue da spuntare e i collegamenti per attori, luoghi e parole chiave, accanto a ciò che è già collegato. Un testo o una datazione proposti si possono modificare prima di riprenderli; Anton scrive allora la versione modificata e conserva la proposta originale. Per un collegamento si sceglie la voce tra quelle proposte, la si crea o se ne cerca un'altra nei dati d'autorità. **Confermare e continuare** riprende ciò che è spuntato o scelto, scarta le altre proposte di questa scheda e apre la successiva. Se una proposta spuntata non può essere ripresa, per esempio un collegamento senza voce scelta, nella scheda non cambia nulla e Anton dice perché. **Scartare tutto e continuare** scarta tutto, **Saltare** lascia la scheda aperta.
+
 ## Che cosa Anton riprende da sé — e che cosa no
 
 Le impostazioni predefinite sono volutamente disuguali:

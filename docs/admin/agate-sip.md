@@ -176,6 +176,8 @@ Entschieden wird in der **Prüfliste für Vorschläge** unter **Daten-Import**. 
 - **Neu anlegen** erstellt einen eigenen Eintrag, auch neben einem gleichnamigen. Er bleibt [vorläufig](../user/authorities.md#vorlaufige-eintrage), bestätigt ist die Verknüpfung, nicht der Eintrag.
 - **Verwerfen** behält den Vorschlag mit Person und Zeitpunkt. Eine spätere Lieferung schlägt ihn nicht noch einmal vor.
 
+Oben lässt sich die Liste **je Datensatz** zeigen: eine Zeile pro Datensatz mit offenen Vorschlägen, in der Reihenfolge des Baums. **Vorschläge prüfen** öffnet den Datensatz mit allen seinen Vorschlägen; dort wird er als Ganzes bestätigt oder verworfen und es geht zum nächsten (siehe [KI-Erschliessung](../user/ai-cataloging.md#fur-alles-unterhalb-einer-verzeichnungseinheit)).
+
 ## Grosses Paket auf dem Server
 
 Die API nimmt ein Paket bis 5 GB an. Ein grösseres, `.zip` oder `.tar`, legt man per SSH auf den Server und startet den Import dort:
