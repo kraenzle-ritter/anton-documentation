@@ -64,10 +64,8 @@ Im Standard sind drei Typen hinterlegt: **öffentlich** (0 Jahre), **Standard
 Schutzfrist** (30 Jahre) und **verlängerte Schutzfrist** (70 Jahre). Typen
 lassen sich umbenennen, ergänzen und in der Dauer ändern.
 
-!!! important "Superusern vorbehalten"
-    Der Editor liegt unter `/admin/protection-periods` und ist Superusern
-    vorbehalten — mit der Rolle `admin` ist er nicht erreichbar. Bei Anton as a
-    Service ist dafür k & r zuständig.
+!!! important "Admins mit der Befugnis «Schutzfristen ändern»"
+    Der Editor liegt unter `/admin/protection-periods` und auf der Admin-Seite unter «Konfiguration». Ihn öffnen Admins mit der Befugnis «Schutzfristen ändern» (siehe [Benutzer:innen](users.md)); Editor:innen mit derselben Befugnis ändern nur die Schutzfrist einzelner Datensätze. Eine geänderte Dauer gilt für alle Datensätze dieses Typs: Anton berechnet «Frei ab» neu, und eine kürzere Frist gibt Medien frei, deren Frist damit abgelaufen ist.
 
 Für Archive ohne dauernden Schutz ist «dauernd geschützt» optional; es muss
 nicht konfiguriert sein.

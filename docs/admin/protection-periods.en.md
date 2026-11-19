@@ -63,10 +63,8 @@ Three types are provided by default: **public** (0 years), **standard
 closure period** (30 years) and **extended closure period** (70 years).
 Types can be renamed, added and changed in duration.
 
-!!! important "Reserved for superusers"
-    The editor is located at `/admin/protection-periods` and is reserved for
-    superusers — it cannot be reached with the `admin` role. With Anton as a
-    Service, k & r is responsible for it.
+!!! important "Admins with the capability «Change protection periods»"
+    The editor is located at `/admin/protection-periods` and on the admin page under «Configuration». Admins holding the capability «Change protection periods» open it (see [Users](users.md)); editors with the same capability change the closure period of single records only. A changed duration applies to every record of that type: Anton recalculates «Open from», and a shorter period releases media whose period has thereby run out.
 
 For archives without permanent closure, «closed permanently» is optional; it
 does not have to be configured.
