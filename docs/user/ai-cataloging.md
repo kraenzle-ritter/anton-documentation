@@ -30,7 +30,7 @@ Für eine Ablieferung mit vielen Einzelstücken gibt es den **KI-Lauf**: In der 
 
 Der Lauf arbeitet im Hintergrund Datensatz für Datensatz, mit denselben Regeln wie die Taste im Formular: Interne Notizen gehen nicht an den Anbieter, von gesperrten Datensätzen keine Angaben. Er hält an, wenn die Obergrenze oder das Budget erreicht ist, und lässt sich abbrechen; **Fortsetzen** macht beim nächsten Datensatz weiter.
 
-Beim Umfang «nur Datensätze mit Medien» überspringt der Lauf Datensätze, von denen keine Datei an die KI gehen kann, etwa Word-Dateien oder Dateien, die fehlen; sie kosten nichts und stehen auf der Seite als «übersprungen».
+Beim Umfang «nur Datensätze mit Medien» überspringt der Lauf Datensätze, von denen keine Datei an die KI gehen kann, etwa Word-Dateien oder Dateien, die fehlen; sie kosten nichts und stehen auf der Seite als «übersprungen». Ist der Anbieter überlastet, fragt der Lauf denselben Datensatz nach einer Pause bis zu dreimal noch einmal an.
 
 In die Datensätze schreibt der Lauf nichts. Titel, Textfelder (etwa «Form und Inhalt»), Datierung, Sprachen, Schlagwörter, Akteur:innen und Orte landen als Vorschläge in der Prüfliste (Daten-Import › Prüfliste für Vorschläge) mit der Quelle «KI-Erschliessung»; dort lassen sie sich nach Quelle und Bestand filtern und einzeln oder gesammelt bestätigen. Ist ein Eintrag schon in Anton vorhanden, ist er vorausgewählt. Platzhalter wie «Unbekannt» oder «Nicht angegeben» schlägt der Lauf nicht vor, und eine Datierung nur, wo der Datensatz für dieses Ereignis noch keine hat. «ß» schreibt er als «ss»; das lässt sich je Archiv mit der Einstellung `ai_swiss_spelling` abschalten.
 

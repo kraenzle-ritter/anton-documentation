@@ -33,7 +33,7 @@ Pour un versement comptant de nombreuses pièces, il existe le **passage IA** : 
 
 Le passage travaille en arrière-plan, notice par notice, selon les mêmes règles que le bouton du formulaire : les notes internes ne vont pas au fournisseur, ni aucune information des notices verrouillées. Il s'arrête lorsque la limite ou le budget est atteint et peut être annulé ; **Reprendre** continue avec la notice suivante.
 
-Avec l’étendue «seulement les notices avec médias», le passage ignore les notices dont aucun fichier ne peut être envoyé à l’IA, par exemple des fichiers Word ou des fichiers manquants ; elles ne coûtent rien et apparaissent sur la page comme «ignorées».
+Avec l’étendue «seulement les notices avec médias», le passage ignore les notices dont aucun fichier ne peut être envoyé à l’IA, par exemple des fichiers Word ou des fichiers manquants ; elles ne coûtent rien et apparaissent sur la page comme «ignorées». Si le fournisseur est surchargé, le passage redemande la même notice après une pause, jusqu’à trois fois.
 
 Le passage n'écrit rien dans les notices. Titres, champs de texte (par exemple portée et contenu), datation, langues, mots-clés, acteurs et lieux arrivent comme propositions dans la liste de contrôle, avec la source «KI-Erschliessung» ; on peut les y filtrer par source et par fonds et les confirmer une à une ou ensemble. Si une entrée existe déjà dans Anton, elle est présélectionnée. Le passage ne propose pas de substituts comme «Unbekannt» ou «Nicht angegeben», et une datation seulement là où la notice n’en a pas encore pour cet événement. Il écrit «ß» comme «ss» ; chaque archive peut le désactiver avec le paramètre `ai_swiss_spelling`.
 
