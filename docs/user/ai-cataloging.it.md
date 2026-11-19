@@ -24,6 +24,18 @@ generazione presuppone il ruolo `editor`.
 
 Ogni account ha dei limiti: al massimo 30 proposte all'ora e al massimo un quarto del budget mensile al giorno. L'esercizio fissa i valori per ogni archivio. Le registrazioni audio e l'audio dei video vengono trascritti in background; finché ciò avviene, la proposta arriva senza di essi, con un avviso. Richiedendo più tardi, la trascrizione è inclusa.
 
+## Per tutto ciò che sta sotto un'unità di descrizione
+
+Per un versamento con molti pezzi c'è il **ciclo IA**: nella vista di dettaglio di un'unità di descrizione, il pulsante **Ciclo IA** porta a una pagina in cui si scelgono il profilo, l'ambito (solo schede con media, o tutte) e il limite di chiamate. Sotto si vede quanto costerà probabilmente il ciclo, fatturato in base al consumo, e quanto resta del budget mensile e della propria quota giornaliera. Per avviarlo occorre il ruolo `editor`.
+
+Il ciclo lavora in background, scheda per scheda, con le stesse regole del pulsante nel modulo: le note interne non vanno al fornitore, né alcun dato delle schede bloccate. Si ferma quando è raggiunto il limite o il budget e può essere annullato; **Riprendi** continua con la scheda successiva.
+
+Con l’ambito «solo schede con media», il ciclo salta le schede di cui nessun file può essere inviato all’IA, per esempio file Word o file mancanti; non costano nulla e compaiono nella pagina come «saltate».
+
+Il ciclo non scrive nulla nelle schede. Titoli, campi di testo (ad esempio portata e contenuto), datazione, lingue, parole chiave, attori e luoghi finiscono come proposte nella lista di verifica, con la fonte «KI-Erschliessung»; lì si possono filtrare per fonte e fondo e confermare una per una o insieme. Se una voce esiste già in Anton, è preselezionata. Il ciclo non propone segnaposto come «Unbekannt» o «Nicht angegeben», e una datazione solo dove la scheda non ne ha ancora una per quell’evento. Scrive «ß» come «ss»; ogni archivio può disattivarlo con l’impostazione `ai_swiss_spelling`.
+
+Per titolo, campo di testo e datazione, accanto alla proposta la lista mostra ciò che la scheda contiene finora. Se il campo è vuoto, la conferma riprende la proposta. Se contiene già un valore, occorre scegliere nella riga: **Sostituire il valore attuale** oppure, per un campo di testo, **Aggiungere al testo attuale**. Senza questa scelta il valore attuale resta, anche confermando più proposte insieme.
+
 ## Che cosa Anton riprende da sé — e che cosa no
 
 Le impostazioni predefinite sono volutamente disuguali:

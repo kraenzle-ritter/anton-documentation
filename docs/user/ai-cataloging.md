@@ -24,6 +24,18 @@ Erzeugen setzt die Rolle `editor` voraus.
 
 Je Konto gelten Grenzen: höchstens 30 Vorschläge pro Stunde und höchstens ein Viertel des Monatsbudgets pro Tag. Die Werte legt der Betrieb je Archiv fest. Tonaufnahmen und der Ton von Videos werden im Hintergrund transkribiert; solange das läuft, kommt der Vorschlag ohne sie, mit einem Hinweis. Später erneut anfragen, dann ist die Transkription dabei.
 
+## Für alles unterhalb einer Verzeichnungseinheit
+
+Für eine Ablieferung mit vielen Einzelstücken gibt es den **KI-Lauf**: In der Detailansicht einer Verzeichnungseinheit führt die Taste **KI-Lauf** zu einer Seite, auf der man Profil, Umfang (nur Datensätze mit Medien oder alle) und die Obergrenze an Aufrufen wählt. Darunter steht, was der Lauf voraussichtlich kostet, nach Verbrauch verrechnet, und was vom Monatsbudget und vom eigenen Tagesanteil noch übrig ist. Das Starten setzt die Rolle `editor` voraus.
+
+Der Lauf arbeitet im Hintergrund Datensatz für Datensatz, mit denselben Regeln wie die Taste im Formular: Interne Notizen gehen nicht an den Anbieter, von gesperrten Datensätzen keine Angaben. Er hält an, wenn die Obergrenze oder das Budget erreicht ist, und lässt sich abbrechen; **Fortsetzen** macht beim nächsten Datensatz weiter.
+
+Beim Umfang «nur Datensätze mit Medien» überspringt der Lauf Datensätze, von denen keine Datei an die KI gehen kann, etwa Word-Dateien oder Dateien, die fehlen; sie kosten nichts und stehen auf der Seite als «übersprungen».
+
+In die Datensätze schreibt der Lauf nichts. Titel, Textfelder (etwa «Form und Inhalt»), Datierung, Sprachen, Schlagwörter, Akteur:innen und Orte landen als Vorschläge in der Prüfliste (Daten-Import › Prüfliste für Vorschläge) mit der Quelle «KI-Erschliessung»; dort lassen sie sich nach Quelle und Bestand filtern und einzeln oder gesammelt bestätigen. Ist ein Eintrag schon in Anton vorhanden, ist er vorausgewählt. Platzhalter wie «Unbekannt» oder «Nicht angegeben» schlägt der Lauf nicht vor, und eine Datierung nur, wo der Datensatz für dieses Ereignis noch keine hat. «ß» schreibt er als «ss»; das lässt sich je Archiv mit der Einstellung `ai_swiss_spelling` abschalten.
+
+Bei Titel, Textfeld und Datierung steht neben dem Vorschlag, was der Datensatz bisher enthält. Ist das Feld leer, übernimmt Bestätigen den Vorschlag. Steht schon etwas darin, muss man in der Zeile wählen: **Bisherigen Wert ersetzen** oder, bei einem Textfeld, **An bisherigen Text anhängen**. Ohne diese Wahl bleibt der bisherige Wert stehen, auch beim gesammelten Bestätigen.
+
 ## Was Anton von sich aus übernimmt — und was nicht
 
 Die Voreinstellungen sind bewusst ungleich:

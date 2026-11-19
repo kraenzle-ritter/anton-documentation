@@ -24,6 +24,18 @@ requires the `editor` role.
 
 Each account has limits: at most 30 suggestions per hour and at most a quarter of the monthly budget per day. Operations sets the values per archive. Audio recordings and the sound of videos are transcribed in the background; while that runs, the suggestion comes without them, with a notice. Ask again later and the transcript is included.
 
+## For everything below a unit of description
+
+For a delivery with many items there is the **AI run**: on the detail view of a unit of description, the **AI run** button leads to a page where you choose the profile, the scope (only records with media, or all) and the limit of calls. Below it you see what the run will probably cost, charged by use, and what is left of the monthly budget and of your share of the day. Starting a run requires the `editor` role.
+
+The run works in the background, record by record, with the same rules as the button in the form: internal notes do not go to the provider, nor any details of restricted records. It stops when the limit or the budget is reached and can be cancelled; **Resume** goes on with the next record.
+
+With the scope «records with media only», the run skips records none of whose files can go to the AI, such as Word files or missing files; they cost nothing and are listed on the page as «skipped».
+
+The run writes nothing to the records. Titles, text fields (such as scope and content), dating, languages, keywords, actors and places go to the review list as suggestions with the source «KI-Erschliessung»; there they can be filtered by source and fonds and confirmed one by one or together. Where an entry already exists in Anton, it is preselected. The run proposes no placeholders such as «Unbekannt» or «Nicht angegeben», and a dating only where the record has none for that event. It writes «ß» as «ss»; an archive can turn that off with the setting `ai_swiss_spelling`.
+
+For title, text field and dating, the list shows what the record holds so far beside the suggestion. Where the field is empty, confirming takes the suggestion over. Where it has a value, you choose in the row: **Replace the current value** or, for a text field, **Append to the current text**. Without that choice the current value stays, also when confirming several together.
+
 ## What Anton adopts on its own — and what it does not
 
 The defaults are deliberately unequal:

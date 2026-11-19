@@ -23,6 +23,8 @@ Three switches all have to be set for AI-assisted cataloguing to be available:
 Without these three steps: no button, no dashboard links, no risk of provider
 errors. Tenants without an AI contract notice nothing.
 
+The setting `ai_swiss_spelling` (on by default) makes an AI run write «ß» as «ss» in every proposal for the review list. Where an archive wants German orthography, turn it off.
+
 ## The operator workflow
 
 When editing a record, a button **"🤖 Generate AI suggestions"** appears at the
