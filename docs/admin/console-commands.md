@@ -564,7 +564,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (20)
+### media: (22)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -575,8 +575,10 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
 | `media:delete-master` | Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed |
+| `media:dimag-deliveries` | List every Inge medium with its delivery for the DIMAG restructure (#853); read-only. |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
+| `media:register-dimag-versions` | Register migrated representations that appeared in DIMAG at their media (#853). |
 | `media:register-originals` | Register the copies in the media folders' original/ as kept versions (#565). |
 | `media:rename` | Rename media to original name or vice versa |
 | `media:repair` | Replace media that failed the integrity check with a verified copy from the local backup (#590) |
