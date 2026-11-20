@@ -21,7 +21,7 @@ Rien n'est écrit dans la base de données avant le bouton d'enregistrement habi
 
 Chaque compte a des limites : 30 propositions par heure au plus et au plus un quart du budget mensuel par jour. L'exploitation fixe ces valeurs pour chaque archive. Les enregistrements sonores et le son des vidéos sont transcrits en arrière-plan ; tant que cela dure, la proposition est faite sans eux, avec un avis. Redemander plus tard, et la transcription est incluse.
 
-## Pour tout ce qui se trouve sous une unité de description
+## Pour tout ce qui se trouve sous une unité de description {#fur-alles-unterhalb-einer-verzeichnungseinheit}
 
 Pour un versement comptant de nombreuses pièces, il existe le **passage IA** : dans la vue détaillée d'une unité de description, le bouton **Passage IA** mène à une page où l'on choisit le profil, le périmètre (uniquement les notices avec médias, ou toutes) et la limite d'appels. En dessous figurent le coût probable, facturé selon la consommation, et ce qui reste du budget mensuel et de sa propre part du jour. Le lancement requiert le rôle `editor`.
 

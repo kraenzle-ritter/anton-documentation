@@ -19,7 +19,7 @@ Nulla viene scritto nella banca dati prima del normale pulsante di salvataggio: 
 
 Ogni account ha dei limiti: al massimo 30 proposte all'ora e al massimo un quarto del budget mensile al giorno. L'esercizio fissa i valori per ogni archivio. Le registrazioni audio e l'audio dei video vengono trascritti in background; finché ciò avviene, la proposta arriva senza di essi, con un avviso. Richiedendo più tardi, la trascrizione è inclusa.
 
-## Per tutto ciò che sta sotto un'unità di descrizione
+## Per tutto ciò che sta sotto un'unità di descrizione {#fur-alles-unterhalb-einer-verzeichnungseinheit}
 
 Per un versamento con molti pezzi c'è il **ciclo IA**: nella vista di dettaglio di un'unità di descrizione, il pulsante **Ciclo IA** porta a una pagina in cui si scelgono il profilo, l'ambito (solo schede con media, o tutte) e il limite di chiamate. Sotto si vede quanto costerà probabilmente il ciclo, fatturato in base al consumo, e quanto resta del budget mensile e della propria quota giornaliera. Per avviarlo occorre il ruolo `editor`.
 
