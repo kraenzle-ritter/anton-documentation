@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -1691,6 +1691,17 @@
     <span class="md-ellipsis">
       
         Vorschläge erzeugen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Für alles unterhalb einer Verzeichnungseinheit
       
     </span>
   </a>
@@ -4592,6 +4603,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Für alles unterhalb einer Verzeichnungseinheit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#was-anton-von-sich-aus-ubernimmt-und-was-nicht" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4630,7 +4652,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Sprache:</span><span class="page-meta__lang page-meta__lang--current" lang="de">Deutsch</span><a class="page-meta__lang" href="/en/user/ai-cataloging/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/ai-cataloging/" hreflang="fr" lang="fr">Français</a><a class="page-meta__lang" href="/it/user/ai-cataloging/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-19</span>
     </div>
   
   
@@ -4662,6 +4684,12 @@ Feldern, je mit <strong>Übernehmen</strong>, <strong>Anhängen</strong> und <st
 landen im Formular, gespeichert wird erst mit der normalen Speichern-Taste. Das
 Erzeugen setzt die Rolle <code>editor</code> voraus.</p>
 <p>Je Konto gelten Grenzen: höchstens 30 Vorschläge pro Stunde und höchstens ein Viertel des Monatsbudgets pro Tag. Die Werte legt der Betrieb je Archiv fest. Tonaufnahmen und der Ton von Videos werden im Hintergrund transkribiert; solange das läuft, kommt der Vorschlag ohne sie, mit einem Hinweis. Später erneut anfragen, dann ist die Transkription dabei.</p>
+<h2 id="fur-alles-unterhalb-einer-verzeichnungseinheit">Für alles unterhalb einer Verzeichnungseinheit<a class="headerlink" href="#fur-alles-unterhalb-einer-verzeichnungseinheit" title="Permanent link">&para;</a></h2>
+<p>Für eine Ablieferung mit vielen Einzelstücken gibt es den <strong>KI-Lauf</strong>: In der Detailansicht einer Verzeichnungseinheit führt die Taste <strong>KI-Lauf</strong> zu einer Seite, auf der man Profil, Umfang (nur Datensätze mit Medien oder alle) und die Obergrenze an Aufrufen wählt. Darunter steht, was der Lauf voraussichtlich kostet, nach Verbrauch verrechnet, und was vom Monatsbudget und vom eigenen Tagesanteil noch übrig ist. Das Starten setzt die Rolle <code>editor</code> voraus.</p>
+<p>Der Lauf arbeitet im Hintergrund Datensatz für Datensatz, mit denselben Regeln wie die Taste im Formular: Interne Notizen gehen nicht an den Anbieter, von gesperrten Datensätzen keine Angaben. Er hält an, wenn die Obergrenze oder das Budget erreicht ist, und lässt sich abbrechen; <strong>Fortsetzen</strong> macht beim nächsten Datensatz weiter.</p>
+<p>Beim Umfang «nur Datensätze mit Medien» überspringt der Lauf Datensätze, von denen keine Datei an die KI gehen kann, etwa Word-Dateien oder Dateien, die fehlen; sie kosten nichts und stehen auf der Seite als «übersprungen». Ist der Anbieter überlastet, fragt der Lauf denselben Datensatz nach einer Pause bis zu dreimal noch einmal an.</p>
+<p>In die Datensätze schreibt der Lauf nichts. Titel, Textfelder (etwa «Form und Inhalt»), Datierung, Sprachen, Schlagwörter, Akteur:innen und Orte landen als Vorschläge in der Prüfliste (Daten-Import › Prüfliste für Vorschläge) mit der Quelle «KI-Erschliessung»; dort lassen sie sich nach Quelle und Bestand filtern und einzeln oder gesammelt bestätigen. Ist ein Eintrag schon in Anton vorhanden, ist er vorausgewählt. Platzhalter wie «Unbekannt» oder «Nicht angegeben» schlägt der Lauf nicht vor, und eine Datierung nur, wo der Datensatz für dieses Ereignis noch keine hat. «ß» schreibt er als «ss»; das lässt sich je Archiv mit der Einstellung <code>ai_swiss_spelling</code> abschalten.</p>
+<p>Bei Titel, Textfeld und Datierung steht neben dem Vorschlag, was der Datensatz bisher enthält. Ist das Feld leer, übernimmt Bestätigen den Vorschlag. Steht schon etwas darin, muss man in der Zeile wählen: <strong>Bisherigen Wert ersetzen</strong> oder, bei einem Textfeld, <strong>An bisherigen Text anhängen</strong>. Ohne diese Wahl bleibt der bisherige Wert stehen, auch beim gesammelten Bestätigen.</p>
 <h2 id="was-anton-von-sich-aus-ubernimmt-und-was-nicht">Was Anton von sich aus übernimmt — und was nicht<a class="headerlink" href="#was-anton-von-sich-aus-ubernimmt-und-was-nicht" title="Permanent link">&para;</a></h2>
 <p>Die Voreinstellungen sind bewusst ungleich:</p>
 <table>

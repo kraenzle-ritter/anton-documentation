@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -4696,7 +4696,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/protection-periods/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-10-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-19</span>
     </div>
   
   
@@ -4784,10 +4784,8 @@ creation dates rather than leaving the material closed.</p>
 closure period</strong> (30 years) and <strong>extended closure period</strong> (70 years).
 Types can be renamed, added and changed in duration.</p>
 <div class="admonition important">
-<p class="admonition-title">Reserved for superusers</p>
-<p>The editor is located at <code>/admin/protection-periods</code> and is reserved for
-superusers — it cannot be reached with the <code>admin</code> role. With Anton as a
-Service, k &amp; r is responsible for it.</p>
+<p class="admonition-title">Admins with the capability «Change protection periods»</p>
+<p>The editor is located at <code>/admin/protection-periods</code> and on the admin page under «Configuration». Admins holding the capability «Change protection periods» open it (see <a href="../users/">Users</a>); editors with the same capability change the closure period of single records only. A changed duration applies to every record of that type: Anton recalculates «Open from», and a shorter period releases media whose period has thereby run out.</p>
 </div>
 <p>For archives without permanent closure, «closed permanently» is optional; it
 does not have to be configured.</p>

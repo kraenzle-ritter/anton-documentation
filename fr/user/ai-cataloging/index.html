@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../../../images/favicon-anton.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -1698,6 +1698,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pour tout ce qui se trouve sous une unité de description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2363,6 +2374,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pour tout ce qui se trouve sous une unité de description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2401,7 +2423,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/ai-cataloging/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/ai-cataloging/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-10-25</span>
+        <span class="page-meta__date">Last updated: 2026-11-19</span>
     </div>
   
   
@@ -2436,6 +2458,12 @@ des champs concernés, chacune assortie de <strong>reprendre</strong>, <strong>a
 arrivent dans le formulaire et ne sont enregistrées qu'avec le bouton
 d'enregistrement habituel. La génération suppose le rôle <code>editor</code>.</p>
 <p>Chaque compte a des limites : 30 propositions par heure au plus et au plus un quart du budget mensuel par jour. L'exploitation fixe ces valeurs pour chaque archive. Les enregistrements sonores et le son des vidéos sont transcrits en arrière-plan ; tant que cela dure, la proposition est faite sans eux, avec un avis. Redemander plus tard, et la transcription est incluse.</p>
+<h2 id="pour-tout-ce-qui-se-trouve-sous-une-unite-de-description">Pour tout ce qui se trouve sous une unité de description<a class="headerlink" href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" title="Permanent link">&para;</a></h2>
+<p>Pour un versement comptant de nombreuses pièces, il existe le <strong>passage IA</strong> : dans la vue détaillée d'une unité de description, le bouton <strong>Passage IA</strong> mène à une page où l'on choisit le profil, le périmètre (uniquement les notices avec médias, ou toutes) et la limite d'appels. En dessous figurent le coût probable, facturé selon la consommation, et ce qui reste du budget mensuel et de sa propre part du jour. Le lancement requiert le rôle <code>editor</code>.</p>
+<p>Le passage travaille en arrière-plan, notice par notice, selon les mêmes règles que le bouton du formulaire : les notes internes ne vont pas au fournisseur, ni aucune information des notices verrouillées. Il s'arrête lorsque la limite ou le budget est atteint et peut être annulé ; <strong>Reprendre</strong> continue avec la notice suivante.</p>
+<p>Avec l’étendue «seulement les notices avec médias», le passage ignore les notices dont aucun fichier ne peut être envoyé à l’IA, par exemple des fichiers Word ou des fichiers manquants ; elles ne coûtent rien et apparaissent sur la page comme «ignorées». Si le fournisseur est surchargé, le passage redemande la même notice après une pause, jusqu’à trois fois.</p>
+<p>Le passage n'écrit rien dans les notices. Titres, champs de texte (par exemple portée et contenu), datation, langues, mots-clés, acteurs et lieux arrivent comme propositions dans la liste de contrôle, avec la source «KI-Erschliessung» ; on peut les y filtrer par source et par fonds et les confirmer une à une ou ensemble. Si une entrée existe déjà dans Anton, elle est présélectionnée. Le passage ne propose pas de substituts comme «Unbekannt» ou «Nicht angegeben», et une datation seulement là où la notice n’en a pas encore pour cet événement. Il écrit «ß» comme «ss» ; chaque archive peut le désactiver avec le paramètre <code>ai_swiss_spelling</code>.</p>
+<p>Pour le titre, un champ de texte et la datation, la liste affiche à côté de la proposition ce que contient la notice jusqu'ici. Si le champ est vide, la confirmation reprend la proposition. S'il contient déjà une valeur, il faut choisir dans la ligne : <strong>Remplacer la valeur actuelle</strong> ou, pour un champ de texte, <strong>Ajouter au texte actuel</strong>. Sans ce choix, la valeur actuelle reste, même lors d'une confirmation groupée.</p>
 <h2 id="ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas">Ce qu'Anton reprend de lui-même — et ce qu'il ne reprend pas<a class="headerlink" href="#ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas" title="Permanent link">&para;</a></h2>
 <p>Les valeurs par défaut sont délibérément inégales :</p>
 <table>
