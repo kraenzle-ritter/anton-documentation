@@ -1698,7 +1698,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#per-tutto-cio-che-sta-sotto-ununita-di-descrizione" class="md-nav__link">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
     <span class="md-ellipsis">
       
         Per tutto ciò che sta sotto un'unità di descrizione
@@ -2374,7 +2374,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#per-tutto-cio-che-sta-sotto-ununita-di-descrizione" class="md-nav__link">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
     <span class="md-ellipsis">
       
         Per tutto ciò che sta sotto un'unità di descrizione
@@ -2423,7 +2423,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/user/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/ai-cataloging/" hreflang="en" lang="en">English</a><a class="page-meta__lang" href="/fr/user/ai-cataloging/" hreflang="fr" lang="fr">Français</a><span class="page-meta__lang page-meta__lang--current" lang="it">Italiano</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-20</span>
     </div>
   
   
@@ -2447,20 +2447,16 @@ k &amp; r — e l'interruttore nell'archivio stesso. Inoltre deve essere imposta
 un limite di costo; se manca, tutte le richieste vengono interrotte.</p>
 </div>
 <h2 id="generare-proposte">Generare proposte<a class="headerlink" href="#generare-proposte" title="Permanent link">&para;</a></h2>
-<p>Nella maschera di modifica si trova il blocco <strong>Descrizione IA</strong>; il pulsante
-omonimo in alto vi conduce. Un clic su <strong>genera proposte IA</strong> invia la richiesta;
-le proposte compaiono quindi come etichette accanto ai campi interessati,
-ciascuna con <strong>applica</strong>, <strong>aggiungi</strong> e <strong>ignora</strong>.</p>
-<p>Nulla viene scritto automaticamente nella banca dati — le proposte finiscono nel
-formulario e vengono salvate solo con il normale pulsante di salvataggio. La
-generazione presuppone il ruolo <code>editor</code>.</p>
+<p>Nella maschera di modifica si trova il blocco <strong>Descrizione IA</strong>; il pulsante omonimo in alto vi conduce. Un clic su <strong>genera proposte IA</strong> invia la richiesta. Le proposte sono quindi già nei campi, esattamente come nella verifica dalla lista di verifica (vedi sotto): il modulo mostra solo i campi con proposte, ogni proposta ha <strong>Applica</strong> e <strong>Ignorare</strong>, e un campo che ha già un valore ha <strong>Sostituire</strong>, <strong>Aggiungere in coda</strong> o <strong>Mantenere quello attuale</strong>, con il valore attuale accanto.</p>
+<p>Nulla viene scritto nella banca dati prima del normale pulsante di salvataggio: ciò che il modulo contiene allora viene ripreso, ciò che è stato ignorato viene scartato. Le proposte sono anche nella lista di verifica; ciò che al salvataggio resta aperto, per esempio perché va scelta una voce, vi attende. Una proposta già decisa per la scheda non viene rifatta. La generazione presuppone il ruolo <code>editor</code>.</p>
 <p>Ogni account ha dei limiti: al massimo 30 proposte all'ora e al massimo un quarto del budget mensile al giorno. L'esercizio fissa i valori per ogni archivio. Le registrazioni audio e l'audio dei video vengono trascritti in background; finché ciò avviene, la proposta arriva senza di essi, con un avviso. Richiedendo più tardi, la trascrizione è inclusa.</p>
-<h2 id="per-tutto-cio-che-sta-sotto-ununita-di-descrizione">Per tutto ciò che sta sotto un'unità di descrizione<a class="headerlink" href="#per-tutto-cio-che-sta-sotto-ununita-di-descrizione" title="Permanent link">&para;</a></h2>
+<h2 id="fur-alles-unterhalb-einer-verzeichnungseinheit">Per tutto ciò che sta sotto un'unità di descrizione<a class="headerlink" href="#fur-alles-unterhalb-einer-verzeichnungseinheit" title="Permanent link">&para;</a></h2>
 <p>Per un versamento con molti pezzi c'è il <strong>ciclo IA</strong>: nella vista di dettaglio di un'unità di descrizione, il pulsante <strong>Ciclo IA</strong> porta a una pagina in cui si scelgono il profilo, l'ambito (solo schede con media, o tutte) e il limite di chiamate. Sotto si vede quanto costerà probabilmente il ciclo, fatturato in base al consumo, e quanto resta del budget mensile e della propria quota giornaliera. Per avviarlo occorre il ruolo <code>editor</code>.</p>
 <p>Il ciclo lavora in background, scheda per scheda, con le stesse regole del pulsante nel modulo: le note interne non vanno al fornitore, né alcun dato delle schede bloccate. Si ferma quando è raggiunto il limite o il budget e può essere annullato; <strong>Riprendi</strong> continua con la scheda successiva.</p>
 <p>Con l’ambito «solo schede con media», il ciclo salta le schede di cui nessun file può essere inviato all’IA, per esempio file Word o file mancanti; non costano nulla e compaiono nella pagina come «saltate». Se il fornitore è sovraccarico, il ciclo richiede la stessa scheda dopo una pausa, fino a tre volte.</p>
 <p>Il ciclo non scrive nulla nelle schede. Titoli, campi di testo (ad esempio portata e contenuto), datazione, lingue, parole chiave, attori e luoghi finiscono come proposte nella lista di verifica, con la fonte «KI-Erschliessung»; lì si possono filtrare per fonte e fondo e confermare una per una o insieme. Se una voce esiste già in Anton, è preselezionata. Il ciclo non propone segnaposto come «Unbekannt» o «Nicht angegeben», e una datazione solo dove la scheda non ne ha ancora una per quell’evento. Scrive «ß» come «ss»; ogni archivio può disattivarlo con l’impostazione <code>ai_swiss_spelling</code>.</p>
 <p>Per titolo, campo di testo e datazione, accanto alla proposta la lista mostra ciò che la scheda contiene finora. Se il campo è vuoto, la conferma riprende la proposta. Se contiene già un valore, occorre scegliere nella riga: <strong>Sostituire il valore attuale</strong> oppure, per un campo di testo, <strong>Aggiungere al testo attuale</strong>. Senza questa scelta il valore attuale resta, anche confermando più proposte insieme.</p>
+<p>Poiché un passaggio fa più proposte per scheda, la lista di controllo mostra quelle con la fonte «KI-Erschliessung» <strong>per scheda</strong>: una riga per scheda con il numero di proposte aperte per tipo, nell'ordine dell'albero. In alto si può passare a <strong>per proposta</strong>. <strong>Verificare le proposte</strong> apre il modulo di modifica della scheda; la riga di paginazione in alto scorre allora la lista di verifica, e <strong>Lista di verifica</strong> riporta indietro. Il modulo mostra solo i campi con proposte e, sotto il titolo, le miniature delle copie digitali, che si aprono con un clic (<strong>Mostrare tutti i campi</strong> fa ricomparire gli altri campi). Un campo di parole chiave, attori o luoghi che manca nel modulo dell'archivio viene aggiunto in fondo se una tale voce è proposta, e le proposte sono già nei campi: il titolo e i campi di testo sono compilati e si possono modificare prima di salvare; se il campo ha già un valore, si sceglie <strong>Sostituire</strong>, <strong>Aggiungere in coda</strong> (campi di testo) o <strong>Mantenere quello attuale</strong>; il valore attuale è indicato accanto. Le lingue proposte sono spuntate; una parola chiave, un attore o un luogo esistente è nel suo campo come altrove. Ciò che viene creato o deciso solo al salvataggio compare accanto al suo campo, con l'indicazione <strong>esistente</strong> o <strong>verrà creato</strong>: nuove voci, un attore o un luogo per un evento (per esempio per la creazione, accanto alla sua datazione) e una datazione. Se esistono più voci di nome simile, si sceglie quella intesa. Come per la catalogazione con l'IA nel modulo, ogni proposta ha <strong>Applica</strong> e <strong>Ignorare</strong>; all'inizio è scelto <strong>Applica</strong>. <strong>Salvare e continuare</strong> salva la scheda come ogni modifica: ciò che la scheda contiene dopo viene ripreso, ciò che è stato ignorato viene scartato, e si apre la scheda successiva. Se resta una voce da scegliere, la scheda resta aperta e Anton dice che cosa manca. Chi modifica un testo proposto prima di salvare mantiene la propria versione; Anton conserva la proposta originale. <strong>Scartare tutto e continuare</strong> scarta tutte le proposte senza modificare la scheda, <strong>Saltare</strong> lascia la scheda aperta.</p>
 <h2 id="che-cosa-anton-riprende-da-se-e-che-cosa-no">Che cosa Anton riprende da sé — e che cosa no<a class="headerlink" href="#che-cosa-anton-riprende-da-se-e-che-cosa-no" title="Permanent link">&para;</a></h2>
 <p>Le impostazioni predefinite sono volutamente disuguali:</p>
 <table>

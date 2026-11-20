@@ -1698,7 +1698,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" class="md-nav__link">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
     <span class="md-ellipsis">
       
         Pour tout ce qui se trouve sous une unité de description
@@ -2374,7 +2374,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" class="md-nav__link">
+  <a href="#fur-alles-unterhalb-einer-verzeichnungseinheit" class="md-nav__link">
     <span class="md-ellipsis">
       
         Pour tout ce qui se trouve sous une unité de description
@@ -2423,7 +2423,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/user/ai-cataloging/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/user/ai-cataloging/" hreflang="en" lang="en">English</a><span class="page-meta__lang page-meta__lang--current" lang="fr">Français</span><a class="page-meta__lang" href="/it/user/ai-cataloging/" hreflang="it" lang="it">Italiano</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-20</span>
     </div>
   
   
@@ -2449,21 +2449,16 @@ doit en outre être enregistré ; s'il manque, toutes les requêtes sont
 interrompues.</p>
 </div>
 <h2 id="generer-des-propositions">Générer des propositions<a class="headerlink" href="#generer-des-propositions" title="Permanent link">&para;</a></h2>
-<p>Le masque de saisie comporte le bloc <strong>Description par IA</strong> ; le bouton du même
-nom en haut y conduit. Un clic sur <strong>générer des propositions IA</strong> envoie la
-requête ; les propositions apparaissent ensuite sous forme de pastilles à côté
-des champs concernés, chacune assortie de <strong>reprendre</strong>, <strong>ajouter</strong> et
-<strong>ignorer</strong>.</p>
-<p>Rien n'est écrit automatiquement dans la base de données — les propositions
-arrivent dans le formulaire et ne sont enregistrées qu'avec le bouton
-d'enregistrement habituel. La génération suppose le rôle <code>editor</code>.</p>
+<p>Le masque de saisie comporte le bloc <strong>Description par IA</strong> ; le bouton du même nom en haut y conduit. Un clic sur <strong>générer des propositions IA</strong> envoie la requête. Les propositions figurent ensuite déjà dans les champs, exactement comme lors de la vérification depuis la liste de contrôle (voir plus bas) : le formulaire n'affiche que les champs qui ont des propositions, chaque proposition a <strong>Reprendre</strong> et <strong>Ignorer</strong>, et un champ qui a déjà une valeur a <strong>Remplacer</strong>, <strong>Ajouter à la suite</strong> ou <strong>Garder la valeur actuelle</strong>, avec la valeur actuelle à côté.</p>
+<p>Rien n'est écrit dans la base de données avant le bouton d'enregistrement habituel : ce qui figure alors dans le formulaire est repris, ce qui a été ignoré est rejeté. Les propositions figurent aussi dans la liste de contrôle ; ce qui reste ouvert à l'enregistrement, par exemple parce qu'une entrée doit être choisie, y attend. Une proposition déjà décidée pour la notice n'est pas refaite. La génération suppose le rôle <code>editor</code>.</p>
 <p>Chaque compte a des limites : 30 propositions par heure au plus et au plus un quart du budget mensuel par jour. L'exploitation fixe ces valeurs pour chaque archive. Les enregistrements sonores et le son des vidéos sont transcrits en arrière-plan ; tant que cela dure, la proposition est faite sans eux, avec un avis. Redemander plus tard, et la transcription est incluse.</p>
-<h2 id="pour-tout-ce-qui-se-trouve-sous-une-unite-de-description">Pour tout ce qui se trouve sous une unité de description<a class="headerlink" href="#pour-tout-ce-qui-se-trouve-sous-une-unite-de-description" title="Permanent link">&para;</a></h2>
+<h2 id="fur-alles-unterhalb-einer-verzeichnungseinheit">Pour tout ce qui se trouve sous une unité de description<a class="headerlink" href="#fur-alles-unterhalb-einer-verzeichnungseinheit" title="Permanent link">&para;</a></h2>
 <p>Pour un versement comptant de nombreuses pièces, il existe le <strong>passage IA</strong> : dans la vue détaillée d'une unité de description, le bouton <strong>Passage IA</strong> mène à une page où l'on choisit le profil, le périmètre (uniquement les notices avec médias, ou toutes) et la limite d'appels. En dessous figurent le coût probable, facturé selon la consommation, et ce qui reste du budget mensuel et de sa propre part du jour. Le lancement requiert le rôle <code>editor</code>.</p>
 <p>Le passage travaille en arrière-plan, notice par notice, selon les mêmes règles que le bouton du formulaire : les notes internes ne vont pas au fournisseur, ni aucune information des notices verrouillées. Il s'arrête lorsque la limite ou le budget est atteint et peut être annulé ; <strong>Reprendre</strong> continue avec la notice suivante.</p>
 <p>Avec l’étendue «seulement les notices avec médias», le passage ignore les notices dont aucun fichier ne peut être envoyé à l’IA, par exemple des fichiers Word ou des fichiers manquants ; elles ne coûtent rien et apparaissent sur la page comme «ignorées». Si le fournisseur est surchargé, le passage redemande la même notice après une pause, jusqu’à trois fois.</p>
 <p>Le passage n'écrit rien dans les notices. Titres, champs de texte (par exemple portée et contenu), datation, langues, mots-clés, acteurs et lieux arrivent comme propositions dans la liste de contrôle, avec la source «KI-Erschliessung» ; on peut les y filtrer par source et par fonds et les confirmer une à une ou ensemble. Si une entrée existe déjà dans Anton, elle est présélectionnée. Le passage ne propose pas de substituts comme «Unbekannt» ou «Nicht angegeben», et une datation seulement là où la notice n’en a pas encore pour cet événement. Il écrit «ß» comme «ss» ; chaque archive peut le désactiver avec le paramètre <code>ai_swiss_spelling</code>.</p>
 <p>Pour le titre, un champ de texte et la datation, la liste affiche à côté de la proposition ce que contient la notice jusqu'ici. Si le champ est vide, la confirmation reprend la proposition. S'il contient déjà une valeur, il faut choisir dans la ligne : <strong>Remplacer la valeur actuelle</strong> ou, pour un champ de texte, <strong>Ajouter au texte actuel</strong>. Sans ce choix, la valeur actuelle reste, même lors d'une confirmation groupée.</p>
+<p>Comme un passage fait plusieurs propositions par notice, la liste de contrôle affiche celles de la source «KI-Erschliessung» <strong>par notice</strong> : une ligne par notice avec le nombre de propositions en suspens par type, dans l'ordre de l'arborescence. En haut, on peut passer à <strong>par proposition</strong>. <strong>Vérifier les propositions</strong> ouvre le formulaire d'édition de la notice ; la ligne de pagination en haut parcourt alors la liste de contrôle, et <strong>Liste de contrôle</strong> y ramène. Le formulaire n'affiche que les champs qui ont des propositions et, sous le titre, les vignettes des numérisations, qui s'ouvrent d'un clic (<strong>Afficher tous les champs</strong> fait réapparaître les autres champs). Un champ de mots-clés, d'acteurs ou de lieux absent du formulaire de l'archive est ajouté à la fin si une telle entrée est proposée, et les propositions figurent déjà dans les champs : le titre et les champs de texte sont remplis et peuvent être modifiés avant l'enregistrement ; si le champ a déjà une valeur, on choisit <strong>Remplacer</strong>, <strong>Ajouter à la suite</strong> (champs de texte) ou <strong>Garder la valeur actuelle</strong> ; la valeur actuelle figure à côté. Les langues proposées sont cochées ; un mot-clé, un acteur ou un lieu existant figure dans son champ comme ailleurs. Ce qui n'est créé ou décidé qu'à l'enregistrement figure près de son champ, avec la mention <strong>existant</strong> ou <strong>sera créé</strong> : nouvelles entrées, un acteur ou un lieu pour un événement (par exemple pour la création, à côté de sa datation) et une datation. S'il existe plusieurs entrées de nom semblable, on choisit celle qui est visée. Comme pour l'indexation par IA dans le formulaire, chaque proposition a <strong>Reprendre</strong> et <strong>Ignorer</strong> ; au départ, <strong>Reprendre</strong> est choisi. <strong>Enregistrer et continuer</strong> enregistre la notice comme toute modification : ce qui figure ensuite dans la notice est repris, ce qui a été ignoré est rejeté, et la notice suivante s'ouvre. S'il reste une entrée à choisir, la notice reste ouverte et Anton indique ce qui manque. Si l'on modifie un texte proposé avant d'enregistrer, sa propre version est conservée ; Anton garde la proposition d'origine. <strong>Tout rejeter et continuer</strong> rejette toutes les propositions sans modifier la notice, <strong>Passer</strong> laisse la notice ouverte.</p>
 <h2 id="ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas">Ce qu'Anton reprend de lui-même — et ce qu'il ne reprend pas<a class="headerlink" href="#ce-quanton-reprend-de-lui-meme-et-ce-quil-ne-reprend-pas" title="Permanent link">&para;</a></h2>
 <p>Les valeurs par défaut sont délibérément inégales :</p>
 <table>

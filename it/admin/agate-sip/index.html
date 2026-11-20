@@ -2462,7 +2462,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Lingua:</span><a class="page-meta__lang" href="/admin/agate-sip/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/agate-sip/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-14</span>
+        <span class="page-meta__date">Last updated: 2026-11-20</span>
     </div>
   
   
@@ -2640,6 +2640,7 @@ erhalten.</p>
 <li><strong>Neu anlegen</strong> erstellt einen eigenen Eintrag, auch neben einem gleichnamigen. Er bleibt <a href="../../user/authorities/#vorlaufige-eintrage">vorläufig</a>, bestätigt ist die Verknüpfung, nicht der Eintrag.</li>
 <li><strong>Verwerfen</strong> behält den Vorschlag mit Person und Zeitpunkt. Eine spätere Lieferung schlägt ihn nicht noch einmal vor.</li>
 </ul>
+<p>Oben lässt sich die Liste <strong>je Datensatz</strong> zeigen: eine Zeile pro Datensatz mit offenen Vorschlägen, in der Reihenfolge des Baums. <strong>Vorschläge prüfen</strong> öffnet das Bearbeitungsformular des Datensatzes mit den Vorschlägen in den Feldern; Unerwünschtes ignoriert man, <strong>Speichern und weiter</strong> übernimmt, was dann am Datensatz steht, und öffnet den nächsten (siehe <a href="../../user/ai-cataloging/#fur-alles-unterhalb-einer-verzeichnungseinheit">KI-Erschliessung</a>).</p>
 <h2 id="grosses-paket-auf-dem-server">Grosses Paket auf dem Server<a class="headerlink" href="#grosses-paket-auf-dem-server" title="Permanent link">&para;</a></h2>
 <p>Die API nimmt ein Paket bis 5 GB an. Ein grösseres, <code>.zip</code> oder <code>.tar</code>, legt man per SSH auf den Server und startet den Import dort:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>sip:import-file<span class="w"> </span>--env<span class="o">=</span>&lt;slug&gt;<span class="w"> </span>/pfad/platte-7.zip<span class="w"> </span>--parent<span class="o">=</span><span class="m">123</span><span class="w"> </span>--dry-run

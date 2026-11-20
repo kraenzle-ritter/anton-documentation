@@ -4025,10 +4025,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-67" class="md-nav__link">
+  <a href="#anton-68" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (67)
+        anton: (68)
       
     </span>
   </a>
@@ -4896,10 +4896,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-67" class="md-nav__link">
+  <a href="#anton-68" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (67)
+        anton: (68)
       
     </span>
   </a>
@@ -5038,7 +5038,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-20</span>
     </div>
   
   
@@ -5480,6 +5480,8 @@ changed within the last day is not removed — it may belong to a medium being
 written. On archives with DIMAG the command asks Inge first: if DIMAG still
 holds the medium, the folder stays and the report names the AID, which then has
 to be deleted in DIMAG first. If Inge cannot be reached, the folder stays too.</p>
+<p><code>anton:bind-sheets-to-copies</code> links sheets to the copy they are bound into. It derives a sheet's identifier from its plate, sets the relation «is bound in» (<code>isBoundIn</code>) to the copy, and turns the copy's name in the text field into a link where the text already names it. It finds the copy by the sheet's inventory number (equal, or by its stem, <code>3.29-12</code> → <code>3.29</code>), otherwise by a link to the copy in the text. What cannot be matched unambiguously is reported, not guessed. It can be run again, for instance for newly catalogued sheets.</p>
+<p>With <code>--dry-run</code> it writes nothing, <code>--output=</code> saves the report as Markdown, <code>--under=</code> limits it to one subtree. While relations between records (<code>object_relations</code>) are off it writes nothing. It changes the rest of the text field's wording only with <code>--replace=OLD=NEW</code>.</p>
 <h2 id="diagnosis">Diagnosis<a class="headerlink" href="#diagnosis" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> checks an installation for consistency — the
 same checks as the interface under <a href="../doctor/">Anton Doctor</a>, only scriptable:</p>
@@ -5522,7 +5524,7 @@ up to date with every change to the commands.</p>
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-67">anton: (67)<a class="headerlink" href="#anton-67" title="Permanent link">&para;</a></h3>
+<h3 id="anton-68">anton: (68)<a class="headerlink" href="#anton-68" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5562,6 +5564,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>anton:backup</code></td>
 <td>Create a Database dump and save it to local storage.</td>
+</tr>
+<tr>
+<td><code>anton:bind-sheets-to-copies</code></td>
+<td>Derive sheet identifiers from their plate and bind sheets into their copy (isBoundIn), by inve…</td>
 </tr>
 <tr>
 <td><code>anton:check-customer-fields</code></td>

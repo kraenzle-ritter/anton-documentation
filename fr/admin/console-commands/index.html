@@ -2375,10 +2375,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anton-67" class="md-nav__link">
+  <a href="#anton-68" class="md-nav__link">
     <span class="md-ellipsis">
       
-        anton: (67)
+        anton: (68)
       
     </span>
   </a>
@@ -2517,7 +2517,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-19</span>
+        <span class="page-meta__date">Last updated: 2026-11-20</span>
     </div>
   
   
@@ -2967,6 +2967,8 @@ einem Medium gehören, das gerade entsteht. Bei Archiven mit DIMAG fragt der
 Befehl zuerst bei Inge nach: Hält DIMAG das Medium noch, bleibt der Ordner, und
 der Bericht nennt die AID. Das Medium muss dann zuerst in DIMAG gelöscht werden.
 Ist Inge nicht erreichbar, bleibt der Ordner ebenfalls.</p>
+<p><code>anton:bind-sheets-to-copies</code> verknüpft Blätter mit dem Exemplar, in das sie eingebunden sind. Er leitet den Identifikator eines Blattes aus seiner Platte ab, setzt die Beziehung «eingebunden in» (<code>isBoundIn</code>) zum Exemplar und macht den Namen des Exemplars im Textfeld zum Link, wo der Text es schon nennt. Das Exemplar findet er über die Inventarnummer des Blattes (gleich oder über ihren Stamm, <code>3.29-12</code> → <code>3.29</code>), sonst über einen Link auf das Exemplar im Text. Was sich nicht eindeutig zuordnen lässt, meldet der Befehl, statt zu raten. Er lässt sich wiederholen, etwa für neu erfasste Blätter.</p>
+<p>Mit <code>--dry-run</code> schreibt er nichts, <code>--output=</code> legt den Bericht als Markdown ab, <code>--under=</code> grenzt auf einen Teilbaum ein. Ohne eingeschaltete Objekt-Beziehungen (<code>object_relations</code>) schreibt er nichts. Den übrigen Wortlaut des Textfelds ändert er nur mit <code>--replace=ALT=NEU</code>.</p>
 <h2 id="diagnose">Diagnose<a class="headerlink" href="#diagnose" title="Permanent link">&para;</a></h2>
 <p><strong id="antondoctor"><code>anton:doctor</code></strong> prüft eine Installation auf Konsistenz — dieselben Prüfungen
 wie die Oberfläche unter <a href="../doctor/">Anton Doctor</a>, nur skriptfähig:</p>
@@ -3009,7 +3011,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </div>
 <!-- BEGIN generated command reference -->
 
-<h3 id="anton-67">anton: (67)<a class="headerlink" href="#anton-67" title="Permanent link">&para;</a></h3>
+<h3 id="anton-68">anton: (68)<a class="headerlink" href="#anton-68" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3049,6 +3051,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>anton:backup</code></td>
 <td>Create a Database dump and save it to local storage.</td>
+</tr>
+<tr>
+<td><code>anton:bind-sheets-to-copies</code></td>
+<td>Derive sheet identifiers from their plate and bind sheets into their copy (isBoundIn), by inve…</td>
 </tr>
 <tr>
 <td><code>anton:check-customer-fields</code></td>
