@@ -408,6 +408,10 @@ Befehl zuerst bei Inge nach: Hält DIMAG das Medium noch, bleibt der Ordner, und
 der Bericht nennt die AID. Das Medium muss dann zuerst in DIMAG gelöscht werden.
 Ist Inge nicht erreichbar, bleibt der Ordner ebenfalls.
 
+`anton:bind-sheets-to-copies` verknüpft Blätter mit dem Exemplar, in das sie eingebunden sind. Er leitet den Identifikator eines Blattes aus seiner Platte ab, setzt die Beziehung «eingebunden in» (`isBoundIn`) zum Exemplar und macht den Namen des Exemplars im Textfeld zum Link, wo der Text es schon nennt. Das Exemplar findet er über die Inventarnummer des Blattes (gleich oder über ihren Stamm, `3.29-12` → `3.29`), sonst über einen Link auf das Exemplar im Text. Was sich nicht eindeutig zuordnen lässt, meldet der Befehl, statt zu raten. Er lässt sich wiederholen, etwa für neu erfasste Blätter.
+
+Mit `--dry-run` schreibt er nichts, `--output=` legt den Bericht als Markdown ab, `--under=` grenzt auf einen Teilbaum ein. Ohne eingeschaltete Objekt-Beziehungen (`object_relations`) schreibt er nichts. Den übrigen Wortlaut des Textfelds ändert er nur mit `--replace=ALT=NEU`.
+
 ## Diagnose
 
 **`anton:doctor`**{#antondoctor} prüft eine Installation auf Konsistenz — dieselben Prüfungen
@@ -463,7 +467,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (67)
+### anton: (68)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -475,6 +479,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:audit-orphans` | Report (and optionally remove) rows pointing at a record that no longer exists (#512). |
 | `anton:audit-positions` | Report position collisions: records sharing the same (parent_id, position) value. |
 | `anton:backup` | Create a Database dump and save it to local storage. |
+| `anton:bind-sheets-to-copies` | Derive sheet identifiers from their plate and bind sheets into their copy (isBoundIn), by inve… |
 | `anton:check-customer-fields` | Check the current database for legacy antonfields with id > 4999 |
 | `anton:check-terms` | Check Term. |
 | `anton:condense-history` | Reduce the entries in object.history field |

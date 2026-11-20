@@ -400,6 +400,10 @@ written. On archives with DIMAG the command asks Inge first: if DIMAG still
 holds the medium, the folder stays and the report names the AID, which then has
 to be deleted in DIMAG first. If Inge cannot be reached, the folder stays too.
 
+`anton:bind-sheets-to-copies` links sheets to the copy they are bound into. It derives a sheet's identifier from its plate, sets the relation «is bound in» (`isBoundIn`) to the copy, and turns the copy's name in the text field into a link where the text already names it. It finds the copy by the sheet's inventory number (equal, or by its stem, `3.29-12` → `3.29`), otherwise by a link to the copy in the text. What cannot be matched unambiguously is reported, not guessed. It can be run again, for instance for newly catalogued sheets.
+
+With `--dry-run` it writes nothing, `--output=` saves the report as Markdown, `--under=` limits it to one subtree. While relations between records (`object_relations`) are off it writes nothing. It changes the rest of the text field's wording only with `--replace=OLD=NEW`.
+
 ## Diagnosis
 
 **`anton:doctor`**{#antondoctor} checks an installation for consistency — the
@@ -456,7 +460,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (67)
+### anton: (68)
 
 | Command | Description |
 |---|---|
@@ -468,6 +472,7 @@ up to date with every change to the commands.
 | `anton:audit-orphans` | Report (and optionally remove) rows pointing at a record that no longer exists (#512). |
 | `anton:audit-positions` | Report position collisions: records sharing the same (parent_id, position) value. |
 | `anton:backup` | Create a Database dump and save it to local storage. |
+| `anton:bind-sheets-to-copies` | Derive sheet identifiers from their plate and bind sheets into their copy (isBoundIn), by inve… |
 | `anton:check-customer-fields` | Check the current database for legacy antonfields with id > 4999 |
 | `anton:check-terms` | Check Term. |
 | `anton:condense-history` | Reduce the entries in object.history field |
