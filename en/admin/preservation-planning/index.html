@@ -3533,6 +3533,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ableitungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#formatliste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4746,6 +4757,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ableitungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#formatliste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4828,7 +4850,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/preservation-planning/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-07</span>
+        <span class="page-meta__date">Last updated: 2026-11-21</span>
     </div>
   
   
@@ -4840,7 +4862,7 @@
 
 
 <h1 id="preservation-planning">Preservation planning<a class="headerlink" href="#preservation-planning" title="Permanent link">&para;</a></h1>
-<p>Under <strong>Admin → Digital preservation → Preservation Planning</strong>, Anton shows which file formats the archive holds, how NARA rates their risk and where format validation and virus check stand. The figures are computed from the database each time the page is opened. The page is a view: it reports nothing by itself and triggers no measures; a migration runs through <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, today as lossless repacking within the same format (see <a href="../preservation/#formatentscheide">format decisions</a>).</p>
+<p>Under <strong>Admin → Digital preservation → Preservation Planning</strong>, Anton shows which file formats the archive holds, how NARA rates their risk where format validation and virus check stand and which derivatives could not be made. The figures are computed from the database each time the page is opened. The page is a view: it reports nothing by itself and triggers no measures; a migration runs through <a href="../console-commands/#mediamigrate"><code>media:migrate</code></a>, today as lossless repacking within the same format (see <a href="../preservation/#formatentscheide">format decisions</a>).</p>
 <h2 id="mime-types">MIME types<a class="headerlink" href="#mime-types" title="Permanent link">&para;</a></h2>
 <p>Number and share of media per MIME type, as a table and as a pie chart.</p>
 <h2 id="nara-categories">NARA categories<a class="headerlink" href="#nara-categories" title="Permanent link">&para;</a></h2>
@@ -4890,6 +4912,8 @@
 <p>An invalid medium that is to stay can be reviewed: select it in the list, give a reason and choose «Mark as reviewed», with the capability <strong>Digital preservation</strong>; on the command line <code>media:validate-formats --acknowledge --ids=… --reason="…"</code>, under a shared account with <code>--by="…"</code> as well. The finding stays, and nothing becomes valid by this. The medium now counts under «Invalid, reviewed», with person, date and reason, and <code>--only-failures</code> no longer reports it. A review holds for this file and this finding: if either changes, the medium counts as open again. It is in the PREMIS export and can be taken back (<code>--withdraw</code>).</p>
 <h2 id="virenpruefung">Virus check<a class="headerlink" href="#virenpruefung" title="Permanent link">&para;</a></h2>
 <p>For each master the result of its latest virus check, at ingest or with <a href="../console-commands/#mediavirus-scan"><code>media:virus-scan</code></a>: malware found, not checkable, clean scanned in parts (files over 2 GB or over the limit up to which ClamAV scans in one go), clean, never checked. Also the scanner and signatures of the latest check and the list of masters with a finding or not checkable. Files refused at ingest never became media; they are in the security log.</p>
+<h2 id="ableitungen">Derivatives<a class="headerlink" href="#ableitungen" title="Permanent link">&para;</a></h2>
+<p>Derivatives (access copy, thumbnail, poster) that could not be made three times, per medium with the derivative, the number of attempts, the last error and when, filterable by derivative. Anton no longer tries them, because something is wrong with the medium. Once the file is replaced or repaired, <code>media:conversions --ids=…</code> makes the derivative again. The monthly report names the same derivatives as a finding; see <a href="../console-commands/#mediaderivatives"><code>media:derivatives</code></a>.</p>
 <h2 id="formatliste">Format list<a class="headerlink" href="#formatliste" title="Permanent link">&para;</a></h2>
 <p>Which formats the archive prefers and accepts, by PUID, and the media whose format is not on it. Here an admin saves an own list or returns to the default; see <a href="../formatliste/">Format list</a>.</p>
 <h2 id="media-files">Media files<a class="headerlink" href="#media-files" title="Permanent link">&para;</a></h2>
@@ -4941,7 +4965,11 @@
 <tbody>
 <tr>
 <td>New file uploaded</td>
-<td>Async queue: PRONOM identification + NARA mapping</td>
+<td>Async queue: PRONOM identification + NARA mapping; derivatives (access copy, thumbnail)</td>
+</tr>
+<tr>
+<td>Nightly</td>
+<td><code>media:derivatives --backfill</code>: missing and failed derivatives (cron job)</td>
 </tr>
 <tr>
 <td>File replaced</td>

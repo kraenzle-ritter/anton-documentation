@@ -2430,10 +2430,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-22" class="md-nav__link">
+  <a href="#media-23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (22)
+        media: (23)
       
     </span>
   </a>
@@ -2517,7 +2517,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Langue:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><a class="page-meta__lang" href="/en/admin/console-commands/" hreflang="en" lang="en">English</a></span>
-        <span class="page-meta__date">Last updated: 2026-11-20</span>
+        <span class="page-meta__date">Last updated: 2026-11-21</span>
     </div>
   
   
@@ -2806,6 +2806,12 @@ Originale an DIMAG, wenn die Installation das vorsieht (siehe
 <p>Empfohlener Ablauf: Probelauf, dann <code>--write --limit=50</code>, Stichprobe in der
 Ansicht und mit <code>media:check --check-integrity --ids=…</code>, dann der Rest.
 Archive mit DIMAG oder S3 sind ausgenommen.</p>
+<p><strong id="mediaderivatives"><code>media:derivatives</code></strong> führt Buch über die Ableitungen jedes Mediums: Nutzungskopie, Vorschaubild, Posterbild. Anton rechnet sie nach der Übernahme in der Warteschlange, nie während eine Seite lädt. Fehlt eine beim Aufruf, zeigt die Seite einen Platzhalter und stellt die Ableitung in die Warteschlange; ein PDF meldet «wird vorbereitet».</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:derivatives<span class="w"> </span>--reconcile<span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>media:derivatives<span class="w"> </span>--backfill<span class="w"> </span>--limit<span class="o">=</span><span class="m">500</span><span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p><code>--reconcile</code> gleicht das Buch mit den Dateien ab: Liegt die Datei da, ist die Ableitung vorhanden, sonst fehlt sie. Einmal nach dem Update auf die Version mit diesem Befehl, danach nur, wenn Dateien von Hand verschoben wurden; <code>--ids</code> und <code>--collection</code> grenzen ein. <code>--backfill</code> stellt fehlende Ableitungen in die Warteschlange, dazu fehlgeschlagene mit weniger als drei Versuchen und solche, die seit mehr als einem Tag warten, höchstens <code>--limit</code> je Lauf; <code>--dry-run</code> zählt nur. Er läuft nächtlich als Cronjob.</p>
+<p>Was dreimal nicht erzeugt werden konnte, versucht Anton nicht mehr: Mit dem Medium stimmt etwas nicht. Solche Ableitungen stehen in der Erhaltungsplanung unter «Ableitungen», im Monatsbericht als Befund und in <code>anton:doctor --media</code>.</p>
 <h2 id="suche-typesense">Suche (Typesense)<a class="headerlink" href="#suche-typesense" title="Permanent link">&para;</a></h2>
 <p>Die <a href="../typesense/">schnelle Suche</a> hält einen eigenen Index. Bei Störungen oder
 nach grösseren Datenänderungen wird er neu aufgebaut:</p>
@@ -3374,7 +3380,7 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 </tr>
 </tbody>
 </table>
-<h3 id="media-22">media: (22)<a class="headerlink" href="#media-22" title="Permanent link">&para;</a></h3>
+<h3 id="media-23">media: (23)<a class="headerlink" href="#media-23" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3410,6 +3416,10 @@ des Codes (Englisch). Nicht enthalten sind interne Entwickler-Befehle
 <tr>
 <td><code>media:delete-master</code></td>
 <td>Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed</td>
+</tr>
+<tr>
+<td><code>media:derivatives</code></td>
+<td>Keep media_derivatives true to the disk and make up missing or failed derivatives (#857)</td>
 </tr>
 <tr>
 <td><code>media:dimag-deliveries</code></td>

@@ -4080,10 +4080,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-22" class="md-nav__link">
+  <a href="#media-23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (22)
+        media: (23)
       
     </span>
   </a>
@@ -4951,10 +4951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#media-22" class="md-nav__link">
+  <a href="#media-23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        media: (22)
+        media: (23)
       
     </span>
   </a>
@@ -5038,7 +5038,7 @@
     <div class="page-meta">
         <span class="page-meta__langs">
           <span class="page-meta__label">Language:</span><a class="page-meta__lang" href="/admin/console-commands/" hreflang="de" lang="de">Deutsch</a><span class="page-meta__lang page-meta__lang--current" lang="en">English</span></span>
-        <span class="page-meta__date">Last updated: 2026-11-20</span>
+        <span class="page-meta__date">Last updated: 2026-11-21</span>
     </div>
   
   
@@ -5322,6 +5322,12 @@ DIMAG where the installation provides for it (see
 <p>Recommended sequence: dry run, then <code>--write --limit=50</code>, spot checks in the viewer
 and with <code>media:check --check-integrity --ids=…</code>, then the rest. Archives on
 DIMAG or S3 are excluded.</p>
+<p><strong id="mediaderivatives"><code>media:derivatives</code></strong> keeps track of each medium's derivatives: access copy, thumbnail, poster. Anton makes them in the queue after ingest, never while a page loads. If one is missing when it is asked for, the page shows a placeholder and queues it; a PDF says it is being prepared.</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>media:derivatives<span class="w"> </span>--reconcile<span class="w"> </span>--env<span class="o">=</span>besenval
+php<span class="w"> </span>artisan<span class="w"> </span>media:derivatives<span class="w"> </span>--backfill<span class="w"> </span>--limit<span class="o">=</span><span class="m">500</span><span class="w"> </span>--env<span class="o">=</span>besenval
+</code></pre></div>
+<p><code>--reconcile</code> aligns the record with the files: a file on disk means the derivative is there, none means it is missing. Run it once after updating to the version with this command, later only when files were moved by hand; <code>--ids</code> and <code>--collection</code> narrow it down. <code>--backfill</code> queues missing derivatives, failed ones with fewer than three attempts and those waiting for more than a day, at most <code>--limit</code> per run; <code>--dry-run</code> only counts. It runs nightly as a cron job.</p>
+<p>What could not be made three times Anton no longer tries: something is wrong with the medium. Such derivatives are listed in preservation planning under «Derivatives», in the monthly report as a finding and in <code>anton:doctor --media</code>.</p>
 <h2 id="search-typesense">Search (Typesense)<a class="headerlink" href="#search-typesense" title="Permanent link">&para;</a></h2>
 <p>The <a href="../typesense/">instant search</a> maintains its own index. In case of problems
 or after larger data changes, it is rebuilt:</p>
@@ -5887,7 +5893,7 @@ up to date with every change to the commands.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="media-22">media: (22)<a class="headerlink" href="#media-22" title="Permanent link">&para;</a></h3>
+<h3 id="media-23">media: (23)<a class="headerlink" href="#media-23" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5923,6 +5929,10 @@ up to date with every change to the commands.</p>
 <tr>
 <td><code>media:delete-master</code></td>
 <td>Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed</td>
+</tr>
+<tr>
+<td><code>media:derivatives</code></td>
+<td>Keep media_derivatives true to the disk and make up missing or failed derivatives (#857)</td>
 </tr>
 <tr>
 <td><code>media:dimag-deliveries</code></td>
