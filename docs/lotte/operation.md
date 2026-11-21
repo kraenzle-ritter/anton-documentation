@@ -124,10 +124,10 @@ Unersetzlich ist `ocfl/`: Dort liegen die Master, ihre früheren Fassungen, die 
 
 ## Überwachung {#ueberwachung}
 
-Zwei Wege zeigen denselben Zustand, beide ohne Anton zu fragen:
+Zwei Wege zeigen den Zustand, beide ohne Anton zu fragen:
 
-- **`GET /health`** antwortet ohne Schlüssel mit JSON: Gesamtzustand (`ok`, `warning`, `critical`), der Speicherort und je Mandant Datenbank, Ordner und Warteschlange. Der HTTP-Status ist 200, solange nichts kritisch ist, sonst 503.
-- **[`lotte:health`](commands.md#lotte-health)** gibt eine Zeile für Nagios aus (`LOTTE OK - …`) und endet mit 0 (OK), 1 (WARNING) oder 2 (CRITICAL).
+- **`GET /health`** antwortet ohne Schlüssel nur mit dem Gesamtzustand, `{"status": "ok"}` (oder `warning`, `critical`). Weil die Adresse öffentlich ist, nennt sie weder Mandanten noch Pfade noch Meldungen. Der HTTP-Status ist 200, solange nichts kritisch ist, sonst 503.
+- **[`lotte:health`](commands.md#lotte-health)** prüft dasselbe auf dem Server und nennt die Einzelheiten: den Speicherort und jeden Mandanten, bei dem etwas nicht stimmt. Es gibt eine Zeile für Nagios aus (`LOTTE OK - …`) und endet mit 0 (OK), 1 (WARNING) oder 2 (CRITICAL).
 
 Kritisch ist: der Speicherort oder ein Bereich eines Mandanten ist nicht beschreibbar, eine Datenbank nicht erreichbar. Eine Warnung gibt es, wenn ein Auftrag länger als die eingestellte Zeit wartet (dann nimmt kein Worker Aufträge an) und wenn Ableitungen nach drei Fehlschlägen aufgegeben sind.
 

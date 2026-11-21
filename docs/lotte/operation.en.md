@@ -124,10 +124,10 @@ A tenant is backed up when two things are backed up:
 
 ## Monitoring {#ueberwachung}
 
-Two ways show the same state, neither asks Anton:
+Two ways show the state, neither asks Anton:
 
-- **`GET /health`** answers without a key with JSON: the overall state (`ok`, `warning`, `critical`), the storage location, and per tenant database, folder and queue. The HTTP status is 200 while nothing is critical, otherwise 503.
-- **[`lotte:health`](commands.md#lotte-health)** prints one line for Nagios (`LOTTE OK - …`) and exits with 0 (OK), 1 (WARNING) or 2 (CRITICAL).
+- **`GET /health`** answers without a key with the overall state only, `{"status": "ok"}` (or `warning`, `critical`). Since the address is public, it names no tenant, no path and no message. The HTTP status is 200 while nothing is critical, otherwise 503.
+- **[`lotte:health`](commands.md#lotte-health)** runs the same check on the server and gives the details: the storage location and every tenant where something is wrong. It prints one line for Nagios (`LOTTE OK - …`) and exits with 0 (OK), 1 (WARNING) or 2 (CRITICAL).
 
 Critical: the storage location or an area of a tenant is not writable, a database is not reachable. A warning is given when a job has waited longer than the set time (then no worker is taking jobs) and when derivatives have been given up after three failures.
 

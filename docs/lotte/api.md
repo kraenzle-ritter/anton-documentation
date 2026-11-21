@@ -548,7 +548,7 @@ Statuses for monitoring, without a key and without content.
 
 #### `GET /health` {#op-health}
 
-**Health of the service and of each customer.** The storage base, and per customer its database, its folder (`ocfl/`, `derivatives/`, `text/`, `work/` writable) and its queue (a job waiting too long, derivatives given up). Statuses only; no content, no session, `Cache-Control: no-store`. The same check as `lotte:health`.
+**Overall health of the service.** The same check as `lotte:health` — the storage base, and per customer its database, its folder (`ocfl/`, `derivatives/`, `text/`, `work/` writable) and its queue (a job waiting too long, derivatives given up) — but answered without a key, so it gives the overall status only: no customer, no path, no message. The details are given by `lotte:health` on the server. No session, `Cache-Control: no-store`.
 
 Zugang: ohne Schlüssel
 
@@ -592,20 +592,11 @@ string · The OCFL object ID, `urn:uuid:<uuid v7>`. · `^urn:uuid:[0-9a-f-]{36}$
 
 string · Werte: `ok`, `warning`, `critical`
 
-#### CheckResult {#schema-checkresult}
-
-| Feld | Typ | Beschreibung |
-|---|---|---|
-| `status` | [HealthStatus](#schema-healthstatus) |  |
-| `message` | string |  |
-
 #### Health {#schema-health}
 
-| Feld | Typ | Beschreibung |
-|---|---|---|
-| `status` | [HealthStatus](#schema-healthstatus) |  |
-| `checks` | object | Checks of the service as a whole (`storage`). |
-| `tenants` | object | One result per customer, by slug. |
+| Feld | Typ | Pflicht | Beschreibung |
+|---|---|---|---|
+| `status` | [HealthStatus](#schema-healthstatus) | ja |  |
 
 #### Whoami {#schema-whoami}
 
