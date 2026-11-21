@@ -350,6 +350,7 @@ def main() -> int:
         print("Lotte nicht erreichbar (Repo oder DDEV?) — nichts zu tun.", file=sys.stderr)
         return 2
 
+    assert text is not None  # spec was parsed from it
     stale, written = [], []
     if not COPY.is_file() or COPY.read_text() != text:
         if args.check:
