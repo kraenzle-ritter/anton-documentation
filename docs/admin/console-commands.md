@@ -313,6 +313,17 @@ Empfohlener Ablauf: Probelauf, dann `--write --limit=50`, Stichprobe in der
 Ansicht und mit `media:check --check-integrity --ids=…`, dann der Rest.
 Archive mit DIMAG oder S3 sind ausgenommen.
 
+**`media:derivatives`**{#mediaderivatives} führt Buch über die Ableitungen jedes Mediums: Nutzungskopie, Vorschaubild, Posterbild. Anton rechnet sie nach der Übernahme in der Warteschlange, nie während eine Seite lädt. Fehlt eine beim Aufruf, zeigt die Seite einen Platzhalter und stellt die Ableitung in die Warteschlange; ein PDF meldet «wird vorbereitet».
+
+```bash
+php artisan media:derivatives --reconcile --env=besenval
+php artisan media:derivatives --backfill --limit=500 --env=besenval
+```
+
+`--reconcile` gleicht das Buch mit den Dateien ab: Liegt die Datei da, ist die Ableitung vorhanden, sonst fehlt sie. Einmal nach dem Update auf die Version mit diesem Befehl, danach nur, wenn Dateien von Hand verschoben wurden; `--ids` und `--collection` grenzen ein. `--backfill` stellt fehlende Ableitungen in die Warteschlange, dazu fehlgeschlagene mit weniger als drei Versuchen und solche, die seit mehr als einem Tag warten, höchstens `--limit` je Lauf; `--dry-run` zählt nur. Er läuft nächtlich als Cronjob.
+
+Was dreimal nicht erzeugt werden konnte, versucht Anton nicht mehr: Mit dem Medium stimmt etwas nicht. Solche Ableitungen stehen in der Erhaltungsplanung unter «Ableitungen», im Monatsbericht als Befund und in `anton:doctor --media`.
+
 ## Suche (Typesense)
 
 Die [schnelle Suche](typesense.md) hält einen eigenen Index. Bei Störungen oder
@@ -569,7 +580,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (22)
+### media: (23)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -580,6 +591,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
 | `media:delete-master` | Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed |
+| `media:derivatives` | Keep media_derivatives true to the disk and make up missing or failed derivatives (#857) |
 | `media:dimag-deliveries` | List every Inge medium with its delivery for the DIMAG restructure (#853); read-only. |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |

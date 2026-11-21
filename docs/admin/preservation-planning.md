@@ -1,6 +1,6 @@
 # Preservation Planning
 
-Unter **Admin → Digitale Archivierung → Preservation Planning** zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet und wo Format- und Virenprüfung stehen. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über [`media:migrate`](console-commands.md#mediamigrate), heute als verlustfreies Umpacken im selben Format (siehe [Formatentscheide](preservation.md#formatentscheide)).
+Unter **Admin → Digitale Archivierung → Preservation Planning** zeigt Anton, welche Dateiformate im Archiv liegen, wie NARA ihr Risiko bewertet wo Format- und Virenprüfung stehen und welche Ableitungen nicht erzeugt werden konnten. Die Zahlen werden bei jedem Aufruf aus der Datenbank berechnet. Die Seite ist eine Ansicht: Sie meldet nichts von sich aus und löst keine Massnahmen aus; eine Migration läuft über [`media:migrate`](console-commands.md#mediamigrate), heute als verlustfreies Umpacken im selben Format (siehe [Formatentscheide](preservation.md#formatentscheide)).
 
 ## MIME-Typen
 
@@ -45,6 +45,10 @@ Ein ungültiges Medium, das bleiben soll, lässt sich quittieren: In der Liste a
 
 Je Master das Ergebnis seiner letzten Virenprüfung, bei der Übernahme oder mit [`media:virus-scan`](console-commands.md#mediavirus-scan): Schadsoftware gefunden, nicht prüfbar, ohne Befund in Teilen geprüft (Dateien über 2 GB oder über der Grenze, bis zu der ClamAV am Stück prüft), ohne Befund, noch nie geprüft. Dazu Scanner und Signaturen der letzten Prüfung und die Liste der Master mit Befund oder nicht prüfbar. Dateien, die schon bei der Übernahme abgewiesen wurden, sind nie Medien geworden; sie stehen im Sicherheitsprotokoll.
 
+## Ableitungen {#ableitungen}
+
+Ableitungen (Nutzungskopie, Vorschaubild, Posterbild), die dreimal nicht erzeugt werden konnten, je Medium mit Ableitung, Zahl der Versuche, letztem Fehler und Zeitpunkt, filterbar nach Ableitung. Anton versucht sie nicht mehr, weil mit dem Medium etwas nicht stimmt. Ist die Datei ersetzt oder repariert, erzeugt `media:conversions --ids=…` die Ableitung neu. Dieselben Ableitungen nennt der Monatsbericht als Befund; siehe [`media:derivatives`](console-commands.md#mediaderivatives).
+
 ## Formatliste {#formatliste}
 
 Welche Formate das Archiv bevorzugt und akzeptiert, nach PUID, und die Medien, deren Format nicht darauf steht. Hier speichert ein Admin eine eigene Liste oder kehrt zur Vorgabe zurück; siehe [Formatliste](formatliste.md).
@@ -84,7 +88,8 @@ Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-Grundlage:
 
 | Ereignis | Trigger |
 |---|---|
-| Neue Datei hochgeladen | Async-Queue: PRONOM-Identifikation + NARA-Mapping |
+| Neue Datei hochgeladen | Async-Queue: PRONOM-Identifikation + NARA-Mapping; Ableitungen (Nutzungskopie, Vorschaubild) |
+| Nachts | `media:derivatives --backfill`: fehlende und fehlgeschlagene Ableitungen (Cronjob) |
 | Datei ersetzt | Async-Queue: gleiche Pipeline neu |
 | Manueller Audit | `media:identify` CLI-Befehl |
 | Dashboard aufgerufen | Zahlen werden beim Aufruf aus der Datenbank berechnet; einen Zeitplan dafür gibt es nicht |

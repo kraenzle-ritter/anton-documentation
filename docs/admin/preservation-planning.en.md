@@ -1,6 +1,6 @@
 # Preservation planning
 
-Under **Admin → Digital preservation → Preservation Planning**, Anton shows which file formats the archive holds, how NARA rates their risk and where format validation and virus check stand. The figures are computed from the database each time the page is opened. The page is a view: it reports nothing by itself and triggers no measures; a migration runs through [`media:migrate`](console-commands.md#mediamigrate), today as lossless repacking within the same format (see [format decisions](preservation.md#formatentscheide)).
+Under **Admin → Digital preservation → Preservation Planning**, Anton shows which file formats the archive holds, how NARA rates their risk where format validation and virus check stand and which derivatives could not be made. The figures are computed from the database each time the page is opened. The page is a view: it reports nothing by itself and triggers no measures; a migration runs through [`media:migrate`](console-commands.md#mediamigrate), today as lossless repacking within the same format (see [format decisions](preservation.md#formatentscheide)).
 
 ## MIME types
 
@@ -45,6 +45,10 @@ An invalid medium that is to stay can be reviewed: select it in the list, give a
 
 For each master the result of its latest virus check, at ingest or with [`media:virus-scan`](console-commands.md#mediavirus-scan): malware found, not checkable, clean scanned in parts (files over 2 GB or over the limit up to which ClamAV scans in one go), clean, never checked. Also the scanner and signatures of the latest check and the list of masters with a finding or not checkable. Files refused at ingest never became media; they are in the security log.
 
+## Derivatives {#ableitungen}
+
+Derivatives (access copy, thumbnail, poster) that could not be made three times, per medium with the derivative, the number of attempts, the last error and when, filterable by derivative. Anton no longer tries them, because something is wrong with the medium. Once the file is replaced or repaired, `media:conversions --ids=…` makes the derivative again. The monthly report names the same derivatives as a finding; see [`media:derivatives`](console-commands.md#mediaderivatives).
+
 ## Format list {#formatliste}
 
 Which formats the archive prefers and accepts, by PUID, and the media whose format is not on it. Here an admin saves an own list or returns to the default; see [Format list](formatliste.md).
@@ -84,7 +88,8 @@ Three packages from the Anton ecosystem form the basis of preservation planning:
 
 | Event | Trigger |
 |---|---|
-| New file uploaded | Async queue: PRONOM identification + NARA mapping |
+| New file uploaded | Async queue: PRONOM identification + NARA mapping; derivatives (access copy, thumbnail) |
+| Nightly | `media:derivatives --backfill`: missing and failed derivatives (cron job) |
 | File replaced | Async queue: same pipeline again |
 | Manual audit | `media:identify` CLI command |
 | Dashboard opened | Figures are computed from the database when the page is opened; there is no schedule for it |

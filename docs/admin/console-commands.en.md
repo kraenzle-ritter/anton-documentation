@@ -308,6 +308,17 @@ Recommended sequence: dry run, then `--write --limit=50`, spot checks in the vie
 and with `media:check --check-integrity --ids=…`, then the rest. Archives on
 DIMAG or S3 are excluded.
 
+**`media:derivatives`**{#mediaderivatives} keeps track of each medium's derivatives: access copy, thumbnail, poster. Anton makes them in the queue after ingest, never while a page loads. If one is missing when it is asked for, the page shows a placeholder and queues it; a PDF says it is being prepared.
+
+```bash
+php artisan media:derivatives --reconcile --env=besenval
+php artisan media:derivatives --backfill --limit=500 --env=besenval
+```
+
+`--reconcile` aligns the record with the files: a file on disk means the derivative is there, none means it is missing. Run it once after updating to the version with this command, later only when files were moved by hand; `--ids` and `--collection` narrow it down. `--backfill` queues missing derivatives, failed ones with fewer than three attempts and those waiting for more than a day, at most `--limit` per run; `--dry-run` only counts. It runs nightly as a cron job.
+
+What could not be made three times Anton no longer tries: something is wrong with the medium. Such derivatives are listed in preservation planning under «Derivatives», in the monthly report as a finding and in `anton:doctor --media`.
+
 ## Search (Typesense)
 
 The [instant search](typesense.md) maintains its own index. In case of problems
@@ -562,7 +573,7 @@ up to date with every change to the commands.
 |---|---|
 | `matomo` | Register this tenant with Matomo (site, user, token) and store analytics_id. Needs MATOMO_ADMI… |
 
-### media: (22)
+### media: (23)
 
 | Command | Description |
 |---|---|
@@ -573,6 +584,7 @@ up to date with every change to the commands.
 | `media:conversions` | Create media conversions. The select options are exclusive. If you do not specify a conversion… |
 | `media:count-pdf-pages` | Count PDF pages per fonds using pdfinfo. Shows page count statistics grouped by fonds (Bestand). |
 | `media:delete-master` | Delete local master files whose copy in the cloud (INGE/DIMAG, S3) is confirmed |
+| `media:derivatives` | Keep media_derivatives true to the disk and make up missing or failed derivatives (#857) |
 | `media:dimag-deliveries` | List every Inge medium with its delivery for the DIMAG restructure (#853); read-only. |
 | `media:identify` | Process media files for format identification and NARA risk assessment |
 | `media:migrate` | Repack or migrate media already in Anton with a format policy rule, keeping references and evi… |
