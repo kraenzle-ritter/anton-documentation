@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Pre-push-Hook: hält zwei Dinge konsistent, die man sonst erst in der CI merkt.
 #
-# 1. Die generierte Console-Command-Referenz.
+# 1. Die generierten Befehlsreferenzen (Anton und Lotte) und Lottes API-Referenz.
 #    Lokal (DDEV erreichbar) prüft der Generator die echte Drift — hat Anton
 #    Befehle geändert und die Referenz ist veraltet, bricht der Push ab. Ohne
 #    DDEV fällt er auf eine Strukturprüfung zurück und blockiert nicht.
@@ -33,7 +33,21 @@ if [ -f "$script" ]; then   # Skript fehlt (z.B. alter Branch) — nicht blockie
     if ! python3 "$script" --check; then
         echo
         echo "✗ Command-Referenz ist veraltet."
-        echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands*.md"
+        echo "  Beheben:  python3 scripts/gen-command-reference.py && git add docs/admin/console-commands*.md docs/lotte/commands*.md"
+        echo "  Umgehen:  git push --no-verify"
+        exit 1
+    fi
+fi
+
+# --- 1b. Lotte-API-Referenz -------------------------------------------------
+
+api="$repo_root/scripts/gen-api-reference.py"
+
+if [ -f "$api" ]; then
+    if ! python3 "$api" --check; then
+        echo
+        echo "✗ Lotte-API-Referenz ist veraltet."
+        echo "  Beheben:  python3 scripts/gen-api-reference.py && git add docs/lotte/api*.md docs/lotte/openapi.yaml"
         echo "  Umgehen:  git push --no-verify"
         exit 1
     fi

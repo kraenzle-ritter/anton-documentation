@@ -1,0 +1,1079 @@
+openapi: 3.1.0
+info:
+  title: Lotte API
+  version: 0.1.0-draft
+  summary: The digital archive behind Anton.
+  description: >-
+    Lotte keeps each medium as one OCFL object and does everything that has
+    to do with the bytes: checksums, virus check, format identification and
+    validation, format policy, migrations, derivatives, text and preservation
+    events. A client (Anton, or another system) keeps the description and
+    decides who may see what.
+
+
+    Every request names the customer in its path (`/t/{tenant}/…`). Lotte
+    selects that customer's database first and only then checks the key, so a
+    key is valid for its own customer only: a key of another customer gets
+    401, an object of another customer 404. Each key carries a set of
+    abilities (`read`, `ingest`, `jobs`, `withdraw`, `metadata`); a request
+    whose key lacks the ability its route needs gets 403. There is no
+    anonymous access to content; the only routes without a key are `/health`
+    and the short-lived signed URLs below `/s/{tenant}/…`.
+
+
+    Lotte never calls a client. What changed is read from the change feed
+    (`GET /t/{tenant}/changes`), with a cursor the client keeps.
+
+
+    Errors answer with JSON: `{"message": "…"}`, for validation errors (422)
+    also `errors` per field. This document is checked against the registered
+    routes by a test in the Lotte repository; it is a draft until a client is
+    connected.
+servers:
+  - url: https://lotte.example.org
+    description: one Lotte service per server; the host name is the installation's
+tags:
+  - name: Client
+    description: What a key belongs to and may do.
+  - name: Objects
+    description: OCFL objects, one per medium; their files, metadata copy and withdrawal.
+  - name: Derivatives
+    description: Access copies, thumbnails, posters and text, kept outside OCFL and made again at will.
+  - name: Ingest
+    description: >-
+      Ingest in two steps: describe a package, upload its files (resumable),
+      have them checked, then commit (one OCFL object per accepted file) or
+      discard. A package neither committed nor discarded is discarded after
+      the retention time (default 7 days).
+  - name: Jobs
+    description: derive, ocr, verify and migrate over objects or a committed package, asynchronous, idempotent by key.
+  - name: Changes
+    description: The change feed, append-only, in a monotonic sequence.
+  - name: Monitoring
+    description: Statuses for monitoring, without a key and without content.
+
+paths:
+  /health:
+    get:
+      tags: [Monitoring]
+      operationId: health
+      summary: Health of the service and of each customer
+      description: >-
+        The storage base, and per customer its database, its folder (`ocfl/`,
+        `derivatives/`, `text/`, `work/` writable) and its queue (a job
+        waiting too long, derivatives given up). Statuses only; no content, no
+        session, `Cache-Control: no-store`. The same check as `lotte:health`.
+      security: []
+      responses:
+        '200':
+          description: Nothing is critical (the status may be `warning`).
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Health'}
+        '503':
+          description: At least one check is critical.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Health'}
+
+  /t/{tenant}/whoami:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+    get:
+      tags: [Client]
+      operationId: whoami
+      summary: The customer, client and abilities of the key
+      description: A client's first check; needs a valid key but no ability.
+      security:
+        - clientKey: []
+      responses:
+        '200':
+          description: The key's customer, client and abilities.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Whoami'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /t/{tenant}/objects/{object}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+    get:
+      tags: [Objects]
+      operationId: objects.show
+      summary: An object with its versions, files and events
+      description: >-
+        The OCFL inventory as the client needs it: every version with its
+        files (logical path, sha512 digest, size), the head, the client's
+        reference and the preservation events of the head
+        (`metadata/events.json`).
+      security:
+        - clientKey: [read]
+      responses:
+        '200':
+          description: The object.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ArchiveObject'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+    delete:
+      tags: [Objects]
+      operationId: objects.withdraw
+      summary: Withdraw an object
+      description: >-
+        Writes a new version whose `metadata/object.json` says `withdrawn`
+        (reason, time, client) and adds a `withdrawal` event; removes the
+        derivative and text files and their rows; adds `object.withdrawn` to
+        the feed. The content stays in OCFL until an operator purges it
+        (`lotte:purge`; the rule when that is allowed is not decided yet).
+        Afterwards the object, its files, derivatives, text and signed URLs
+        answer 410; jobs skip it. Withdrawing it again answers 200 with
+        `withdrawn: false` and adds no version.
+      security:
+        - clientKey: [withdraw]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason:
+                  type: string
+                  maxLength: 2000
+                  description: Why the object is withdrawn; kept in the object and in the feed.
+      responses:
+        '200':
+          description: The object is withdrawn (by this request or before).
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/WithdrawalResult'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+
+  /t/{tenant}/objects/{object}/files/{path}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+      - name: path
+        in: path
+        required: true
+        description: >-
+          The logical path inside the object, slashes included, e.g.
+          `data/scan.tif` or `metadata/description.json`.
+        schema: {type: string}
+    get:
+      tags: [Objects]
+      operationId: objects.file
+      summary: A file of an object, of the head or an earlier version
+      description: Streamed as an attachment.
+      security:
+        - clientKey: [read]
+      parameters:
+        - name: version
+          in: query
+          required: false
+          description: The OCFL version (`v1`, `v2`, …); the head when not given.
+          schema: {type: string, pattern: '^v[0-9]+$'}
+      responses:
+        '200':
+          description: The file.
+          content:
+            application/octet-stream:
+              schema: {type: string, contentMediaType: application/octet-stream}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404':
+          description: No such object, version, or file in that version.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+
+  /t/{tenant}/objects/{object}/metadata:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+    put:
+      tags: [Objects]
+      operationId: objects.metadata
+      summary: A new metadata copy
+      description: >-
+        The JSON body, as sent, becomes the new `metadata/description.json`
+        in a new version with a `metadata modification` event, and the feed
+        gets `object.metadata_updated`. The same copy again adds no version
+        and answers 200 with `updated: false`. What is in the copy is the
+        client's; Lotte does not interpret it.
+      security:
+        - clientKey: [metadata]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The metadata copy (a JSON object, not a list).
+              additionalProperties: true
+      responses:
+        '200':
+          description: The head after the request.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MetadataResult'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+
+  /t/{tenant}/objects/{object}/derivatives/{conversion}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+      - $ref: '#/components/parameters/conversion'
+    get:
+      tags: [Derivatives]
+      operationId: objects.derivative
+      summary: A derivative of an object
+      description: >-
+        The file when it is ready. Not made yet: 202 with `Retry-After`, and
+        the conversion is queued; a request never converts by itself.
+      security:
+        - clientKey: [read]
+      responses:
+        '200':
+          description: The derivative.
+          content:
+            image/jpeg:
+              schema: {type: string, contentMediaType: image/jpeg}
+            application/pdf:
+              schema: {type: string, contentMediaType: application/pdf}
+            video/mp4:
+              schema: {type: string, contentMediaType: video/mp4}
+            audio/mpeg:
+              schema: {type: string, contentMediaType: audio/mpeg}
+        '202': {$ref: '#/components/responses/DerivativeQueued'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/DerivativeNotFound'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+
+  /t/{tenant}/objects/{object}/derivatives/{conversion}/url:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+      - $ref: '#/components/parameters/conversion'
+    get:
+      tags: [Derivatives]
+      operationId: objects.derivative.url
+      summary: A short-lived signed URL to a derivative
+      description: >-
+        For a browser that has no key: a URL below `/s/{tenant}/…`, valid for
+        a few minutes (default 15). Only for a ready derivative; otherwise the
+        same answers as the derivative itself.
+      security:
+        - clientKey: [read]
+      responses:
+        '200':
+          description: The signed URL.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/SignedUrl'}
+        '202': {$ref: '#/components/responses/DerivativeQueued'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/DerivativeNotFound'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+
+  /t/{tenant}/objects/{object}/text:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+    get:
+      tags: [Derivatives]
+      operationId: objects.text
+      summary: The text of an object
+      description: >-
+        Extracted text (PDF text layer, office documents, plain text) or, where
+        the customer has OCR on, text by OCR; as written, UTF-8. Not made yet:
+        202 with `Retry-After`, and queued.
+      security:
+        - clientKey: [read]
+      responses:
+        '200':
+          description: The text.
+          content:
+            text/plain:
+              schema: {type: string}
+        '202': {$ref: '#/components/responses/DerivativeQueued'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/DerivativeNotFound'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+
+  /s/{tenant}/objects/{object}/derivatives/{conversion}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/object'
+      - $ref: '#/components/parameters/conversion'
+    get:
+      tags: [Derivatives]
+      operationId: signed.derivative
+      summary: A derivative behind a signed URL
+      description: >-
+        No key and no session, only a valid signature, as issued by
+        `GET /t/{tenant}/objects/{object}/derivatives/{conversion}/url`.
+        Serves a ready derivative only and never queues one.
+      security: []
+      parameters:
+        - name: expires
+          in: query
+          required: true
+          schema: {type: integer}
+        - name: signature
+          in: query
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: The derivative.
+          content:
+            image/jpeg:
+              schema: {type: string, contentMediaType: image/jpeg}
+            application/pdf:
+              schema: {type: string, contentMediaType: application/pdf}
+            video/mp4:
+              schema: {type: string, contentMediaType: video/mp4}
+            audio/mpeg:
+              schema: {type: string, contentMediaType: audio/mpeg}
+        '403':
+          description: The signature is missing, wrong or expired, or the URL was changed.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '404':
+          description: No such customer or object, or the derivative is not ready.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '410': {$ref: '#/components/responses/Withdrawn'}
+
+  /t/{tenant}/changes:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+    get:
+      tags: [Changes]
+      operationId: changes
+      summary: The change feed after a cursor
+      description: >-
+        The entries after `since`, in sequence order, and `next`: the last
+        sequence returned, or `since` when there is nothing new. Each entry is
+        written in the same database transaction as the change it reports;
+        entries become visible in sequence order, so a cursor never skips one.
+        No entry is ever changed or deleted. The feed is the customer's: every
+        client with `read` sees all of it.
+      security:
+        - clientKey: [read]
+      parameters:
+        - name: since
+          in: query
+          required: false
+          description: The client's cursor; 0 for the beginning.
+          schema: {type: integer, minimum: 0, default: 0}
+        - name: limit
+          in: query
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 1000, default: 100}
+      responses:
+        '200':
+          description: The next entries.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ChangesPage'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/Unprocessable'}
+
+  /t/{tenant}/packages:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+    post:
+      tags: [Ingest]
+      operationId: packages.store
+      summary: Describe a package
+      description: >-
+        The first step of an ingest: the files to come, each with a name, the
+        client's reference (unique per customer, it names the object later),
+        an optional delivered checksum, a metadata copy and the size. The
+        package is `open` until its files are uploaded and checked. The same
+        `Idempotency-Key` again answers 200 with the package created the first
+        time and creates nothing.
+      security:
+        - clientKey: [ingest]
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/PackageDescription'}
+      responses:
+        '201':
+          description: The package was created.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '200':
+          description: A package with this key exists already; it is returned unchanged.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422':
+          description: The `Idempotency-Key` header is missing, or the description is invalid.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ValidationError'}
+
+  /t/{tenant}/packages/{package}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/package'
+    get:
+      tags: [Ingest]
+      operationId: packages.show
+      summary: A package with the result per file
+      description: A client sees its own packages only.
+      security:
+        - clientKey: [ingest]
+      responses:
+        '200':
+          description: The package.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /t/{tenant}/packages/{package}/files/{n}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/package'
+      - name: 'n'
+        in: path
+        required: true
+        description: The file's position in the description, from 0.
+        schema: {type: integer, minimum: 0}
+    head:
+      tags: [Ingest]
+      operationId: packages.offset
+      summary: How many bytes of a file have arrived
+      description: To resume an interrupted upload, send the next part from `Upload-Offset`.
+      security:
+        - clientKey: [ingest]
+      responses:
+        '200':
+          description: The bytes received so far.
+          headers:
+            Upload-Offset: {$ref: '#/components/headers/UploadOffset'}
+        '401':
+          description: No valid key for this customer (no body on HEAD).
+        '403':
+          description: The key lacks the ability (no body on HEAD).
+        '404':
+          description: No such package of this client, or no such file (no body on HEAD).
+    put:
+      tags: [Ingest]
+      operationId: packages.upload
+      summary: Upload a file or the next part of it
+      description: >-
+        The body is the raw bytes. Without `Content-Range` the part starts at
+        offset 0. Only the next part is taken: its first byte must be the
+        `Upload-Offset` so far, otherwise 409. Only while the package is
+        `open`.
+      security:
+        - clientKey: [ingest]
+      parameters:
+        - name: Content-Range
+          in: header
+          required: false
+          description: '`bytes <first>-<last>/<total>` or `bytes <first>-<last>/*`; `<first>` must equal the current `Upload-Offset`.'
+          schema: {type: string, pattern: '^bytes [0-9]+-[0-9]+/([0-9]+|\*)$'}
+          example: bytes 0-1048575/52428800
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema: {type: string, contentMediaType: application/octet-stream}
+      responses:
+        '204':
+          description: The part was written.
+          headers:
+            Upload-Offset: {$ref: '#/components/headers/UploadOffset'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+
+  /t/{tenant}/packages/{package}/check:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/package'
+    post:
+      tags: [Ingest]
+      operationId: packages.check
+      summary: Have the files checked
+      description: >-
+        Queues the checks on the customer's queue: virus check, delivered
+        checksum, format policy (preingest and normalisation by the
+        customer's rules and the package's route), identification, format
+        validation, consistency of extension, content and PRONOM ID, and
+        characteristics. The package is `checking`, then `provisional` with
+        a result per file (`accepted`, or `refused` with a reason). Asking
+        again while it is checking or provisional changes nothing.
+      security:
+        - clientKey: [ingest]
+      responses:
+        '200':
+          description: The package after the request.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+
+  /t/{tenant}/packages/{package}/commit:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/package'
+    post:
+      tags: [Ingest]
+      operationId: packages.commit
+      summary: Commit a checked package
+      description: >-
+        Writes one OCFL object per accepted file, with the check events and
+        an ingestion event, removes the working files and queues each new
+        object's derivatives and text; the feed gets `object.created` per
+        object. Refused files are left out. A package committed before
+        answers as it did then. Only a `provisional` package can be
+        committed.
+      security:
+        - clientKey: [ingest]
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          description: Recorded with the commit.
+          schema: {type: string}
+      responses:
+        '200':
+          description: The committed package; each accepted file names its object.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+
+  /t/{tenant}/packages/{package}/discard:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/package'
+    post:
+      tags: [Ingest]
+      operationId: packages.discard
+      summary: Discard a package
+      description: >-
+        Removes the working files and marks the package `discarded`; the feed
+        gets `package.discarded` with `by: client`. A package discarded before
+        stays as it is; a committed package cannot be discarded.
+      security:
+        - clientKey: [ingest]
+      responses:
+        '200':
+          description: The discarded package.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Package'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+
+  /t/{tenant}/jobs:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+    post:
+      tags: [Jobs]
+      operationId: jobs.store
+      summary: Create a job
+      description: >-
+        A job over objects or the objects of a committed package, run on the
+        customer's queue in slices with progress and a result per object.
+        `derive` makes missing derivatives and text (`options.conversion`,
+        `options.retry_failed`); `ocr` makes text by OCR whether the customer
+        has OCR on or not; `verify` checks fixity against the inventory and,
+        with `options.ocfl`, validates each object with a second OCFL
+        implementation — it adds no version, a finding is recorded as a failed
+        fixity event; `migrate` applies one format policy rule
+        (`options.rule`) and writes a new version only when the result passes
+        the rule's verification, format validation and identification;
+        `options.probe` only reports. Withdrawn objects are skipped. Every job
+        ends with `job.finished` in the feed. The same `Idempotency-Key` again
+        answers 200 with the job created the first time; a job that is over is
+        never run again.
+      security:
+        - clientKey: [jobs]
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/JobRequest'}
+      responses:
+        '201':
+          description: The job was created and queued.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Job'}
+        '200':
+          description: A job with this key exists already; it is returned as it stands.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Job'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422':
+          description: >-
+            The `Idempotency-Key` header is missing, or the request is invalid:
+            an unknown kind, neither or both of objects and package, an object
+            not of this customer, a package not committed by this client, an
+            unknown rule or conversion.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ValidationError'}
+
+  /t/{tenant}/jobs/{job}:
+    parameters:
+      - $ref: '#/components/parameters/tenant'
+      - name: job
+        in: path
+        required: true
+        schema: {type: string, format: uuid}
+    get:
+      tags: [Jobs]
+      operationId: jobs.show
+      summary: A job with its progress and results
+      description: A client sees its own jobs only. Needs `jobs` or `read`.
+      security:
+        - clientKey: [jobs]
+        - clientKey: [read]
+      responses:
+        '200':
+          description: The job.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Job'}
+        '401': {$ref: '#/components/responses/Unauthenticated'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+components:
+  securitySchemes:
+    clientKey:
+      type: http
+      scheme: bearer
+      description: >-
+        A client's key, created by an operator with `lotte:client:create`
+        (shown once) and valid for one customer only, as
+        `Authorization: Bearer <key>`. The scopes named per operation are the
+        abilities the key must carry: `read`, `ingest`, `jobs`, `withdraw`,
+        `metadata`.
+
+  parameters:
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: The customer's slug, as listed in the server's tenants file. An unknown slug answers 404.
+      schema: {type: string}
+    object:
+      name: object
+      in: path
+      required: true
+      description: The object's UUID (the OCFL ID without `urn:uuid:`).
+      schema: {type: string, format: uuid}
+    package:
+      name: package
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+    conversion:
+      name: conversion
+      in: path
+      required: true
+      description: >-
+        The conversion: `web` (access copy), `thumb` (thumbnail), `poster`
+        (video still); which ones an object has depends on its MIME type.
+        The text has its own route.
+      schema: {type: string, pattern: '^[a-z0-9_-]+$'}
+    idempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: The client's key for this request; the same key again creates nothing twice. Missing or empty answers 422.
+      schema: {type: string, minLength: 1}
+
+  headers:
+    UploadOffset:
+      description: The number of bytes of the file received so far.
+      schema: {type: integer, minimum: 0}
+    RetryAfter:
+      description: Seconds after which to ask again (default 30).
+      schema: {type: integer}
+
+  responses:
+    Unauthenticated:
+      description: No key, a revoked key, or a key of another customer.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+          example: {message: Unauthenticated.}
+    Forbidden:
+      description: The key lacks the ability the route needs.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    NotFound:
+      description: No such customer, or no such object, package or job of this customer (or client).
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Conflict:
+      description: >-
+        The request does not fit the package's state (e.g. a commit before
+        the check, an upload after it, discarding a committed package) or
+        the bytes received so far (a part not starting at `Upload-Offset`).
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Withdrawn:
+      description: The object is withdrawn; the answer names the reason.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/WithdrawnError'}
+    Unprocessable:
+      description: The request is invalid.
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ValidationError'}
+    DerivativeQueued:
+      description: Not made yet; queued now. Ask again after `Retry-After` seconds.
+      headers:
+        Retry-After: {$ref: '#/components/headers/RetryAfter'}
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              conversion: {type: string}
+              status: {$ref: '#/components/schemas/DerivativeStatus'}
+    DerivativeNotFound:
+      description: >-
+        No such object, a conversion the object does not have, or a derivative
+        given up after three failed attempts (then with `status: failed`).
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message: {type: string}
+              conversion: {type: string}
+              status: {$ref: '#/components/schemas/DerivativeStatus'}
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        message: {type: string}
+    ValidationError:
+      type: object
+      properties:
+        message: {type: string}
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items: {type: string}
+    WithdrawnError:
+      type: object
+      properties:
+        message: {type: string, const: The object is withdrawn.}
+        id: {$ref: '#/components/schemas/ObjectId'}
+        state: {type: string, const: withdrawn}
+        reason: {type: string}
+        withdrawn_at: {type: string, format: date-time}
+    ObjectId:
+      type: string
+      description: The OCFL object ID, `urn:uuid:<uuid v7>`.
+      pattern: '^urn:uuid:[0-9a-f-]{36}$'
+    HealthStatus:
+      type: string
+      enum: [ok, warning, critical]
+    CheckResult:
+      type: object
+      properties:
+        status: {$ref: '#/components/schemas/HealthStatus'}
+        message: {type: string}
+    Health:
+      type: object
+      properties:
+        status: {$ref: '#/components/schemas/HealthStatus'}
+        checks:
+          type: object
+          description: Checks of the service as a whole (`storage`).
+          additionalProperties: {$ref: '#/components/schemas/CheckResult'}
+        tenants:
+          type: object
+          description: One result per customer, by slug.
+          additionalProperties: {$ref: '#/components/schemas/CheckResult'}
+    Whoami:
+      type: object
+      properties:
+        tenant: {type: string}
+        client: {type: string}
+        abilities:
+          type: array
+          items: {$ref: '#/components/schemas/Ability'}
+    Ability:
+      type: string
+      enum: [read, ingest, jobs, withdraw, metadata]
+    Event:
+      type: object
+      description: A preservation event (PREMIS) as kept in `metadata/events.json`.
+      properties:
+        type:
+          type: string
+          description: e.g. `virus check`, `fixity check`, `format identification`, `validation`, `ingestion`, `migration`, `metadata modification`, `withdrawal`.
+        outcome: {type: string}
+        detail: {type: string}
+        agent: {type: string}
+        datetime: {type: string, format: date-time}
+    ArchiveObject:
+      type: object
+      properties:
+        id: {$ref: '#/components/schemas/ObjectId'}
+        reference:
+          type: [string, 'null']
+          description: The client's reference, unique per customer.
+        state: {type: string, enum: [active, withdrawn]}
+        withdrawal:
+          type: ['object', 'null']
+          properties:
+            reason: {type: string}
+            at: {type: string, format: date-time}
+        head: {type: string, description: 'The newest version, e.g. `v2`.'}
+        digest_algorithm: {type: string, const: sha512}
+        versions:
+          type: array
+          items:
+            type: object
+            properties:
+              version: {type: string}
+              created: {type: string, format: date-time}
+              message: {type: string}
+              files:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    path: {type: string, description: 'Logical path, e.g. `data/scan.tif`, `metadata/description.json`.'}
+                    digest: {type: string}
+                    size: {type: integer}
+        events:
+          type: array
+          description: The events of the head.
+          items: {$ref: '#/components/schemas/Event'}
+    MetadataResult:
+      type: object
+      properties:
+        id: {$ref: '#/components/schemas/ObjectId'}
+        head: {type: string}
+        updated: {type: boolean, description: 'false when the copy was the same and no version was added.'}
+    WithdrawalResult:
+      type: object
+      properties:
+        id: {$ref: '#/components/schemas/ObjectId'}
+        state: {type: string, const: withdrawn}
+        head: {type: string}
+        reason: {type: string}
+        withdrawn_at: {type: string, format: date-time}
+        withdrawn: {type: boolean, description: 'true when this request withdrew the object, false when it was withdrawn before.'}
+    DerivativeStatus:
+      type: string
+      enum: [missing, queued, ready, failed]
+    SignedUrl:
+      type: object
+      properties:
+        url: {type: string, format: uri}
+        expires_at: {type: string, format: date-time}
+    PackageDescription:
+      type: object
+      required: [files]
+      properties:
+        route:
+          type: string
+          maxLength: 32
+          pattern: '^[a-z0-9_-]+$'
+          default: upload
+          description: The route the files came by, as the client names it; the format policy decides by it (some routes are never refused for an invalid format).
+        files:
+          type: array
+          minItems: 1
+          maxItems: 10000
+          items:
+            type: object
+            required: [name]
+            properties:
+              name: {type: string, maxLength: 255, description: The file name; a path is cut to its last part.}
+              reference: {type: [string, 'null'], maxLength: 255, description: 'The client''s reference for the object to be; unique per customer.'}
+              checksum: {type: [string, 'null'], pattern: '^(md5|sha1|sha256|sha512):[0-9a-fA-F]+$', description: The delivered checksum; the file is refused when it does not match.}
+              description: {type: ['object', 'null'], additionalProperties: true, description: 'The metadata copy; becomes `metadata/description.json`.'}
+              size: {type: [integer, 'null'], minimum: 0}
+    PackageState:
+      type: string
+      enum: [open, checking, provisional, committed, discarded]
+    Package:
+      type: object
+      properties:
+        id: {type: string, format: uuid}
+        state: {$ref: '#/components/schemas/PackageState'}
+        route: {type: string}
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              'n': {type: integer, description: 'The position, as in the upload route.'}
+              name: {type: string}
+              reference: {type: [string, 'null']}
+              received: {type: integer, description: Bytes received.}
+              status: {type: string, enum: [pending, accepted, refused]}
+              reason: {type: [string, 'null'], description: Why the file was refused.}
+              puid: {type: [string, 'null'], description: The PRONOM ID found by the identification.}
+              mime_type: {type: [string, 'null']}
+              normalized_name: {type: [string, 'null'], description: The name after a format policy rule changed the file.}
+              object: {oneOf: [{$ref: '#/components/schemas/ObjectId'}, {type: 'null'}], description: The object written at commit.}
+    JobKind:
+      type: string
+      enum: [derive, ocr, verify, migrate]
+    JobState:
+      type: string
+      enum: [queued, running, finished, failed]
+    JobRequest:
+      type: object
+      required: [kind, target]
+      properties:
+        kind: {$ref: '#/components/schemas/JobKind'}
+        target:
+          type: object
+          description: Either `objects` or `package`, not both.
+          properties:
+            objects:
+              type: array
+              maxItems: 10000
+              items: {type: string, description: 'UUID or `urn:uuid:…`'}
+            package: {type: string, description: 'A package of this client in state `committed`.'}
+        options:
+          type: object
+          properties:
+            conversion: {type: string, description: 'derive: only this conversion (`web`, `thumb`, `poster`, `text`).'}
+            retry_failed: {type: boolean, description: 'derive: also what failed fewer than three times.'}
+            ocfl: {type: boolean, description: 'verify: also validate each object with a second OCFL implementation.'}
+            rule: {type: string, description: 'migrate: the format policy rule, e.g. `tiff_zip`.'}
+            probe: {type: boolean, description: 'migrate: run the rule on copies and report; change nothing.'}
+    Job:
+      type: object
+      properties:
+        id: {type: string, format: uuid}
+        kind: {$ref: '#/components/schemas/JobKind'}
+        target: {type: object}
+        options: {type: object}
+        state: {$ref: '#/components/schemas/JobState'}
+        total: {type: integer}
+        done: {type: integer}
+        failed: {type: integer}
+        results:
+          type: object
+          description: One result per object, by object ID.
+          additionalProperties:
+            type: object
+            properties:
+              outcome: {type: string}
+              detail: {type: string}
+        error: {type: [string, 'null']}
+        created_at: {type: string, format: date-time}
+        started_at: {type: [string, 'null'], format: date-time}
+        finished_at: {type: [string, 'null'], format: date-time}
+    ChangeKind:
+      type: string
+      description: >-
+        `object.created` (committed from a package); `object.version_added`
+        (migration, normalisation, a fixity finding); `object.metadata_updated`;
+        `object.withdrawn`; `object.purged` (by an operator);
+        `derivative.ready`; `derivative.failed` (every failure, with
+        `attempts` and `given_up`; the text's with conversion `text`);
+        `text.ready`; `package.discarded` (`by`: `client`, `operator` or
+        `retention`); `job.finished`.
+      enum:
+        - object.created
+        - object.version_added
+        - object.metadata_updated
+        - object.withdrawn
+        - object.purged
+        - derivative.ready
+        - derivative.failed
+        - text.ready
+        - package.discarded
+        - job.finished
+    Change:
+      type: object
+      properties:
+        sequence: {type: integer, description: Monotonic; never goes back.}
+        kind: {$ref: '#/components/schemas/ChangeKind'}
+        object: {oneOf: [{$ref: '#/components/schemas/ObjectId'}, {type: 'null'}], description: The object the entry is about; null for packages and jobs.}
+        at: {type: string, format: date-time}
+        payload:
+          type: object
+          description: >-
+            What a client needs, the object again as `id` where there is one:
+            for object entries `head`, `file_name`, `size`, `digest`,
+            `mime_type`, `puid` and `reference`; for derivatives `conversion`,
+            `head` and size or `attempts`, `given_up`, `error`; for a
+            withdrawal or purge `reason`; for packages `package`, `by`,
+            `was`, `references`; for jobs `job`, `kind`, `state`, `total`,
+            `done`, `failed`.
+          additionalProperties: true
+    ChangesPage:
+      type: object
+      properties:
+        changes:
+          type: array
+          items: {$ref: '#/components/schemas/Change'}
+        next: {type: integer, description: 'The cursor for the next request: the last sequence returned, or `since` when there was nothing new.'}

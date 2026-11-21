@@ -30,7 +30,7 @@ Bilder, Diagramme und andere Assets werden geteilt — die Pfade in den
 | `docs/index.md` | de, en, fr, it | Einstiegsseite |
 | `docs/faq/` | de, en, fr, it | Erste Anlaufstelle für Interessierte |
 | `docs/user/` | de, en, fr, it | Archivmitarbeitende in der Romandie und im Tessin |
-| `docs/admin/`, `docs/developer/`, `docs/api/` | de, en | Technikpersonal |
+| `docs/admin/`, `docs/developer/`, `docs/api/`, `docs/lotte/` | de, en | Technikpersonal |
 | `docs/customers/` | de | Kundenspezifisch, nicht in der Navigation |
 
 Stand: der vorgesehene Umfang ist **vollständig** erfüllt — alles ausser
@@ -82,12 +82,13 @@ deutschem Inhalt.
 ### Nicht übersetzte Bereiche in der Navigation
 
 Damit die Hauptmenüpunkte in jeder Sprache vorhanden sind, stehen für
-`Developer`, `Admin` und `API` **absolute Links auf die nächstbeste vorhandene
+`Developer`, `Admin`, `Lotte` und `API` **absolute Links auf die nächstbeste vorhandene
 Sprache** in der `nav` von Französisch und Italienisch:
 
 ```yaml
 - Developer (en): /en/developer/
 - Admin (en): /en/admin/requirements/
+- Lotte (en): /en/lotte/
 - API (en): /en/api/
 ```
 

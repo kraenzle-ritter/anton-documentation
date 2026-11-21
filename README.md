@@ -52,16 +52,15 @@ MkDocs meldet ihn nur als INFO — auch unter `--strict`.
 
 ## Console-Command-Referenz
 
-Die Tabelle am Ende von `docs/admin/console-commands.md` (zwischen den
-`<!-- BEGIN/END generated command reference -->`-Markern) wird aus Antons
-`php artisan list` erzeugt — nicht von Hand pflegen:
+Die Tabelle am Ende von `docs/admin/console-commands.md` und die Befehlsabschnitte am Ende von `docs/lotte/commands.md` (je zwischen den `<!-- BEGIN/END generated command reference -->`-Markern) werden aus `php artisan list` von Anton bzw. Lotte erzeugt — nicht von Hand pflegen:
 
 ```bash
-python3 scripts/gen-command-reference.py          # neu erzeugen
-python3 scripts/gen-command-reference.py --check   # prüfen (Exit 1 bei Drift)
+python3 scripts/gen-command-reference.py                  # beide neu erzeugen
+python3 scripts/gen-command-reference.py --source lotte   # nur Lotte (oder: anton)
+python3 scripts/gen-command-reference.py --check          # prüfen (Exit 1 bei Drift)
 ```
 
-Der Generator liest aus dem Nachbar-Repo `../anton.test` (DDEV muss laufen).
+Der Generator liest aus den Nachbar-Repos `../anton.test` und `../lotte` (DDEV muss dort laufen).
 Ein **Pre-Push-Hook** prüft das automatisch; einmal pro Klon aktivieren:
 
 ```bash
@@ -70,4 +69,15 @@ git config core.hooksPath .githooks
 
 Ohne laufendes DDEV fällt die Prüfung auf eine Strukturkontrolle zurück und
 blockiert nicht. Auch die CI führt `--check` aus (dort ebenfalls nur
-strukturell, da Anton privat und nicht ausgecheckt ist).
+strukturell, da Anton und Lotte privat und nicht ausgecheckt sind).
+
+## Lotte-API-Referenz
+
+Der Abschnitt «Alle Routen» in `docs/lotte/api.md` (zwischen den `<!-- BEGIN/END generated api reference -->`-Markern) und die Kopie `docs/lotte/openapi.yaml` kommen aus Lottes `openapi.yaml` (`../lotte`, committeter Stand) — nicht von Hand pflegen:
+
+```bash
+python3 scripts/gen-api-reference.py           # neu erzeugen und die Kopie nachführen
+python3 scripts/gen-api-reference.py --check   # prüfen (Exit 1 bei Drift)
+```
+
+YAML setzt PHP im DDEV von Lotte in JSON um (YAML-Erweiterung des DDEV-Images); die Doku braucht dafür keinen eigenen YAML-Parser. Ohne DDEV prüft `--check` nur die Struktur und, wenn `../lotte` daneben liegt, ob die Kopie der Datei dort gleicht. Ob `openapi.yaml` zu Lottes Routen passt, prüft ein Test in Lotte (`OpenApiCoversRoutesTest`).

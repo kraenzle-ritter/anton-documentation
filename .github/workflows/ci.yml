@@ -48,6 +48,10 @@ jobs:
       - name: Check command reference
         run: python3 scripts/gen-command-reference.py --check
 
+      # Lotte ist in der CI nicht ausgecheckt: nur die Struktur der Seite.
+      - name: Check Lotte API reference
+        run: python3 scripts/gen-api-reference.py --check
+
       # Meldet Uebersetzungen, die ihrer deutschen Quelle hinterherhinken —
       # nach Zeitstempel und nach Form (Gliederung, Admonitions, Anker).
       # Bewusst nicht blockierend: sonst braeuchte jede deutsche Korrektur

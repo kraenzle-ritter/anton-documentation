@@ -61,6 +61,7 @@ SCOPE = (
     ("admin/", ("en",)),                # Technikpersonal
     ("developer/", ("en",)),
     ("api/", ("en",)),
+    ("lotte/", ("en",)),                # Technikpersonal (Lotte, Digitales Archiv)
 )                                       # alles uebrige: alle Sprachen
 
 # Unfertige Stubs, die nicht in der Navigation stehen. Sie zu uebersetzen waere

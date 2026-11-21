@@ -161,6 +161,11 @@ nav:
       - Feedback an die Entwicklung: admin/feedback.md
       - Verkleinern für öffentliche Installation: admin/shrink.md
     - KI-Erschliessung: admin/ai-cataloging.md
+  - Lotte (Digitales Archiv):
+    - Überblick: lotte/index.md
+    - Betrieb: lotte/operation.md
+    - Befehlsreferenz: lotte/commands.md
+    - API-Referenz: lotte/api.md
   - API: 
     - Authentication: api/authentication.md
     - Endpoints: api/index.md
@@ -322,6 +327,11 @@ plugins:
                 - Feedback to development: admin/feedback.md
                 - Shrinking for a public installation: admin/shrink.md
               - AI-assisted cataloguing: admin/ai-cataloging.md
+            - Lotte (digital archive):
+              - Overview: lotte/index.md
+              - Operation: lotte/operation.md
+              - Command reference: lotte/commands.md
+              - API reference: lotte/api.md
             - API:
               - Authentication: api/authentication.md
               - Endpoints: api/index.md
@@ -395,6 +405,7 @@ plugins:
             # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
             - Developer (en): /en/developer/
             - Admin (en): /en/admin/requirements/
+            - Lotte (en): /en/lotte/
             - API (en): /en/api/
             - FAQ:
               - FAQ générales: faq/index.md
@@ -465,6 +476,7 @@ plugins:
             # Franzoesisch/Italienisch. Ziel ist die englische Fassung.
             - Developer (en): /en/developer/
             - Admin (en): /en/admin/requirements/
+            - Lotte (en): /en/lotte/
             - API (en): /en/api/
             - FAQ:
               - FAQ generali: faq/index.md
