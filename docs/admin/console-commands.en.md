@@ -7,6 +7,8 @@ This page describes the commands most important in operation, with context. A
 **complete, automatically generated list** of all commands is at the end under
 [Complete reference](#vollstandige-referenz).
 
+The commands of Lotte, the digital archive service beside Anton, are in a [command reference](../lotte/commands.md) of their own.
+
 ## Basics
 
 Most commands expect an environment to be specified, that is, a customer slug:

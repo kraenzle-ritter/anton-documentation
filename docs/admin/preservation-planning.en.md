@@ -98,3 +98,4 @@ Three packages from the Anton ecosystem form the basis of preservation planning:
 
 - [Console commands](console-commands.md) — `media:identify`, `media:validate-pdfs`, `media:check`
 - [SIP ingest](sip-ingest.md) — with a SIP import, PRONOM identification runs automatically
+- [Lotte (digital archive)](../lotte/index.md) — the service that will take over checks, format identification and derivatives outside Anton

@@ -7,6 +7,8 @@ Diese Seite beschreibt die im Betrieb wichtigsten Befehle mit Kontext. Eine
 **vollständige, automatisch erzeugte Liste** aller Befehle steht am Ende unter
 [Vollständige Referenz](#vollstandige-referenz).
 
+Die Befehle von Lotte, dem Dienst für das Digitale Archiv neben Anton, stehen in einer eigenen [Befehlsreferenz](../lotte/commands.md).
+
 ## Grundsätzliches
 
 Die meisten Befehle erwarten die Angabe einer Umgebung, also eines

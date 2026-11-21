@@ -98,3 +98,4 @@ Drei Pakete aus dem Anton-Umfeld bilden die Preservation-Planning-Grundlage:
 
 - [Console Commands](console-commands.md) — `media:identify`, `media:validate-pdfs`, `media:check`
 - [SIP Ingest](sip-ingest.md) — bei SIP-Import läuft die PRONOM-Identifikation automatisch
+- [Lotte (Digitales Archiv)](../lotte/index.md) — der Dienst, der künftig Prüfungen, Formaterkennung und Ableitungen ausserhalb von Anton übernimmt

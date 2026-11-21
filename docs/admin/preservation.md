@@ -2,6 +2,8 @@
 
 Anton übernimmt digitale Unterlagen geprüft, erkennt ihre Formate und hält fest, wie gut sie sich erhalten lassen. Einen Master verändert Anton nur, wo das Archiv es eingerichtet oder veranlasst hat: bei der Übernahme durch eine Format-Regel oder die Verarbeitung beim QR-Upload, danach durch eine Migration (siehe [Speicherung](#speicherung)). Die Speicherung selbst und ihre Redundanz leistet die Betriebsinfrastruktur; bei Installationen mit angebundenem Langzeitarchiv übernimmt dieses die Bitstream-Sicherung. Diese Seite zeigt, wie sich die Aufgaben verteilen, und verweist auf die Detailseiten. Sie beantwortet ausserdem die Frage, welches Artefakt eine **Sicherung** ist und welches eine **Publikationsansicht**.
 
+Künftig übernimmt [Lotte](../lotte/index.md), ein eigener Dienst für das Digitale Archiv, die Dateien und alles, was mit ihren Bytes zu tun hat; Anton ist noch nicht daran angebunden und arbeitet bis dahin wie auf dieser Seite beschrieben.
+
 ## Aufgabenteilung
 
 Das Digitale Archiv besteht aus mehreren Schichten. Anton deckt
