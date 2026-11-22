@@ -341,6 +341,7 @@ or after larger data changes, it is rebuilt:
 | `anton:import-native` / `anton:export-native` | Lossless round trip of a subtree (backup, re-importable) |
 | `anton:export` | EAD/EAD3 export |
 | `anton:export-rdf` | RDF export in three profiles (see below) |
+| `anton:latex` | Finding aid of a holding as a PDF, typeset with LuaLaTeX (only where LaTeX is installed, see below) |
 | `resources:sync` | [Authority data synchronisation](authorities.md) with GND, Wikidata, Metagrid |
 | `anton:sips-prune` | Clear away unpacked SIPs no import needs any more; mark hung checks as broken off; delete uploads abandoned in `limbo/` after `--limbo-days` (2) (as a cron; `--dry-run` first) |
 
@@ -357,6 +358,19 @@ php artisan anton:export-rdf --env=kr --root=42 --profile=a-plus --format=turtle
 - `--profile=memobase` — Memobase JSON-LD
 
 Details under [RDF export](download-rdf.md). The output goes to `stdout`.
+
+**`anton:latex`** writes the finding aid of a holding as a LaTeX document and typesets it as a PDF with LuaLaTeX (through `latexmk`): title page, contents, general description, the arrangement as headings and every unit of description below. Locked records are included and marked as locked; the finding aid is meant for the archive itself, for instance when it leaves Anton, not for publication.
+
+```bash
+php artisan anton:latex --env=kr --ids=42
+```
+
+- `--ids=` — the holdings, one finding aid each (`findbuch-<id>/findbuch.pdf`)
+- `--target-dir=` — target folder, by default the tenant's export folder
+- `--tex-only` — write the `.tex` file only, do not typeset it
+- `--binary=latexmk`, `--timeout=1800` — the program and the seconds per finding aid
+
+Where LaTeX is missing (in DDEV, for instance), the command writes the `.tex` file and prints the call that typesets it on a machine with LaTeX. Text from the records is escaped; TeX runs without shell escape.
 
 ## Maintenance and repair
 
@@ -473,7 +487,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (68)
+### anton: (69)
 
 | Command | Description |
 |---|---|
@@ -511,6 +525,7 @@ up to date with every change to the commands.
 | `anton:import-pages` | Import an excel file with metadata for pages |
 | `anton:import-skos` | Import a thesaurus (SKOS or table) into a concept scheme of keywords. |
 | `anton:install` | Install Anton for a .env file with --env |
+| `anton:latex` | Write the finding aid of a holding as a LaTeX document and typeset it as a PDF (needs LaTeX) |
 | `anton:local-login` | Local development only: print a one-time link that signs an account in without a password. |
 | `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |
 | `anton:measure-disk-usage` | Measure and cache storage disk usage in the background (feeds anton:doctor CheckDiskSpace, #293) |

@@ -346,6 +346,7 @@ nach grösseren Datenänderungen wird er neu aufgebaut:
 | `anton:import-native` / `anton:export-native` | Verlustfreier Round-Trip eines Teilbaums (Sicherung, wieder einlesbar) |
 | `anton:export` | EAD/EAD3-Export |
 | `anton:export-rdf` | RDF-Export in drei Profilen (siehe unten) |
+| `anton:latex` | Findbuch eines Bestands als PDF, mit LuaLaTeX gesetzt (nur wo LaTeX installiert ist, siehe unten) |
 | `resources:sync` | [Normdaten-Abgleich](authorities.md) mit GND, Wikidata, Metagrid |
 | `anton:sips-prune` | Entpackte SIPs wegräumen, die kein Import mehr braucht; hängende Prüfungen als abgebrochen markieren; verlassene Uploads in `limbo/` nach `--limbo-days` (2) löschen (als Cron; zuerst `--dry-run`) |
 
@@ -361,6 +362,19 @@ php artisan anton:export-rdf --env=kr --root=42 --profile=a-plus --format=turtle
 - `--profile=memobase` — Memobase-JSON-LD
 
 Details unter [RDF-Export](download-rdf.md). Die Ausgabe geht auf `stdout`.
+
+**`anton:latex`** schreibt das Findbuch eines Bestands als LaTeX-Dokument und setzt es mit LuaLaTeX (über `latexmk`) als PDF: Titelblatt, Inhaltsverzeichnis, allgemeine Angaben, die Gliederung als Überschriften und jede Verzeichnungseinheit darunter. Gesperrte Datensätze sind enthalten und als «gesperrt» markiert; das Findbuch ist für das Archiv selbst gedacht, etwa wenn es Anton verlässt, nicht zur Veröffentlichung.
+
+```bash
+php artisan anton:latex --env=kr --ids=42
+```
+
+- `--ids=` — die Bestände, je ein Findbuch (`findbuch-<id>/findbuch.pdf`)
+- `--target-dir=` — Zielordner, Vorgabe der Export-Ordner des Mandanten
+- `--tex-only` — nur die `.tex`-Datei schreiben, nicht setzen
+- `--binary=latexmk`, `--timeout=1800` — Programm und Sekunden je Findbuch
+
+Wo LaTeX fehlt (etwa in DDEV), schreibt der Befehl die `.tex`-Datei und nennt den Aufruf, mit dem sie auf einem Rechner mit LaTeX gesetzt wird. Text aus den Datensätzen wird maskiert, TeX läuft ohne Shell-Escape.
 
 ## Wartung und Reparatur
 
@@ -480,7 +494,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (68)
+### anton: (69)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -518,6 +532,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:import-pages` | Import an excel file with metadata for pages |
 | `anton:import-skos` | Import a thesaurus (SKOS or table) into a concept scheme of keywords. |
 | `anton:install` | Install Anton for a .env file with --env |
+| `anton:latex` | Write the finding aid of a holding as a LaTeX document and typeset it as a PDF (needs LaTeX) |
 | `anton:local-login` | Local development only: print a one-time link that signs an account in without a password. |
 | `anton:mail` | Send a circular (or a downtime notice) to this tenant's editors and admins |
 | `anton:measure-disk-usage` | Measure and cache storage disk usage in the background (feeds anton:doctor CheckDiskSpace, #293) |

@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **8 November 2026**. It is
+    This matrix reflects the state of **22 November 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -34,6 +34,7 @@ or exchange view.**
 | Excel (full) | XLSX | current result list, all fields | Result list → Export |
 | Excel (update table) | XLSX | Result list, **only writable fields**, re-importable | Result list → Export → Update |
 | Word / PDF | DOCX / PDF | Finding aid per object | Button on the record |
+| LaTeX finding aid | PDF typeset with LuaLaTeX (plus the `.tex` file) | Finding aid from a holding: title page, contents, general description, the arrangement as headings, every unit of description; locked records are included and marked as locked | `anton:latex --ids=…`, only where LaTeX is installed |
 | Paper | HTML print view | Result list (max. 1000) | Result list |
 | Preservation strategy | `preservation-strategy` schema 1 (JSON) | one decision of the preservation mandate, **bytes as confirmed**, with SHA-256 | Admin → Digital preservation → Preservation mandate |
 | **SQL dump** | mysqldump (gzip) | **whole tenant database** — without sessions, job queues and caches, API and upload tokens empty | Admin → Export |
@@ -170,6 +171,7 @@ host it publicly.
 | E-ARK DIP full (`--full`) | **no** — CLI only |
 | A+ bundle with `--include-protected` / `--include-originals` | **no** — the UI and the API do not pass the switches through, CLI only |
 | Native round trip (`anton:export-native` / `anton:import-native`) | **no** — a pure CLI command |
+| LaTeX finding aid (`anton:latex`) | **no** — CLI only, on a machine with LaTeX |
 
 With *Anton as a Service*, k & r produces the CLI artefacts on request; *on
 premises*, the commands are run by the operating institution.

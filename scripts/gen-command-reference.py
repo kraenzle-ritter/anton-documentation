@@ -103,7 +103,7 @@ SOURCES = {
         plain=frozenset({"matomo"}),
         skip=frozenset({
             "anton:baseCommand", "anton:antonseed", "anton:word-export",
-            "anton:latex", "anton:test-pages", "anton:import-ead",
+            "anton:test-pages", "anton:import-ead",
         }),
     ),
     "lotte": Source(

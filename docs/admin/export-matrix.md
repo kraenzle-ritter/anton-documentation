@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **8. November 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **22. November 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -33,6 +33,7 @@ andere sind Publikations- und Austauschsichten.**
 | Excel (voll) | XLSX | aktuelle Trefferliste, alle Felder | Trefferliste → Export |
 | Excel (Update-Tabelle) | XLSX | Trefferliste, **nur beschreibbare Felder**, wieder einspielbar | Trefferliste → Export → Update |
 | Word / PDF | DOCX / PDF | Findbuch pro Objekt | Taste am Datensatz |
+| LaTeX-Findbuch | PDF, mit LuaLaTeX gesetzt (dazu die `.tex`-Datei) | Findbuch ab Bestand: Titelblatt, Inhaltsverzeichnis, allgemeine Angaben, Gliederung als Überschriften, jede Verzeichnungseinheit; gesperrte Datensätze sind enthalten und als «gesperrt» markiert | `anton:latex --ids=…`, nur wo LaTeX installiert ist |
 | Paper | HTML-Druckansicht | Trefferliste (max. 1000) | Trefferliste |
 | Erhaltungsstrategie | `preservation-strategy` Schema 1 (JSON) | eine Festlegung des Erhaltungsauftrags, **Bytes wie bestätigt**, mit SHA-256 | Admin → Digitale Archivierung → Erhaltungsauftrag |
 | **SQL-Dump** | mysqldump (gzip) | **ganze Mandanten-Datenbank** — ohne Sitzungen, Warteschlangen und Zwischenspeicher, API- und Upload-Tokens leer | Admin → Export |
@@ -168,6 +169,7 @@ native Round-Trip zuständig. Und es enthält personenbezogene Daten: nicht öff
 | E-ARK DIP vollständig (`--full`) | **nein** — nur CLI |
 | A+ Bundle mit `--include-protected` / `--include-originals` | **nein** — die UI und die API reichen die Schalter nicht durch, nur CLI |
 | Nativer Round-Trip (`anton:export-native` / `anton:import-native`) | **nein** — reines CLI-Kommando |
+| LaTeX-Findbuch (`anton:latex`) | **nein** — nur CLI, auf einem Rechner mit LaTeX |
 
 Bei *Anton as a Service* erzeugt k & r die CLI-Artefakte auf Anfrage; *on premises*
 laufen die Kommandos bei der betreibenden Institution.
