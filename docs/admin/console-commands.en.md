@@ -431,6 +431,15 @@ to be deleted in DIMAG first. If Inge cannot be reached, the folder stays too.
 
 With `--dry-run` it writes nothing, `--output=` saves the report as Markdown, `--under=` limits it to one subtree. While relations between records (`object_relations`) are off it writes nothing. It changes the rest of the text field's wording only with `--replace=OLD=NEW`.
 
+`anton:relate-by-identifier` relates the records of two holdings that carry the same number, for instance a print to its glass plate («copy of», `isCopyOf`) or an index card to the negatives it shows. `--source=` and `--target=` name the two holdings (record ids); regular expressions with a group `(?<n>…)` read the number from the identifier (`--source-pattern`, `--target-pattern`) or the old identifier (`--source-old-pattern`, `--target-old-pattern`). A group `(?<to>…)` makes a range, each number in it counts; a range that runs backwards or is longer than `--max-range` (50) is taken for a typing error and reported. Numbers are compared without leading zeros. Where more than one target carries the number, nothing is related and the case is reported. `--type=` chooses the relation (default `isCopyOf`), `--skip-if=` leaves records that already have such a relation, for instance to relate a print to its card (`isRelatedTo`) only where no original was found.
+
+```bash
+php artisan anton:relate-by-identifier --env=kr --source=120 --target=118 \
+  --source-old-pattern='#\bB\.?\s*(?<n>\d+)#' --target-pattern='#/(?<n>\d+)$#' --dry-run --output=report.md
+```
+
+With `--dry-run` it writes nothing, `--output=` saves the report as Markdown (related, already related, ambiguous, without target, range rejected). It writes only where `object_relations` is on and can be run again without relating twice.
+
 ## Diagnosis
 
 **`anton:doctor`**{#antondoctor} checks an installation for consistency — the
@@ -487,7 +496,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (69)
+### anton: (70)
 
 | Command | Description |
 |---|---|
@@ -536,6 +545,7 @@ up to date with every change to the commands.
 | `anton:protection-baseline` | Snapshot or diff the current per-object protection-period release decision (read-only, #256). |
 | `anton:prune-cache` | Delete expired rows from the database cache table (#389) |
 | `anton:reencrypt-secrets` | Re-encrypt two-factor secrets and passkeys onto the current APP_KEY (#479). |
+| `anton:relate-by-identifier` | Relate the records of two holdings that carry the same number in their identifier or old ident… |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
 | `anton:repair-content-locale` | Move objects.title and notes from a wrongly written language into the archive's own (#506). |

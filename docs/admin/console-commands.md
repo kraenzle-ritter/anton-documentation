@@ -439,6 +439,15 @@ Ist Inge nicht erreichbar, bleibt der Ordner ebenfalls.
 
 Mit `--dry-run` schreibt er nichts, `--output=` legt den Bericht als Markdown ab, `--under=` grenzt auf einen Teilbaum ein. Ohne eingeschaltete Objekt-Beziehungen (`object_relations`) schreibt er nichts. Den übrigen Wortlaut des Textfelds ändert er nur mit `--replace=ALT=NEU`.
 
+`anton:relate-by-identifier` verknüpft die Datensätze zweier Bestände, die dieselbe Nummer tragen, etwa einen Abzug mit seiner Glasplatte («Kopie von», `isCopyOf`) oder eine Karteikarte mit den Negativen, die sie zeigt. `--source=` und `--target=` nennen die beiden Bestände (Datensatz-IDs), reguläre Ausdrücke mit einer Gruppe `(?<n>…)` lesen die Nummer aus der Signatur (`--source-pattern`, `--target-pattern`) oder der Altsignatur (`--source-old-pattern`, `--target-old-pattern`). Eine Gruppe `(?<to>…)` macht einen Bereich, jede Nummer darin zählt; ein Bereich, der rückwärts läuft oder länger ist als `--max-range` (50), gilt als Tippfehler und erscheint im Bericht. Nummern werden ohne führende Nullen verglichen. Trägt mehr als ein Ziel dieselbe Nummer, verknüpft der Befehl nichts und meldet den Fall. `--type=` wählt die Beziehung (Vorgabe `isCopyOf`), `--skip-if=` lässt Datensätze aus, die schon eine Beziehung dieser Art haben, etwa um einen Abzug nur dort mit der Karte zu verknüpfen (`isRelatedTo`), wo kein Original gefunden wurde.
+
+```bash
+php artisan anton:relate-by-identifier --env=kr --source=120 --target=118 \
+  --source-old-pattern='#\bB\.?\s*(?<n>\d+)#' --target-pattern='#/(?<n>\d+)$#' --dry-run --output=bericht.md
+```
+
+Mit `--dry-run` schreibt er nichts, `--output=` legt den Bericht als Markdown ab (verknüpft, schon verknüpft, mehrdeutig, ohne Ziel, Bereich verworfen). Er schreibt nur, wo `object_relations` eingeschaltet ist, und lässt sich wiederholen, ohne Beziehungen doppelt anzulegen.
+
 ## Diagnose
 
 **`anton:doctor`**{#antondoctor} prüft eine Installation auf Konsistenz — dieselben Prüfungen
@@ -494,7 +503,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (69)
+### anton: (70)
 
 | Befehl | Beschreibung |
 |---|---|
@@ -543,6 +552,7 @@ erzeugt und mit jeder Änderung an den Befehlen nachgeführt.
 | `anton:protection-baseline` | Snapshot or diff the current per-object protection-period release decision (read-only, #256). |
 | `anton:prune-cache` | Delete expired rows from the database cache table (#389) |
 | `anton:reencrypt-secrets` | Re-encrypt two-factor secrets and passkeys onto the current APP_KEY (#479). |
+| `anton:relate-by-identifier` | Relate the records of two holdings that carry the same number in their identifier or old ident… |
 | `anton:reorder-positions` | Reorder AntonObjects position field (deterministic tie-break + automatic pre-snapshot for roll… |
 | `anton:repair-closure-table` | Check and repair the object_closure table consistency |
 | `anton:repair-content-locale` | Move objects.title and notes from a wrongly written language into the archive's own (#506). |
