@@ -37,6 +37,11 @@ The `.env` holds the database connection (Lotte's own user; Lotte chooses the da
 | `LOTTE_TENANTS_FILE` | the tenants file | `tenants.php` |
 | `LOTTE_VIRUS_CHECK` | `required` refuses a file ClamAV could not check; `optional` accepts it with a warning (development only) | `required` |
 | `LOTTE_CLAMD_SOCKET` | the socket of `clamd` | |
+| `LOTTE_CLAMD_TIMEOUT` | the least seconds `clamd` gets; for large files the wait grows with `LOTTE_VIRUS_SCAN_SECONDS_PER_GB` | `30` |
+| `LOTTE_VIRUS_SCAN_SECONDS_PER_GB` | the wait per GiB that `clamd` gets for a large file or a part | `240` |
+| `LOTTE_VIRUS_SCAN_WHOLE_MAX_SIZE` | bytes; larger files are checked in parts | 512 MiB |
+| `LOTTE_VIRUS_SCAN_MAX_SIZE` | the most bytes ClamAV checks whole; above it only in parts | 2 GiB |
+| `LOTTE_VIRUS_SCAN_PART_SIZE`, `LOTTE_VIRUS_SCAN_PART_OVERLAP` | size of the parts and their overlap in bytes; a part must stay below `clamd`'s `StreamMaxLength`. The result is then «clean in parts» | 256 MiB, 1 MiB |
 | `LOTTE_IDENTIFICATION` | `required` refuses a file when Siegfried is missing; an unknown format is never refused | `required` |
 | `LOTTE_FORMAT_VALIDATION_INVALID` | `warn` accepts an invalid file and records it, `reject` refuses it | `warn` |
 | `LOTTE_VERAPDF_BINARY`, `LOTTE_MUTOOL_BINARY` | veraPDF and MuPDF, where they are not on the path | |

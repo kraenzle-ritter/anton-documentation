@@ -37,6 +37,11 @@ In der `.env` stehen die Verbindung zur Datenbank (Lottes eigener Benutzer; die 
 | `LOTTE_TENANTS_FILE` | die Mandanten-Datei | `tenants.php` |
 | `LOTTE_VIRUS_CHECK` | `required` weist eine Datei ab, die ClamAV nicht prüfen konnte; `optional` übernimmt sie mit einer Warnung (nur für Entwicklung) | `required` |
 | `LOTTE_CLAMD_SOCKET` | der Socket von `clamd` | |
+| `LOTTE_CLAMD_TIMEOUT` | Sekunden, die `clamd` mindestens hat; für grosse Dateien wächst die Wartezeit mit `LOTTE_VIRUS_SCAN_SECONDS_PER_GB` | `30` |
+| `LOTTE_VIRUS_SCAN_SECONDS_PER_GB` | Wartezeit je GiB, die `clamd` für eine grosse Datei oder einen Teil bekommt | `240` |
+| `LOTTE_VIRUS_SCAN_WHOLE_MAX_SIZE` | Bytes; grössere Dateien werden in Teilen geprüft | 512 MiB |
+| `LOTTE_VIRUS_SCAN_MAX_SIZE` | Bytes, die ClamAV höchstens am Stück prüft; darüber nur in Teilen | 2 GiB |
+| `LOTTE_VIRUS_SCAN_PART_SIZE`, `LOTTE_VIRUS_SCAN_PART_OVERLAP` | Grösse der Teile und ihre Überlappung in Bytes; ein Teil muss unter `StreamMaxLength` von `clamd` bleiben. Das Ergebnis heisst dann «clean in parts» | 256 MiB, 1 MiB |
 | `LOTTE_IDENTIFICATION` | `required` weist eine Datei ab, wenn Siegfried fehlt; ein unbekanntes Format wird nie abgewiesen | `required` |
 | `LOTTE_FORMAT_VALIDATION_INVALID` | `warn` übernimmt eine ungültige Datei und vermerkt es, `reject` weist sie ab | `warn` |
 | `LOTTE_VERAPDF_BINARY`, `LOTTE_MUTOOL_BINARY` | veraPDF und MuPDF, wo sie nicht im Pfad liegen | |
