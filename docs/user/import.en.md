@@ -136,6 +136,7 @@ The table is generated from Anton (`anton:import-columns`), from the same rules 
 | `level_of_description` | Level of description from the value list: label, name or id. | value list | required | yes | `verzeichnungsstufe` |
 | `object_type` | Object type from the value list. An unknown one is created only with the import setting create-object-types on. | value list | yes | yes | `objekttyp` |
 | `object_count` | Number of units. | whole number | yes | yes | `umfang_zahl` |
+| `extent_cm` | Extent in running metres, e.g. 2.5 or 2,5; Anton stores it in centimetres. The name misleads: the column takes metres. | number | yes | yes | `extent_lfm`, `extent_rm` |
 | `creation_date_start` | Start of creation: year, month or day (1900, 1900-03, 1900-03-12, also 12.03.1900); «ca.» in front counts as 1 in creation_date_start_ca. Empty means no date. Format the cell as text. | date | yes | – | `datum_von` |
 | `creation_date_start_ca` | 1 if the start is approximate (ca.); otherwise 0 or empty. | 0 or 1 | yes | – | `datum_von_ca` |
 | `creation_date_end` | End of creation, date as in creation_date_start; not before the start (a year counts as the whole year). For a point in time set start and end alike. | date | yes | – | `datum_bis` |
@@ -332,7 +333,7 @@ Every update run is in the import log — like an import — but with its **own 
 
 So that an update does not have to be compiled by hand, the current **result list can be downloaded directly as an update table**: in the object list, top right, the Excel symbol next to the print view. The download adopts exactly the filters currently displayed.
 
-The file contains exclusively columns that an update is also allowed to write — `id`, the field columns, languages, the location (`location_id`), keywords/actors/places (as IDs) and the text field columns `note.*`. Deliberately **not** included are `parent` and the event columns, which would block the update. The `identifier` column is for orientation: the update finds the records via the `id`. It must hold an existing reference code; the check refuses a changed one, and the reference code cannot be changed through an update.
+The file contains exclusively columns that an update is also allowed to write — `id`, the field columns, languages, the location (`location_id`), keywords/actors/places (as IDs) and the text field columns `note.*`. Deliberately **not** included are `parent` and the event columns, which would block the update. The `identifier` column is for orientation only: the update finds the records via the `id`, never writes the reference code and leaves a changed one alone. For records without a reference code (classes, record groups) the cell stays empty.
 
 !!! tip "Multilingual archives: one title column per language"
     If the archive maintains several content languages, the update table contains one column `title_de`, `title_fr` and so on instead of `titel`. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.

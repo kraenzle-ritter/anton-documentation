@@ -136,6 +136,7 @@ Die Tabelle wird aus Anton erzeugt (`anton:import-columns`), aus denselben Regel
 | `level_of_description` | Verzeichnungsstufe aus der Werteliste: Bezeichnung, Name oder ID. | Werteliste | Pflicht | ja | `verzeichnungsstufe` |
 | `object_type` | Objekttyp aus der Werteliste. Ein unbekannter wird nur angelegt, wenn die Import-Einstellung create-object-types an ist. | Werteliste | ja | ja | `objekttyp` |
 | `object_count` | Anzahl der Einheiten. | ganze Zahl | ja | ja | `umfang_zahl` |
+| `extent_cm` | Umfang in Laufmetern, etwa 2.5 oder 2,5; Anton speichert ihn in Zentimetern. Der Name täuscht: Die Spalte nimmt Meter. | Zahl | ja | ja | `extent_lfm`, `extent_rm` |
 | `creation_date_start` | Beginn der Entstehung: Jahr, Monat oder Tag (1900, 1900-03, 1900-03-12, auch 12.03.1900); «ca.» davor wirkt wie 1 in creation_date_start_ca. Leer heisst kein Datum. Die Zelle als Text formatieren. | Datum | ja | – | `datum_von` |
 | `creation_date_start_ca` | 1, wenn der Beginn ungefähr ist (ca.); sonst 0 oder leer. | 0 oder 1 | ja | – | `datum_von_ca` |
 | `creation_date_end` | Ende der Entstehung, Datum wie creation_date_start; nicht vor dem Beginn (ein Jahr gilt als ganzes Jahr). Für einen Zeitpunkt Beginn und Ende gleich setzen. | Datum | ja | – | `datum_bis` |
@@ -332,7 +333,7 @@ Jeder Update-Lauf steht — wie ein Import — im Importprotokoll, aber mit eine
 
 Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle **Trefferliste direkt als Update-Tabelle herunterladen**: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.
 
-Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient der Orientierung: das Update findet die Datensätze über die `id`. Sie muss eine bestehende Signatur enthalten; eine geänderte Signatur lehnt die Prüfung ab, ändern lässt sich die Signatur über das Update nicht.
+Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, schreibt die Signatur nie und lässt eine geänderte unbeachtet. Bei Datensätzen ohne Signatur (Klassen, Bestandsgruppen) bleibt die Zelle leer.
 
 !!! tip "Mehrsprachige Archive: eine Titel-Spalte je Sprache"
     Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle statt `titel` je eine Spalte `title_de`, `title_fr` usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.
