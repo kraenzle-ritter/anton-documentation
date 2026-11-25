@@ -496,7 +496,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (70)
+### anton: (71)
 
 | Command | Description |
 |---|---|
@@ -528,6 +528,7 @@ up to date with every change to the commands.
 | `anton:i18n-check` | Find user-visible strings that are missing a translation (JSON + PHP keys) |
 | `anton:import` | Import an Excel File. The default options are as defensive as possible. |
 | `anton:import-actors` | Import an Excel-File to actors-table |
+| `anton:import-columns` | Print the columns of the table import as a Markdown table, for the documentation |
 | `anton:import-descriptors` | Import an Excel-File of descriptors |
 | `anton:import-directory` | Scan a directory and list all contents in a flat array with parent information |
 | `anton:import-native` | Restore an Anton subtree from a native round-trip package (anton-import-format + media). |
