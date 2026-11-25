@@ -24,4 +24,4 @@ Anton supporta l'importazione di pacchetti SIP nel formato eCH-0160. In questo m
 
 ## Archivi di file
 
-Esiste un'importazione per gli archivi di file. In Anton viene ricostruita la gerarchia della struttura di cartelle. I singoli file diventano unità documentarie. Questa importazione non è al momento ancora disponibile tramite browser.
+Esiste un'importazione per gli archivi di file. In Anton viene ricostruita la gerarchia della struttura di cartelle. I singoli file diventano unità documentarie. È disponibile nel browser sotto Importazione dati → Importazione di cartelle.

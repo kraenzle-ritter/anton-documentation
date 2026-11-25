@@ -25,7 +25,12 @@ DOCS = Path(__file__).resolve().parent.parent
 ANTON = DOCS.parent / "anton.test"
 BEGIN = "<!-- BEGIN generated import columns -->"
 END = "<!-- END generated import columns -->"
-PAGES = {"de": DOCS / "docs/user/import.md", "en": DOCS / "docs/user/import.en.md"}
+PAGES = {
+    "de": DOCS / "docs/user/import.md",
+    "en": DOCS / "docs/user/import.en.md",
+    "fr": DOCS / "docs/user/import.fr.md",
+    "it": DOCS / "docs/user/import.it.md",
+}
 
 
 def table(locale: str) -> str:

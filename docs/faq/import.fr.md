@@ -24,4 +24,4 @@ Anton prend en charge l'import de paquets SIP au format eCH-0160. Il est ainsi p
 
 ## Arborescences de fichiers
 
-Un import existe pour les arborescences de fichiers. Anton reconstitue la hiérarchie de l'arborescence. Chaque fichier devient une pièce. Cet import n'est pour l'instant pas encore disponible depuis le navigateur.
+Un import existe pour les arborescences de fichiers. Anton reconstitue la hiérarchie de l'arborescence. Chaque fichier devient une pièce. Il est disponible dans le navigateur sous Import de données → Import de répertoire.

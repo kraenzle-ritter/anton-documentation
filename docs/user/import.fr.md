@@ -1,18 +1,19 @@
 ## Résumé
-Il est possible d'importer dans Anton des données et les fichiers associés (médias). Les données de description (fichier Excel) sont saisies dans une feuille Excel (imposée) et chargées sur le serveur avec les fichiers. Les données sont ensuite validées et, si la validation a réussi, l'import/ingest peut avoir lieu (données de description et médias). Voir aussi la documentation dans Anton sous `/import/documentation`.
+L'import de tableaux amène dans Anton des unités de description et leurs fichiers (médias) à partir d'un tableau Excel, ODS ou CSV. Le tableau est téléversé, contrôlé puis importé ; les médias sont déposés au préalable dans l'onglet « Médias ». L'aide dans Anton (Import de tableaux → onglet « Documentation », `/import/excel/documentation`) montre la même liste de colonnes que cette page, avec les valeurs et les séparateurs de votre archive.
 
-## Hub d'import `/import`
+## Import de données `/import`
 
-Toutes les voies d'import sont regroupées à une seule adresse : `/import` (dans le menu sous **Import / Export → Import**). La page comporte quatre onglets :
+Toutes les voies d'import partent de **Admin → Import / Export → Import de données** (`/import`). La page montre une tuile par voie :
 
-| Onglet | Contenu |
+| Tuile | Contenu |
 |---|---|
-| **Boîte d'entrée** (par défaut) | SIP agate en attente, auxquels il manque encore un fonds parent. Lorsque quelque chose est en attente, un badge compteur apparaît à côté dans le menu Admin. |
-| **SIP** | Téléversement SIP direct (paquets BagIt ou E-ARK) avec validation et ingest. Voir [SIP Ingest](../admin/sip-ingest.md) et [agate SIP](../admin/agate-sip.md). |
-| **Excel** | Imports Excel (le thème principal de cette page, voir ci-dessous). |
-| **Répertoire** | Import d'une arborescence de répertoires (ZIP/GZ). |
+| **Import de tableaux** | Tableau Excel, ODS ou CSV avec unités et médias (le sujet de cette page). Onglets : Métadonnées, Médias, Update, Documentation, Listes de valeurs. |
+| **SIP eCH-0160** | Paquets de versement selon eCH-0160, voir [SIP Ingest](../admin/sip-ingest.md). |
+| **Import de répertoire** | Import d'une arborescence (ZIP/GZ). |
+| **Import Agate Sipline** | seulement là où il est configuré : paquets d'agate, voir [agate SIP](../admin/agate-sip.md). |
+| **Liste de contrôle des propositions**, **Imports**, **Statut DIMAG** | selon les droits et la configuration : contrôler des propositions, le [journal des imports](#import-protokoll), l'état du transfert vers DIMAG. |
 
-Les anciennes URL (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) redirigent de manière transparente vers l'onglet correspondant — les signets et les liens externes restent valables.
+Les anciennes adresses comme `/import/validation`, `/import/ingest`, `/import/documentation` ou `/sip/validation` mènent à l'import de tableaux ou à cette vue d'ensemble.
 
 ### Vue de détail dans la boîte d'entrée
 
@@ -27,7 +28,7 @@ On peut ainsi voir avant l'import si le SIP est pertinent, si le vocabulaire du 
 
 ### Progression en direct
 
-Tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (préparation / création des notices / lecture des médias), lignes traitées, et à la fin un lien vers l'**exécution dans le journal des imports**.
+Tous les imports s'exécutent **de manière asynchrone en arrière-plan**. Après un clic sur «&nbsp;Importer&nbsp;», on arrive sur une page de progression qui actualise l'état courant toutes les quelques secondes : phase (sauvegarde de la base, lecture, contrôle, création des notices, reprise des fichiers médias, terminé), lignes traitées, et à la fin un lien vers l'**exécution dans le journal des imports**.
 
 Cela vaut pour toutes les voies — Excel, SIP, répertoire et finalisation de la boîte d'entrée.
 
@@ -60,8 +61,15 @@ Le fichier importé est conservé. Après une exécution réussie, il passe dans
 
 Les réglages sont consignés en clair, une ligne par réglage avec sa valeur et sa provenance. Ils y restent durablement — même un an plus tard, il est ainsi possible de retracer sous quelles hypothèses un versement est entré.
 
-## Déroulement (import Excel)
-Il faut d'abord créer un fichier Excel selon les prescriptions ci-dessous. Celui-ci est à téléverser sous «&nbsp;Upload Metadata&nbsp;» et les fichiers médias associés sous «&nbsp;Upload Medien&nbsp;». Le fichier Excel peut ensuite être contrôlé sous «&nbsp;Validation&nbsp;». La validation signale les erreurs et émet des avertissements. Les données ne peuvent être importées que lorsque la validation est exempte d'erreurs. L'import est déclenché sous «&nbsp;Ingest&nbsp;» et peut prendre quelques minutes selon le volume.
+## Déroulement (import de tableaux)
+
+1. **Prendre le modèle.** L'onglet « Documentation » propose le modèle, avec un commentaire par colonne, des listes de choix et une feuille « Guide », ainsi qu'un tableau d'exemple avec des lignes valides de votre archive. Seule la première feuille est lue ; le contrôle signale les autres feuilles comme non lues.
+2. **Téléverser les médias.** Si le tableau nomme des fichiers (colonne `media`), les téléverser d'abord dans l'onglet « Médias ». Un fichier manquant est une erreur du contrôle.
+3. **Téléverser le tableau** dans l'onglet « Métadonnées » (`.xlsx`, `.ods` ou `.csv` ; Anton ne lit pas les anciens fichiers `.xls`).
+4. **Contrôler.** L'icône en forme d'œil dans la liste ouvre le contrôle : colonnes reconnues et ignorées, erreurs, avertissements, ce qui serait créé et avec quels réglages (voir [aperçu](#apercu-ce-que-limport-creerait)).
+5. **Importer.** Une fois le contrôle réussi, « Importer » lance l'exécution en arrière-plan.
+
+Seul l'onglet « Update » modifie des unités existantes (voir [plus bas](#mettre-a-jour-des-notices-existantes-mise-a-jour-via-le-navigateur)), jamais un nouvel import : le contrôle refuse une ligne dont l'`id` existe déjà.
 
 ## Langue de contenu de l'import
 
@@ -79,7 +87,7 @@ La langue de contenu est déterminée dans cet ordre — la première valeur dé
 
 Avant le démarrage, la page d'inspection indique la langue en vigueur **et sa provenance** («&nbsp;choisie pour cette exécution&nbsp;», «&nbsp;réglage d'archive&nbsp;», «&nbsp;valeur par défaut&nbsp;»). Après l'exécution, la même indication figure dans l'entrée du journal (voir [Journal des imports](#import-protokoll)).
 
-Une colonne comportant un code de langue (`title_fr`) l'emporte sur ce choix pour son propre champ — voir [titel](#titel-title).
+Une colonne comportant un code de langue (`title_fr`) l'emporte sur ce choix pour son propre champ — voir [colonnes multilingues](#colonnes-multilingues).
 
 ### Pourquoi la langue compte aussi lors de la recherche
 
@@ -109,42 +117,60 @@ Si le nombre de créations d'une catégorie dépasse la moitié des lignes, un *
     Il ne fait que lire. Aucune notice n'est créée, pas même une qu'il faudrait supprimer ensuite.
 
 ## Colonnes
-Le fichier peut contenir des colonnes supplémentaires ; celles-ci ne sont toutefois pas importées. Par souci de simplicité, des colonnes peuvent être supprimées. Le fichier définitif doit contenir au moins les colonnes suivantes :
 
-    parent
-    verzeichnungsstufe
+Sont obligatoires `parent` et `level_of_description` pour une nouvelle unité, `id` ou `uuid` pour une mise à jour. L'ordre des colonnes ne joue aucun rôle, la casse de la ligne d'en-tête non plus. Une colonne qu'Anton ne connaît pas n'est pas importée ; le contrôle la nomme et propose un nom proche. Un texte plus long que ce que la base contient interrompt l'import avec un message au lieu d'être coupé en silence.
 
-## Explication et règles pour chaque colonne / champ
+Le tableau est produit par Anton (`anton:import-columns`), à partir des règles mêmes du contrôle. Les séparateurs sont ceux d'une nouvelle installation ; chaque archive peut les changer, l'aide dans Anton montre les siens.
 
-Un texte plus long que ce que la base de données peut contenir interrompt l’import avec un message, au lieu d’être tronqué sans avertissement. Le texte libre, comme les détails d’un événement, contient au plus 65 535 octets, soit 16 000 à 65 000 caractères selon l’écriture ; pour les autres colonnes, la section de la colonne indique la longueur maximale.
+<!-- BEGIN generated import columns -->
 
-### parent
+| Colonne | Contenu | Type | Nouveau | Mise à jour | Aussi lu comme |
+|---|---|---|---|---|---|
+| `id` | ID interne de l'unité. Clé d'un tableau de mise à jour ; un nouvel import refuse les lignes dont l'ID existe déjà. | clé | – | id ou uuid |  |
+| `uuid` | Identifiant durable (UUID) de l'unité, clé du tableau de mise à jour comme id. | clé | – | id ou uuid |  |
+| `parent` | Unité supérieure : sa cote ou son ID. Elle doit exister dans le fonds ou figurer plus haut dans le même tableau ; un nombre seul est lu comme ID. | cote ou ID | obligatoire | – |  |
+| `identifier` | Cote, 100 caractères au plus, unique. Vide, Anton la déduit de l'unité supérieure, sauf pour les groupes de fonds et les classes. | texte, unique | oui | oui | `signatur` |
+| `identifier_old` | Ancienne cote, libre. | texte | oui | oui | `altsignatur` |
+| `title` | Titre dans la langue de l'import. | texte | oui | oui | `titel` |
+| `title_<lang>` | Titre dans une autre langue de l'archive, p. ex. title_fr. | texte | oui | oui |  |
+| `level_of_description` | Niveau de description de la liste de valeurs : libellé, nom ou ID. | liste de valeurs | obligatoire | oui | `verzeichnungsstufe` |
+| `object_type` | Type d'objet de la liste de valeurs. Un type inconnu n'est créé que si le réglage d'import create-object-types est activé. | liste de valeurs | oui | oui | `objekttyp` |
+| `object_count` | Nombre d'unités. | nombre entier | oui | oui | `umfang_zahl` |
+| `extent_cm` | Métrage linéaire en mètres, p. ex. 2.5 ou 2,5 ; Anton l'enregistre en centimètres. Le nom trompe : la colonne prend des mètres. | nombre | oui | oui | `extent_lfm`, `extent_rm` |
+| `creation_date_start` | Début de la création : année, mois ou jour (1900, 1900-03, 1900-03-12, aussi 12.03.1900) ; « ca. » devant vaut 1 dans creation_date_start_ca. Vide signifie pas de date. Formater la cellule en texte. | date | oui | – | `datum_von` |
+| `creation_date_start_ca` | 1 si le début est approximatif (ca.) ; sinon 0 ou vide. | 0 ou 1 | oui | – | `datum_von_ca` |
+| `creation_date_end` | Fin de la création, date comme creation_date_start ; pas avant le début (une année vaut l'année entière). Pour un instant, mettre début et fin identiques. | date | oui | – | `datum_bis` |
+| `creation_date_end_ca` | 1 si la fin est approximative (ca.) ; sinon 0 ou vide. | 0 ou 1 | oui | – | `datum_bis_ca` |
+| `creation_actors` | Acteur·trice·s de la création : nom, ID ou identifiant d'autorité (gnd:…). Les inconnu·e·s sont créé·e·s si le réglage create-actors est activé, sinon le contrôle les signale comme erreurs. | acteur·trice·s (séparés par `::` `;`) | oui | – | `provenienz_autor` |
+| `creation_place` | Lieux de la création : nom, « nom / ville », ID ou geonames:…. Les inconnus sont créés si create-places est activé. | lieux (séparés par `::` `;`) | oui | – |  |
+| `creation_event_details` | Précisions sur l'événement de création, libre. | texte | oui | – |  |
+| `<event>_actors` | Acteur·trice·s d'un autre événement ; <event> est l'un des types d'événement (liste dans la documentation). | acteur·trice·s (séparés par `::` `;`) | oui | – |  |
+| `<event>_place` | Lieux d'un autre événement. | lieux (séparés par `::` `;`) | oui | – |  |
+| `<event>_date_start` | Début d'un autre événement, date comme ci-dessus ; avec <event>_date_start_ca. | date | oui | – |  |
+| `<event>_date_end` | Fin d'un autre événement, date comme ci-dessus ; avec <event>_date_end_ca. | date | oui | – |  |
+| `<event>_event_details` | Précisions sur un autre événement, libre. | texte | oui | – |  |
+| `note.<name>` | Champ de texte du formulaire selon son nom, p. ex. note.scopecontent ou scopecontent ; avec un suffixe de langue (_fr) pour d'autres langues. | texte | oui | oui |  |
+| `languages` | Langues du contenu, en codes des langues configurées dans l'archive. | codes de langue (séparés par `::`) | oui | oui | `sprache`, `sprachen` |
+| `keywords_terms` | Mots-clés matière : nom ou ID. Les inconnus sont créés si create-keywords est activé. | mots-clés (séparés par `::` `,` `;`) | oui | oui | `keywords`, `sachschlagworte`, `schlagworte` |
+| `keywords_actors` | Acteur·trice·s comme mots-clés, comme creation_actors. | acteur·trice·s (séparés par `::` `;`) | oui | oui | `schlagworte_akteure`, `schlagworte_names` |
+| `keywords_places` | Lieux comme mots-clés, comme creation_place. | lieux (séparés par `::` `;`) | oui | oui | `schlagworte_orte`, `schlagworte_places` |
+| `digitisation_actors` | Qui a numérisé, acteur·trice·s comme creation_actors. | acteur·trice·s (séparés par `::` `;`) | oui | oui | `digitalisiert_von` |
+| `location` | Lieu de conservation : libellé ou ID. Un lieu inconnu n'est créé que si create-locations est activé. | lieu de conservation | oui | oui | `standort` |
+| `location_id` | Lieu de conservation par ID uniquement. | nombre entier | oui | oui |  |
+| `formset` | Jeu de formulaires : nom ou ID. | jeu de formulaires | oui | oui | `formularsatz` |
+| `formset_id` | Jeu de formulaires par ID uniquement. | nombre entier | oui | oui |  |
+| `period_of_protection` | Délai de protection de la liste de valeurs : libellé, nom ou ID ; vide signifie aucun. | liste de valeurs | oui | oui | `schutzfrist` |
+| `status_of_description` | Statut de la description de la liste de valeurs : libellé, nom ou ID. | liste de valeurs | oui | oui | `status_beschreibung` |
+| `detail_of_description` | Niveau de détail de la liste de valeurs : libellé, nom ou ID. | liste de valeurs | oui | oui | `detail_beschreibung` |
+| `vacat` | Vacat de la liste de valeurs : libellé ou ID ; 0 et 1 d'anciens tableaux sont encore compris. | liste de valeurs | oui | oui | `fehlt` |
+| `private` | 1 verrouille l'unité et tout ce qui est en dessous pour le public ; 0 ou vide non. | 0 ou 1 | oui | oui | `privat` |
+| `media` | Noms des fichiers, exactement comme téléversés dans l'onglet « Médias ». Un fichier manquant est une erreur du contrôle. | noms de fichiers (séparés par `::` `,` `;`) | oui | oui | `bilder` |
+| `private_media` | Comme media, mais les médias ne sont visibles que pour les comptes connectés autorisés. | noms de fichiers (séparés par `::` `,` `;`) | oui | oui | `private_bilder` |
+| `loan` | Emprunteur·euse : « Nom, Prénom » ou ID d'utilisateur. | utilisateur·trice | oui | oui |  |
 
-Le champ `parent` indique où la notice à importer est rattachée. Le champ ne doit pas être vide. Il peut contenir au maximum 100 caractères. Il doit contenir une cote existant déjà dans la base de données.
+<!-- END generated import columns -->
 
-Comme Anton peut comporter des unités de description sans cote (par exemple des classes, des groupes de fonds), il est également possible d'indiquer le `parent` via l'`id`. Si le `parent` contient un nombre entier (integer), l'importeur considère qu'il s'agit du `parent_id`. L'`id` d'une unité de description est visible dans le `permalink`.
-
-### Verzeichnungsstufe (level_of_description)
-
-Le champ ne doit pas être vide. Il doit contenir un niveau de description existant :
-
-    Archiv
-    Bestandsgruppe
-    Bestand
-    Klasse
-    Serie
-    Dossier
-    Einzelstück
-
-### signatur (identifier)
-
-Le champ peut contenir au maximum 100 caractères. Chaque cote ne peut apparaître qu'une seule fois. Si aucune cote n'est indiquée, une nouvelle cote unique est générée par Anton.
-
-### altsignatur (identifier_old)
-
-Le champ peut contenir au maximum 100 caractères.
-
-### titel (title)
+### Colonnes multilingues
 
 Le champ peut contenir du texte libre.
 
@@ -162,32 +188,27 @@ Il en va de même pour les **champs de texte** : `scopecontent` écrit dans la l
 !!! note "Uniquement les langues configurées"
     Un code de langue n'est reconnu que s'il figure dans le réglage `locales` du service (voir [configuration linguistique](languages.md)). `title_es` dans un service sans espagnol n'est pas une indication de langue mais une colonne inconnue — et l'inspection la signale comme telle.
 
-### Antonevents
-Les Antonevents relient les unités de description aux acteur·trice·s et aux lieux. Ils se composent des champs suivants : `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Pour importer un Antonevent, l'EventType doit désormais être placé devant le nom du champ dans la désignation de la colonne, par exemple pour la création (dates extrêmes) :  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+### Événements
 
-Les colonnes de date (`…_date_start`, `…_date_end`) acceptent une année, un mois ou un jour : `1900`, `1900-03`, `1900-03-12`, ou encore `12.03.1900` ou `3. März 1900`. «&nbsp;ca.&nbsp;» devant la date (`ca. 1900`) active l'indication «&nbsp;circa&nbsp;» comme un 1 dans la colonne `…_ca`. La validation signale une date qu'elle ne peut pas lire et une date de fin antérieure à la date de début ; une année compte comme l'année entière, `1923` ne se termine donc pas avant `1923-05-15`. Un champ vide signifie : pas de date.
+Les événements relient une unité à des acteur·trice·s, des lieux et une période. Un groupe de colonnes appartient à un type d'événement : le type précède les noms de champ `actors`, `place`, `date_start`, `date_start_ca`, `date_end`, `date_end_ca`, `event_details`, pour la création donc `creation_actors`, `creation_place`, `creation_date_start`, `creation_date_start_ca`, `creation_date_end`, `creation_date_end_ca`, `creation_event_details`.
 
-Il existe de nombreux Antonevents : `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
+Types d'événement : `creation`, `acquisition`, `reproduction`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. L'aide dans Anton montre la liste actuelle.
+
+Les colonnes de date prennent une année, un mois ou un jour : `1900`, `1900-03`, `1900-03-12`, aussi `12.03.1900`. « ca. » devant la date (`ca. 1900`) pose la marque ca. comme un 1 dans la colonne `…_ca`. Le contrôle signale une date illisible et une date de fin antérieure à la date de début ; une année vaut l'année entière, `1923` ne finit donc pas avant `1923-05-15`. Un champ vide signifie : pas de date.
 
 #### Acteur·trice·s (p. ex. creation_actors)
 
-Le champ peut contenir au maximum 500 caractères. L'indication de la période d'existence (dates de vie) entre parenthèses n'est pas obligatoire, mais possible. Les parenthèses ne doivent toutefois pas être utilisées à d'autres fins. Plusieurs acteur·trice·s devraient être séparés par `::`.
-
-Exemple pour deux acteur·trice·s : 
+Un·e acteur·trice est trouvé·e par son nom, son ID ou un identifiant d'autorité préfixé, en minuscules avec deux-points sans espace : `gnd:118519522`. Les dates d'existence entre parenthèses sont possibles mais pas nécessaires ; les parenthèses rondes ne doivent pas servir à autre chose. Plusieurs acteur·trice·s sont séparé·e·s par le séparateur de l'archive (par défaut `::` ou `;`) :
 
 ```
-Müller, Martina (1934-1977) :: Rechtsabteilung
+Müller, Martina (1934-1977) :: Service juridique
 ```
 
-Le format n'est pas validé au préalable ! Les acteur·trice·s sont créés s'ils ne sont pas trouvés dans Anton (la recherche se fait sur le nom).
+La création d'un·e acteur·trice inconnu·e dépend du réglage d'import `create-actors` : activé (par défaut dans le navigateur), il ou elle est créé·e, avec un identifiant GND à partir des données de la GND ; désactivé, le contrôle le signale comme erreur. En ligne de commande, la création n'a lieu qu'avec `--create-actors`.
 
-Réglage d'import `create-actors` : les acteur·trice·s sont créés s'ils ne sont pas trouvés dans Anton.
+#### Lieux (p. ex. creation_place)
 
-Si un·e acteur·trice est déjà enregistré·e dans Anton, il ou elle peut aussi être référencé·e par son ID (integer).
-
-Si un·e acteur·trice a été saisi·e avec une GND ou une autre ressource, il ou elle peut aussi être reconnu·e par cette ressource, en assortissant l'indication d'un préfixe (en minuscules et avec deux points, sans espace) : «&nbsp;gnd:118519522&nbsp;» (la ressource doit toutefois être unique au sein d'Anton). Si l'acteur·trice n'existe pas encore, il ou elle est créé·e à partir des données de la GND.
-
-#### Places
+Un lieu est trouvé par son nom, son ID ou un identifiant comme `geonames:2954172`. La création d'un lieu inconnu dépend du réglage d'import `create-places`.
 Le champ peut contenir un lieu ou un places-id (integer). Réglage d'import `create-places` : les lieux sont créés s'ils ne sont pas trouvés dans Anton. Si un lieu est déjà enregistré dans Anton, il peut aussi être référencé par son ID (integer).
 
 Les lieux peuvent contenir les éléments suivants :  
@@ -246,46 +267,6 @@ Les mots-clés, acteur·trice·s et lieux n'y figurent *pas* — ce sont des not
 d'autorité dotées de leurs propres pages interrogeables, non des listes à
 parcourir.
 
-### objekttyp (object_type)
-
-Le champ doit contenir un type d'objet existant déjà :
-
-```
-Akte
-Bild
-Band
-Film
-...
-```
-
-La liste des valeurs admises dépend des types d'objets que le service concerné a définis.
-
-### umfang_zahl (object_count)
-
-Le champ doit contenir un nombre entier (integer). L'indication se rapporte au type d'objet.
-
-### sprache (languages)
-
-Le champ peut contenir plusieurs langues. Les langues doivent soit correspondre au [code de langue ISO 639-2/B](https://fr.wikipedia.org/wiki/Liste_des_codes_ISO_639-2) («&nbsp;ger&nbsp;» et non «&nbsp;deu&nbsp;», «&nbsp;fre&nbsp;» et non «&nbsp;fra&nbsp;»), soit être écrites exactement comme dans la liste existante. Plusieurs langues peuvent être séparées par les caractères suivants (la virgule et le point-virgule ne sont pas possibles) :
-
-```
-    ::
-```
-
-### standort (location)
-
-Le champ doit contenir un lieu de conservation déjà utilisé. Si un nouveau lieu de conservation doit être utilisé, il faut d'abord l'ajouter sous Admin - Lieux de conservation.
-
-Il existe deux colonnes, et le nom indique dans chaque cas ce qui doit y figurer : **`location_id`** n'accepte que l'ID, **`location`** (également : `standort`) accepte l'ID *ou* la désignation. Si les deux sont présentes, `location_id` l'emporte.
-
-### formularsatz (formset)
-
-Détermine quel jeu de formulaires est utilisé pour la notice — donc quels champs apparaissent et dans quel ordre. Le champ est **facultatif** : s'il reste vide, Anton résout le jeu de formulaires par le niveau de description. Il n'est nécessaire que si une notice s'en écarte délibérément, par exemple le jeu de formulaires `letter` sur des pièces.
-
-Comme pour le lieu de conservation, deux colonnes : **`formset`** (également : `formularsatz`) accepte le nom *ou* l'ID, **`formset_id`** uniquement l'ID. Les noms des jeux de formulaires disponibles figurent sous *Administration → Jeux de formulaires* — dans une installation standard par exemple `fonds`, `class`, `series`, `file`, `item`, `collection`, `recordgroup`, `default`.
-
-Le tableau de mise à jour téléchargé comporte la colonne `formset` et écrit le **nom**. Une cellule vide laisse le jeu de formulaires inchangé.
-
 ### vacat
 
 Indique si l'unité de description est un espace réservé (une lacune dans la
@@ -298,56 +279,6 @@ de tableaux plus anciens — `1` et `0`.
 Ce qui est **exporté** est la désignation : `vacat` pour un espace réservé,
 sinon une cellule vide. Les tableaux plus anciens comportant `56`/`57` peuvent
 continuer d'être utilisés sans modification.
-
-
-### bilder (media)
-
-Le champ peut contenir au maximum 500 caractères. Plusieurs noms de fichiers (assets) peuvent être séparés par les caractères suivants :
-
-```
-, ; ::
-```
-
-
-Exemple :
-
-```
-erstes_bild.tif::zweites_bild.tif
-```
-
-### schutzfrist (period_of_protection)
-
-Le champ doit contenir un délai de protection existant :
-
-```
-public
-standard
-prolonged
-```
-
-### private
-
-Le champ ne peut contenir que 0 (non) ou 1 (oui). Si private ne contient aucune valeur, 0 est défini.
-
-
-### status_of_description
-
-Le champ ne peut contenir que des noms de la liste de valeurs correspondante :
-
-```
-draft
-final
-```
-
-### detail_of_description
-
-Le champ ne peut contenir que des noms de la liste de valeurs correspondante ::
-
-```
-minimal
-partial
-full
-```
 
 ### Autres champs
 
@@ -381,13 +312,13 @@ Les autres champs sont des champs de texte libre ::
 !!! warning "Fonction expérimentale"
     La mise à jour des données est signalée comme **expérimentale** (badge dans l'onglet et sur la page de téléversement). Elle modifie directement des notices existantes. Anton crée donc **automatiquement une sauvegarde de la base de données avant chaque mise à jour** (voir ci-dessous) ; contrôlez néanmoins le résultat par échantillonnage.
 
-Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre **«&nbsp;Update&nbsp;»** existe à cet effet sous **Import de tableau** (après *Métadonnées* et *Médias*). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec **«&nbsp;Détails&nbsp;»**. Le fichier est contrôlé directement en mode mise à jour, et le bouton **«&nbsp;Charger comme mise à jour&nbsp;»** apparaît.
+Outre la création de nouvelles notices, les unités de description existantes peuvent aussi être mises à jour directement via le navigateur. Un onglet propre **«&nbsp;Update&nbsp;»** existe à cet effet sous **Import de tableau** (après *Métadonnées* et *Médias*). Y téléverser le tableau — les fichiers de mise à jour ont leur propre liste, distincte de l'import normal — et l'ouvrir avec l'icône en forme d'œil. Le fichier est contrôlé directement en mode mise à jour, et le bouton **«&nbsp;Charger comme mise à jour&nbsp;»** apparaît.
 
 Comme l'onglet *Update* contrôle le fichier exclusivement en tant que mise à jour, un tableau de mise à jour pur (uniquement `id` + les colonnes à modifier, sans `parent`) n'exige aucun détour : la colonne `parent`, nécessaire à la création, n'est pas requise ici. L'onglet *Métadonnées* régulier reste inchangé pour la création.
 
 Une mise à jour écrase les champs des notices existantes «&nbsp;sur place&nbsp;» — **aucune nouvelle notice n'est créée** dans ce processus. Pour qu'une mise à jour reste sûre et prévisible, trois conditions s'appliquent. Si l'une d'elles est violée, le fichier est bloqué et le motif est affiché sur la page d'inspection :
 
-1. **Chaque ligne a besoin d'un `id` numérique.** C'est par cet `id` que la notice à mettre à jour est trouvée. L'`id` d'une unité de description est visible dans le `permalink`.
+1. **Chaque ligne nomme son unité par `id` ou `uuid`.** L'`id` d'une unité de description est visible dans le `permalink` ; le tableau de mise à jour issu de la liste de résultats contient les deux.
 2. **Pas de colonne `parent` (ni `parent_id`).** Une mise à jour ne doit pas déplacer de notices. Pour modifier la hiérarchie, rattacher les notices ailleurs dans Anton de manière régulière.
 3. **Pas de colonnes d'événement (Antonevents).** Les colonnes telles que `creation_actors`, `creation_date_start` etc. ne sont pas admises dans une mise à jour, afin qu'aucun événement en double ne soit créé. Gérer les liens vers les acteur·trice·s et les lieux dans Anton.
 
@@ -409,7 +340,7 @@ Chaque exécution de mise à jour figure — comme un import — dans le journal
 
 Pour ne pas devoir composer une mise à jour à la main, la **liste de résultats courante peut être téléchargée directement comme tableau de mise à jour** : dans la liste des objets, en haut à droite, le symbole Excel à côté de l'aperçu avant impression. Le téléchargement reprend exactement les filtres actuellement affichés.
 
-Le fichier ne contient que des colonnes qu'une mise à jour est autorisée à écrire — `id`, les colonnes de champs, les langues, le lieu de conservation (`location_id`), les mots-clés / acteur·trice·s / lieux (sous forme d'ID) et les colonnes de champs de texte `note.*`. Ne sont délibérément **pas** inclus `parent` ni les colonnes d'événement, qui bloqueraient la mise à jour. La colonne `identifier` ne sert qu'à l'orientation : la mise à jour trouve les notices par l'`id`, et les modifications de la cote restent sans effet.
+Le fichier ne contient que des colonnes qu'une mise à jour est autorisée à écrire — `id`, les colonnes de champs, les langues, le lieu de conservation (`location_id`), les mots-clés / acteur·trice·s / lieux (sous forme d'ID) et les colonnes de champs de texte `note.*`. Ne sont délibérément **pas** inclus `parent` ni les colonnes d'événement, qui bloqueraient la mise à jour. La colonne `identifier` ne sert qu'à l'orientation : la mise à jour trouve les notices par l'`id`, n'écrit jamais la cote et ignore une cote modifiée. Pour les unités sans cote (classes, groupes de fonds), la cellule reste vide.
 
 !!! tip "Services multilingues : une colonne de titre par langue"
     Si le service tient plusieurs langues de contenu, le tableau de mise à jour contient, au lieu de `titel`, une colonne `title_de`, `title_fr` etc. Ce n'est qu'ainsi que l'aller-retour est sans perte : avec une unique colonne de titre, la langue de l'exécution devrait décider, au chargement, vers quel champ la valeur retourne — et un titre français aboutirait dans le champ allemand.
@@ -462,7 +393,7 @@ Ne sont en outre pas représentés le champ de datation en texte libre (`datieru
 Pour le client (slug) «&nbsp;besenval&nbsp;» et le fichier Excel «&nbsp;test.xlsx&nbsp;», la commande d'import est :
 
 ```bash
-php artisan anton:import --env=besenval --file="test.xlsx" --import
+php artisan anton:import test.xlsx --env=besenval --import
 ```
 
 On suppose que `test.xlsx` se trouve dans le dossier `customers/besenval/metadata_to_import/`. Les fichiers à importer avec lui (médias) doivent se trouver dans le dossier `customers/besenval/assets_to_import/`.
@@ -480,7 +411,7 @@ La commande `anton:import` offre plusieurs options qui peuvent être utiles dans
 |--locale=                 |langue de contenu de l'exécution (p. ex. `de`, `fr`). Sans indication, le réglage d'archive s'applique, sinon la langue principale du service — voir [langue de contenu de l'import](#langue-de-contenu-de-limport)|
 |--update                  |mettre à jour des notices existantes au lieu d'en créer ; rapprochement par défaut via l'`id`|
 |--default-excel-column=   |`id` (par défaut), `uuid` ou `identifier` — détermine, avec `--update`, par quoi les notices sont trouvées|
-|--dont-validate           |do not validate the file|
+|--no-validation           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|
 |--create-keywords         |create new keywords if they dont exist|
