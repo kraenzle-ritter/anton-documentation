@@ -63,7 +63,7 @@ The settings are recorded in plain text, one line per setting with its value and
 
 ## Procedure (table import)
 
-1. **Get the template.** The «Documentation» tab offers an empty template and an example table with valid rows from your own archive. Only the first sheet is read; the check names further sheets as not read.
+1. **Get the template.** The «Documentation» tab offers the template, with a comment per column, choice lists and a sheet «Guide», and an example table with valid rows from your own archive. Only the first sheet is read; the check names further sheets as not read.
 2. **Upload the media.** If the table names files (column `media`), upload them first in the «Media» tab. A missing file is an error in the check.
 3. **Upload the table** in the «Metadata» tab (`.xlsx`, `.ods` or `.csv`; Anton cannot read old `.xls` files).
 4. **Check.** The eye icon in the list opens the check: recognised and ignored columns, errors, warnings, what would be created and under which settings (see [preview](#preview-what-the-import-would-create)).

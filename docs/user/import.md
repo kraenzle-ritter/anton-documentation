@@ -63,7 +63,7 @@ Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit
 
 ## Ablauf (Tabellen-Import)
 
-1. **Vorlage holen.** Im Reiter «Dokumentation» liegen eine leere Vorlage und eine Beispieltabelle mit gültigen Zeilen aus dem eigenen Archiv. Gelesen wird nur das erste Tabellenblatt; weitere Blätter meldet die Prüfung als nicht gelesen.
+1. **Vorlage holen.** Im Reiter «Dokumentation» liegen die Vorlage, mit einem Kommentar je Spalte, Auswahllisten und einem Blatt «Anleitung», und eine Beispieltabelle mit gültigen Zeilen aus dem eigenen Archiv. Gelesen wird nur das erste Tabellenblatt; weitere Blätter meldet die Prüfung als nicht gelesen.
 2. **Medien hochladen.** Nennt die Tabelle Dateien (Spalte `media`), diese zuerst im Reiter «Medien» hochladen. Fehlt eine Datei, meldet die Prüfung einen Fehler.
 3. **Tabelle hochladen** im Reiter «Metadaten» (`.xlsx`, `.ods` oder `.csv`; alte `.xls`-Dateien kann Anton nicht lesen).
 4. **Prüfen.** Das Augen-Symbol in der Liste öffnet die Prüfung: erkannte und ignorierte Spalten, Fehler, Warnungen, was neu angelegt würde und mit welchen Einstellungen (siehe [Vorschau](#vorschau-was-der-import-neu-anlegen-wurde)).
