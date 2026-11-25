@@ -24,4 +24,4 @@ Anton supports the import of SIP packages in the eCH-0160 format. This makes it 
 
 ## File shares
 
-There is an import for file shares. Anton reconstructs the hierarchy of the file share. The individual files become items. This import is currently not yet available through the browser.
+There is an import for file shares. Anton reconstructs the hierarchy of the file share. The individual files become items. It is available in the browser under Data import → Directory import.

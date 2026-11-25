@@ -5,7 +5,7 @@ Anton ermöglicht den Import/Ingest von Submission Information Packages (SIP) na
 Zum Standard: [https://ech.ch/de/ech/ech-0160/1.2.0](https://ech.ch/de/ech/ech-0160/1.2.0)
 
 !!! note "Unified Import Hub"
-    Alle Import-Pfade — SIP, Excel, Verzeichnis, agate — sind unter `/import` zusammengefasst (vier Tabs). Die alten URLs (`/sip/validation`, `/sip/ingest`, `/sip/inbox`) leiten transparent auf den passenden Tab um. Siehe [user/import.md](../user/import.md) für die UI-Übersicht.
+    Alle Import-Wege beginnen auf der Übersicht `/import` (Admin → Import / Export → Daten-Import), je Weg eine Kachel; der SIP-Import nach eCH-0160 ist die Kachel «SIP eCH-0160». Alte Adressen wie `/sip/validation` und `/sip/ingest` führen auf diese Übersicht. Siehe [Datenimport](../user/import.md).
 
 !!! note "agate-SIP-Import"
     BagIt-SIPs, die von agate (Anton-Vorbereitungs-Tool) per HTTP geschickt werden, laufen über einen eigenen Pfad mit NARA-Kategorie-Mapping und Eingangskorb. Details: [agate-sip.md](agate-sip.md).

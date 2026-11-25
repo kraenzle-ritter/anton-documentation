@@ -24,4 +24,4 @@ Anton unterstützt den Import von SIP-Paketen im eCH-0160-Format. Damit können 
 
 ## Dateiablagen
 
-Es gibt einen Import für Dateiablagen. In Anton wird die Hierarchie der Ablage rekonstruiert. Die einzelnen Dateien werden zu Einzelstücken. Dieser Import ist zurzeit noch nicht über den Browser verfügbar.
+Es gibt einen Import für Dateiablagen. In Anton wird die Hierarchie der Ablage rekonstruiert. Die einzelnen Dateien werden zu Einzelstücken. Er steht im Browser unter Daten-Import → Verzeichnis-Import.

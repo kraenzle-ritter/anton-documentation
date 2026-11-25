@@ -1,18 +1,19 @@
 ## Summary
-It is possible to import data and the associated files (media) into Anton. The descriptive data (Excel file) is recorded in a (prescribed) Excel sheet and uploaded to the server together with the files. The data is then validated and, if validation was successful, the import/ingest can take place (descriptive data and media). See also the documentation in Anton at `/import/documentation`.
+The table import brings records and their files (media) into Anton from an Excel, ODS or CSV table. The table is uploaded, checked and then imported; the media are uploaded beforehand in the «Media» tab. The help in Anton (Table import → tab «Documentation», `/import/excel/documentation`) shows the same column list as this page, with the values and separators of your own archive.
 
-## Import hub `/import`
+## Data import `/import`
 
-All import paths are brought together at one address: `/import` (in the menu under **Import / Export → Import**). The page has four tabs:
+Every import path starts under **Admin → Import / Export → Data import** (`/import`). The page shows a tile per path:
 
-| Tab | Content |
+| Tile | Content |
 |---|---|
-| **Inbox** (default) | Waiting agate SIPs that still need a parent fonds. When something is waiting, a counter badge appears next to it in the admin menu. |
-| **SIP** | Direct SIP upload (BagIt or E-ARK packages) with validation and ingest. See [SIP ingest](../admin/sip-ingest.md) and [agate SIP](../admin/agate-sip.md). |
-| **Excel** | Excel imports (the main subject of this page, see below). |
-| **Directory** | Import of a directory structure (ZIP/GZ). |
+| **Table import** | Excel, ODS or CSV table with records and media (the subject of this page). Tabs: Metadata, Media, Update, Documentation, Value lists. |
+| **SIP eCH-0160** | Submission packages according to eCH-0160, see [SIP ingest](../admin/sip-ingest.md). |
+| **Directory import** | Import of a directory structure (ZIP/GZ). |
+| **Agate Sipline import** | only where set up: packages from agate, see [agate SIP](../admin/agate-sip.md). |
+| **Review list for suggestions**, **Imports**, **DIMAG status** | depending on permission and setup: review suggestions, the [import log](#import-protokoll), the state of the hand-over to DIMAG. |
 
-The old URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) redirect transparently to the appropriate tab — bookmarks and external links remain valid.
+Old addresses such as `/import/validation`, `/import/ingest`, `/import/documentation` or `/sip/validation` lead to the table import or to this overview.
 
 ### Detail view in the inbox
 
@@ -27,7 +28,7 @@ This makes it possible to see before the import whether the SIP makes sense, whe
 
 ### Live progress
 
-All imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: phase (preparation / creating records / reading media), rows completed, and at the end a link to the **run in the import log**.
+All imports run **asynchronously in the background**. After clicking "import", you land on a progress page that updates the current status every few seconds: step (database backup, reading, checking, creating records, taking over media files, done), rows completed, and at the end a link to the **run in the import log**.
 
 This applies to all paths — Excel, SIP, directory and finalising the inbox.
 
@@ -60,8 +61,15 @@ The imported file is kept. After a successful run it moves to `metadata_imported
 
 The settings are recorded in plain text, one line per setting with its value and origin. They remain there permanently — even a year later it is thus possible to trace the assumptions under which a delivery came in.
 
-## Procedure (Excel import)
-First, an Excel file has to be created according to the specifications below. This is uploaded under "Upload Metadata", and the associated media files are uploaded under "Upload Media". Finally, the Excel file can be checked under "Validation". The validation displays errors and issues warnings. The data can only be imported once the validation is free of errors. The import is triggered under "Ingest" and can take several minutes depending on the volume.
+## Procedure (table import)
+
+1. **Get the template.** The «Documentation» tab offers an empty template and an example table with valid rows from your own archive. Only the first sheet is read; the check names further sheets as not read.
+2. **Upload the media.** If the table names files (column `media`), upload them first in the «Media» tab. A missing file is an error in the check.
+3. **Upload the table** in the «Metadata» tab (`.xlsx`, `.ods` or `.csv`; Anton cannot read old `.xls` files).
+4. **Check.** The eye icon in the list opens the check: recognised and ignored columns, errors, warnings, what would be created and under which settings (see [preview](#preview-what-the-import-would-create)).
+5. **Import.** Once the check has passed, «Import» starts the run in the background.
+
+Only the «Update» tab changes existing records (see [below](#updating-existing-records-update-via-the-browser)), never a new import: the check refuses a row with an existing `id`.
 
 ## Content language of the import
 
@@ -79,7 +87,7 @@ The content language is determined in this order — the first value that is set
 
 Before the start, the inspection page names the language that applies **and where it comes from** («chosen for this run», «archive setting», «default»). After the run, the same information is in the log entry (see [Import log](#import-protokoll)).
 
-A column with a language code (`title_fr`) trumps this choice for its own field — see [titel](#titel-title).
+A column with a language code (`title_fr`) trumps this choice for its own field — see [multilingual columns](#multilingual-columns).
 
 ### Why the language matters for searching too
 
@@ -109,45 +117,59 @@ If the number of new records of one kind exceeds half the number of rows, a **wa
     It only reads. No record is created, not even one that would have to be removed again afterwards.
 
 ## Columns
-The file may contain additional columns; these are, however, not imported. For simplicity, columns may be deleted. The final file must contain at least the following columns:
 
-    parent
-    verzeichnungsstufe
+Required are `parent` and `level_of_description` for a new record, `id` or `uuid` for an update. The order of the columns does not matter, nor does the case of the header row. A column Anton does not know is not imported; the check names it and suggests a similar name. A text longer than the database holds stops the import with a message instead of being cut silently.
 
-## Explanation and rules for the individual columns/fields
+The table is generated from Anton (`anton:import-columns`), from the same rules the import checks by. The separators are the defaults of a new installation; every archive can change them, and the help in Anton shows its own.
 
-A text longer than the database can hold stops the import with a message instead of being cut off silently. Free text such as event details holds 65,535 bytes, which is 16,000 to 65,000 characters depending on the script; for the other columns, the column's section gives the maximum length.
+<!-- BEGIN generated import columns -->
 
-### parent
+| Column | Content | Kind | New | Update | Also read as |
+|---|---|---|---|---|---|
+| `id` | Internal id of the record. Key of an update table; a new import refuses rows with an existing id. | key | – | id or uuid |  |
+| `uuid` | Lasting identifier (UUID) of the record, a key of the update table like id. | key | – | id or uuid |  |
+| `parent` | The record above: its reference code or its id. It must be in the holdings or further up in the same table; a number alone counts as an id. | reference code or id | required | – |  |
+| `identifier` | Reference code, at most 100 characters, unique in the holdings. Left empty, Anton derives it from the record above, except for record groups and classes. | text, unique | yes | yes | `signatur` |
+| `identifier_old` | Former reference code, free text. | text | yes | yes | `altsignatur` |
+| `title` | Title in the language of the import. | text | yes | yes | `titel` |
+| `title_<lang>` | Title in another language of the archive, e.g. title_fr. | text | yes | yes |  |
+| `level_of_description` | Level of description from the value list: label, name or id. | value list | required | yes | `verzeichnungsstufe` |
+| `object_type` | Object type from the value list. An unknown one is created only with the import setting create-object-types on. | value list | yes | yes | `objekttyp` |
+| `object_count` | Number of units. | whole number | yes | yes | `umfang_zahl` |
+| `creation_date_start` | Start of creation: year, month or day (1900, 1900-03, 1900-03-12, also 12.03.1900); «ca.» in front counts as 1 in creation_date_start_ca. Empty means no date. Format the cell as text. | date | yes | – | `datum_von` |
+| `creation_date_start_ca` | 1 if the start is approximate (ca.); otherwise 0 or empty. | 0 or 1 | yes | – | `datum_von_ca` |
+| `creation_date_end` | End of creation, date as in creation_date_start; not before the start (a year counts as the whole year). For a point in time set start and end alike. | date | yes | – | `datum_bis` |
+| `creation_date_end_ca` | 1 if the end is approximate (ca.); otherwise 0 or empty. | 0 or 1 | yes | – | `datum_bis_ca` |
+| `creation_actors` | Actors of the creation: name, id or authority identifier (gnd:…). Unknown ones are created with the import setting create-actors on, otherwise the check reports them as errors. | actors (separated by `::` `;`) | yes | – | `provenienz_autor` |
+| `creation_place` | Places of the creation: name, «name / town», id or geonames:…. Unknown ones are created with create-places on. | places (separated by `::` `;`) | yes | – |  |
+| `creation_event_details` | Details of the creation event, free text. | text | yes | – |  |
+| `<event>_actors` | Actors of another event; <event> is one of the event types (list in the documentation). | actors (separated by `::` `;`) | yes | – |  |
+| `<event>_place` | Places of another event. | places (separated by `::` `;`) | yes | – |  |
+| `<event>_date_start` | Start of another event, date as above; with <event>_date_start_ca. | date | yes | – |  |
+| `<event>_date_end` | End of another event, date as above; with <event>_date_end_ca. | date | yes | – |  |
+| `<event>_event_details` | Details of another event, free text. | text | yes | – |  |
+| `note.<name>` | Text field of the form by its name, e.g. note.scopecontent or scopecontent; with a language suffix (_fr) for further languages. | text | yes | yes |  |
+| `languages` | Languages of the content as codes of the languages set up in the archive. | language codes (separated by `::`) | yes | yes | `sprache`, `sprachen` |
+| `keywords_terms` | Subject keywords: name or id. Unknown ones are created with create-keywords on. | keywords (separated by `::` `,` `;`) | yes | yes | `keywords`, `sachschlagworte`, `schlagworte` |
+| `keywords_actors` | Actors as keywords, like creation_actors. | actors (separated by `::` `;`) | yes | yes | `schlagworte_akteure`, `schlagworte_names` |
+| `keywords_places` | Places as keywords, like creation_place. | places (separated by `::` `;`) | yes | yes | `schlagworte_orte`, `schlagworte_places` |
+| `digitisation_actors` | Who digitised, actors like creation_actors. | actors (separated by `::` `;`) | yes | yes | `digitalisiert_von` |
+| `location` | Location: label or id. An unknown one is created only with create-locations on. | location | yes | yes | `standort` |
+| `location_id` | Location as id only. | whole number | yes | yes |  |
+| `formset` | Form set: name or id. | form set | yes | yes | `formularsatz` |
+| `formset_id` | Form set as id only. | whole number | yes | yes |  |
+| `period_of_protection` | Protection period from the value list: label, name or id; empty means none. | value list | yes | yes | `schutzfrist` |
+| `status_of_description` | Status of description from the value list: label, name or id. | value list | yes | yes | `status_beschreibung` |
+| `detail_of_description` | Level of detail from the value list: label, name or id. | value list | yes | yes | `detail_beschreibung` |
+| `vacat` | Vacat from the value list: label or id; 0 and 1 from older tables are still understood. | value list | yes | yes | `fehlt` |
+| `private` | 1 locks the record and everything below it for the public; 0 or empty does not. | 0 or 1 | yes | yes | `privat` |
+| `media` | File names of the media, exactly as uploaded in the «Media» tab. A missing file is an error in the check. | file names (separated by `::` `,` `;`) | yes | yes | `bilder` |
+| `private_media` | Like media, but the media are visible only to signed-in accounts with permission. | file names (separated by `::` `,` `;`) | yes | yes | `private_bilder` |
+| `loan` | Borrower: «surname, first name» or user id. | user | yes | yes |  |
 
-The `parent` field specifies where the record to be imported is attached. The field must not be empty. It may contain at most 100 characters. It must contain a reference code that already exists in the database.
+<!-- END generated import columns -->
 
-Since Anton can contain units of description without a reference code (classes, recordgroups, for example), it is also possible to specify the `parent` via the `id`. If the `parent` contains an integer, the importer assumes that the `parent_id` is meant. The `id` of a unit of description can be seen from the `permalink`.
-
-### Verzeichnungsstufe (level_of_description)
-
-The field must not be empty. It must contain an existing level of description:
-
-    Archiv
-    Bestandsgruppe
-    Bestand
-    Klasse
-    Serie
-    Dossier
-    Einzelstück
-
-### signatur (identifier)
-
-The field may contain at most 100 characters. Each reference code may occur only once. If no reference code is given, a new, unique reference code is generated by Anton.
-
-### altsignatur (identifier_old)
-
-The field may contain at most 100 characters.
-
-### titel (title)
-
-The field may contain free text.
-
+### Multilingual columns
 The title is a **translatable field**. Which language it is written in is decided by the [content language of the import](#content-language-of-the-import) — or, more precisely, by the column designation itself:
 
 | Column | writes to |
@@ -162,32 +184,27 @@ The same applies to the **text fields**: `scopecontent` writes into the content 
 !!! note "Only configured languages"
     A language code is only recognised if it is present in the archive's `locales` setting (see [language configuration](languages.md)). `title_es` in an archive without Spanish is not a language specification but an unknown column — and the inspection reports it as such.
 
-### Antonevents
-Antonevents link the units of description to the actors and the places. They consist of the following fields: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. To import an Antonevent, the EventType now has to be placed before the field name in the column designation, for example for the creation (date range):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+### Events
 
-The date columns (`…_date_start`, `…_date_end`) take a year, a month or a day: `1900`, `1900-03`, `1900-03-12`, also `12.03.1900` or `3. März 1900`. «ca.» before the date (`ca. 1900`) sets the circa flag like a 1 in the `…_ca` column. The validation reports a date it cannot read and an end date before the start date; a year counts as the whole year, so `1923` does not end before `1923-05-15`. An empty field means: no date.
+Events link a record with actors, places and a time span. A group of columns belongs to an event type: the type stands in front of the field names `actors`, `place`, `date_start`, `date_start_ca`, `date_end`, `date_end_ca`, `event_details`, for creation thus `creation_actors`, `creation_place`, `creation_date_start`, `creation_date_start_ca`, `creation_date_end`, `creation_date_end_ca`, `creation_event_details`.
 
-There are numerous Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
+Event types: `creation`, `acquisition`, `reproduction`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. The help in Anton shows the current list.
+
+The date columns take a year, a month or a day: `1900`, `1900-03`, `1900-03-12`, also `12.03.1900`. «ca.» in front of the date (`ca. 1900`) sets the ca. flag like a 1 in the `…_ca` column. The check reports a date it cannot read and an end date before the start date; a year counts as the whole year, so `1923` does not end before `1923-05-15`. An empty field means: no date.
 
 #### Actors (e.g. creation_actors)
 
-The field may contain at most 500 characters. Giving the period of existence (dates of life) in brackets is not obligatory but is possible. Round brackets must not, however, be used for other purposes. Several actors should be separated with `::`.
-
-Example for two actors: 
+An actor is found by name, id or an authority identifier with a prefix, in lower case with a colon and no space: `gnd:118519522`. Life dates in brackets are possible but not needed; round brackets must not be used for anything else. Several actors are separated by the archive's separator (default `::` or `;`):
 
 ```
-Müller, Martina (1934-1977) :: Rechtsabteilung
+Müller, Martina (1934-1977) :: Legal department
 ```
 
-The format is not validated in advance! Actors are newly created if they are not found in Anton (the search is by name).
+Whether an unknown actor is created depends on the import setting `create-actors`: on (the default in the browser), it is created, with a GND identifier from the GND's data; off, the check reports it as an error. From the command line it is created only with `--create-actors`.
 
-Import setting `create-actors`: actors are newly created if they are not found in Anton.
+#### Places (e.g. creation_place)
 
-If an actor is already recorded in Anton, they can also be referenced via their ID (integer).
-
-If an actor was recorded with a GND or another resource, they can also be recognised by that resource, by giving the entry a prefix (in lower case and with a colon, without a space): "gnd:118519522" (the resource does, however, have to be unique within Anton). If the actor does not yet exist, they are newly created from the GND data.
-
-#### Places
+A place is found by its name, its id or an identifier like `geonames:2954172`. Whether an unknown place is created depends on the import setting `create-places`.
 The field can contain a place or a places id (integer). Import setting `create-places`: places are newly created if they are not found in Anton. If a place is already recorded in Anton, it can also be referenced via its ID (integer).
 
 Places can contain the following elements:  
@@ -242,46 +259,6 @@ update table.
 Keywords, actors and places are *not* there — those are authority records with
 their own searchable pages, not lists to be read through.
 
-### objekttyp (object_type)
-
-The field must contain an already existing object type:
-
-```
-Akte
-Bild
-Band
-Film
-...
-```
-
-The list of permitted values depends on the object types that the respective archive has defined.
-
-### umfang_zahl (object_count)
-
-The field must contain an integer. The figure refers to the object type.
-
-### sprache (languages)
-
-The field can contain several languages. The languages must either correspond to the [ISO 639-2/B language code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) ("ger" not "deu", "fre" not "fra") or be written exactly as in the existing list. Several languages can be separated with the following characters (comma and semicolon are not possible):
-
-```
-    ::
-```
-
-### standort (location)
-
-The field must contain a location that is already in use. If a new location is to be used, add it under Admin locations first.
-
-There are two columns, and the name says in each case what belongs in it: **`location_id`** takes only the ID, **`location`** (also: `standort`) takes an ID *or* a designation. If both are present, `location_id` wins.
-
-### formularsatz (formset)
-
-Determines which form set is used for the record — that is, which fields appear in what order. The field is **optional**: if it remains empty, Anton resolves the form set via the level of description. It is only necessary if a record deliberately deviates from that, for example the form set `letter` on items.
-
-As with the location, two columns: **`formset`** (also: `formularsatz`) takes the name *or* the ID, **`formset_id`** only the ID. The names of the available form sets are listed under *Administration → Form sets* — in a standard installation, for example, `fonds`, `class`, `series`, `file`, `item`, `collection`, `recordgroup`, `default`.
-
-The downloaded update table carries the `formset` column and writes the **name**. An empty cell leaves the form set unchanged.
-
 ### vacat
 
 Specifies whether the unit of description is a placeholder (a gap in the
@@ -294,56 +271,6 @@ tables — `1` and `0`.
 What is **exported** is the designation: `vacat` for a placeholder,
 otherwise an empty cell. Older tables with `56`/`57` can continue to be used
 unchanged.
-
-
-### bilder (media)
-
-The field may contain at most 500 characters. Several file names (assets) can be separated with the following characters:
-
-```
-, ; ::
-```
-
-
-Example:
-
-```
-erstes_bild.tif::zweites_bild.tif
-```
-
-### schutzfrist (period_of_protection)
-
-The field must contain an existing protection period:
-
-```
-public
-standard
-prolonged
-```
-
-### private
-
-The field may only contain 0 (no) or 1 (yes). If private contains no value, 0 is set.
-
-
-### status_of_description
-
-The field may only contain names from the corresponding value list:
-
-```
-draft
-final
-```
-
-### detail_of_description
-
-The field may only contain names from the corresponding value list::
-
-```
-minimal
-partial
-full
-```
 
 ### Further fields
 
@@ -377,13 +304,13 @@ The further fields are free text fields::
 !!! warning "Experimental feature"
     The data update is marked as **experimental** (badge in the tab and on the upload page). It changes existing records directly. Anton therefore **automatically creates a backup of the database before every update** (see below); nevertheless, check the result on a sample basis.
 
-Besides creating new records, existing units of description can also be updated directly via the browser. There is a dedicated **«Update»** tab under **Table import** for this (after *Metadata* and *Media*). Upload the table there — update files have their own list, separate from the normal import — and open it with **«Details»**. The file is checked directly in update mode, and the button **«Load as update»** appears.
+Besides creating new records, existing units of description can also be updated directly via the browser. There is a dedicated **«Update»** tab under **Table import** for this (after *Metadata* and *Media*). Upload the table there — update files have their own list, separate from the normal import — and open it with the eye icon. The file is checked directly in update mode, and the button **«Load as update»** appears.
 
 Because the *Update* tab checks the file exclusively as an update, a pure update table (only `id` plus the columns to be changed, without `parent`) needs no detours: the `parent` column required when creating new records is not demanded here. The regular *Metadata* tab remains unchanged for creating new records.
 
 An update overwrites the fields of the existing records «in place» — **no new records are created** in the process. So that an update remains safe and predictable, three preconditions apply. If one of them is violated, the file is blocked and the reason is displayed on the inspection page:
 
-1. **Every row needs a numeric `id`.** The record to be updated is found via this `id`. The `id` of a unit of description can be seen from the `permalink`.
+1. **Every row names its record by `id` or `uuid`.** The `id` of a unit of description can be seen from the `permalink`; the update table from the results list carries both.
 2. **No `parent` (or `parent_id`) column.** An update must not move records. To change the hierarchy, re-hang the records in Anton in the regular way.
 3. **No event columns (Antonevents).** Columns such as `creation_actors`, `creation_date_start` and so on are not permitted in an update, so that no duplicate events arise. Maintain actor and place links in Anton.
 
@@ -405,7 +332,7 @@ Every update run is in the import log — like an import — but with its **own 
 
 So that an update does not have to be compiled by hand, the current **result list can be downloaded directly as an update table**: in the object list, top right, the Excel symbol next to the print view. The download adopts exactly the filters currently displayed.
 
-The file contains exclusively columns that an update is also allowed to write — `id`, the field columns, languages, the location (`location_id`), keywords/actors/places (as IDs) and the text field columns `note.*`. Deliberately **not** included are `parent` and the event columns, which would block the update. The `identifier` column serves only for orientation: the update finds the records via the `id`, and changes to the reference code have no effect.
+The file contains exclusively columns that an update is also allowed to write — `id`, the field columns, languages, the location (`location_id`), keywords/actors/places (as IDs) and the text field columns `note.*`. Deliberately **not** included are `parent` and the event columns, which would block the update. The `identifier` column is for orientation: the update finds the records via the `id`. It must hold an existing reference code; the check refuses a changed one, and the reference code cannot be changed through an update.
 
 !!! tip "Multilingual archives: one title column per language"
     If the archive maintains several content languages, the update table contains one column `title_de`, `title_fr` and so on instead of `titel`. Only in this way is the route out and back in lossless: with a single title column, the language of the run would have to decide where the value goes back to when loading — and a French title would end up in the German field.
@@ -458,7 +385,7 @@ Also not represented are the free-text dating field (`datierung_text`, in neithe
 For the customer (slug) "besenval" and the Excel file "test.xlsx", the import command is:
 
 ```bash
-php artisan anton:import --env=besenval --file="test.xlsx" --import
+php artisan anton:import test.xlsx --env=besenval --import
 ```
 
 It is assumed that `test.xlsx` is located in the folder `customers/besenval/metadata_to_import/`. Files to be imported with it (media) must be located in the folder `customers/besenval/assets_to_import/`.
@@ -476,7 +403,7 @@ The `anton:import` command offers a number of options that can be useful in spec
 |--locale=                 |content language of the run (e.g. `de`, `fr`). Without a specification, the archive setting applies, otherwise the main language of the archive — see [content language of the import](#content-language-of-the-import)|
 |--update                  |update existing records instead of creating new ones; matching by default via the `id`|
 |--default-excel-column=   |`id` (default), `uuid` or `identifier` — determines, with `--update`, what the records are found by|
-|--dont-validate           |do not validate the file|
+|--no-validation           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|
 |--create-keywords         |create new keywords if they dont exist|

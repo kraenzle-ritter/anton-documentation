@@ -1,18 +1,19 @@
 ## Zusammenfassung
-Es ist möglich, Daten und dazugehörige Dateien (media) in Anton zu importieren. Die Erschliessungsdaten (Excel-File) werden in einem (vorgegeben) Excelsheet erfasst und mit den Dateien auf den Server geladen. Danach werden die Daten validiert und falls die Validierung erfolgreich war, kann der Import/Ingest erfolgen (Erschliessungsdaten und media). Vgl. auch die Dokumentation in Anton `/import/documentation`.
+Mit dem Tabellen-Import kommen Datensätze und ihre Dateien (Medien) aus einer Excel-, ODS- oder CSV-Tabelle nach Anton. Die Tabelle wird hochgeladen, geprüft und dann importiert; die Medien liegen vorher im Reiter «Medien» bereit. Die Hilfe in Anton (Tabellen-Import → Reiter «Dokumentation», `/import/excel/documentation`) zeigt dieselbe Spaltenliste wie diese Seite, dazu die Werte und Trennzeichen des eigenen Archivs.
 
-## Import-Hub `/import`
+## Daten-Import `/import`
 
-Alle Import-Pfade sind unter einer Adresse zusammengefasst: `/import` (im Menü unter **Import / Export → Import**). Die Seite hat vier Tabs:
+Alle Import-Wege beginnen unter **Admin → Import / Export → Daten-Import** (`/import`). Die Seite zeigt je Weg eine Kachel:
 
-| Tab | Inhalt |
+| Kachel | Inhalt |
 |---|---|
-| **Eingangskorb** (Standard) | Wartende agate-SIPs, die noch einen Parent-Bestand brauchen. Wenn etwas wartet, erscheint im Admin-Menü eine Zähler-Badge daneben. |
-| **SIP** | Direkter SIP-Upload (BagIt- oder E-ARK-Pakete) mit Validation + Ingest. Siehe [SIP Ingest](../admin/sip-ingest.md) und [agate SIP](../admin/agate-sip.md). |
-| **Excel** | Excel-Importe (das Hauptthema dieser Seite, siehe unten). |
-| **Verzeichnis** | Import einer Verzeichnis-Struktur (ZIP/GZ). |
+| **Tabellen-Import** | Excel-, ODS- oder CSV-Tabelle mit Datensätzen und Medien (das Thema dieser Seite). Reiter: Metadaten, Medien, Update, Dokumentation, Wertelisten. |
+| **SIP eCH-0160** | Ablieferungspakete nach eCH-0160, siehe [SIP Ingest](../admin/sip-ingest.md). |
+| **Verzeichnis-Import** | Import einer Verzeichnisstruktur (ZIP/GZ). |
+| **Agate Sipline Import** | nur wo eingerichtet: Pakete aus agate, siehe [agate SIP](../admin/agate-sip.md). |
+| **Prüfliste für Vorschläge**, **Imports**, **DIMAG-Status** | je nach Recht und Einrichtung: Vorschläge prüfen, das [Import-Protokoll](#import-protokoll), der Stand der Übergabe an DIMAG. |
 
-Die alten URLs (`/sip/validation`, `/sip/ingest`, `/import/validation`, `/import/ingest`, `/sip/inbox`) leiten transparent auf den passenden Tab um — Lesezeichen und externe Links bleiben gültig.
+Alte Adressen wie `/import/validation`, `/import/ingest`, `/import/documentation` oder `/sip/validation` führen auf den Tabellen-Import bzw. auf diese Übersicht.
 
 ### Detail-Ansicht im Eingangskorb
 
@@ -27,7 +28,7 @@ So lässt sich vor dem Import sehen, ob das SIP sinnvoll ist, ob das Tenant-Voka
 
 ### Live-Fortschritt
 
-Alle Imports laufen **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Phase (Vorbereitung / Datensätze anlegen / Medien einlesen), erledigte Zeilen, am Ende ein Link zum **Lauf im Importprotokoll**.
+Alle Imports laufen **asynchron im Hintergrund**. Nach dem Klick auf "Importieren" landet man auf einer Fortschritts-Seite, die alle paar Sekunden den aktuellen Stand aktualisiert: Schritt (Sicherung der Datenbank, Lesen, Prüfen, Datensätze anlegen, Mediendateien übernehmen, Fertig), erledigte Zeilen, am Ende ein Link zum **Lauf im Importprotokoll**.
 
 Das gilt für alle Pfade — Excel, SIP, Verzeichnis und Eingangskorb-Finalisieren.
 
@@ -60,8 +61,15 @@ Die eingespielte Datei bleibt erhalten. Nach einem erfolgreichen Lauf wandert si
 
 Die Einstellungen werden im Klartext festgehalten, eine Zeile je Einstellung mit Wert und Herkunft. Sie stehen dort dauerhaft — auch ein Jahr später ist damit nachvollziehbar, unter welchen Annahmen eine Lieferung hereingekommen ist.
 
-## Ablauf (Excel-Import)
-Zunächst ist ein Excel-File nach den folgenden Massgaben zu erstellen. Dieses ist unter "Upload Metadata" hochzuladen und dazugehörige Mediendateien sind unter "Upload Medien" hochzuladen. Abschliessend kann das Excel-File unter "Validation" überprüft werden. Die Validierung zeigt Fehler an und gibt Warnungen aus. Importieren kann man die Daten erst, wenn die Validierung fehlerfrei ist. Der Import wird unter "Ingest" ausgelöst und kann je nach Umfang einige Minuten dauern.
+## Ablauf (Tabellen-Import)
+
+1. **Vorlage holen.** Im Reiter «Dokumentation» liegen eine leere Vorlage und eine Beispieltabelle mit gültigen Zeilen aus dem eigenen Archiv. Gelesen wird nur das erste Tabellenblatt; weitere Blätter meldet die Prüfung als nicht gelesen.
+2. **Medien hochladen.** Nennt die Tabelle Dateien (Spalte `media`), diese zuerst im Reiter «Medien» hochladen. Fehlt eine Datei, meldet die Prüfung einen Fehler.
+3. **Tabelle hochladen** im Reiter «Metadaten» (`.xlsx`, `.ods` oder `.csv`; alte `.xls`-Dateien kann Anton nicht lesen).
+4. **Prüfen.** Das Augen-Symbol in der Liste öffnet die Prüfung: erkannte und ignorierte Spalten, Fehler, Warnungen, was neu angelegt würde und mit welchen Einstellungen (siehe [Vorschau](#vorschau-was-der-import-neu-anlegen-wurde)).
+5. **Importieren.** Ist die Prüfung bestanden, startet «Importieren» den Lauf im Hintergrund.
+
+Bestehende Datensätze ändert nur der Reiter «Update» (siehe [unten](#bestehende-datensatze-aktualisieren-update-uber-den-browser)), nie ein Neu-Import: Eine Zeile mit einer bestehenden `id` lehnt die Prüfung ab.
 
 ## Inhaltssprache des Imports
 
@@ -79,7 +87,7 @@ Die Inhaltssprache wird in dieser Reihenfolge bestimmt — der erste gesetzte We
 
 Die Inspektionsseite nennt vor dem Start die geltende Sprache **und woher sie stammt** («für diesen Lauf gewählt», «Archiv-Einstellung», «Vorgabe»). Nach dem Lauf steht dieselbe Angabe im Protokolleintrag (siehe [Import-Protokoll](#import-protokoll)).
 
-Eine Spalte mit Sprachkürzel (`title_fr`) sticht diese Wahl für ihr Feld aus — siehe [titel](#titel-title).
+Eine Spalte mit Sprachkürzel (`title_fr`) sticht diese Wahl für ihr Feld aus — siehe [Mehrsprachige Spalten](#mehrsprachige-spalten).
 
 ### Warum die Sprache auch beim Suchen zählt
 
@@ -109,45 +117,59 @@ Ist das Anlegen für eine Art ausgeschaltet, erscheinen dieselben Einträge als 
     Sie liest nur. Es entsteht kein Datensatz, auch keiner, der hinterher wieder entfernt werden müsste.
 
 ## Spalten
-Das File darf zusätzliche Spalten enthalten; diese werden jedoch nicht importiert. Zur Vereinfachung dürfen Spalten gelöscht werden. Das endgültige File muss mindestens folgende Spalten enthalten:
 
-    parent
-    verzeichnungsstufe
+Pflicht sind für einen neuen Datensatz `parent` und `level_of_description`, für ein Update `id` oder `uuid`. Die Reihenfolge der Spalten spielt keine Rolle, Gross- und Kleinschreibung der Kopfzeile auch nicht. Eine Spalte, die Anton nicht kennt, wird nicht importiert; die Prüfung nennt sie und schlägt einen ähnlichen Namen vor. Ein Text, der länger ist, als die Datenbank fasst, bricht den Import mit einer Meldung ab, statt still gekürzt zu werden.
 
-## Erläuterung und Regeln für die einzelnen Spalten/Felder
+Die Tabelle wird aus Anton erzeugt (`anton:import-columns`), aus denselben Regeln, nach denen der Import prüft. Die Trennzeichen sind die Vorgaben einer neuen Installation; jedes Archiv kann sie ändern, die Hilfe in Anton zeigt die eigenen.
 
-Ein Text, der länger ist, als die Datenbank fasst, bricht den Import mit einer Meldung ab, statt still gekürzt zu werden. Freitext wie Ereignisdetails fasst 65 535 Bytes, das sind je nach Schrift 16 000 bis 65 000 Zeichen; für die übrigen Spalten nennt der Abschnitt der Spalte die Höchstlänge.
+<!-- BEGIN generated import columns -->
 
-### parent
+| Spalte | Inhalt | Art | Neu | Update | Auch erkannt als |
+|---|---|---|---|---|---|
+| `id` | Interne ID des Datensatzes. Schlüssel einer Update-Tabelle; ein Neu-Import lehnt Zeilen mit einer bestehenden ID ab. | Schlüssel | – | id oder uuid |  |
+| `uuid` | Dauerhafte Kennung (UUID) des Datensatzes, wie id ein Schlüssel der Update-Tabelle. | Schlüssel | – | id oder uuid |  |
+| `parent` | Übergeordneter Datensatz: seine Signatur oder seine ID. Er muss im Bestand sein oder weiter oben in derselben Tabelle stehen; eine rein numerische Angabe gilt als ID. | Signatur oder ID | Pflicht | – |  |
+| `identifier` | Signatur, höchstens 100 Zeichen, im Bestand eindeutig. Leer leitet Anton sie aus dem übergeordneten Datensatz ab, ausser bei Bestandsgruppe und Klasse. | Text, eindeutig | ja | ja | `signatur` |
+| `identifier_old` | Alte Signatur, frei. | Text | ja | ja | `altsignatur` |
+| `title` | Titel in der Sprache des Imports. | Text | ja | ja | `titel` |
+| `title_<lang>` | Titel in einer weiteren Sprache des Archivs, etwa title_fr. | Text | ja | ja |  |
+| `level_of_description` | Verzeichnungsstufe aus der Werteliste: Bezeichnung, Name oder ID. | Werteliste | Pflicht | ja | `verzeichnungsstufe` |
+| `object_type` | Objekttyp aus der Werteliste. Ein unbekannter wird nur angelegt, wenn die Import-Einstellung create-object-types an ist. | Werteliste | ja | ja | `objekttyp` |
+| `object_count` | Anzahl der Einheiten. | ganze Zahl | ja | ja | `umfang_zahl` |
+| `creation_date_start` | Beginn der Entstehung: Jahr, Monat oder Tag (1900, 1900-03, 1900-03-12, auch 12.03.1900); «ca.» davor wirkt wie 1 in creation_date_start_ca. Leer heisst kein Datum. Die Zelle als Text formatieren. | Datum | ja | – | `datum_von` |
+| `creation_date_start_ca` | 1, wenn der Beginn ungefähr ist (ca.); sonst 0 oder leer. | 0 oder 1 | ja | – | `datum_von_ca` |
+| `creation_date_end` | Ende der Entstehung, Datum wie creation_date_start; nicht vor dem Beginn (ein Jahr gilt als ganzes Jahr). Für einen Zeitpunkt Beginn und Ende gleich setzen. | Datum | ja | – | `datum_bis` |
+| `creation_date_end_ca` | 1, wenn das Ende ungefähr ist (ca.); sonst 0 oder leer. | 0 oder 1 | ja | – | `datum_bis_ca` |
+| `creation_actors` | Akteur:innen der Entstehung: Name, ID oder Normdaten-Kennung (gnd:…). Unbekannte werden angelegt, wenn die Import-Einstellung create-actors an ist, sonst meldet die Prüfung sie als Fehler. | Akteur:innen (getrennt durch `::` `;`) | ja | – | `provenienz_autor` |
+| `creation_place` | Orte der Entstehung: Name, «Name / Stadt», ID oder geonames:…. Unbekannte werden angelegt, wenn create-places an ist. | Orte (getrennt durch `::` `;`) | ja | – |  |
+| `creation_event_details` | Angaben zum Entstehungsereignis, frei. | Text | ja | – |  |
+| `<event>_actors` | Akteur:innen eines anderen Ereignisses; <event> ist einer der Ereignistypen (Liste in der Dokumentation). | Akteur:innen (getrennt durch `::` `;`) | ja | – |  |
+| `<event>_place` | Orte eines anderen Ereignisses. | Orte (getrennt durch `::` `;`) | ja | – |  |
+| `<event>_date_start` | Beginn eines anderen Ereignisses, Datum wie oben; dazu <event>_date_start_ca. | Datum | ja | – |  |
+| `<event>_date_end` | Ende eines anderen Ereignisses, Datum wie oben; dazu <event>_date_end_ca. | Datum | ja | – |  |
+| `<event>_event_details` | Angaben zu einem anderen Ereignis, frei. | Text | ja | – |  |
+| `note.<name>` | Textfeld des Formulars nach seinem Namen, etwa note.scopecontent oder scopecontent; mit Sprachzusatz (_fr) für weitere Sprachen. | Text | ja | ja |  |
+| `languages` | Sprachen des Inhalts als Codes der im Archiv eingerichteten Sprachen. | Sprachcodes (getrennt durch `::`) | ja | ja | `sprache`, `sprachen` |
+| `keywords_terms` | Sachschlagwörter: Name oder ID. Unbekannte werden angelegt, wenn create-keywords an ist. | Schlagwörter (getrennt durch `::` `,` `;`) | ja | ja | `keywords`, `sachschlagworte`, `schlagworte` |
+| `keywords_actors` | Akteur:innen als Schlagwort, wie creation_actors. | Akteur:innen (getrennt durch `::` `;`) | ja | ja | `schlagworte_akteure`, `schlagworte_names` |
+| `keywords_places` | Orte als Schlagwort, wie creation_place. | Orte (getrennt durch `::` `;`) | ja | ja | `schlagworte_orte`, `schlagworte_places` |
+| `digitisation_actors` | Wer digitalisiert hat, Akteur:innen wie creation_actors. | Akteur:innen (getrennt durch `::` `;`) | ja | ja | `digitalisiert_von` |
+| `location` | Standort: Bezeichnung oder ID. Ein unbekannter wird nur angelegt, wenn create-locations an ist. | Standort | ja | ja | `standort` |
+| `location_id` | Standort nur als ID. | ganze Zahl | ja | ja |  |
+| `formset` | Formularsatz: Name oder ID. | Formularsatz | ja | ja | `formularsatz` |
+| `formset_id` | Formularsatz nur als ID. | ganze Zahl | ja | ja |  |
+| `period_of_protection` | Schutzfrist aus der Werteliste: Bezeichnung, Name oder ID; leer heisst keine. | Werteliste | ja | ja | `schutzfrist` |
+| `status_of_description` | Status der Verzeichnung aus der Werteliste: Bezeichnung, Name oder ID. | Werteliste | ja | ja | `status_beschreibung` |
+| `detail_of_description` | Detailgrad der Verzeichnung aus der Werteliste: Bezeichnung, Name oder ID. | Werteliste | ja | ja | `detail_beschreibung` |
+| `vacat` | Vacat aus der Werteliste: Bezeichnung oder ID; 0 und 1 aus älteren Tabellen werden noch verstanden. | Werteliste | ja | ja | `fehlt` |
+| `private` | 1 sperrt den Datensatz und alles darunter für die Öffentlichkeit; 0 oder leer nicht. | 0 oder 1 | ja | ja | `privat` |
+| `media` | Dateinamen der Medien, genau wie im Reiter «Medien» hochgeladen. Fehlt eine Datei, meldet die Prüfung einen Fehler. | Dateinamen (getrennt durch `::` `,` `;`) | ja | ja | `bilder` |
+| `private_media` | Wie media, aber die Medien sind nur angemeldeten Konten mit Berechtigung sichtbar. | Dateinamen (getrennt durch `::` `,` `;`) | ja | ja | `private_bilder` |
+| `loan` | Leihnehmer:in: «Nachname, Vorname» oder Benutzer-ID. | Benutzer:in | ja | ja |  |
 
-Das Feld `parent` gibt an, wo der zu importierende Datensatz angehängt wird. Das Feld darf nicht leer sein. Es darf höchstens 100 Zeichen enthalten. Es muss eine Signatur enthalten, die es bereits in der Datenbank gibt.
+<!-- END generated import columns -->
 
-Da es in Anton Verzeichnungseinheiten ohne Signatur geben kann (z.B. Klassen, Bestandsgruppen), ist es auch möglich den `parent` über die `id` anzugeben. Wenn im `parent` eine ganze Zahl (integer) steht, geht der Importer davon aus, dass die `parent_id` gemein ist. Die `id` einer Verzeichnungseinheit ist aus dem `permalink` ersichtlich.
-
-### Verzeichnungsstufe (level_of_description)
-
-Das Feld darf nicht leer sein. Es muss eine existierende Verzeichnungsstufe enthalten:
-
-    Archiv
-    Bestandsgruppe
-    Bestand
-    Klasse
-    Serie
-    Dossier
-    Einzelstück
-
-### signatur (identifier)
-
-Das Feld darf höchstens 100 Zeichen enthalten. Jede Signatur darf nur einmal vorkommen. Ist keine Signatur angegeben, wird eine neue, eindeutige Signatur von Anton erzeugt.
-
-### altsignatur (identifier_old)
-
-Das Feld darf höchstens 100 Zeichen enthalten.
-
-### titel (title)
-
-Das Feld kann freien Text enthalten.
-
+### Mehrsprachige Spalten
 Der Titel ist ein **übersetzbares Feld**. In welche Sprache er geschrieben wird, entscheidet die [Inhaltssprache des Imports](#inhaltssprache-des-imports) — oder, genauer, die Spaltenbezeichnung selbst:
 
 | Spalte | schreibt nach |
@@ -162,33 +184,27 @@ Dasselbe gilt für die **Textfelder**: `scopecontent` schreibt in die Inhaltsspr
 !!! note "Nur konfigurierte Sprachen"
     Ein Sprachkürzel wird nur erkannt, wenn es in der Einstellung `locales` des Archivs steht (siehe [Sprachkonfiguration](languages.md)). `title_es` in einem Archiv ohne Spanisch ist keine Sprachangabe, sondern eine unbekannte Spalte — und die Inspektion meldet sie als solche.
 
-### Antonevents
-Antonevents verknüpfen die Verzeichnungseinheiten mit den Akteur:innen und den Orten. Sie bestehen aus folgenden Feldern: `actors, place, date_start, date_start_ca, date_end, date_end_ca, date_event_details`. Um ein Antonevent zu importieren muss nun der EventType in der Spaltenbezeichnung vor den Feldnamen gesetzt werden, z.B. für die Erstellung (Laufzeit):  `creation_actors, creation_place, creation_date_start, creation_date_start_ca, creation_date_end, creation_date_end_ca, creation_date_event_details`.
+### Ereignisse
 
-Die Datumsspalten (`…_date_start`, `…_date_end`) nehmen ein Jahr, einen Monat oder einen Tag an: `1900`, `1900-03`, `1900-03-12`, auch `12.03.1900` oder `3. März 1900`. «ca.» vor dem Datum (`ca. 1900`) setzt das ca.-Kennzeichen wie eine 1 in der Spalte `…_ca`. Die Validierung meldet ein Datum, das sie nicht lesen kann, und ein Bis-Datum vor dem Von-Datum; ein Jahr gilt dabei als ganzes Jahr, `1923` endet also nicht vor `1923-05-15`. Ein leeres Feld bedeutet: kein Datum.
+Ereignisse verknüpfen einen Datensatz mit Akteur:innen, Orten und einem Zeitraum. Eine Spaltengruppe gehört zu einem Ereignistyp: vor den Feldnamen `actors`, `place`, `date_start`, `date_start_ca`, `date_end`, `date_end_ca`, `event_details` steht der Typ, für die Entstehung also `creation_actors`, `creation_place`, `creation_date_start`, `creation_date_start_ca`, `creation_date_end`, `creation_date_end_ca`, `creation_event_details`.
 
-Es gibt zahlreiche Antonevents: `creation`, `acquisition`, `accumulation`, `destruction`, `validation`, `migration`, `reproduction`, `publication`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. 
+Ereignistypen: `creation`, `acquisition`, `reproduction`, `digitisation`, `ingest`, `reception`, `performance`, `provenance`, `loaned`, `preservation`, `engravation`, `writing`, `coloring`, `edition`, `production`, `other`, `text_author`. Die Hilfe in Anton zeigt die aktuelle Liste.
+
+Die Datumsspalten nehmen ein Jahr, einen Monat oder einen Tag an: `1900`, `1900-03`, `1900-03-12`, auch `12.03.1900` oder `3. März 1900`. «ca.» vor dem Datum (`ca. 1900`) setzt das ca.-Kennzeichen wie eine 1 in der Spalte `…_ca`. Die Prüfung meldet ein Datum, das sie nicht lesen kann, und ein Bis-Datum vor dem Von-Datum; ein Jahr gilt dabei als ganzes Jahr, `1923` endet also nicht vor `1923-05-15`. Ein leeres Feld bedeutet: kein Datum.
 
 #### Akteur:innen (z.B. creation_actors)
 
-Das Feld darf höchstens 500 Zeichen enthalten. Die Angabe des Existenzzeitraums (Lebensdaten) in Klammern ist nicht obligatorisch, aber möglich. Runde Klammer dürfen aber nicht zu anderen Zwecken verwendet werden. Mehrere Akteur:innen sollten mit `::` getrennt werden.
-
-Beispiel für zwei Akteur:innen: 
+Eine Akteur:in wird über ihren Namen, ihre ID oder eine Normdaten-Kennung mit Präfix gefunden, kleingeschrieben und mit Doppelpunkt ohne Leerzeichen: `gnd:118519522`. Die Lebensdaten in Klammern sind möglich, aber nicht nötig; runde Klammern dürfen nicht für anderes stehen. Mehrere Akteur:innen werden mit dem Trennzeichen des Archivs getrennt (Vorgabe `::` oder `;`):
 
 ```
 Müller, Martina (1934-1977) :: Rechtsabteilung
 ```
 
-Das Format wird nicht vorab validiert! Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden (gesucht wird nach dem Namen).
+Ob eine unbekannte Akteur:in neu angelegt wird, entscheidet die Import-Einstellung `create-actors`: an (Vorgabe im Browser), wird sie angelegt, bei einer GND-Kennung mit den Angaben der GND; aus, meldet die Prüfung sie als Fehler. Über die Kommandozeile wird nur mit `--create-actors` angelegt.
 
-Import-Einstellung `create-actors`: Akteur:innen werden neu angelegt, wenn sie in Anton nicht gefunden werden.
+#### Orte (z.B. creation_place)
 
-Wenn eine Akteur:in bereits in Anton erfasst ist, kann sie auch über ihre ID (integer) referenziert werden.
-
-Wurde eine Akteur:in mit einer GND oder einer anderen Ressource erfasst, kann sie auch anhand dieser Ressource erkannt werden, in dem die Angabe mit einem Prefix versehen wird (kleingeschrieben und mit Doppelpunkt ohne Leerzeichen): "gnd:118519522" (die Ressource muss innerhalb von Anton allerdings eindeutig sein). Gibt es die Akteur:in noch nicht, wird sie anhand der Angaben der GND neu angelegt.
-
-#### Places
-Das Feld kann einen Ort oder eine places-id (integer) enthalten. Import-Einstellung `create-places`: Orte werden neu angelegt, wenn sie in Anton nicht gefunden werden. Wenn ein Ort bereits in Anton erfasst ist, kann er auch über seine ID (integer) referenziert werden.
+Ein Ort wird über seinen Namen, seine ID oder eine Kennung wie `geonames:2954172` gefunden. Ob ein unbekannter Ort angelegt wird, entscheidet die Import-Einstellung `create-places`.
 
 Orte können folgende Elemente enthalten:  
 - Namen (wird durch "/" abgetrennt)  
@@ -243,46 +259,6 @@ Schlagworte, Akteur:innen und Orte stehen dort *nicht* — das sind
 Normdatensätze mit eigenen, durchsuchbaren Seiten, keine Listen zum
 Durchlesen.
 
-### objekttyp (object_type)
-
-Das Feld muss einen bereits existierenden Objekttyp enthalten:
-
-```
-Akte
-Bild
-Band
-Film
-...
-```
-
-Die Liste der erlaubten Werte ist abhängig von den Objekttypen, die das jeweilige Archiv definiert hat.
-
-### umfang_zahl (object_count)
-
-Das Feld muss eine ganze Zahl (integer) enthalten. Die Angabe bezieht sich auf den Objekttyp.
-
-### sprache (languages)
-
-Das Feld kann mehrere Sprachen enthalten. Die Sprachen müssen entweder dem [ISO-639-2/B Sprachcode](https://de.wikipedia.org/wiki/Liste_der_ISO-639-Sprachcodes) entsprechen ("ger" nicht "deu", "fre" nicht "fra") oder exakt wie in der vorhandenen Liste geschrieben sein. Mehrere Sprachen werden können mit folgenden Zeichen getrennt (Komma und Strichpunkt sind nicht möglich):
-
-```
-    ::
-```
-
-### standort (location)
-
-Das Feld muss einen bereits verwendeten Standort enthalten. Wenn ein neuer Standort verwendet werden soll, erst in Admin-Standorte hinzufügen.
-
-Es gibt zwei Spalten, und der Name sagt jeweils, was hineingehört: **`location_id`** nimmt nur die ID, **`location`** (auch: `standort`) nimmt ID *oder* Bezeichnung. Sind beide vorhanden, gewinnt `location_id`.
-
-### formularsatz (formset)
-
-Bestimmt, welcher Formularsatz für den Datensatz verwendet wird — also welche Felder in welcher Reihenfolge erscheinen. Das Feld ist **optional**: bleibt es leer, löst Anton den Formularsatz über die Verzeichnungsstufe auf. Nötig ist es nur, wenn ein Datensatz bewusst davon abweicht, etwa der Formularsatz `letter` auf Einzelstücken.
-
-Wie beim Standort zwei Spalten: **`formset`** (auch: `formularsatz`) nimmt den Namen *oder* die ID, **`formset_id`** nur die ID. Die Namen der verfügbaren Formularsätze stehen unter *Administration → Formularsätze* — in einer Standardinstallation etwa `fonds`, `class`, `series`, `file`, `item`, `collection`, `recordgroup`, `default`.
-
-Die heruntergeladene Update-Tabelle führt die Spalte `formset` und schreibt den **Namen**. Eine leere Zelle lässt den Formularsatz unverändert.
-
 ### vacat
 
 Gibt an, ob die Verzeichnungseinheit ein Platzhalter ist (eine Lücke in der
@@ -295,56 +271,6 @@ Tabellen — `1` und `0`.
 **Exportiert** wird die Bezeichnung: `vacat` für einen Platzhalter, sonst
 eine leere Zelle. Ältere Tabellen mit `56`/`57` lassen sich unverändert
 weiterverwenden.
-
-
-### bilder (media)
-
-Das Feld darf höchstens 500 Zeichen enthalten. Mehrere Dateinamen (assets) können mit folgenden Zeichen getrennt werden:
-
-```
-, ; ::
-```
-
-
-Beispiel:
-
-```
-erstes_bild.tif::zweites_bild.tif
-```
-
-### schutzfrist (period_of_protection)
-
-Das Feld muss eine existierende Schutzfrist enthalten:
-
-```
-public
-standard
-prolonged
-```
-
-### private
-
-Das Feld darf nur 0 (nein) oder 1 (ja) enthalten. Enthält private keinen Wert, wird 0 gesetzt.
-
-
-### status_of_description
-
-Das Feld darf nur Namen der entsprechenden Werteliste enthalten:
-
-```
-draft
-final
-```
-
-### detail_of_description
-
-Das Feld darf nur Namen der entsprechenden Werteliste enthalten::
-
-```
-minimal
-partial
-full
-```
 
 ### Weitere Felder
 
@@ -378,13 +304,13 @@ Die weiteren Felder sind freie Textfelder::
 !!! warning "Experimentelles Feature"
     Das Datenupdate ist als **experimentell** gekennzeichnet (Badge im Reiter und auf der Upload-Seite). Es verändert bestehende Datensätze direkt. Anton legt deshalb **vor jedem Update automatisch eine Sicherung der Datenbank** an (siehe unten); das Ergebnis trotzdem stichprobenweise prüfen.
 
-Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit **«Details»** öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
+Neben dem Neuanlegen können bestehende Verzeichnungseinheiten auch direkt über den Browser aktualisiert werden. Dafür gibt es unter **Tabellen-Import** einen eigenen Reiter **«Update»** (nach *Metadaten* und *Medien*). Dort die Tabelle hochladen — Update-Dateien haben eine eigene Liste, getrennt vom normalen Import — und mit dem Augen-Symbol öffnen. Die Datei wird direkt im Update-Modus geprüft, und es erscheint der Button **«Als Update einspielen»**.
 
 Weil der *Update*-Reiter die Datei ausschliesslich als Update prüft, braucht eine reine Update-Tabelle (nur `id` + zu ändernde Spalten, ohne `parent`) keine Umwege: die beim Neuanlegen nötige `parent`-Spalte wird hier nicht verlangt. Der reguläre *Metadaten*-Reiter bleibt unverändert fürs Neuanlegen.
 
 Ein Update überschreibt die Felder der bestehenden Datensätze «an Ort und Stelle» — es werden dabei **keine neuen Datensätze angelegt**. Damit ein Update sicher und vorhersehbar bleibt, gelten drei Voraussetzungen. Ist eine davon verletzt, wird die Datei blockiert und der Grund auf der Inspektionsseite angezeigt:
 
-1. **Jede Zeile braucht eine numerische `id`.** Über diese `id` wird der zu aktualisierende Datensatz gefunden. Die `id` einer Verzeichnungseinheit ist aus dem `permalink` ersichtlich.
+1. **Jede Zeile nennt ihren Datensatz mit `id` oder `uuid`.** Die `id` einer Verzeichnungseinheit ist aus dem `permalink` ersichtlich; die Update-Tabelle aus der Trefferliste bringt beide mit.
 2. **Keine `parent`- (oder `parent_id`-) Spalte.** Ein Update darf Datensätze nicht verschieben. Um die Hierarchie zu ändern, die Datensätze regulär in Anton umhängen.
 3. **Keine Ereignis-Spalten (Antonevents).** Spalten wie `creation_actors`, `creation_date_start` usw. sind im Update nicht erlaubt, damit keine doppelten Ereignisse entstehen. Akteur:innen-/Orts-Verknüpfungen in Anton pflegen.
 
@@ -406,7 +332,7 @@ Jeder Update-Lauf steht — wie ein Import — im Importprotokoll, aber mit eine
 
 Damit ein Update nicht von Hand zusammengestellt werden muss, lässt sich die aktuelle **Trefferliste direkt als Update-Tabelle herunterladen**: in der Objektliste rechts oben das Excel-Symbol neben der Druckansicht. Der Download übernimmt genau die Filter, die gerade angezeigt werden.
 
-Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient nur der Orientierung: das Update findet die Datensätze über die `id`, Änderungen an der Signatur bleiben wirkungslos.
+Die Datei enthält ausschliesslich Spalten, die ein Update auch schreiben darf — `id`, die Feld-Spalten, Sprachen, den Standort (`location_id`), Schlagworte/Akteur:innen/Orte (als IDs) und die Textfeld-Spalten `note.*`. Bewusst **nicht** enthalten sind `parent` und die Ereignis-Spalten, die würden das Update blockieren. Die Spalte `identifier` dient der Orientierung: das Update findet die Datensätze über die `id`. Sie muss eine bestehende Signatur enthalten; eine geänderte Signatur lehnt die Prüfung ab, ändern lässt sich die Signatur über das Update nicht.
 
 !!! tip "Mehrsprachige Archive: eine Titel-Spalte je Sprache"
     Führt das Archiv mehrere Inhaltssprachen, enthält die Update-Tabelle statt `titel` je eine Spalte `title_de`, `title_fr` usw. Nur so ist der Weg hinaus und wieder hinein verlustfrei: Mit einer einzigen Titel-Spalte müsste beim Einspielen die Sprache des Laufs entscheiden, wohin der Wert zurückgeht — und ein französischer Titel landete im deutschen Feld.
@@ -459,7 +385,7 @@ Nicht abgebildet sind ausserdem das Freitext-Datierungsfeld (`datierung_text`, i
 Für den Customer (slug) "besenval" und das Excelfile "test.xlsx" lautet der Import Befehl:
 
 ```bash
-php artisan anton:import --env=besenval --file="test.xlsx" --import
+php artisan anton:import test.xlsx --env=besenval --import
 ```
 
 Dabei wird davon ausgegangen, dass `test.xlsx` im Ordner `customers/besenval/metadata_to_import/` liegt. Mit zu importierende Dateien (Medien) müssen sich im Ordner `customers/besenval/assets_to_import/` befinden.
@@ -477,7 +403,7 @@ Der Befehl `anton:import` bietet einige Optionen, die für spezifische Situation
 |--locale=                 |Inhaltssprache des Laufs (z.B. `de`, `fr`). Ohne Angabe gilt die Archiv-Einstellung, sonst die Hauptsprache des Archivs — siehe [Inhaltssprache des Imports](#inhaltssprache-des-imports)|
 |--update                  |bestehende Datensätze aktualisieren statt neu anlegen; Match standardmässig über die `id`|
 |--default-excel-column=   |`id` (Standard), `uuid` oder `identifier` — bestimmt beim `--update`, worüber die Datensätze gefunden werden|
-|--dont-validate           |do not validate the file|
+|--no-validation           |do not validate the file|
 |--skip-parent-validation  |to build hierarchies with one excel file|
 |--create-actors           |create new actors if they dont exist|
 |--create-keywords         |create new keywords if they dont exist|
