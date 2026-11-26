@@ -26,6 +26,7 @@ Nicht jede Werteliste darf ergänzt werden. Der Unterschied ist gewollt:
 | Werteliste | Ergänzbar? |
 |---|---|
 | Schlagwort-Typ, Ortstyp, Objekttyp | ja — jedes Archiv nach eigenem Bedarf |
+| Geschlecht (bei Personen) | ja — Anton liefert weiblich, männlich, divers, unbekannt; Admins können umbenennen und ergänzen |
 | Verzeichnungsstufe | nein — sie folgt ISAD(G), und Anton rechnet mit ihr |
 | Akteurstyp | nein — Person, Familie, Körperschaft, Abteilung, Gruppe, Software sind im Code verankert |
 

@@ -50,6 +50,14 @@ ensuite.
 L'association aux [données d'autorité](authorities.md) telles que la GND ou
 Wikidata se fait dans la colonne de droite de la vue de saisie.
 
+## Genre {#geschlecht}
+
+Les personnes ont le champ **Genre**. Ses valeurs viennent de la [liste de valeurs](../admin/valuelists.md) «Genre» : féminin, masculin, divers, inconnu. L'archive peut les renommer et en ajouter. Les autres types que les personnes n'ont pas de genre ; le formulaire y refuse une valeur.
+
+C'est l'archive qui décide si et où le champ apparaît. Anton ne le place dans aucun formulaire existant ; on l'ajoute au formulaire d'édition et au formulaire de détail interne dans l'[éditeur de formulaires](forms.md). Il n'est visible publiquement que si l'archive le place aussi dans le formulaire de détail public. L'API ne l'indique qu'aux personnes connectées en interne.
+
+Pour chaque valeur, Anton note sa provenance : saisie à la main, tirée d'un commentaire «Geschlecht: …», des données GND ou Wikidata enregistrées, estimée d'après le prénom ou la formule d'appel, ou importée. Modifier la valeur dans le formulaire la marque comme saisie à la main. Les champs vides peuvent être complétés à partir de ces indices avec [`anton:fill-gender`](../admin/console-commands.md).
+
 ## Acteur·trice·s bloqué·e·s
 
 Le champ **bloqué** masque entièrement un·e acteur·trice à toutes les personnes

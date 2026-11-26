@@ -440,6 +440,12 @@ php artisan anton:relate-by-identifier --env=kr --source=120 --target=118 \
 
 With `--dry-run` it writes nothing, `--output=` saves the report as Markdown (related, already related, ambiguous, without target, range rejected). It writes only where `object_relations` is on and can be run again without relating twice.
 
+`anton:fill-gender` fills the empty field **Gender** of persons ([actors](../user/actors.md#geschlecht)) from what the archive already holds: a comment «Geschlecht: …», the stored GND and Wikidata data and, with `--first-names`, first names and salutations. A first name is used only where at least three known persons of the archive carry it and at least 95 % of them have the same gender. The command asks no service and writes only empty fields, each value with its source. Where the hints disagree the field stays empty, and `--output=` lists the cases in a Markdown report. With `--dry-run` it writes nothing.
+
+```bash
+php artisan anton:fill-gender --env=kr --first-names --dry-run --output=gender.md
+```
+
 ## Diagnosis
 
 **`anton:doctor`**{#antondoctor} checks an installation for consistency — the
@@ -496,7 +502,7 @@ up to date with every change to the commands.
 
 <!-- BEGIN generated command reference -->
 
-### anton: (71)
+### anton: (72)
 
 | Command | Description |
 |---|---|
@@ -523,6 +529,7 @@ up to date with every change to the commands.
 | `anton:export-dip` | Export records with their subtree as a DIP: BagIt (default) or E-ARK DIP 2.2.0 (--format=eark,… |
 | `anton:export-native` | Export an Anton subtree as a lossless native round-trip package (anton-import-format + media). |
 | `anton:export-rdf` | Export Anton tenant data as RDF (CIDOC CRM + RiC-O A+ profile, Memobase, or a self-contained A… |
+| `anton:fill-gender` | Fill the empty gender of persons from notes, stored GND and Wikidata records, and on request f… |
 | `anton:formset-template` | Set up a ready form set (publication) in this archive; an existing one is left as it is. |
 | `anton:home` | Get or set a home entry. If you set a value, you should also choose a locale |
 | `anton:i18n-check` | Find user-visible strings that are missing a translation (JSON + PHP keys) |

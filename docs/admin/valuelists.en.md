@@ -26,6 +26,7 @@ Not every value list may be added to. The difference is deliberate:
 | Value list | Extensible? |
 |---|---|
 | Keyword type, place type, object type | yes — each archive according to its own needs |
+| Gender (of persons) | yes — Anton ships female, male, diverse, unknown; admins can rename and add |
 | Level of description | no — it follows ISAD(G), and Anton calculates with it |
 | Actor type | no — person, family, corporate body, department, group, software are anchored in the code |
 

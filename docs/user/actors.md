@@ -45,6 +45,14 @@ danach noch gespeichert werden.
 Das Verknüpfen mit [Normdaten](authorities.md) wie GND oder Wikidata erfolgt in
 der rechten Spalte der Bearbeitungsansicht.
 
+## Geschlecht {#geschlecht}
+
+Bei Personen gibt es das Feld **Geschlecht**. Seine Werte stammen aus der [Werteliste](../admin/valuelists.md) «Geschlecht»: weiblich, männlich, divers, unbekannt. Das Archiv kann sie umbenennen und eigene Werte ergänzen. Andere Typen als Personen haben kein Geschlecht; das Formular weist einen Wert dort zurück.
+
+Ob und wo das Feld erscheint, entscheidet das Archiv. Anton setzt es in kein bestehendes Formular; es wird im [Formulareditor](forms.md) ins Bearbeitungs- und ins interne Detailformular aufgenommen. Öffentlich sichtbar ist es nur, wenn das Archiv es auch ins öffentliche Detailformular setzt. Die Schnittstelle (API) nennt es nur intern angemeldeten Personen.
+
+Zu jedem Wert hält Anton fest, woher er stammt: von Hand gesetzt, aus einem Kommentar «Geschlecht: …», aus den gespeicherten GND- oder Wikidata-Daten, aus Vorname oder Anrede geschätzt oder importiert. Wer den Wert im Formular ändert, setzt ihn von Hand. Leere Felder lassen sich mit [`anton:fill-gender`](../admin/console-commands.md#wartung-und-reparatur) aus diesen Hinweisen nachführen.
+
 ## Gesperrte Akteur:innen
 
 Das Feld **Gesperrt** verbirgt eine Akteur:in vollständig vor allen, die nicht
