@@ -134,7 +134,7 @@ Two ways show the state, neither asks Anton:
 - **`GET /health`** answers without a key with the overall state only, `{"status": "ok"}` (or `warning`, `critical`). Since the address is public, it names no tenant, no path and no message. The HTTP status is 200 while nothing is critical, otherwise 503.
 - **[`lotte:health`](commands.md#lotte-health)** runs the same check on the server and gives the details: the storage location and every tenant where something is wrong. It prints one line for Nagios (`LOTTE OK - …`) and exits with 0 (OK), 1 (WARNING) or 2 (CRITICAL).
 
-Critical: the storage location or an area of a tenant is not writable, a database is not reachable. A warning is given when a job has waited longer than the set time (then no worker is taking jobs) and when derivatives have been given up after three failures.
+Critical: the storage location or an area of a tenant is not writable, a database is not reachable. A warning is given when a job has waited longer than the set time (then no worker is taking jobs). Derivatives given up after three failures are named on the line as a finding (`kr: 3 derivatives given up (finding, …)`), but the state stays OK: usually the file itself is broken, and a warning would stand until someone cleans the data. [`lotte:derivatives <tenant> --given-up`](commands.md#lotte-derivatives) lists them. Anton hears of each one in the change feed (`derivative.failed` with `given_up`).
 
 ## Recovery {#wiederherstellung}
 

@@ -134,7 +134,7 @@ Zwei Wege zeigen den Zustand, beide ohne Anton zu fragen:
 - **`GET /health`** antwortet ohne Schlüssel nur mit dem Gesamtzustand, `{"status": "ok"}` (oder `warning`, `critical`). Weil die Adresse öffentlich ist, nennt sie weder Mandanten noch Pfade noch Meldungen. Der HTTP-Status ist 200, solange nichts kritisch ist, sonst 503.
 - **[`lotte:health`](commands.md#lotte-health)** prüft dasselbe auf dem Server und nennt die Einzelheiten: den Speicherort und jeden Mandanten, bei dem etwas nicht stimmt. Es gibt eine Zeile für Nagios aus (`LOTTE OK - …`) und endet mit 0 (OK), 1 (WARNING) oder 2 (CRITICAL).
 
-Kritisch ist: der Speicherort oder ein Bereich eines Mandanten ist nicht beschreibbar, eine Datenbank nicht erreichbar. Eine Warnung gibt es, wenn ein Auftrag länger als die eingestellte Zeit wartet (dann nimmt kein Worker Aufträge an) und wenn Ableitungen nach drei Fehlschlägen aufgegeben sind.
+Kritisch ist: der Speicherort oder ein Bereich eines Mandanten ist nicht beschreibbar, eine Datenbank nicht erreichbar. Eine Warnung gibt es, wenn ein Auftrag länger als die eingestellte Zeit wartet (dann nimmt kein Worker Aufträge an). Ableitungen, die nach drei Fehlschlägen aufgegeben sind, nennt die Zeile als Befund (`kr: 3 derivatives given up (finding, …)`), der Zustand bleibt aber OK: Meist ist die Datei selbst kaputt, und eine Warnung bliebe stehen, bis jemand die Daten bereinigt. Welche es sind, zeigt [`lotte:derivatives <mandant> --given-up`](commands.md#lotte-derivatives). Anton erfährt jede einzeln über den Änderungsfeed (`derivative.failed` mit `given_up`).
 
 ## Wiederherstellung {#wiederherstellung}
 

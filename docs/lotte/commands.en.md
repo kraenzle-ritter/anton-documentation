@@ -96,7 +96,7 @@ php artisan lotte:commit <tenant> <package>
 Keep a customer's derivative rows true to the store and make up missing or failed derivatives
 
 ```bash
-php artisan lotte:derivatives [--reconcile] [--backfill] [--object [OBJECT]] [--limit [LIMIT]] [--dry-run] [--] <tenant>
+php artisan lotte:derivatives [--reconcile] [--backfill] [--object [OBJECT]] [--limit [LIMIT]] [--dry-run] [--given-up] [--] <tenant>
 ```
 
 | Argument / option | Description | Default |
@@ -107,6 +107,7 @@ php artisan lotte:derivatives [--reconcile] [--backfill] [--object [OBJECT]] [--
 | `--object=…` | with --reconcile, only these objects |  |
 | `--limit=…` | with --backfill, at most this many per run | `500` |
 | `--dry-run` | with --backfill, count only |  |
+| `--given-up` | list the derivatives failed three times, which the backfill no longer tries |  |
 
 ### `lotte:derive` {#lotte-derive}
 

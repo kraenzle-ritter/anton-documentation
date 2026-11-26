@@ -548,7 +548,7 @@ Statuses for monitoring, without a key and without content.
 
 #### `GET /health` {#op-health}
 
-**Overall health of the service.** The same check as `lotte:health` — the storage base, and per customer its database, its folder (`ocfl/`, `derivatives/`, `text/`, `work/` writable) and its queue (a job waiting too long, derivatives given up) — but answered without a key, so it gives the overall status only: no customer, no path, no message. The details are given by `lotte:health` on the server. No session, `Cache-Control: no-store`.
+**Overall health of the service.** The same check as `lotte:health` — the storage base, and per customer its database, its folder (`ocfl/`, `derivatives/`, `text/`, `work/` writable) and its queue (a job waiting too long) — but answered without a key, so it gives the overall status only: no customer, no path, no message. The details are given by `lotte:health` on the server, which also names derivatives given up after three attempts: a finding about the data, not a warning. No session, `Cache-Control: no-store`.
 
 Access: no key
 
