@@ -8,7 +8,7 @@ ein. Die Kurzfassung: **Nativer Round-Trip und SQL-Dump sind Sicherungen, alles
 andere sind Publikations- und Austauschsichten.**
 
 !!! info "Stand"
-    Diese Matrix bildet den Stand vom **23. November 2026** ab. Sie wird
+    Diese Matrix bildet den Stand vom **26. November 2026** ab. Sie wird
     zusammen mit den Exportern gepflegt.
 
 ## Verfügbare Formate
@@ -51,6 +51,7 @@ Legende: ● voll · ◐ teilweise / eingebettet · ○ nicht enthalten
 | Volltext / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Akteur:innen (eingebettet) | ● | ● | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Akteur:innen (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
+| Geschlecht (Personen)⁶ | ○ | ○ | ◐ | ◐ | ◐ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Orte (eingebettet) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Orte (Normdatei) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Schlagwörter | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
@@ -92,6 +93,8 @@ Derivate (`thumb`/`web`) daneben — im Standardfall **nicht die Master**. Mit
 behaltene Originale und alle Ereignisse an den Medien mit Werkzeug und Version.
 Nicht enthalten ist die NARA-Risikobewertung. Gilt auch für den nativen
 Round-Trip, nicht für die ZH-Variante des DIP.
+
+⁶ **Geschlecht von Personen** (anton#867): Die Publikationssichten — TEI, RDF «A+» (`crm:P2_has_type`), RiC (`rico:hasOrHadDemographicGroup` mit einer `rico:DemographicGroup` je Wert), die API für Gäste und die MCP-Schnittstelle — geben es nur aus, wenn das Archiv das Feld «Geschlecht» ins öffentliche Detailformular der Akteur:innen setzt. TEI schreibt nur weiblich und männlich (`gender="W"`/`"M"`). Mit `--include-protected` und im vollständigen E-ARK DIP kommt es immer mit, ebenso im nativen Round-Trip, dort samt Herkunft (von Hand, Kommentar, GND, Wikidata, Vorname, Import). EAD 2002 und EAD3 kennen kein Geschlecht. Die Excel-Tabelle der Akteur:innen (Admin → Deskriptoren) führt es in der Spalte `gender` und nimmt eine Änderung zurück.
 
 ## Gut abgedeckt
 

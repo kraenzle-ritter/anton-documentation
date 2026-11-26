@@ -48,7 +48,7 @@ avviene nella colonna di destra della vista di modifica.
 
 Le persone hanno il campo **Genere**. I suoi valori vengono dalla [lista di valori](../admin/valuelists.md) «Genere»: femminile, maschile, diverso, sconosciuto. L'archivio può rinominarli e aggiungerne di propri. Gli altri tipi diversi dalle persone non hanno un genere; il modulo vi rifiuta un valore.
 
-È l'archivio a decidere se e dove il campo compare. Anton non lo inserisce in nessun modulo esistente; lo si aggiunge al modulo di modifica e al modulo di dettaglio interno nell'[editor dei moduli](forms.md). È visibile pubblicamente solo se l'archivio lo inserisce anche nel modulo di dettaglio pubblico. L'API lo indica solo alle persone connesse internamente.
+È l'archivio a decidere se e dove il campo compare. Anton non lo inserisce in nessun modulo esistente; lo si aggiunge al modulo di modifica e al modulo di dettaglio interno nell'[editor dei moduli](forms.md). È visibile pubblicamente solo se l'archivio lo inserisce anche nel modulo di dettaglio pubblico. L'API, l'interfaccia MCP e gli export TEI, RDF e RiC seguono la stessa regola; le persone connesse internamente lo vedono sempre nell'API. Il backup nel formato nativo lo porta sempre con sé, vedi la [matrice degli export](../admin/export-matrix.md).
 
 Per ogni valore Anton registra da dove proviene: inserito a mano, da un commento «Geschlecht: …», dai dati GND o Wikidata salvati, stimato dal nome o dall'appellativo, oppure importato. Modificare il valore nel modulo lo segna come inserito a mano. I campi vuoti si possono completare a partire da questi indizi con [`anton:fill-gender`](../admin/console-commands.md).
 

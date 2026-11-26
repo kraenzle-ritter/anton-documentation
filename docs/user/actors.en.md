@@ -48,7 +48,7 @@ the right-hand column of the edit view.
 
 Persons have the field **Gender**. Its values come from the [value list](../admin/valuelists.md) «Gender»: female, male, diverse, unknown. The archive can rename them and add its own. Types other than persons have no gender; the form refuses a value there.
 
-Whether and where the field appears is the archive's decision. Anton puts it on no existing form; it is added to the edit form and the internal detail form in the [form editor](forms.md). It is visible in public only if the archive also puts it on the public detail form. The API names it only to people signed in internally.
+Whether and where the field appears is the archive's decision. Anton puts it on no existing form; it is added to the edit form and the internal detail form in the [form editor](forms.md). It is visible in public only if the archive also puts it on the public detail form. The API, the MCP interface and the TEI, RDF and RiC exports follow the same rule; people signed in internally always see it in the API. The native backup always carries it, see the [export matrix](../admin/export-matrix.md).
 
 For every value Anton records where it came from: set by hand, from a comment «Geschlecht: …», from the stored GND or Wikidata data, guessed from a first name or salutation, or imported. Changing the value in the form sets it by hand. Empty fields can be filled from these hints with [`anton:fill-gender`](../admin/console-commands.md#maintenance-and-repair).
 

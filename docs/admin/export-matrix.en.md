@@ -9,7 +9,7 @@ native round trip and the SQL dump are backups, everything else is a publication
 or exchange view.**
 
 !!! info "Status"
-    This matrix reflects the state of **23 November 2026**. It is
+    This matrix reflects the state of **26 November 2026**. It is
     maintained together with the exporters.
 
 ## Available formats
@@ -52,6 +52,7 @@ Key: ● full · ◐ partial / embedded · ○ not included
 | Full text / OCR | ○ | ○ | ○ | ●¹ | ○ | ○ | ○ | ○ | ○ | ○ | ● |
 | Actors (embedded) | ● | ● | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Actors (authority file) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
+| Gender (persons)⁶ | ○ | ○ | ◐ | ◐ | ◐ | ○ | ○ | ◐ | ○ | ○ | ● |
 | Places (embedded) | ◐ | ◐ | ◐ | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
 | Places (authority file) | ○ | ○ | ● | ◐ | ◐ | ○ | ○ | ○ | ○ | ○ | ● |
 | Keywords | ● | ● | ● | ● | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● |
@@ -94,6 +95,8 @@ see [migration export](#migrations-export-das-bundle-als-weg-hinaus).
 kept originals and every event on the media with tool and version. The NARA
 risk assessment is not included. Applies to the native round trip too, not to
 the ZH variant of the DIP.
+
+⁶ **Gender of persons** (anton#867): the publication views — TEI, RDF «A+» (`crm:P2_has_type`), RiC (`rico:hasOrHadDemographicGroup` with one `rico:DemographicGroup` per value), the API for guests and the MCP interface — emit it only where the archive puts the field «Gender» on the public actor detail form. TEI writes female and male only (`gender="W"`/`"M"`). With `--include-protected` and in the full E-ARK DIP it always travels, as in the native round trip, there with its source (by hand, comment, GND, Wikidata, first name, import). EAD 2002 and EAD3 have no gender. The actor sheet (Admin → Descriptors) carries it in the column `gender` and takes a change back.
 
 ## Well covered
 
