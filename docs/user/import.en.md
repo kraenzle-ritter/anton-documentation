@@ -120,6 +120,8 @@ If the number of new records of one kind exceeds half the number of rows, a **wa
 
 Required are `parent` and `level_of_description` for a new record, `id` or `uuid` for an update. The order of the columns does not matter, nor does the case of the header row. A column Anton does not know is not imported; the check names it and suggests a similar name. A text longer than the database holds stops the import with a message instead of being cut silently.
 
+«Also read as» lists further names under which Anton reads a column too. A field may appear only once, though: if `media` and `bilder`, or `schlagworte` and `sachschlagworte`, stand in the same list, the check refuses it and names both columns. Up to Anton 0.130 the later column silently overwrote the earlier one, even when it was empty.
+
 The table is generated from Anton (`anton:import-columns`), from the same rules the import checks by. The separators are the defaults of a new installation; every archive can change them, and the help in Anton shows its own.
 
 <!-- BEGIN generated import columns -->

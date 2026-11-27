@@ -120,6 +120,8 @@ Se il numero di nuove creazioni di una categoria supera la metà delle righe, co
 
 Sono obbligatorie `parent` e `level_of_description` per una nuova unità, `id` o `uuid` per un aggiornamento. L'ordine delle colonne non conta, e nemmeno maiuscole e minuscole della riga d'intestazione. Una colonna che Anton non conosce non viene importata; il controllo la nomina e propone un nome simile. Un testo più lungo di quanto la banca dati contiene interrompe l'importazione con un messaggio invece di essere troncato in silenzio.
 
+«Letta anche come» indica altri nomi con cui Anton legge anche una colonna. Un campo può però comparire una sola volta: se `media` e `bilder`, oppure `schlagworte` e `sachschlagworte`, stanno nella stessa lista, il controllo la respinge e nomina entrambe le colonne. Fino ad Anton 0.130 la colonna successiva sovrascriveva la precedente senza avviso, anche se vuota.
+
 La tabella è prodotta da Anton (`anton:import-columns`), dalle stesse regole del controllo. I separatori sono quelli di una nuova installazione; ogni archivio può cambiarli, e l'aiuto in Anton mostra i propri.
 
 <!-- BEGIN generated import columns -->

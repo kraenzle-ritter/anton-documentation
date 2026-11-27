@@ -120,6 +120,8 @@ Ist das Anlegen für eine Art ausgeschaltet, erscheinen dieselben Einträge als 
 
 Pflicht sind für einen neuen Datensatz `parent` und `level_of_description`, für ein Update `id` oder `uuid`. Die Reihenfolge der Spalten spielt keine Rolle, Gross- und Kleinschreibung der Kopfzeile auch nicht. Eine Spalte, die Anton nicht kennt, wird nicht importiert; die Prüfung nennt sie und schlägt einen ähnlichen Namen vor. Ein Text, der länger ist, als die Datenbank fasst, bricht den Import mit einer Meldung ab, statt still gekürzt zu werden.
 
+Unter «Auch erkannt als» stehen weitere Namen, unter denen Anton eine Spalte ebenfalls liest. Ein Feld darf aber nur einmal vorkommen: Stehen `media` und `bilder` oder `schlagworte` und `sachschlagworte` in derselben Liste, weist die Prüfung sie ab und nennt beide Spalten. Bis Anton 0.130 überschrieb die spätere Spalte die frühere still, auch wenn sie leer war.
+
 Die Tabelle wird aus Anton erzeugt (`anton:import-columns`), aus denselben Regeln, nach denen der Import prüft. Die Trennzeichen sind die Vorgaben einer neuen Installation; jedes Archiv kann sie ändern, die Hilfe in Anton zeigt die eigenen.
 
 <!-- BEGIN generated import columns -->
